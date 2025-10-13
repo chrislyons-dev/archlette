@@ -1,0 +1,27 @@
+name: AAC Generate
+description: Generate Architecture-as-Code artifacts
+runs:
+  using: 'composite'
+  steps:
+    - run: npm ci
+      shell: bash
+    - name: Install Graphviz (for DOT rendering)
+      run: sudo apt-get update && sudo apt-get install -y graphviz
+      shell: bash
+    - name: Install PlantUML jar (if using PlantUML)
+      run: |
+        mkdir -p tools
+        curl -sL -o tools/plantuml.jar https://github.com/plantuml/plantuml/releases/latest/download/plantuml.jar
+      shell: bash
+    - name: (Optional) Install Mermaid CLI
+      run: npm i -g @mermaid-js/mermaid-cli
+      shell: bash
+    - name: (Optional) Install Inframap
+      run: |
+        curl -sL https://github.com/cycloidio/inframap/releases/latest/download/inframap_linux_amd64.tar.gz | tar xz
+        sudo mv inframap /usr/local/bin/inframap
+      shell: bash
+    - run: npm run aac:gen
+      shell: bash
+    - run: npm run aac:validate
+      shell: bash

@@ -1,0 +1,78 @@
+{
+  "name": "@chrislyons-dev/archlette",
+  "version": "0.1.0",
+  "private": false,
+  "description": "Architecture-as-Code toolkit for automated diagrams, docs, and releases.",
+  "keywords": [
+    "architecture-as-code",
+    "architecture",
+    "c4",
+    "plantuml",
+    "mermaid",
+    "inframap",
+    "diagram",
+    "documentation",
+    "ci",
+    "cli",
+    "toolkit"
+  ],
+  "homepage": "https://chrislyons-dev.github.io/archlette/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chrislyons-dev/archlette.git"
+  },
+  "bugs": {
+    "url": "https://github.com/chrislyons-dev/archlette/issues"
+  },
+  "author": "Chris Lyons <github.com/chrislyons-dev>",
+  "license": "MIT",
+  "type": "module",
+  "bin": {
+    "archlette": "./bin/aac.mjs"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
+  "scripts": {
+    "aac:init": "node bin/aac.mjs init",
+    "aac:gen": "node bin/aac.mjs generate",
+    "aac:validate": "node bin/aac.mjs validate",
+    "aac:publish": "node bin/aac.mjs publish",
+    "test": "vitest run",
+    "licenses:report": "npx license-checker --production --json > dist/licenses.json && npx license-checker --production --summary | sed 's/^/* /' >> THIRD_PARTY_LICENSES.md",
+    "format": "prettier --write \"**/*.{js,ts,json,md,yml,yaml}\"",
+    "format:check": "prettier --check \"**/*.{js,ts,json,md,yml,yaml}\"",
+    "lint": "eslint . --ext .js,.ts --max-warnings=0",
+    "typecheck": "tsc --noEmit --skipLibCheck",
+    "prepare": "husky",
+    "lint:commit": "commitlint --edit"
+  },
+  "dependencies": {
+    "globby": "^14.0.2",
+    "yaml": "^2.5.1"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^19.4.0",
+    "@commitlint/config-conventional": "^19.4.0",
+    "@eslint/js": "^9.37.0",
+    "@typescript-eslint/eslint-plugin": "^8.8.1",
+    "@typescript-eslint/parser": "^8.8.1",
+    "eslint": "^9.11.1",
+    "eslint-config-prettier": "^10.1.8",
+    "globals": "^16.4.0",
+    "husky": "^9.1.6",
+    "license-checker": "^25.0.1",
+    "lint-staged": "^15.2.10",
+    "prettier": "^3.3.3",
+    "typescript": "^5.6.3",
+    "typescript-eslint": "^8.46.0",
+    "vitest": "^3.2.4"
+  },
+  "lint-staged": {
+    "*.{js,ts,json,md,yml,yaml}": [
+      "prettier --write",
+      "eslint --fix"
+    ]
+  }
+}

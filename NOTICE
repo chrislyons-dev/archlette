@@ -1,0 +1,15 @@
+Archlette / AAC Starter
+Copyright (c) 2025 Chris Lyons
+
+This project is licensed under the MIT License (see LICENSE).
+
+This product bundles or invokes third-party tools that retain their own licenses,
+including but not limited to:
+- PlantUML (EPL-1.0)
+- Graphviz (EPL-1.0)
+- Mermaid CLI (MIT)
+- Inframap (MIT)
+
+For a non-exhaustive list of JavaScript dependencies and their licenses,
+see THIRD_PARTY_LICENSES.md. External binaries are not redistributed here and
+remain licensed by their respective owners.
