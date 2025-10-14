@@ -9,27 +9,32 @@
 [![Docs](https://img.shields.io/badge/docs-gh--pages-success?logo=github)](https://chrislyons-dev.github.io/archlette/)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 
-A repo‑agnostic, drop‑in toolkit to generate and publish architecture docs (C4 diagrams, IaC graphs, ADRs) from code and infrastructure.
+A repo-agnostic, drop-in toolkit to generate and publish architecture docs (C4 diagrams, IaC graphs, ADRs) directly from code and infrastructure.
 
-## Features
+---
 
-- Single `archlette.yaml` config drives discovery, generation, and publishing
-- Pluggable generators (Mermaid C4, PlantUML C4, Inframap)
-- Reusable GitHub Action workflow
-- Pre‑commit integration examples (Husky or pre‑commit)
-- Templates for ADRs and index pages
+## ✨ Features
 
-## Quick start
+- **Single `aac.yaml` config** drives discovery, extraction, generation, and publishing
+- **Composable extractor framework** (Terraform, code annotations, OpenAPI, etc.)
+- **Intermediate Representation (IR)** stored as `.archlette/ir.json`
+- **Pluggable generators** (Mermaid C4, PlantUML C4, Inframap)
+- **Repo-agnostic GitHub Actions workflows** for CI/CD
+- **Pre-commit integration** via Husky or `pre-commit` hooks
+- **Templates** for ADRs and docs index pages
+
+---
+
+## 🚀 Quick start
 
 ```bash
-# as a repo you own
 git clone <this-repo>
 npm ci
-npm run archlette:init
-npm run archlette:gen
+npm run aac:init
+npm run aac:gen
 ```
 
-Or install via `npm` in a consumer repo (after you publish this package):
+Or install from npm in another project:
 
 ```bash
 npm i -D @chrislyons-dev/archlette
@@ -37,37 +42,110 @@ npx archlette init
 npx archlette generate
 ```
 
-See `examples/bond-math-migration.md` for a migration checklist.
+---
+
+## 🧩 Extractors
+
+Archlette discovers architecture elements from code and infra through a **configurable pipeline** defined in `aac.yaml`.  
+Each extractor reads files, emits standardized entities (systems, containers, components, relations), and merges them into an IR (`.archlette/ir.json`).
+
+### Built-in extractors
+
+| Extractor                                         | Purpose                                                                 | Default Inputs                                         | Output Entities                            |
+| ------------------------------------------------- | ----------------------------------------------------------------------- | ------------------------------------------------------ | ------------------------------------------ |
+| **Terraform** (`builtin/terraform`)               | Parses `.tf` files to detect infra components                           | `iac/**/*.tf`                                          | `infra:*` entities                         |
+| **Code Annotations** (`builtin/code-annotations`) | Scans source files for `@service`, `@component`, and `@depends_on` tags | `services/**`, `apps/**`, `libs/**`, `**/*.{ts,js,py}` | `container:*`, `component:*`, `relation:*` |
+| **OpenAPI** (`builtin/openapi`)                   | Extracts API surface and relations from OpenAPI 3 specs                 | `apis/**/openapi*.{yml,yaml,json}`                     | `api:*`, `container:*`, `relation:*`       |
 
 ---
 
-## License
+### Intermediate Representation (IR)
+
+All extractor results are aggregated into a single JSON file:
+
+```
+.archlette/ir.json
+```
+
+This file contains:
+
+- `entities` – systems, containers, components, APIs, infra
+- `relations` – edges between entities (e.g. `depends_on`, `served_by`)
+- `meta` – project name, timestamps, config details
+
+---
+
+## 🔧 Extending Archlette
+
+You can register **custom extractors** via the same interface as built-ins.
+
+### Example: `extractors/python-docstrings.js`
+
+```js
+export async function run(ctx) {
+  const { globby } = await import('globby');
+  const files = await globby('src/**/*.py');
+  const entities = [];
+  for (const file of files) {
+    const text = await ctx.readFile(file);
+    if (text.includes('@api')) {
+      entities.push({
+        id: `component:${file}`,
+        type: 'component',
+        props: { tech: 'Python Docstring' },
+      });
+    }
+  }
+  return { entities };
+}
+```
+
+Then wire it into your `aac.yaml`:
+
+```yaml
+extractors:
+  - use: ./extractors/python-docstrings.js
+    name: docs
+    inputs:
+      include: ['src/**/*.py']
+```
+
+---
+
+## 🧪 Tests
+
+Archlette includes **fixtures + Vitest integration tests** to validate the extractor pipeline and the full `runGenerate` flow.
+
+### Integration Fixture
+
+```
+tests/integration/archlette-minimal/
+├─ aac.yaml
+├─ iac/main.tf
+├─ services/bond/index.ts
+├─ apps/worker/handler.py
+├─ apis/bond-api/openapi.yaml
+├─ docs/architecture/
+└─ archlette.integration.spec.js
+```
+
+### How it works
+
+1. Loads `aac.yaml` in the fixture directory
+2. Executes `runGenerate(cfg, { irOnly: true })` to build `.archlette/ir.json`
+3. Executes `runGenerate(cfg, { irOnly: false })` to generate diagrams
+4. Asserts both files exist and contain valid output
+
+---
+
+## ⚙️ CI/CD Integration
+
+- **CI** – runs linting, type-checks, and tests (including extractor pipeline)
+- **CD** – builds and publishes to npm on tagged releases
+- **Docs** – publishes static docs to GitHub Pages
+
+---
+
+## 📄 License
 
 MIT © 2025 Chris Lyons
-
-This project may **call** external tools (PlantUML, Graphviz, Mermaid CLI, Inframap) which
-retain their own licenses and are **not** redistributed by this repository. See `NOTICE`
-and `THIRD_PARTY_LICENSES.md` for details.
-
-## CLI
-
-```
-archlette --help
-archlette --version
-archlette generate --verbose
-archlette validate --quiet
-```
-
-- Banner shows on top-level commands unless `--quiet` or `CI=true`.
-
-## Docs
-
-This repo publishes a tiny static site from `README.md`, `CHANGELOG.md`, and `NOTICE`
-to the **`gh-pages`** branch via GitHub Actions (`docs.yml`).
-
-- Workflow: `.github/workflows/docs.yml`
-- Build step: `node scripts/build-docs.mjs` creates `/site` with Markdown files
-- Deployment: `peaceiris/actions-gh-pages` pushes `/site` -> `gh-pages`
-
-Once enabled in **Settings → Pages → Source: `gh-pages`**, your docs will be served at:
-`https://<owner>.github.io/<repo>/`

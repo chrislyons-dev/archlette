@@ -1,0 +1,143 @@
+{
+  "version": "1",
+  "project": {
+    "name": "Archlette Integration Fixture"
+  },
+  "generatedAt": "2025-10-14T03:13:54.766Z",
+  "provenance": {
+    "extractors": [
+      {
+        "name": "tf",
+        "use": "builtin/terraform"
+      },
+      {
+        "name": "code",
+        "use": "builtin/code-annotations"
+      },
+      {
+        "name": "api",
+        "use": "builtin/openapi"
+      }
+    ]
+  },
+  "entities": [
+    {
+      "id": "api:bond-math-api",
+      "kind": "api",
+      "name": "Bond Math API",
+      "props": {
+        "version": "1.0.0",
+        "servers": ["https://api.archlette.dev"]
+      },
+      "source": {
+        "extractor": "builtin/openapi",
+        "location": "apis/bond-api/openapi.yaml"
+      }
+    },
+    {
+      "id": "component:bond-math-api-meta",
+      "kind": "component",
+      "name": "Bond Math API: meta",
+      "source": {
+        "extractor": "builtin/openapi",
+        "location": "apis/bond-api/openapi.yaml"
+      }
+    },
+    {
+      "id": "component:bond-math-api-pricing",
+      "kind": "component",
+      "name": "Bond Math API: pricing",
+      "source": {
+        "extractor": "builtin/openapi",
+        "location": "apis/bond-api/openapi.yaml"
+      }
+    },
+    {
+      "id": "component:pricing",
+      "kind": "component",
+      "name": "pricing",
+      "source": {
+        "extractor": "builtin/code-annotations",
+        "location": "services/bond/index.ts",
+        "line": 2
+      }
+    },
+    {
+      "id": "container:bond",
+      "kind": "container",
+      "name": "bond",
+      "tags": ["service"],
+      "source": {
+        "extractor": "builtin/code-annotations",
+        "location": "services/bond/index.ts",
+        "line": 1
+      }
+    },
+    {
+      "id": "container:worker",
+      "kind": "container",
+      "name": "worker",
+      "tags": ["service"],
+      "source": {
+        "extractor": "builtin/code-annotations",
+        "location": "apps/worker/handler.py",
+        "line": 1
+      }
+    },
+    {
+      "id": "infra:iac_main.tf",
+      "kind": "infra",
+      "name": "iac/main.tf",
+      "tags": ["terraform"],
+      "source": {
+        "extractor": "builtin/terraform",
+        "location": "iac/main.tf"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "from": "api:bond-math-api",
+      "to": "container:bond",
+      "label": "served_by",
+      "source": {
+        "extractor": "builtin/openapi",
+        "location": "apis/bond-api/openapi.yaml"
+      }
+    },
+    {
+      "from": "container:apps",
+      "to": "container:bond",
+      "label": "depends_on",
+      "source": {
+        "extractor": "builtin/code-annotations",
+        "location": "apps/worker/handler.py",
+        "line": 2
+      }
+    },
+    {
+      "from": "container:services",
+      "to": "infra:aws_s3_bucket:example",
+      "label": "depends_on",
+      "source": {
+        "extractor": "builtin/code-annotations",
+        "location": "services/bond/index.ts",
+        "line": 3
+      }
+    }
+  ],
+  "artifacts": [
+    {
+      "id": "openapi:apis-bond-api-openapi.yaml",
+      "kind": "openapi",
+      "path": "apis/bond-api/openapi.yaml",
+      "meta": {
+        "format": "yaml"
+      },
+      "source": {
+        "extractor": "builtin/openapi",
+        "location": "apis/bond-api/openapi.yaml"
+      }
+    }
+  ]
+}

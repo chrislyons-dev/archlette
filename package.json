@@ -39,7 +39,7 @@
     "aac:gen": "node bin/aac.mjs generate",
     "aac:validate": "node bin/aac.mjs validate",
     "aac:publish": "node bin/aac.mjs publish",
-    "test": "vitest run",
+    "test": "vitest run --reporter=verbose",
     "licenses:report": "npx license-checker --production --json > dist/licenses.json && npx license-checker --production --summary | sed 's/^/* /' >> THIRD_PARTY_LICENSES.md",
     "format": "prettier --write \"**/*.{js,ts,json,md,yml,yaml}\"",
     "format:check": "prettier --check \"**/*.{js,ts,json,md,yml,yaml}\"",
@@ -49,6 +49,7 @@
     "lint:commit": "commitlint --edit"
   },
   "dependencies": {
+    "execa": "^9.5.1",
     "globby": "^14.0.2",
     "yaml": "^2.5.1"
   },
@@ -58,6 +59,7 @@
     "@eslint/js": "^9.37.0",
     "@typescript-eslint/eslint-plugin": "^8.8.1",
     "@typescript-eslint/parser": "^8.8.1",
+    "@vitest/coverage-v8": "^3.2.4",
     "eslint": "^9.11.1",
     "eslint-config-prettier": "^10.1.8",
     "globals": "^16.4.0",
@@ -74,5 +76,8 @@
       "prettier --write",
       "eslint --fix"
     ]
+  },
+  "engines": {
+    "node": ">=18.0.0"
   }
 }

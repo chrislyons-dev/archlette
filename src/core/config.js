@@ -44,5 +44,6 @@ export async function loadConfig() {
 }
 
 export function resolveOutDir(cfg) {
-  return path.resolve(process.cwd(), cfg.docs.out_dir);
+  const out = cfg?.docs?.out_dir ?? DEFAULT_OUT_DIR;
+  return path.resolve(process.cwd(), out);
 }
