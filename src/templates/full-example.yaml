@@ -1,0 +1,69 @@
+project:
+  name: Archlette
+  # Arbitrary metadata for the project
+  props:
+    owner: 'platform-team'
+    repo: 'github.com/you/archlette'
+
+paths:
+  ir_out: ../docs/architecture/aac-ir.json
+  dsl_out: ../docs/architecture/aac.dsl
+  render_out: ../docs/architecture/images
+  docs_out: ../docs/architecture
+
+# Stage-level defaults (merged into each node unless the node overrides)
+defaults:
+  includes: ['**/*'] # safe default
+  excludes: ['node_modules/**', '.git/**', 'dist/**', 'build/**']
+  props:
+    ci: true
+
+extractors:
+  includes: ['src/**/*.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'] # stage defaults
+  excludes: ['**/*.test.*', '**/*.spec.*']
+  nodes:
+    - use: extractors/builtin/basic-node
+      name: 'Basic Code Scan'
+      includes: ['src/**/*.{ts,tsx}'] # node-level override/refine
+      excludes: [] # explicit override (empty)
+      props:
+        mode: 'ast' # arbitrary name/value pairs
+        severity: 'info'
+
+validators:
+  includes: [] # inherits stage defaults from `defaults`
+  excludes: []
+  nodes:
+    - use: validators/builtin/schema
+      name: 'IR Schema'
+      props:
+        strict: true
+
+generators:
+  includes: [] # inherits defaults
+  excludes: []
+  nodes:
+    - use: generators/builtin/structurizr
+      name: 'Structurizr DSL'
+      props:
+        workspaceName: 'Archlette'
+        theme: 'default'
+
+renderers:
+  includes: [] # inherits defaults
+  excludes: []
+  nodes:
+    - use: renderers/builtin/structurizr-cli
+      name: 'Structurizr CLI Render'
+      props:
+        formats: ['png', 'svg']
+        layout: 'locked'
+
+docs:
+  includes: [] # inherits defaults
+  excludes: []
+  nodes:
+    - use: docs/builtin/index
+      name: 'Docs Index'
+      props:
+        sidebar: true

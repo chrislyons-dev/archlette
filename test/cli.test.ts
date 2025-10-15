@@ -67,6 +67,13 @@ vi.mock('yaml', () => ({
         : {},
 }));
 
+// mock zod check
+vi.mock('../src/core/types-aac.js', () => ({
+  AACConfigSchema: {
+    safeParse: (input: any) => ({ success: true, data: input }),
+  },
+}));
+
 // Console + exit spies
 const spyLog = vi.spyOn(console, 'log').mockImplementation(() => {});
 const spyWarn = vi.spyOn(console, 'warn').mockImplementation(() => {});

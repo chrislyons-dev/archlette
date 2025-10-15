@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 import { pathToFileURL } from 'node:url';
 import * as fs from 'node:fs';
 
@@ -5,6 +6,7 @@ import type { PipelineContext, StageModule } from './core/types.ts';
 import { getStageEntry } from './core/stage-entry.js';
 import { loadModuleFromPath } from './core/module-loader.js';
 import { resolveArchlettePath, getCliDir } from './core/path-resolver.js';
+import { AACConfigSchema as aacConfigSchema } from './core/types-aac.js';
 
 const DEFAULT_YAML_PATH = './templates/default.yaml';
 
@@ -76,6 +78,10 @@ async function loadYamlIfExists(resolvedFile: string) {
     const YAML: typeof import('yaml') = await import('yaml'); // <- typed
     const text = fs.readFileSync(resolvedFile, 'utf8');
     const parsed = YAML.parse(text);
+    const result = aacConfigSchema.safeParse(parsed);
+    if (!result.success) {
+      usageAndExit(`[archlette] Config validation failed: {result.error}`);
+    }
     return { config: parsed ?? null, path: resolvedFile };
   } catch {
     console.warn(
