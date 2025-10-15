@@ -1,10 +1,10 @@
 project: { name: Archlette }
 
 paths:
-  ir_out: docs/architecture/aac-ir.json
-  dsl_out: docs/architecture/aac.dsl
-  render_out: docs/architecture/images
-  docs_out: docs/architecture
+  ir_out: ../docs/architecture/aac-ir.json
+  dsl_out: ../docs/architecture/aac.dsl
+  render_out: ../docs/architecture/images
+  docs_out: ../docs/architecture
 
 extractors:
   - use: extractors/builtin/basic-node

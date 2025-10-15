@@ -37,7 +37,7 @@ vi.mock(new URL('../src/core/module-loader.js', import.meta.url).href, () => ({
 vi.mock(new URL('../src/core/path-resolver.js', import.meta.url).href, () => ({
   getCliDir: vi.fn(() => '/cli'),
   resolveArchlettePath: vi.fn((input: string) => {
-    if (input === '../aac.yaml') return '/cfg/default.yaml';
+    if (input === './templates/default.yaml') return '/cfg/default.yaml';
     if (input.startsWith('~')) return `/home/user/${input.slice(2)}`;
     if (input.startsWith('/')) return input;
     return `/cli/${input}`;
@@ -156,7 +156,7 @@ describe('CLI stage selection & order', () => {
 });
 
 describe('CLI YAML handling & resolution', () => {
-  it('uses default ../aac.yaml when -f not provided', async () => {
+  it('uses default ./templates/default.yaml when -f not provided', async () => {
     const { run } = await freshCli();
     await run(['node', 'cli', 'all']);
 
@@ -164,7 +164,7 @@ describe('CLI YAML handling & resolution', () => {
       new URL('../src/core/path-resolver.js', import.meta.url).href
     );
     const inputs = resolver.resolveArchlettePath.mock.calls.map((c: any[]) => c[0]);
-    expect(inputs).toContain('../aac.yaml');
+    expect(inputs).toContain('./templates/default.yaml');
     expect(calls[0].ctxConfig).toEqual({ default: true });
   });
 
@@ -173,7 +173,7 @@ describe('CLI YAML handling & resolution', () => {
       new URL('../src/core/path-resolver.js', import.meta.url).href
     );
     resolver.resolveArchlettePath.mockImplementation((input: string) => {
-      if (input === '../aac.yaml') return '/cfg/default.yaml';
+      if (input === './templates/default.yaml') return '/cfg/default.yaml';
       if (input === '~/custom.yaml') return '/cfg/custom.yaml';
       if (input.startsWith('~')) return `/home/user/${input.slice(2)}`;
       if (input.startsWith('/')) return input;
@@ -223,7 +223,7 @@ describe('CLI YAML handling & resolution', () => {
 
   it('logs "Using config:" when the YAML file exists', async () => {
     const { run } = await freshCli();
-    await run(['node', 'cli', 'extract']); // uses default ../aac.yaml -> /cfg/default.yaml (exists)
+    await run(['node', 'cli', 'extract']); // uses default ./templates/default.yaml -> /cfg/default.yaml (exists)
 
     // find the info log that mentions Using config:
     const infoCalls = (console.log as any).mock.calls.map((c: any[]) => c.join(' '));
@@ -241,7 +241,7 @@ describe('CLI YAML handling & resolution', () => {
     fsMod.existsSync.mockImplementation(() => false);
 
     const { run } = await freshCli();
-    await run(['node', 'cli', 'extract']); // still looks for ../aac.yaml but now "missing"
+    await run(['node', 'cli', 'extract']); // still looks for ./templates/default.yaml but now "missing"
 
     const infoCalls = (console.log as any).mock.calls.map((c: any[]) => c.join(' '));
     const found = infoCalls.find((line: string | string[]) =>

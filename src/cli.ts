@@ -6,6 +6,8 @@ import { getStageEntry } from './core/stage-entry.js';
 import { loadModuleFromPath } from './core/module-loader.js';
 import { resolveArchlettePath, getCliDir } from './core/path-resolver.js';
 
+const DEFAULT_YAML_PATH = './templates/default.yaml';
+
 const STAGE_DIRS = {
   extract: '1-extract',
   validate: '2-validate',
@@ -24,7 +26,7 @@ function usageAndExit(msg: string) {
   - "all" and "docs" both run the full pipeline (extract→validate→generate→render→docs)
 
 Options:
-  -f <file>   YAML config file path. Defaults to ../aac.yaml (resolved relative to the CLI file).`,
+  -f <file>   YAML config file path. Defaults to ./templates/default.yaml (resolved relative to the CLI file).`,
   );
   process.exit(2);
 }
@@ -87,8 +89,8 @@ export async function run(argv = process.argv) {
   const { stageArg, yamlPathArg } = parseArgs(argv);
   const cliDir = getCliDir(import.meta.url);
 
-  // config path: default ../aac.yaml (CLI-relative) or user -f path (~/, /, or CLI-relative)
-  const defaultYaml = resolveArchlettePath('../aac.yaml', { cliDir });
+  // config path: default ./templates/default.yaml (CLI-relative) or user -f path (~/, /, or CLI-relative)
+  const defaultYaml = resolveArchlettePath(DEFAULT_YAML_PATH, { cliDir });
   const chosenYaml = yamlPathArg
     ? resolveArchlettePath(yamlPathArg, { cliDir })
     : defaultYaml;

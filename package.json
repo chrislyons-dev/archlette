@@ -28,17 +28,20 @@
   "license": "MIT",
   "type": "module",
   "bin": {
-    "archlette": "./bin/aac.mjs"
+    "archlette": "./dist/cli.js"
   },
   "publishConfig": {
     "access": "public",
     "provenance": true
   },
   "scripts": {
-    "aac:init": "node bin/aac.mjs init",
-    "aac:gen": "node bin/aac.mjs generate",
-    "aac:validate": "node bin/aac.mjs validate",
-    "aac:publish": "node bin/aac.mjs publish",
+    "aac:extract": "npx tsx src/cli.ts extract",
+    "aac:val": "npx tsx src/cli.ts validate",
+    "aac:gen": "npx tsx src/cli.ts generate",
+    "aac:render": "npx tsx src/cli.ts render",
+    "aac:docs": "npx tsx src/cli.ts docs",
+    "aac:all": "npx tsx src/cli.ts all",
+    "build": "tsc --outDir dist && cp -r src/templates dist/",
     "test": "vitest run --reporter=verbose",
     "licenses:report": "npx license-checker --production --json > dist/licenses.json && npx license-checker --production --summary | sed 's/^/* /' >> THIRD_PARTY_LICENSES.md",
     "format": "prettier --write \"**/*.{js,ts,json,md,yml,yaml}\"",
@@ -51,7 +54,8 @@
   "dependencies": {
     "execa": "^9.5.1",
     "globby": "^14.0.2",
-    "yaml": "^2.8.1"
+    "yaml": "^2.8.1",
+    "zod": "^4.1.12"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.4.0",
@@ -70,7 +74,7 @@
     "lint-staged": "^15.2.10",
     "prettier": "^3.3.3",
     "tsx": "^4.20.6",
-    "typescript": "^5.6.3",
+    "typescript": "^5.9.3",
     "typescript-eslint": "^8.46.0",
     "vitest": "^3.2.4"
   },
