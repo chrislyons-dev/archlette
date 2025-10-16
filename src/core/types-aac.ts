@@ -1,3 +1,37 @@
+/**
+ * Architecture-as-Code (AAC) configuration types and schemas
+ *
+ * @module core/types-aac
+ * @description
+ * Defines the schema for AAC YAML configuration files. These files configure
+ * the entire AAC pipeline, specifying which extractors, validators, generators,
+ * renderers, and documentation generators to run.
+ *
+ * The configuration uses a stage-based architecture:
+ * 1. **Extractors**: Produce ArchletteIR from various sources (code, IaC, etc.)
+ * 2. **Validators**: Validate and enrich IR
+ * 3. **Generators**: Transform IR into DSL formats (Structurizr, PlantUML, etc.)
+ * 4. **Renderers**: Convert DSL to visual diagrams
+ * 5. **Docs**: Generate documentation from diagrams and IR
+ *
+ * Each stage consists of one or more modules that are loaded and executed in order.
+ *
+ * @example
+ * ```yaml
+ * # .aac.yaml
+ * project:
+ *   name: MyProject
+ *
+ * extractors:
+ *   - use: builtin/basic-node
+ *     inputs:
+ *       include: ['src/**\/*.ts']
+ *
+ * generators:
+ *   - use: builtin/structurizr
+ * ```
+ */
+
 import { z } from 'zod';
 
 /** ---------- Shared primitives ---------- */
@@ -13,31 +47,20 @@ const Meta = z.object({
 });
 
 /** ---------- Stage nodes & stages ---------- */
+
 const StageNode = z
   .object({
     use: z.string().min(1),
     name: z.string().default(''),
-    // Node-level includes/excludes override stage-level if provided
+    inputs: z.record(z.string(), z.unknown()).optional(),
+    // Node-level includes/excludes override defaults if provided
     includes: GlobArray.optional(),
     excludes: GlobArray.optional(),
   })
   .merge(Meta);
 
-const Stage = z
-  .object({
-    // Stage-level defaults (inherit from top-level defaults if empty)
-    includes: GlobArray.default([]),
-    excludes: GlobArray.default([]),
-    nodes: z.array(StageNode).default([]),
-  })
-  // It's safe to default the Stage schema itself since we don't merge Stage into other objects
-  .default({
-    includes: [],
-    excludes: [],
-    nodes: [],
-  });
-
 /** ---------- Top-level config ---------- */
+
 export const AACConfigSchema = z.object({
   project: z
     .object({
@@ -64,12 +87,12 @@ export const AACConfigSchema = z.object({
       props: {},
     }),
 
-  // Pipeline stages
-  extractors: Stage,
-  validators: Stage,
-  generators: Stage,
-  renderers: Stage,
-  docs: Stage,
+  // Pipeline stages as arrays of StageNode
+  extractors: z.array(StageNode).default([]),
+  validators: z.array(StageNode).default([]),
+  generators: z.array(StageNode).default([]),
+  renderers: z.array(StageNode).default([]),
+  docs: z.array(StageNode).default([]),
 });
 
 export type AACConfig = z.infer<typeof AACConfigSchema>;
@@ -81,49 +104,30 @@ export type ResolvedStageNode = z.infer<typeof StageNode> & {
   };
 };
 
-export type ResolvedStage = {
-  nodes: ResolvedStageNode[];
-  includes: string[];
-  excludes: string[];
-};
-
 export type ResolvedAACConfig = Omit<
   AACConfig,
   'extractors' | 'validators' | 'generators' | 'renderers' | 'docs'
 > & {
-  extractors: ResolvedStage;
-  validators: ResolvedStage;
-  generators: ResolvedStage;
-  renderers: ResolvedStage;
-  docs: ResolvedStage;
+  extractors: ResolvedStageNode[];
+  validators: ResolvedStageNode[];
+  generators: ResolvedStageNode[];
+  renderers: ResolvedStageNode[];
+  docs: ResolvedStageNode[];
 };
 
 /**
- * Merge order for includes/excludes:
- *   defaults → stage → node
- * - If a stage omits includes/excludes (empty), inherit from `defaults`.
- * - If a node omits includes/excludes, inherit from stage (already resolved with defaults).
+ * For each stage, resolve includes/excludes for each node:
+ *   - If node omits includes/excludes, inherit from defaults.
  */
 export function resolveConfig(raw: unknown): ResolvedAACConfig {
   const parsed = AACConfigSchema.parse(raw);
 
-  const resolveStage = (stage: z.infer<typeof Stage>): ResolvedStage => {
-    const stageIncludes =
-      stage.includes && stage.includes.length > 0
-        ? stage.includes
-        : parsed.defaults.includes;
-
-    const stageExcludes =
-      stage.excludes && stage.excludes.length > 0
-        ? stage.excludes
-        : parsed.defaults.excludes;
-
-    const nodes: ResolvedStageNode[] = stage.nodes.map((n) => {
+  const resolveStage = (nodes: z.infer<typeof StageNode>[]): ResolvedStageNode[] => {
+    return nodes.map((n) => {
       const nodeIncludes =
-        n.includes && n.includes.length > 0 ? n.includes : stageIncludes;
+        n.includes && n.includes.length > 0 ? n.includes : parsed.defaults.includes;
       const nodeExcludes =
-        n.excludes && n.excludes.length > 0 ? n.excludes : stageExcludes;
-
+        n.excludes && n.excludes.length > 0 ? n.excludes : parsed.defaults.excludes;
       return {
         ...n,
         _effective: {
@@ -132,8 +136,6 @@ export function resolveConfig(raw: unknown): ResolvedAACConfig {
         },
       };
     });
-
-    return { nodes, includes: stageIncludes, excludes: stageExcludes };
   };
 
   return {

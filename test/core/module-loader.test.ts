@@ -9,13 +9,13 @@ import {
   resolveArchlettePath,
   resolveModuleEntry,
   toFileUrl,
+  getCliDir,
 } from '../../src/core/path-resolver.ts';
 import { loadModuleFromPath } from '../../src/core/module-loader.js';
 
-// We’ll simulate the CLI living in a temp dir.
+// We'll use the actual CLI dir since getCliDir() now always returns the real CLI location
 let tmpRoot!: string;
 let cliDir!: string;
-let fakeCliEntryUrl!: string;
 let oldHOME!: string | undefined;
 
 function mk(p: string) {
@@ -28,22 +28,26 @@ async function write(p: string, content: string) {
 
 beforeAll(async () => {
   tmpRoot = await fsp.mkdtemp(path.join(os.tmpdir(), 'archlette-test-'));
-  cliDir = path.join(tmpRoot, 'cli');
-  mk(cliDir);
-
-  // Simulate CLI entry file by crafting a fake file URL in cliDir
-  fakeCliEntryUrl = pathToFileURL(path.join(cliDir, 'bin.js')).href;
+  // Use the actual CLI directory from getCliDir()
+  cliDir = getCliDir();
 
   // Fake HOME so "~" tests don't touch the real home
   oldHOME = process.env.HOME;
   process.env.HOME = path.join(tmpRoot, 'home');
   mk(process.env.HOME);
 
-  // Create some files to import
-  await write(path.join(cliDir, 'plugins', 'ext.ts'), 'export const ok = "ext.ts";');
-  await write(path.join(cliDir, 'plugins', 'gen.js'), 'export const ok = "gen.js";');
+  // Create test files in the actual CLI directory
+  // These will be created alongside your source files for testing
   await write(
-    path.join(cliDir, 'plugins', 'dir', 'index.ts'),
+    path.join(cliDir, 'test-plugins', 'ext.ts'),
+    'export const ok = "ext.ts";',
+  );
+  await write(
+    path.join(cliDir, 'test-plugins', 'gen.js'),
+    'export const ok = "gen.js";',
+  );
+  await write(
+    path.join(cliDir, 'test-plugins', 'dir', 'index.ts'),
     'export const ok = "index.ts";',
   );
 
@@ -61,14 +65,20 @@ afterAll(async () => {
   if (oldHOME === undefined) delete process.env.HOME;
   else process.env.HOME = oldHOME;
 
+  // Clean up test files from CLI directory
+  const testPluginsDir = path.join(cliDir, 'test-plugins');
+  if (fs.existsSync(testPluginsDir)) {
+    await fsp.rm(testPluginsDir, { recursive: true, force: true });
+  }
+
   // Clean up temp tree
   await fsp.rm(tmpRoot, { recursive: true, force: true });
 });
 
 describe('path-resolution basics', () => {
   it('resolves CLI-relative when no ~ or /', () => {
-    const p = resolveArchlettePath('plugins/ext', { cliDir });
-    expect(p).toBe(path.normalize(path.join(cliDir, 'plugins', 'ext')));
+    const p = resolveArchlettePath('test-plugins/ext', { cliDir });
+    expect(p).toBe(path.normalize(path.join(cliDir, 'test-plugins', 'ext')));
   });
 
   it('expands ~ to HOME', () => {
@@ -91,18 +101,18 @@ describe('path-resolution basics', () => {
 
 describe('resolveModuleEntry with extension/index probing', () => {
   it('finds .ts when given bare path', () => {
-    const p = resolveModuleEntry('plugins/ext', { cliDir });
-    expect(p).toBe(path.join(cliDir, 'plugins', 'ext.ts'));
+    const p = resolveModuleEntry('test-plugins/ext', { cliDir });
+    expect(p).toBe(path.join(cliDir, 'test-plugins', 'ext.ts'));
   });
 
   it('finds .js when given bare path', () => {
-    const p = resolveModuleEntry('plugins/gen', { cliDir });
-    expect(p).toBe(path.join(cliDir, 'plugins', 'gen.js'));
+    const p = resolveModuleEntry('test-plugins/gen', { cliDir });
+    expect(p).toBe(path.join(cliDir, 'test-plugins', 'gen.js'));
   });
 
   it('resolves directory index.ts', () => {
-    const p = resolveModuleEntry('plugins/dir', { cliDir });
-    expect(p).toBe(path.join(cliDir, 'plugins', 'dir', 'index.ts'));
+    const p = resolveModuleEntry('test-plugins/dir', { cliDir });
+    expect(p).toBe(path.join(cliDir, 'test-plugins', 'dir', 'index.ts'));
   });
 
   it('resolves home ~ file with .ts', () => {
@@ -119,32 +129,26 @@ describe('resolveModuleEntry with extension/index probing', () => {
 
 describe('loadModuleFromPath dynamic import', () => {
   it('imports a .ts file resolved via probing', async () => {
-    const { module, path: found } = await loadModuleFromPath<any>(
-      'plugins/ext',
-      fakeCliEntryUrl,
-    );
+    const { module, path: found } = await loadModuleFromPath<any>('test-plugins/ext');
     expect(found.endsWith('ext.ts')).toBe(true);
     expect(module.ok).toBe('ext.ts');
   });
 
   it('imports a directory index.ts', async () => {
-    const { module, path: found } = await loadModuleFromPath<any>(
-      'plugins/dir',
-      fakeCliEntryUrl,
-    );
-    expect(found.endsWith(path.normalize('plugins/dir/index.ts'))).toBe(true);
+    const { module, path: found } = await loadModuleFromPath<any>('test-plugins/dir');
+    expect(found.endsWith(path.normalize('test-plugins/dir/index.ts'))).toBe(true);
     expect(module.ok).toBe('index.ts');
   });
 
   it('imports an absolute path as-is', async () => {
     const abs = path.join(tmpRoot, 'abs.js');
-    const { module, path: found } = await loadModuleFromPath<any>(abs, fakeCliEntryUrl);
+    const { module, path: found } = await loadModuleFromPath<any>(abs);
     expect(found).toBe(abs);
     expect(module.ok).toBe('abs.js');
   });
 
   it('imports a home-path module', async () => {
-    const { module } = await loadModuleFromPath<any>('~/mods/homeMod', fakeCliEntryUrl);
+    const { module } = await loadModuleFromPath<any>('~/mods/homeMod');
     expect(module.ok).toBe('homeMod.ts');
   });
 });

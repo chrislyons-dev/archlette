@@ -2,8 +2,10 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 import * as path from 'node:path';
 import * as fs from 'node:fs';
 
-export function getCliDir(importMetaUrl: string): string {
-  const cliFile = fileURLToPath(importMetaUrl);
+export function getCliDir(): string {
+  const idx = import.meta.url.indexOf('core');
+  const newUrl = `${import.meta.url.slice(0, idx)}/cli.ts`;
+  const cliFile = fileURLToPath(newUrl);
   return path.dirname(cliFile);
 }
 
@@ -34,6 +36,7 @@ export function resolveArchlettePath(input: string, opts: { cliDir: string }): s
   } else if (path.isAbsolute(input) || input.startsWith('/')) {
     candidate = input;
   } else {
+    console.info(`Resolving relative path "${input}" against CLI dir: ${cliDir}`);
     candidate = path.join(cliDir, input);
   }
 
@@ -84,4 +87,12 @@ export function resolveModuleEntry(
 
 export function toFileUrl(p: string): string {
   return pathToFileURL(p).href;
+}
+
+export function writeFile(filename: string, content: string = '') {
+  const dirname = path.dirname(filename);
+  // Create parent directories recursively if they don't exist
+  fs.mkdirSync(dirname, { recursive: true });
+  // Now write the file
+  fs.writeFileSync(filename, content);
 }

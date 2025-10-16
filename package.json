@@ -54,6 +54,7 @@
   "dependencies": {
     "execa": "^9.5.1",
     "globby": "^14.0.2",
+    "ts-morph": "^24.0.0",
     "yaml": "^2.8.1",
     "zod": "^4.1.12"
   },

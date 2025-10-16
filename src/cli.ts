@@ -1,4 +1,42 @@
 #!/usr/bin/env node
+
+/**
+ * Archlette CLI - Architecture-as-Code toolkit
+ *
+ * @module cli
+ * @description
+ * Command-line interface for the Archlette Architecture-as-Code toolkit.
+ * Orchestrates the full AAC pipeline from extraction through documentation.
+ *
+ * ## Pipeline Stages
+ *
+ * 1. **Extract**: Analyze source materials (code, IaC) to produce ArchletteIR
+ * 2. **Validate**: Validate and enrich the IR
+ * 3. **Generate**: Transform IR into DSL formats (Structurizr, PlantUML, etc.)
+ * 4. **Render**: Convert DSL to visual diagrams
+ * 5. **Docs**: Generate documentation from diagrams and IR
+ *
+ * ## Usage
+ *
+ * ```bash
+ * # Run full pipeline
+ * archlette all
+ *
+ * # Run specific stage
+ * archlette extract -f .aac.yaml
+ *
+ * # Run multiple stages
+ * archlette extract validate generate
+ * ```
+ *
+ * ## Configuration
+ *
+ * The CLI reads configuration from a YAML file (default: `templates/default.yaml`)
+ * that specifies which modules to load for each stage.
+ *
+ * @see {@link module:core/types-aac} for configuration schema
+ */
+
 import { pathToFileURL } from 'node:url';
 import * as fs from 'node:fs';
 
@@ -6,9 +44,9 @@ import type { PipelineContext, StageModule } from './core/types.ts';
 import { getStageEntry } from './core/stage-entry.js';
 import { loadModuleFromPath } from './core/module-loader.js';
 import { resolveArchlettePath, getCliDir } from './core/path-resolver.js';
-import { AACConfigSchema as aacConfigSchema } from './core/types-aac.js';
+import { AACConfigSchema as aacConfigSchema, resolveConfig } from './core/types-aac.js';
 
-const DEFAULT_YAML_PATH = './templates/default.yaml';
+const DEFAULT_YAML_PATH = 'templates/default.yaml';
 
 const STAGE_DIRS = {
   extract: '1-extract',
@@ -28,7 +66,7 @@ function usageAndExit(msg: string) {
   - "all" and "docs" both run the full pipeline (extract→validate→generate→render→docs)
 
 Options:
-  -f <file>   YAML config file path. Defaults to ./templates/default.yaml (resolved relative to the CLI file).`,
+  -f <file>   YAML config file path. Defaults to DEFAULT_YAML_PATH (resolved relative to the CLI file).`,
   );
   process.exit(2);
 }
@@ -80,7 +118,7 @@ async function loadYamlIfExists(resolvedFile: string) {
     const parsed = YAML.parse(text);
     const result = aacConfigSchema.safeParse(parsed);
     if (!result.success) {
-      usageAndExit(`[archlette] Config validation failed: {result.error}`);
+      usageAndExit(`[archlette] Config validation failed: ${result.error}`);
     }
     return { config: parsed ?? null, path: resolvedFile };
   } catch {
@@ -93,15 +131,22 @@ async function loadYamlIfExists(resolvedFile: string) {
 
 export async function run(argv = process.argv) {
   const { stageArg, yamlPathArg } = parseArgs(argv);
-  const cliDir = getCliDir(import.meta.url);
+  const cliDir = getCliDir();
 
-  // config path: default ./templates/default.yaml (CLI-relative) or user -f path (~/, /, or CLI-relative)
+  // config path: default DEFAULT_YAML_PATH (CLI-relative) or user -f path (~/, /, or CLI-relative)
   const defaultYaml = resolveArchlettePath(DEFAULT_YAML_PATH, { cliDir });
   const chosenYaml = yamlPathArg
     ? resolveArchlettePath(yamlPathArg, { cliDir })
     : defaultYaml;
 
-  const { config, path } = await loadYamlIfExists(chosenYaml);
+  // Parse and resolve config to match PipelineContext type
+  let config: any = null;
+  let path: string | null = null;
+  const loaded = await loadYamlIfExists(chosenYaml);
+  if (loaded.config) {
+    config = resolveConfig(loaded.config);
+    path = loaded.path;
+  }
 
   /** Shared pipeline context passed to stages if they export a function */
   const ctx: PipelineContext = {
@@ -125,7 +170,7 @@ export async function run(argv = process.argv) {
     try {
       // Tell the loader what shape we expect
       const { module: stageMod, path: resolved } =
-        await loadModuleFromPath<StageModule>(spec, import.meta.url);
+        await loadModuleFromPath<StageModule>(spec);
 
       ctx.log.debug(`Loaded: ${resolved}`);
 

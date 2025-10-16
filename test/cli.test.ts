@@ -37,7 +37,7 @@ vi.mock(new URL('../src/core/module-loader.js', import.meta.url).href, () => ({
 vi.mock(new URL('../src/core/path-resolver.js', import.meta.url).href, () => ({
   getCliDir: vi.fn(() => '/cli'),
   resolveArchlettePath: vi.fn((input: string) => {
-    if (input === './templates/default.yaml') return '/cfg/default.yaml';
+    if (input === 'templates/default.yaml') return '/cfg/default.yaml';
     if (input.startsWith('~')) return `/home/user/${input.slice(2)}`;
     if (input.startsWith('/')) return input;
     return `/cli/${input}`;
@@ -67,11 +67,12 @@ vi.mock('yaml', () => ({
         : {},
 }));
 
-// mock zod check
+// mock zod check and resolveConfig
 vi.mock('../src/core/types-aac.js', () => ({
   AACConfigSchema: {
     safeParse: (input: any) => ({ success: true, data: input }),
   },
+  resolveConfig: (input: any) => input || null,
 }));
 
 // Console + exit spies
@@ -163,7 +164,7 @@ describe('CLI stage selection & order', () => {
 });
 
 describe('CLI YAML handling & resolution', () => {
-  it('uses default ./templates/default.yaml when -f not provided', async () => {
+  it('uses default templates/default.yaml when -f not provided', async () => {
     const { run } = await freshCli();
     await run(['node', 'cli', 'all']);
 
@@ -171,7 +172,7 @@ describe('CLI YAML handling & resolution', () => {
       new URL('../src/core/path-resolver.js', import.meta.url).href
     );
     const inputs = resolver.resolveArchlettePath.mock.calls.map((c: any[]) => c[0]);
-    expect(inputs).toContain('./templates/default.yaml');
+    expect(inputs).toContain('templates/default.yaml');
     expect(calls[0].ctxConfig).toEqual({ default: true });
   });
 
@@ -180,7 +181,7 @@ describe('CLI YAML handling & resolution', () => {
       new URL('../src/core/path-resolver.js', import.meta.url).href
     );
     resolver.resolveArchlettePath.mockImplementation((input: string) => {
-      if (input === './templates/default.yaml') return '/cfg/default.yaml';
+      if (input === 'templates/default.yaml') return '/cfg/default.yaml';
       if (input === '~/custom.yaml') return '/cfg/custom.yaml';
       if (input.startsWith('~')) return `/home/user/${input.slice(2)}`;
       if (input.startsWith('/')) return input;

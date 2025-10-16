@@ -158,7 +158,99 @@ Written-by: Chris Lyons
 
 ---
 
-## 🚀 CI/CD
+## � Code Documentation Standards
+
+All code must be documented to maintain quality and understandability.
+
+### File-Level Documentation
+
+Every TypeScript file must have a module-level JSDoc comment:
+
+````typescript
+/**
+ * Brief description of module purpose
+ *
+ * @module path/to/module
+ * @description
+ * Detailed explanation of module's role in the system
+ *
+ * @example
+ * ```typescript
+ * import { something } from './module';
+ * const result = something();
+ * ```
+ */
+
+import ...
+````
+
+### Function/Method Documentation
+
+All **exported** functions and public methods must have JSDoc:
+
+````typescript
+/**
+ * Brief description
+ *
+ * @param name - Parameter description
+ * @returns What is returned
+ * @throws {ErrorType} When error occurs
+ *
+ * @example
+ * ```typescript
+ * const result = await myFunction('input');
+ * ```
+ */
+export async function myFunction(name: string): Promise<Result> {
+  // implementation
+}
+````
+
+**Required elements:**
+
+- Brief description
+- `@param` for each parameter
+- `@returns` if function returns a value
+- `@throws` for any errors
+- `@example` for public APIs
+
+### Inline Comments
+
+Use inline comments only to explain **WHY**, not WHAT:
+
+```typescript
+// ✅ GOOD - Explains reasoning
+// Retry needed due to API timeouts (issue #123)
+await retryOperation(() => api.call());
+
+// ❌ BAD - States the obvious
+// Set counter to 0
+let counter = 0;
+```
+
+### Special Tags
+
+```typescript
+/**
+ * @deprecated Use newFunction() instead. Removed in v2.0
+ * @internal For internal use only
+ * @experimental API may change without notice
+ */
+```
+
+### Documentation Checklist
+
+Before submitting a PR:
+
+- [ ] All new files have module-level JSDoc
+- [ ] All exported functions/classes documented
+- [ ] Complex logic has explanatory comments
+- [ ] Examples provided for public APIs
+- [ ] Special conditions (@throws, @deprecated) documented
+
+---
+
+## �🚀 CI/CD
 
 - **CI:** lint, typecheck, tests, and pipeline execution (optionally install Structurizr CLI for image export).
 - **CD:** publish to npm on tags.

@@ -1,3 +1,5 @@
+# Default AAC YAML configuration
+# (Add your default config values here)
 project: { name: Archlette }
 
 paths:
@@ -6,18 +8,24 @@ paths:
   render_out: ../docs/architecture/images
   docs_out: ../docs/architecture
 
+# config yaml in, ir json out
 extractors:
-  - use: extractors/builtin/basic-node
+  # each extractor receives the specified inputs and produces ir json
+  - use: ./extractors/builtin/basic-node
     inputs: { include: ['src/**/*.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'] }
 
+# ir json in, ir json out (or errors)
 validators:
   - use: validators/builtin/schema
 
+# ir json in, dsl out
 generators:
   - use: generators/builtin/structurizr
 
+# dsl in, images out
 renderers:
   - use: renderers/builtin/structurizr-cli
 
+# dsl & images in, (likely markdown) docs out
 docs:
   - use: docs/builtin/index

@@ -1,8 +1,34 @@
 /**
- * Archlette IR Types + Zod Schemas
- * --------------------------------
- * This file defines both the TypeScript types and corresponding Zod schemas
- * for runtime validation and inference.
+ * Archlette Intermediate Representation (IR) types and schemas
+ *
+ * @module core/types-ir
+ * @description
+ * Defines the ArchletteIR format - a language-agnostic representation of software
+ * architecture. This IR serves as the canonical format that all extractors produce
+ * and all generators consume.
+ *
+ * The IR models C4 architecture elements:
+ * - **System**: The overall software system being documented
+ * - **Actors**: External users or systems that interact with the system
+ * - **Containers**: Deployable units (microservices, SPAs, databases)
+ * - **Components**: Logical groupings of code within containers
+ * - **Code**: Individual classes, functions, methods, interfaces
+ * - **Deployments**: Infrastructure and deployment topology
+ * - **Relationships**: Dependencies and interactions between elements
+ *
+ * Each element is defined with both a Zod schema (for runtime validation) and
+ * a TypeScript type (inferred from the schema for type safety).
+ *
+ * @example
+ * ```typescript
+ * import { zArchletteIR, type ArchletteIR } from './types-ir';
+ *
+ * // Validate IR at runtime
+ * const result = zArchletteIR.safeParse(data);
+ * if (result.success) {
+ *   const ir: ArchletteIR = result.data;
+ * }
+ * ```
  */
 
 import { z } from 'zod';
@@ -64,22 +90,52 @@ export type Component = z.infer<typeof zComponent>;
 
 export const zParameter = z.object({
   name: z.string(),
-  type: z.string(),
+  type: z.string().optional(),
+  description: z.string().optional(),
   async: z.boolean().optional(),
   optional: z.boolean().optional(),
+  defaultValue: z.string().optional(),
   visibility: z.string().optional(),
   stereotype: z.string().optional(),
 });
 export type Parameter = z.infer<typeof zParameter>;
 
+// Language-agnostic documentation structure
+export const zDocumentation = z.object({
+  summary: z.string().optional(),
+  details: z.string().optional(),
+  examples: z.array(z.string()).optional(),
+  remarks: z.array(z.string()).optional(),
+  seeAlso: z.array(z.string()).optional(),
+});
+export type Documentation = z.infer<typeof zDocumentation>;
+
+// Deprecation info
+export const zDeprecation = z.object({
+  reason: z.string().optional(),
+  alternative: z.string().optional(),
+});
+export type Deprecation = z.infer<typeof zDeprecation>;
+
 export const zCodeItem = zWithMeta.extend({
   id: z.string(),
-  componentId: z.string(),
+  componentId: z.string().optional(), // Optional since containers come from IaC extractors
   name: z.string(),
   type: z.string(),
   description: z.string().optional(),
+  documentation: zDocumentation.optional(),
+  deprecated: zDeprecation.optional(),
   returnType: z.string().optional(),
+  returnDescription: z.string().optional(),
   parameters: z.array(zParameter).optional(),
+  visibility: z.enum(['public', 'private', 'protected', 'internal']).optional(),
+  isAsync: z.boolean().optional(),
+  isStatic: z.boolean().optional(),
+  isAbstract: z.boolean().optional(),
+  isReadonly: z.boolean().optional(),
+  filePath: z.string().optional(),
+  lineNumber: z.number().optional(),
+  metadata: z.record(z.string(), z.unknown()).optional(), // Language-specific metadata
 });
 export type CodeItem = z.infer<typeof zCodeItem>;
 
