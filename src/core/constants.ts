@@ -40,3 +40,24 @@ export const DEFAULT_CONTAINER_ID = 'default-container';
  * IR schema version
  */
 export const IR_VERSION = '1.0';
+
+/**
+ * Convert a name to a normalized ID
+ * Used for consistent ID generation across extractors and mappers
+ *
+ * @param name - The name to convert (component, actor, etc.)
+ * @returns Normalized ID (lowercase, hyphenated, alphanumeric)
+ *
+ * @example
+ * nameToId('Payment Processor') // 'payment-processor'
+ * nameToId('payments/processor') // 'payments-processor'
+ * nameToId('PaymentService') // 'paymentservice'
+ */
+export function nameToId(name: string): string {
+  return name
+    .toLowerCase()
+    .replace(/[\s/]+/g, '-') // Replace spaces and slashes with dashes
+    .replace(/[^a-z0-9-]/g, '') // Remove non-alphanumeric (except dashes)
+    .replace(/-+/g, '-') // Collapse multiple dashes
+    .replace(/^-|-$/g, ''); // Remove leading/trailing dashes
+}

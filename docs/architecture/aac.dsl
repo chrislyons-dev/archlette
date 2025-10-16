@@ -81,7 +81,7 @@ workspace "@chrislyons-dev/archlette" "Architecture-as-Code toolkit for automate
                     tags "Code"
                 }
                 C__Users_chris_git_archlette_src_1_extract_aggregator_ts_deduplicateRelationships = component "1-extract/aggregator.ts::deduplicaterelationships" {
-                    description "Deduplicate relationships by source+destination combination"
+                    description "Deduplicate relationships by source+destination+stereotype combination"
                     technology "function"
                     tags "Code"
                 }
@@ -111,6 +111,11 @@ workspace "@chrislyons-dev/archlette" "Architecture-as-Code toolkit for automate
                     tags "Code"
                 }
                 C__Users_chris_git_archlette_src_5_docs_index_ts_run = component "5-docs/index.ts::run" {
+                    technology "function"
+                    tags "Code"
+                }
+                C__Users_chris_git_archlette_src_core_constants_ts_nameToId = component "constants.ts::nametoid" {
+                    description "Convert a name to a normalized ID\nUsed for consistent ID generation across extractors and mappers"
                     technology "function"
                     tags "Code"
                 }
@@ -462,6 +467,7 @@ workspace "@chrislyons-dev/archlette" "Architecture-as-Code toolkit for automate
         }
 
         component default_container "Classes_core" {
+            include C__Users_chris_git_archlette_src_core_constants_ts_nameToId
             include C__Users_chris_git_archlette_src_core_logger_ts_formatTimestamp
             include C__Users_chris_git_archlette_src_core_logger_ts_formatLogMessage
             include C__Users_chris_git_archlette_src_core_logger_ts_createLogger

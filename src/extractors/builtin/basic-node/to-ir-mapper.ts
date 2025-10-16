@@ -18,7 +18,12 @@ import type {
 } from './types.js';
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
-import { TAGS, DEFAULT_CONTAINER_ID, IR_VERSION } from '../../../core/constants.js';
+import {
+  TAGS,
+  DEFAULT_CONTAINER_ID,
+  IR_VERSION,
+  nameToId,
+} from '../../../core/constants.js';
 
 /**
  * Map file extractions to ArchletteIR
@@ -94,13 +99,10 @@ export function mapToIR(
 
     // Process @uses relationships from this file
     // @uses tags create component → component relationships
-    // Note: @usedBy tags are deprecated - actor relationships are now automatic
     for (const rel of file.relationships) {
-      // Only process @uses (outbound) relationships
-      // @usedBy (inbound) relationships are ignored - use @uses in the source component instead
-      if (rel.direction === 'outbound' && componentId) {
+      if (componentId) {
         // Convert target name to ID (lowercase, etc.)
-        const targetId = convertNameToId(rel.target);
+        const targetId = nameToId(rel.target);
 
         // Create component → component relationship
         componentRelationships.push({
@@ -174,33 +176,19 @@ export function mapToIR(
 }
 
 /**
- * Deduplicate relationships by source+destination combination
+ * Deduplicate relationships by source+destination+stereotype combination
  * First occurrence wins - preserves description from first relationship
+ * This allows multiple relationships between the same elements with different stereotypes
  */
 function deduplicateRelationships(relationships: Relationship[]): Relationship[] {
   const seen = new Map<string, Relationship>();
   for (const rel of relationships) {
-    const key = `${rel.source}:${rel.destination}`;
+    const key = `${rel.source}:${rel.destination}:${rel.stereotype ?? ''}`;
     if (!seen.has(key)) {
       seen.set(key, rel);
     }
   }
   return Array.from(seen.values());
-}
-
-/**
- * Convert a name to an ID
- * Examples:
- * - "Payment Processor" -> "payment-processor"
- * - "FileSystem" -> "filesystem"
- */
-function convertNameToId(name: string): string {
-  return name
-    .toLowerCase()
-    .replace(/[\s/]+/g, '-') // Replace spaces and slashes with dashes
-    .replace(/[^a-z0-9-]/g, '') // Remove non-alphanumeric (except dashes)
-    .replace(/-+/g, '-') // Collapse multiple dashes
-    .replace(/^-|-$/g, ''); // Remove leading/trailing dashes
 }
 
 /**

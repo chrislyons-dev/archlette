@@ -4,6 +4,7 @@
 
 import type { SourceFile, Node } from 'ts-morph';
 import { SyntaxKind } from 'ts-morph';
+import { nameToId } from '../../../core/constants.js';
 
 export interface ComponentInfo {
   id: string;
@@ -22,7 +23,6 @@ export interface RelationshipInfo {
   source: string; // Source component/actor ID (inferred from file)
   target: string; // Target component/actor name
   description?: string;
-  direction: 'outbound' | 'inbound'; // @uses = outbound, @usedBy = inbound
 }
 
 /**
@@ -81,10 +81,9 @@ export function extractFileActors(sourceFile: SourceFile): ActorInfo[] {
 
 /**
  * Extract relationships from file-level JSDoc
- * Looks for @uses and @usedBy tags
- * Examples:
+ * Looks for @uses tags to identify component dependencies
+ * Example:
  * - @uses Extractor Analyzes source code to extract architecture components
- * - @usedBy CLI For reading configuration files and writing output
  */
 export function extractFileRelationships(sourceFile: SourceFile): RelationshipInfo[] {
   const relationships: RelationshipInfo[] = [];
@@ -192,7 +191,7 @@ function parseActorTag(tag: any): ActorInfo | undefined {
 
 /**
  * Extract relationships from a JSDoc node
- * Parses @uses and @usedBy tags
+ * Parses @uses tags to identify component dependencies
  */
 function extractRelationshipsFromJsDoc(jsDoc: Node): RelationshipInfo[] {
   if (!jsDoc.getKind || jsDoc.getKind() !== SyntaxKind.JSDoc) {
@@ -203,19 +202,10 @@ function extractRelationshipsFromJsDoc(jsDoc: Node): RelationshipInfo[] {
   const doc = jsDoc as any;
   const tags = doc.getTags ? doc.getTags() : [];
 
-  // Find all @uses tags (outbound relationships)
+  // Find all @uses tags
   const usesTags = tags.filter((t: any) => t.getTagName() === 'uses');
   for (const tag of usesTags) {
-    const rel = parseRelationshipTag(tag, 'outbound');
-    if (rel) {
-      relationships.push(rel);
-    }
-  }
-
-  // Find all @usedBy tags (inbound relationships)
-  const usedByTags = tags.filter((t: any) => t.getTagName() === 'usedBy');
-  for (const tag of usedByTags) {
-    const rel = parseRelationshipTag(tag, 'inbound');
+    const rel = parseUsesTag(tag);
     if (rel) {
       relationships.push(rel);
     }
@@ -225,36 +215,29 @@ function extractRelationshipsFromJsDoc(jsDoc: Node): RelationshipInfo[] {
 }
 
 /**
- * Parse a @uses or @usedBy tag
+ * Parse a @uses tag
  * Format: @uses Target description
- * Format: @usedBy Source description
- * Examples:
+ * Example:
  * - @uses Extractor Analyzes source code
- * - @usedBy CLI For reading configuration
  */
-function parseRelationshipTag(
-  tag: any,
-  direction: 'outbound' | 'inbound',
-): RelationshipInfo | undefined {
+function parseUsesTag(tag: any): RelationshipInfo | undefined {
   const text = tag.getCommentText ? tag.getCommentText() : '';
   if (!text) return undefined;
 
   const trimmed = text.trim();
 
-  // Match pattern: TargetName optional {Type} description
-  // For @uses: target is the first word, rest is description
-  // For @usedBy: source is the first word, rest is description
-  const match = trimmed.match(/^(\S+)(?:\s+\{[^}]+\})?\s*(.*)$/);
+  // Match pattern: TargetName description
+  // Target is the first word, rest is description
+  const match = trimmed.match(/^(\S+)\s*(.*)$/);
 
   if (match) {
-    const targetOrSource = match[1].trim();
+    const target = match[1].trim();
     const description = match[2].trim() || undefined;
 
     return {
       source: '', // Will be filled by mapper with the current file's component ID
-      target: targetOrSource,
+      target,
       description,
-      direction,
     };
   }
 
@@ -282,20 +265,4 @@ function extractComponentName(tag: any): string | undefined {
   }
 
   return trimmed;
-}
-
-/**
- * Convert component name to ID
- * Examples:
- * - "Payment Processor" -> "payment-processor"
- * - "payments/processor" -> "payments-processor"
- * - "PaymentService" -> "paymentservice"
- */
-function nameToId(name: string): string {
-  return name
-    .toLowerCase()
-    .replace(/[\s/]+/g, '-') // Replace spaces and slashes with dashes
-    .replace(/[^a-z0-9-]/g, '') // Remove non-alphanumeric (except dashes)
-    .replace(/-+/g, '-') // Collapse multiple dashes
-    .replace(/^-|-$/g, ''); // Remove leading/trailing dashes
 }

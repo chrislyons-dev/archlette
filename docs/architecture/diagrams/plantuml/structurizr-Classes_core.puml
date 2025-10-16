@@ -15,6 +15,12 @@ skinparam {
 
 hide stereotype
 
+skinparam rectangle<<chrislyonsdevarchlette.chrislyonsdevarchlette.constantstsnametoid>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
 skinparam rectangle<<chrislyonsdevarchlette.chrislyonsdevarchlette.loggertscreatelogger>> {
   BackgroundColor #dddddd
   FontColor #000000
@@ -184,6 +190,7 @@ skinparam rectangle<<chrislyonsdevarchlette.chrislyonsdevarchlette>> {
 }
 
 rectangle "@chrislyons-dev/archlette\n<size:10>[Container: Application]</size>" <<chrislyonsdevarchlette.chrislyonsdevarchlette>> {
+  rectangle "==constants.ts::nametoid\n<size:10>[Component: function]</size>\n\nConvert a name to a normalized ID\nUsed for consistent ID generation across extractors and mappers" <<chrislyonsdevarchlette.chrislyonsdevarchlette.constantstsnametoid>> as chrislyonsdevarchlette.chrislyonsdevarchlette.constantstsnametoid
   rectangle "==logger.ts::formattimestamp\n<size:10>[Component: function]</size>\n\nFormat timestamp as ISO 8601 (local time)" <<chrislyonsdevarchlette.chrislyonsdevarchlette.loggertsformattimestamp>> as chrislyonsdevarchlette.chrislyonsdevarchlette.loggertsformattimestamp
   rectangle "==logger.ts::formatlogmessage\n<size:10>[Component: function]</size>\n\nFormat log message with timestamp, level, and context" <<chrislyonsdevarchlette.chrislyonsdevarchlette.loggertsformatlogmessage>> as chrislyonsdevarchlette.chrislyonsdevarchlette.loggertsformatlogmessage
   rectangle "==logger.ts::createlogger\n<size:10>[Component: function]</size>\n\nCreate a logger instance" <<chrislyonsdevarchlette.chrislyonsdevarchlette.loggertscreatelogger>> as chrislyonsdevarchlette.chrislyonsdevarchlette.loggertscreatelogger

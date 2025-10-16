@@ -278,8 +278,9 @@ describe('structurizrGenerator', () => {
     const dsl = structurizrGenerator(ir, mockNode);
 
     // Should generate separate class views for each component
-    expect(dsl).toContain('component comp_auth "Classes_Auth"');
-    expect(dsl).toContain('component comp_user "Classes_User"');
+    // Note: Component views use container ID (api) as scope, not component ID
+    expect(dsl).toContain('component api "Classes_Auth"');
+    expect(dsl).toContain('component api "Classes_User"');
 
     // Should explicitly include code elements for the Auth component
     expect(dsl).toContain('include code_auth_handler');
@@ -294,7 +295,7 @@ describe('structurizrGenerator', () => {
 
     // Verify code elements are properly scoped to their components
     // Auth view should only include Auth code elements
-    const authViewStart = dsl.indexOf('component comp_auth "Classes_Auth"');
+    const authViewStart = dsl.indexOf('component api "Classes_Auth"');
     const authViewEnd = dsl.indexOf('}', authViewStart);
     const authView = dsl.substring(authViewStart, authViewEnd);
     expect(authView).toContain('code_auth_handler');

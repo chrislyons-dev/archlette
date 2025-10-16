@@ -38,7 +38,6 @@ export interface RelationshipInfo {
   source: string; // Source component/actor ID
   target: string; // Target component/actor name
   description?: string;
-  direction: 'outbound' | 'inbound';
 }
 
 export interface ExtractedClass {

@@ -258,15 +258,15 @@
       "lineNumber": 111
     },
     {
-      "description": "Deduplicate relationships by source+destination combination",
+      "description": "Deduplicate relationships by source+destination+stereotype combination",
       "id": "C:/Users/chris/git/archlette/src/1-extract/aggregator.ts:deduplicateRelationships",
       "componentId": "extractors",
       "name": "deduplicateRelationships",
       "type": "function",
       "documentation": {
-        "summary": "Deduplicate relationships by source+destination combination",
+        "summary": "Deduplicate relationships by source+destination+stereotype combination",
         "remarks": [
-          "Two relationships are considered duplicates if they have the same:\n- source ID\n- destination ID\nThe first occurrence is preserved, including its description.\nSubsequent duplicates are ignored regardless of description or stereotype differences."
+          "Two relationships are considered duplicates if they have the same:\n- source ID\n- destination ID\n- stereotype (undefined stereotypes are treated as distinct from defined ones)\nThe first occurrence is preserved, including its description.\nThis allows multiple relationships between the same elements with different stereotypes."
         ]
       },
       "returnType": "z.infer<any>[]",
@@ -281,7 +281,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/1-extract/aggregator.ts",
-      "lineNumber": 134
+      "lineNumber": 135
     },
     {
       "description": "Create an empty but valid ArchletteIR structure",
@@ -298,7 +298,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/1-extract/aggregator.ts",
-      "lineNumber": 150
+      "lineNumber": 151
     },
     {
       "description": "Execute the extraction stage",
@@ -405,6 +405,32 @@
       "isAsync": true,
       "filePath": "C:/Users/chris/git/archlette/src/5-docs/index.ts",
       "lineNumber": 13
+    },
+    {
+      "description": "Convert a name to a normalized ID\nUsed for consistent ID generation across extractors and mappers",
+      "id": "C:/Users/chris/git/archlette/src/core/constants.ts:nameToId",
+      "componentId": "core",
+      "name": "nameToId",
+      "type": "function",
+      "documentation": {
+        "summary": "Convert a name to a normalized ID\nUsed for consistent ID generation across extractors and mappers",
+        "examples": [
+          "nameToId('Payment Processor') // 'payment-processor'\nnameToId('payments/processor') // 'payments-processor'\nnameToId('PaymentService') // 'paymentservice'"
+        ]
+      },
+      "returnType": "string",
+      "returnDescription": "Normalized ID (lowercase, hyphenated, alphanumeric)",
+      "parameters": [
+        {
+          "name": "name",
+          "type": "string",
+          "optional": false
+        }
+      ],
+      "visibility": "public",
+      "isAsync": false,
+      "filePath": "C:/Users/chris/git/archlette/src/core/constants.ts",
+      "lineNumber": 56
     },
     {
       "description": "Format timestamp as ISO 8601 (local time)",
@@ -529,7 +555,7 @@
       "visibility": "public",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/core/path-resolver.ts",
-      "lineNumber": 18
+      "lineNumber": 14
     },
     {
       "id": "C:/Users/chris/git/archlette/src/core/path-resolver.ts:expandTilde",
@@ -553,7 +579,7 @@
       "visibility": "public",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/core/path-resolver.ts",
-      "lineNumber": 25
+      "lineNumber": 21
     },
     {
       "description": "Core path resolver honoring Archlette rules (no file existence checks).\n- \"~\"  -> user home\n- \"/\"  -> absolute\n- else -> relative to CLI dir",
@@ -580,7 +606,7 @@
       "visibility": "public",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/core/path-resolver.ts",
-      "lineNumber": 43
+      "lineNumber": 39
     },
     {
       "description": "Resolve a module entry by probing:\n1) Exact path\n2) With extensions: .ts then .js\n3) If directory: index.ts then index.js",
@@ -607,7 +633,7 @@
       "visibility": "public",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/core/path-resolver.ts",
-      "lineNumber": 65
+      "lineNumber": 61
     },
     {
       "id": "C:/Users/chris/git/archlette/src/core/path-resolver.ts:toFileUrl",
@@ -625,7 +651,7 @@
       "visibility": "public",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/core/path-resolver.ts",
-      "lineNumber": 101
+      "lineNumber": 97
     },
     {
       "description": "Write content to a file, creating parent directories if needed.",
@@ -653,7 +679,7 @@
       "visibility": "public",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/core/path-resolver.ts",
-      "lineNumber": 111
+      "lineNumber": 107
     },
     {
       "id": "C:/Users/chris/git/archlette/src/core/stage-entry.js:getStageEntry",
@@ -1833,7 +1859,7 @@
       "visibility": "public",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts",
-      "lineNumber": 89
+      "lineNumber": 88
     },
     {
       "description": "Extract component info from a JSDoc node",
@@ -1854,7 +1880,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts",
-      "lineNumber": 105
+      "lineNumber": 104
     },
     {
       "description": "Extract actors from a JSDoc node\nParses",
@@ -1875,7 +1901,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts",
-      "lineNumber": 136
+      "lineNumber": 135
     },
     {
       "description": "Parse an",
@@ -1895,7 +1921,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts",
-      "lineNumber": 165
+      "lineNumber": 164
     },
     {
       "description": "Extract relationships from a JSDoc node\nParses",
@@ -1916,12 +1942,12 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts",
-      "lineNumber": 197
+      "lineNumber": 196
     },
     {
       "description": "Parse a",
-      "id": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts:parseRelationshipTag",
-      "name": "parseRelationshipTag",
+      "id": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts:parseUsesTag",
+      "name": "parseUsesTag",
       "type": "function",
       "documentation": {
         "summary": "Parse a"
@@ -1931,17 +1957,12 @@
         {
           "name": "tag",
           "optional": false
-        },
-        {
-          "name": "direction",
-          "type": "\"outbound\" | \"inbound\"",
-          "optional": false
         }
       ],
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts",
-      "lineNumber": 235
+      "lineNumber": 223
     },
     {
       "description": "Extract component name from a JSDoc tag\nHandles formats like:\n-",
@@ -1961,28 +1982,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts",
-      "lineNumber": 271
-    },
-    {
-      "description": "Convert component name to ID\nExamples:\n- \"Payment Processor\" -> \"payment-processor\"\n- \"payments/processor\" -> \"payments-processor\"\n- \"PaymentService\" -> \"paymentservice\"",
-      "id": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts:nameToId",
-      "name": "nameToId",
-      "type": "function",
-      "documentation": {
-        "summary": "Convert component name to ID\nExamples:\n- \"Payment Processor\" -> \"payment-processor\"\n- \"payments/processor\" -> \"payments-processor\"\n- \"PaymentService\" -> \"paymentservice\""
-      },
-      "returnType": "string",
-      "parameters": [
-        {
-          "name": "name",
-          "type": "string",
-          "optional": false
-        }
-      ],
-      "visibility": "private",
-      "isAsync": false,
-      "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts",
-      "lineNumber": 294
+      "lineNumber": 254
     },
     {
       "description": "Extract documentation information from JSDoc",
@@ -2251,12 +2251,12 @@
       "lineNumber": 26
     },
     {
-      "description": "Deduplicate relationships by source+destination combination\nFirst occurrence wins - preserves description from first relationship",
+      "description": "Deduplicate relationships by source+destination+stereotype combination\nFirst occurrence wins - preserves description from first relationship\nThis allows multiple relationships between the same elements with different stereotypes",
       "id": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts:deduplicateRelationships",
       "name": "deduplicateRelationships",
       "type": "function",
       "documentation": {
-        "summary": "Deduplicate relationships by source+destination combination\nFirst occurrence wins - preserves description from first relationship"
+        "summary": "Deduplicate relationships by source+destination+stereotype combination\nFirst occurrence wins - preserves description from first relationship\nThis allows multiple relationships between the same elements with different stereotypes"
       },
       "returnType": "z.infer<any>[]",
       "parameters": [
@@ -2269,28 +2269,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts",
-      "lineNumber": 179
-    },
-    {
-      "description": "Convert a name to an ID\nExamples:\n- \"Payment Processor\" -> \"payment-processor\"\n- \"FileSystem\" -> \"filesystem\"",
-      "id": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts:convertNameToId",
-      "name": "convertNameToId",
-      "type": "function",
-      "documentation": {
-        "summary": "Convert a name to an ID\nExamples:\n- \"Payment Processor\" -> \"payment-processor\"\n- \"FileSystem\" -> \"filesystem\""
-      },
-      "returnType": "string",
-      "parameters": [
-        {
-          "name": "name",
-          "type": "string",
-          "optional": false
-        }
-      ],
-      "visibility": "private",
-      "isAsync": false,
-      "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts",
-      "lineNumber": 196
+      "lineNumber": 178
     },
     {
       "description": "Map a function to a CodeItem",
@@ -2321,7 +2300,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts",
-      "lineNumber": 208
+      "lineNumber": 192
     },
     {
       "description": "Map a class to a CodeItem",
@@ -2352,7 +2331,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts",
-      "lineNumber": 236
+      "lineNumber": 220
     },
     {
       "description": "Map a class method to a CodeItem",
@@ -2388,7 +2367,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts",
-      "lineNumber": 265
+      "lineNumber": 249
     },
     {
       "description": "Map imports to relationships",
@@ -2414,7 +2393,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts",
-      "lineNumber": 299
+      "lineNumber": 283
     },
     {
       "description": "Generate a unique ID for a code element\nFormat: filePath:symbolName",
@@ -2440,7 +2419,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts",
-      "lineNumber": 322
+      "lineNumber": 306
     },
     {
       "description": "Get default system info from package.json if available",
@@ -2455,7 +2434,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts",
-      "lineNumber": 331
+      "lineNumber": 315
     }
   ],
   "deployments": [],
@@ -3238,6 +3217,12 @@
       "stereotype": "import"
     },
     {
+      "description": "imports nameToId",
+      "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts",
+      "destination": "../../../core/constants.js:nameToId",
+      "stereotype": "import"
+    },
+    {
       "description": "imports JSDoc",
       "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/doc-extractor.ts",
       "destination": "ts-morph:JSDoc",
@@ -3475,6 +3460,12 @@
       "description": "imports IR_VERSION",
       "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts",
       "destination": "../../../core/constants.js:IR_VERSION",
+      "stereotype": "import"
+    },
+    {
+      "description": "imports nameToId",
+      "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts",
+      "destination": "../../../core/constants.js:nameToId",
       "stereotype": "import"
     }
   ]
