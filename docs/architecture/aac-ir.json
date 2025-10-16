@@ -465,7 +465,7 @@
       "documentation": {
         "summary": "Create a logger instance",
         "examples": [
-          "```typescript\r\nconst log = createLogger({ context: 'Extract', level: 'info' });\r\nlog.info('Starting extraction...');\r\nlog.debug('Processing file', filePath);\r\nlog.error('Failed to parse', error);\r\n```"
+          "```typescript\nconst log = createLogger({ context: 'Extract', level: 'info' });\nlog.info('Starting extraction...');\nlog.debug('Processing file', filePath);\nlog.error('Failed to parse', error);\n```"
         ]
       },
       "returnType": "import(\"C:/Users/chris/git/archlette/src/core/logger\").Logger",
@@ -875,7 +875,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts",
-      "lineNumber": 200
+      "lineNumber": 203
     },
     {
       "description": "Generate Container view",
@@ -902,7 +902,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts",
-      "lineNumber": 212
+      "lineNumber": 215
     },
     {
       "description": "Generate Component view for a container (excludes Code elements)",
@@ -934,16 +934,16 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts",
-      "lineNumber": 224
+      "lineNumber": 227
     },
     {
-      "description": "Generate Class view for a container (only Code elements)",
+      "description": "Generate Class view for a component (only Code elements within that component)\nThis supports the drill-down model: System → Container → Component → Code",
       "id": "C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts:generateClassView",
       "componentId": "generators",
       "name": "generateClassView",
       "type": "function",
       "documentation": {
-        "summary": "Generate Class view for a container (only Code elements)"
+        "summary": "Generate Class view for a component (only Code elements within that component)\nThis supports the drill-down model: System → Container → Component → Code"
       },
       "returnType": "string[]",
       "parameters": [
@@ -953,7 +953,7 @@
           "optional": false
         },
         {
-          "name": "container",
+          "name": "component",
           "type": "z.infer<any>",
           "optional": false
         },
@@ -966,7 +966,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts",
-      "lineNumber": 247
+      "lineNumber": 251
     },
     {
       "description": "Generate DSL for an actor (person or external system)",
@@ -993,7 +993,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts",
-      "lineNumber": 272
+      "lineNumber": 288
     },
     {
       "description": "Generate DSL for a container with its components",
@@ -1040,7 +1040,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts",
-      "lineNumber": 287
+      "lineNumber": 303
     },
     {
       "description": "Generate DSL for a component",
@@ -1067,7 +1067,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts",
-      "lineNumber": 370
+      "lineNumber": 386
     },
     {
       "description": "Generate DSL for a code item as a component\nAlways tagged with \"Code\" to separate from logical components in views",
@@ -1094,7 +1094,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts",
-      "lineNumber": 393
+      "lineNumber": 409
     },
     {
       "description": "Generate DSL for a relationship",
@@ -1121,7 +1121,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts",
-      "lineNumber": 421
+      "lineNumber": 437
     },
     {
       "description": "Build technology string from relationship metadata",
@@ -1143,7 +1143,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts",
-      "lineNumber": 436
+      "lineNumber": 452
     },
     {
       "description": "Generate DSL for a deployment environment",
@@ -1170,7 +1170,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts",
-      "lineNumber": 452
+      "lineNumber": 468
     },
     {
       "description": "Sanitize ID for DSL (remove special characters, convert to camelCase)",
@@ -1192,7 +1192,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts",
-      "lineNumber": 482
+      "lineNumber": 498
     },
     {
       "description": "Escape special characters in strings for DSL",
@@ -1214,7 +1214,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts",
-      "lineNumber": 489
+      "lineNumber": 505
     },
     {
       "description": "Extract all class declarations from a source file",

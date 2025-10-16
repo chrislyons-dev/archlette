@@ -214,7 +214,7 @@ workspace "@chrislyons-dev/archlette" "Architecture-as-Code toolkit for automate
                     tags "Code"
                 }
                 C__Users_chris_git_archlette_src_generators_builtin_structurizr_ts_generateClassView = component "generateClassView" {
-                    description "Generate Class view for a container (only Code elements)"
+                    description "Generate Class view for a component (only Code elements within that component)\nThis supports the drill-down model: System → Container → Component → Code"
                     technology "function"
                     tags "Code"
                 }
@@ -297,10 +297,77 @@ workspace "@chrislyons-dev/archlette" "Architecture-as-Code toolkit for automate
             autoLayout
         }
 
-        component default_container "Classes__chrislyons_dev_archlette" {
-            include *
-            include "element.tag==Code"
-            exclude "element.tag!=Code"
+        component cli "Classes_CLI" {
+            include C__Users_chris_git_archlette_src_cli_ts_usageAndExit
+            include C__Users_chris_git_archlette_src_cli_ts_parseArgs
+            include C__Users_chris_git_archlette_src_cli_ts_stageListFromArg
+            include C__Users_chris_git_archlette_src_cli_ts_loadYamlIfExists
+            include C__Users_chris_git_archlette_src_cli_ts_run
+            autoLayout
+        }
+
+        component extractors "Classes_extractors" {
+            include C__Users_chris_git_archlette_src_1_extract_aggregator_ts_aggregateIRs
+            include C__Users_chris_git_archlette_src_1_extract_aggregator_ts_deduplicateById
+            include C__Users_chris_git_archlette_src_1_extract_aggregator_ts_deduplicateByName
+            include C__Users_chris_git_archlette_src_1_extract_aggregator_ts_deduplicateRelationships
+            include C__Users_chris_git_archlette_src_1_extract_aggregator_ts_createEmptyIR
+            include C__Users_chris_git_archlette_src_1_extract_index_ts_run
+            include C__Users_chris_git_archlette_src_extractors_builtin_basic_node_ts_basicNodeExtractor
+            autoLayout
+        }
+
+        component validators "Classes_validators" {
+            include C__Users_chris_git_archlette_src_2_validate_index_ts_run
+            autoLayout
+        }
+
+        component generators "Classes_generators" {
+            include C__Users_chris_git_archlette_src_3_generate_index_ts_run
+            include C__Users_chris_git_archlette_src_generators_builtin_structurizr_ts_structurizrGenerator
+            include C__Users_chris_git_archlette_src_generators_builtin_structurizr_ts_generateModel
+            include C__Users_chris_git_archlette_src_generators_builtin_structurizr_ts_generateViews
+            include C__Users_chris_git_archlette_src_generators_builtin_structurizr_ts_generateSystemContextView
+            include C__Users_chris_git_archlette_src_generators_builtin_structurizr_ts_generateContainerView
+            include C__Users_chris_git_archlette_src_generators_builtin_structurizr_ts_generateComponentView
+            include C__Users_chris_git_archlette_src_generators_builtin_structurizr_ts_generateClassView
+            include C__Users_chris_git_archlette_src_generators_builtin_structurizr_ts_generateActor
+            include C__Users_chris_git_archlette_src_generators_builtin_structurizr_ts_generateContainer
+            include C__Users_chris_git_archlette_src_generators_builtin_structurizr_ts_generateComponent
+            include C__Users_chris_git_archlette_src_generators_builtin_structurizr_ts_generateCodeAsComponent
+            include C__Users_chris_git_archlette_src_generators_builtin_structurizr_ts_generateRelationship
+            include C__Users_chris_git_archlette_src_generators_builtin_structurizr_ts_buildTechnologyString
+            include C__Users_chris_git_archlette_src_generators_builtin_structurizr_ts_generateDeployment
+            include C__Users_chris_git_archlette_src_generators_builtin_structurizr_ts_sanitizeId
+            include C__Users_chris_git_archlette_src_generators_builtin_structurizr_ts_escapeString
+            autoLayout
+        }
+
+        component renderers "Classes_renderers" {
+            include C__Users_chris_git_archlette_src_4_render_index_ts_run
+            autoLayout
+        }
+
+        component docs "Classes_docs" {
+            include C__Users_chris_git_archlette_src_5_docs_index_ts_run
+            autoLayout
+        }
+
+        component core "Classes_core" {
+            include C__Users_chris_git_archlette_src_core_logger_ts_formatTimestamp
+            include C__Users_chris_git_archlette_src_core_logger_ts_formatLogMessage
+            include C__Users_chris_git_archlette_src_core_logger_ts_createLogger
+            include C__Users_chris_git_archlette_src_core_module_loader_ts_loadModuleFromPath
+            include C__Users_chris_git_archlette_src_core_path_resolver_ts_getCliDir
+            include C__Users_chris_git_archlette_src_core_path_resolver_ts_expandTilde
+            include C__Users_chris_git_archlette_src_core_path_resolver_ts_resolveArchlettePath
+            include C__Users_chris_git_archlette_src_core_path_resolver_ts_resolveModuleEntry
+            include C__Users_chris_git_archlette_src_core_path_resolver_ts_toFileUrl
+            include C__Users_chris_git_archlette_src_core_path_resolver_ts_writeFile
+            include C__Users_chris_git_archlette_src_core_stage_module_loader_ts_loadExtractorModule
+            include C__Users_chris_git_archlette_src_core_stage_module_loader_ts_loadValidatorModule
+            include C__Users_chris_git_archlette_src_core_stage_module_loader_ts_loadGeneratorModule
+            include C__Users_chris_git_archlette_src_core_types_aac_ts_resolveConfig
             autoLayout
         }
 

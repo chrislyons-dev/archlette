@@ -27,8 +27,8 @@ export const VIEW_NAMES = {
   CONTAINERS: 'Containers',
   /** Generate component view name for a container */
   COMPONENTS: (containerName: string) => `Components_${containerName}`,
-  /** Generate class view name for a container */
-  CLASSES: (containerName: string) => `Classes_${containerName}`,
+  /** Generate class view name for a component */
+  CLASSES: (componentName: string) => `Classes_${componentName}`,
 } as const;
 
 /**

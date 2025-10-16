@@ -235,4 +235,70 @@ describe('structurizrGenerator', () => {
     expect(dsl).toContain('workspace "Test System"');
     expect(dsl).toContain('description "Has backslash and newline"');
   });
+
+  it('generates class views per component for drill-down', () => {
+    const ir: ArchletteIR = {
+      version: '1.0',
+      system: { name: 'TestSystem' },
+      actors: [],
+      containers: [{ id: 'api', name: 'API', type: 'Service', layer: 'Application' }],
+      components: [
+        { id: 'comp.auth', containerId: 'api', name: 'Auth', type: 'module' },
+        { id: 'comp.user', containerId: 'api', name: 'User', type: 'module' },
+      ],
+      code: [
+        {
+          id: 'code.auth.handler',
+          componentId: 'comp.auth',
+          name: 'AuthHandler',
+          type: 'class',
+          filePath: '/auth/handler.ts',
+        },
+        {
+          id: 'code.auth.service',
+          componentId: 'comp.auth',
+          name: 'AuthService',
+          type: 'class',
+          filePath: '/auth/service.ts',
+        },
+        {
+          id: 'code.user.repository',
+          componentId: 'comp.user',
+          name: 'UserRepository',
+          type: 'class',
+          filePath: '/user/repository.ts',
+        },
+      ],
+      deployments: [],
+      containerRelationships: [],
+      componentRelationships: [],
+      codeRelationships: [],
+    };
+
+    const dsl = structurizrGenerator(ir, mockNode);
+
+    // Should generate separate class views for each component
+    expect(dsl).toContain('component comp_auth "Classes_Auth"');
+    expect(dsl).toContain('component comp_user "Classes_User"');
+
+    // Should explicitly include code elements for the Auth component
+    expect(dsl).toContain('include code_auth_handler');
+    expect(dsl).toContain('include code_auth_service');
+
+    // Should explicitly include code elements for the User component
+    expect(dsl).toContain('include code_user_repository');
+
+    // Verify both class views are present (not just one per container)
+    const classViewMatches = dsl.match(/component \w+ "Classes_\w+"/g);
+    expect(classViewMatches).toHaveLength(2);
+
+    // Verify code elements are properly scoped to their components
+    // Auth view should only include Auth code elements
+    const authViewStart = dsl.indexOf('component comp_auth "Classes_Auth"');
+    const authViewEnd = dsl.indexOf('}', authViewStart);
+    const authView = dsl.substring(authViewStart, authViewEnd);
+    expect(authView).toContain('code_auth_handler');
+    expect(authView).toContain('code_auth_service');
+    expect(authView).not.toContain('code_user_repository');
+  });
 });

@@ -175,15 +175,18 @@ function generateViews(ir: ArchletteIR, indent: string): string[] {
   lines.push(...generateContainerView(ir, indent + indent));
   lines.push('');
 
-  // Component and Class views (per container)
+  // Component views (per container)
   for (const container of ir.containers) {
     const componentLines = generateComponentView(ir, container, indent + indent);
     if (componentLines.length > 0) {
       lines.push(...componentLines);
       lines.push('');
     }
+  }
 
-    const classLines = generateClassView(ir, container, indent + indent);
+  // Class views (per component) - supports drill-down from component to code level
+  for (const component of ir.components) {
+    const classLines = generateClassView(ir, component, indent + indent);
     if (classLines.length > 0) {
       lines.push(...classLines);
       lines.push('');
@@ -242,28 +245,43 @@ function generateComponentView(
 }
 
 /**
- * Generate Class view for a container (only Code elements)
+ * Generate Class view for a component (only Code elements within that component)
+ * This supports the drill-down model: System → Container → Component → Code
  */
 function generateClassView(
   ir: ArchletteIR,
-  container: Container,
+  component: Component,
   indent: string,
 ): string[] {
-  const containerCode = ir.code.filter((code) => {
-    const component = ir.components.find((c) => c.id === code.componentId);
-    return component && component.containerId === container.id;
-  });
+  const componentCode = ir.code.filter((code) => code.componentId === component.id);
 
-  if (containerCode.length === 0) return [];
+  if (componentCode.length === 0) return [];
 
-  return [
-    `${indent}component ${sanitizeId(container.id)} "${VIEW_NAMES.CLASSES(sanitizeId(container.name))}" {`,
-    `${indent}    include *`,
-    `${indent}    include "element.tag==${TAGS.CODE}"`,
-    `${indent}    exclude "element.tag!=${TAGS.CODE}"`,
-    `${indent}    autoLayout`,
-    `${indent}}`,
-  ];
+  const lines: string[] = [];
+  lines.push(
+    `${indent}component ${sanitizeId(component.id)} "${VIEW_NAMES.CLASSES(sanitizeId(component.name))}" {`,
+  );
+
+  // Explicitly include only the code elements that belong to this component
+  for (const code of componentCode) {
+    lines.push(`${indent}    include ${sanitizeId(code.id)}`);
+  }
+
+  // Include relationships between these code elements
+  const codeIds = new Set(componentCode.map((c) => c.id));
+  const relevantRels = ir.codeRelationships.filter(
+    (rel) => codeIds.has(rel.source) && codeIds.has(rel.destination),
+  );
+  for (const rel of relevantRels) {
+    lines.push(
+      `${indent}    include ${sanitizeId(rel.source)} -> ${sanitizeId(rel.destination)}`,
+    );
+  }
+
+  lines.push(`${indent}    autoLayout`);
+  lines.push(`${indent}}`);
+
+  return lines;
 }
 
 /**
