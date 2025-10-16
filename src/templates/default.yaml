@@ -5,7 +5,7 @@ project: { name: Archlette }
 paths:
   ir_out: ../docs/architecture/aac-ir.json
   dsl_out: ../docs/architecture/aac.dsl
-  render_out: ../docs/architecture/images
+  render_out: ../docs/architecture/diagrams
   docs_out: ../docs/architecture
 
 # config yaml in, ir json out
@@ -23,8 +23,12 @@ generators:
   - use: generators/builtin/structurizr
 
 # dsl in, images out
+# Renderers run sequentially - order matters!
+# 1. Export DSL to PlantUML/Mermaid
+# 2. Render PlantUML to PNG images
 renderers:
-  - use: renderers/builtin/structurizr-cli
+  - use: renderers/builtin/structurizr-export
+  - use: renderers/builtin/plantuml-render
 
 # dsl & images in, (likely markdown) docs out
 docs:

@@ -60,27 +60,76 @@ export function mapToIR(
           targets: [], // Relationships will be populated below
         });
       }
+
+      // If a Person actor is defined in the same file as a component, infer actor → component
+      // Semantically: Person actors (users) interact with the component they're documented with
+      // System actors (external systems) do NOT get this inference - they use @usedBy tags
+      if (componentId && actor.type === 'Person') {
+        const actorData = actorsMap.get(actor.id);
+        if (actorData && !actorData.targets.includes(componentId)) {
+          actorData.targets.push(componentId);
+        }
+      }
     }
 
     // Process relationships from this file
-    if (componentId && file.relationships.length > 0) {
-      for (const rel of file.relationships) {
-        // Convert target name to ID (lowercase, etc.)
-        const targetId = convertNameToId(rel.target);
+    // If the file has relationships, they could be:
+    // 1. Component → Component (both source and target are components)
+    // 2. Actor → Component (source is actor, target is component)
+    // 3. Component → Actor (source is component, target is actor)
 
-        if (rel.direction === 'outbound') {
-          // @uses: this component uses the target
+    for (const rel of file.relationships) {
+      // Convert target name to ID (lowercase, etc.)
+      const targetId = convertNameToId(rel.target);
+
+      if (rel.direction === 'outbound') {
+        // @uses: source uses target
+
+        // Determine the source: component or actor
+        // System actors: don't create outbound relationships (they're external, not active agents)
+        // Person actors: handled by inference above (Person → component)
+        // Components: create outbound relationships
+
+        if (componentId) {
+          // Relationship from component to target
           componentRelationships.push({
             source: componentId,
             destination: targetId,
             description: rel.description || 'Uses',
             tags: [],
           });
-        } else {
-          // @usedBy: the target uses this component (reverse direction)
+        } else if (file.actors.length > 0) {
+          // File has only actors (no component)
+          // Create actor → target relationships
+          for (const actor of file.actors) {
+            const actorData = actorsMap.get(actor.id);
+            if (actorData && !actorData.targets.includes(targetId)) {
+              actorData.targets.push(targetId);
+            }
+          }
+        }
+      } else {
+        // @usedBy: target uses source (reverse direction)
+
+        // Determine the destination: actor (if System) or component
+        let destination: string | undefined;
+
+        // If file defines System actors (external systems), @usedBy points to the actor
+        const systemActors = file.actors.filter((a) => a.type === 'System');
+        if (systemActors.length > 0) {
+          destination = systemActors[0].id;
+        } else if (componentId) {
+          // Otherwise, points to the component
+          destination = componentId;
+        } else if (file.actors.length > 0) {
+          // Fallback: any actor
+          destination = file.actors[0].id;
+        }
+
+        if (destination) {
           componentRelationships.push({
             source: targetId,
-            destination: componentId,
+            destination,
             description: rel.description || 'Uses',
             tags: [],
           });

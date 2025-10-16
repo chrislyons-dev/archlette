@@ -25,6 +25,20 @@ export interface GeneratorOutput {
 }
 
 /**
+ * Renderer output metadata (tracks generated files, not content)
+ */
+export interface RendererOutput {
+  /** Renderer name/identifier */
+  renderer: string;
+  /** Output format (e.g., 'plantuml', 'mermaid', 'png', 'svg') */
+  format: string;
+  /** File paths generated (relative to render_out) */
+  files: string[];
+  /** Generation timestamp */
+  timestamp?: number;
+}
+
+/**
  * Shared state passed between pipeline stages
  */
 export interface PipelineState {
@@ -36,6 +50,8 @@ export interface PipelineState {
   validatedIR?: ArchletteIR;
   /** Generated DSL outputs from generator stage */
   generatorOutputs?: GeneratorOutput[];
+  /** Renderer output metadata from render stage */
+  rendererOutputs?: RendererOutput[];
   /** Additional state that stages can use (extensible) */
   [key: string]: unknown;
 }

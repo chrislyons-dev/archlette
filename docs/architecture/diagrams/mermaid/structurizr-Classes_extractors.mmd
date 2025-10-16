@@ -1,0 +1,26 @@
+graph TB
+  linkStyle default fill:#ffffff
+
+  subgraph diagram ["@chrislyons-dev/archlette - @chrislyons-dev/archlette - Components"]
+    style diagram fill:#ffffff,stroke:#ffffff
+
+    subgraph 4 ["@chrislyons-dev/archlette"]
+      style 4 fill:#ffffff,stroke:#9a9a9a,color:#9a9a9a
+
+      17["<div style='font-weight: bold'>1-extract/aggregator.ts::aggregateirs</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Aggregate multiple<br />ArchletteIR objects into a<br />single unified IR</div>"]
+      style 17 fill:#dddddd,stroke:#9a9a9a,color:#000000
+      18["<div style='font-weight: bold'>1-extract/aggregator.ts::deduplicatebyid</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Deduplicate array of entities<br />by their ID field</div>"]
+      style 18 fill:#dddddd,stroke:#9a9a9a,color:#000000
+      19["<div style='font-weight: bold'>1-extract/aggregator.ts::deduplicatebyname</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Deduplicate array of entities<br />by their name field</div>"]
+      style 19 fill:#dddddd,stroke:#9a9a9a,color:#000000
+      20["<div style='font-weight: bold'>1-extract/aggregator.ts::deduplicaterelationships</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Deduplicate relationships by<br />source+destination+stereotype<br />combination</div>"]
+      style 20 fill:#dddddd,stroke:#9a9a9a,color:#000000
+      21["<div style='font-weight: bold'>1-extract/aggregator.ts::createemptyir</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Create an empty but valid<br />ArchletteIR structure</div>"]
+      style 21 fill:#dddddd,stroke:#9a9a9a,color:#000000
+      22["<div style='font-weight: bold'>1-extract/index.ts::run</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Execute the extraction stage</div>"]
+      style 22 fill:#dddddd,stroke:#9a9a9a,color:#000000
+      54["<div style='font-weight: bold'>basic-node.ts::basicnodeextractor</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Extract architecture<br />information from a<br />Node.js/TypeScript codebase</div>"]
+      style 54 fill:#dddddd,stroke:#9a9a9a,color:#000000
+    end
+
+  end

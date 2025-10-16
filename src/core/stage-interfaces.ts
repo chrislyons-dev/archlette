@@ -16,6 +16,7 @@
 
 import type { ArchletteIR } from './types-ir';
 import type { ResolvedStageNode } from './types-aac';
+import type { PipelineContext } from './types';
 
 /**
  * Extractor module interface
@@ -88,4 +89,37 @@ export interface ArchletteValidator {
  */
 export interface ArchletteGenerator {
   (ir: ArchletteIR, node: ResolvedStageNode): Promise<string> | string;
+}
+
+/**
+ * Renderer module interface
+ *
+ * @description
+ * Renderers transform DSL outputs or previous renderer outputs into diagram
+ * images or alternative formats. They operate sequentially in a pipeline,
+ * with access to full pipeline context for coordination.
+ *
+ * Common renderer patterns:
+ * - DSL exporters (e.g., Structurizr DSL → PlantUML/Mermaid)
+ * - Image generators (e.g., PlantUML → PNG/SVG)
+ * - Format converters (e.g., Mermaid → PNG)
+ *
+ * @param ctx - Pipeline context with config, state, and logging
+ * @param node - Configuration node with renderer options
+ * @returns Promise resolving when rendering completes, or void
+ *
+ * @example
+ * ```typescript
+ * // src/renderers/builtin/structurizr-export.ts
+ * export default async function(ctx: PipelineContext, node: ResolvedStageNode): Promise<void> {
+ *   const dslOutputs = ctx.state.generatorOutputs || [];
+ *   const outputDir = resolveArchlettePath(ctx.config.paths.render_out);
+ *   // Export Structurizr DSL to PlantUML and Mermaid
+ *   // Write files to outputDir/plantuml/ and outputDir/mermaid/
+ *   ctx.state.rendererOutputs = [...]; // Track generated files
+ * }
+ * ```
+ */
+export interface ArchletteRenderer {
+  (ctx: PipelineContext, node: ResolvedStageNode): Promise<void> | void;
 }

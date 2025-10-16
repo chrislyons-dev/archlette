@@ -70,6 +70,65 @@ export default function structurizrGenerator(
 }
 
 /**
+ * Generate all actor-related relationships (bidirectional)
+ *
+ * Includes:
+ * 1. Actor → Component (from actor.targets) - users interacting with system
+ * 2. Component → Actor (from componentRelationships) - system using external actors
+ *
+ * Structurizr automatically aggregates relationships in views:
+ * - System Context view: Shows as actor ↔ system
+ * - Container view: Shows as actor ↔ container
+ * - Component view: Shows actual actor ↔ component relationships
+ *
+ * @param ir - The ArchletteIR containing actors and components
+ * @returns Array of relationships to include in the model
+ */
+function generateAllActorRelationships(ir: ArchletteIR): Relationship[] {
+  const relationships: Relationship[] = [];
+  const actorIds = new Set(ir.actors.map((a) => a.id));
+
+  // 1. Actor → Component (from actor.targets)
+  for (const actor of ir.actors) {
+    const targets = actor.targets || [];
+
+    for (const targetId of targets) {
+      const targetComponent = ir.components.find((c) => c.id === targetId);
+      const targetContainer = ir.containers.find((c) => c.id === targetId);
+
+      if (targetComponent) {
+        relationships.push({
+          source: actor.id,
+          destination: targetId,
+          description: `Interacts with ${targetComponent.name}`,
+        });
+      } else if (targetContainer) {
+        relationships.push({
+          source: actor.id,
+          destination: targetId,
+          description: `Uses ${targetContainer.name}`,
+        });
+      } else {
+        relationships.push({
+          source: actor.id,
+          destination: targetId,
+          description: 'Uses',
+        });
+      }
+    }
+  }
+
+  // 2. Component → Actor (from componentRelationships where destination is an actor)
+  for (const rel of ir.componentRelationships) {
+    if (actorIds.has(rel.destination)) {
+      relationships.push(rel);
+    }
+  }
+
+  return relationships;
+}
+
+/**
  * Generate the model section of the DSL
  */
 function generateModel(ir: ArchletteIR, indent: string): string[] {
@@ -109,6 +168,7 @@ function generateModel(ir: ArchletteIR, indent: string): string[] {
           container,
           ir.components,
           ir.code,
+          ir.actors,
           ir.componentRelationships,
           ir.codeRelationships,
           indent + indent + indent,
@@ -130,18 +190,14 @@ function generateModel(ir: ArchletteIR, indent: string): string[] {
   lines.push('');
 
   // Actor relationships
-  const actorRelationships = ir.actors.flatMap((actor) =>
-    (actor.targets || []).map((target) => ({
-      source: actor.id,
-      destination: target,
-      description: 'Uses',
-    })),
-  );
+  // 1. Actor → Component (from actor.targets)
+  // 2. Component → Actor (from componentRelationships where dest is an actor)
+  const allActorRelationships = generateAllActorRelationships(ir);
 
-  if (actorRelationships.length > 0) {
+  if (allActorRelationships.length > 0) {
     lines.push(`${indent}${indent}# Actor interactions`);
-    for (const rel of actorRelationships) {
-      lines.push(generateRelationship(rel as Relationship, indent + indent));
+    for (const rel of allActorRelationships) {
+      lines.push(generateRelationship(rel, indent + indent));
     }
     lines.push('');
   }
@@ -199,30 +255,69 @@ function generateViews(ir: ArchletteIR, indent: string): string[] {
 
 /**
  * Generate System Context view
+ *
+ * Shows actors and the system boundary. Structurizr automatically aggregates
+ * actor → component relationships to actor → system for this view since
+ * components are not explicitly included.
  */
 function generateSystemContextView(ir: ArchletteIR, indent: string): string[] {
-  return [
+  const lines: string[] = [];
+  lines.push(
     `${indent}systemContext ${sanitizeId(ir.system.name)} "${VIEW_NAMES.SYSTEM_CONTEXT}" {`,
-    `${indent}    include *`,
-    `${indent}    autoLayout`,
-    `${indent}}`,
-  ];
+  );
+
+  // Include all actors
+  for (const actor of ir.actors) {
+    lines.push(`${indent}    include ${sanitizeId(actor.id)}`);
+  }
+
+  // Include the system (containers/components will be aggregated)
+  lines.push(`${indent}    include ${sanitizeId(ir.system.name)}`);
+
+  // Structurizr automatically aggregates relationships when elements are hidden
+  // Actor → Component becomes Actor → System in this view
+  lines.push(`${indent}    autoLayout`);
+  lines.push(`${indent}}`);
+
+  return lines;
 }
 
 /**
  * Generate Container view
+ *
+ * Shows actors, containers, and their relationships. Actor → component
+ * relationships are automatically aggregated to actor → container level
+ * by Structurizr since components are not shown in this view.
  */
 function generateContainerView(ir: ArchletteIR, indent: string): string[] {
-  return [
+  const lines: string[] = [];
+  lines.push(
     `${indent}container ${sanitizeId(ir.system.name)} "${VIEW_NAMES.CONTAINERS}" {`,
-    `${indent}    include *`,
-    `${indent}    autoLayout`,
-    `${indent}}`,
-  ];
+  );
+
+  // Include all actors
+  for (const actor of ir.actors) {
+    lines.push(`${indent}    include ${sanitizeId(actor.id)}`);
+  }
+
+  // Include all containers
+  for (const container of ir.containers) {
+    lines.push(`${indent}    include ${sanitizeId(container.id)}`);
+  }
+
+  // Components are hidden, so actor → component becomes actor → container
+  lines.push(`${indent}    autoLayout`);
+  lines.push(`${indent}}`);
+
+  return lines;
 }
 
 /**
  * Generate Component view for a container (excludes Code elements)
+ *
+ * Shows actors, components within the container, and their relationships.
+ * Actor → component relationships are shown explicitly at this level.
+ * Code elements are excluded to keep the view focused on architecture.
  */
 function generateComponentView(
   ir: ArchletteIR,
@@ -235,18 +330,40 @@ function generateComponentView(
 
   if (containerComponents.length === 0) return [];
 
-  return [
+  const lines: string[] = [];
+  lines.push(
     `${indent}component ${sanitizeId(container.id)} "${VIEW_NAMES.COMPONENTS(sanitizeId(container.name))}" {`,
-    `${indent}    include *`,
-    `${indent}    exclude "element.tag==${TAGS.CODE}"`,
-    `${indent}    autoLayout`,
-    `${indent}}`,
-  ];
+  );
+
+  // Include actors that interact with components in this container
+  const componentIds = new Set(containerComponents.map((c) => c.id));
+  const relevantActors = ir.actors.filter((actor) =>
+    (actor.targets || []).some((targetId) => componentIds.has(targetId)),
+  );
+
+  for (const actor of relevantActors) {
+    lines.push(`${indent}    include ${sanitizeId(actor.id)}`);
+  }
+
+  // Include all components in this container (but exclude code elements)
+  for (const component of containerComponents) {
+    lines.push(`${indent}    include ${sanitizeId(component.id)}`);
+  }
+
+  // Exclude code-level elements (classes/functions) - show architecture only
+  lines.push(`${indent}    exclude "element.tag==${TAGS.CODE}"`);
+  lines.push(`${indent}    autoLayout`);
+  lines.push(`${indent}}`);
+
+  return lines;
 }
 
 /**
  * Generate Class view for a component (only Code elements within that component)
  * This supports the drill-down model: System → Container → Component → Code
+ *
+ * Note: Component views in Structurizr require a container ID, not a component ID.
+ * We use the component's container and filter to show only this component's code.
  */
 function generateClassView(
   ir: ArchletteIR,
@@ -258,8 +375,9 @@ function generateClassView(
   if (componentCode.length === 0) return [];
 
   const lines: string[] = [];
+  // Use container ID (required by Structurizr), not component ID
   lines.push(
-    `${indent}component ${sanitizeId(component.id)} "${VIEW_NAMES.CLASSES(sanitizeId(component.name))}" {`,
+    `${indent}component ${sanitizeId(component.containerId)} "${VIEW_NAMES.CLASSES(sanitizeId(component.name))}" {`,
   );
 
   // Explicitly include only the code elements that belong to this component
@@ -306,6 +424,7 @@ function generateContainer(
   container: Container,
   allComponents: Component[],
   allCode: CodeItem[],
+  allActors: Actor[],
   componentRels: Relationship[],
   codeRels: Relationship[],
   indent: string,
@@ -352,17 +471,24 @@ function generateContainer(
     }
 
     // Component relationships for this container
+    // Note: Exclude relationships to actors - those are rendered outside the system block
     const containerCompIds = new Set([
       ...containerComponents.map((c) => c.id),
       ...containerCode.map((c) => c.id),
     ]);
+    const actorIds = new Set(allActors.map((a) => a.id));
+
     const relevantCompRels = componentRels.filter(
       (rel) =>
-        containerCompIds.has(rel.source) && containerCompIds.has(rel.destination),
+        containerCompIds.has(rel.source) &&
+        containerCompIds.has(rel.destination) &&
+        !actorIds.has(rel.destination), // Exclude component → actor
     );
     const relevantCodeRels = codeRels.filter(
       (rel) =>
-        containerCompIds.has(rel.source) && containerCompIds.has(rel.destination),
+        containerCompIds.has(rel.source) &&
+        containerCompIds.has(rel.destination) &&
+        !actorIds.has(rel.destination), // Exclude code → actor
     );
 
     if (relevantCompRels.length > 0 || relevantCodeRels.length > 0) {
@@ -412,7 +538,12 @@ function generateCodeAsComponent(code: CodeItem, indent: string): string {
   const lines: string[] = [];
   const codeId = sanitizeId(code.id);
 
-  lines.push(`${indent}${codeId} = component "${code.name}" {`);
+  // Create unique name by extracting file context from ID
+  // ID format: C__path_to_file_ts_functionName
+  // Extract last 2-3 segments for uniqueness (e.g., "index_ts::run" or "cli_ts::run")
+  const uniqueName = generateUniqueCodeName(code);
+
+  lines.push(`${indent}${codeId} = component "${uniqueName}" {`);
   if (code.description || code.documentation?.summary) {
     const desc = code.description || code.documentation?.summary || '';
     lines.push(`${indent}    description "${escapeString(desc)}"`);
@@ -431,6 +562,50 @@ function generateCodeAsComponent(code: CodeItem, indent: string): string {
   lines.push(`${indent}}`);
 
   return lines.join('\n');
+}
+
+/**
+ * Generate a unique name for a code item to avoid naming collisions
+ *
+ * Extracts file context from the code ID to create a unique display name.
+ * Example: "1-extract/index.ts::run" or "cli.ts::run"
+ *
+ * @param code - The code item
+ * @returns Unique name incorporating file context
+ */
+function generateUniqueCodeName(code: CodeItem): string {
+  // ID format: "C:/path/to/file.ts:functionName" or "/path/to/file.ts:functionName"
+  // Handle Windows absolute paths (C:) and Unix paths differently
+
+  // Find the last colon that's not part of a Windows drive letter
+  // Windows: "C:/path/file.ts:funcName" -> split at last :
+  // Unix: "/path/file.ts:funcName" -> split at last :
+  const lastColonIndex = code.id.lastIndexOf(':');
+
+  if (lastColonIndex === -1) {
+    // No colon separator, fall back to original name
+    return code.name.toLowerCase();
+  }
+
+  const filePath = code.id.substring(0, lastColonIndex);
+  const symbolName = code.id.substring(lastColonIndex + 1);
+
+  // Extract filename from path (last segment)
+  // Handle both forward and backward slashes
+  const pathSegments = filePath.split(/[/\\]/);
+  const fileName = pathSegments[pathSegments.length - 1];
+
+  // Extract parent directory for context (e.g., "1-extract", "core")
+  const parentDir = pathSegments[pathSegments.length - 2];
+
+  // Create contextual name (all lowercase for consistency)
+  // If parent is numeric stage dir (1-extract, 2-validate), include it
+  if (parentDir && /^\d/.test(parentDir)) {
+    return `${parentDir.toLowerCase()}/${fileName.toLowerCase()}::${symbolName.toLowerCase()}`;
+  }
+
+  // Otherwise just use filename
+  return `${fileName.toLowerCase()}::${symbolName.toLowerCase()}`;
 }
 
 /**

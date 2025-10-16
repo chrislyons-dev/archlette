@@ -1,0 +1,34 @@
+graph TB
+  linkStyle default fill:#ffffff
+
+  subgraph diagram ["@chrislyons-dev/archlette - @chrislyons-dev/archlette - Components"]
+    style diagram fill:#ffffff,stroke:#ffffff
+
+    1["<div style='font-weight: bold'>User</div><div style='font-size: 70%; margin-top: 0px'>[Person]</div><div style='font-size: 80%; margin-top:10px'>End user who runs archlette<br />commands</div>"]
+    style 1 fill:#dddddd,stroke:#9a9a9a,color:#000000
+
+    subgraph 4 ["@chrislyons-dev/archlette"]
+      style 4 fill:#ffffff,stroke:#9a9a9a,color:#9a9a9a
+
+      10["<div style='font-weight: bold'>docs</div><div style='font-size: 70%; margin-top: 0px'>[Component: module]</div><div style='font-size: 80%; margin-top:10px'>Documentation stage of the<br />AAC pipeline</div>"]
+      style 10 fill:#dddddd,stroke:#9a9a9a,color:#000000
+      11["<div style='font-weight: bold'>core</div><div style='font-size: 70%; margin-top: 0px'>[Component: module]</div>"]
+      style 11 fill:#dddddd,stroke:#9a9a9a,color:#000000
+      5["<div style='font-weight: bold'>CLI</div><div style='font-size: 70%; margin-top: 0px'>[Component: module]</div><div style='font-size: 80%; margin-top:10px'>Archlette CLI -<br />Architecture-as-Code toolkit</div>"]
+      style 5 fill:#dddddd,stroke:#9a9a9a,color:#000000
+      6["<div style='font-weight: bold'>extractors</div><div style='font-size: 70%; margin-top: 0px'>[Component: module]</div><div style='font-size: 80%; margin-top:10px'>ArchletteIR aggregation<br />utilities</div>"]
+      style 6 fill:#dddddd,stroke:#9a9a9a,color:#000000
+      7["<div style='font-weight: bold'>validators</div><div style='font-size: 70%; margin-top: 0px'>[Component: module]</div><div style='font-size: 80%; margin-top:10px'>Validation stage of the AAC<br />pipeline</div>"]
+      style 7 fill:#dddddd,stroke:#9a9a9a,color:#000000
+      8["<div style='font-weight: bold'>generators</div><div style='font-size: 70%; margin-top: 0px'>[Component: module]</div><div style='font-size: 80%; margin-top:10px'>Generation stage of the AAC<br />pipeline</div>"]
+      style 8 fill:#dddddd,stroke:#9a9a9a,color:#000000
+      9["<div style='font-weight: bold'>renderers</div><div style='font-size: 70%; margin-top: 0px'>[Component: module]</div><div style='font-size: 80%; margin-top:10px'>Render stage of the AAC<br />pipeline</div>"]
+      style 9 fill:#dddddd,stroke:#9a9a9a,color:#000000
+    end
+
+    5-. "<div>Analyzes source code to<br />extract architecture<br />components</div><div style='font-size: 70%'></div>" .->6
+    5-. "<div>Validates and enriches<br />intermediate representation</div><div style='font-size: 70%'></div>" .->7
+    5-. "<div>Transforms IR into DSL<br />formats</div><div style='font-size: 70%'></div>" .->8
+    5-. "<div>Converts DSL to visual<br />diagrams</div><div style='font-size: 70%'></div>" .->9
+    1-. "<div>Interacts with CLI</div><div style='font-size: 70%'></div>" .->5
+  end

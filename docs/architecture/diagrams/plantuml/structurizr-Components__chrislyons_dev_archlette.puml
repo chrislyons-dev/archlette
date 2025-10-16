@@ -1,0 +1,89 @@
+@startuml
+set separator none
+title @chrislyons-dev/archlette - @chrislyons-dev/archlette - Components
+
+top to bottom direction
+skinparam ranksep 60
+skinparam nodesep 30
+
+skinparam {
+  arrowFontSize 10
+  defaultTextAlignment center
+  wrapWidth 200
+  maxMessageSize 100
+}
+
+hide stereotype
+
+skinparam rectangle<<chrislyonsdevarchlette.chrislyonsdevarchlette.CLI>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<User>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<chrislyonsdevarchlette.chrislyonsdevarchlette.core>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<chrislyonsdevarchlette.chrislyonsdevarchlette.docs>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<chrislyonsdevarchlette.chrislyonsdevarchlette.extractors>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<chrislyonsdevarchlette.chrislyonsdevarchlette.generators>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<chrislyonsdevarchlette.chrislyonsdevarchlette.renderers>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<chrislyonsdevarchlette.chrislyonsdevarchlette.validators>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<chrislyonsdevarchlette.chrislyonsdevarchlette>> {
+  BorderColor #9a9a9a
+  FontColor #9a9a9a
+  shadowing false
+}
+
+rectangle "==User\n<size:10>[Person]</size>\n\nEnd user who runs archlette commands" <<User>> as User
+
+rectangle "@chrislyons-dev/archlette\n<size:10>[Container: Application]</size>" <<chrislyonsdevarchlette.chrislyonsdevarchlette>> {
+  rectangle "==docs\n<size:10>[Component: module]</size>\n\nDocumentation stage of the AAC pipeline" <<chrislyonsdevarchlette.chrislyonsdevarchlette.docs>> as chrislyonsdevarchlette.chrislyonsdevarchlette.docs
+  rectangle "==core\n<size:10>[Component: module]</size>" <<chrislyonsdevarchlette.chrislyonsdevarchlette.core>> as chrislyonsdevarchlette.chrislyonsdevarchlette.core
+  rectangle "==CLI\n<size:10>[Component: module]</size>\n\nArchlette CLI - Architecture-as-Code toolkit" <<chrislyonsdevarchlette.chrislyonsdevarchlette.CLI>> as chrislyonsdevarchlette.chrislyonsdevarchlette.CLI
+  rectangle "==extractors\n<size:10>[Component: module]</size>\n\nArchletteIR aggregation utilities" <<chrislyonsdevarchlette.chrislyonsdevarchlette.extractors>> as chrislyonsdevarchlette.chrislyonsdevarchlette.extractors
+  rectangle "==validators\n<size:10>[Component: module]</size>\n\nValidation stage of the AAC pipeline" <<chrislyonsdevarchlette.chrislyonsdevarchlette.validators>> as chrislyonsdevarchlette.chrislyonsdevarchlette.validators
+  rectangle "==generators\n<size:10>[Component: module]</size>\n\nGeneration stage of the AAC pipeline" <<chrislyonsdevarchlette.chrislyonsdevarchlette.generators>> as chrislyonsdevarchlette.chrislyonsdevarchlette.generators
+  rectangle "==renderers\n<size:10>[Component: module]</size>\n\nRender stage of the AAC pipeline" <<chrislyonsdevarchlette.chrislyonsdevarchlette.renderers>> as chrislyonsdevarchlette.chrislyonsdevarchlette.renderers
+}
+
+chrislyonsdevarchlette.chrislyonsdevarchlette.CLI .[#707070,thickness=2].> chrislyonsdevarchlette.chrislyonsdevarchlette.extractors : "<color:#707070>Analyzes source code to extract architecture components"
+chrislyonsdevarchlette.chrislyonsdevarchlette.CLI .[#707070,thickness=2].> chrislyonsdevarchlette.chrislyonsdevarchlette.validators : "<color:#707070>Validates and enriches intermediate representation"
+chrislyonsdevarchlette.chrislyonsdevarchlette.CLI .[#707070,thickness=2].> chrislyonsdevarchlette.chrislyonsdevarchlette.generators : "<color:#707070>Transforms IR into DSL formats"
+chrislyonsdevarchlette.chrislyonsdevarchlette.CLI .[#707070,thickness=2].> chrislyonsdevarchlette.chrislyonsdevarchlette.renderers : "<color:#707070>Converts DSL to visual diagrams"
+User .[#707070,thickness=2].> chrislyonsdevarchlette.chrislyonsdevarchlette.CLI : "<color:#707070>Interacts with CLI"
+@enduml

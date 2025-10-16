@@ -8,7 +8,7 @@ project:
 paths:
   ir_out: ../docs/architecture/aac-ir.json
   dsl_out: ../docs/architecture/aac.dsl
-  render_out: ../docs/architecture/images
+  render_out: ../docs/architecture/diagrams
   docs_out: ../docs/architecture
 
 # Stage-level defaults (merged into each node unless the node overrides)
@@ -40,11 +40,18 @@ generators:
       output: '../docs/architecture/workspace.dsl' # Where to write the DSL
 
 renderers:
-  - use: renderers/builtin/structurizr-cli
-    name: 'Structurizr CLI Render'
+  # Renderers run sequentially - order matters!
+  # First: Export Structurizr DSL to PlantUML and Mermaid
+  - use: renderers/builtin/structurizr-export
+    name: 'Structurizr Export'
     props:
-      formats: ['png', 'svg']
-      layout: 'locked'
+      formats: ['plantuml', 'mermaid']
+
+  # Second: Render PlantUML files to PNG images
+  - use: renderers/builtin/plantuml-render
+    name: 'PlantUML to PNG'
+    props:
+      format: 'png'
 
 docs:
   - use: docs/builtin/index

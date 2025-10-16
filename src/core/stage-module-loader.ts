@@ -48,4 +48,17 @@ export async function loadGeneratorModule(modulePath: string) {
   return { entry, resolved };
 }
 
-// Add more loaders for renderers, docs as needed
+// Renderer modules: (ctx: PipelineContext, node: ResolvedStageNode) => void | Promise<void>
+export async function loadRendererModule(modulePath: string) {
+  const { module: mod, path: resolved } = await loadModuleFromPath(modulePath);
+  const m = mod as any;
+  const entry = getStageEntry(m) ?? m.default ?? m.run;
+  if (typeof entry !== 'function') {
+    throw new Error(
+      `Renderer module ${modulePath} (resolved to ${resolved}) does not export a callable entry.`,
+    );
+  }
+  return { entry, resolved };
+}
+
+// Add more loaders for docs as needed

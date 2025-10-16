@@ -1,0 +1,51 @@
+@startuml
+set separator none
+title @chrislyons-dev/archlette - Containers
+
+top to bottom direction
+skinparam ranksep 60
+skinparam nodesep 30
+
+skinparam {
+  arrowFontSize 10
+  defaultTextAlignment center
+  wrapWidth 200
+  maxMessageSize 100
+}
+
+hide stereotype
+
+skinparam rectangle<<chrislyonsdevarchlette.chrislyonsdevarchlette>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<FileSystem>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<User>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<chrislyonsdevarchlette>> {
+  BorderColor #9a9a9a
+  FontColor #9a9a9a
+  shadowing false
+}
+
+rectangle "==User\n<size:10>[Person]</size>\n\nEnd user who runs archlette commands" <<User>> as User
+rectangle "==FileSystem\n<size:10>[Software System]</size>\n\nFile system for reading and writing files" <<FileSystem>> as FileSystem
+
+rectangle "@chrislyons-dev/archlette\n<size:10>[Software System]</size>" <<chrislyonsdevarchlette>> {
+  rectangle "==@chrislyons-dev/archlette\n<size:10>[Container: Application]</size>\n\nArchitecture-as-Code toolkit for automated diagrams, docs, and releases." <<chrislyonsdevarchlette.chrislyonsdevarchlette>> as chrislyonsdevarchlette.chrislyonsdevarchlette
+}
+
+User .[#707070,thickness=2].> chrislyonsdevarchlette.chrislyonsdevarchlette : "<color:#707070>Interacts with CLI"
+chrislyonsdevarchlette.chrislyonsdevarchlette .[#707070,thickness=2].> FileSystem : "<color:#707070>Reads configuration and writes output files"
+@enduml
