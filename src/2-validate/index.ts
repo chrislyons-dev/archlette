@@ -1,7 +1,7 @@
 /**
  * Validation stage of the AAC pipeline
  *
- * @module stages/validate
+ * @module validators
  * @description
  * Loads and executes validators to check, normalize, and enrich the aggregated
  * ArchletteIR before it proceeds to generation. Validators can perform various
@@ -10,9 +10,10 @@
  * The validation stage:
  * 1. Retrieves the aggregated IR from extraction stage
  * 2. Loads validator modules from configuration
- * 3. Invokes each validator sequentially, passing the IR through the chain
- * 4. Logs errors but stops processing on validator failure
+ * 3. Invokes each validator sequentially, chaining IR through transformations
+ * 4. Each validator receives the output of the previous validator
  * 5. Stores the final validated IR in pipeline state
+ * 6. Writes the validated IR to the configured ir_out path for persistence
  *
  * The validated IR is passed to subsequent pipeline stages and is
  * guaranteed to be valid according to all configured validators.
@@ -24,6 +25,7 @@
 import type { PipelineContext } from '../core/types.js';
 import { loadValidatorModule } from '../core/stage-module-loader.js';
 import type { ResolvedAACConfig, ResolvedStageNode } from '../core/types-aac.js';
+import { resolveArchlettePath, getCliDir, writeFile } from '../core/path-resolver.js';
 
 /**
  * Execute the validation stage
@@ -47,7 +49,8 @@ export async function run(ctx: PipelineContext): Promise<void> {
     );
   }
 
-  // Process validators sequentially, passing IR through the chain
+  // Process validators sequentially, chaining IR transformations
+  // Each validator receives the output of the previous validator
   for (const node of validators) {
     try {
       const { entry, resolved } = await loadValidatorModule(node.use);
@@ -65,5 +68,15 @@ export async function run(ctx: PipelineContext): Promise<void> {
   // Store validated IR in pipeline state for downstream stages
   ctx.state.validatedIR = ir;
 
-  ctx.log.info(`Validate: completed ${validators.length} validator(s).`);
+  // Write validated IR to disk for persistence
+  ctx.log.debug(
+    `Resolving validated IR output destination from ${config.paths.ir_out}.`,
+  );
+  const outputPath = resolveArchlettePath(config.paths.ir_out, { cliDir: getCliDir() });
+  ctx.log.debug(`Writing validated IR to ${outputPath}.`);
+  writeFile(outputPath, JSON.stringify(ir, null, 2));
+
+  ctx.log.info(
+    `Validate: completed ${validators.length} validator(s). Validated IR written to ${outputPath}`,
+  );
 }

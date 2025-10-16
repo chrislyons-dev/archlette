@@ -1,7 +1,7 @@
 /**
  * Stage module interfaces for the AAC pipeline
  *
- * @module core/stage-interfaces
+ * @module core
  * @description
  * Defines the contract that all stage modules must implement. Each stage
  * (extractor, validator, generator, renderer, docs) has a specific interface
@@ -63,4 +63,29 @@ export interface ArchletteExtractor {
  */
 export interface ArchletteValidator {
   (ir: ArchletteIR): Promise<ArchletteIR> | ArchletteIR;
+}
+
+/**
+ * Generator module interface
+ *
+ * @description
+ * Generators transform the validated ArchletteIR into target DSL formats
+ * (Structurizr, PlantUML, Mermaid, etc.). They produce string output
+ * representing architecture diagrams or documentation.
+ *
+ * @param ir - The validated ArchletteIR to transform
+ * @param node - Configuration node with generator options
+ * @returns Promise resolving to DSL string or string directly
+ *
+ * @example
+ * ```typescript
+ * // src/generators/builtin/structurizr.ts
+ * export default function(ir: ArchletteIR, node: ResolvedStageNode): string {
+ *   const dsl = generateWorkspace(ir);
+ *   return dsl;
+ * }
+ * ```
+ */
+export interface ArchletteGenerator {
+  (ir: ArchletteIR, node: ResolvedStageNode): Promise<string> | string;
 }

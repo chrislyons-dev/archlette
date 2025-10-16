@@ -1,7 +1,7 @@
 /**
  * Base IR validator for Archlette pipeline
  *
- * @module validators/base-validator
+ * @module validators
  * @description
  * Validates the aggregated ArchletteIR against the canonical Zod schema.
  * Throws an error if the IR is invalid. No mutation or enrichment is performed.

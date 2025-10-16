@@ -1,7 +1,7 @@
 /**
  * Architecture-as-Code (AAC) configuration types and schemas
  *
- * @module core/types-aac
+ * @module core
  * @description
  * Defines the schema for AAC YAML configuration files. These files configure
  * the entire AAC pipeline, specifying which extractors, validators, generators,

@@ -3,7 +3,7 @@
 /**
  * Archlette CLI - Architecture-as-Code toolkit
  *
- * @module cli
+ * @module CLI
  * @description
  * Command-line interface for the Archlette Architecture-as-Code toolkit.
  * Orchestrates the full AAC pipeline from extraction through documentation.
@@ -33,6 +33,13 @@
  *
  * The CLI reads configuration from a YAML file (default: `templates/default.yaml`)
  * that specifies which modules to load for each stage.
+ *
+ * @actor User {Person} End user who runs archlette commands
+ * @uses extractors Analyzes source code to extract architecture components
+ * @uses validators Validates and enriches intermediate representation
+ * @uses generators Transforms IR into DSL formats
+ * @uses renderers Converts DSL to visual diagrams
+ * @uses FileSystem {System} Reads configuration and writes output files
  *
  * @see {@link module:core/types-aac} for configuration schema
  */

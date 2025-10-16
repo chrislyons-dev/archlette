@@ -37,8 +37,7 @@ generators:
   - use: generators/builtin/structurizr
     name: 'Structurizr DSL'
     props:
-      workspaceName: 'Archlette'
-      theme: 'default'
+      output: '../docs/architecture/workspace.dsl' # Where to write the DSL
 
 renderers:
   - use: renderers/builtin/structurizr-cli

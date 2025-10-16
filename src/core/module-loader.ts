@@ -1,7 +1,7 @@
 /**
  * Dynamic ESM module loader
  *
- * @module core/module-loader
+ * @module core
  * @description
  * Provides utilities for dynamically loading ESM modules at runtime.
  * Handles module resolution, path normalization, and import() invocation.

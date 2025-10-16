@@ -13,6 +13,8 @@ export interface FileExtraction {
   filePath: string;
   language: 'typescript' | 'javascript';
   component?: ComponentInfo;
+  actors: ActorInfo[];
+  relationships: RelationshipInfo[];
   classes: ExtractedClass[];
   functions: ExtractedFunction[];
   imports: ExtractedImport[];
@@ -23,6 +25,20 @@ export interface ComponentInfo {
   id: string;
   name: string;
   description?: string;
+}
+
+export interface ActorInfo {
+  id: string;
+  name: string;
+  type: 'Person' | 'System';
+  description?: string;
+}
+
+export interface RelationshipInfo {
+  source: string; // Source component/actor ID
+  target: string; // Target component/actor name
+  description?: string;
+  direction: 'outbound' | 'inbound';
 }
 
 export interface ExtractedClass {

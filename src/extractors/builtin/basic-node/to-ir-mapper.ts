@@ -29,8 +29,10 @@ export function mapToIR(
   const codeItems: CodeItem[] = [];
   const relationships: Relationship[] = [];
   const componentsMap = new Map<string, Component>();
+  const actorsMap = new Map<string, any>();
+  const componentRelationships: Relationship[] = [];
 
-  // Extract code items from all files
+  // Extract code items, actors, and relationships from all files
   for (const file of extractions) {
     const componentId = file.component?.id;
 
@@ -43,6 +45,46 @@ export function mapToIR(
         type: 'module',
         description: file.component.description,
       });
+    }
+
+    // Register actors if found
+    for (const actor of file.actors) {
+      if (!actorsMap.has(actor.id)) {
+        actorsMap.set(actor.id, {
+          id: actor.id,
+          name: actor.name,
+          type: actor.type,
+          description: actor.description,
+          tags: [],
+          targets: [], // Relationships will be populated below
+        });
+      }
+    }
+
+    // Process relationships from this file
+    if (componentId && file.relationships.length > 0) {
+      for (const rel of file.relationships) {
+        // Convert target name to ID (lowercase, etc.)
+        const targetId = convertNameToId(rel.target);
+
+        if (rel.direction === 'outbound') {
+          // @uses: this component uses the target
+          componentRelationships.push({
+            source: componentId,
+            destination: targetId,
+            description: rel.description || 'Uses',
+            tags: [],
+          });
+        } else {
+          // @usedBy: the target uses this component (reverse direction)
+          componentRelationships.push({
+            source: targetId,
+            destination: componentId,
+            description: rel.description || 'Uses',
+            tags: [],
+          });
+        }
+      }
     }
 
     // Add functions
@@ -66,18 +108,56 @@ export function mapToIR(
     }
   }
 
+  const system = systemInfo || getDefaultSystem();
+  const components = Array.from(componentsMap.values());
+  const containers = [];
+
+  // If we have components but no containers, create a default container
+  // This handles the common case of a single application/service
+  if (components.length > 0 && containers.length === 0) {
+    const defaultContainer = {
+      id: 'default-container',
+      name: system.name,
+      type: 'Application',
+      layer: 'Application',
+      description: system.description || 'Main application container',
+      tags: ['Auto-generated'],
+    };
+    containers.push(defaultContainer);
+
+    // Assign all components to this container
+    for (const component of components) {
+      component.containerId = defaultContainer.id;
+    }
+  }
+
   return {
     version: '1.0',
-    system: systemInfo || getDefaultSystem(),
-    actors: [],
-    containers: [],
-    components: Array.from(componentsMap.values()),
+    system,
+    actors: Array.from(actorsMap.values()),
+    containers,
+    components,
     code: codeItems,
     deployments: [],
     containerRelationships: [],
-    componentRelationships: [],
+    componentRelationships,
     codeRelationships: relationships,
   };
+}
+
+/**
+ * Convert a name to an ID
+ * Examples:
+ * - "Payment Processor" -> "payment-processor"
+ * - "FileSystem" -> "filesystem"
+ */
+function convertNameToId(name: string): string {
+  return name
+    .toLowerCase()
+    .replace(/[\s/]+/g, '-') // Replace spaces and slashes with dashes
+    .replace(/[^a-z0-9-]/g, '') // Remove non-alphanumeric (except dashes)
+    .replace(/-+/g, '-') // Collapse multiple dashes
+    .replace(/^-|-$/g, ''); // Remove leading/trailing dashes
 }
 
 /**

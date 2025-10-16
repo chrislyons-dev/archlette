@@ -1,7 +1,7 @@
 /**
  * Extraction stage of the AAC pipeline
  *
- * @module stages/extract
+ * @module extractors
  * @description
  * Loads and executes extractors to produce ArchletteIR from various sources.
  * Extractors can analyze code, IaC, configuration files, or any other

@@ -1,7 +1,7 @@
 /**
  * ArchletteIR aggregation utilities
  *
- * @module stages/extract/aggregator
+ * @module extractors
  * @description
  * Combines multiple ArchletteIR objects from different extractors into a single
  * unified IR. Handles deduplication, conflict resolution, and merging of all

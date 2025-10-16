@@ -1,7 +1,7 @@
 /**
  * Archlette Intermediate Representation (IR) types and schemas
  *
- * @module core/types-ir
+ * @module core
  * @description
  * Defines the ArchletteIR format - a language-agnostic representation of software
  * architecture. This IR serves as the canonical format that all extractors produce
