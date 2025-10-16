@@ -2248,7 +2248,7 @@
       "visibility": "public",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts",
-      "lineNumber": 26
+      "lineNumber": 31
     },
     {
       "description": "Deduplicate relationships by source+destination+stereotype combination\nFirst occurrence wins - preserves description from first relationship\nThis allows multiple relationships between the same elements with different stereotypes",
@@ -2269,7 +2269,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts",
-      "lineNumber": 178
+      "lineNumber": 183
     },
     {
       "description": "Map a function to a CodeItem",
@@ -2300,7 +2300,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts",
-      "lineNumber": 192
+      "lineNumber": 197
     },
     {
       "description": "Map a class to a CodeItem",
@@ -2331,7 +2331,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts",
-      "lineNumber": 220
+      "lineNumber": 225
     },
     {
       "description": "Map a class method to a CodeItem",
@@ -2367,7 +2367,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts",
-      "lineNumber": 249
+      "lineNumber": 254
     },
     {
       "description": "Map imports to relationships",
@@ -2393,7 +2393,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts",
-      "lineNumber": 283
+      "lineNumber": 288
     },
     {
       "description": "Generate a unique ID for a code element\nFormat: filePath:symbolName",
@@ -2419,7 +2419,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts",
-      "lineNumber": 306
+      "lineNumber": 311
     },
     {
       "description": "Get default system info from package.json if available",
@@ -2434,7 +2434,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts",
-      "lineNumber": 315
+      "lineNumber": 320
     }
   ],
   "deployments": [],

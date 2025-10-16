@@ -3,7 +3,8 @@ export default {
     include: ['test/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
     environment: 'node',
     setupFiles: [],
-    // Either remove coverage entirely, or keep it as an object:
+    // Increased timeout for ts-morph integration tests (parser initialization is slow)
+    testTimeout: 10000,
     coverage: {
       enabled: true,
       provider: 'v8',
