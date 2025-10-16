@@ -40,3 +40,27 @@ import type { ResolvedStageNode } from './types-aac';
 export interface ArchletteExtractor {
   (node: ResolvedStageNode): Promise<ArchletteIR> | ArchletteIR;
 }
+
+/**
+ * Validator module interface
+ *
+ * @description
+ * Validators analyze and transform the aggregated ArchletteIR, performing
+ * checks, normalization, or enrichment. They may mutate, filter, or annotate
+ * the IR, and must return a valid ArchletteIR.
+ *
+ * @param ir - The input ArchletteIR to validate or transform
+ * @returns Promise resolving to ArchletteIR or ArchletteIR directly
+ *
+ * @example
+ * ```typescript
+ * // src/validators/builtin/required-fields.ts
+ * export default function(ir: ArchletteIR): ArchletteIR {
+ *   // ...validate and/or mutate IR...
+ *   return ir;
+ * }
+ * ```
+ */
+export interface ArchletteValidator {
+  (ir: ArchletteIR): Promise<ArchletteIR> | ArchletteIR;
+}

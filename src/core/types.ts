@@ -16,6 +16,8 @@ export interface PipelineState {
   extractorResults?: ArchletteIR[];
   /** Aggregated IR combining all extractor results */
   aggregatedIR?: ArchletteIR;
+  /** Validated and transformed IR after validation stage */
+  validatedIR?: ArchletteIR;
   /** Additional state that stages can use (extensible) */
   [key: string]: unknown;
 }

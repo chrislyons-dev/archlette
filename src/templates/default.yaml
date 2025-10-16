@@ -16,7 +16,7 @@ extractors:
 
 # ir json in, ir json out (or errors)
 validators:
-  - use: validators/builtin/schema
+  - use: validators/builtin/base-validator
 
 # ir json in, dsl out
 generators:
