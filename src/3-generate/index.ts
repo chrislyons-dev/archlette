@@ -16,6 +16,8 @@
  * Generators produce string output representing architecture diagrams
  * or documentation in specific DSL formats.
  *
+ * @uses core Provides IR types, path resolution, and module loading
+ *
  * @see {@link module:core/types-ir} for ArchletteIR schema
  * @see {@link module:core/stage-interfaces.ArchletteGenerator} for generator interface
  */

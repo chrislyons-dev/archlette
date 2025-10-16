@@ -39,7 +39,7 @@
  * @uses validators Validates and enriches intermediate representation
  * @uses generators Transforms IR into DSL formats
  * @uses renderers Converts DSL to visual diagrams
- * @uses FileSystem {System} Reads configuration and writes output files
+ * @uses core Provides shared utilities, types, and module loading
  *
  * @see {@link module:core/types-aac} for configuration schema
  */

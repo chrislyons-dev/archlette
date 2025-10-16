@@ -17,6 +17,8 @@
  * All valid IR results are stored in `ctx.state.extractorResults` for
  * use by subsequent pipeline stages.
  *
+ * @uses core Provides IR types, validation schemas, and module loading
+ *
  * @see {@link module:core/types-ir} for ArchletteIR schema
  * @see {@link module:core/stage-interfaces.ArchletteExtractor} for extractor interface
  */

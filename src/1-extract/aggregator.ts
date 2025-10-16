@@ -119,7 +119,7 @@ function deduplicateByName<T extends { name: string }>(items: T[]): T[] {
 }
 
 /**
- * Deduplicate relationships by source+destination+stereotype combination
+ * Deduplicate relationships by source+destination combination
  *
  * @param relationships - Array of relationships to deduplicate
  * @returns Array with duplicate relationships removed
@@ -128,12 +128,13 @@ function deduplicateByName<T extends { name: string }>(items: T[]): T[] {
  * Two relationships are considered duplicates if they have the same:
  * - source ID
  * - destination ID
- * - stereotype (or both undefined)
+ * The first occurrence is preserved, including its description.
+ * Subsequent duplicates are ignored regardless of description or stereotype differences.
  */
 function deduplicateRelationships(relationships: Relationship[]): Relationship[] {
   const seen = new Map<string, Relationship>();
   for (const rel of relationships) {
-    const key = `${rel.source}:${rel.destination}:${rel.stereotype || ''}`;
+    const key = `${rel.source}:${rel.destination}`;
     if (!seen.has(key)) {
       seen.set(key, rel);
     }

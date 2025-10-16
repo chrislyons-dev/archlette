@@ -81,7 +81,7 @@ workspace "@chrislyons-dev/archlette" "Architecture-as-Code toolkit for automate
                     tags "Code"
                 }
                 C__Users_chris_git_archlette_src_1_extract_aggregator_ts_deduplicateRelationships = component "1-extract/aggregator.ts::deduplicaterelationships" {
-                    description "Deduplicate relationships by source+destination+stereotype combination"
+                    description "Deduplicate relationships by source+destination combination"
                     technology "function"
                     tags "Code"
                 }
@@ -353,17 +353,21 @@ workspace "@chrislyons-dev/archlette" "Architecture-as-Code toolkit for automate
                 cli -> validators "Validates and enriches intermediate representation"
                 cli -> generators "Transforms IR into DSL formats"
                 cli -> renderers "Converts DSL to visual diagrams"
+                cli -> core "Provides shared utilities, types, and module loading"
+                extractors -> core "Provides IR types, validation schemas, and module loading"
+                validators -> core "Provides IR types, validation schemas, and module loading"
+                generators -> core "Provides IR types, path resolution, and module loading"
+                renderers -> core "Provides types, module loading, and tool management"
+                docs -> core "Provides types and path resolution"
             }
 
         }
 
         # Actor interactions
         user -> cli "Interacts with CLI"
-        cli -> filesystem "Reads configuration and writes output files"
-        cli -> filesystem "For reading configuration files and writing output"
-        extractors -> filesystem "For reading source code files"
-        generators -> filesystem "For writing DSL files"
-        renderers -> filesystem "For writing diagram files"
+        filesystem -> core "Interacts with core"
+        cli -> user "Interacts with User"
+        core -> filesystem "Uses FileSystem for external system integration"
 
     }
 
@@ -385,6 +389,7 @@ workspace "@chrislyons-dev/archlette" "Architecture-as-Code toolkit for automate
 
         component default_container "Components__chrislyons_dev_archlette" {
             include user
+            include filesystem
             include cli
             include extractors
             include validators

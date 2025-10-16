@@ -47,5 +47,7 @@ rectangle "@chrislyons-dev/archlette\n<size:10>[Software System]</size>" <<chris
 }
 
 User .[#707070,thickness=2].> chrislyonsdevarchlette.chrislyonsdevarchlette : "<color:#707070>Interacts with CLI"
-chrislyonsdevarchlette.chrislyonsdevarchlette .[#707070,thickness=2].> FileSystem : "<color:#707070>Reads configuration and writes output files"
+FileSystem .[#707070,thickness=2].> chrislyonsdevarchlette.chrislyonsdevarchlette : "<color:#707070>Interacts with core"
+chrislyonsdevarchlette.chrislyonsdevarchlette .[#707070,thickness=2].> User : "<color:#707070>Interacts with User"
+chrislyonsdevarchlette.chrislyonsdevarchlette .[#707070,thickness=2].> FileSystem : "<color:#707070>Uses FileSystem for external system integration"
 @enduml

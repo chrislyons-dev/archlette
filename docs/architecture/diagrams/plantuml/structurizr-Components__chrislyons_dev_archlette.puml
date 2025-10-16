@@ -21,6 +21,12 @@ skinparam rectangle<<chrislyonsdevarchlette.chrislyonsdevarchlette.CLI>> {
   BorderColor #9a9a9a
   shadowing false
 }
+skinparam rectangle<<FileSystem>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
 skinparam rectangle<<User>> {
   BackgroundColor #dddddd
   FontColor #000000
@@ -70,6 +76,7 @@ skinparam rectangle<<chrislyonsdevarchlette.chrislyonsdevarchlette>> {
 }
 
 rectangle "==User\n<size:10>[Person]</size>\n\nEnd user who runs archlette commands" <<User>> as User
+rectangle "==FileSystem\n<size:10>[Software System]</size>\n\nFile system for reading and writing files" <<FileSystem>> as FileSystem
 
 rectangle "@chrislyons-dev/archlette\n<size:10>[Container: Application]</size>" <<chrislyonsdevarchlette.chrislyonsdevarchlette>> {
   rectangle "==docs\n<size:10>[Component: module]</size>\n\nDocumentation stage of the AAC pipeline" <<chrislyonsdevarchlette.chrislyonsdevarchlette.docs>> as chrislyonsdevarchlette.chrislyonsdevarchlette.docs
@@ -85,5 +92,14 @@ chrislyonsdevarchlette.chrislyonsdevarchlette.CLI .[#707070,thickness=2].> chris
 chrislyonsdevarchlette.chrislyonsdevarchlette.CLI .[#707070,thickness=2].> chrislyonsdevarchlette.chrislyonsdevarchlette.validators : "<color:#707070>Validates and enriches intermediate representation"
 chrislyonsdevarchlette.chrislyonsdevarchlette.CLI .[#707070,thickness=2].> chrislyonsdevarchlette.chrislyonsdevarchlette.generators : "<color:#707070>Transforms IR into DSL formats"
 chrislyonsdevarchlette.chrislyonsdevarchlette.CLI .[#707070,thickness=2].> chrislyonsdevarchlette.chrislyonsdevarchlette.renderers : "<color:#707070>Converts DSL to visual diagrams"
+chrislyonsdevarchlette.chrislyonsdevarchlette.CLI .[#707070,thickness=2].> chrislyonsdevarchlette.chrislyonsdevarchlette.core : "<color:#707070>Provides shared utilities, types, and module loading"
+chrislyonsdevarchlette.chrislyonsdevarchlette.extractors .[#707070,thickness=2].> chrislyonsdevarchlette.chrislyonsdevarchlette.core : "<color:#707070>Provides IR types, validation schemas, and module loading"
+chrislyonsdevarchlette.chrislyonsdevarchlette.validators .[#707070,thickness=2].> chrislyonsdevarchlette.chrislyonsdevarchlette.core : "<color:#707070>Provides IR types, validation schemas, and module loading"
+chrislyonsdevarchlette.chrislyonsdevarchlette.generators .[#707070,thickness=2].> chrislyonsdevarchlette.chrislyonsdevarchlette.core : "<color:#707070>Provides IR types, path resolution, and module loading"
+chrislyonsdevarchlette.chrislyonsdevarchlette.renderers .[#707070,thickness=2].> chrislyonsdevarchlette.chrislyonsdevarchlette.core : "<color:#707070>Provides types, module loading, and tool management"
+chrislyonsdevarchlette.chrislyonsdevarchlette.docs .[#707070,thickness=2].> chrislyonsdevarchlette.chrislyonsdevarchlette.core : "<color:#707070>Provides types and path resolution"
 User .[#707070,thickness=2].> chrislyonsdevarchlette.chrislyonsdevarchlette.CLI : "<color:#707070>Interacts with CLI"
+FileSystem .[#707070,thickness=2].> chrislyonsdevarchlette.chrislyonsdevarchlette.core : "<color:#707070>Interacts with core"
+chrislyonsdevarchlette.chrislyonsdevarchlette.CLI .[#707070,thickness=2].> User : "<color:#707070>Interacts with User"
+chrislyonsdevarchlette.chrislyonsdevarchlette.core .[#707070,thickness=2].> FileSystem : "<color:#707070>Uses FileSystem for external system integration"
 @enduml

@@ -471,7 +471,7 @@ function generateContainer(
     }
 
     // Component relationships for this container
-    // Note: Exclude relationships to actors - those are rendered outside the system block
+    // Note: Exclude relationships to/from actors - those are rendered outside the system block
     const containerCompIds = new Set([
       ...containerComponents.map((c) => c.id),
       ...containerCode.map((c) => c.id),
@@ -482,12 +482,14 @@ function generateContainer(
       (rel) =>
         containerCompIds.has(rel.source) &&
         containerCompIds.has(rel.destination) &&
+        !actorIds.has(rel.source) && // Exclude actor → component
         !actorIds.has(rel.destination), // Exclude component → actor
     );
     const relevantCodeRels = codeRels.filter(
       (rel) =>
         containerCompIds.has(rel.source) &&
         containerCompIds.has(rel.destination) &&
+        !actorIds.has(rel.source) && // Exclude actor → code
         !actorIds.has(rel.destination), // Exclude code → actor
     );
 

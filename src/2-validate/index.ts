@@ -18,6 +18,8 @@
  * The validated IR is passed to subsequent pipeline stages and is
  * guaranteed to be valid according to all configured validators.
  *
+ * @uses core Provides IR types, validation schemas, and module loading
+ *
  * @see {@link module:core/types-ir} for ArchletteIR schema
  * @see {@link module:core/stage-interfaces.ArchletteValidator} for validator interface
  */

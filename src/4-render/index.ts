@@ -17,6 +17,8 @@
  * - structurizr-export: DSL → PlantUML/Mermaid
  * - plantuml-render: PlantUML → PNG images
  *
+ * @uses core Provides types, module loading, and tool management
+ *
  * @see {@link module:generators} for generation stage
  * @see {@link module:core/tool-manager} for tool management
  */

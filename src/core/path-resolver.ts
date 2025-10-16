@@ -5,10 +5,6 @@
  * Handles resolution of relative paths, tilde expansion, and file I/O operations.
  *
  * @actor FileSystem {System} File system for reading and writing files
- * @usedBy CLI For reading configuration files and writing output
- * @usedBy extractors For reading source code files
- * @usedBy generators For writing DSL files
- * @usedBy renderers For writing diagram files
  */
 
 import { fileURLToPath, pathToFileURL } from 'node:url';
@@ -107,7 +103,6 @@ export function toFileUrl(p: string): string {
  *
  * @param filename - Absolute path to the file
  * @param content - Content to write
- * @uses FileSystem {System} Writes files to disk
  */
 export function writeFile(filename: string, content: string = '') {
   const dirname = path.dirname(filename);

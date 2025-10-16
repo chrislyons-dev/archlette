@@ -4,6 +4,8 @@
  * @module docs
  * @description
  * Generates documentation from diagrams and IR.
+ *
+ * @uses core Provides types and path resolution
  */
 
 import type { PipelineContext } from '../core/types.js';
