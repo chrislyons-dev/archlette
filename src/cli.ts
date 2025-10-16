@@ -52,6 +52,7 @@ import { getStageEntry } from './core/stage-entry.js';
 import { loadModuleFromPath } from './core/module-loader.js';
 import { resolveArchlettePath, getCliDir } from './core/path-resolver.js';
 import { AACConfigSchema as aacConfigSchema, resolveConfig } from './core/types-aac.js';
+import { createLogger } from './core/logger.js';
 
 const DEFAULT_YAML_PATH = 'templates/default.yaml';
 
@@ -106,16 +107,6 @@ function stageListFromArg(stageArg: string) {
   return STAGE_ORDER.slice(0, idx + 1);
 }
 
-function createLogger() {
-  const tag = (lvl: string) => `[archlette:${lvl}]`;
-  return {
-    debug: (...a: unknown[]) => console.debug(tag('debug'), ...a),
-    info: (...a: unknown[]) => console.log(tag('info'), ...a),
-    warn: (...a: unknown[]) => console.warn(tag('warn'), ...a),
-    error: (...a: unknown[]) => console.error(tag('error'), ...a),
-  };
-}
-
 async function loadYamlIfExists(resolvedFile: string) {
   if (!resolvedFile) return { config: null, path: null };
   if (!fs.existsSync(resolvedFile)) return { config: null, path: null };
@@ -159,7 +150,7 @@ export async function run(argv = process.argv) {
   const ctx: PipelineContext = {
     config,
     state: {},
-    log: createLogger(),
+    log: createLogger({ context: 'CLI', level: 'info' }),
   };
 
   const stagesToRun = stageListFromArg(stageArg);
@@ -173,24 +164,32 @@ export async function run(argv = process.argv) {
   for (const stage of stagesToRun) {
     const stageKey = stage as keyof typeof STAGE_DIRS;
     const spec = `./${STAGE_DIRS[stageKey]}`;
-    ctx.log.info(`Stage: ${stage}`);
+
+    // Create stage-specific logger
+    const stageLogger = createLogger({
+      context: stage.charAt(0).toUpperCase() + stage.slice(1),
+      level: 'info',
+    });
+    const stageCtx = { ...ctx, log: stageLogger };
+
+    stageLogger.info(`Starting ${stage} stage`);
     try {
       // Tell the loader what shape we expect
       const { module: stageMod, path: resolved } =
         await loadModuleFromPath<StageModule>(spec);
 
-      ctx.log.debug(`Loaded: ${resolved}`);
+      stageLogger.debug(`Loaded module from ${resolved}`);
 
       const entry = getStageEntry(stageMod);
       if (entry) {
-        await entry(ctx);
+        await entry(stageCtx);
       } else {
-        ctx.log.debug(
+        stageLogger.info(
           `No exported function in ${resolved}; assuming side-effect execution on import.`,
         );
       }
     } catch (err) {
-      ctx.log.error(`Stage "${stage}" failed:`, (err as Error)?.stack || err);
+      stageLogger.error(`Stage failed:`, (err as Error)?.stack || err);
       process.exit(1);
     }
   }

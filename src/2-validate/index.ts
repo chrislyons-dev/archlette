@@ -41,12 +41,24 @@ export async function run(ctx: PipelineContext): Promise<void> {
   // Get the aggregated IR from extraction stage
   let ir = ctx.state.aggregatedIR;
   if (!ir) {
-    ctx.log.error(
-      'No aggregated IR found in pipeline state. Extraction stage may not have run.',
-    );
-    throw new Error(
-      'Missing aggregated IR - extraction stage must run before validation',
-    );
+    const errorMessage = [
+      'Missing aggregated IR - extraction stage must run before validation.',
+      '',
+      'Troubleshooting:',
+      '1. Ensure your config includes extractors before validators:',
+      '   extractors:',
+      '     - use: builtin/basic-node',
+      '       inputs:',
+      '         include: ["src/**/*.ts"]',
+      '   validators:',
+      '     - use: builtin/base-validator',
+      '',
+      '2. Check if extraction stage completed successfully',
+      '3. Verify extractors produced valid IR output',
+    ].join('\n');
+
+    ctx.log.error(errorMessage);
+    throw new Error('Missing aggregated IR');
   }
 
   // Process validators sequentially, chaining IR transformations

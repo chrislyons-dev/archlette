@@ -26,29 +26,34 @@ export interface RelationshipInfo {
 }
 
 /**
+ * Get JSDoc comments from a source file
+ * Checks both the first statement and module-level JSDoc
+ *
+ * @param sourceFile - TypeScript source file to extract JSDoc from
+ * @returns Array of JSDoc nodes (empty if none found)
+ */
+function getFileJsDocs(sourceFile: SourceFile): Node[] {
+  const statements = sourceFile.getStatements();
+  if (statements.length === 0) return [];
+
+  // Check if first statement has leading JSDoc
+  const firstStatement = statements[0];
+  const jsDocs = firstStatement.getChildrenOfKind(SyntaxKind.JSDoc);
+
+  // If found, return them; otherwise try module-level JSDoc
+  if (jsDocs.length > 0) return jsDocs;
+  return sourceFile.getChildrenOfKind(SyntaxKind.JSDoc);
+}
+
+/**
  * Extract component information from file-level JSDoc
  * Checks the first JSDoc comment in the file for @component, @module, or @namespace tags
  */
 export function extractFileComponent(
   sourceFile: SourceFile,
 ): ComponentInfo | undefined {
-  // Get all statements in the file
-  const statements = sourceFile.getStatements();
-
-  if (statements.length === 0) return undefined;
-
-  // Check if first statement has leading JSDoc
-  const firstStatement = statements[0];
-  const jsDocs = firstStatement.getChildrenOfKind(SyntaxKind.JSDoc);
-
-  if (jsDocs.length === 0) {
-    // Try to get JSDoc from the module itself
-    const moduleJsDocs = sourceFile.getChildrenOfKind(SyntaxKind.JSDoc);
-    if (moduleJsDocs.length > 0) {
-      return extractComponentFromJsDoc(moduleJsDocs[0]);
-    }
-    return undefined;
-  }
+  const jsDocs = getFileJsDocs(sourceFile);
+  if (jsDocs.length === 0) return undefined;
 
   // Check the first JSDoc for component/module/namespace tags
   return extractComponentFromJsDoc(jsDocs[0]);
@@ -63,19 +68,7 @@ export function extractFileComponent(
  */
 export function extractFileActors(sourceFile: SourceFile): ActorInfo[] {
   const actors: ActorInfo[] = [];
-
-  // Get all statements in the file
-  const statements = sourceFile.getStatements();
-  if (statements.length === 0) return actors;
-
-  // Check if first statement has leading JSDoc
-  const firstStatement = statements[0];
-  let jsDocs = firstStatement.getChildrenOfKind(SyntaxKind.JSDoc);
-
-  if (jsDocs.length === 0) {
-    // Try to get JSDoc from the module itself
-    jsDocs = sourceFile.getChildrenOfKind(SyntaxKind.JSDoc);
-  }
+  const jsDocs = getFileJsDocs(sourceFile);
 
   // Extract actors from all JSDoc comments
   for (const jsDoc of jsDocs) {
@@ -95,19 +88,7 @@ export function extractFileActors(sourceFile: SourceFile): ActorInfo[] {
  */
 export function extractFileRelationships(sourceFile: SourceFile): RelationshipInfo[] {
   const relationships: RelationshipInfo[] = [];
-
-  // Get all statements in the file
-  const statements = sourceFile.getStatements();
-  if (statements.length === 0) return relationships;
-
-  // Check if first statement has leading JSDoc
-  const firstStatement = statements[0];
-  let jsDocs = firstStatement.getChildrenOfKind(SyntaxKind.JSDoc);
-
-  if (jsDocs.length === 0) {
-    // Try to get JSDoc from the module itself
-    jsDocs = sourceFile.getChildrenOfKind(SyntaxKind.JSDoc);
-  }
+  const jsDocs = getFileJsDocs(sourceFile);
 
   // Extract relationships from all JSDoc comments
   for (const jsDoc of jsDocs) {

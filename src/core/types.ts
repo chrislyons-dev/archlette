@@ -8,13 +8,9 @@
 
 import type { ResolvedAACConfig } from './types-aac';
 import type { ArchletteIR } from './types-ir';
+import type { Logger } from './logger.js';
 
-export interface Logger {
-  debug: (...args: unknown[]) => void;
-  info: (...args: unknown[]) => void;
-  warn: (...args: unknown[]) => void;
-  error: (...args: unknown[]) => void;
-}
+export type { Logger };
 
 /**
  * Generated DSL output from a generator

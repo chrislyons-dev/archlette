@@ -34,6 +34,7 @@ import type {
   Relationship,
 } from '../../core/types-ir.js';
 import type { ResolvedStageNode } from '../../core/types-aac.js';
+import { TAGS, VIEW_NAMES } from '../../core/constants.js';
 
 /**
  * Generate Structurizr DSL from ArchletteIR
@@ -46,17 +47,36 @@ export default function structurizrGenerator(
   ir: ArchletteIR,
   _node: ResolvedStageNode,
 ): string {
-  const lines: string[] = [];
   const indent = '    ';
+  const lines: string[] = [];
 
   // Workspace header
   lines.push(
     `workspace "${ir.system.name}" "${ir.system.description || 'Architecture as Code generated workspace'}" {`,
   );
   lines.push('');
+
+  // Model section
+  lines.push(...generateModel(ir, indent));
+  lines.push('');
+
+  // Views section
+  lines.push(...generateViews(ir, indent));
+  lines.push('');
+
+  lines.push('}'); // Close workspace
+
+  return lines.join('\n');
+}
+
+/**
+ * Generate the model section of the DSL
+ */
+function generateModel(ir: ArchletteIR, indent: string): string[] {
+  const lines: string[] = [];
   lines.push(`${indent}model {`);
 
-  // Generate actors (external people or systems)
+  // Actors
   if (ir.actors.length > 0) {
     lines.push(`${indent}${indent}# External actors`);
     for (const actor of ir.actors) {
@@ -65,7 +85,7 @@ export default function structurizrGenerator(
     lines.push('');
   }
 
-  // Generate system
+  // System
   lines.push(`${indent}${indent}# ${ir.system.name} System`);
   lines.push(
     `${indent}${indent}${sanitizeId(ir.system.name)} = softwareSystem "${ir.system.name}" {`,
@@ -80,7 +100,7 @@ export default function structurizrGenerator(
   }
   lines.push('');
 
-  // Generate containers
+  // Containers
   if (ir.containers.length > 0) {
     lines.push(`${indent}${indent}${indent}# Containers`);
     for (const container of ir.containers) {
@@ -109,7 +129,7 @@ export default function structurizrGenerator(
   lines.push(`${indent}${indent}}`); // Close system
   lines.push('');
 
-  // System-level relationships (actors to system)
+  // Actor relationships
   const actorRelationships = ir.actors.flatMap((actor) =>
     (actor.targets || []).map((target) => ({
       source: actor.id,
@@ -126,7 +146,7 @@ export default function structurizrGenerator(
     lines.push('');
   }
 
-  // Generate deployments
+  // Deployments
   if (ir.deployments.length > 0) {
     lines.push(`${indent}${indent}# Deployment environments`);
     for (const deployment of ir.deployments) {
@@ -136,72 +156,114 @@ export default function structurizrGenerator(
   }
 
   lines.push(`${indent}}`); // Close model
-  lines.push('');
+  return lines;
+}
 
-  // Generate views
+/**
+ * Generate the views section of the DSL
+ */
+function generateViews(ir: ArchletteIR, indent: string): string[] {
+  const lines: string[] = [];
   lines.push(`${indent}views {`);
   lines.push('');
 
-  // System Context diagram (actors + system)
-  lines.push(
-    `${indent}${indent}systemContext ${sanitizeId(ir.system.name)} "SystemContext" {`,
-  );
-  lines.push(`${indent}${indent}${indent}include *`);
-  lines.push(`${indent}${indent}${indent}autoLayout`);
-  lines.push(`${indent}${indent}}`);
+  // System Context view
+  lines.push(...generateSystemContextView(ir, indent + indent));
   lines.push('');
 
-  // Container diagram (system broken down into containers)
-  lines.push(
-    `${indent}${indent}container ${sanitizeId(ir.system.name)} "Containers" {`,
-  );
-  lines.push(`${indent}${indent}${indent}include *`);
-  lines.push(`${indent}${indent}${indent}autoLayout`);
-  lines.push(`${indent}${indent}}`);
+  // Container view
+  lines.push(...generateContainerView(ir, indent + indent));
   lines.push('');
 
-  // Component diagrams (one per container, excluding Code elements)
+  // Component and Class views (per container)
   for (const container of ir.containers) {
-    const containerComponents = ir.components.filter(
-      (c) => c.containerId === container.id,
-    );
-    if (containerComponents.length > 0) {
-      lines.push(
-        `${indent}${indent}component ${sanitizeId(container.id)} "Components_${sanitizeId(container.name)}" {`,
-      );
-      lines.push(`${indent}${indent}${indent}include *`);
-      lines.push(`${indent}${indent}${indent}exclude "element.tag==Code"`);
-      lines.push(`${indent}${indent}${indent}autoLayout`);
-      lines.push(`${indent}${indent}}`);
+    const componentLines = generateComponentView(ir, container, indent + indent);
+    if (componentLines.length > 0) {
+      lines.push(...componentLines);
       lines.push('');
     }
-  }
 
-  // Class diagrams (one per container, only Code elements)
-  for (const container of ir.containers) {
-    const containerCode = ir.code.filter((code) => {
-      const component = ir.components.find((c) => c.id === code.componentId);
-      return component && component.containerId === container.id;
-    });
-    if (containerCode.length > 0) {
-      lines.push(
-        `${indent}${indent}component ${sanitizeId(container.id)} "Classes_${sanitizeId(container.name)}" {`,
-      );
-      lines.push(`${indent}${indent}${indent}include *`);
-      lines.push(`${indent}${indent}${indent}include "element.tag==Code"`);
-      lines.push(`${indent}${indent}${indent}exclude "element.tag!=Code"`);
-      lines.push(`${indent}${indent}${indent}autoLayout`);
-      lines.push(`${indent}${indent}}`);
+    const classLines = generateClassView(ir, container, indent + indent);
+    if (classLines.length > 0) {
+      lines.push(...classLines);
       lines.push('');
     }
   }
 
   lines.push(`${indent}}`); // Close views
-  lines.push('');
+  return lines;
+}
 
-  lines.push('}'); // Close workspace
+/**
+ * Generate System Context view
+ */
+function generateSystemContextView(ir: ArchletteIR, indent: string): string[] {
+  return [
+    `${indent}systemContext ${sanitizeId(ir.system.name)} "${VIEW_NAMES.SYSTEM_CONTEXT}" {`,
+    `${indent}    include *`,
+    `${indent}    autoLayout`,
+    `${indent}}`,
+  ];
+}
 
-  return lines.join('\n');
+/**
+ * Generate Container view
+ */
+function generateContainerView(ir: ArchletteIR, indent: string): string[] {
+  return [
+    `${indent}container ${sanitizeId(ir.system.name)} "${VIEW_NAMES.CONTAINERS}" {`,
+    `${indent}    include *`,
+    `${indent}    autoLayout`,
+    `${indent}}`,
+  ];
+}
+
+/**
+ * Generate Component view for a container (excludes Code elements)
+ */
+function generateComponentView(
+  ir: ArchletteIR,
+  container: Container,
+  indent: string,
+): string[] {
+  const containerComponents = ir.components.filter(
+    (c) => c.containerId === container.id,
+  );
+
+  if (containerComponents.length === 0) return [];
+
+  return [
+    `${indent}component ${sanitizeId(container.id)} "${VIEW_NAMES.COMPONENTS(sanitizeId(container.name))}" {`,
+    `${indent}    include *`,
+    `${indent}    exclude "element.tag==${TAGS.CODE}"`,
+    `${indent}    autoLayout`,
+    `${indent}}`,
+  ];
+}
+
+/**
+ * Generate Class view for a container (only Code elements)
+ */
+function generateClassView(
+  ir: ArchletteIR,
+  container: Container,
+  indent: string,
+): string[] {
+  const containerCode = ir.code.filter((code) => {
+    const component = ir.components.find((c) => c.id === code.componentId);
+    return component && component.containerId === container.id;
+  });
+
+  if (containerCode.length === 0) return [];
+
+  return [
+    `${indent}component ${sanitizeId(container.id)} "${VIEW_NAMES.CLASSES(sanitizeId(container.name))}" {`,
+    `${indent}    include *`,
+    `${indent}    include "element.tag==${TAGS.CODE}"`,
+    `${indent}    exclude "element.tag!=${TAGS.CODE}"`,
+    `${indent}    autoLayout`,
+    `${indent}}`,
+  ];
 }
 
 /**
@@ -210,7 +272,7 @@ export default function structurizrGenerator(
 function generateActor(actor: Actor, indent: string): string {
   const lines: string[] = [];
   const actorType = actor.type === 'Person' ? 'person' : 'softwareSystem';
-  const tags = actor.type !== 'Person' ? ' "External"' : '';
+  const tags = actor.type !== 'Person' ? ` "${TAGS.EXTERNAL}"` : '';
 
   lines.push(
     `${indent}${sanitizeId(actor.id)} = ${actorType} "${actor.name}" "${escapeString(actor.description || '')}"${tags}`,
@@ -342,7 +404,7 @@ function generateCodeAsComponent(code: CodeItem, indent: string): string {
   }
 
   // Always add "Code" tag, plus any additional tags
-  const tags = ['Code'];
+  const tags: string[] = [TAGS.CODE];
   if (code.tags && code.tags.length > 0) {
     tags.push(...code.tags);
   }

@@ -294,9 +294,9 @@ describe('CLI YAML handling & resolution', () => {
     const { run } = await freshCli();
     await run(['node', 'cli', 'extract']);
 
-    // debug should include "No exported function in" and the resolved path
-    const debugLines = (console.debug as any).mock.calls.map((c: any[]) => c.join(' '));
-    const hit = debugLines.find(
+    // log should include "No exported function in" and the resolved path
+    const logLines = (console.log as any).mock.calls.map((c: any[]) => c.join(' '));
+    const hit = logLines.find(
       (line: string | string[]) =>
         line.includes('No exported function in') &&
         line.includes('/fake/extract/index.ts'),
@@ -330,10 +330,12 @@ describe('CLI errors', () => {
     const { run } = await freshCli();
     await expect(run(['node', 'cli', 'extract'])).rejects.toThrow(/process\.exit\(1\)/);
 
-    expect(spyError).toHaveBeenCalledWith(
-      expect.stringContaining('[archlette:error]'),
-      expect.stringContaining('Stage "extract" failed:'),
-      expect.anything(),
-    );
+    // New logger format outputs a single formatted string: "YYYY-MM-DDTHH:MM:SS.mmm LEVEL [Context] message"
+    expect(spyError).toHaveBeenCalled();
+    const firstCall = (spyError as any).mock.calls[0];
+    const logMessage = firstCall[0];
+    expect(logMessage).toMatch(/ERROR/);
+    expect(logMessage).toMatch(/\[Extract\]/);
+    expect(logMessage).toMatch(/Stage failed:/);
   });
 });

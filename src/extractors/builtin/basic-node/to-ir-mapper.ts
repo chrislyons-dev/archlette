@@ -18,6 +18,7 @@ import type {
 } from './types.js';
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
+import { TAGS, DEFAULT_CONTAINER_ID, IR_VERSION } from '../../../core/constants.js';
 
 /**
  * Map file extractions to ArchletteIR
@@ -116,12 +117,12 @@ export function mapToIR(
   // This handles the common case of a single application/service
   if (components.length > 0 && containers.length === 0) {
     const defaultContainer = {
-      id: 'default-container',
+      id: DEFAULT_CONTAINER_ID,
       name: system.name,
       type: 'Application',
       layer: 'Application',
       description: system.description || 'Main application container',
-      tags: ['Auto-generated'],
+      tags: [TAGS.AUTO_GENERATED],
     };
     containers.push(defaultContainer);
 
@@ -132,7 +133,7 @@ export function mapToIR(
   }
 
   return {
-    version: '1.0',
+    version: IR_VERSION,
     system,
     actors: Array.from(actorsMap.values()),
     containers,

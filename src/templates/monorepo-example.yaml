@@ -1,0 +1,185 @@
+# Archlette Configuration for Monorepo Projects
+#
+# This example shows how to configure Archlette for a monorepo with multiple
+# services, applications, and shared libraries.
+#
+# Pattern: First extractor defines the SYSTEM, subsequent extractors add CONTAINERS
+#
+# Project structure example:
+#   monorepo/
+#   ├── package.json          # Root - defines system
+#   ├── services/
+#   │   ├── gateway/          # Container: API Gateway
+#   │   ├── auth/             # Container: Auth Service
+#   │   └── pricing/          # Container: Pricing Service
+#   ├── apps/
+#   │   ├── web/              # Container: Web UI
+#   │   └── admin/            # Container: Admin Dashboard
+#   └── libs/
+#       └── shared/           # Shared libraries (components in containers)
+
+# Output paths (relative to CLI directory or absolute)
+paths:
+  ir_out: ../docs/architecture/monorepo-ir.json
+  dsl_out: ../docs/architecture/monorepo.dsl
+  render_out: ../docs/architecture/diagrams
+  docs_out: ../docs
+
+# Extractors - ORDER MATTERS!
+# First extractor provides system metadata, rest add containers
+extractors:
+  # ============================================================================
+  # 1. ROOT SYSTEM EXTRACTOR (runs first!)
+  # ============================================================================
+  # Extracts system-level metadata from root package.json
+  # This becomes THE system in the final IR
+  - use: ./extractors/builtin/basic-node
+    name: root-system
+    include:
+      - 'package.json'
+      - 'README.md'
+    exclude:
+      - '**/node_modules/**'
+    props:
+      # System metadata will come from root package.json:
+      # - name: from package.json "name" field
+      # - description: from package.json "description" field
+      # - repository: from package.json "repository" field
+
+  # ============================================================================
+  # 2. SERVICE CONTAINERS
+  # ============================================================================
+  # Each service becomes a container in the architecture
+
+  - use: ./extractors/builtin/basic-node
+    name: gateway-service
+    include:
+      - 'services/gateway/src/**/*.ts'
+    exclude:
+      - '**/node_modules/**'
+      - '**/*.test.ts'
+      - '**/*.spec.ts'
+    props:
+      # Each service's package.json provides container metadata
+      containerName: 'API Gateway'
+      containerType: 'Service'
+
+  - use: ./extractors/builtin/basic-node
+    name: auth-service
+    include:
+      - 'services/auth/src/**/*.ts'
+    exclude:
+      - '**/node_modules/**'
+      - '**/*.test.ts'
+      - '**/*.spec.ts'
+
+  - use: ./extractors/builtin/basic-node
+    name: pricing-service
+    include:
+      - 'services/pricing/src/**/*.ts'
+    exclude:
+      - '**/node_modules/**'
+      - '**/*.test.ts'
+      - '**/*.spec.ts'
+
+  # ============================================================================
+  # 3. APPLICATION CONTAINERS
+  # ============================================================================
+  # Frontend applications also become containers
+
+  - use: ./extractors/builtin/basic-node
+    name: web-ui
+    include:
+      - 'apps/web/src/**/*.ts'
+      - 'apps/web/src/**/*.tsx'
+    exclude:
+      - '**/node_modules/**'
+      - '**/*.test.ts'
+      - '**/*.test.tsx'
+
+  - use: ./extractors/builtin/basic-node
+    name: admin-dashboard
+    include:
+      - 'apps/admin/src/**/*.ts'
+      - 'apps/admin/src/**/*.tsx'
+    exclude:
+      - '**/node_modules/**'
+      - '**/*.test.ts'
+      - '**/*.test.tsx'
+
+  # ============================================================================
+  # 4. SHARED LIBRARIES (optional)
+  # ============================================================================
+  # Shared libraries can be extracted if they contain architectural components
+  # They'll be assigned to containers based on usage or default container
+
+  # - use: ./extractors/builtin/basic-node
+  #   name: shared-libs
+  #   include:
+  #     - 'libs/shared/**/*.ts'
+  #   exclude:
+  #     - '**/node_modules/**'
+  #     - '**/*.test.ts'
+
+# Validators - run in order, each transforms IR
+validators:
+  # Base validator ensures IR matches schema
+  - use: validators/builtin/base-validator
+
+  # Add custom validators here for monorepo-specific enrichment
+  # Example: assign shared library components to containers
+  # - use: validators/custom/assign-shared-libs
+
+# Generators - transform IR to DSL
+generators:
+  # Generate Structurizr DSL
+  - use: generators/builtin/structurizr
+# Renderers - convert DSL to images (not yet implemented)
+# renderers:
+#   - use: renderers/builtin/structurizr-cli
+
+# Documentation generators (not yet implemented)
+# docs:
+#   - use: docs/builtin/markdown-generator
+
+# ============================================================================
+# IMPORTANT NOTES FOR MONOREPO USAGE
+# ============================================================================
+#
+# 1. EXTRACTOR ORDER MATTERS
+#    - First extractor defines the system metadata
+#    - Subsequent extractors add containers, components, code
+#    - Aggregator uses "first wins" for system, merges everything else
+#
+# 2. SYSTEM METADATA SOURCE
+#    - System name/description comes from first extractor's package.json
+#    - Make sure root package.json has good metadata:
+#      {
+#        "name": "my-monorepo",
+#        "description": "A microservices architecture",
+#        "repository": "https://github.com/org/repo"
+#      }
+#
+# 3. CONTAINER DETECTION
+#    - Each extractor with code creates a container
+#    - Container metadata comes from the package.json in that directory
+#    - Components are created from @module tags in code
+#    - Default container created if no package.json found
+#
+# 4. COMPONENT ORGANIZATION
+#    - Use @module tags to define logical components
+#    - Components belong to containers based on file location
+#    - Relationships detected from @uses/@usedBy tags
+#
+# 5. DEDUPLICATION
+#    - Actors, containers, components deduplicated by ID
+#    - Relationships deduplicated by source+destination+stereotype
+#    - First occurrence wins for duplicate IDs
+#
+# 6. BEST PRACTICES
+#    - Keep root extractor minimal (package.json + README only)
+#    - One extractor per deployable unit (service/app)
+#    - Use consistent naming conventions for IDs
+#    - Document architecture in root README
+#    - Add @actor tags for external systems/users
+#    - Add @uses/@usedBy tags for relationships
