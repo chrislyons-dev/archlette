@@ -24,10 +24,8 @@ const mockNunjucks = {
 };
 
 const mockEnv = {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  addFilter: vi.fn((name: string, fn: (...args: any[]) => any) => {}),
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  render: vi.fn((template: string, data?: any) => `# Generated ${template} content`),
+  addFilter: vi.fn((_name: string, _fn: (...args: any[]) => any) => {}),
+  render: vi.fn((template: string, _data?: any) => `# Generated ${template} content`),
 };
 
 describe('markdown-docs generator', () => {
