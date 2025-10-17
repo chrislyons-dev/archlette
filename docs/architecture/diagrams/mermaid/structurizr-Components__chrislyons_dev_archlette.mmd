@@ -28,6 +28,7 @@ graph TB
       style 9 fill:#dddddd,stroke:#9a9a9a,color:#000000
     end
 
+    11-. "<div>Uses FileSystem for external<br />system integration</div><div style='font-size: 70%'></div>" .->2
     5-. "<div>Analyzes source code to<br />extract architecture<br />components</div><div style='font-size: 70%'></div>" .->6
     5-. "<div>Validates and enriches<br />intermediate representation</div><div style='font-size: 70%'></div>" .->7
     5-. "<div>Transforms IR into DSL<br />formats</div><div style='font-size: 70%'></div>" .->8
@@ -37,9 +38,8 @@ graph TB
     7-. "<div>Provides IR types, validation<br />schemas, and module loading</div><div style='font-size: 70%'></div>" .->11
     8-. "<div>Provides IR types, path<br />resolution, and module<br />loading</div><div style='font-size: 70%'></div>" .->11
     9-. "<div>Provides types, module<br />loading, and tool management</div><div style='font-size: 70%'></div>" .->11
-    10-. "<div>Provides types and path<br />resolution</div><div style='font-size: 70%'></div>" .->11
+    10-. "<div>Provides types, module<br />loading, and path resolution</div><div style='font-size: 70%'></div>" .->11
     1-. "<div>Interacts with CLI</div><div style='font-size: 70%'></div>" .->5
     2-. "<div>Interacts with core</div><div style='font-size: 70%'></div>" .->11
     5-. "<div>Interacts with User</div><div style='font-size: 70%'></div>" .->1
-    11-. "<div>Uses FileSystem for external<br />system integration</div><div style='font-size: 70%'></div>" .->2
   end

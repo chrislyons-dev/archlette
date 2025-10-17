@@ -81,6 +81,12 @@ skinparam rectangle<<chrislyonsdevarchlette.chrislyonsdevarchlette.pathresolvert
   BorderColor #9a9a9a
   shadowing false
 }
+skinparam rectangle<<chrislyonsdevarchlette.chrislyonsdevarchlette.stagemoduleloadertsloaddocmodule>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
 skinparam rectangle<<chrislyonsdevarchlette.chrislyonsdevarchlette.stagemoduleloadertsloadextractormodule>> {
   BackgroundColor #dddddd
   FontColor #000000
@@ -205,6 +211,7 @@ rectangle "@chrislyons-dev/archlette\n<size:10>[Container: Application]</size>" 
   rectangle "==stage-module-loader.ts::loadvalidatormodule\n<size:10>[Component: function]</size>" <<chrislyonsdevarchlette.chrislyonsdevarchlette.stagemoduleloadertsloadvalidatormodule>> as chrislyonsdevarchlette.chrislyonsdevarchlette.stagemoduleloadertsloadvalidatormodule
   rectangle "==stage-module-loader.ts::loadgeneratormodule\n<size:10>[Component: function]</size>" <<chrislyonsdevarchlette.chrislyonsdevarchlette.stagemoduleloadertsloadgeneratormodule>> as chrislyonsdevarchlette.chrislyonsdevarchlette.stagemoduleloadertsloadgeneratormodule
   rectangle "==stage-module-loader.ts::loadrenderermodule\n<size:10>[Component: function]</size>" <<chrislyonsdevarchlette.chrislyonsdevarchlette.stagemoduleloadertsloadrenderermodule>> as chrislyonsdevarchlette.chrislyonsdevarchlette.stagemoduleloadertsloadrenderermodule
+  rectangle "==stage-module-loader.ts::loaddocmodule\n<size:10>[Component: function]</size>" <<chrislyonsdevarchlette.chrislyonsdevarchlette.stagemoduleloadertsloaddocmodule>> as chrislyonsdevarchlette.chrislyonsdevarchlette.stagemoduleloadertsloaddocmodule
   rectangle "==tool-manager.ts::getcachedir\n<size:10>[Component: function]</size>\n\nGet the Archlette cache directory" <<chrislyonsdevarchlette.chrislyonsdevarchlette.toolmanagertsgetcachedir>> as chrislyonsdevarchlette.chrislyonsdevarchlette.toolmanagertsgetcachedir
   rectangle "==tool-manager.ts::ensurecachedir\n<size:10>[Component: function]</size>\n\nEnsure cache directory exists" <<chrislyonsdevarchlette.chrislyonsdevarchlette.toolmanagertsensurecachedir>> as chrislyonsdevarchlette.chrislyonsdevarchlette.toolmanagertsensurecachedir
   rectangle "==tool-manager.ts::commandexistsinpath\n<size:10>[Component: function]</size>\n\nCheck if a command exists in PATH" <<chrislyonsdevarchlette.chrislyonsdevarchlette.toolmanagertscommandexistsinpath>> as chrislyonsdevarchlette.chrislyonsdevarchlette.toolmanagertscommandexistsinpath

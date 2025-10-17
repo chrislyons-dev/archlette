@@ -111,6 +111,7 @@ workspace "@chrislyons-dev/archlette" "Architecture-as-Code toolkit for automate
                     tags "Code"
                 }
                 C__Users_chris_git_archlette_src_5_docs_index_ts_run = component "5-docs/index.ts::run" {
+                    description "Execute the documentation stage"
                     technology "function"
                     tags "Code"
                 }
@@ -182,6 +183,10 @@ workspace "@chrislyons-dev/archlette" "Architecture-as-Code toolkit for automate
                     technology "function"
                     tags "Code"
                 }
+                C__Users_chris_git_archlette_src_core_stage_module_loader_ts_loadDocModule = component "stage-module-loader.ts::loaddocmodule" {
+                    technology "function"
+                    tags "Code"
+                }
                 C__Users_chris_git_archlette_src_core_tool_manager_ts_getCacheDir = component "tool-manager.ts::getcachedir" {
                     description "Get the Archlette cache directory"
                     technology "function"
@@ -244,6 +249,26 @@ workspace "@chrislyons-dev/archlette" "Architecture-as-Code toolkit for automate
                 }
                 C__Users_chris_git_archlette_src_core_types_aac_ts_resolveConfig = component "types-aac.ts::resolveconfig" {
                     description "For each stage, resolve includes/excludes for each node:\n  - If node omits includes/excludes, inherit from defaults."
+                    technology "function"
+                    tags "Code"
+                }
+                C__Users_chris_git_archlette_src_docs_builtin_markdown_docs_ts_markdownDocs = component "markdown-docs.ts::markdowndocs" {
+                    description "Generate markdown documentation"
+                    technology "function"
+                    tags "Code"
+                }
+                C__Users_chris_git_archlette_src_docs_builtin_markdown_docs_ts_findDiagramsForView = component "markdown-docs.ts::finddiagramsforview" {
+                    description "Find diagram files for a specific view type"
+                    technology "function"
+                    tags "Code"
+                }
+                C__Users_chris_git_archlette_src_docs_builtin_markdown_docs_ts_findDiagramsForComponent = component "markdown-docs.ts::finddiagramsforcomponent" {
+                    description "Find component diagrams for a specific component"
+                    technology "function"
+                    tags "Code"
+                }
+                C__Users_chris_git_archlette_src_docs_builtin_markdown_docs_ts_findClassDiagramsForComponent = component "markdown-docs.ts::findclassdiagramsforcomponent" {
+                    description "Find class diagrams for a specific component"
                     technology "function"
                     tags "Code"
                 }
@@ -363,7 +388,7 @@ workspace "@chrislyons-dev/archlette" "Architecture-as-Code toolkit for automate
                 validators -> core "Provides IR types, validation schemas, and module loading"
                 generators -> core "Provides IR types, path resolution, and module loading"
                 renderers -> core "Provides types, module loading, and tool management"
-                docs -> core "Provides types and path resolution"
+                docs -> core "Provides types, module loading, and path resolution"
             }
 
         }
@@ -463,6 +488,10 @@ workspace "@chrislyons-dev/archlette" "Architecture-as-Code toolkit for automate
 
         component default_container "Classes_docs" {
             include C__Users_chris_git_archlette_src_5_docs_index_ts_run
+            include C__Users_chris_git_archlette_src_docs_builtin_markdown_docs_ts_markdownDocs
+            include C__Users_chris_git_archlette_src_docs_builtin_markdown_docs_ts_findDiagramsForView
+            include C__Users_chris_git_archlette_src_docs_builtin_markdown_docs_ts_findDiagramsForComponent
+            include C__Users_chris_git_archlette_src_docs_builtin_markdown_docs_ts_findClassDiagramsForComponent
             autoLayout
         }
 
@@ -482,6 +511,7 @@ workspace "@chrislyons-dev/archlette" "Architecture-as-Code toolkit for automate
             include C__Users_chris_git_archlette_src_core_stage_module_loader_ts_loadValidatorModule
             include C__Users_chris_git_archlette_src_core_stage_module_loader_ts_loadGeneratorModule
             include C__Users_chris_git_archlette_src_core_stage_module_loader_ts_loadRendererModule
+            include C__Users_chris_git_archlette_src_core_stage_module_loader_ts_loadDocModule
             include C__Users_chris_git_archlette_src_core_tool_manager_ts_getCacheDir
             include C__Users_chris_git_archlette_src_core_tool_manager_ts_ensureCacheDir
             include C__Users_chris_git_archlette_src_core_tool_manager_ts_commandExistsInPath

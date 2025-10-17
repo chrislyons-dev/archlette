@@ -32,4 +32,4 @@ renderers:
 
 # dsl & images in, (likely markdown) docs out
 docs:
-  - use: docs/builtin/index
+  - use: docs/builtin/markdown-docs

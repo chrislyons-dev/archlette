@@ -88,6 +88,7 @@ rectangle "@chrislyons-dev/archlette\n<size:10>[Container: Application]</size>" 
   rectangle "==renderers\n<size:10>[Component: module]</size>\n\nRender stage of the AAC pipeline" <<chrislyonsdevarchlette.chrislyonsdevarchlette.renderers>> as chrislyonsdevarchlette.chrislyonsdevarchlette.renderers
 }
 
+chrislyonsdevarchlette.chrislyonsdevarchlette.core .[#707070,thickness=2].> FileSystem : "<color:#707070>Uses FileSystem for external system integration"
 chrislyonsdevarchlette.chrislyonsdevarchlette.CLI .[#707070,thickness=2].> chrislyonsdevarchlette.chrislyonsdevarchlette.extractors : "<color:#707070>Analyzes source code to extract architecture components"
 chrislyonsdevarchlette.chrislyonsdevarchlette.CLI .[#707070,thickness=2].> chrislyonsdevarchlette.chrislyonsdevarchlette.validators : "<color:#707070>Validates and enriches intermediate representation"
 chrislyonsdevarchlette.chrislyonsdevarchlette.CLI .[#707070,thickness=2].> chrislyonsdevarchlette.chrislyonsdevarchlette.generators : "<color:#707070>Transforms IR into DSL formats"
@@ -97,9 +98,8 @@ chrislyonsdevarchlette.chrislyonsdevarchlette.extractors .[#707070,thickness=2].
 chrislyonsdevarchlette.chrislyonsdevarchlette.validators .[#707070,thickness=2].> chrislyonsdevarchlette.chrislyonsdevarchlette.core : "<color:#707070>Provides IR types, validation schemas, and module loading"
 chrislyonsdevarchlette.chrislyonsdevarchlette.generators .[#707070,thickness=2].> chrislyonsdevarchlette.chrislyonsdevarchlette.core : "<color:#707070>Provides IR types, path resolution, and module loading"
 chrislyonsdevarchlette.chrislyonsdevarchlette.renderers .[#707070,thickness=2].> chrislyonsdevarchlette.chrislyonsdevarchlette.core : "<color:#707070>Provides types, module loading, and tool management"
-chrislyonsdevarchlette.chrislyonsdevarchlette.docs .[#707070,thickness=2].> chrislyonsdevarchlette.chrislyonsdevarchlette.core : "<color:#707070>Provides types and path resolution"
+chrislyonsdevarchlette.chrislyonsdevarchlette.docs .[#707070,thickness=2].> chrislyonsdevarchlette.chrislyonsdevarchlette.core : "<color:#707070>Provides types, module loading, and path resolution"
 User .[#707070,thickness=2].> chrislyonsdevarchlette.chrislyonsdevarchlette.CLI : "<color:#707070>Interacts with CLI"
 FileSystem .[#707070,thickness=2].> chrislyonsdevarchlette.chrislyonsdevarchlette.core : "<color:#707070>Interacts with core"
 chrislyonsdevarchlette.chrislyonsdevarchlette.CLI .[#707070,thickness=2].> User : "<color:#707070>Interacts with User"
-chrislyonsdevarchlette.chrislyonsdevarchlette.core .[#707070,thickness=2].> FileSystem : "<color:#707070>Uses FileSystem for external system integration"
 @enduml

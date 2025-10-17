@@ -7,8 +7,16 @@ graph TB
     subgraph 4 ["@chrislyons-dev/archlette"]
       style 4 fill:#ffffff,stroke:#9a9a9a,color:#9a9a9a
 
-      26["<div style='font-weight: bold'>5-docs/index.ts::run</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div>"]
+      26["<div style='font-weight: bold'>5-docs/index.ts::run</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Execute the documentation<br />stage</div>"]
       style 26 fill:#dddddd,stroke:#9a9a9a,color:#000000
+      56["<div style='font-weight: bold'>markdown-docs.ts::markdowndocs</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Generate markdown<br />documentation</div>"]
+      style 56 fill:#dddddd,stroke:#9a9a9a,color:#000000
+      57["<div style='font-weight: bold'>markdown-docs.ts::finddiagramsforview</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Find diagram files for a<br />specific view type</div>"]
+      style 57 fill:#dddddd,stroke:#9a9a9a,color:#000000
+      58["<div style='font-weight: bold'>markdown-docs.ts::finddiagramsforcomponent</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Find component diagrams for a<br />specific component</div>"]
+      style 58 fill:#dddddd,stroke:#9a9a9a,color:#000000
+      59["<div style='font-weight: bold'>markdown-docs.ts::findclassdiagramsforcomponent</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Find class diagrams for a<br />specific component</div>"]
+      style 59 fill:#dddddd,stroke:#9a9a9a,color:#000000
     end
 
   end

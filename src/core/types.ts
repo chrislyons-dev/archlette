@@ -39,6 +39,20 @@ export interface RendererOutput {
 }
 
 /**
+ * Doc output metadata (tracks generated documentation files)
+ */
+export interface DocOutput {
+  /** Doc generator name/identifier */
+  generator: string;
+  /** Output format (e.g., 'markdown', 'html', 'pdf') */
+  format: string;
+  /** File paths generated (relative to docs_out) */
+  files: string[];
+  /** Generation timestamp */
+  timestamp?: number;
+}
+
+/**
  * Shared state passed between pipeline stages
  */
 export interface PipelineState {
@@ -52,6 +66,8 @@ export interface PipelineState {
   generatorOutputs?: GeneratorOutput[];
   /** Renderer output metadata from render stage */
   rendererOutputs?: RendererOutput[];
+  /** Doc output metadata from docs stage */
+  docOutputs?: DocOutput[];
   /** Additional state that stages can use (extensible) */
   [key: string]: unknown;
 }

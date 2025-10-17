@@ -38,8 +38,8 @@ rectangle "==User\n<size:10>[Person]</size>\n\nEnd user who runs archlette comma
 rectangle "==FileSystem\n<size:10>[Software System]</size>\n\nFile system for reading and writing files" <<FileSystem>> as FileSystem
 rectangle "==@chrislyons-dev/archlette\n<size:10>[Software System]</size>\n\nArchitecture-as-Code toolkit for automated diagrams, docs, and releases." <<chrislyonsdevarchlette>> as chrislyonsdevarchlette
 
+chrislyonsdevarchlette .[#707070,thickness=2].> FileSystem : "<color:#707070>Uses FileSystem for external system integration"
 User .[#707070,thickness=2].> chrislyonsdevarchlette : "<color:#707070>Interacts with CLI"
 FileSystem .[#707070,thickness=2].> chrislyonsdevarchlette : "<color:#707070>Interacts with core"
 chrislyonsdevarchlette .[#707070,thickness=2].> User : "<color:#707070>Interacts with User"
-chrislyonsdevarchlette .[#707070,thickness=2].> FileSystem : "<color:#707070>Uses FileSystem for external system integration"
 @enduml

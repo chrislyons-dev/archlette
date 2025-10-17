@@ -389,10 +389,14 @@
       "lineNumber": 36
     },
     {
+      "description": "Execute the documentation stage",
       "id": "C:/Users/chris/git/archlette/src/5-docs/index.ts:run",
       "componentId": "docs",
       "name": "run",
       "type": "function",
+      "documentation": {
+        "summary": "Execute the documentation stage"
+      },
       "returnType": "Promise<void>",
       "parameters": [
         {
@@ -404,7 +408,7 @@
       "visibility": "public",
       "isAsync": true,
       "filePath": "C:/Users/chris/git/archlette/src/5-docs/index.ts",
-      "lineNumber": 13
+      "lineNumber": 35
     },
     {
       "description": "Convert a name to a normalized ID\nUsed for consistent ID generation across extractors and mappers",
@@ -771,6 +775,24 @@
       "lineNumber": 52
     },
     {
+      "id": "C:/Users/chris/git/archlette/src/core/stage-module-loader.ts:loadDocModule",
+      "componentId": "core",
+      "name": "loadDocModule",
+      "type": "function",
+      "returnType": "Promise<{ entry: any; resolved: string; }>",
+      "parameters": [
+        {
+          "name": "modulePath",
+          "type": "string",
+          "optional": false
+        }
+      ],
+      "visibility": "public",
+      "isAsync": true,
+      "filePath": "C:/Users/chris/git/archlette/src/core/stage-module-loader.ts",
+      "lineNumber": 65
+    },
+    {
       "description": "Get the Archlette cache directory",
       "id": "C:/Users/chris/git/archlette/src/core/tool-manager.ts:getCacheDir",
       "componentId": "core",
@@ -1064,6 +1086,139 @@
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/core/types-aac.ts",
       "lineNumber": 122
+    },
+    {
+      "description": "Generate markdown documentation",
+      "id": "C:/Users/chris/git/archlette/src/docs/builtin/markdown-docs.ts:markdownDocs",
+      "componentId": "docs",
+      "name": "markdownDocs",
+      "type": "function",
+      "documentation": {
+        "summary": "Generate markdown documentation"
+      },
+      "returnType": "Promise<void>",
+      "parameters": [
+        {
+          "name": "ctx",
+          "type": "import(\"C:/Users/chris/git/archlette/src/core/types\").PipelineContext",
+          "optional": false
+        }
+      ],
+      "visibility": "public",
+      "isAsync": true,
+      "filePath": "C:/Users/chris/git/archlette/src/docs/builtin/markdown-docs.ts",
+      "lineNumber": 33
+    },
+    {
+      "description": "Find diagram files for a specific view type",
+      "id": "C:/Users/chris/git/archlette/src/docs/builtin/markdown-docs.ts:findDiagramsForView",
+      "componentId": "docs",
+      "name": "findDiagramsForView",
+      "type": "function",
+      "documentation": {
+        "summary": "Find diagram files for a specific view type"
+      },
+      "returnType": "string[]",
+      "parameters": [
+        {
+          "name": "rendererOutputs",
+          "type": "any[]",
+          "optional": false
+        },
+        {
+          "name": "diagramsDir",
+          "type": "string",
+          "optional": false
+        },
+        {
+          "name": "docsDir",
+          "type": "string",
+          "optional": false
+        },
+        {
+          "name": "viewType",
+          "type": "string",
+          "optional": false
+        }
+      ],
+      "visibility": "private",
+      "isAsync": false,
+      "filePath": "C:/Users/chris/git/archlette/src/docs/builtin/markdown-docs.ts",
+      "lineNumber": 195
+    },
+    {
+      "description": "Find component diagrams for a specific component",
+      "id": "C:/Users/chris/git/archlette/src/docs/builtin/markdown-docs.ts:findDiagramsForComponent",
+      "componentId": "docs",
+      "name": "findDiagramsForComponent",
+      "type": "function",
+      "documentation": {
+        "summary": "Find component diagrams for a specific component"
+      },
+      "returnType": "string[]",
+      "parameters": [
+        {
+          "name": "rendererOutputs",
+          "type": "any[]",
+          "optional": false
+        },
+        {
+          "name": "diagramsDir",
+          "type": "string",
+          "optional": false
+        },
+        {
+          "name": "docsDir",
+          "type": "string",
+          "optional": false
+        },
+        {
+          "name": "_component",
+          "type": "z.infer<any>",
+          "optional": false
+        }
+      ],
+      "visibility": "private",
+      "isAsync": false,
+      "filePath": "C:/Users/chris/git/archlette/src/docs/builtin/markdown-docs.ts",
+      "lineNumber": 223
+    },
+    {
+      "description": "Find class diagrams for a specific component",
+      "id": "C:/Users/chris/git/archlette/src/docs/builtin/markdown-docs.ts:findClassDiagramsForComponent",
+      "componentId": "docs",
+      "name": "findClassDiagramsForComponent",
+      "type": "function",
+      "documentation": {
+        "summary": "Find class diagrams for a specific component"
+      },
+      "returnType": "string[]",
+      "parameters": [
+        {
+          "name": "rendererOutputs",
+          "type": "any[]",
+          "optional": false
+        },
+        {
+          "name": "diagramsDir",
+          "type": "string",
+          "optional": false
+        },
+        {
+          "name": "docsDir",
+          "type": "string",
+          "optional": false
+        },
+        {
+          "name": "component",
+          "type": "z.infer<any>",
+          "optional": false
+        }
+      ],
+      "visibility": "private",
+      "isAsync": false,
+      "filePath": "C:/Users/chris/git/archlette/src/docs/builtin/markdown-docs.ts",
+      "lineNumber": 252
     },
     {
       "description": "Extract architecture information from a Node.js/TypeScript codebase",
@@ -2501,7 +2656,7 @@
       "destination": "core"
     },
     {
-      "description": "Provides types and path resolution",
+      "description": "Provides types, module loading, and path resolution",
       "tags": [],
       "source": "docs",
       "destination": "core"
@@ -2773,6 +2928,24 @@
       "stereotype": "type-import"
     },
     {
+      "description": "imports ResolvedAACConfig",
+      "source": "C:/Users/chris/git/archlette/src/5-docs/index.ts",
+      "destination": "../core/types-aac.js:ResolvedAACConfig",
+      "stereotype": "type-import"
+    },
+    {
+      "description": "imports ResolvedStageNode",
+      "source": "C:/Users/chris/git/archlette/src/5-docs/index.ts",
+      "destination": "../core/types-aac.js:ResolvedStageNode",
+      "stereotype": "type-import"
+    },
+    {
+      "description": "imports loadDocModule",
+      "source": "C:/Users/chris/git/archlette/src/5-docs/index.ts",
+      "destination": "../core/stage-module-loader.js:loadDocModule",
+      "stereotype": "import"
+    },
+    {
       "description": "imports resolveModuleEntry",
       "source": "C:/Users/chris/git/archlette/src/core/module-loader.ts",
       "destination": "./path-resolver.js:resolveModuleEntry",
@@ -2915,6 +3088,54 @@
       "source": "C:/Users/chris/git/archlette/src/core/types.ts",
       "destination": "./logger.js:Logger",
       "stereotype": "type-import"
+    },
+    {
+      "description": "imports * as fs",
+      "source": "C:/Users/chris/git/archlette/src/docs/builtin/markdown-docs.ts",
+      "destination": "node:fs:* as fs",
+      "stereotype": "import"
+    },
+    {
+      "description": "imports * as path",
+      "source": "C:/Users/chris/git/archlette/src/docs/builtin/markdown-docs.ts",
+      "destination": "node:path:* as path",
+      "stereotype": "import"
+    },
+    {
+      "description": "imports fileURLToPath",
+      "source": "C:/Users/chris/git/archlette/src/docs/builtin/markdown-docs.ts",
+      "destination": "node:url:fileURLToPath",
+      "stereotype": "import"
+    },
+    {
+      "description": "imports createRequire",
+      "source": "C:/Users/chris/git/archlette/src/docs/builtin/markdown-docs.ts",
+      "destination": "node:module:createRequire",
+      "stereotype": "import"
+    },
+    {
+      "description": "imports PipelineContext",
+      "source": "C:/Users/chris/git/archlette/src/docs/builtin/markdown-docs.ts",
+      "destination": "../../core/types.js:PipelineContext",
+      "stereotype": "type-import"
+    },
+    {
+      "description": "imports Component",
+      "source": "C:/Users/chris/git/archlette/src/docs/builtin/markdown-docs.ts",
+      "destination": "../../core/types-ir.js:Component",
+      "stereotype": "type-import"
+    },
+    {
+      "description": "imports resolveArchlettePath",
+      "source": "C:/Users/chris/git/archlette/src/docs/builtin/markdown-docs.ts",
+      "destination": "../../core/path-resolver.js:resolveArchlettePath",
+      "stereotype": "import"
+    },
+    {
+      "description": "imports getCliDir",
+      "source": "C:/Users/chris/git/archlette/src/docs/builtin/markdown-docs.ts",
+      "destination": "../../core/path-resolver.js:getCliDir",
+      "stereotype": "import"
     },
     {
       "description": "imports ResolvedStageNode",
