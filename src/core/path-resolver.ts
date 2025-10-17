@@ -4,7 +4,7 @@
  * Path resolution utilities for Archlette.
  * Handles resolution of relative paths, tilde expansion, and file I/O operations.
  *
- * @actor FileSystem {System} File system for reading and writing files
+ * @actor FileSystem {System} {out} File system for reading and writing files
  */
 
 import { fileURLToPath, pathToFileURL } from 'node:url';

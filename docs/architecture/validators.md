@@ -40,7 +40,7 @@
 ### Code Elements
 
 <details>
-<summary><strong>1 code element(s)</strong></summary>
+<summary><strong>2 code element(s)</strong></summary>
 
 
 
@@ -77,7 +77,37 @@ Execute the validation stage
 
 **Parameters:**
 
-- `ctx`: <code>import("C:/Users/chris/git/archlette/src/core/types").PipelineContext</code>
+- `ctx`: <code>import("C:/Users/chris/git/archlette/src/core/types").PipelineContext</code> — - Pipeline context with configuration, logging, and aggregated IR
+
+---
+##### `baseValidator()`
+
+Validates the IR against the Zod schema. Throws if invalid.
+
+<table>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>function</code></td>
+</tr>
+<tr>
+<td><strong>Visibility</strong></td>
+<td><code>private</code></td>
+</tr>
+<tr>
+<td><strong>Returns</strong></td>
+<td><code>z.infer<any></code> — The same IR if valid</td>
+</tr>
+<tr>
+<td><strong>Location</strong></td>
+<td><code>C:/Users/chris/git/archlette/src/validators/builtin/base-validator.ts:26</code></td>
+</tr>
+</tbody>
+</table>
+
+**Parameters:**
+
+- `ir`: <code>z.infer<any></code> — - The input ArchletteIR
 
 ---
 

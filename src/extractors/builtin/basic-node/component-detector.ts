@@ -16,6 +16,7 @@ export interface ActorInfo {
   id: string;
   name: string;
   type: 'Person' | 'System';
+  direction?: 'in' | 'out' | 'both';
   description?: string;
 }
 
@@ -61,10 +62,12 @@ export function extractFileComponent(
 
 /**
  * Extract actors from file-level JSDoc
- * Looks for @actor tags in the format: @actor Name {Type} description
+ * Looks for @actor tags in the format: @actor Name {Type} {Direction?} description
  * Examples:
- * - @actor User {Person} End user who runs archlette commands
- * - @actor FileSystem {System} File system for reading and writing files
+ * - @actor User {Person} {in} End user who runs archlette commands
+ * - @actor FileSystem {System} {out} File system for reading and writing files
+ * - @actor Logger {System} {both} Shared logging service
+ * - @actor Cache {System} Redis cache (defaults to {both} if direction omitted)
  */
 export function extractFileActors(sourceFile: SourceFile): ActorInfo[] {
   const actors: ActorInfo[] = [];
@@ -156,10 +159,12 @@ function extractActorsFromJsDoc(jsDoc: Node): ActorInfo[] {
 
 /**
  * Parse an @actor tag
- * Format: @actor Name {Type} description
+ * Format: @actor Name {Type} {Direction?} description
  * Examples:
- * - @actor User {Person} End user who runs archlette commands
- * - @actor FileSystem {System} File system for reading and writing files
+ * - @actor User {Person} {in} End user who runs archlette commands
+ * - @actor FileSystem {System} {out} File system for reading and writing files
+ * - @actor Logger {System} {both} Shared logging service
+ * - @actor Cache {System} Redis cache (defaults to 'both' if direction omitted)
  */
 function parseActorTag(tag: any): ActorInfo | undefined {
   const text = tag.getCommentText ? tag.getCommentText() : '';
@@ -167,21 +172,26 @@ function parseActorTag(tag: any): ActorInfo | undefined {
 
   const trimmed = text.trim();
 
-  // Match pattern: Name {Type} description
-  // Group 1: Name (everything before {)
+  // Match pattern: Name {Type} {Direction?} description
+  // Group 1: Name (everything before first {)
   // Group 2: Type (Person or System)
-  // Group 3: Description (everything after })
-  const match = trimmed.match(/^([^{]+)\{(Person|System)\}\s*(.*)$/);
+  // Group 3: Direction (in|out|both) - optional
+  // Group 4: Description (everything after last })
+  const match = trimmed.match(
+    /^([^{]+)\{(Person|System)\}\s*(?:\{(in|out|both)\}\s*)?(.*)$/,
+  );
 
   if (match) {
     const name = match[1].trim();
     const type = match[2] as 'Person' | 'System';
-    const description = match[3].trim() || undefined;
+    const direction = (match[3] as 'in' | 'out' | 'both' | undefined) || 'both';
+    const description = match[4].trim() || undefined;
 
     return {
       id: nameToId(name),
       name,
       type,
+      direction,
       description,
     };
   }

@@ -46,6 +46,63 @@ npx archlette all
 
 ---
 
+## 📝 Architecture annotations
+
+Archlette follows a **code-driven** approach—your code structure defines the architecture, with optional JSDoc annotations for relationships and actors.
+
+### Supported JSDoc tags
+
+**Component identification** (file-level):
+
+```typescript
+/**
+ * @component UserService
+ * User management and authentication
+ */
+```
+
+Also supported: `@module`, `@namespace`
+
+**Actor relationships** (file-level):
+
+```typescript
+/**
+ * @component ApiGateway
+ * @actor User {Person} {in} End user making API requests
+ * @actor Database {System} {out} PostgreSQL for persistence
+ * @actor MessageQueue {System} {both} RabbitMQ broker
+ * @actor Cache {System} Redis (defaults to bidirectional)
+ */
+```
+
+- **Direction control**:
+  - `{in}`: Actor → Component (actor uses/calls the component)
+  - `{out}`: Component → Actor (component uses/calls the actor)
+  - `{both}` or omitted: Bidirectional (default)
+
+**Component dependencies** (file-level):
+
+```typescript
+/**
+ * @component OrderService
+ * @uses PaymentService Processes payments for orders
+ * @uses InventoryService Checks product availability
+ */
+```
+
+### What gets extracted automatically
+
+Archlette extracts from your code without annotations:
+
+- **Classes** (exports, inheritance, methods, properties)
+- **Functions** (regular and arrow functions)
+- **Type aliases** and **interfaces**
+- **Imports** (code-level dependencies)
+
+Annotations are **optional**—use them to define system-level relationships and actors.
+
+---
+
 ## 🔧 Configuration (aac.yaml)
 
 Archlette loads `aac.yaml` from the repo root and runs each stage as a chain of plugins.

@@ -74,7 +74,7 @@ Used for consistent ID generation across extractors and mappers
 
 **Parameters:**
 
-- `name`: <code>string</code>
+- `name`: <code>string</code> — - The name to convert (component, actor, etc.)
 **Examples:**
 ```typescript
 
@@ -166,7 +166,7 @@ Create a logger instance
 
 **Parameters:**
 
-- `options`: <code>import("C:/Users/chris/git/archlette/src/core/logger").LoggerOptions</code>
+- `options`: <code>import("C:/Users/chris/git/archlette/src/core/logger").LoggerOptions</code> — - Logger configuration
 **Examples:**
 ```typescript
 
@@ -204,7 +204,7 @@ Dynamically load an ESM module from a path or module specifier
 
 **Parameters:**
 
-- `spec`: <code>string</code>- `exts`: <code>(".ts" | ".js")[]</code>
+- `spec`: <code>string</code> — - Module specifier (relative path, absolute path, or ~/ path)- `exts`: <code>(".ts" | ".js")[]</code> — - File extensions to probe (in order of preference)
 **Examples:**
 ```typescript
 
@@ -389,7 +389,7 @@ Write content to a file, creating parent directories if needed.
 
 **Parameters:**
 
-- `filename`: <code>string</code>- `content`: <code>string</code>
+- `filename`: <code>string</code> — - Absolute path to the file- `content`: <code>string</code> — - Content to write
 
 ---
 ##### `loadExtractorModule()`
@@ -840,7 +840,7 @@ Find or download Structurizr CLI
 
 **Parameters:**
 
-- `log`: <code>import("C:/Users/chris/git/archlette/src/core/logger").Logger</code>
+- `log`: <code>import("C:/Users/chris/git/archlette/src/core/logger").Logger</code> — - Optional logger
 
 ---
 ##### `findPlantUML()`
@@ -874,7 +874,7 @@ Find or download PlantUML JAR
 
 **Parameters:**
 
-- `log`: <code>import("C:/Users/chris/git/archlette/src/core/logger").Logger</code>
+- `log`: <code>import("C:/Users/chris/git/archlette/src/core/logger").Logger</code> — - Optional logger
 
 ---
 ##### `checkJava()`

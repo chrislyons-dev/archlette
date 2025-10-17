@@ -34,7 +34,7 @@
  * The CLI reads configuration from a YAML file (default: `templates/default.yaml`)
  * that specifies which modules to load for each stage.
  *
- * @actor User {Person} End user who runs archlette commands
+ * @actor User {Person} {in} End user who runs archlette commands
  * @uses extractors Analyzes source code to extract architecture components
  * @uses validators Validates and enriches intermediate representation
  * @uses generators Transforms IR into DSL formats

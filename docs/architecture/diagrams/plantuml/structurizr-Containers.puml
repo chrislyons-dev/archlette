@@ -74,16 +74,10 @@ rectangle "@chrislyons-dev/archlette\n<size:10>[Software System]</size>" <<chris
   rectangle "==@chrislyons-dev/archlette\n<size:10>[Container: Application]</size>\n\nArchitecture-as-Code toolkit for automated diagrams, docs, and releases." <<chrislyonsdevarchlette.chrislyonsdevarchlette>> as chrislyonsdevarchlette.chrislyonsdevarchlette
 }
 
-GithubStructurizrRepo .[#707070,thickness=2].> chrislyonsdevarchlette.chrislyonsdevarchlette : "<color:#707070>Interacts with core"
-GithubPlantUMLRepo .[#707070,thickness=2].> chrislyonsdevarchlette.chrislyonsdevarchlette : "<color:#707070>Interacts with core"
-LocalSystemsunziputility .[#707070,thickness=2].> chrislyonsdevarchlette.chrislyonsdevarchlette : "<color:#707070>Interacts with core"
-FileSystem .[#707070,thickness=2].> chrislyonsdevarchlette.chrislyonsdevarchlette : "<color:#707070>Interacts with core"
-chrislyonsdevarchlette.chrislyonsdevarchlette .[#707070,thickness=2].> User : "<color:#707070>Interacts with User"
 chrislyonsdevarchlette.chrislyonsdevarchlette .[#707070,thickness=2].> FileSystem : "<color:#707070>Uses FileSystem for external system integration"
 chrislyonsdevarchlette.chrislyonsdevarchlette .[#707070,thickness=2].> GithubStructurizrRepo : "<color:#707070>Uses Github Structurizr Repo for external system integration"
 chrislyonsdevarchlette.chrislyonsdevarchlette .[#707070,thickness=2].> GithubPlantUMLRepo : "<color:#707070>Uses Github PlantUML Repo for external system integration"
 chrislyonsdevarchlette.chrislyonsdevarchlette .[#707070,thickness=2].> LocalSystemsunziputility : "<color:#707070>Uses Local System's unzip utility for external system integration"
 chrislyonsdevarchlette.chrislyonsdevarchlette .[#707070,thickness=2].> FileSystem : "<color:#707070>Uses File System for external system integration"
 User .[#707070,thickness=2].> chrislyonsdevarchlette.chrislyonsdevarchlette : "<color:#707070>Interacts with CLI"
-FileSystem .[#707070,thickness=2].> chrislyonsdevarchlette.chrislyonsdevarchlette : "<color:#707070>Interacts with core"
 @enduml

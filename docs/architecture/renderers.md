@@ -77,7 +77,7 @@ Execute the rendering stage
 
 **Parameters:**
 
-- `ctx`: <code>import("C:/Users/chris/git/archlette/src/core/types").PipelineContext</code>
+- `ctx`: <code>import("C:/Users/chris/git/archlette/src/core/types").PipelineContext</code> — - Pipeline context with configuration, logging, and DSL file location
 
 ---
 ##### `plantumlRender()`

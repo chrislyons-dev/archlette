@@ -22,9 +22,7 @@
       "id": "filesystem",
       "name": "FileSystem",
       "type": "System",
-      "targets": [
-        "core"
-      ]
+      "targets": []
     },
     {
       "description": "The github repo hosting the Structurizr CLI releases. https://github.com/structurizr/cli/releases/download/v${TOOL_VERSIONS.structurizr}/structurizr-cli.zip",
@@ -32,9 +30,7 @@
       "id": "github-structurizr-repo",
       "name": "Github Structurizr Repo",
       "type": "System",
-      "targets": [
-        "core"
-      ]
+      "targets": []
     },
     {
       "description": "The github repo hosting the PlantUML CLI releases. https://github.com/plantuml/plantuml/releases/download/v${TOOL_VERSIONS.plantuml}/plantuml-${TOOL_VERSIONS.plantuml}.jar",
@@ -42,9 +38,7 @@
       "id": "github-plantuml-repo",
       "name": "Github PlantUML Repo",
       "type": "System",
-      "targets": [
-        "core"
-      ]
+      "targets": []
     },
     {
       "description": "The zip extraction utility on the local system (unzip on Unix, Expand-Archive on Windows).",
@@ -52,9 +46,7 @@
       "id": "local-systems-unzip-utility",
       "name": "Local System's unzip utility",
       "type": "System",
-      "targets": [
-        "core"
-      ]
+      "targets": []
     },
     {
       "description": "The local file system for caching downloaded tools.",
@@ -62,9 +54,7 @@
       "id": "file-system",
       "name": "File System",
       "type": "System",
-      "targets": [
-        "core"
-      ]
+      "targets": []
     }
   ],
   "containers": [
@@ -243,6 +233,7 @@
         {
           "name": "irs",
           "type": "z.infer<any>[]",
+          "description": "- Array of ArchletteIR objects to merge",
           "optional": false
         }
       ],
@@ -269,6 +260,7 @@
         {
           "name": "items",
           "type": "T[]",
+          "description": "- Array of entities with id property",
           "optional": false
         }
       ],
@@ -295,13 +287,14 @@
         {
           "name": "items",
           "type": "T[]",
+          "description": "- Array of entities with name property",
           "optional": false
         }
       ],
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/1-extract/aggregator.ts",
-      "lineNumber": 135
+      "lineNumber": 137
     },
     {
       "description": "Deduplicate relationships by source+destination+stereotype combination",
@@ -321,13 +314,14 @@
         {
           "name": "relationships",
           "type": "z.infer<any>[]",
+          "description": "- Array of relationships to deduplicate",
           "optional": false
         }
       ],
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/1-extract/aggregator.ts",
-      "lineNumber": 175
+      "lineNumber": 179
     },
     {
       "description": "Create an empty but valid ArchletteIR structure",
@@ -344,7 +338,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/1-extract/aggregator.ts",
-      "lineNumber": 191
+      "lineNumber": 195
     },
     {
       "description": "Execute the extraction stage",
@@ -360,6 +354,7 @@
         {
           "name": "ctx",
           "type": "import(\"C:/Users/chris/git/archlette/src/core/types\").PipelineContext",
+          "description": "- Pipeline context with configuration and logging",
           "optional": false
         }
       ],
@@ -382,6 +377,7 @@
         {
           "name": "ctx",
           "type": "import(\"C:/Users/chris/git/archlette/src/core/types\").PipelineContext",
+          "description": "- Pipeline context with configuration, logging, and aggregated IR",
           "optional": false
         }
       ],
@@ -404,6 +400,7 @@
         {
           "name": "ctx",
           "type": "import(\"C:/Users/chris/git/archlette/src/core/types\").PipelineContext",
+          "description": "- Pipeline context with configuration, logging, and validated IR",
           "optional": false
         }
       ],
@@ -426,6 +423,7 @@
         {
           "name": "ctx",
           "type": "import(\"C:/Users/chris/git/archlette/src/core/types\").PipelineContext",
+          "description": "- Pipeline context with configuration, logging, and DSL file location",
           "optional": false
         }
       ],
@@ -448,6 +446,7 @@
         {
           "name": "ctx",
           "type": "import(\"C:/Users/chris/git/archlette/src/core/types\").PipelineContext",
+          "description": "- Pipeline context with configuration, logging, IR, and rendered diagrams",
           "optional": false
         }
       ],
@@ -474,6 +473,7 @@
         {
           "name": "name",
           "type": "string",
+          "description": "- The name to convert (component, actor, etc.)",
           "optional": false
         }
       ],
@@ -554,6 +554,7 @@
         {
           "name": "options",
           "type": "import(\"C:/Users/chris/git/archlette/src/core/logger\").LoggerOptions",
+          "description": "- Logger configuration",
           "optional": true,
           "defaultValue": "{}"
         }
@@ -581,11 +582,13 @@
         {
           "name": "spec",
           "type": "string",
+          "description": "- Module specifier (relative path, absolute path, or ~/ path)",
           "optional": false
         },
         {
           "name": "exts",
           "type": "(\".ts\" | \".js\")[]",
+          "description": "- File extensions to probe (in order of preference)",
           "optional": true,
           "defaultValue": "['.ts', '.js']"
         }
@@ -717,11 +720,13 @@
         {
           "name": "filename",
           "type": "string",
+          "description": "- Absolute path to the file",
           "optional": false
         },
         {
           "name": "content",
           "type": "string",
+          "description": "- Content to write",
           "optional": true,
           "defaultValue": "''"
         }
@@ -1047,6 +1052,7 @@
         {
           "name": "log",
           "type": "import(\"C:/Users/chris/git/archlette/src/core/logger\").Logger",
+          "description": "- Optional logger",
           "optional": true
         }
       ],
@@ -1070,6 +1076,7 @@
         {
           "name": "log",
           "type": "import(\"C:/Users/chris/git/archlette/src/core/logger\").Logger",
+          "description": "- Optional logger",
           "optional": true
         }
       ],
@@ -1264,7 +1271,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/docs/builtin/markdown-docs.ts",
-      "lineNumber": 252
+      "lineNumber": 256
     },
     {
       "description": "Extract architecture information from a Node.js/TypeScript codebase",
@@ -1283,6 +1290,7 @@
       "parameters": [
         {
           "name": "node",
+          "description": "- Configuration node with include/exclude patterns",
           "optional": false
         }
       ],
@@ -1306,10 +1314,12 @@
         {
           "name": "ir",
           "type": "z.infer<any>",
+          "description": "- The validated ArchletteIR to transform",
           "optional": false
         },
         {
           "name": "_node",
+          "description": "- Configuration node (unused but required by interface)",
           "optional": false
         }
       ],
@@ -1333,6 +1343,7 @@
         {
           "name": "ir",
           "type": "z.infer<any>",
+          "description": "- The ArchletteIR containing actors and components",
           "optional": false
         }
       ],
@@ -1661,6 +1672,7 @@
         {
           "name": "code",
           "type": "z.infer<any>",
+          "description": "- The code item",
           "optional": false
         }
       ],
@@ -1834,6 +1846,30 @@
       "lineNumber": 28
     },
     {
+      "description": "Validates the IR against the Zod schema. Throws if invalid.",
+      "id": "C:/Users/chris/git/archlette/src/validators/builtin/base-validator.ts:baseValidator",
+      "componentId": "validators",
+      "name": "baseValidator",
+      "type": "function",
+      "documentation": {
+        "summary": "Validates the IR against the Zod schema. Throws if invalid."
+      },
+      "returnType": "z.infer<any>",
+      "returnDescription": "The same IR if valid",
+      "parameters": [
+        {
+          "name": "ir",
+          "type": "z.infer<any>",
+          "description": "- The input ArchletteIR",
+          "optional": false
+        }
+      ],
+      "visibility": "private",
+      "isAsync": false,
+      "filePath": "C:/Users/chris/git/archlette/src/validators/builtin/base-validator.ts",
+      "lineNumber": 26
+    },
+    {
       "description": "Extract all class declarations from a source file",
       "id": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/class-extractor.ts:extractClasses",
       "name": "extractClasses",
@@ -1991,13 +2027,14 @@
         {
           "name": "sourceFile",
           "type": "SourceFile",
+          "description": "- TypeScript source file to extract JSDoc from",
           "optional": false
         }
       ],
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts",
-      "lineNumber": 35
+      "lineNumber": 36
     },
     {
       "description": "Extract component information from file-level JSDoc\nChecks the first JSDoc comment in the file for",
@@ -2018,7 +2055,7 @@
       "visibility": "public",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts",
-      "lineNumber": 52
+      "lineNumber": 53
     },
     {
       "description": "Extract actors from file-level JSDoc\nLooks for",
@@ -2039,7 +2076,7 @@
       "visibility": "public",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts",
-      "lineNumber": 69
+      "lineNumber": 72
     },
     {
       "description": "Extract relationships from file-level JSDoc\nLooks for",
@@ -2060,7 +2097,7 @@
       "visibility": "public",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts",
-      "lineNumber": 88
+      "lineNumber": 91
     },
     {
       "description": "Extract component info from a JSDoc node",
@@ -2081,7 +2118,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts",
-      "lineNumber": 104
+      "lineNumber": 107
     },
     {
       "description": "Extract actors from a JSDoc node\nParses",
@@ -2102,7 +2139,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts",
-      "lineNumber": 135
+      "lineNumber": 138
     },
     {
       "description": "Parse an",
@@ -2122,7 +2159,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts",
-      "lineNumber": 164
+      "lineNumber": 169
     },
     {
       "description": "Extract relationships from a JSDoc node\nParses",
@@ -2143,7 +2180,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts",
-      "lineNumber": 196
+      "lineNumber": 204
     },
     {
       "description": "Parse a",
@@ -2163,7 +2200,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts",
-      "lineNumber": 223
+      "lineNumber": 231
     },
     {
       "description": "Extract component name from a JSDoc tag\nHandles formats like:\n-",
@@ -2183,7 +2220,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts",
-      "lineNumber": 254
+      "lineNumber": 262
     },
     {
       "description": "Extract documentation information from JSDoc",
@@ -2282,6 +2319,7 @@
         {
           "name": "tag",
           "type": "JSDocTag",
+          "description": "Handles formats like:",
           "optional": false
         }
       ],
@@ -2330,7 +2368,7 @@
       "visibility": "public",
       "isAsync": true,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/file-parser.ts",
-      "lineNumber": 19
+      "lineNumber": 20
     },
     {
       "description": "Extract all function declarations from a source file",
@@ -2405,6 +2443,27 @@
       "lineNumber": 76
     },
     {
+      "description": "Extract arrow functions assigned to const/let/var\nExamples:\n  const handleClick = () => {}\n  export const createUser = async (data) => {}",
+      "id": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/function-extractor.ts:extractArrowFunctions",
+      "name": "extractArrowFunctions",
+      "type": "function",
+      "documentation": {
+        "summary": "Extract arrow functions assigned to const/let/var\nExamples:\n  const handleClick = () => {}\n  export const createUser = async (data) => {}"
+      },
+      "returnType": "import(\"C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/types\").ExtractedFunction[]",
+      "parameters": [
+        {
+          "name": "sourceFile",
+          "type": "SourceFile",
+          "optional": false
+        }
+      ],
+      "visibility": "public",
+      "isAsync": false,
+      "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/function-extractor.ts",
+      "lineNumber": 100
+    },
+    {
       "description": "Extract all import declarations from a source file",
       "id": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/import-extractor.ts:extractImports",
       "name": "extractImports",
@@ -2470,7 +2529,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts",
-      "lineNumber": 222
+      "lineNumber": 230
     },
     {
       "description": "Map a function to a CodeItem",
@@ -2501,7 +2560,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts",
-      "lineNumber": 236
+      "lineNumber": 244
     },
     {
       "description": "Map a class to a CodeItem",
@@ -2532,7 +2591,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts",
-      "lineNumber": 264
+      "lineNumber": 272
     },
     {
       "description": "Map a class method to a CodeItem",
@@ -2568,7 +2627,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts",
-      "lineNumber": 293
+      "lineNumber": 301
     },
     {
       "description": "Map imports to relationships",
@@ -2594,7 +2653,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts",
-      "lineNumber": 327
+      "lineNumber": 335
     },
     {
       "description": "Generate a unique ID for a code element\nFormat: filePath:symbolName",
@@ -2620,7 +2679,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts",
-      "lineNumber": 350
+      "lineNumber": 358
     },
     {
       "description": "Get default system info from package.json if available",
@@ -2635,18 +2694,54 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts",
-      "lineNumber": 359
+      "lineNumber": 367
+    },
+    {
+      "description": "Extract type aliases from a source file\nExamples:\n  type UserRole = 'admin' | 'user' | 'guest'\n  export type ApiResponse<T> = { data: T; status: number }",
+      "id": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/type-extractor.ts:extractTypeAliases",
+      "name": "extractTypeAliases",
+      "type": "function",
+      "documentation": {
+        "summary": "Extract type aliases from a source file\nExamples:\n  type UserRole = 'admin' | 'user' | 'guest'\n  export type ApiResponse<T> = { data: T; status: number }"
+      },
+      "returnType": "import(\"C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/types\").ExtractedType[]",
+      "parameters": [
+        {
+          "name": "sourceFile",
+          "type": "SourceFile",
+          "optional": false
+        }
+      ],
+      "visibility": "public",
+      "isAsync": false,
+      "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/type-extractor.ts",
+      "lineNumber": 15
+    },
+    {
+      "description": "Extract interfaces from a source file\nExamples:\n  interface User { id: string; name: string }\n  export interface ApiClient { get<T>(url: string): Promise<T> }",
+      "id": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/type-extractor.ts:extractInterfaces",
+      "name": "extractInterfaces",
+      "type": "function",
+      "documentation": {
+        "summary": "Extract interfaces from a source file\nExamples:\n  interface User { id: string; name: string }\n  export interface ApiClient { get<T>(url: string): Promise<T> }"
+      },
+      "returnType": "import(\"C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/types\").ExtractedInterface[]",
+      "parameters": [
+        {
+          "name": "sourceFile",
+          "type": "SourceFile",
+          "optional": false
+        }
+      ],
+      "visibility": "public",
+      "isAsync": false,
+      "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/type-extractor.ts",
+      "lineNumber": 55
     }
   ],
   "deployments": [],
   "containerRelationships": [],
   "componentRelationships": [
-    {
-      "description": "Interacts with User",
-      "tags": [],
-      "source": "cli",
-      "destination": "user"
-    },
     {
       "description": "Analyzes source code to extract architecture components",
       "tags": [],
@@ -3517,13 +3612,13 @@
       "description": "imports JSDoc",
       "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/doc-extractor.ts",
       "destination": "ts-morph:JSDoc",
-      "stereotype": "type-import"
+      "stereotype": "import"
     },
     {
       "description": "imports JSDocTag",
       "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/doc-extractor.ts",
       "destination": "ts-morph:JSDocTag",
-      "stereotype": "type-import"
+      "stereotype": "import"
     },
     {
       "description": "imports DocInfo",
@@ -3580,6 +3675,24 @@
       "stereotype": "import"
     },
     {
+      "description": "imports extractArrowFunctions",
+      "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/file-parser.ts",
+      "destination": "./function-extractor.js:extractArrowFunctions",
+      "stereotype": "import"
+    },
+    {
+      "description": "imports extractTypeAliases",
+      "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/file-parser.ts",
+      "destination": "./type-extractor.js:extractTypeAliases",
+      "stereotype": "import"
+    },
+    {
+      "description": "imports extractInterfaces",
+      "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/file-parser.ts",
+      "destination": "./type-extractor.js:extractInterfaces",
+      "stereotype": "import"
+    },
+    {
       "description": "imports extractImports",
       "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/file-parser.ts",
       "destination": "./import-extractor.js:extractImports",
@@ -3604,16 +3717,22 @@
       "stereotype": "import"
     },
     {
+      "description": "imports Node",
+      "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/function-extractor.ts",
+      "destination": "ts-morph:Node",
+      "stereotype": "import"
+    },
+    {
       "description": "imports FunctionDeclaration",
       "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/function-extractor.ts",
       "destination": "ts-morph:FunctionDeclaration",
-      "stereotype": "type-import"
+      "stereotype": "import"
     },
     {
       "description": "imports SourceFile",
       "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/function-extractor.ts",
       "destination": "ts-morph:SourceFile",
-      "stereotype": "type-import"
+      "stereotype": "import"
     },
     {
       "description": "imports ExtractedFunction",
@@ -3757,6 +3876,36 @@
       "description": "imports nameToId",
       "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts",
       "destination": "../../../core/constants.js:nameToId",
+      "stereotype": "import"
+    },
+    {
+      "description": "imports SourceFile",
+      "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/type-extractor.ts",
+      "destination": "ts-morph:SourceFile",
+      "stereotype": "type-import"
+    },
+    {
+      "description": "imports ExtractedType",
+      "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/type-extractor.ts",
+      "destination": "./types.js:ExtractedType",
+      "stereotype": "type-import"
+    },
+    {
+      "description": "imports ExtractedInterface",
+      "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/type-extractor.ts",
+      "destination": "./types.js:ExtractedInterface",
+      "stereotype": "type-import"
+    },
+    {
+      "description": "imports extractDocumentation",
+      "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/type-extractor.ts",
+      "destination": "./doc-extractor.js:extractDocumentation",
+      "stereotype": "import"
+    },
+    {
+      "description": "imports extractDeprecation",
+      "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/type-extractor.ts",
+      "destination": "./doc-extractor.js:extractDeprecation",
       "stereotype": "import"
     }
   ]

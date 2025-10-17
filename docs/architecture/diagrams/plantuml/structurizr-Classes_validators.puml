@@ -21,6 +21,12 @@ skinparam rectangle<<chrislyonsdevarchlette.chrislyonsdevarchlette.2validateinde
   BorderColor #9a9a9a
   shadowing false
 }
+skinparam rectangle<<chrislyonsdevarchlette.chrislyonsdevarchlette.basevalidatortsbasevalidator>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
 skinparam rectangle<<chrislyonsdevarchlette.chrislyonsdevarchlette>> {
   BorderColor #9a9a9a
   FontColor #9a9a9a
@@ -29,6 +35,7 @@ skinparam rectangle<<chrislyonsdevarchlette.chrislyonsdevarchlette>> {
 
 rectangle "@chrislyons-dev/archlette\n<size:10>[Container: Application]</size>" <<chrislyonsdevarchlette.chrislyonsdevarchlette>> {
   rectangle "==2-validate/index.ts::run\n<size:10>[Component: function]</size>\n\nExecute the validation stage" <<chrislyonsdevarchlette.chrislyonsdevarchlette.2validateindextsrun>> as chrislyonsdevarchlette.chrislyonsdevarchlette.2validateindextsrun
+  rectangle "==base-validator.ts::basevalidator\n<size:10>[Component: function]</size>\n\nValidates the IR against the Zod schema. Throws if invalid." <<chrislyonsdevarchlette.chrislyonsdevarchlette.basevalidatortsbasevalidator>> as chrislyonsdevarchlette.chrislyonsdevarchlette.basevalidatortsbasevalidator
 }
 
 @enduml

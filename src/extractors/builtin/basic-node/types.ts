@@ -33,6 +33,7 @@ export interface ActorInfo {
   id: string;
   name: string;
   type: 'Person' | 'System';
+  direction?: 'in' | 'out' | 'both';
   description?: string;
 }
 

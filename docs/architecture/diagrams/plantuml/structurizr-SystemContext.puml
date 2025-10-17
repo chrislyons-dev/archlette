@@ -66,12 +66,6 @@ rectangle "==Local System's unzip utility\n<size:10>[Software System]</size>\n\n
 rectangle "==File System\n<size:10>[Software System]</size>\n\nThe local file system for caching downloaded tools." <<FileSystem>> as FileSystem
 rectangle "==@chrislyons-dev/archlette\n<size:10>[Software System]</size>\n\nArchitecture-as-Code toolkit for automated diagrams, docs, and releases." <<chrislyonsdevarchlette>> as chrislyonsdevarchlette
 
-FileSystem .[#707070,thickness=2].> chrislyonsdevarchlette : "<color:#707070>Interacts with core"
-GithubStructurizrRepo .[#707070,thickness=2].> chrislyonsdevarchlette : "<color:#707070>Interacts with core"
-GithubPlantUMLRepo .[#707070,thickness=2].> chrislyonsdevarchlette : "<color:#707070>Interacts with core"
-LocalSystemsunziputility .[#707070,thickness=2].> chrislyonsdevarchlette : "<color:#707070>Interacts with core"
-FileSystem .[#707070,thickness=2].> chrislyonsdevarchlette : "<color:#707070>Interacts with core"
-chrislyonsdevarchlette .[#707070,thickness=2].> User : "<color:#707070>Interacts with User"
 chrislyonsdevarchlette .[#707070,thickness=2].> FileSystem : "<color:#707070>Uses FileSystem for external system integration"
 chrislyonsdevarchlette .[#707070,thickness=2].> GithubStructurizrRepo : "<color:#707070>Uses Github Structurizr Repo for external system integration"
 chrislyonsdevarchlette .[#707070,thickness=2].> GithubPlantUMLRepo : "<color:#707070>Uses Github PlantUML Repo for external system integration"

@@ -1,7 +1,7 @@
 # 🏗️ @chrislyons-dev/archlette
 
 > **Architecture Documentation**
-> Generated on 2025-10-17 07:12:22
+> Generated on 2025-10-17 08:19:04
 
 ## 📋 Overview
 

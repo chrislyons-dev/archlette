@@ -21,36 +21,6 @@ skinparam rectangle<<chrislyonsdevarchlette.chrislyonsdevarchlette.CLI>> {
   BorderColor #9a9a9a
   shadowing false
 }
-skinparam rectangle<<FileSystem>> {
-  BackgroundColor #dddddd
-  FontColor #000000
-  BorderColor #9a9a9a
-  shadowing false
-}
-skinparam rectangle<<FileSystem>> {
-  BackgroundColor #dddddd
-  FontColor #000000
-  BorderColor #9a9a9a
-  shadowing false
-}
-skinparam rectangle<<GithubPlantUMLRepo>> {
-  BackgroundColor #dddddd
-  FontColor #000000
-  BorderColor #9a9a9a
-  shadowing false
-}
-skinparam rectangle<<GithubStructurizrRepo>> {
-  BackgroundColor #dddddd
-  FontColor #000000
-  BorderColor #9a9a9a
-  shadowing false
-}
-skinparam rectangle<<LocalSystemsunziputility>> {
-  BackgroundColor #dddddd
-  FontColor #000000
-  BorderColor #9a9a9a
-  shadowing false
-}
 skinparam rectangle<<User>> {
   BackgroundColor #dddddd
   FontColor #000000
@@ -100,11 +70,6 @@ skinparam rectangle<<chrislyonsdevarchlette.chrislyonsdevarchlette>> {
 }
 
 rectangle "==User\n<size:10>[Person]</size>\n\nEnd user who runs archlette commands" <<User>> as User
-rectangle "==FileSystem\n<size:10>[Software System]</size>\n\nFile system for reading and writing files" <<FileSystem>> as FileSystem
-rectangle "==Github Structurizr Repo\n<size:10>[Software System]</size>\n\nThe github repo hosting the Structurizr CLI releases. https://github.com/structurizr/cli/releases/download/v${TOOL_VERSIONS.structurizr}/structurizr-cli.zip" <<GithubStructurizrRepo>> as GithubStructurizrRepo
-rectangle "==Github PlantUML Repo\n<size:10>[Software System]</size>\n\nThe github repo hosting the PlantUML CLI releases. https://github.com/plantuml/plantuml/releases/download/v${TOOL_VERSIONS.plantuml}/plantuml-${TOOL_VERSIONS.plantuml}.jar" <<GithubPlantUMLRepo>> as GithubPlantUMLRepo
-rectangle "==Local System's unzip utility\n<size:10>[Software System]</size>\n\nThe zip extraction utility on the local system (unzip on Unix, Expand-Archive on Windows)." <<LocalSystemsunziputility>> as LocalSystemsunziputility
-rectangle "==File System\n<size:10>[Software System]</size>\n\nThe local file system for caching downloaded tools." <<FileSystem>> as FileSystem
 
 rectangle "@chrislyons-dev/archlette\n<size:10>[Container: Application]</size>" <<chrislyonsdevarchlette.chrislyonsdevarchlette>> {
   rectangle "==extractors\n<size:10>[Component: module]</size>\n\nArchletteIR aggregation utilities | Extraction stage of the AAC pipeline | TypeScript/JavaScript code extractor" <<chrislyonsdevarchlette.chrislyonsdevarchlette.extractors>> as chrislyonsdevarchlette.chrislyonsdevarchlette.extractors
@@ -116,16 +81,6 @@ rectangle "@chrislyons-dev/archlette\n<size:10>[Container: Application]</size>" 
   rectangle "==CLI\n<size:10>[Component: module]</size>\n\nArchlette CLI - Architecture-as-Code toolkit" <<chrislyonsdevarchlette.chrislyonsdevarchlette.CLI>> as chrislyonsdevarchlette.chrislyonsdevarchlette.CLI
 }
 
-GithubStructurizrRepo .[#707070,thickness=2].> chrislyonsdevarchlette.chrislyonsdevarchlette.core : "<color:#707070>Interacts with core"
-GithubPlantUMLRepo .[#707070,thickness=2].> chrislyonsdevarchlette.chrislyonsdevarchlette.core : "<color:#707070>Interacts with core"
-LocalSystemsunziputility .[#707070,thickness=2].> chrislyonsdevarchlette.chrislyonsdevarchlette.core : "<color:#707070>Interacts with core"
-FileSystem .[#707070,thickness=2].> chrislyonsdevarchlette.chrislyonsdevarchlette.core : "<color:#707070>Interacts with core"
-chrislyonsdevarchlette.chrislyonsdevarchlette.CLI .[#707070,thickness=2].> User : "<color:#707070>Interacts with User"
-chrislyonsdevarchlette.chrislyonsdevarchlette.core .[#707070,thickness=2].> FileSystem : "<color:#707070>Uses FileSystem for external system integration"
-chrislyonsdevarchlette.chrislyonsdevarchlette.core .[#707070,thickness=2].> GithubStructurizrRepo : "<color:#707070>Uses Github Structurizr Repo for external system integration"
-chrislyonsdevarchlette.chrislyonsdevarchlette.core .[#707070,thickness=2].> GithubPlantUMLRepo : "<color:#707070>Uses Github PlantUML Repo for external system integration"
-chrislyonsdevarchlette.chrislyonsdevarchlette.core .[#707070,thickness=2].> LocalSystemsunziputility : "<color:#707070>Uses Local System's unzip utility for external system integration"
-chrislyonsdevarchlette.chrislyonsdevarchlette.core .[#707070,thickness=2].> FileSystem : "<color:#707070>Uses File System for external system integration"
 chrislyonsdevarchlette.chrislyonsdevarchlette.CLI .[#707070,thickness=2].> chrislyonsdevarchlette.chrislyonsdevarchlette.extractors : "<color:#707070>Analyzes source code to extract architecture components"
 chrislyonsdevarchlette.chrislyonsdevarchlette.CLI .[#707070,thickness=2].> chrislyonsdevarchlette.chrislyonsdevarchlette.validators : "<color:#707070>Validates and enriches intermediate representation"
 chrislyonsdevarchlette.chrislyonsdevarchlette.CLI .[#707070,thickness=2].> chrislyonsdevarchlette.chrislyonsdevarchlette.generators : "<color:#707070>Transforms IR into DSL formats"
@@ -137,5 +92,4 @@ chrislyonsdevarchlette.chrislyonsdevarchlette.generators .[#707070,thickness=2].
 chrislyonsdevarchlette.chrislyonsdevarchlette.renderers .[#707070,thickness=2].> chrislyonsdevarchlette.chrislyonsdevarchlette.core : "<color:#707070>Provides types, module loading, and tool management"
 chrislyonsdevarchlette.chrislyonsdevarchlette.docs .[#707070,thickness=2].> chrislyonsdevarchlette.chrislyonsdevarchlette.core : "<color:#707070>Provides types, module loading, and path resolution"
 User .[#707070,thickness=2].> chrislyonsdevarchlette.chrislyonsdevarchlette.CLI : "<color:#707070>Interacts with CLI"
-FileSystem .[#707070,thickness=2].> chrislyonsdevarchlette.chrislyonsdevarchlette.core : "<color:#707070>Interacts with core"
 @enduml

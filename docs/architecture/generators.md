@@ -77,7 +77,7 @@ Execute the generation stage
 
 **Parameters:**
 
-- `ctx`: <code>import("C:/Users/chris/git/archlette/src/core/types").PipelineContext</code>
+- `ctx`: <code>import("C:/Users/chris/git/archlette/src/core/types").PipelineContext</code> — - Pipeline context with configuration, logging, and validated IR
 
 ---
 ##### `structurizrGenerator()`
@@ -107,7 +107,7 @@ Generate Structurizr DSL from ArchletteIR
 
 **Parameters:**
 
-- `ir`: <code>z.infer<any></code>- `_node`: <code>any</code>
+- `ir`: <code>z.infer<any></code> — - The validated ArchletteIR to transform- `_node`: <code>any</code> — - Configuration node (unused but required by interface)
 
 ---
 ##### `generateAllActorRelationships()`
@@ -146,7 +146,7 @@ Structurizr automatically aggregates relationships in views:
 
 **Parameters:**
 
-- `ir`: <code>z.infer<any></code>
+- `ir`: <code>z.infer<any></code> — - The ArchletteIR containing actors and components
 
 ---
 ##### `generateModel()`
@@ -496,7 +496,7 @@ Example: "1-extract/index.ts::run" or "cli.ts::run"
 
 **Parameters:**
 
-- `code`: <code>z.infer<any></code>
+- `code`: <code>z.infer<any></code> — - The code item
 
 ---
 ##### `generateRelationship()`

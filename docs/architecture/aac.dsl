@@ -382,6 +382,11 @@ workspace "@chrislyons-dev/archlette" "Architecture-as-Code toolkit for automate
                     technology "function"
                     tags "Code"
                 }
+                C__Users_chris_git_archlette_src_validators_builtin_base_validator_ts_baseValidator = component "base-validator.ts::basevalidator" {
+                    description "Validates the IR against the Zod schema. Throws if invalid."
+                    technology "function"
+                    tags "Code"
+                }
 
                 # Component relationships
                 cli -> extractors "Analyzes source code to extract architecture components"
@@ -400,12 +405,6 @@ workspace "@chrislyons-dev/archlette" "Architecture-as-Code toolkit for automate
 
         # Actor interactions
         user -> cli "Interacts with CLI"
-        filesystem -> core "Interacts with core"
-        github_structurizr_repo -> core "Interacts with core"
-        github_plantuml_repo -> core "Interacts with core"
-        local_systems_unzip_utility -> core "Interacts with core"
-        file_system -> core "Interacts with core"
-        cli -> user "Interacts with User"
         core -> filesystem "Uses FileSystem for external system integration"
         core -> github_structurizr_repo "Uses Github Structurizr Repo for external system integration"
         core -> github_plantuml_repo "Uses Github PlantUML Repo for external system integration"
@@ -440,11 +439,6 @@ workspace "@chrislyons-dev/archlette" "Architecture-as-Code toolkit for automate
 
         component default_container "Components__chrislyons_dev_archlette" {
             include user
-            include filesystem
-            include github_structurizr_repo
-            include github_plantuml_repo
-            include local_systems_unzip_utility
-            include file_system
             include cli
             include extractors
             include validators
@@ -478,6 +472,7 @@ workspace "@chrislyons-dev/archlette" "Architecture-as-Code toolkit for automate
 
         component default_container "Classes_validators" {
             include C__Users_chris_git_archlette_src_2_validate_index_ts_run
+            include C__Users_chris_git_archlette_src_validators_builtin_base_validator_ts_baseValidator
             autoLayout
         }
 

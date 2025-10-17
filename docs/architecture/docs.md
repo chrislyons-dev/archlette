@@ -77,7 +77,7 @@ Execute the documentation stage
 
 **Parameters:**
 
-- `ctx`: <code>import("C:/Users/chris/git/archlette/src/core/types").PipelineContext</code>
+- `ctx`: <code>import("C:/Users/chris/git/archlette/src/core/types").PipelineContext</code> — - Pipeline context with configuration, logging, IR, and rendered diagrams
 
 ---
 ##### `markdownDocs()`
@@ -194,7 +194,7 @@ Find class diagrams for a specific component
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/docs/builtin/markdown-docs.ts:252</code></td>
+<td><code>C:/Users/chris/git/archlette/src/docs/builtin/markdown-docs.ts:256</code></td>
 </tr>
 </tbody>
 </table>

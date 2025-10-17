@@ -73,7 +73,7 @@ Aggregate multiple ArchletteIR objects into a single unified IR
 
 **Parameters:**
 
-- `irs`: <code>z.infer<any>[]</code>
+- `irs`: <code>z.infer<any>[]</code> — - Array of ArchletteIR objects to merge
 **Examples:**
 ```typescript
 
@@ -107,7 +107,7 @@ Deduplicate array of entities by their ID field
 
 **Parameters:**
 
-- `items`: <code>T[]</code>
+- `items`: <code>T[]</code> — - Array of entities with id property
 
 ---
 ##### `deduplicateByName()`
@@ -130,14 +130,14 @@ Deduplicate array of entities by their name field
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/1-extract/aggregator.ts:135</code></td>
+<td><code>C:/Users/chris/git/archlette/src/1-extract/aggregator.ts:137</code></td>
 </tr>
 </tbody>
 </table>
 
 **Parameters:**
 
-- `items`: <code>T[]</code>
+- `items`: <code>T[]</code> — - Array of entities with name property
 
 ---
 ##### `deduplicateRelationships()`
@@ -160,14 +160,14 @@ Deduplicate relationships by source+destination+stereotype combination
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/1-extract/aggregator.ts:175</code></td>
+<td><code>C:/Users/chris/git/archlette/src/1-extract/aggregator.ts:179</code></td>
 </tr>
 </tbody>
 </table>
 
 **Parameters:**
 
-- `relationships`: <code>z.infer<any>[]</code>
+- `relationships`: <code>z.infer<any>[]</code> — - Array of relationships to deduplicate
 
 ---
 ##### `createEmptyIR()`
@@ -190,7 +190,7 @@ Create an empty but valid ArchletteIR structure
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/1-extract/aggregator.ts:191</code></td>
+<td><code>C:/Users/chris/git/archlette/src/1-extract/aggregator.ts:195</code></td>
 </tr>
 </tbody>
 </table>
@@ -229,7 +229,7 @@ Execute the extraction stage
 
 **Parameters:**
 
-- `ctx`: <code>import("C:/Users/chris/git/archlette/src/core/types").PipelineContext</code>
+- `ctx`: <code>import("C:/Users/chris/git/archlette/src/core/types").PipelineContext</code> — - Pipeline context with configuration and logging
 
 ---
 ##### `basicNodeExtractor()`
@@ -263,7 +263,7 @@ Extract architecture information from a Node.js/TypeScript codebase
 
 **Parameters:**
 
-- `node`: <code>any</code>
+- `node`: <code>any</code> — - Configuration node with include/exclude patterns
 **Examples:**
 ```typescript
 

@@ -88,33 +88,39 @@ export function mapToIR(
         }
       }
 
-      // If an actor is declared in a component file, automatically create bidirectional relationship
-      // Actor → Component: The actor interacts with/uses the component
-      // Component → Actor: The component depends on/uses the actor
-      // This applies to both Person (users) and System (external systems) actors
+      // If an actor is declared in a component file, create relationships based on direction
+      // Direction controls relationship creation:
+      // - 'in': Actor → Component (actor uses/calls the component)
+      // - 'out': Component → Actor (component uses/calls the actor)
+      // - 'both': Bidirectional (both relationships created) - default
       if (componentId) {
         const actorData = actorsMap.get(actor.id);
+        const direction = actor.direction || 'both';
 
-        // Create actor → component relationship (stored in actor.targets)
-        if (actorData && !actorData.targets.includes(componentId)) {
-          actorData.targets.push(componentId);
+        // Create actor → component relationship if direction is 'in' or 'both'
+        if ((direction === 'in' || direction === 'both') && actorData) {
+          if (!actorData.targets.includes(componentId)) {
+            actorData.targets.push(componentId);
+          }
         }
 
-        // Create component → actor relationship (stored in componentRelationships)
-        const relationshipExists = componentRelationships.some(
-          (rel) => rel.source === componentId && rel.destination === actor.id,
-        );
-        if (!relationshipExists) {
-          const description =
-            actor.type === 'Person'
-              ? `Interacts with ${actor.name}`
-              : `Uses ${actor.name} for external system integration`;
-          componentRelationships.push({
-            source: componentId,
-            destination: actor.id,
-            description,
-            tags: [],
-          });
+        // Create component → actor relationship if direction is 'out' or 'both'
+        if (direction === 'out' || direction === 'both') {
+          const relationshipExists = componentRelationships.some(
+            (rel) => rel.source === componentId && rel.destination === actor.id,
+          );
+          if (!relationshipExists) {
+            const description =
+              actor.type === 'Person'
+                ? `Interacts with ${actor.name}`
+                : `Uses ${actor.name} for external system integration`;
+            componentRelationships.push({
+              source: componentId,
+              destination: actor.id,
+              description,
+              tags: [],
+            });
+          }
         }
       }
     }
