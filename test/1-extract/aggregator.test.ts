@@ -76,6 +76,58 @@ describe('aggregateIRs', () => {
     expect(result.actors[2].name).toBe('System');
   });
 
+  it('merges descriptions when deduplicating actors', () => {
+    const ir1: ArchletteIR = {
+      ...createTestIR('System1'),
+      actors: [
+        {
+          id: 'actor1',
+          name: 'User',
+          type: 'Person',
+          description: 'End user of the system',
+        },
+        {
+          id: 'actor2',
+          name: 'Admin',
+          type: 'Person',
+          description: 'System administrator',
+        },
+      ],
+    };
+
+    const ir2: ArchletteIR = {
+      ...createTestIR('System2'),
+      actors: [
+        {
+          id: 'actor1',
+          name: 'User',
+          type: 'Person',
+          description: 'Authenticated user with access privileges',
+        },
+      ],
+    };
+
+    const ir3: ArchletteIR = {
+      ...createTestIR('System3'),
+      actors: [
+        {
+          id: 'actor1',
+          name: 'User',
+          type: 'Person',
+          description: 'End user of the system', // Duplicate description, should not be added
+        },
+      ],
+    };
+
+    const result = aggregateIRs([ir1, ir2, ir3]);
+
+    expect(result.actors).toHaveLength(2);
+    expect(result.actors[0].description).toBe(
+      'End user of the system | Authenticated user with access privileges',
+    );
+    expect(result.actors[1].description).toBe('System administrator');
+  });
+
   it('deduplicates containers by ID', () => {
     const ir1: ArchletteIR = {
       ...createTestIR('System1'),

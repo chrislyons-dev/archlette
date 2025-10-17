@@ -8,16 +8,32 @@ graph TB
     style 1 fill:#dddddd,stroke:#9a9a9a,color:#000000
     2["<div style='font-weight: bold'>FileSystem</div><div style='font-size: 70%; margin-top: 0px'>[Software System]</div><div style='font-size: 80%; margin-top:10px'>File system for reading and<br />writing files</div>"]
     style 2 fill:#dddddd,stroke:#9a9a9a,color:#000000
+    3["<div style='font-weight: bold'>Github Structurizr Repo</div><div style='font-size: 70%; margin-top: 0px'>[Software System]</div><div style='font-size: 80%; margin-top:10px'>The github repo hosting the<br />Structurizr CLI releases.<br />https://github.com/structurizr/cli/releases/download/v${TOOL_VERSIONS.structurizr}/structurizr-cli.zip</div>"]
+    style 3 fill:#dddddd,stroke:#9a9a9a,color:#000000
+    4["<div style='font-weight: bold'>Github PlantUML Repo</div><div style='font-size: 70%; margin-top: 0px'>[Software System]</div><div style='font-size: 80%; margin-top:10px'>The github repo hosting the<br />PlantUML CLI releases.<br />https://github.com/plantuml/plantuml/releases/download/v${TOOL_VERSIONS.plantuml}/plantuml-${TOOL_VERSIONS.plantuml}.jar</div>"]
+    style 4 fill:#dddddd,stroke:#9a9a9a,color:#000000
+    5["<div style='font-weight: bold'>Local System's unzip utility</div><div style='font-size: 70%; margin-top: 0px'>[Software System]</div><div style='font-size: 80%; margin-top:10px'>The zip extraction utility on<br />the local system (unzip on<br />Unix, Expand-Archive on<br />Windows).</div>"]
+    style 5 fill:#dddddd,stroke:#9a9a9a,color:#000000
+    6["<div style='font-weight: bold'>File System</div><div style='font-size: 70%; margin-top: 0px'>[Software System]</div><div style='font-size: 80%; margin-top:10px'>The local file system for<br />caching downloaded tools.</div>"]
+    style 6 fill:#dddddd,stroke:#9a9a9a,color:#000000
 
-    subgraph 3 ["@chrislyons-dev/archlette"]
-      style 3 fill:#ffffff,stroke:#9a9a9a,color:#9a9a9a
+    subgraph 7 ["@chrislyons-dev/archlette"]
+      style 7 fill:#ffffff,stroke:#9a9a9a,color:#9a9a9a
 
-      4["<div style='font-weight: bold'>@chrislyons-dev/archlette</div><div style='font-size: 70%; margin-top: 0px'>[Container: Application]</div><div style='font-size: 80%; margin-top:10px'>Architecture-as-Code toolkit<br />for automated diagrams, docs,<br />and releases.</div>"]
-      style 4 fill:#dddddd,stroke:#9a9a9a,color:#000000
+      8["<div style='font-weight: bold'>@chrislyons-dev/archlette</div><div style='font-size: 70%; margin-top: 0px'>[Container: Application]</div><div style='font-size: 80%; margin-top:10px'>Architecture-as-Code toolkit<br />for automated diagrams, docs,<br />and releases.</div>"]
+      style 8 fill:#dddddd,stroke:#9a9a9a,color:#000000
     end
 
-    4-. "<div>Uses FileSystem for external<br />system integration</div><div style='font-size: 70%'></div>" .->2
-    1-. "<div>Interacts with CLI</div><div style='font-size: 70%'></div>" .->4
-    2-. "<div>Interacts with core</div><div style='font-size: 70%'></div>" .->4
-    4-. "<div>Interacts with User</div><div style='font-size: 70%'></div>" .->1
+    3-. "<div>Interacts with core</div><div style='font-size: 70%'></div>" .->8
+    4-. "<div>Interacts with core</div><div style='font-size: 70%'></div>" .->8
+    5-. "<div>Interacts with core</div><div style='font-size: 70%'></div>" .->8
+    6-. "<div>Interacts with core</div><div style='font-size: 70%'></div>" .->8
+    8-. "<div>Interacts with User</div><div style='font-size: 70%'></div>" .->1
+    8-. "<div>Uses FileSystem for external<br />system integration</div><div style='font-size: 70%'></div>" .->2
+    8-. "<div>Uses Github Structurizr Repo<br />for external system<br />integration</div><div style='font-size: 70%'></div>" .->3
+    8-. "<div>Uses Github PlantUML Repo for<br />external system integration</div><div style='font-size: 70%'></div>" .->4
+    8-. "<div>Uses Local System's unzip<br />utility for external system<br />integration</div><div style='font-size: 70%'></div>" .->5
+    8-. "<div>Uses File System for external<br />system integration</div><div style='font-size: 70%'></div>" .->6
+    1-. "<div>Interacts with CLI</div><div style='font-size: 70%'></div>" .->8
+    2-. "<div>Interacts with core</div><div style='font-size: 70%'></div>" .->8
   end

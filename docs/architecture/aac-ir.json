@@ -25,6 +25,46 @@
       "targets": [
         "core"
       ]
+    },
+    {
+      "description": "The github repo hosting the Structurizr CLI releases. https://github.com/structurizr/cli/releases/download/v${TOOL_VERSIONS.structurizr}/structurizr-cli.zip",
+      "tags": [],
+      "id": "github-structurizr-repo",
+      "name": "Github Structurizr Repo",
+      "type": "System",
+      "targets": [
+        "core"
+      ]
+    },
+    {
+      "description": "The github repo hosting the PlantUML CLI releases. https://github.com/plantuml/plantuml/releases/download/v${TOOL_VERSIONS.plantuml}/plantuml-${TOOL_VERSIONS.plantuml}.jar",
+      "tags": [],
+      "id": "github-plantuml-repo",
+      "name": "Github PlantUML Repo",
+      "type": "System",
+      "targets": [
+        "core"
+      ]
+    },
+    {
+      "description": "The zip extraction utility on the local system (unzip on Unix, Expand-Archive on Windows).",
+      "tags": [],
+      "id": "local-systems-unzip-utility",
+      "name": "Local System's unzip utility",
+      "type": "System",
+      "targets": [
+        "core"
+      ]
+    },
+    {
+      "description": "The local file system for caching downloaded tools.",
+      "tags": [],
+      "id": "file-system",
+      "name": "File System",
+      "type": "System",
+      "targets": [
+        "core"
+      ]
     }
   ],
   "containers": [
@@ -48,42 +88,42 @@
       "type": "module"
     },
     {
-      "description": "ArchletteIR aggregation utilities",
+      "description": "ArchletteIR aggregation utilities | Extraction stage of the AAC pipeline | TypeScript/JavaScript code extractor",
       "id": "extractors",
       "containerId": "default-container",
       "name": "extractors",
       "type": "module"
     },
     {
-      "description": "Validation stage of the AAC pipeline",
+      "description": "Validation stage of the AAC pipeline | Base IR validator for Archlette pipeline",
       "id": "validators",
       "containerId": "default-container",
       "name": "validators",
       "type": "module"
     },
     {
-      "description": "Generation stage of the AAC pipeline",
+      "description": "Generation stage of the AAC pipeline | Structurizr DSL Generator",
       "id": "generators",
       "containerId": "default-container",
       "name": "generators",
       "type": "module"
     },
     {
-      "description": "Render stage of the AAC pipeline",
+      "description": "Render stage of the AAC pipeline | PlantUML image renderer | Structurizr DSL export renderer",
       "id": "renderers",
       "containerId": "default-container",
       "name": "renderers",
       "type": "module"
     },
     {
-      "description": "Documentation stage of the AAC pipeline",
+      "description": "Documentation stage of the AAC pipeline | Markdown documentation generator",
       "id": "docs",
       "containerId": "default-container",
       "name": "docs",
       "type": "module"
     },
     {
-      "description": "",
+      "description": "Dynamic ESM module loader | Stage module interfaces for the AAC pipeline | Stage module loaders | Tool management for external rendering tools | Architecture-as-Code (AAC) configuration types and schemas | Archlette Intermediate Representation (IR) types and schemas | Core pipeline types",
       "id": "core",
       "containerId": "default-container",
       "name": "core",
@@ -218,10 +258,13 @@
       "name": "deduplicateById",
       "type": "function",
       "documentation": {
-        "summary": "Deduplicate array of entities by their ID field"
+        "summary": "Deduplicate array of entities by their ID field",
+        "remarks": [
+          "When duplicate IDs are found, their descriptions are concatenated with ' | ' separator.\nDuplicate descriptions are automatically filtered out."
+        ]
       },
       "returnType": "T[]",
-      "returnDescription": "Array with duplicates removed (first occurrence preserved)",
+      "returnDescription": "Array with duplicates removed (first occurrence preserved, descriptions merged)",
       "parameters": [
         {
           "name": "items",
@@ -232,7 +275,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/1-extract/aggregator.ts",
-      "lineNumber": 95
+      "lineNumber": 99
     },
     {
       "description": "Deduplicate array of entities by their name field",
@@ -241,10 +284,13 @@
       "name": "deduplicateByName",
       "type": "function",
       "documentation": {
-        "summary": "Deduplicate array of entities by their name field"
+        "summary": "Deduplicate array of entities by their name field",
+        "remarks": [
+          "When duplicate names are found, their descriptions are concatenated with ' | ' separator.\nDuplicate descriptions are automatically filtered out."
+        ]
       },
       "returnType": "T[]",
-      "returnDescription": "Array with duplicates removed (first occurrence preserved)",
+      "returnDescription": "Array with duplicates removed (first occurrence preserved, descriptions merged)",
       "parameters": [
         {
           "name": "items",
@@ -255,7 +301,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/1-extract/aggregator.ts",
-      "lineNumber": 111
+      "lineNumber": 135
     },
     {
       "description": "Deduplicate relationships by source+destination+stereotype combination",
@@ -281,7 +327,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/1-extract/aggregator.ts",
-      "lineNumber": 135
+      "lineNumber": 175
     },
     {
       "description": "Create an empty but valid ArchletteIR structure",
@@ -298,7 +344,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/1-extract/aggregator.ts",
-      "lineNumber": 151
+      "lineNumber": 191
     },
     {
       "description": "Execute the extraction stage",
@@ -806,7 +852,7 @@
       "visibility": "public",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/core/tool-manager.ts",
-      "lineNumber": 59
+      "lineNumber": 64
     },
     {
       "description": "Ensure cache directory exists",
@@ -822,7 +868,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/core/tool-manager.ts",
-      "lineNumber": 67
+      "lineNumber": 72
     },
     {
       "description": "Check if a command exists in PATH",
@@ -844,7 +890,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/core/tool-manager.ts",
-      "lineNumber": 78
+      "lineNumber": 83
     },
     {
       "description": "Download a file from URL to destination",
@@ -876,7 +922,7 @@
       "visibility": "private",
       "isAsync": true,
       "filePath": "C:/Users/chris/git/archlette/src/core/tool-manager.ts",
-      "lineNumber": 97
+      "lineNumber": 102
     },
     {
       "description": "Extract a ZIP file (simple extraction for Structurizr CLI)",
@@ -908,7 +954,7 @@
       "visibility": "private",
       "isAsync": true,
       "filePath": "C:/Users/chris/git/archlette/src/core/tool-manager.ts",
-      "lineNumber": 139
+      "lineNumber": 144
     },
     {
       "description": "Make file executable (Unix only)",
@@ -930,7 +976,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/core/tool-manager.ts",
-      "lineNumber": 166
+      "lineNumber": 171
     },
     {
       "description": "Download and install Structurizr CLI to cache",
@@ -957,7 +1003,7 @@
       "visibility": "private",
       "isAsync": true,
       "filePath": "C:/Users/chris/git/archlette/src/core/tool-manager.ts",
-      "lineNumber": 175
+      "lineNumber": 180
     },
     {
       "description": "Download and install PlantUML to cache",
@@ -984,7 +1030,7 @@
       "visibility": "private",
       "isAsync": true,
       "filePath": "C:/Users/chris/git/archlette/src/core/tool-manager.ts",
-      "lineNumber": 213
+      "lineNumber": 218
     },
     {
       "description": "Find or download Structurizr CLI",
@@ -1007,7 +1053,7 @@
       "visibility": "public",
       "isAsync": true,
       "filePath": "C:/Users/chris/git/archlette/src/core/tool-manager.ts",
-      "lineNumber": 239
+      "lineNumber": 244
     },
     {
       "description": "Find or download PlantUML JAR",
@@ -1030,7 +1076,7 @@
       "visibility": "public",
       "isAsync": true,
       "filePath": "C:/Users/chris/git/archlette/src/core/tool-manager.ts",
-      "lineNumber": 279
+      "lineNumber": 284
     },
     {
       "description": "Verify Java is available",
@@ -1047,7 +1093,7 @@
       "visibility": "public",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/core/tool-manager.ts",
-      "lineNumber": 308
+      "lineNumber": 313
     },
     {
       "description": "Validate Java is installed (throw if not)",
@@ -1063,7 +1109,7 @@
       "visibility": "public",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/core/tool-manager.ts",
-      "lineNumber": 329
+      "lineNumber": 334
     },
     {
       "description": "For each stage, resolve includes/excludes for each node:\n  - If node omits includes/excludes, inherit from defaults.",
@@ -2424,7 +2470,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts",
-      "lineNumber": 183
+      "lineNumber": 222
     },
     {
       "description": "Map a function to a CodeItem",
@@ -2455,7 +2501,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts",
-      "lineNumber": 197
+      "lineNumber": 236
     },
     {
       "description": "Map a class to a CodeItem",
@@ -2486,7 +2532,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts",
-      "lineNumber": 225
+      "lineNumber": 264
     },
     {
       "description": "Map a class method to a CodeItem",
@@ -2522,7 +2568,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts",
-      "lineNumber": 254
+      "lineNumber": 293
     },
     {
       "description": "Map imports to relationships",
@@ -2548,7 +2594,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts",
-      "lineNumber": 288
+      "lineNumber": 327
     },
     {
       "description": "Generate a unique ID for a code element\nFormat: filePath:symbolName",
@@ -2574,7 +2620,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts",
-      "lineNumber": 311
+      "lineNumber": 350
     },
     {
       "description": "Get default system info from package.json if available",
@@ -2589,7 +2635,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts",
-      "lineNumber": 320
+      "lineNumber": 359
     }
   ],
   "deployments": [],
@@ -2666,6 +2712,30 @@
       "tags": [],
       "source": "core",
       "destination": "filesystem"
+    },
+    {
+      "description": "Uses Github Structurizr Repo for external system integration",
+      "tags": [],
+      "source": "core",
+      "destination": "github-structurizr-repo"
+    },
+    {
+      "description": "Uses Github PlantUML Repo for external system integration",
+      "tags": [],
+      "source": "core",
+      "destination": "github-plantuml-repo"
+    },
+    {
+      "description": "Uses Local System's unzip utility for external system integration",
+      "tags": [],
+      "source": "core",
+      "destination": "local-systems-unzip-utility"
+    },
+    {
+      "description": "Uses File System for external system integration",
+      "tags": [],
+      "source": "core",
+      "destination": "file-system"
     }
   ],
   "codeRelationships": [

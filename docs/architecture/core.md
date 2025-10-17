@@ -16,6 +16,10 @@
 <td><strong>Type</strong></td>
 <td><code>module</code></td>
 </tr>
+<tr>
+<td><strong>Description</strong></td>
+<td>Dynamic ESM module loader | Stage module interfaces for the AAC pipeline | Stage module loaders | Tool management for external rendering tools | Architecture-as-Code (AAC) configuration types and schemas | Archlette Intermediate Representation (IR) types and schemas | Core pipeline types</td>
+</tr>
 </tbody>
 </table>
 
@@ -23,7 +27,6 @@
 
 ## 🏗️ Component Architecture
 
-![Component Diagram](./diagrams/structurizr-Components__chrislyons_dev_archlette-key.png)
 ![Component Diagram](./diagrams/structurizr-Components__chrislyons_dev_archlette.png)
 
 ---
@@ -32,7 +35,6 @@
 
 ### Class Diagram
 
-![Class Diagram](./diagrams/structurizr-Classes_core-key.png)
 ![Class Diagram](./diagrams/structurizr-Classes_core.png)
 
 ### Code Elements
@@ -575,7 +577,7 @@ Get the Archlette cache directory
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/core/tool-manager.ts:59</code></td>
+<td><code>C:/Users/chris/git/archlette/src/core/tool-manager.ts:64</code></td>
 </tr>
 </tbody>
 </table>
@@ -603,7 +605,7 @@ Ensure cache directory exists
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/core/tool-manager.ts:67</code></td>
+<td><code>C:/Users/chris/git/archlette/src/core/tool-manager.ts:72</code></td>
 </tr>
 </tbody>
 </table>
@@ -631,7 +633,7 @@ Check if a command exists in PATH
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/core/tool-manager.ts:78</code></td>
+<td><code>C:/Users/chris/git/archlette/src/core/tool-manager.ts:83</code></td>
 </tr>
 </tbody>
 </table>
@@ -665,7 +667,7 @@ Download a file from URL to destination
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/core/tool-manager.ts:97</code></td>
+<td><code>C:/Users/chris/git/archlette/src/core/tool-manager.ts:102</code></td>
 </tr>
 </tbody>
 </table>
@@ -699,7 +701,7 @@ Extract a ZIP file (simple extraction for Structurizr CLI)
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/core/tool-manager.ts:139</code></td>
+<td><code>C:/Users/chris/git/archlette/src/core/tool-manager.ts:144</code></td>
 </tr>
 </tbody>
 </table>
@@ -729,7 +731,7 @@ Make file executable (Unix only)
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/core/tool-manager.ts:166</code></td>
+<td><code>C:/Users/chris/git/archlette/src/core/tool-manager.ts:171</code></td>
 </tr>
 </tbody>
 </table>
@@ -763,7 +765,7 @@ Download and install Structurizr CLI to cache
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/core/tool-manager.ts:175</code></td>
+<td><code>C:/Users/chris/git/archlette/src/core/tool-manager.ts:180</code></td>
 </tr>
 </tbody>
 </table>
@@ -797,7 +799,7 @@ Download and install PlantUML to cache
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/core/tool-manager.ts:213</code></td>
+<td><code>C:/Users/chris/git/archlette/src/core/tool-manager.ts:218</code></td>
 </tr>
 </tbody>
 </table>
@@ -831,7 +833,7 @@ Find or download Structurizr CLI
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/core/tool-manager.ts:239</code></td>
+<td><code>C:/Users/chris/git/archlette/src/core/tool-manager.ts:244</code></td>
 </tr>
 </tbody>
 </table>
@@ -865,7 +867,7 @@ Find or download PlantUML JAR
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/core/tool-manager.ts:279</code></td>
+<td><code>C:/Users/chris/git/archlette/src/core/tool-manager.ts:284</code></td>
 </tr>
 </tbody>
 </table>
@@ -895,7 +897,7 @@ Verify Java is available
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/core/tool-manager.ts:308</code></td>
+<td><code>C:/Users/chris/git/archlette/src/core/tool-manager.ts:313</code></td>
 </tr>
 </tbody>
 </table>
@@ -923,7 +925,7 @@ Validate Java is installed (throw if not)
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/core/tool-manager.ts:329</code></td>
+<td><code>C:/Users/chris/git/archlette/src/core/tool-manager.ts:334</code></td>
 </tr>
 </tbody>
 </table>

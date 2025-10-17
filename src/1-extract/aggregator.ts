@@ -90,15 +90,37 @@ export function aggregateIRs(irs: ArchletteIR[]): ArchletteIR {
  * Deduplicate array of entities by their ID field
  *
  * @param items - Array of entities with id property
- * @returns Array with duplicates removed (first occurrence preserved)
+ * @returns Array with duplicates removed (first occurrence preserved, descriptions merged)
+ *
+ * @remarks
+ * When duplicate IDs are found, their descriptions are concatenated with ' | ' separator.
+ * Duplicate descriptions are automatically filtered out.
  */
-function deduplicateById<T extends { id: string }>(items: T[]): T[] {
+function deduplicateById<T extends { id: string; description?: string }>(
+  items: T[],
+): T[] {
   const seen = new Map<string, T>();
+  const descriptions = new Map<string, Set<string>>();
+
   for (const item of items) {
     if (!seen.has(item.id)) {
       seen.set(item.id, item);
+      descriptions.set(item.id, new Set(item.description ? [item.description] : []));
+    } else {
+      if (item.description) {
+        descriptions.get(item.id)!.add(item.description);
+      }
     }
   }
+
+  // Merge unique descriptions
+  for (const [id, item] of seen.entries()) {
+    const uniqueDescriptions = Array.from(descriptions.get(id) || []);
+    if (uniqueDescriptions.length > 1) {
+      item.description = uniqueDescriptions.join(' | ');
+    }
+  }
+
   return Array.from(seen.values());
 }
 
@@ -106,15 +128,37 @@ function deduplicateById<T extends { id: string }>(items: T[]): T[] {
  * Deduplicate array of entities by their name field
  *
  * @param items - Array of entities with name property
- * @returns Array with duplicates removed (first occurrence preserved)
+ * @returns Array with duplicates removed (first occurrence preserved, descriptions merged)
+ *
+ * @remarks
+ * When duplicate names are found, their descriptions are concatenated with ' | ' separator.
+ * Duplicate descriptions are automatically filtered out.
  */
-function deduplicateByName<T extends { name: string }>(items: T[]): T[] {
+function deduplicateByName<T extends { name: string; description?: string }>(
+  items: T[],
+): T[] {
   const seen = new Map<string, T>();
+  const descriptions = new Map<string, Set<string>>();
+
   for (const item of items) {
     if (!seen.has(item.name)) {
       seen.set(item.name, item);
+      descriptions.set(item.name, new Set(item.description ? [item.description] : []));
+    } else {
+      if (item.description) {
+        descriptions.get(item.name)!.add(item.description);
+      }
     }
   }
+
+  // Merge unique descriptions
+  for (const [name, item] of seen.entries()) {
+    const uniqueDescriptions = Array.from(descriptions.get(name) || []);
+    if (uniqueDescriptions.length > 1) {
+      item.description = uniqueDescriptions.join(' | ');
+    }
+  }
+
   return Array.from(seen.values());
 }
 

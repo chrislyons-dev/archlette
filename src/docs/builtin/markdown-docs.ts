@@ -204,7 +204,7 @@ function findDiagramsForView(
     if (output.format === 'png') {
       for (const file of output.files) {
         const filename = path.basename(file, '.png');
-        if (filename.includes(viewType)) {
+        if (filename.includes(viewType) && !filename.includes('-key')) {
           const fullPath = path.join(diagramsDir, file);
           if (fs.existsSync(fullPath)) {
             diagrams.push(path.relative(docsDir, fullPath));
@@ -233,7 +233,11 @@ function findDiagramsForComponent(
       for (const file of output.files) {
         const filename = path.basename(file, '.png');
         // Look for component view diagrams that might include this component
-        if (filename.includes('Component') && !filename.includes('Classes')) {
+        if (
+          filename.includes('Component') &&
+          !filename.includes('Classes') &&
+          !filename.includes('-key')
+        ) {
           const fullPath = path.join(diagramsDir, file);
           if (fs.existsSync(fullPath)) {
             diagrams.push(path.relative(docsDir, fullPath));
@@ -265,7 +269,8 @@ function findClassDiagramsForComponent(
         // Format: Container-{containerId}-Component-{componentId}-Classes
         if (
           filename.includes('Classes') &&
-          filename.includes(component.id.replace(/-/g, ''))
+          filename.includes(component.id.replace(/-/g, '')) &&
+          !filename.includes('-key')
         ) {
           const fullPath = path.join(diagramsDir, file);
           if (fs.existsSync(fullPath)) {

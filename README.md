@@ -16,12 +16,15 @@ A repo-agnostic, drop-in toolkit to generate and publish architecture docs (C4 d
 ## ✨ Features
 
 - **Plugin-based pipeline** with five stages:
-  1. **extract** (build IR), 2) **validate** (IR schema & rules),
-  2. **dsl** (generate Structurizr DSL), 4) **images** (export SVG/PNG),
-  3. **docs** (write index/pages).
+  1. **extract** build an intermediate representation (IR) of the system
+  2. **validate** validates the IR schema & rules
+  3. **generate** generates Structurizr DSL from the IR
+  4. **render** export Mermaid/PUML and SVG/PNG
+  5. **docs** write index/pages
 - **Composable plugins per stage**: built-ins plus user-provided modules.
-- **Intermediate Representation (IR)** at `.archlette/ir.json`.
-- **Structurizr DSL as the view layer** (stable layouts, C4 semantics); Mermaid/PUML export supported via tools.
+- **Intermediate Representation (IR)** in a JSON format
+- **Structurizr DSL as the view layer** providing stable layouts and C4 semantics
+- **Produces document-friendly visual representations of the architecture** Mermaid/PUML and PNG exports supported via tools.
 - **Repo-agnostic CI/CD** templates and docs site publishing.
 
 ---
@@ -31,16 +34,14 @@ A repo-agnostic, drop-in toolkit to generate and publish architecture docs (C4 d
 ```bash
 git clone <this-repo>
 npm ci
-npm run aac:init
-npm run aac:gen
+npm run aac:all
 ```
 
 Or install from npm in another project:
 
 ```bash
 npm i -D @chrislyons-dev/archlette
-npx archlette init
-npx archlette generate
+npx archlette all
 ```
 
 ---
@@ -50,48 +51,41 @@ npx archlette generate
 Archlette loads `aac.yaml` from the repo root and runs each stage as a chain of plugins.
 
 ```yaml
+# Default AAC YAML configuration
+# (Add your default config values here)
 project: { name: Archlette }
 
-ir: { path: .archlette/ir.json, publish_copy: true }
-docs: { out_dir: docs/architecture }
+paths:
+  ir_out: ../docs/architecture/aac-ir.json
+  dsl_out: ../docs/architecture/aac.dsl
+  render_out: ../docs/architecture/diagrams
+  docs_out: ../docs/architecture
 
+# config yaml in, ir json out
 extractors:
-  - use: builtin/terraform
-    inputs: { include: ['iac/**'] }
-  - use: builtin/code-annotations
-    inputs:
-      include: ['services/**', 'apps/**', '**/*.{ts,js,py}']
-      annotations: ['@service', '@component', '@depends_on']
-  - use: builtin/openapi
-    inputs:
-      include: ['apis/**/openapi*.{yml,yaml,json}']
-      container_hint: 'container:api'
+  # each extractor receives the specified inputs and produces ir json
+  - use: ./extractors/builtin/basic-node
+    inputs: { include: ['src/**/*.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'] }
 
+# ir json in, ir json out (or errors)
 validators:
-  - use: builtin/schema
-  # - use: ./plugins/validators/no-dangling.js   # example custom rule
+  - use: validators/builtin/base-validator
 
+# ir json in, dsl out
 generators:
-  - use: builtin/structurizr
-    inputs:
-      out_dir: build/structurizr
-      views: ['C1', 'C2', 'C3']
-      autolayout: { direction: lr, rankSeparation: 200 }
-      styles:
-        api: { background: '#e3f2fd', color: '#0d47a1', shape: 'RoundedBox' }
-        infra: { background: '#f3e5f5', color: '#4a148c', shape: 'Hexagon' }
+  - use: generators/builtin/structurizr
 
+# dsl in, images out
+# Renderers run sequentially - order matters!
+# 1. Export DSL to PlantUML/Mermaid
+# 2. Render PlantUML to PNG images
 renderers:
-  - use: builtin/structurizr-cli
-    inputs:
-      in: build/structurizr/workspace.dsl
-      out_dir: docs/architecture/structurizr
-      formats: ['svg']
-      cli: structurizr
+  - use: renderers/builtin/structurizr-export
+  - use: renderers/builtin/plantuml-render
 
+# dsl & images in, docs out
 docs:
-  - use: builtin/index
-    inputs: { out_dir: docs/architecture }
+  - use: docs/builtin/markdown-docs
 ```
 
 ---
@@ -135,103 +129,23 @@ docs:
 ## 🧰 CLI
 
 ```
-archlette init
-archlette generate              # extract → validate → dsl → images → docs
-archlette extract               # just build IR
-archlette validate              # Ajv + custom rules
-archlette dsl                   # IR → Structurizr DSL
-archlette images                # DSL → SVG/PNG (Structurizr CLI)
-archlette docs                  # write docs index
+archlette extract: create the interim representation
+archlette val: extract and validate
+archlette gen: extract, validate, and generate the Structurizr DSL
+archlette render: extract, validate, generate, and render images
+archlette docs: run the whole pipeline
+archlette all: run the whole pipeline
 ```
 
 Flags: `--config <path>`, `--base-dir <dir>`, `--ir-only` (for `generate`), `--quiet`, `--verbose`.
 
 ---
 
-## 🧪 Tests
-
-An integration fixture runs the full pipeline in isolation:
-
-```
-tests/integration/archlette-minimal/
-├─ aac.yaml
-├─ iac/main.tf
-├─ services/bond/index.ts
-├─ apps/worker/handler.py
-├─ apis/bond-api/openapi.yaml
-├─ docs/architecture/
-└─ archlette.integration.spec.js
-```
-
-- builds `.archlette/ir.json`
-- generates `workspace.dsl` + SVGs
-- asserts files exist
-
-```bash
-npm test
-```
-
----
-
 ## 🧩 Extending Archlette (plugins)
 
 All plugins are ESM modules that export `run(ctx)`.
-The **context** gives you helpers to read/write files, glob, and shell out:
 
-```ts
-type ArchletteCtx = {
-  repoRoot: string;
-  cfg: any;
-  paths: { ir: string; build: string; docsOut: string };
-  artifacts: Map<string, unknown>;
-  log: (...args: any[]) => void;
-  readFile(path: string): Promise<string>;
-  writeFile(path: string, text: string): Promise<void>;
-  glob(patterns: string[]): Promise<string[]>;
-  sh(cmd: string, args?: string[], opts?: object): Promise<void>;
-  inputs?: Record<string, unknown>; // per-plugin inputs from aac.yaml
-};
-```
-
-**Examples**
-
-- **Validator** (no dangling edges):
-
-```js
-// plugins/validators/no-dangling.js
-export async function run(ctx) {
-  const ir = JSON.parse(await ctx.readFile(ctx.paths.ir));
-  const ids = new Set(ir.entities.map((e) => e.id));
-  const bad = (ir.relations || []).filter((r) => !ids.has(r.from) || !ids.has(r.to));
-  return bad.length
-    ? {
-        ok: false,
-        errors: bad.map((b) => ({ message: `dangling: ${b.from} -> ${b.to}` })),
-      }
-    : { ok: true };
-}
-```
-
-- **Docs writer** (simple gallery):
-
-```js
-// plugins/docs/gallery.js
-import path from 'node:path';
-export async function run(ctx) {
-  const out = ctx.inputs?.out_dir || ctx.paths.docsOut;
-  const imgs = await ctx.glob([path.join(out, '**/*.svg'), path.join(out, '**/*.png')]);
-  const rel = (p) => p.replace(out + path.sep, '').replace(out + '/', '');
-  const md = [
-    '# Architecture',
-    '',
-    `- [IR](./${path.relative(out, ctx.paths.ir).replace(/\\/g, '/')})`,
-    '',
-    ...imgs.map((p) => `![](${rel(p).replace(/\\/g, '/')})`),
-  ].join('\n');
-  await ctx.writeFile(path.join(out, 'index.md'), md);
-  return { files: [path.join(out, 'index.md')] };
-}
-```
+**TODO**: Describe the ESM modules for various stages
 
 ---
 

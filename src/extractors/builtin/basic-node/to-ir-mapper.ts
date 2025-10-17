@@ -36,6 +36,8 @@ export function mapToIR(
   const relationships: Relationship[] = [];
   const componentsMap = new Map<string, Component>();
   const actorsMap = new Map<string, any>();
+  const actorDescriptions = new Map<string, Set<string>>();
+  const componentDescriptions = new Map<string, Set<string>>();
   const componentRelationships: Relationship[] = [];
 
   // Extract code items, actors, and relationships from all files
@@ -43,14 +45,25 @@ export function mapToIR(
     const componentId = file.component?.id;
 
     // Register component if found
-    if (file.component && !componentsMap.has(file.component.id)) {
-      componentsMap.set(file.component.id, {
-        id: file.component.id,
-        containerId: '', // Will be filled by IaC extractors or validators
-        name: file.component.name,
-        type: 'module',
-        description: file.component.description,
-      });
+    if (file.component) {
+      if (!componentsMap.has(file.component.id)) {
+        componentsMap.set(file.component.id, {
+          id: file.component.id,
+          containerId: '', // Will be filled by IaC extractors or validators
+          name: file.component.name,
+          type: 'module',
+          description: file.component.description,
+        });
+        componentDescriptions.set(
+          file.component.id,
+          new Set(file.component.description ? [file.component.description] : []),
+        );
+      } else {
+        // Merge descriptions for duplicate components
+        if (file.component.description) {
+          componentDescriptions.get(file.component.id)!.add(file.component.description);
+        }
+      }
     }
 
     // Register actors if found
@@ -64,6 +77,15 @@ export function mapToIR(
           tags: [],
           targets: [], // Relationships will be populated below
         });
+        actorDescriptions.set(
+          actor.id,
+          new Set(actor.description ? [actor.description] : []),
+        );
+      } else {
+        // Merge descriptions for duplicate actors
+        if (actor.description) {
+          actorDescriptions.get(actor.id)!.add(actor.description);
+        }
       }
 
       // If an actor is declared in a component file, automatically create bidirectional relationship
@@ -139,6 +161,25 @@ export function mapToIR(
   const components = Array.from(componentsMap.values());
   const containers = [];
 
+  // Merge component descriptions
+  for (const component of components) {
+    const uniqueDescriptions = Array.from(
+      componentDescriptions.get(component.id) || [],
+    );
+    if (uniqueDescriptions.length > 1) {
+      component.description = uniqueDescriptions.join(' | ');
+    }
+  }
+
+  // Merge actor descriptions
+  const actors = Array.from(actorsMap.values());
+  for (const actor of actors) {
+    const uniqueDescriptions = Array.from(actorDescriptions.get(actor.id) || []);
+    if (uniqueDescriptions.length > 1) {
+      actor.description = uniqueDescriptions.join(' | ');
+    }
+  }
+
   // If we have components but no containers, create a default container
   // This handles the common case of a single application/service
   if (components.length > 0 && containers.length === 0) {
@@ -164,7 +205,7 @@ export function mapToIR(
   return {
     version: IR_VERSION,
     system,
-    actors: Array.from(actorsMap.values()),
+    actors,
     containers,
     components,
     code: codeItems,

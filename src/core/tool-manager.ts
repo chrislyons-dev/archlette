@@ -9,6 +9,11 @@
  * 3. Auto-download to cache on first use
  *
  * Requires Java runtime to be installed (documented separately).
+ *
+ * @actor Github Structurizr Repo {System} The github repo hosting the Structurizr CLI releases. https://github.com/structurizr/cli/releases/download/v${TOOL_VERSIONS.structurizr}/structurizr-cli.zip
+ * @actor Github PlantUML Repo {System} The github repo hosting the PlantUML CLI releases. https://github.com/plantuml/plantuml/releases/download/v${TOOL_VERSIONS.plantuml}/plantuml-${TOOL_VERSIONS.plantuml}.jar
+ * @actor Local System's unzip utility {System} The zip extraction utility on the local system (unzip on Unix, Expand-Archive on Windows).
+ * @actor File System {System} The local file system for caching downloaded tools.
  */
 
 import * as fs from 'node:fs';

@@ -18,7 +18,7 @@
 </tr>
 <tr>
 <td><strong>Description</strong></td>
-<td>Generation stage of the AAC pipeline</td>
+<td>Generation stage of the AAC pipeline | Structurizr DSL Generator</td>
 </tr>
 </tbody>
 </table>
@@ -27,7 +27,6 @@
 
 ## 🏗️ Component Architecture
 
-![Component Diagram](./diagrams/structurizr-Components__chrislyons_dev_archlette-key.png)
 ![Component Diagram](./diagrams/structurizr-Components__chrislyons_dev_archlette.png)
 
 ---
@@ -36,7 +35,6 @@
 
 ### Class Diagram
 
-![Class Diagram](./diagrams/structurizr-Classes_generators-key.png)
 ![Class Diagram](./diagrams/structurizr-Classes_generators.png)
 
 ### Code Elements

@@ -18,7 +18,7 @@
 </tr>
 <tr>
 <td><strong>Description</strong></td>
-<td>ArchletteIR aggregation utilities</td>
+<td>ArchletteIR aggregation utilities | Extraction stage of the AAC pipeline | TypeScript/JavaScript code extractor</td>
 </tr>
 </tbody>
 </table>
@@ -27,7 +27,6 @@
 
 ## 🏗️ Component Architecture
 
-![Component Diagram](./diagrams/structurizr-Components__chrislyons_dev_archlette-key.png)
 ![Component Diagram](./diagrams/structurizr-Components__chrislyons_dev_archlette.png)
 
 ---
@@ -36,7 +35,6 @@
 
 ### Class Diagram
 
-![Class Diagram](./diagrams/structurizr-Classes_extractors-key.png)
 ![Class Diagram](./diagrams/structurizr-Classes_extractors.png)
 
 ### Code Elements
@@ -98,11 +96,11 @@ Deduplicate array of entities by their ID field
 </tr>
 <tr>
 <td><strong>Returns</strong></td>
-<td><code>T[]</code> — Array with duplicates removed (first occurrence preserved)</td>
+<td><code>T[]</code> — Array with duplicates removed (first occurrence preserved, descriptions merged)</td>
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/1-extract/aggregator.ts:95</code></td>
+<td><code>C:/Users/chris/git/archlette/src/1-extract/aggregator.ts:99</code></td>
 </tr>
 </tbody>
 </table>
@@ -128,11 +126,11 @@ Deduplicate array of entities by their name field
 </tr>
 <tr>
 <td><strong>Returns</strong></td>
-<td><code>T[]</code> — Array with duplicates removed (first occurrence preserved)</td>
+<td><code>T[]</code> — Array with duplicates removed (first occurrence preserved, descriptions merged)</td>
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/1-extract/aggregator.ts:111</code></td>
+<td><code>C:/Users/chris/git/archlette/src/1-extract/aggregator.ts:135</code></td>
 </tr>
 </tbody>
 </table>
@@ -162,7 +160,7 @@ Deduplicate relationships by source+destination+stereotype combination
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/1-extract/aggregator.ts:135</code></td>
+<td><code>C:/Users/chris/git/archlette/src/1-extract/aggregator.ts:175</code></td>
 </tr>
 </tbody>
 </table>
@@ -192,7 +190,7 @@ Create an empty but valid ArchletteIR structure
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/1-extract/aggregator.ts:151</code></td>
+<td><code>C:/Users/chris/git/archlette/src/1-extract/aggregator.ts:191</code></td>
 </tr>
 </tbody>
 </table>

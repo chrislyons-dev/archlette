@@ -4,6 +4,10 @@ workspace "@chrislyons-dev/archlette" "Architecture-as-Code toolkit for automate
         # External actors
         user = person "User" "End user who runs archlette commands"
         filesystem = softwareSystem "FileSystem" "File system for reading and writing files" "External"
+        github_structurizr_repo = softwareSystem "Github Structurizr Repo" "The github repo hosting the Structurizr CLI releases. https://github.com/structurizr/cli/releases/download/v${TOOL_VERSIONS.structurizr}/structurizr-cli.zip" "External"
+        github_plantuml_repo = softwareSystem "Github PlantUML Repo" "The github repo hosting the PlantUML CLI releases. https://github.com/plantuml/plantuml/releases/download/v${TOOL_VERSIONS.plantuml}/plantuml-${TOOL_VERSIONS.plantuml}.jar" "External"
+        local_systems_unzip_utility = softwareSystem "Local System's unzip utility" "The zip extraction utility on the local system (unzip on Unix, Expand-Archive on Windows)." "External"
+        file_system = softwareSystem "File System" "The local file system for caching downloaded tools." "External"
 
         # @chrislyons-dev/archlette System
         _chrislyons_dev_archlette = softwareSystem "@chrislyons-dev/archlette" {
@@ -21,26 +25,27 @@ workspace "@chrislyons-dev/archlette" "Architecture-as-Code toolkit for automate
                     technology "module"
                 }
                 extractors = component "extractors" {
-                    description "ArchletteIR aggregation utilities"
+                    description "ArchletteIR aggregation utilities | Extraction stage of the AAC pipeline | TypeScript/JavaScript code extractor"
                     technology "module"
                 }
                 validators = component "validators" {
-                    description "Validation stage of the AAC pipeline"
+                    description "Validation stage of the AAC pipeline | Base IR validator for Archlette pipeline"
                     technology "module"
                 }
                 generators = component "generators" {
-                    description "Generation stage of the AAC pipeline"
+                    description "Generation stage of the AAC pipeline | Structurizr DSL Generator"
                     technology "module"
                 }
                 renderers = component "renderers" {
-                    description "Render stage of the AAC pipeline"
+                    description "Render stage of the AAC pipeline | PlantUML image renderer | Structurizr DSL export renderer"
                     technology "module"
                 }
                 docs = component "docs" {
-                    description "Documentation stage of the AAC pipeline"
+                    description "Documentation stage of the AAC pipeline | Markdown documentation generator"
                     technology "module"
                 }
                 core = component "core" {
+                    description "Dynamic ESM module loader | Stage module interfaces for the AAC pipeline | Stage module loaders | Tool management for external rendering tools | Architecture-as-Code (AAC) configuration types and schemas | Archlette Intermediate Representation (IR) types and schemas | Core pipeline types"
                     technology "module"
                 }
 
@@ -396,8 +401,16 @@ workspace "@chrislyons-dev/archlette" "Architecture-as-Code toolkit for automate
         # Actor interactions
         user -> cli "Interacts with CLI"
         filesystem -> core "Interacts with core"
+        github_structurizr_repo -> core "Interacts with core"
+        github_plantuml_repo -> core "Interacts with core"
+        local_systems_unzip_utility -> core "Interacts with core"
+        file_system -> core "Interacts with core"
         cli -> user "Interacts with User"
         core -> filesystem "Uses FileSystem for external system integration"
+        core -> github_structurizr_repo "Uses Github Structurizr Repo for external system integration"
+        core -> github_plantuml_repo "Uses Github PlantUML Repo for external system integration"
+        core -> local_systems_unzip_utility "Uses Local System's unzip utility for external system integration"
+        core -> file_system "Uses File System for external system integration"
 
     }
 
@@ -406,6 +419,10 @@ workspace "@chrislyons-dev/archlette" "Architecture-as-Code toolkit for automate
         systemContext _chrislyons_dev_archlette "SystemContext" {
             include user
             include filesystem
+            include github_structurizr_repo
+            include github_plantuml_repo
+            include local_systems_unzip_utility
+            include file_system
             include _chrislyons_dev_archlette
             autoLayout
         }
@@ -413,6 +430,10 @@ workspace "@chrislyons-dev/archlette" "Architecture-as-Code toolkit for automate
         container _chrislyons_dev_archlette "Containers" {
             include user
             include filesystem
+            include github_structurizr_repo
+            include github_plantuml_repo
+            include local_systems_unzip_utility
+            include file_system
             include default_container
             autoLayout
         }
@@ -420,6 +441,10 @@ workspace "@chrislyons-dev/archlette" "Architecture-as-Code toolkit for automate
         component default_container "Components__chrislyons_dev_archlette" {
             include user
             include filesystem
+            include github_structurizr_repo
+            include github_plantuml_repo
+            include local_systems_unzip_utility
+            include file_system
             include cli
             include extractors
             include validators
