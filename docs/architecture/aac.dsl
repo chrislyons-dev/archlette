@@ -439,6 +439,11 @@ workspace "@chrislyons-dev/archlette" "Architecture-as-Code toolkit for automate
 
         component default_container "Components__chrislyons_dev_archlette" {
             include user
+            include filesystem
+            include github_structurizr_repo
+            include github_plantuml_repo
+            include local_systems_unzip_utility
+            include file_system
             include cli
             include extractors
             include validators

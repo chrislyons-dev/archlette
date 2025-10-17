@@ -335,7 +335,7 @@ We use the component's container and filter to show only this component's code.
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts:368</code></td>
+<td><code>C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts:386</code></td>
 </tr>
 </tbody>
 </table>
@@ -365,7 +365,7 @@ Generate DSL for an actor (person or external system)
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts:408</code></td>
+<td><code>C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts:426</code></td>
 </tr>
 </tbody>
 </table>
@@ -395,7 +395,7 @@ Generate DSL for a container with its components
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts:423</code></td>
+<td><code>C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts:441</code></td>
 </tr>
 </tbody>
 </table>
@@ -425,7 +425,7 @@ Generate DSL for a component
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts:516</code></td>
+<td><code>C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts:534</code></td>
 </tr>
 </tbody>
 </table>
@@ -456,7 +456,7 @@ Always tagged with "Code" to separate from logical components in views
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts:539</code></td>
+<td><code>C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts:557</code></td>
 </tr>
 </tbody>
 </table>
@@ -489,7 +489,7 @@ Example: "1-extract/index.ts::run" or "cli.ts::run"
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts:578</code></td>
+<td><code>C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts:596</code></td>
 </tr>
 </tbody>
 </table>
@@ -519,7 +519,7 @@ Generate DSL for a relationship
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts:616</code></td>
+<td><code>C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts:634</code></td>
 </tr>
 </tbody>
 </table>
@@ -549,7 +549,7 @@ Build technology string from relationship metadata
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts:631</code></td>
+<td><code>C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts:649</code></td>
 </tr>
 </tbody>
 </table>
@@ -579,7 +579,7 @@ Generate DSL for a deployment environment
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts:647</code></td>
+<td><code>C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts:665</code></td>
 </tr>
 </tbody>
 </table>
@@ -609,7 +609,7 @@ Sanitize ID for DSL (remove special characters, convert to camelCase)
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts:677</code></td>
+<td><code>C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts:695</code></td>
 </tr>
 </tbody>
 </table>
@@ -639,7 +639,7 @@ Escape special characters in strings for DSL
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts:684</code></td>
+<td><code>C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts:702</code></td>
 </tr>
 </tbody>
 </table>

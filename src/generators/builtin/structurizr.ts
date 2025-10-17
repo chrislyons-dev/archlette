@@ -336,10 +336,28 @@ function generateComponentView(
   );
 
   // Include actors that interact with components in this container
+  // This includes both:
+  // 1. Actors that target components (actor.targets - for {in} and {both} directions)
+  // 2. Actors targeted by components (componentRelationships - for {out} and {both} directions)
   const componentIds = new Set(containerComponents.map((c) => c.id));
-  const relevantActors = ir.actors.filter((actor) =>
+
+  const actorsWithInboundRels = ir.actors.filter((actor) =>
     (actor.targets || []).some((targetId) => componentIds.has(targetId)),
   );
+
+  const actorsWithOutboundRels = ir.actors.filter((actor) =>
+    ir.componentRelationships.some(
+      (rel) => componentIds.has(rel.source) && rel.destination === actor.id,
+    ),
+  );
+
+  // Combine and deduplicate actors
+  const relevantActorIds = new Set([
+    ...actorsWithInboundRels.map((a) => a.id),
+    ...actorsWithOutboundRels.map((a) => a.id),
+  ]);
+
+  const relevantActors = ir.actors.filter((a) => relevantActorIds.has(a.id));
 
   for (const actor of relevantActors) {
     lines.push(`${indent}    include ${sanitizeId(actor.id)}`);

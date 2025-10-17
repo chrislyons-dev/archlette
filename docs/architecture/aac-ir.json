@@ -1522,7 +1522,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts",
-      "lineNumber": 368
+      "lineNumber": 386
     },
     {
       "description": "Generate DSL for an actor (person or external system)",
@@ -1549,7 +1549,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts",
-      "lineNumber": 408
+      "lineNumber": 426
     },
     {
       "description": "Generate DSL for a container with its components",
@@ -1601,7 +1601,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts",
-      "lineNumber": 423
+      "lineNumber": 441
     },
     {
       "description": "Generate DSL for a component",
@@ -1628,7 +1628,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts",
-      "lineNumber": 516
+      "lineNumber": 534
     },
     {
       "description": "Generate DSL for a code item as a component\nAlways tagged with \"Code\" to separate from logical components in views",
@@ -1655,7 +1655,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts",
-      "lineNumber": 539
+      "lineNumber": 557
     },
     {
       "description": "Generate a unique name for a code item to avoid naming collisions\n\nExtracts file context from the code ID to create a unique display name.\nExample: \"1-extract/index.ts::run\" or \"cli.ts::run\"",
@@ -1679,7 +1679,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts",
-      "lineNumber": 578
+      "lineNumber": 596
     },
     {
       "description": "Generate DSL for a relationship",
@@ -1706,7 +1706,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts",
-      "lineNumber": 616
+      "lineNumber": 634
     },
     {
       "description": "Build technology string from relationship metadata",
@@ -1728,7 +1728,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts",
-      "lineNumber": 631
+      "lineNumber": 649
     },
     {
       "description": "Generate DSL for a deployment environment",
@@ -1755,7 +1755,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts",
-      "lineNumber": 647
+      "lineNumber": 665
     },
     {
       "description": "Sanitize ID for DSL (remove special characters, convert to camelCase)",
@@ -1777,7 +1777,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts",
-      "lineNumber": 677
+      "lineNumber": 695
     },
     {
       "description": "Escape special characters in strings for DSL",
@@ -1799,7 +1799,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts",
-      "lineNumber": 684
+      "lineNumber": 702
     },
     {
       "description": "Render PlantUML files to PNG images",
@@ -2180,7 +2180,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts",
-      "lineNumber": 204
+      "lineNumber": 206
     },
     {
       "description": "Parse a",
@@ -2200,7 +2200,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts",
-      "lineNumber": 231
+      "lineNumber": 233
     },
     {
       "description": "Extract component name from a JSDoc tag\nHandles formats like:\n-",
@@ -2220,7 +2220,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts",
-      "lineNumber": 262
+      "lineNumber": 264
     },
     {
       "description": "Extract documentation information from JSDoc",
