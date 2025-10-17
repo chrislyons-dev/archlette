@@ -19,7 +19,7 @@ The system context diagram shows how {{ system.name }} fits into its environment
 
 {% if systemDiagrams.length > 0 %}
 {% for diagram in systemDiagrams %}
-![System Context Diagram](../{{ diagram | forwardSlashes }})
+![System Context Diagram](./{{ diagram | forwardSlashes }})
 {% endfor %}
 {% else %}
 > No system context diagrams generated. Run the render stage to generate diagrams.
@@ -34,7 +34,7 @@ The container diagram shows the high-level technology choices and how containers
 
 {% if containerDiagrams.length > 0 %}
 {% for diagram in containerDiagrams %}
-![Container Diagram](../{{ diagram | forwardSlashes }})
+![Container Diagram](./{{ diagram | forwardSlashes }})
 {% endfor %}
 {% endif %}
 

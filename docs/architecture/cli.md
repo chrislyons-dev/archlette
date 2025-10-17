@@ -27,8 +27,8 @@
 
 ## 🏗️ Component Architecture
 
-![Component Diagram](../diagrams/structurizr-Components__chrislyons_dev_archlette-key.png)
-![Component Diagram](../diagrams/structurizr-Components__chrislyons_dev_archlette.png)
+![Component Diagram](./diagrams/structurizr-Components__chrislyons_dev_archlette-key.png)
+![Component Diagram](./diagrams/structurizr-Components__chrislyons_dev_archlette.png)
 
 ---
 

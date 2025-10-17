@@ -1,7 +1,7 @@
 # 🏗️ @chrislyons-dev/archlette
 
 > **Architecture Documentation**
-> Generated on 2025-10-16 19:15:37
+> Generated on 2025-10-16 22:39:30
 
 ## 📋 Overview
 
@@ -51,8 +51,8 @@ The container diagram shows the high-level technology choices and how containers
 
 The component diagram shows the internal structure of containers and their responsibilities.
 
-![Component Diagram](./diagrams/structurizr-Components__chrislyons_dev_archlette-key.png)
-![Component Diagram](./diagrams/structurizr-Components__chrislyons_dev_archlette.png)
+![Component Diagram](../diagrams/structurizr-Components__chrislyons_dev_archlette-key.png)
+![Component Diagram](../diagrams/structurizr-Components__chrislyons_dev_archlette.png)
 
 <table>
 <thead>

@@ -37,7 +37,7 @@
 
 {% if componentDiagrams.length > 0 %}
 {% for diagram in componentDiagrams %}
-![Component Diagram](../{{ diagram | forwardSlashes }})
+![Component Diagram](./{{ diagram | forwardSlashes }})
 {% endfor %}
 {% else %}
 > No component diagrams available. Run the render stage to generate diagrams.
@@ -51,7 +51,7 @@
 ### Class Diagram
 
 {% for diagram in codeDiagrams %}
-![Class Diagram](../{{ diagram | forwardSlashes }})
+![Class Diagram](./{{ diagram | forwardSlashes }})
 {% endfor %}
 {% endif %}
 

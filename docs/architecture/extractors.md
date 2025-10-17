@@ -27,8 +27,8 @@
 
 ## 🏗️ Component Architecture
 
-![Component Diagram](../diagrams/structurizr-Components__chrislyons_dev_archlette-key.png)
-![Component Diagram](../diagrams/structurizr-Components__chrislyons_dev_archlette.png)
+![Component Diagram](./diagrams/structurizr-Components__chrislyons_dev_archlette-key.png)
+![Component Diagram](./diagrams/structurizr-Components__chrislyons_dev_archlette.png)
 
 ---
 
@@ -36,8 +36,8 @@
 
 ### Class Diagram
 
-![Class Diagram](../diagrams/structurizr-Classes_extractors-key.png)
-![Class Diagram](../diagrams/structurizr-Classes_extractors.png)
+![Class Diagram](./diagrams/structurizr-Classes_extractors-key.png)
+![Class Diagram](./diagrams/structurizr-Classes_extractors.png)
 
 ### Code Elements
 
