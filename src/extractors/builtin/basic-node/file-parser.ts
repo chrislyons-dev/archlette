@@ -5,7 +5,8 @@
 import { Project, ts } from 'ts-morph';
 import type { FileExtraction } from './types.js';
 import { extractClasses } from './class-extractor.js';
-import { extractFunctions } from './function-extractor.js';
+import { extractFunctions, extractArrowFunctions } from './function-extractor.js';
+import { extractTypeAliases, extractInterfaces } from './type-extractor.js';
 import { extractImports } from './import-extractor.js';
 import {
   extractFileComponent,
@@ -42,6 +43,11 @@ export async function parseFiles(filePaths: string[]): Promise<FileExtraction[]>
           ? 'typescript'
           : 'javascript';
 
+      // Extract both regular functions and arrow functions
+      const regularFunctions = extractFunctions(sourceFile);
+      const arrowFunctions = extractArrowFunctions(sourceFile);
+      const allFunctions = [...regularFunctions, ...arrowFunctions];
+
       extractions.push({
         filePath,
         language,
@@ -49,7 +55,9 @@ export async function parseFiles(filePaths: string[]): Promise<FileExtraction[]>
         actors: extractFileActors(sourceFile),
         relationships: extractFileRelationships(sourceFile),
         classes: extractClasses(sourceFile),
-        functions: extractFunctions(sourceFile),
+        functions: allFunctions,
+        types: extractTypeAliases(sourceFile),
+        interfaces: extractInterfaces(sourceFile),
         imports: extractImports(sourceFile),
       });
     } catch (error) {
@@ -65,6 +73,8 @@ export async function parseFiles(filePaths: string[]): Promise<FileExtraction[]>
         relationships: [],
         classes: [],
         functions: [],
+        types: [],
+        interfaces: [],
         imports: [],
         parseError: error instanceof Error ? error.message : String(error),
       });

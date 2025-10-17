@@ -3,7 +3,7 @@
  * Extracts language-agnostic documentation from JSDoc comments
  */
 
-import type { JSDoc, JSDocTag } from 'ts-morph';
+import { type JSDoc, type JSDocTag } from 'ts-morph';
 import type { DocInfo, DeprecationInfo } from './types.js';
 
 /**
@@ -128,13 +128,18 @@ export function extractReturnDescription(jsDocs: JSDoc[]): string | undefined {
  * Handles formats like: @param name, @param {Type} name, @param name - description
  */
 function extractParameterName(tag: JSDocTag): string | undefined {
-  const text = tag.getCommentText();
-  if (!text) return undefined;
+  // Get the structure which contains the full text
+  const structure = tag.getStructure();
 
-  // Remove type annotation if present: {Type}
-  const withoutType = text.replace(/^\{[^}]+\}\s*/, '');
+  // For @param tags, the structure.text contains "paramName - description"
+  if ('text' in structure && typeof structure.text === 'string') {
+    const text = structure.text.trim();
+    // Remove type annotation if present: {Type}
+    const withoutType = text.replace(/^\{[^}]+\}\s*/, '');
+    // Extract first word (parameter name) before - or whitespace
+    const match = withoutType.match(/^([A-Za-z0-9_$.[\]]+)/);
+    return match?.[1];
+  }
 
-  // Extract first word (parameter name)
-  const match = withoutType.match(/^([A-Za-z0-9_$.[\]]+)/);
-  return match?.[1];
+  return undefined;
 }

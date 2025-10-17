@@ -2,7 +2,7 @@
  * Function extraction utilities
  */
 
-import type { FunctionDeclaration, SourceFile } from 'ts-morph';
+import { Node, type FunctionDeclaration, type SourceFile } from 'ts-morph';
 import type { ExtractedFunction, ParameterInfo } from './types.js';
 import {
   extractDocumentation,
@@ -89,4 +89,64 @@ function extractParameter(
     optional,
     defaultValue: initializer?.getText(),
   };
+}
+
+/**
+ * Extract arrow functions assigned to const/let/var
+ * Examples:
+ *   const handleClick = () => {}
+ *   export const createUser = async (data) => {}
+ */
+export function extractArrowFunctions(sourceFile: SourceFile): ExtractedFunction[] {
+  const functions: ExtractedFunction[] = [];
+
+  // Get all variable statements (const, let, var)
+  for (const statement of sourceFile.getVariableStatements()) {
+    const isExported = statement.isExported();
+
+    for (const declaration of statement.getDeclarations()) {
+      const initializer = declaration.getInitializer();
+
+      // Check if the initializer is an arrow function or function expression
+      if (
+        initializer &&
+        (Node.isArrowFunction(initializer) || Node.isFunctionExpression(initializer))
+      ) {
+        try {
+          const name = declaration.getName();
+          const jsDocs = statement.getJsDocs();
+          const paramDescriptions = extractParameterDescriptions(jsDocs);
+          const location = declaration.getStartLineNumber();
+
+          functions.push({
+            name,
+            isExported,
+            isAsync: initializer.isAsync(),
+            location: {
+              filePath: sourceFile.getFilePath(),
+              line: location,
+              column: 0,
+            },
+            documentation: extractDocumentation(jsDocs),
+            deprecated: extractDeprecation(jsDocs),
+            parameters: initializer.getParameters().map((param) => ({
+              name: param.getName(),
+              type: param.getType().getText(),
+              description: paramDescriptions.get(param.getName()),
+              optional: param.isOptional(),
+              defaultValue: param.getInitializer()?.getText(),
+            })),
+            returnType: initializer.getReturnType().getText(),
+            returnDescription: extractReturnDescription(jsDocs),
+          });
+        } catch (error) {
+          console.warn(
+            `Error extracting arrow function ${declaration.getName()}: ${error}`,
+          );
+        }
+      }
+    }
+  }
+
+  return functions;
 }

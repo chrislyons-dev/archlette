@@ -17,6 +17,8 @@ export interface FileExtraction {
   relationships: RelationshipInfo[];
   classes: ExtractedClass[];
   functions: ExtractedFunction[];
+  types: ExtractedType[];
+  interfaces: ExtractedInterface[];
   imports: ExtractedImport[];
   parseError?: string;
 }
@@ -120,4 +122,45 @@ export interface DocInfo {
 export interface DeprecationInfo {
   reason?: string;
   alternative?: string;
+}
+
+export interface ExtractedType {
+  name: string;
+  isExported: boolean;
+  location: SourceLocation;
+  documentation?: DocInfo;
+  deprecated?: DeprecationInfo;
+  typeParameters?: TypeParameterInfo[];
+  definition: string;
+}
+
+export interface ExtractedInterface {
+  name: string;
+  isExported: boolean;
+  location: SourceLocation;
+  documentation?: DocInfo;
+  deprecated?: DeprecationInfo;
+  typeParameters?: TypeParameterInfo[];
+  extends?: string[];
+  properties: InterfaceProperty[];
+  methods: InterfaceMethod[];
+}
+
+export interface TypeParameterInfo {
+  name: string;
+  constraint?: string;
+  default?: string;
+}
+
+export interface InterfaceProperty {
+  name: string;
+  type: string;
+  optional: boolean;
+  readonly: boolean;
+}
+
+export interface InterfaceMethod {
+  name: string;
+  parameters: ParameterInfo[];
+  returnType: string;
 }
