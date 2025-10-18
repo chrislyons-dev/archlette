@@ -7,3 +7,9 @@ notes/
 archive/
 coverage/
 .claude/
+
+# MkDocs - files copied from root during build (not committed)
+docs/CONTRIBUTING.md
+docs/CHANGELOG.md
+docs/THIRD_PARTY_LICENSES.md
+# Note: docs/index.md is generated from README.md but IS committed (for CI checks)
