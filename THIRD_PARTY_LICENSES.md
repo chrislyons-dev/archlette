@@ -1,33 +1,63 @@
 # Third-Party Licenses
 
-This document lists licenses of third-party JavaScript dependencies installed via npm.
-It is generated for convenience and may not be exhaustive of optional external tools
-(PlantUML, Graphviz, Inframap, Mermaid CLI), which are distributed by their own projects.
+This document lists all third-party software used by Archlette, including:
 
-## Generate / Update
+- **NPM Dependencies**: Listed in `package.json` and installed via `npm install`
+- **Runtime Tools**: Downloaded automatically by Archlette during first use
+
+---
+
+## Runtime-Downloaded Tools
+
+Archlette automatically downloads the following tools to `~/.archlette/tools/` when needed for diagram rendering:
+
+### Structurizr CLI v2025.05.28
+
+- **Project**: [https://github.com/structurizr/cli](https://github.com/structurizr/cli)
+- **License**: [Apache-2.0](https://github.com/structurizr/cli/blob/master/LICENSE)
+- **Description**: Command-line tool for Structurizr workspace export
+- **Downloaded**: Runtime (on first use)
+- **Notes**: Automatically downloaded to ~/.archlette/tools/ when rendering diagrams
+
+### PlantUML v1.2025.8
+
+- **Project**: [https://github.com/plantuml/plantuml](https://github.com/plantuml/plantuml)
+- **License**: [GPL-3.0-or-later (with exceptions)](https://github.com/plantuml/plantuml/blob/master/LICENSE)
+- **Description**: Diagram rendering tool for converting PlantUML text to images
+- **Downloaded**: Runtime (on first use)
+- **Notes**: Automatically downloaded to ~/.archlette/tools/ when rendering diagrams. PlantUML includes various components under different licenses (Apache 2.0, MIT, LGPL).
+
+---
+
+## NPM Dependencies
+
+The following packages are installed as production dependencies via `package.json`:
+
+### NPM Dependencies Summary
+
+```
+├─ MIT: 53
+├─ ISC: 7
+├─ Apache-2.0: 1
+└─ BSD-2-Clause: 1
+```
+
+---
+
+## Regenerating This File
+
+To regenerate this file with the latest dependency information:
 
 ```bash
-npm run licenses:report
+npm run licenses:generate
 ```
 
-This runs `license-checker` to produce a machine-friendly JSON and a readable markdown table.
+This script:
 
-## Current Snapshot (after `npm ci`)
+1. Extracts tool versions from `src/core/tool-manager.ts`
+2. Scans production dependencies via `license-checker`
+3. Combines into this comprehensive license document
 
-<details>
-<summary>Machine-readable (JSON)</summary>
+---
 
-```json
-// Generated at build time: ./dist/licenses.json
-```
-
-</details>
-
-<details>
-<summary>Human-readable (Markdown)</summary>
-
-<!-- Generated content will be appended below this line by the script -->
-<!-- BEGIN THIRD_PARTY_LICENSES -->
-<!-- END THIRD_PARTY_LICENSES -->
-
-</details>
+**Last generated**: 2025-10-18

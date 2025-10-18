@@ -1,0 +1,114 @@
+site_name: Archlette
+site_description: Architecture-as-Code toolkit - Code speaks. Archlette listens. Architecture evolves.
+site_url: https://chrislyons-dev.github.io/archlette
+repo_url: https://github.com/chrislyons-dev/archlette
+repo_name: chrislyons-dev/archlette
+edit_uri: edit/main/docs/
+
+theme:
+  name: material
+  palette:
+    # Light mode
+    - media: '(prefers-color-scheme: light)'
+      scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    # Dark mode
+    - media: '(prefers-color-scheme: dark)'
+      scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - navigation.tracking
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - content.code.annotate
+
+nav:
+  - Home: index.md
+
+  - Getting Started:
+      - Quick Start: getting-started/quick-start.md
+      - Installation: getting-started/installation.md
+
+  - User Guide:
+      - Component Detection: extractors/component-detection.md
+
+  - Architecture:
+      - System Overview: architecture/README.md
+      - CLI: architecture/cli.md
+      - Core: architecture/core.md
+      - Extractors: architecture/extractors.md
+      - Validators: architecture/validators.md
+      - Generators: architecture/generators.md
+      - Renderers: architecture/renderers.md
+      - Docs: architecture/docs.md
+
+  - Contributing:
+      - How to Contribute: CONTRIBUTING.md
+      - License Management: licenses.md
+      - Changelog: CHANGELOG.md
+      - Third-Party Licenses: THIRD_PARTY_LICENSES.md
+
+markdown_extensions:
+  # Code highlighting
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+
+  # Annotations and admonitions
+  - admonition
+  - pymdownx.details
+  - attr_list
+  - md_in_html
+
+  # Lists and formatting
+  - def_list
+  - pymdownx.tasklist:
+      custom_checkbox: true
+
+  # Table of contents
+  - toc:
+      permalink: true
+      toc_depth: 3
+
+  # Additional extensions
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+
+plugins:
+  - search:
+      lang: en
+      separator: '[\s\-,:!=\[\]()"/]+|(?!\b)(?=[A-Z][a-z])|\.(?!\d)|&[lg]t;'
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/chrislyons-dev/archlette
+    - icon: fontawesome/brands/npm
+      link: https://www.npmjs.com/package/@chrislyons-dev/archlette
+
+copyright: Copyright &copy; 2025 Chris Lyons
