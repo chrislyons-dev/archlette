@@ -11,6 +11,7 @@ import type {
 } from '../../../core/types-ir.js';
 import type {
   FileExtraction,
+  PackageInfo,
   ExtractedClass,
   ExtractedFunction,
   ExtractedMethod,
@@ -30,6 +31,7 @@ import {
  */
 export function mapToIR(
   extractions: FileExtraction[],
+  packages?: PackageInfo[],
   systemInfo?: System,
 ): ArchletteIR {
   const codeItems: CodeItem[] = [];

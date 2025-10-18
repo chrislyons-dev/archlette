@@ -38,7 +38,12 @@
 import type { ResolvedStageNode } from '../../core/types-aac.js';
 import type { ArchletteIR } from '../../core/types-ir.js';
 import type { ExtractorInputs } from './basic-node/types.js';
-import { findSourceFiles } from './basic-node/file-finder.js';
+import {
+  findSourceFiles,
+  findPackageJsonFiles,
+  readPackageInfo,
+  findNearestPackage,
+} from './basic-node/file-finder.js';
 import { parseFiles } from './basic-node/file-parser.js';
 import { mapToIR } from './basic-node/to-ir-mapper.js';
 
@@ -71,6 +76,16 @@ export default async function basicNodeExtractor(
   const files = await findSourceFiles(inputs);
   console.log(`Found ${files.length} source files to analyze`);
 
+  // 1.5. Find package.json files to create containers
+  const packagePaths = await findPackageJsonFiles(inputs);
+  const packages = (
+    await Promise.all(packagePaths.map((path) => readPackageInfo(path)))
+  ).filter((pkg): pkg is NonNullable<typeof pkg> => pkg !== null);
+
+  console.log(
+    `Found ${packages.length} package(s): ${packages.map((p) => p.name).join(', ')}`,
+  );
+
   // 2. Parse and extract information from files
   const extractions = await parseFiles(files);
 
@@ -78,8 +93,23 @@ export default async function basicNodeExtractor(
   const errorCount = extractions.filter((e) => e.parseError).length;
   console.log(`Successfully parsed ${successCount} files, ${errorCount} errors`);
 
+  // 2.5. Assign each file to its nearest package
+  for (const extraction of extractions) {
+    const pkg = findNearestPackage(extraction.filePath, packages);
+    extraction.packageInfo = pkg ?? undefined;
+  }
+
   // 3. Map to ArchletteIR format
-  const ir = mapToIR(extractions);
+  // Pass project info from config if available
+  const systemInfo = node._system
+    ? {
+        name: node._system.name,
+        description: node._system.description,
+        repository: node._system.repository,
+      }
+    : undefined;
+
+  const ir = mapToIR(extractions, packages, systemInfo);
   console.log(`Extracted ${ir.code.length} code elements`);
 
   return ir;

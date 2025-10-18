@@ -9,6 +9,14 @@ export interface ExtractorInputs {
   tsConfigPath?: string;
 }
 
+export interface PackageInfo {
+  path: string;
+  dir: string;
+  name: string;
+  version?: string;
+  description?: string;
+}
+
 export interface FileExtraction {
   filePath: string;
   language: 'typescript' | 'javascript';
@@ -21,6 +29,7 @@ export interface FileExtraction {
   interfaces: ExtractedInterface[];
   imports: ExtractedImport[];
   parseError?: string;
+  packageInfo?: PackageInfo;
 }
 
 export interface ComponentInfo {

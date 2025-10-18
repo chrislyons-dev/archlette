@@ -65,8 +65,20 @@ export const AACConfigSchema = z.object({
   project: z
     .object({
       name: z.string().min(1),
+      description: z.string().optional(),
+      repository: z.string().optional(),
     })
     .merge(Meta),
+
+  // Optional system-level override for IR
+  // If not provided, system info will be inferred from first container
+  system: z
+    .object({
+      name: z.string().min(1),
+      description: z.string().optional(),
+      repository: z.string().optional(),
+    })
+    .optional(),
 
   paths: z.object({
     ir_out: z.string().min(1),
@@ -102,6 +114,11 @@ export type ResolvedStageNode = z.infer<typeof StageNode> & {
     includes: string[];
     excludes: string[];
   };
+  _system?: {
+    name: string;
+    description?: string;
+    repository?: string;
+  };
 };
 
 export type ResolvedAACConfig = Omit<
@@ -134,6 +151,7 @@ export function resolveConfig(raw: unknown): ResolvedAACConfig {
           includes: nodeIncludes,
           excludes: nodeExcludes,
         },
+        _system: parsed.system,
       };
     });
   };
