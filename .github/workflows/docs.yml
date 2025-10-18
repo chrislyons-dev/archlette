@@ -5,20 +5,53 @@ on:
     branches: [main]
   workflow_dispatch:
 
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: 'pages'
+  cancel-in-progress: false
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6
         with:
-          node-version: 22
-      - run: npm ci
-      - name: Build docs
-        run: node scripts/build-docs.mjs
+          node-version: 20
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Prepare docs structure
+        run: |
+          npm run readme:sync
+          cp CONTRIBUTING.md docs/
+          cp CHANGELOG.md docs/
+          cp THIRD_PARTY_LICENSES.md docs/
+
+      - name: Install MkDocs and dependencies
+        run: |
+          pip install mkdocs-material
+          pip install mkdocstrings
+          pip install pymdown-extensions
+
+      - name: Build MkDocs site
+        run: mkdocs build --strict
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./site
+
       - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./site
-          publish_branch: gh-pages
+        id: deployment
+        uses: actions/deploy-pages@v4

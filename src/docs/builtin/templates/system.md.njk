@@ -1,17 +1,17 @@
 # 🏗️ {{ system.name }}
 
-> **Architecture Documentation**
-> Generated on {{ "now" | date("YYYY-MM-DD HH:mm:ss") }}
+**Architecture Documentation**
+Generated {{ "now" | date("YYYY-MM-DD HH:mm:ss") }}
 
 {% if system.description %}
-## 📋 Overview
+## Overview
 
 {{ system.description }}
 {% endif %}
 
 ---
 
-## 📐 System Architecture
+## System Architecture
 
 ### System Context
 
@@ -27,7 +27,7 @@ The system context diagram shows how {{ system.name }} fits into its environment
 
 ---
 
-## 🏢 Containers
+## Containers
 
 {% if containers.length > 0 %}
 The container diagram shows the high-level technology choices and how containers communicate.
@@ -63,7 +63,7 @@ The container diagram shows the high-level technology choices and how containers
 
 ---
 
-## 🧩 Components
+## Components
 
 {% if components.length > 0 %}
 The component diagram shows the internal structure of containers and their responsibilities.
@@ -103,7 +103,7 @@ The component diagram shows the internal structure of containers and their respo
 
 ---
 
-## 👥 Actors
+## Actors
 
 {% if actors.length > 0 %}
 <table>
@@ -131,7 +131,7 @@ The component diagram shows the internal structure of containers and their respo
 
 ---
 
-## 📚 Component Reference
+## Component Reference
 
 Quick navigation to detailed component documentation:
 
