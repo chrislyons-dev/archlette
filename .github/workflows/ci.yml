@@ -20,4 +20,6 @@ jobs:
       - run: npm run format:check
       - run: npm run lint
       - run: npm run typecheck
+      - run: npm run licenses:check
+      - run: npm run readme:check
       - run: npm test
