@@ -35,6 +35,18 @@ try {
   process.exit(1);
 }
 
+// Format the regenerated file
+try {
+  execSync(`npx prettier --write ${indexPath}`, {
+    cwd: rootDir,
+    stdio: 'inherit',
+  });
+} catch (err) {
+  console.error('❌ Failed to format docs/index.md');
+  console.error('Error:', err && err.message ? err.message : String(err));
+  process.exit(1);
+}
+
 // Read regenerated docs/index.md
 const after = fs.readFileSync(indexPath, 'utf8');
 

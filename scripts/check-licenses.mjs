@@ -35,6 +35,18 @@ try {
   process.exit(1);
 }
 
+// Format the regenerated file
+try {
+  execSync(`npx prettier --write ${licenseFile}`, {
+    cwd: rootDir,
+    stdio: 'inherit',
+  });
+} catch (err) {
+  console.error('❌ Failed to format licenses file');
+  console.error('Error:', err && err.message ? err.message : String(err));
+  process.exit(1);
+}
+
 // Read regenerated file
 const after = fs.readFileSync(licenseFile, 'utf8');
 
