@@ -1,0 +1,48 @@
+@startuml
+set separator none
+title @chrislyons-dev/archlette - @chrislyons-dev/archlette - Components
+
+top to bottom direction
+skinparam ranksep 60
+skinparam nodesep 30
+
+skinparam {
+  arrowFontSize 10
+  defaultTextAlignment center
+  wrapWidth 200
+  maxMessageSize 100
+}
+
+hide stereotype
+
+skinparam rectangle<<chrislyonsdevarchlette.chrislyonsdevarchlette.4renderindextsrun>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<chrislyonsdevarchlette.chrislyonsdevarchlette.plantumlrendertsplantumlrender>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<chrislyonsdevarchlette.chrislyonsdevarchlette.structurizrexporttsstructurizrexport>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<chrislyonsdevarchlette.chrislyonsdevarchlette>> {
+  BorderColor #9a9a9a
+  FontColor #9a9a9a
+  shadowing false
+}
+
+rectangle "@chrislyons-dev/archlette\n<size:10>[Container: Application]</size>" <<chrislyonsdevarchlette.chrislyonsdevarchlette>> {
+  rectangle "==4-render/index.ts::run\n<size:10>[Component: function]</size>\n\nExecute the rendering stage" <<chrislyonsdevarchlette.chrislyonsdevarchlette.4renderindextsrun>> as chrislyonsdevarchlette.chrislyonsdevarchlette.4renderindextsrun
+  rectangle "==plantuml-render.ts::plantumlrender\n<size:10>[Component: function]</size>\n\nRender PlantUML files to PNG images" <<chrislyonsdevarchlette.chrislyonsdevarchlette.plantumlrendertsplantumlrender>> as chrislyonsdevarchlette.chrislyonsdevarchlette.plantumlrendertsplantumlrender
+  rectangle "==structurizr-export.ts::structurizrexport\n<size:10>[Component: function]</size>\n\nExport Structurizr DSL to PlantUML and Mermaid formats" <<chrislyonsdevarchlette.chrislyonsdevarchlette.structurizrexporttsstructurizrexport>> as chrislyonsdevarchlette.chrislyonsdevarchlette.structurizrexporttsstructurizrexport
+}
+
+@enduml

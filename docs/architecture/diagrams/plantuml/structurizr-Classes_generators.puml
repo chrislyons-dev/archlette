@@ -1,0 +1,160 @@
+@startuml
+set separator none
+title @chrislyons-dev/archlette - @chrislyons-dev/archlette - Components
+
+top to bottom direction
+skinparam ranksep 60
+skinparam nodesep 30
+
+skinparam {
+  arrowFontSize 10
+  defaultTextAlignment center
+  wrapWidth 200
+  maxMessageSize 100
+}
+
+hide stereotype
+
+skinparam rectangle<<chrislyonsdevarchlette.chrislyonsdevarchlette.3generateindextsrun>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<chrislyonsdevarchlette.chrislyonsdevarchlette.structurizrtsbuildtechnologystring>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<chrislyonsdevarchlette.chrislyonsdevarchlette.structurizrtsescapestring>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<chrislyonsdevarchlette.chrislyonsdevarchlette.structurizrtsgenerateactor>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<chrislyonsdevarchlette.chrislyonsdevarchlette.structurizrtsgenerateallactorrelationships>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<chrislyonsdevarchlette.chrislyonsdevarchlette.structurizrtsgenerateclassview>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<chrislyonsdevarchlette.chrislyonsdevarchlette.structurizrtsgeneratecodeascomponent>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<chrislyonsdevarchlette.chrislyonsdevarchlette.structurizrtsgeneratecomponent>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<chrislyonsdevarchlette.chrislyonsdevarchlette.structurizrtsgeneratecomponentview>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<chrislyonsdevarchlette.chrislyonsdevarchlette.structurizrtsgeneratecontainer>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<chrislyonsdevarchlette.chrislyonsdevarchlette.structurizrtsgeneratecontainerview>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<chrislyonsdevarchlette.chrislyonsdevarchlette.structurizrtsgeneratedeployment>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<chrislyonsdevarchlette.chrislyonsdevarchlette.structurizrtsgeneratemodel>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<chrislyonsdevarchlette.chrislyonsdevarchlette.structurizrtsgeneraterelationship>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<chrislyonsdevarchlette.chrislyonsdevarchlette.structurizrtsgeneratesystemcontextview>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<chrislyonsdevarchlette.chrislyonsdevarchlette.structurizrtsgenerateuniquecodename>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<chrislyonsdevarchlette.chrislyonsdevarchlette.structurizrtsgenerateviews>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<chrislyonsdevarchlette.chrislyonsdevarchlette.structurizrtssanitizeid>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<chrislyonsdevarchlette.chrislyonsdevarchlette.structurizrtsstructurizrgenerator>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<chrislyonsdevarchlette.chrislyonsdevarchlette>> {
+  BorderColor #9a9a9a
+  FontColor #9a9a9a
+  shadowing false
+}
+
+rectangle "@chrislyons-dev/archlette\n<size:10>[Container: Application]</size>" <<chrislyonsdevarchlette.chrislyonsdevarchlette>> {
+  rectangle "==3-generate/index.ts::run\n<size:10>[Component: function]</size>\n\nExecute the generation stage" <<chrislyonsdevarchlette.chrislyonsdevarchlette.3generateindextsrun>> as chrislyonsdevarchlette.chrislyonsdevarchlette.3generateindextsrun
+  rectangle "==structurizr.ts::structurizrgenerator\n<size:10>[Component: function]</size>\n\nGenerate Structurizr DSL from ArchletteIR" <<chrislyonsdevarchlette.chrislyonsdevarchlette.structurizrtsstructurizrgenerator>> as chrislyonsdevarchlette.chrislyonsdevarchlette.structurizrtsstructurizrgenerator
+  rectangle "==structurizr.ts::generateallactorrelationships\n<size:10>[Component: function]</size>\n\nGenerate all actor-related relationships (bidirectional)\n\nIncludes:\n1. Actor → Component (from actor.targets) - users interacting with system\n2. Component → Actor (from componentRelationships) - system using external actors\n\nStructurizr automatically aggregates relationships in views:\n- System Context view: Shows as actor ↔ system\n- Container view: Shows as actor ↔ container\n- Component view: Shows actual actor ↔ component relationships" <<chrislyonsdevarchlette.chrislyonsdevarchlette.structurizrtsgenerateallactorrelationships>> as chrislyonsdevarchlette.chrislyonsdevarchlette.structurizrtsgenerateallactorrelationships
+  rectangle "==structurizr.ts::generatemodel\n<size:10>[Component: function]</size>\n\nGenerate the model section of the DSL" <<chrislyonsdevarchlette.chrislyonsdevarchlette.structurizrtsgeneratemodel>> as chrislyonsdevarchlette.chrislyonsdevarchlette.structurizrtsgeneratemodel
+  rectangle "==structurizr.ts::generateviews\n<size:10>[Component: function]</size>\n\nGenerate the views section of the DSL" <<chrislyonsdevarchlette.chrislyonsdevarchlette.structurizrtsgenerateviews>> as chrislyonsdevarchlette.chrislyonsdevarchlette.structurizrtsgenerateviews
+  rectangle "==structurizr.ts::generatesystemcontextview\n<size:10>[Component: function]</size>\n\nGenerate System Context view\n\nShows actors and the system boundary. Structurizr automatically aggregates\nactor → component relationships to actor → system for this view since\ncomponents are not explicitly included." <<chrislyonsdevarchlette.chrislyonsdevarchlette.structurizrtsgeneratesystemcontextview>> as chrislyonsdevarchlette.chrislyonsdevarchlette.structurizrtsgeneratesystemcontextview
+  rectangle "==structurizr.ts::generatecontainerview\n<size:10>[Component: function]</size>\n\nGenerate Container view\n\nShows actors, containers, and their relationships. Actor → component\nrelationships are automatically aggregated to actor → container level\nby Structurizr since components are not shown in this view." <<chrislyonsdevarchlette.chrislyonsdevarchlette.structurizrtsgeneratecontainerview>> as chrislyonsdevarchlette.chrislyonsdevarchlette.structurizrtsgeneratecontainerview
+  rectangle "==structurizr.ts::generatecomponentview\n<size:10>[Component: function]</size>\n\nGenerate Component view for a container (excludes Code elements)\n\nShows actors, components within the container, and their relationships.\nActor → component relationships are shown explicitly at this level.\nCode elements are excluded to keep the view focused on architecture." <<chrislyonsdevarchlette.chrislyonsdevarchlette.structurizrtsgeneratecomponentview>> as chrislyonsdevarchlette.chrislyonsdevarchlette.structurizrtsgeneratecomponentview
+  rectangle "==structurizr.ts::generateclassview\n<size:10>[Component: function]</size>\n\nGenerate Class view for a component (only Code elements within that component)\nThis supports the drill-down model: System → Container → Component → Code\n\nNote: Component views in Structurizr require a container ID, not a component ID.\nWe use the component's container and filter to show only this component's code." <<chrislyonsdevarchlette.chrislyonsdevarchlette.structurizrtsgenerateclassview>> as chrislyonsdevarchlette.chrislyonsdevarchlette.structurizrtsgenerateclassview
+  rectangle "==structurizr.ts::generateactor\n<size:10>[Component: function]</size>\n\nGenerate DSL for an actor (person or external system)" <<chrislyonsdevarchlette.chrislyonsdevarchlette.structurizrtsgenerateactor>> as chrislyonsdevarchlette.chrislyonsdevarchlette.structurizrtsgenerateactor
+  rectangle "==structurizr.ts::generatecontainer\n<size:10>[Component: function]</size>\n\nGenerate DSL for a container with its components" <<chrislyonsdevarchlette.chrislyonsdevarchlette.structurizrtsgeneratecontainer>> as chrislyonsdevarchlette.chrislyonsdevarchlette.structurizrtsgeneratecontainer
+  rectangle "==structurizr.ts::generatecomponent\n<size:10>[Component: function]</size>\n\nGenerate DSL for a component" <<chrislyonsdevarchlette.chrislyonsdevarchlette.structurizrtsgeneratecomponent>> as chrislyonsdevarchlette.chrislyonsdevarchlette.structurizrtsgeneratecomponent
+  rectangle "==structurizr.ts::generatecodeascomponent\n<size:10>[Component: function]</size>\n\nGenerate DSL for a code item as a component\nAlways tagged with "Code" to separate from logical components in views" <<chrislyonsdevarchlette.chrislyonsdevarchlette.structurizrtsgeneratecodeascomponent>> as chrislyonsdevarchlette.chrislyonsdevarchlette.structurizrtsgeneratecodeascomponent
+  rectangle "==structurizr.ts::generateuniquecodename\n<size:10>[Component: function]</size>\n\nGenerate a unique name for a code item to avoid naming collisions\n\nExtracts file context from the code ID to create a unique display name.\nExample: "1-extract/index.ts::run" or "cli.ts::run"" <<chrislyonsdevarchlette.chrislyonsdevarchlette.structurizrtsgenerateuniquecodename>> as chrislyonsdevarchlette.chrislyonsdevarchlette.structurizrtsgenerateuniquecodename
+  rectangle "==structurizr.ts::generaterelationship\n<size:10>[Component: function]</size>\n\nGenerate DSL for a relationship" <<chrislyonsdevarchlette.chrislyonsdevarchlette.structurizrtsgeneraterelationship>> as chrislyonsdevarchlette.chrislyonsdevarchlette.structurizrtsgeneraterelationship
+  rectangle "==structurizr.ts::buildtechnologystring\n<size:10>[Component: function]</size>\n\nBuild technology string from relationship metadata" <<chrislyonsdevarchlette.chrislyonsdevarchlette.structurizrtsbuildtechnologystring>> as chrislyonsdevarchlette.chrislyonsdevarchlette.structurizrtsbuildtechnologystring
+  rectangle "==structurizr.ts::generatedeployment\n<size:10>[Component: function]</size>\n\nGenerate DSL for a deployment environment" <<chrislyonsdevarchlette.chrislyonsdevarchlette.structurizrtsgeneratedeployment>> as chrislyonsdevarchlette.chrislyonsdevarchlette.structurizrtsgeneratedeployment
+  rectangle "==structurizr.ts::sanitizeid\n<size:10>[Component: function]</size>\n\nSanitize ID for DSL (remove special characters, convert to camelCase)" <<chrislyonsdevarchlette.chrislyonsdevarchlette.structurizrtssanitizeid>> as chrislyonsdevarchlette.chrislyonsdevarchlette.structurizrtssanitizeid
+  rectangle "==structurizr.ts::escapestring\n<size:10>[Component: function]</size>\n\nEscape special characters in strings for DSL" <<chrislyonsdevarchlette.chrislyonsdevarchlette.structurizrtsescapestring>> as chrislyonsdevarchlette.chrislyonsdevarchlette.structurizrtsescapestring
+}
+
+@enduml

@@ -1,0 +1,230 @@
+@startuml
+set separator none
+title @chrislyons-dev/archlette - @chrislyons-dev/archlette - Components
+
+top to bottom direction
+skinparam ranksep 60
+skinparam nodesep 30
+
+skinparam {
+  arrowFontSize 10
+  defaultTextAlignment center
+  wrapWidth 200
+  maxMessageSize 100
+}
+
+hide stereotype
+
+skinparam rectangle<<chrislyonsdevarchlette.chrislyonsdevarchlette.constantstsnametoid>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<chrislyonsdevarchlette.chrislyonsdevarchlette.loggertscreatelogger>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<chrislyonsdevarchlette.chrislyonsdevarchlette.loggertsformatlogmessage>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<chrislyonsdevarchlette.chrislyonsdevarchlette.loggertsformattimestamp>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<chrislyonsdevarchlette.chrislyonsdevarchlette.moduleloadertsloadmodulefrompath>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<chrislyonsdevarchlette.chrislyonsdevarchlette.pathresolvertsexpandtilde>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<chrislyonsdevarchlette.chrislyonsdevarchlette.pathresolvertsgetclidir>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<chrislyonsdevarchlette.chrislyonsdevarchlette.pathresolvertsresolvearchlettepath>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<chrislyonsdevarchlette.chrislyonsdevarchlette.pathresolvertsresolvemoduleentry>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<chrislyonsdevarchlette.chrislyonsdevarchlette.pathresolvertstofileurl>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<chrislyonsdevarchlette.chrislyonsdevarchlette.pathresolvertswritefile>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<chrislyonsdevarchlette.chrislyonsdevarchlette.stagemoduleloadertsloaddocmodule>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<chrislyonsdevarchlette.chrislyonsdevarchlette.stagemoduleloadertsloadextractormodule>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<chrislyonsdevarchlette.chrislyonsdevarchlette.stagemoduleloadertsloadgeneratormodule>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<chrislyonsdevarchlette.chrislyonsdevarchlette.stagemoduleloadertsloadrenderermodule>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<chrislyonsdevarchlette.chrislyonsdevarchlette.stagemoduleloadertsloadvalidatormodule>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<chrislyonsdevarchlette.chrislyonsdevarchlette.toolmanagertscheckjava>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<chrislyonsdevarchlette.chrislyonsdevarchlette.toolmanagertscommandexistsinpath>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<chrislyonsdevarchlette.chrislyonsdevarchlette.toolmanagertsdownloadfile>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<chrislyonsdevarchlette.chrislyonsdevarchlette.toolmanagertsdownloadplantuml>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<chrislyonsdevarchlette.chrislyonsdevarchlette.toolmanagertsdownloadstructurizr>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<chrislyonsdevarchlette.chrislyonsdevarchlette.toolmanagertsensurecachedir>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<chrislyonsdevarchlette.chrislyonsdevarchlette.toolmanagertsextractzip>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<chrislyonsdevarchlette.chrislyonsdevarchlette.toolmanagertsfindplantuml>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<chrislyonsdevarchlette.chrislyonsdevarchlette.toolmanagertsfindstructurizrcli>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<chrislyonsdevarchlette.chrislyonsdevarchlette.toolmanagertsgetcachedir>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<chrislyonsdevarchlette.chrislyonsdevarchlette.toolmanagertsmakeexecutable>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<chrislyonsdevarchlette.chrislyonsdevarchlette.toolmanagertsrequirejava>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<chrislyonsdevarchlette.chrislyonsdevarchlette.typesaactsresolveconfig>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<chrislyonsdevarchlette.chrislyonsdevarchlette>> {
+  BorderColor #9a9a9a
+  FontColor #9a9a9a
+  shadowing false
+}
+
+rectangle "@chrislyons-dev/archlette\n<size:10>[Container: Application]</size>" <<chrislyonsdevarchlette.chrislyonsdevarchlette>> {
+  rectangle "==constants.ts::nametoid\n<size:10>[Component: function]</size>\n\nConvert a name to a normalized ID\nUsed for consistent ID generation across extractors and mappers" <<chrislyonsdevarchlette.chrislyonsdevarchlette.constantstsnametoid>> as chrislyonsdevarchlette.chrislyonsdevarchlette.constantstsnametoid
+  rectangle "==logger.ts::formattimestamp\n<size:10>[Component: function]</size>\n\nFormat timestamp as ISO 8601 (local time)" <<chrislyonsdevarchlette.chrislyonsdevarchlette.loggertsformattimestamp>> as chrislyonsdevarchlette.chrislyonsdevarchlette.loggertsformattimestamp
+  rectangle "==logger.ts::formatlogmessage\n<size:10>[Component: function]</size>\n\nFormat log message with timestamp, level, and context" <<chrislyonsdevarchlette.chrislyonsdevarchlette.loggertsformatlogmessage>> as chrislyonsdevarchlette.chrislyonsdevarchlette.loggertsformatlogmessage
+  rectangle "==logger.ts::createlogger\n<size:10>[Component: function]</size>\n\nCreate a logger instance" <<chrislyonsdevarchlette.chrislyonsdevarchlette.loggertscreatelogger>> as chrislyonsdevarchlette.chrislyonsdevarchlette.loggertscreatelogger
+  rectangle "==module-loader.ts::loadmodulefrompath\n<size:10>[Component: function]</size>\n\nDynamically load an ESM module from a path or module specifier" <<chrislyonsdevarchlette.chrislyonsdevarchlette.moduleloadertsloadmodulefrompath>> as chrislyonsdevarchlette.chrislyonsdevarchlette.moduleloadertsloadmodulefrompath
+  rectangle "==path-resolver.ts::getclidir\n<size:10>[Component: function]</size>" <<chrislyonsdevarchlette.chrislyonsdevarchlette.pathresolvertsgetclidir>> as chrislyonsdevarchlette.chrislyonsdevarchlette.pathresolvertsgetclidir
+  rectangle "==path-resolver.ts::expandtilde\n<size:10>[Component: function]</size>" <<chrislyonsdevarchlette.chrislyonsdevarchlette.pathresolvertsexpandtilde>> as chrislyonsdevarchlette.chrislyonsdevarchlette.pathresolvertsexpandtilde
+  rectangle "==path-resolver.ts::resolvearchlettepath\n<size:10>[Component: function]</size>\n\nCore path resolver honoring Archlette rules (no file existence checks).\n- "~"  -> user home\n- "/"  -> absolute\n- else -> relative to CLI dir" <<chrislyonsdevarchlette.chrislyonsdevarchlette.pathresolvertsresolvearchlettepath>> as chrislyonsdevarchlette.chrislyonsdevarchlette.pathresolvertsresolvearchlettepath
+  rectangle "==path-resolver.ts::resolvemoduleentry\n<size:10>[Component: function]</size>\n\nResolve a module entry by probing:\n1) Exact path\n2) With extensions: .ts then .js\n3) If directory: index.ts then index.js" <<chrislyonsdevarchlette.chrislyonsdevarchlette.pathresolvertsresolvemoduleentry>> as chrislyonsdevarchlette.chrislyonsdevarchlette.pathresolvertsresolvemoduleentry
+  rectangle "==path-resolver.ts::tofileurl\n<size:10>[Component: function]</size>" <<chrislyonsdevarchlette.chrislyonsdevarchlette.pathresolvertstofileurl>> as chrislyonsdevarchlette.chrislyonsdevarchlette.pathresolvertstofileurl
+  rectangle "==path-resolver.ts::writefile\n<size:10>[Component: function]</size>\n\nWrite content to a file, creating parent directories if needed." <<chrislyonsdevarchlette.chrislyonsdevarchlette.pathresolvertswritefile>> as chrislyonsdevarchlette.chrislyonsdevarchlette.pathresolvertswritefile
+  rectangle "==stage-module-loader.ts::loadextractormodule\n<size:10>[Component: function]</size>" <<chrislyonsdevarchlette.chrislyonsdevarchlette.stagemoduleloadertsloadextractormodule>> as chrislyonsdevarchlette.chrislyonsdevarchlette.stagemoduleloadertsloadextractormodule
+  rectangle "==stage-module-loader.ts::loadvalidatormodule\n<size:10>[Component: function]</size>" <<chrislyonsdevarchlette.chrislyonsdevarchlette.stagemoduleloadertsloadvalidatormodule>> as chrislyonsdevarchlette.chrislyonsdevarchlette.stagemoduleloadertsloadvalidatormodule
+  rectangle "==stage-module-loader.ts::loadgeneratormodule\n<size:10>[Component: function]</size>" <<chrislyonsdevarchlette.chrislyonsdevarchlette.stagemoduleloadertsloadgeneratormodule>> as chrislyonsdevarchlette.chrislyonsdevarchlette.stagemoduleloadertsloadgeneratormodule
+  rectangle "==stage-module-loader.ts::loadrenderermodule\n<size:10>[Component: function]</size>" <<chrislyonsdevarchlette.chrislyonsdevarchlette.stagemoduleloadertsloadrenderermodule>> as chrislyonsdevarchlette.chrislyonsdevarchlette.stagemoduleloadertsloadrenderermodule
+  rectangle "==stage-module-loader.ts::loaddocmodule\n<size:10>[Component: function]</size>" <<chrislyonsdevarchlette.chrislyonsdevarchlette.stagemoduleloadertsloaddocmodule>> as chrislyonsdevarchlette.chrislyonsdevarchlette.stagemoduleloadertsloaddocmodule
+  rectangle "==tool-manager.ts::getcachedir\n<size:10>[Component: function]</size>\n\nGet the Archlette cache directory" <<chrislyonsdevarchlette.chrislyonsdevarchlette.toolmanagertsgetcachedir>> as chrislyonsdevarchlette.chrislyonsdevarchlette.toolmanagertsgetcachedir
+  rectangle "==tool-manager.ts::ensurecachedir\n<size:10>[Component: function]</size>\n\nEnsure cache directory exists" <<chrislyonsdevarchlette.chrislyonsdevarchlette.toolmanagertsensurecachedir>> as chrislyonsdevarchlette.chrislyonsdevarchlette.toolmanagertsensurecachedir
+  rectangle "==tool-manager.ts::commandexistsinpath\n<size:10>[Component: function]</size>\n\nCheck if a command exists in PATH" <<chrislyonsdevarchlette.chrislyonsdevarchlette.toolmanagertscommandexistsinpath>> as chrislyonsdevarchlette.chrislyonsdevarchlette.toolmanagertscommandexistsinpath
+  rectangle "==tool-manager.ts::downloadfile\n<size:10>[Component: function]</size>\n\nDownload a file from URL to destination" <<chrislyonsdevarchlette.chrislyonsdevarchlette.toolmanagertsdownloadfile>> as chrislyonsdevarchlette.chrislyonsdevarchlette.toolmanagertsdownloadfile
+  rectangle "==tool-manager.ts::extractzip\n<size:10>[Component: function]</size>\n\nExtract a ZIP file (simple extraction for Structurizr CLI)" <<chrislyonsdevarchlette.chrislyonsdevarchlette.toolmanagertsextractzip>> as chrislyonsdevarchlette.chrislyonsdevarchlette.toolmanagertsextractzip
+  rectangle "==tool-manager.ts::makeexecutable\n<size:10>[Component: function]</size>\n\nMake file executable (Unix only)" <<chrislyonsdevarchlette.chrislyonsdevarchlette.toolmanagertsmakeexecutable>> as chrislyonsdevarchlette.chrislyonsdevarchlette.toolmanagertsmakeexecutable
+  rectangle "==tool-manager.ts::downloadstructurizr\n<size:10>[Component: function]</size>\n\nDownload and install Structurizr CLI to cache" <<chrislyonsdevarchlette.chrislyonsdevarchlette.toolmanagertsdownloadstructurizr>> as chrislyonsdevarchlette.chrislyonsdevarchlette.toolmanagertsdownloadstructurizr
+  rectangle "==tool-manager.ts::downloadplantuml\n<size:10>[Component: function]</size>\n\nDownload and install PlantUML to cache" <<chrislyonsdevarchlette.chrislyonsdevarchlette.toolmanagertsdownloadplantuml>> as chrislyonsdevarchlette.chrislyonsdevarchlette.toolmanagertsdownloadplantuml
+  rectangle "==tool-manager.ts::findstructurizrcli\n<size:10>[Component: function]</size>\n\nFind or download Structurizr CLI" <<chrislyonsdevarchlette.chrislyonsdevarchlette.toolmanagertsfindstructurizrcli>> as chrislyonsdevarchlette.chrislyonsdevarchlette.toolmanagertsfindstructurizrcli
+  rectangle "==tool-manager.ts::findplantuml\n<size:10>[Component: function]</size>\n\nFind or download PlantUML JAR" <<chrislyonsdevarchlette.chrislyonsdevarchlette.toolmanagertsfindplantuml>> as chrislyonsdevarchlette.chrislyonsdevarchlette.toolmanagertsfindplantuml
+  rectangle "==tool-manager.ts::checkjava\n<size:10>[Component: function]</size>\n\nVerify Java is available" <<chrislyonsdevarchlette.chrislyonsdevarchlette.toolmanagertscheckjava>> as chrislyonsdevarchlette.chrislyonsdevarchlette.toolmanagertscheckjava
+  rectangle "==tool-manager.ts::requirejava\n<size:10>[Component: function]</size>\n\nValidate Java is installed (throw if not)" <<chrislyonsdevarchlette.chrislyonsdevarchlette.toolmanagertsrequirejava>> as chrislyonsdevarchlette.chrislyonsdevarchlette.toolmanagertsrequirejava
+  rectangle "==types-aac.ts::resolveconfig\n<size:10>[Component: function]</size>\n\nFor each stage, resolve includes/excludes for each node:\n  - If node omits includes/excludes, inherit from defaults." <<chrislyonsdevarchlette.chrislyonsdevarchlette.typesaactsresolveconfig>> as chrislyonsdevarchlette.chrislyonsdevarchlette.typesaactsresolveconfig
+}
+
+@enduml

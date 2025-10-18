@@ -1,0 +1,60 @@
+project:
+  name: Archlette
+  # Arbitrary metadata for the project
+  props:
+    owner: 'platform-team'
+    repo: 'github.com/you/archlette'
+
+paths:
+  ir_out: ../docs/architecture/aac-ir.json
+  dsl_out: ../docs/architecture/aac.dsl
+  render_out: ../docs/architecture/diagrams
+  docs_out: ../docs/architecture
+
+# Stage-level defaults (merged into each node unless the node overrides)
+defaults:
+  includes: ['**/*'] # safe default
+  excludes: ['node_modules/**', '.git/**', 'dist/**', 'build/**']
+  props:
+    ci: true
+
+extractors:
+  - use: extractors/builtin/basic-node
+    name: 'Basic Code Scan'
+    includes: ['src/**/*.{ts,tsx}'] # node-level override/refine
+    excludes: [] # explicit override (empty)
+    props:
+      mode: 'ast' # arbitrary name/value pairs
+      severity: 'info'
+
+validators:
+  - use: validators/builtin/schema
+    name: 'IR Schema'
+    props:
+      strict: true
+
+generators:
+  - use: generators/builtin/structurizr
+    name: 'Structurizr DSL'
+    props:
+      output: '../docs/architecture/workspace.dsl' # Where to write the DSL
+
+renderers:
+  # Renderers run sequentially - order matters!
+  # First: Export Structurizr DSL to PlantUML and Mermaid
+  - use: renderers/builtin/structurizr-export
+    name: 'Structurizr Export'
+    props:
+      formats: ['plantuml', 'mermaid']
+
+  # Second: Render PlantUML files to PNG images
+  - use: renderers/builtin/plantuml-render
+    name: 'PlantUML to PNG'
+    props:
+      format: 'png'
+
+docs:
+  - use: docs/builtin/index
+    name: 'Docs Index'
+    props:
+      sidebar: true

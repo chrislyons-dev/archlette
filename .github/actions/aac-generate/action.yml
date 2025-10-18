@@ -1,0 +1,49 @@
+name: AAC Generate
+description: Generate Architecture-as-Code artifacts (IR, DSL, diagrams)
+runs:
+  using: 'composite'
+  steps:
+    # Cache Archlette tools (Structurizr CLI, PlantUML)
+    - name: Cache Archlette tools
+      uses: actions/cache@v4
+      with:
+        path: ~/.archlette/tools
+        key: archlette-tools-${{ runner.os }}-v1
+        restore-keys: |
+          archlette-tools-${{ runner.os }}-
+
+    # Verify Java is available (required for rendering)
+    - name: Verify Java
+      run: java -version
+      shell: bash
+
+    # Install dependencies
+    - name: Install npm dependencies
+      run: npm ci
+      shell: bash
+
+    # Optional: Install Graphviz (for DOT rendering if needed)
+    - name: Install Graphviz (optional)
+      run: sudo apt-get update && sudo apt-get install -y graphviz
+      shell: bash
+      continue-on-error: true
+
+    # Optional: Install Mermaid CLI (if using mermaid rendering)
+    - name: Install Mermaid CLI (optional)
+      run: npm i -g @mermaid-js/mermaid-cli
+      shell: bash
+      continue-on-error: true
+
+    # Optional: Install Inframap (if using IaC extraction)
+    - name: Install Inframap (optional)
+      run: |
+        curl -sL https://github.com/cycloidio/inframap/releases/latest/download/inframap_linux_amd64.tar.gz | tar xz
+        sudo mv inframap /usr/local/bin/inframap
+      shell: bash
+      continue-on-error: true
+
+    # Run full AAC pipeline (extract → validate → generate → render)
+    # Structurizr CLI and PlantUML will be auto-downloaded to ~/.archlette/tools if not cached
+    - name: Generate architecture artifacts
+      run: npm run aac:all
+      shell: bash

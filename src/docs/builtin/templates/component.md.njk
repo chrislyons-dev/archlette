@@ -1,0 +1,195 @@
+# 🧩 {{ component.name }}
+
+[← Back to System Overview](./README.md)
+
+---
+
+## 📋 Component Information
+
+<table>
+<tbody>
+<tr>
+<td><strong>Container</strong></td>
+<td>{{ container.name if container else component.containerId }}</td>
+</tr>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>{{ component.type }}</code></td>
+</tr>
+{% if component.description %}
+<tr>
+<td><strong>Description</strong></td>
+<td>{{ component.description }}</td>
+</tr>
+{% endif %}
+{% if component.tags and component.tags.length > 0 %}
+<tr>
+<td><strong>Tags</strong></td>
+<td>{% for tag in component.tags %}<code>{{ tag }}</code>{% if not loop.last %}, {% endif %}{% endfor %}</td>
+</tr>
+{% endif %}
+</tbody>
+</table>
+
+---
+
+## 🏗️ Component Architecture
+
+{% if componentDiagrams.length > 0 %}
+{% for diagram in componentDiagrams %}
+![Component Diagram](./{{ diagram | forwardSlashes }})
+{% endfor %}
+{% else %}
+> No component diagrams available. Run the render stage to generate diagrams.
+{% endif %}
+
+---
+
+## 💻 Code Structure
+
+{% if codeDiagrams.length > 0 %}
+### Class Diagram
+
+{% for diagram in codeDiagrams %}
+![Class Diagram](./{{ diagram | forwardSlashes }})
+{% endfor %}
+{% endif %}
+
+### Code Elements
+
+{% if codeItems.length > 0 %}
+<details>
+<summary><strong>{{ codeItems.length }} code element(s)</strong></summary>
+
+{% set classes = codeItems | selectattr("type", "equalto", "class") %}
+{% set functions = codeItems | selectattr("type", "equalto", "function") %}
+{% set methods = codeItems | selectattr("type", "equalto", "method") %}
+
+{% if classes | length > 0 %}
+#### Classes
+
+{% for item in classes %}
+##### `{{ item.name }}`
+
+{% if item.description %}
+{{ item.description }}
+{% endif %}
+
+<table>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>{{ item.type }}</code></td>
+</tr>
+<tr>
+<td><strong>Visibility</strong></td>
+<td><code>{{ item.visibility }}</code></td>
+</tr>
+{% if item.isAbstract %}
+<tr>
+<td><strong>Abstract</strong></td>
+<td>Yes</td>
+</tr>
+{% endif %}
+<tr>
+<td><strong>Location</strong></td>
+<td><code>{{ item.filePath }}:{{ item.lineNumber }}</code></td>
+</tr>
+{% if item.metadata.extends %}
+<tr>
+<td><strong>Extends</strong></td>
+<td><code>{{ item.metadata.extends }}</code></td>
+</tr>
+{% endif %}
+{% if item.metadata.implements and item.metadata.implements.length > 0 %}
+<tr>
+<td><strong>Implements</strong></td>
+<td>{% for impl in item.metadata.implements %}<code>{{ impl }}</code>{% if not loop.last %}, {% endif %}{% endfor %}</td>
+</tr>
+{% endif %}
+</tbody>
+</table>
+
+{% if item.documentation and item.documentation.examples and item.documentation.examples.length > 0 %}
+**Examples:**
+{% for example in item.documentation.examples %}
+```{{ example.language or "typescript" }}
+{{ example.code }}
+```
+{% endfor %}
+{% endif %}
+
+---
+{% endfor %}
+{% endif %}
+
+{% if functions | length > 0 %}
+#### Functions
+
+{% for item in functions %}
+##### `{{ item.name }}()`
+
+{% if item.description %}
+{{ item.description }}
+{% endif %}
+
+<table>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>{{ item.type }}</code></td>
+</tr>
+<tr>
+<td><strong>Visibility</strong></td>
+<td><code>{{ item.visibility }}</code></td>
+</tr>
+{% if item.isAsync %}
+<tr>
+<td><strong>Async</strong></td>
+<td>Yes</td>
+</tr>
+{% endif %}
+{% if item.returnType %}
+<tr>
+<td><strong>Returns</strong></td>
+<td><code>{{ item.returnType }}</code>{% if item.returnDescription %} — {{ item.returnDescription }}{% endif %}</td>
+</tr>
+{% endif %}
+<tr>
+<td><strong>Location</strong></td>
+<td><code>{{ item.filePath }}:{{ item.lineNumber }}</code></td>
+</tr>
+</tbody>
+</table>
+
+{% if item.parameters and item.parameters.length > 0 %}
+**Parameters:**
+
+{% for param in item.parameters %}
+- `{{ param.name }}`: <code>{{ param.type or "any" }}</code>{% if param.description %} — {{ param.description }}{% endif %}
+{% endfor %}
+{% endif %}
+
+{% if item.documentation and item.documentation.examples and item.documentation.examples.length > 0 %}
+**Examples:**
+{% for example in item.documentation.examples %}
+```{{ example.language or "typescript" }}
+{{ example.code }}
+```
+{% endfor %}
+{% endif %}
+
+---
+{% endfor %}
+{% endif %}
+
+</details>
+{% else %}
+> No code elements extracted for this component.
+{% endif %}
+
+---
+
+<div align="center">
+<sub><a href="./README.md">← Back to System Overview</a> | Generated with <a href="https://github.com/architectlabs/archlette">Archlette</a></sub>
+</div>

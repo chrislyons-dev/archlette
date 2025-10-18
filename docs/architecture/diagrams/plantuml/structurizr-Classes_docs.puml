@@ -1,0 +1,62 @@
+@startuml
+set separator none
+title @chrislyons-dev/archlette - @chrislyons-dev/archlette - Components
+
+top to bottom direction
+skinparam ranksep 60
+skinparam nodesep 30
+
+skinparam {
+  arrowFontSize 10
+  defaultTextAlignment center
+  wrapWidth 200
+  maxMessageSize 100
+}
+
+hide stereotype
+
+skinparam rectangle<<chrislyonsdevarchlette.chrislyonsdevarchlette.5docsindextsrun>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<chrislyonsdevarchlette.chrislyonsdevarchlette.markdowndocstsfindclassdiagramsforcomponent>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<chrislyonsdevarchlette.chrislyonsdevarchlette.markdowndocstsfinddiagramsforcomponent>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<chrislyonsdevarchlette.chrislyonsdevarchlette.markdowndocstsfinddiagramsforview>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<chrislyonsdevarchlette.chrislyonsdevarchlette.markdowndocstsmarkdowndocs>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<chrislyonsdevarchlette.chrislyonsdevarchlette>> {
+  BorderColor #9a9a9a
+  FontColor #9a9a9a
+  shadowing false
+}
+
+rectangle "@chrislyons-dev/archlette\n<size:10>[Container: Application]</size>" <<chrislyonsdevarchlette.chrislyonsdevarchlette>> {
+  rectangle "==5-docs/index.ts::run\n<size:10>[Component: function]</size>\n\nExecute the documentation stage" <<chrislyonsdevarchlette.chrislyonsdevarchlette.5docsindextsrun>> as chrislyonsdevarchlette.chrislyonsdevarchlette.5docsindextsrun
+  rectangle "==markdown-docs.ts::markdowndocs\n<size:10>[Component: function]</size>\n\nGenerate markdown documentation" <<chrislyonsdevarchlette.chrislyonsdevarchlette.markdowndocstsmarkdowndocs>> as chrislyonsdevarchlette.chrislyonsdevarchlette.markdowndocstsmarkdowndocs
+  rectangle "==markdown-docs.ts::finddiagramsforview\n<size:10>[Component: function]</size>\n\nFind diagram files for a specific view type" <<chrislyonsdevarchlette.chrislyonsdevarchlette.markdowndocstsfinddiagramsforview>> as chrislyonsdevarchlette.chrislyonsdevarchlette.markdowndocstsfinddiagramsforview
+  rectangle "==markdown-docs.ts::finddiagramsforcomponent\n<size:10>[Component: function]</size>\n\nFind component diagrams for a specific component" <<chrislyonsdevarchlette.chrislyonsdevarchlette.markdowndocstsfinddiagramsforcomponent>> as chrislyonsdevarchlette.chrislyonsdevarchlette.markdowndocstsfinddiagramsforcomponent
+  rectangle "==markdown-docs.ts::findclassdiagramsforcomponent\n<size:10>[Component: function]</size>\n\nFind class diagrams for a specific component" <<chrislyonsdevarchlette.chrislyonsdevarchlette.markdowndocstsfindclassdiagramsforcomponent>> as chrislyonsdevarchlette.chrislyonsdevarchlette.markdowndocstsfindclassdiagramsforcomponent
+}
+
+@enduml

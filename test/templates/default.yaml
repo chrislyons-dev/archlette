@@ -1,0 +1,23 @@
+project: { name: Archlette }
+
+paths:
+  ir_out: ../docs/architecture/aac-ir.json
+  dsl_out: ../docs/architecture/aac.dsl
+  render_out: ../docs/architecture/images
+  docs_out: ../docs/architecture
+
+extractors:
+  - use: extractors/builtin/basic-node
+    inputs: { include: ['src/**/*.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'] }
+
+validators:
+  - use: validators/builtin/schema
+
+generators:
+  - use: generators/builtin/structurizr
+
+renderers:
+  - use: renderers/builtin/structurizr-cli
+
+docs:
+  - use: docs/builtin/index
