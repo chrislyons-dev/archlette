@@ -1,0 +1,50 @@
+system:
+  name: bond-math
+  description: Bond mathematics calculation service
+  repository: https://github.com/chrislyons-dev/bond-math.git
+
+project:
+  name: bond-math
+  description: Bond mathematics calculation service
+
+paths:
+  output: ./output
+  logs: ./logs
+  ir_out: ./output/bond-math-ir.json
+  dsl_out: ./output/bond-math.dsl
+  render_out: ./output/diagrams
+  docs_out: ./output/docs
+
+extractors:
+  - use: extractors/builtin/basic-node
+    inputs:
+      include:
+        - 'C:/Users/chris/git/bond-math/services/gateway/**/*.js'
+        - 'C:/Users/chris/git/bond-math/services/gateway/**/*.jsx'
+        - 'C:/Users/chris/git/bond-math/services/gateway/**/*.ts'
+        - 'C:/Users/chris/git/bond-math/services/gateway/**/*.tsx'
+      exclude:
+        - '**/node_modules/**'
+        - '**/*.test.*'
+        - '**/*.spec.*'
+        - '**/test/**'
+        - '**/tests/**'
+        - '**/vitest.config.ts'
+
+  - use: extractors/builtin/basic-node
+    inputs:
+      include:
+        - 'C:/Users/chris/git/bond-math/services/daycount/**/*.js'
+        - 'C:/Users/chris/git/bond-math/services/daycount/**/*.jsx'
+        - 'C:/Users/chris/git/bond-math/services/daycount/**/*.ts'
+        - 'C:/Users/chris/git/bond-math/services/daycount/**/*.tsx'
+      exclude:
+        - '**/node_modules/**'
+        - '**/*.test.*'
+        - '**/*.spec.*'
+        - '**/test/**'
+        - '**/tests/**'
+        - '**/vitest.config.ts'
+
+generators:
+  - use: generators/builtin/structurizr
