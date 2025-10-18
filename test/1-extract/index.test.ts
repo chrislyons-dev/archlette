@@ -54,6 +54,7 @@ describe('extract stage', () => {
       config: mockConfig,
       state: {},
       log: mockLogger,
+      configBaseDir: '/cli',
     };
 
     // Default mocks

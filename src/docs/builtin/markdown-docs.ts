@@ -22,7 +22,7 @@ import { fileURLToPath } from 'node:url';
 import { createRequire } from 'node:module';
 import type { PipelineContext } from '../../core/types.js';
 import type { Component } from '../../core/types-ir.js';
-import { resolveArchlettePath, getCliDir } from '../../core/path-resolver.js';
+import { resolveArchlettePath } from '../../core/path-resolver.js';
 
 const require = createRequire(import.meta.url);
 const nunjucks = require('nunjucks');
@@ -49,8 +49,9 @@ export default async function markdownDocs(ctx: PipelineContext): Promise<void> 
   ctx.log.debug(`Found ${rendererOutputs.length} renderer output(s)`);
 
   // Get output directory
-  const cliDir = getCliDir();
-  const docsDir = resolveArchlettePath(ctx.config.paths.docs_out, { cliDir });
+  const docsDir = resolveArchlettePath(ctx.config.paths.docs_out, {
+    cliDir: ctx.configBaseDir,
+  });
   const diagramsDir = path.join(docsDir, 'diagrams');
 
   // Ensure output directory exists

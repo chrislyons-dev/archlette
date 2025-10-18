@@ -20,7 +20,7 @@ import * as path from 'node:path';
 import { execSync } from 'node:child_process';
 import type { PipelineContext } from '../../core/types.js';
 import { findPlantUML, requireJava } from '../../core/tool-manager.js';
-import { resolveArchlettePath, getCliDir } from '../../core/path-resolver.js';
+import { resolveArchlettePath } from '../../core/path-resolver.js';
 
 /**
  * Render PlantUML files to PNG images
@@ -37,8 +37,9 @@ export default async function plantumlRender(ctx: PipelineContext): Promise<void
   }
 
   // Get output directory
-  const cliDir = getCliDir();
-  const outputBase = resolveArchlettePath(ctx.config.paths.render_out, { cliDir });
+  const outputBase = resolveArchlettePath(ctx.config.paths.render_out, {
+    cliDir: ctx.configBaseDir,
+  });
   const plantumlDir = path.join(outputBase, 'plantuml');
   const imagesDir = outputBase; // Output images to root diagrams/ directory
 

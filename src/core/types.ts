@@ -76,6 +76,8 @@ export interface PipelineContext {
   config: ResolvedAACConfig;
   state: PipelineState;
   log: Logger;
+  /** Base directory for resolving config paths (where user's config file is located, or cwd) */
+  configBaseDir: string;
 }
 
 /** What a stage module may export */

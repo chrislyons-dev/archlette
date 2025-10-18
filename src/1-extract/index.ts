@@ -26,7 +26,7 @@
 import type { PipelineContext } from '../core/types.js';
 import { loadExtractorModule } from '../core/stage-module-loader';
 import { zArchletteIR, type ArchletteIR } from '../core/types-ir';
-import { resolveArchlettePath, getCliDir, writeFile } from '../core/path-resolver.js';
+import { resolveArchlettePath, writeFile } from '../core/path-resolver.js';
 import type { ResolvedAACConfig, ResolvedStageNode } from '../core/types-aac';
 import { aggregateIRs } from './aggregator.js';
 
@@ -76,7 +76,9 @@ export async function run(ctx: PipelineContext): Promise<void> {
   ctx.state.aggregatedIR = aggregatedIR;
 
   ctx.log.debug(`Resolving IR output destination from ${config.paths.ir_out}.`);
-  const outputPath = resolveArchlettePath(config.paths.ir_out, { cliDir: getCliDir() });
+  const outputPath = resolveArchlettePath(config.paths.ir_out, {
+    cliDir: ctx.configBaseDir,
+  });
   ctx.log.debug(`Writing aggregated IR to ${outputPath}.`);
   writeFile(outputPath, JSON.stringify(aggregatedIR, null, 2));
   ctx.log.info(`Extract: completed ${results.length} extractor(s).`);

@@ -19,14 +19,13 @@
  * ## Usage
  *
  * ```bash
- * # Run full pipeline
- * archlette all
+ * # Run full pipeline (default)
+ * archlette
+ * archlette -f .aac.yaml
  *
  * # Run specific stage
- * archlette extract -f .aac.yaml
- *
- * # Run multiple stages
- * archlette extract validate generate
+ * archlette extract
+ * archlette -f .aac.yaml extract
  * ```
  *
  * ## Configuration
@@ -46,6 +45,7 @@
 
 import { pathToFileURL } from 'node:url';
 import * as fs from 'node:fs';
+import * as path from 'node:path';
 
 import type { PipelineContext, StageModule } from './core/types.ts';
 import { getStageEntry } from './core/stage-entry.js';
@@ -68,36 +68,55 @@ const STAGE_ORDER = ['extract', 'validate', 'generate', 'render', 'docs'];
 function usageAndExit(msg: string) {
   if (msg) console.error(`\nError: ${msg}\n`);
   console.log(
-    `Usage: archlette <stage> [-f <config.yaml>]
+    `Usage: archlette [-f <config.yaml>] [stage]
 
-<stage>: all | extract | validate | generate | render | docs
+Stages (optional, defaults to 'all'):
+  all | extract | validate | generate | render | docs
   - "all" and "docs" both run the full pipeline (extract→validate→generate→render→docs)
+  - Each stage runs all previous stages automatically
 
 Options:
-  -f <file>   YAML config file path. Defaults to DEFAULT_YAML_PATH (resolved relative to the CLI file).`,
+  -f <file>   YAML config file path. Defaults to templates/default.yaml
+
+Examples:
+  archlette                     # Run 'all' with default config
+  archlette -f .aac.yaml        # Run 'all' with custom config
+  archlette extract             # Run 'extract' with default config
+  archlette -f .aac.yaml extract # Run 'extract' with custom config`,
   );
   process.exit(2);
 }
 
 function parseArgs(argv: string[]) {
   const args = argv.slice(2);
-  if (args.length === 0) usageAndExit('Missing required <stage> argument.');
-
-  const stageArg = String(args[0] || '').toLowerCase();
   const valid = new Set(['all', ...STAGE_ORDER]);
-  if (!valid.has(stageArg)) usageAndExit(`Invalid stage "${stageArg}".`);
 
+  let stageArg = 'all'; // Default stage
   let yamlPathArg = null;
-  for (let i = 1; i < args.length; i++) {
-    if (args[i] === '-f') {
+
+  // Parse arguments - handle -f flag and optional stage
+  let i = 0;
+  while (i < args.length) {
+    const arg = args[i];
+
+    if (arg === '-f') {
       const next = args[i + 1];
       if (!next) usageAndExit('Missing value for -f <file>.');
       yamlPathArg = next;
-      i++;
+      i += 2;
+    } else if (arg.startsWith('-')) {
+      usageAndExit(`Unknown option "${arg}".`);
     } else {
-      usageAndExit(`Unknown option "${args[i]}".`);
+      // Non-flag argument - must be a stage
+      const providedStage = arg.toLowerCase();
+      if (!valid.has(providedStage)) {
+        usageAndExit(`Invalid stage "${providedStage}".`);
+      }
+      stageArg = providedStage;
+      i++;
     }
   }
+
   return { stageArg, yamlPathArg };
 }
 
@@ -139,25 +158,33 @@ export async function run(argv = process.argv) {
 
   // Parse and resolve config to match PipelineContext type
   let config: any = null;
-  let path: string | null = null;
+  let configPath: string | null = null;
   const loaded = await loadYamlIfExists(chosenYaml);
   if (loaded.config) {
     config = resolveConfig(loaded.config);
-    path = loaded.path;
+    configPath = loaded.path;
   }
+
+  // Determine base directory for resolving config paths:
+  // - If user provided -f: use the directory containing that config file
+  // - If no -f (using default config): use current working directory
+  const configBaseDir = yamlPathArg
+    ? path.dirname(resolveArchlettePath(yamlPathArg, { cliDir }))
+    : process.cwd();
 
   /** Shared pipeline context passed to stages if they export a function */
   const ctx: PipelineContext = {
     config,
     state: {},
     log: createLogger({ context: 'CLI', level: 'info' }),
+    configBaseDir,
   };
 
   const stagesToRun = stageListFromArg(stageArg);
   ctx.log.info(`Starting pipeline: ${stagesToRun.join(' → ')}`);
   ctx.log.info(
-    path
-      ? `Using config: ${path}`
+    configPath
+      ? `Using config: ${configPath}`
       : `No config file found (looked for: ${chosenYaml}). Proceeding.`,
   );
 

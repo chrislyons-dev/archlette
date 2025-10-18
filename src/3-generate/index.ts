@@ -25,7 +25,7 @@
 import type { PipelineContext, GeneratorOutput } from '../core/types.js';
 import { loadGeneratorModule } from '../core/stage-module-loader.js';
 import type { ResolvedAACConfig, ResolvedStageNode } from '../core/types-aac.js';
-import { resolveArchlettePath, getCliDir, writeFile } from '../core/path-resolver.js';
+import { resolveArchlettePath, writeFile } from '../core/path-resolver.js';
 
 /**
  * Execute the generation stage
@@ -102,9 +102,10 @@ export async function run(ctx: PipelineContext): Promise<void> {
   // Write DSL output to configured path
   if (outputs.length > 0) {
     try {
-      const cliDir = getCliDir();
       ctx.log.debug(`Resolving DSL output destination from ${config.paths.dsl_out}`);
-      const outputPath = resolveArchlettePath(config.paths.dsl_out, { cliDir });
+      const outputPath = resolveArchlettePath(config.paths.dsl_out, {
+        cliDir: ctx.configBaseDir,
+      });
 
       // If only one generator, write its content directly
       // If multiple generators, concatenate them with separators

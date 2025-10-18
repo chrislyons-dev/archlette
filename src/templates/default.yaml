@@ -11,7 +11,7 @@ paths:
 # config yaml in, ir json out
 extractors:
   # each extractor receives the specified inputs and produces ir json
-  - use: ./extractors/builtin/basic-node
+  - use: extractors/builtin/basic-node
     inputs: { include: ['src/**/*.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'] }
 
 # ir json in, ir json out (or errors)

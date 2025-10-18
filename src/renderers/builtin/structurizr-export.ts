@@ -20,7 +20,7 @@ import * as path from 'node:path';
 import { execSync } from 'node:child_process';
 import type { PipelineContext } from '../../core/types.js';
 import { findStructurizrCLI, requireJava } from '../../core/tool-manager.js';
-import { resolveArchlettePath, getCliDir } from '../../core/path-resolver.js';
+import { resolveArchlettePath } from '../../core/path-resolver.js';
 
 /**
  * Export Structurizr DSL to PlantUML and Mermaid formats
@@ -37,8 +37,9 @@ export default async function structurizrExport(ctx: PipelineContext): Promise<v
   }
 
   // Get DSL file path
-  const cliDir = getCliDir();
-  const dslPath = resolveArchlettePath(ctx.config.paths.dsl_out, { cliDir });
+  const dslPath = resolveArchlettePath(ctx.config.paths.dsl_out, {
+    cliDir: ctx.configBaseDir,
+  });
 
   if (!fs.existsSync(dslPath)) {
     ctx.log.error(`DSL file not found: ${dslPath}`);
@@ -48,7 +49,9 @@ export default async function structurizrExport(ctx: PipelineContext): Promise<v
   ctx.log.debug(`Using DSL file: ${dslPath}`);
 
   // Get output directory
-  const outputBase = resolveArchlettePath(ctx.config.paths.render_out, { cliDir });
+  const outputBase = resolveArchlettePath(ctx.config.paths.render_out, {
+    cliDir: ctx.configBaseDir,
+  });
   const plantumlDir = path.join(outputBase, 'plantuml');
   const mermaidDir = path.join(outputBase, 'mermaid');
 

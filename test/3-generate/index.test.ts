@@ -66,6 +66,7 @@ describe('generate stage', () => {
       config: mockConfig,
       state: { validatedIR: mockIR },
       log: mockLogger,
+      configBaseDir: '/cli',
     };
 
     // Default mocks

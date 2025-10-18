@@ -155,7 +155,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/cli.ts",
-      "lineNumber": 82
+      "lineNumber": 90
     },
     {
       "id": "C:/Users/chris/git/archlette/src/cli.ts:stageListFromArg",
@@ -173,7 +173,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/cli.ts",
-      "lineNumber": 104
+      "lineNumber": 123
     },
     {
       "id": "C:/Users/chris/git/archlette/src/cli.ts:loadYamlIfExists",
@@ -191,7 +191,7 @@
       "visibility": "private",
       "isAsync": true,
       "filePath": "C:/Users/chris/git/archlette/src/cli.ts",
-      "lineNumber": 110
+      "lineNumber": 129
     },
     {
       "id": "C:/Users/chris/git/archlette/src/cli.ts:run",
@@ -210,7 +210,7 @@
       "visibility": "public",
       "isAsync": true,
       "filePath": "C:/Users/chris/git/archlette/src/cli.ts",
-      "lineNumber": 130
+      "lineNumber": 149
     },
     {
       "description": "Aggregate multiple ArchletteIR objects into a single unified IR",
@@ -1197,7 +1197,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/docs/builtin/markdown-docs.ts",
-      "lineNumber": 195
+      "lineNumber": 196
     },
     {
       "description": "Find component diagrams for a specific component",
@@ -1234,7 +1234,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/docs/builtin/markdown-docs.ts",
-      "lineNumber": 223
+      "lineNumber": 224
     },
     {
       "description": "Find class diagrams for a specific component",
@@ -1271,7 +1271,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/docs/builtin/markdown-docs.ts",
-      "lineNumber": 256
+      "lineNumber": 257
     },
     {
       "description": "Extract architecture information from a Node.js/TypeScript codebase",
@@ -2847,6 +2847,12 @@
       "stereotype": "import"
     },
     {
+      "description": "imports * as path",
+      "source": "C:/Users/chris/git/archlette/src/cli.ts",
+      "destination": "node:path:* as path",
+      "stereotype": "import"
+    },
+    {
       "description": "imports PipelineContext",
       "source": "C:/Users/chris/git/archlette/src/cli.ts",
       "destination": "./core/types.ts:PipelineContext",
@@ -2940,12 +2946,6 @@
       "description": "imports resolveArchlettePath",
       "source": "C:/Users/chris/git/archlette/src/1-extract/index.ts",
       "destination": "../core/path-resolver.js:resolveArchlettePath",
-      "stereotype": "import"
-    },
-    {
-      "description": "imports getCliDir",
-      "source": "C:/Users/chris/git/archlette/src/1-extract/index.ts",
-      "destination": "../core/path-resolver.js:getCliDir",
       "stereotype": "import"
     },
     {
@@ -3048,12 +3048,6 @@
       "description": "imports resolveArchlettePath",
       "source": "C:/Users/chris/git/archlette/src/3-generate/index.ts",
       "destination": "../core/path-resolver.js:resolveArchlettePath",
-      "stereotype": "import"
-    },
-    {
-      "description": "imports getCliDir",
-      "source": "C:/Users/chris/git/archlette/src/3-generate/index.ts",
-      "destination": "../core/path-resolver.js:getCliDir",
       "stereotype": "import"
     },
     {
@@ -3297,12 +3291,6 @@
       "stereotype": "import"
     },
     {
-      "description": "imports getCliDir",
-      "source": "C:/Users/chris/git/archlette/src/docs/builtin/markdown-docs.ts",
-      "destination": "../../core/path-resolver.js:getCliDir",
-      "stereotype": "import"
-    },
-    {
       "description": "imports ResolvedStageNode",
       "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node.ts",
       "destination": "../../core/types-aac.js:ResolvedStageNode",
@@ -3441,12 +3429,6 @@
       "stereotype": "import"
     },
     {
-      "description": "imports getCliDir",
-      "source": "C:/Users/chris/git/archlette/src/renderers/builtin/plantuml-render.ts",
-      "destination": "../../core/path-resolver.js:getCliDir",
-      "stereotype": "import"
-    },
-    {
       "description": "imports * as fs",
       "source": "C:/Users/chris/git/archlette/src/renderers/builtin/structurizr-export.ts",
       "destination": "node:fs:* as fs",
@@ -3486,12 +3468,6 @@
       "description": "imports resolveArchlettePath",
       "source": "C:/Users/chris/git/archlette/src/renderers/builtin/structurizr-export.ts",
       "destination": "../../core/path-resolver.js:resolveArchlettePath",
-      "stereotype": "import"
-    },
-    {
-      "description": "imports getCliDir",
-      "source": "C:/Users/chris/git/archlette/src/renderers/builtin/structurizr-export.ts",
-      "destination": "../../core/path-resolver.js:getCliDir",
       "stereotype": "import"
     },
     {
