@@ -85,10 +85,6 @@
     "vitest": "^3.2.4"
   },
   "lint-staged": {
-    "*.{js,ts,json,md,yml,yaml}": [
-      "prettier --write",
-      "eslint --fix"
-    ],
     "{package.json,src/core/tool-manager.ts}": [
       "npm run licenses:generate",
       "git add THIRD_PARTY_LICENSES.md"
@@ -96,6 +92,10 @@
     "README.md": [
       "npm run readme:sync",
       "git add docs/index.md"
+    ],
+    "*.{js,ts,json,md,yml,yaml}": [
+      "prettier --write",
+      "eslint --fix"
     ]
   },
   "engines": {
