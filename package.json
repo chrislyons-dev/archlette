@@ -87,10 +87,12 @@
   "lint-staged": {
     "{package.json,src/core/tool-manager.ts}": [
       "npm run licenses:generate",
+      "prettier --write THIRD_PARTY_LICENSES.md",
       "git add THIRD_PARTY_LICENSES.md"
     ],
     "README.md": [
       "npm run readme:sync",
+      "prettier --write docs/index.md",
       "git add docs/index.md"
     ],
     "*.{js,ts,json,md,yml,yaml}": [
