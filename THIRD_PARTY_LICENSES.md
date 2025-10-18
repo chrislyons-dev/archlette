@@ -36,7 +36,7 @@ The following packages are installed as production dependencies via `package.jso
 ### NPM Dependencies Summary
 
 ```
-├─ MIT: 54
+├─ MIT: 53
 ├─ ISC: 7
 ├─ Apache-2.0: 1
 └─ BSD-2-Clause: 1
