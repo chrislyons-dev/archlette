@@ -44,7 +44,7 @@ Archlette extracts these annotations automatically. No configuration needed.
 
 ## Configure
 
-Create `.aac.yaml` in your project root:
+Create `.aac.yaml`:
 
 ```yaml
 project:

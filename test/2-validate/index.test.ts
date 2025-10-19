@@ -37,6 +37,7 @@ describe('validate stage', () => {
       components: [],
       code: [],
       deployments: [],
+      deploymentRelationships: [],
       containerRelationships: [],
       componentRelationships: [],
       codeRelationships: [],
