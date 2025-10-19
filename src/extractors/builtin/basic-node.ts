@@ -71,7 +71,6 @@ export default async function basicNodeExtractor(
   node: ResolvedStageNode,
 ): Promise<ArchletteIR> {
   const inputs = node.inputs as ExtractorInputs | undefined;
-
   // 1. Find source files
   const files = await findSourceFiles(inputs);
   console.log(`Found ${files.length} source files to analyze`);
@@ -88,7 +87,6 @@ export default async function basicNodeExtractor(
 
   // 2. Parse and extract information from files
   const extractions = await parseFiles(files);
-
   const successCount = extractions.filter((e) => !e.parseError).length;
   const errorCount = extractions.filter((e) => e.parseError).length;
   console.log(`Successfully parsed ${successCount} files, ${errorCount} errors`);

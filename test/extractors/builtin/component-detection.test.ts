@@ -53,16 +53,16 @@ export function validatePayment() {}
 
     // Should have found 1 component
     expect(ir.components).toHaveLength(1);
-    expect(ir.components[0].id).toBe('payment-processor');
+    expect(ir.components[0].id).toBe('default-container::payment-processor');
     expect(ir.components[0].name).toBe('Payment Processor');
     expect(ir.components[0].type).toBe('module');
 
     // Code elements should reference the component
-    const paymentClass = ir.code.find((c) => c.name === 'PaymentService');
-    expect(paymentClass?.componentId).toBe('payment-processor');
+    const paymentClass = ir.code.find((c) => c.name.includes('PaymentService'));
+    expect(paymentClass?.componentId).toBe('default-container::payment-processor');
 
-    const validateFunc = ir.code.find((c) => c.name === 'validatePayment');
-    expect(validateFunc?.componentId).toBe('payment-processor');
+    const validateFunc = ir.code.find((c) => c.name.includes('validatePayment'));
+    expect(validateFunc?.componentId).toBe('default-container::payment-processor');
   });
 
   it('should extract component from @module tag', async () => {
@@ -93,7 +93,7 @@ export function login() {}
     const ir = await basicNodeExtractor(node);
 
     expect(ir.components).toHaveLength(1);
-    expect(ir.components[0].id).toBe('authentication-oauth');
+    expect(ir.components[0].id).toBe('default-container::authentication-oauth');
     expect(ir.components[0].name).toBe('authentication/oauth');
     // Description extraction needs fixing
     // expect(ir.components[0].description).toBe('OAuth2 authentication module');
@@ -127,7 +127,7 @@ export function capitalize() {}
     const ir = await basicNodeExtractor(node);
 
     expect(ir.components).toHaveLength(1);
-    expect(ir.components[0].id).toBe('stringutils');
+    expect(ir.components[0].id).toBe('default-container::stringutils');
     expect(ir.components[0].name).toBe('StringUtils');
   });
 
@@ -200,7 +200,7 @@ export function funcB() {}
 
     // Both functions should reference the same component
     expect(ir.code).toHaveLength(2);
-    expect(ir.code[0].componentId).toBe('shared-component');
-    expect(ir.code[1].componentId).toBe('shared-component');
+    expect(ir.code[0].componentId).toBe('default-container::shared-component');
+    expect(ir.code[1].componentId).toBe('default-container::shared-component');
   });
 });
