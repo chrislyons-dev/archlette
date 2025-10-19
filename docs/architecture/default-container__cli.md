@@ -1,16 +1,16 @@
-# 🧩 CLI
+# CLI
 
 [← Back to System Overview](./README.md)
 
 ---
 
-## 📋 Component Information
+## Component Information
 
 <table>
 <tbody>
 <tr>
 <td><strong>Container</strong></td>
-<td>@chrislyons-dev/archlette</td>
+<td>Application</td>
 </tr>
 <tr>
 <td><strong>Type</strong></td>
@@ -25,14 +25,17 @@
 
 ---
 
-## 🏗️ Component Architecture
+## Architecture
 
-![Component Diagram](./diagrams/structurizr-Components__chrislyons_dev_archlette.png)
+![Component Diagram](./diagrams/structurizr-Components_Application.png)
 
 ---
 
-## 💻 Code Structure
+## Code Structure
 
+### Class Diagram
+
+![Class Diagram](./diagrams/structurizr-Classes_default_container__cli.png)
 
 ### Code Elements
 
@@ -43,7 +46,7 @@
 
 #### Functions
 
-##### `usageAndExit()`
+##### `CLI__usageAndExit()`
 
 
 <table>
@@ -72,7 +75,7 @@
 - `msg`: <code>string</code>
 
 ---
-##### `parseArgs()`
+##### `CLI__parseArgs()`
 
 
 <table>
@@ -91,7 +94,7 @@
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/cli.ts:82</code></td>
+<td><code>C:/Users/chris/git/archlette/src/cli.ts:90</code></td>
 </tr>
 </tbody>
 </table>
@@ -101,7 +104,7 @@
 - `argv`: <code>string[]</code>
 
 ---
-##### `stageListFromArg()`
+##### `CLI__stageListFromArg()`
 
 
 <table>
@@ -120,7 +123,7 @@
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/cli.ts:104</code></td>
+<td><code>C:/Users/chris/git/archlette/src/cli.ts:123</code></td>
 </tr>
 </tbody>
 </table>
@@ -130,7 +133,7 @@
 - `stageArg`: <code>string</code>
 
 ---
-##### `loadYamlIfExists()`
+##### `CLI__loadYamlIfExists()`
 
 
 <table>
@@ -153,7 +156,7 @@
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/cli.ts:110</code></td>
+<td><code>C:/Users/chris/git/archlette/src/cli.ts:129</code></td>
 </tr>
 </tbody>
 </table>
@@ -163,7 +166,7 @@
 - `resolvedFile`: <code>string</code>
 
 ---
-##### `run()`
+##### `CLI__run()`
 
 
 <table>
@@ -186,7 +189,7 @@
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/cli.ts:130</code></td>
+<td><code>C:/Users/chris/git/archlette/src/cli.ts:149</code></td>
 </tr>
 </tbody>
 </table>

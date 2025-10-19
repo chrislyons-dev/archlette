@@ -1,16 +1,16 @@
-# 🧩 core
+# core
 
 [← Back to System Overview](./README.md)
 
 ---
 
-## 📋 Component Information
+## Component Information
 
 <table>
 <tbody>
 <tr>
 <td><strong>Container</strong></td>
-<td>@chrislyons-dev/archlette</td>
+<td>Application</td>
 </tr>
 <tr>
 <td><strong>Type</strong></td>
@@ -25,17 +25,17 @@
 
 ---
 
-## 🏗️ Component Architecture
+## Architecture
 
-![Component Diagram](./diagrams/structurizr-Components__chrislyons_dev_archlette.png)
+![Component Diagram](./diagrams/structurizr-Components_Application.png)
 
 ---
 
-## 💻 Code Structure
+## Code Structure
 
 ### Class Diagram
 
-![Class Diagram](./diagrams/structurizr-Classes_core.png)
+![Class Diagram](./diagrams/structurizr-Classes_default_container__core.png)
 
 ### Code Elements
 
@@ -46,7 +46,7 @@
 
 #### Functions
 
-##### `nameToId()`
+##### `core__nameToId()`
 
 Convert a name to a normalized ID
 Used for consistent ID generation across extractors and mappers
@@ -81,7 +81,7 @@ Used for consistent ID generation across extractors and mappers
 ```
 
 ---
-##### `formatTimestamp()`
+##### `core__formatTimestamp()`
 
 Format timestamp as ISO 8601 (local time)
 
@@ -109,7 +109,7 @@ Format timestamp as ISO 8601 (local time)
 
 
 ---
-##### `formatLogMessage()`
+##### `core__formatLogMessage()`
 
 Format log message with timestamp, level, and context
 
@@ -139,7 +139,7 @@ Format log message with timestamp, level, and context
 - `level`: <code>import("C:/Users/chris/git/archlette/src/core/logger").LogLevel</code>- `message`: <code>string</code>- `context`: <code>string</code>- `useColor`: <code>boolean</code>
 
 ---
-##### `createLogger()`
+##### `core__createLogger()`
 
 Create a logger instance
 
@@ -173,7 +173,7 @@ Create a logger instance
 ```
 
 ---
-##### `loadModuleFromPath()`
+##### `core__loadModuleFromPath()`
 
 Dynamically load an ESM module from a path or module specifier
 
@@ -211,7 +211,7 @@ Dynamically load an ESM module from a path or module specifier
 ```
 
 ---
-##### `getCliDir()`
+##### `core__getCliDir()`
 
 
 <table>
@@ -238,7 +238,7 @@ Dynamically load an ESM module from a path or module specifier
 
 
 ---
-##### `expandTilde()`
+##### `core__expandTilde()`
 
 
 <table>
@@ -267,7 +267,7 @@ Dynamically load an ESM module from a path or module specifier
 - `p`: <code>string</code>- `homeDir`: <code>string</code>
 
 ---
-##### `resolveArchlettePath()`
+##### `core__resolveArchlettePath()`
 
 Core path resolver honoring Archlette rules (no file existence checks).
 - "~"  -> user home
@@ -300,7 +300,7 @@ Core path resolver honoring Archlette rules (no file existence checks).
 - `input`: <code>string</code>- `opts`: <code>{ cliDir: string; }</code>
 
 ---
-##### `resolveModuleEntry()`
+##### `core__resolveModuleEntry()`
 
 Resolve a module entry by probing:
 1) Exact path
@@ -333,7 +333,7 @@ Resolve a module entry by probing:
 - `input`: <code>string</code>- `opts`: <code>{ cliDir: string; wantedExts?: (".ts" | ".js")[]; }</code>
 
 ---
-##### `toFileUrl()`
+##### `core__toFileUrl()`
 
 
 <table>
@@ -362,7 +362,7 @@ Resolve a module entry by probing:
 - `p`: <code>string</code>
 
 ---
-##### `writeFile()`
+##### `core__writeFile()`
 
 Write content to a file, creating parent directories if needed.
 
@@ -392,7 +392,7 @@ Write content to a file, creating parent directories if needed.
 - `filename`: <code>string</code> — - Absolute path to the file- `content`: <code>string</code> — - Content to write
 
 ---
-##### `loadExtractorModule()`
+##### `core__loadExtractorModule()`
 
 
 <table>
@@ -425,7 +425,7 @@ Write content to a file, creating parent directories if needed.
 - `modulePath`: <code>string</code>
 
 ---
-##### `loadValidatorModule()`
+##### `core__loadValidatorModule()`
 
 
 <table>
@@ -458,7 +458,7 @@ Write content to a file, creating parent directories if needed.
 - `modulePath`: <code>string</code>
 
 ---
-##### `loadGeneratorModule()`
+##### `core__loadGeneratorModule()`
 
 
 <table>
@@ -491,7 +491,7 @@ Write content to a file, creating parent directories if needed.
 - `modulePath`: <code>string</code>
 
 ---
-##### `loadRendererModule()`
+##### `core__loadRendererModule()`
 
 
 <table>
@@ -524,7 +524,7 @@ Write content to a file, creating parent directories if needed.
 - `modulePath`: <code>string</code>
 
 ---
-##### `loadDocModule()`
+##### `core__loadDocModule()`
 
 
 <table>
@@ -557,7 +557,7 @@ Write content to a file, creating parent directories if needed.
 - `modulePath`: <code>string</code>
 
 ---
-##### `getCacheDir()`
+##### `core__getCacheDir()`
 
 Get the Archlette cache directory
 
@@ -585,7 +585,7 @@ Get the Archlette cache directory
 
 
 ---
-##### `ensureCacheDir()`
+##### `core__ensureCacheDir()`
 
 Ensure cache directory exists
 
@@ -613,7 +613,7 @@ Ensure cache directory exists
 
 
 ---
-##### `commandExistsInPath()`
+##### `core__commandExistsInPath()`
 
 Check if a command exists in PATH
 
@@ -643,7 +643,7 @@ Check if a command exists in PATH
 - `command`: <code>string</code>
 
 ---
-##### `downloadFile()`
+##### `core__downloadFile()`
 
 Download a file from URL to destination
 
@@ -677,7 +677,7 @@ Download a file from URL to destination
 - `url`: <code>string</code>- `dest`: <code>string</code>- `log`: <code>import("C:/Users/chris/git/archlette/src/core/logger").Logger</code>
 
 ---
-##### `extractZip()`
+##### `core__extractZip()`
 
 Extract a ZIP file (simple extraction for Structurizr CLI)
 
@@ -711,7 +711,7 @@ Extract a ZIP file (simple extraction for Structurizr CLI)
 - `zipPath`: <code>string</code>- `destDir`: <code>string</code>- `log`: <code>import("C:/Users/chris/git/archlette/src/core/logger").Logger</code>
 
 ---
-##### `makeExecutable()`
+##### `core__makeExecutable()`
 
 Make file executable (Unix only)
 
@@ -741,7 +741,7 @@ Make file executable (Unix only)
 - `filePath`: <code>string</code>
 
 ---
-##### `downloadStructurizr()`
+##### `core__downloadStructurizr()`
 
 Download and install Structurizr CLI to cache
 
@@ -775,7 +775,7 @@ Download and install Structurizr CLI to cache
 - `cacheDir`: <code>string</code>- `log`: <code>import("C:/Users/chris/git/archlette/src/core/logger").Logger</code>
 
 ---
-##### `downloadPlantUML()`
+##### `core__downloadPlantUML()`
 
 Download and install PlantUML to cache
 
@@ -809,7 +809,7 @@ Download and install PlantUML to cache
 - `cacheDir`: <code>string</code>- `log`: <code>import("C:/Users/chris/git/archlette/src/core/logger").Logger</code>
 
 ---
-##### `findStructurizrCLI()`
+##### `core__findStructurizrCLI()`
 
 Find or download Structurizr CLI
 
@@ -843,7 +843,7 @@ Find or download Structurizr CLI
 - `log`: <code>import("C:/Users/chris/git/archlette/src/core/logger").Logger</code> — - Optional logger
 
 ---
-##### `findPlantUML()`
+##### `core__findPlantUML()`
 
 Find or download PlantUML JAR
 
@@ -877,7 +877,7 @@ Find or download PlantUML JAR
 - `log`: <code>import("C:/Users/chris/git/archlette/src/core/logger").Logger</code> — - Optional logger
 
 ---
-##### `checkJava()`
+##### `core__checkJava()`
 
 Verify Java is available
 
@@ -905,7 +905,7 @@ Verify Java is available
 
 
 ---
-##### `requireJava()`
+##### `core__requireJava()`
 
 Validate Java is installed (throw if not)
 
@@ -933,7 +933,7 @@ Validate Java is installed (throw if not)
 
 
 ---
-##### `resolveConfig()`
+##### `core__resolveConfig()`
 
 For each stage, resolve includes/excludes for each node:
   - If node omits includes/excludes, inherit from defaults.
@@ -954,7 +954,7 @@ For each stage, resolve includes/excludes for each node:
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/core/types-aac.ts:122</code></td>
+<td><code>C:/Users/chris/git/archlette/src/core/types-aac.ts:139</code></td>
 </tr>
 </tbody>
 </table>

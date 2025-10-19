@@ -1,0 +1,160 @@
+@startuml
+set separator none
+title Application - Application - Components
+
+top to bottom direction
+skinparam ranksep 60
+skinparam nodesep 30
+
+skinparam {
+  arrowFontSize 10
+  defaultTextAlignment center
+  wrapWidth 200
+  maxMessageSize 100
+}
+
+hide stereotype
+
+skinparam rectangle<<Application.Application.generators__buildtechnologystring>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<Application.Application.generators__escapestring>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<Application.Application.generators__generateactor>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<Application.Application.generators__generateallactorrelationships>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<Application.Application.generators__generateclassview>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<Application.Application.generators__generatecodeascomponent>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<Application.Application.generators__generatecomponent>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<Application.Application.generators__generatecomponentview>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<Application.Application.generators__generatecontainer>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<Application.Application.generators__generatecontainerview>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<Application.Application.generators__generatedeployment>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<Application.Application.generators__generatemodel>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<Application.Application.generators__generaterelationship>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<Application.Application.generators__generatesystemcontextview>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<Application.Application.generators__generateuniquecodename>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<Application.Application.generators__generateviews>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<Application.Application.generators__run>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<Application.Application.generators__sanitizeid>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<Application.Application.generators__structurizrgenerator>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<Application.Application>> {
+  BorderColor #9a9a9a
+  FontColor #9a9a9a
+  shadowing false
+}
+
+rectangle "Application\n<size:10>[Container: Application]</size>" <<Application.Application>> {
+  rectangle "==generators__run\n<size:10>[Component: function]</size>\n\nExecute the generation stage" <<Application.Application.generators__run>> as Application.Application.generators__run
+  rectangle "==generators__structurizrgenerator\n<size:10>[Component: function]</size>\n\nGenerate Structurizr DSL from ArchletteIR" <<Application.Application.generators__structurizrgenerator>> as Application.Application.generators__structurizrgenerator
+  rectangle "==generators__generateallactorrelationships\n<size:10>[Component: function]</size>\n\nGenerate all actor-related relationships (bidirectional)\n\nIncludes:\n1. Actor → Component (from actor.targets) - users interacting with system\n2. Component → Actor (from componentRelationships) - system using external actors\n\nStructurizr automatically aggregates relationships in views:\n- System Context view: Shows as actor ↔ system\n- Container view: Shows as actor ↔ container\n- Component view: Shows actual actor ↔ component relationships" <<Application.Application.generators__generateallactorrelationships>> as Application.Application.generators__generateallactorrelationships
+  rectangle "==generators__generatemodel\n<size:10>[Component: function]</size>\n\nGenerate the model section of the DSL" <<Application.Application.generators__generatemodel>> as Application.Application.generators__generatemodel
+  rectangle "==generators__generateviews\n<size:10>[Component: function]</size>\n\nGenerate the views section of the DSL" <<Application.Application.generators__generateviews>> as Application.Application.generators__generateviews
+  rectangle "==generators__generatesystemcontextview\n<size:10>[Component: function]</size>\n\nGenerate System Context view\n\nShows actors and the system boundary. Structurizr automatically aggregates\nactor → component relationships to actor → system for this view since\ncomponents are not explicitly included." <<Application.Application.generators__generatesystemcontextview>> as Application.Application.generators__generatesystemcontextview
+  rectangle "==generators__generatecontainerview\n<size:10>[Component: function]</size>\n\nGenerate Container view\n\nShows actors, containers, and their relationships. Actor → component\nrelationships are automatically aggregated to actor → container level\nby Structurizr since components are not shown in this view." <<Application.Application.generators__generatecontainerview>> as Application.Application.generators__generatecontainerview
+  rectangle "==generators__generatecomponentview\n<size:10>[Component: function]</size>\n\nGenerate Component view for a container (excludes Code elements)\n\nShows actors, components within the container, and their relationships.\nActor → component relationships are shown explicitly at this level.\nCode elements are excluded to keep the view focused on architecture." <<Application.Application.generators__generatecomponentview>> as Application.Application.generators__generatecomponentview
+  rectangle "==generators__generateclassview\n<size:10>[Component: function]</size>\n\nGenerate Class view for a component (only Code elements within that component)\nThis supports the drill-down model: System → Container → Component → Code\n\nNote: Component views in Structurizr require a container ID, not a component ID.\nWe use the component's container and filter to show only this component's code." <<Application.Application.generators__generateclassview>> as Application.Application.generators__generateclassview
+  rectangle "==generators__generateactor\n<size:10>[Component: function]</size>\n\nGenerate DSL for an actor (person or external system)" <<Application.Application.generators__generateactor>> as Application.Application.generators__generateactor
+  rectangle "==generators__generatecontainer\n<size:10>[Component: function]</size>\n\nGenerate DSL for a container with its components" <<Application.Application.generators__generatecontainer>> as Application.Application.generators__generatecontainer
+  rectangle "==generators__generatecomponent\n<size:10>[Component: function]</size>\n\nGenerate DSL for a component" <<Application.Application.generators__generatecomponent>> as Application.Application.generators__generatecomponent
+  rectangle "==generators__generatecodeascomponent\n<size:10>[Component: function]</size>\n\nGenerate DSL for a code item as a component\nAlways tagged with "Code" to separate from logical components in views" <<Application.Application.generators__generatecodeascomponent>> as Application.Application.generators__generatecodeascomponent
+  rectangle "==generators__generateuniquecodename\n<size:10>[Component: function]</size>\n\nGenerate a unique name for a code item to avoid naming collisions\n\nHandles both hierarchical IDs and file-path-based IDs:\n- Hierarchical: "container::component::codeName"\n- File-based: "C:/path/to/file.ts:functionName"" <<Application.Application.generators__generateuniquecodename>> as Application.Application.generators__generateuniquecodename
+  rectangle "==generators__generaterelationship\n<size:10>[Component: function]</size>\n\nGenerate DSL for a relationship" <<Application.Application.generators__generaterelationship>> as Application.Application.generators__generaterelationship
+  rectangle "==generators__buildtechnologystring\n<size:10>[Component: function]</size>\n\nBuild technology string from relationship metadata" <<Application.Application.generators__buildtechnologystring>> as Application.Application.generators__buildtechnologystring
+  rectangle "==generators__generatedeployment\n<size:10>[Component: function]</size>\n\nGenerate DSL for a deployment environment\n\nSupports both legacy `nodes` format and new `instances` format.\nGenerates deployment relationships between container instances." <<Application.Application.generators__generatedeployment>> as Application.Application.generators__generatedeployment
+  rectangle "==generators__sanitizeid\n<size:10>[Component: function]</size>\n\nSanitize ID for DSL (remove special characters, convert to camelCase)" <<Application.Application.generators__sanitizeid>> as Application.Application.generators__sanitizeid
+  rectangle "==generators__escapestring\n<size:10>[Component: function]</size>\n\nEscape special characters in strings for DSL" <<Application.Application.generators__escapestring>> as Application.Application.generators__escapestring
+}
+
+@enduml

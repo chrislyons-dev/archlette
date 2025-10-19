@@ -1,0 +1,24 @@
+graph TB
+  linkStyle default fill:#ffffff
+
+  subgraph diagram ["Application - Application - Components"]
+    style diagram fill:#ffffff,stroke:#ffffff
+
+    subgraph 8 ["Application"]
+      style 8 fill:#ffffff,stroke:#9a9a9a,color:#9a9a9a
+
+      29["<div style='font-weight: bold'>docs__run</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Execute the documentation<br />stage</div>"]
+      style 29 fill:#dddddd,stroke:#9a9a9a,color:#000000
+      59["<div style='font-weight: bold'>docs__markdowndocs</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Generate markdown<br />documentation</div>"]
+      style 59 fill:#dddddd,stroke:#9a9a9a,color:#000000
+      60["<div style='font-weight: bold'>docs__finddiagramsforview</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Find diagram files for a<br />specific view type</div>"]
+      style 60 fill:#dddddd,stroke:#9a9a9a,color:#000000
+      61["<div style='font-weight: bold'>docs__finddiagramsforcomponent</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Find component diagrams for a<br />specific component</div>"]
+      style 61 fill:#dddddd,stroke:#9a9a9a,color:#000000
+      62["<div style='font-weight: bold'>docs__findclassdiagramsforcomponent</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Find class diagrams for a<br />specific component</div>"]
+      style 62 fill:#dddddd,stroke:#9a9a9a,color:#000000
+      63["<div style='font-weight: bold'>docs__sanitizefilename</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div>"]
+      style 63 fill:#dddddd,stroke:#9a9a9a,color:#000000
+    end
+
+  end

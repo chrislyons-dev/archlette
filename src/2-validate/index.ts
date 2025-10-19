@@ -27,7 +27,7 @@
 import type { PipelineContext } from '../core/types.js';
 import { loadValidatorModule } from '../core/stage-module-loader.js';
 import type { ResolvedAACConfig, ResolvedStageNode } from '../core/types-aac.js';
-import { resolveArchlettePath, getCliDir, writeFile } from '../core/path-resolver.js';
+import { resolveArchlettePath, writeFile } from '../core/path-resolver.js';
 
 /**
  * Execute the validation stage
@@ -86,7 +86,9 @@ export async function run(ctx: PipelineContext): Promise<void> {
   ctx.log.debug(
     `Resolving validated IR output destination from ${config.paths.ir_out}.`,
   );
-  const outputPath = resolveArchlettePath(config.paths.ir_out, { cliDir: getCliDir() });
+  const outputPath = resolveArchlettePath(config.paths.ir_out, {
+    cliDir: ctx.configBaseDir,
+  });
   ctx.log.debug(`Writing validated IR to ${outputPath}.`);
   writeFile(outputPath, JSON.stringify(ir, null, 2));
 

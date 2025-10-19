@@ -1,16 +1,16 @@
-# 🧩 docs
+# docs
 
 [← Back to System Overview](./README.md)
 
 ---
 
-## 📋 Component Information
+## Component Information
 
 <table>
 <tbody>
 <tr>
 <td><strong>Container</strong></td>
-<td>@chrislyons-dev/archlette</td>
+<td>Application</td>
 </tr>
 <tr>
 <td><strong>Type</strong></td>
@@ -25,28 +25,28 @@
 
 ---
 
-## 🏗️ Component Architecture
+## Architecture
 
-![Component Diagram](./diagrams/structurizr-Components__chrislyons_dev_archlette.png)
+![Component Diagram](./diagrams/structurizr-Components_Application.png)
 
 ---
 
-## 💻 Code Structure
+## Code Structure
 
 ### Class Diagram
 
-![Class Diagram](./diagrams/structurizr-Classes_docs.png)
+![Class Diagram](./diagrams/structurizr-Classes_default_container__docs.png)
 
 ### Code Elements
 
 <details>
-<summary><strong>5 code element(s)</strong></summary>
+<summary><strong>6 code element(s)</strong></summary>
 
 
 
 #### Functions
 
-##### `run()`
+##### `docs__run()`
 
 Execute the documentation stage
 
@@ -80,7 +80,7 @@ Execute the documentation stage
 - `ctx`: <code>import("C:/Users/chris/git/archlette/src/core/types").PipelineContext</code> — - Pipeline context with configuration, logging, IR, and rendered diagrams
 
 ---
-##### `markdownDocs()`
+##### `docs__markdownDocs()`
 
 Generate markdown documentation
 
@@ -114,7 +114,7 @@ Generate markdown documentation
 - `ctx`: <code>import("C:/Users/chris/git/archlette/src/core/types").PipelineContext</code>
 
 ---
-##### `findDiagramsForView()`
+##### `docs__findDiagramsForView()`
 
 Find diagram files for a specific view type
 
@@ -134,7 +134,7 @@ Find diagram files for a specific view type
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/docs/builtin/markdown-docs.ts:195</code></td>
+<td><code>C:/Users/chris/git/archlette/src/docs/builtin/markdown-docs.ts:199</code></td>
 </tr>
 </tbody>
 </table>
@@ -144,7 +144,7 @@ Find diagram files for a specific view type
 - `rendererOutputs`: <code>any[]</code>- `diagramsDir`: <code>string</code>- `docsDir`: <code>string</code>- `viewType`: <code>string</code>
 
 ---
-##### `findDiagramsForComponent()`
+##### `docs__findDiagramsForComponent()`
 
 Find component diagrams for a specific component
 
@@ -164,7 +164,7 @@ Find component diagrams for a specific component
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/docs/builtin/markdown-docs.ts:223</code></td>
+<td><code>C:/Users/chris/git/archlette/src/docs/builtin/markdown-docs.ts:228</code></td>
 </tr>
 </tbody>
 </table>
@@ -174,7 +174,7 @@ Find component diagrams for a specific component
 - `rendererOutputs`: <code>any[]</code>- `diagramsDir`: <code>string</code>- `docsDir`: <code>string</code>- `_component`: <code>z.infer<any></code>
 
 ---
-##### `findClassDiagramsForComponent()`
+##### `docs__findClassDiagramsForComponent()`
 
 Find class diagrams for a specific component
 
@@ -194,7 +194,7 @@ Find class diagrams for a specific component
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/docs/builtin/markdown-docs.ts:256</code></td>
+<td><code>C:/Users/chris/git/archlette/src/docs/builtin/markdown-docs.ts:261</code></td>
 </tr>
 </tbody>
 </table>
@@ -202,6 +202,35 @@ Find class diagrams for a specific component
 **Parameters:**
 
 - `rendererOutputs`: <code>any[]</code>- `diagramsDir`: <code>string</code>- `docsDir`: <code>string</code>- `component`: <code>z.infer<any></code>
+
+---
+##### `docs__sanitizeFileName()`
+
+
+<table>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>function</code></td>
+</tr>
+<tr>
+<td><strong>Visibility</strong></td>
+<td><code>private</code></td>
+</tr>
+<tr>
+<td><strong>Returns</strong></td>
+<td><code>string</code></td>
+</tr>
+<tr>
+<td><strong>Location</strong></td>
+<td><code>C:/Users/chris/git/archlette/src/docs/builtin/markdown-docs.ts:295</code></td>
+</tr>
+</tbody>
+</table>
+
+**Parameters:**
+
+- `name`: <code>string</code>
 
 ---
 

@@ -52,7 +52,10 @@ export default async function markdownDocs(ctx: PipelineContext): Promise<void> 
   const docsDir = resolveArchlettePath(ctx.config.paths.docs_out, {
     cliDir: ctx.configBaseDir,
   });
-  const diagramsDir = path.join(docsDir, 'diagrams');
+  // Get diagram directory from render_out config (not docs_out)
+  const diagramsDir = resolveArchlettePath(ctx.config.paths.render_out, {
+    cliDir: ctx.configBaseDir,
+  });
 
   // Ensure output directory exists
   fs.mkdirSync(docsDir, { recursive: true });
@@ -200,13 +203,16 @@ function findDiagramsForView(
   viewType: string,
 ): string[] {
   const diagrams: string[] = [];
-
+  console.log(
+    `DEBUG:: Searching for diagrams using diagramsDir: ${diagramsDir}, docsDir: ${docsDir}, view type: ${viewType}`,
+  );
   for (const output of rendererOutputs) {
     if (output.format === 'png') {
       for (const file of output.files) {
         const filename = path.basename(file, '.png');
         if (filename.includes(viewType) && !filename.includes('-key')) {
           const fullPath = path.join(diagramsDir, file);
+          console.log('DEBUG:: Checking for diagram file:', fullPath);
           if (fs.existsSync(fullPath)) {
             diagrams.push(path.relative(docsDir, fullPath));
           }
@@ -261,16 +267,19 @@ function findClassDiagramsForComponent(
   component: Component,
 ): string[] {
   const diagrams: string[] = [];
+  // Sanitize component ID same way as generator does
+  // (replaces non-alphanumeric except underscore with underscore)
+  const sanitizedComponentId = component.id.replace(/[^a-zA-Z0-9_]/g, '_');
 
   for (const output of rendererOutputs) {
     if (output.format === 'png') {
       for (const file of output.files) {
         const filename = path.basename(file, '.png');
         // Look for class diagrams for this specific component
-        // Format: Container-{containerId}-Component-{componentId}-Classes
+        // Format: structurizr-Classes_{sanitized-component-id}
         if (
           filename.includes('Classes') &&
-          filename.includes(component.id.replace(/-/g, '')) &&
+          filename.includes(sanitizedComponentId) &&
           !filename.includes('-key')
         ) {
           const fullPath = path.join(diagramsDir, file);

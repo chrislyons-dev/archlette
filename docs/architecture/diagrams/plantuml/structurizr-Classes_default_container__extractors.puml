@@ -1,0 +1,76 @@
+@startuml
+set separator none
+title Application - Application - Components
+
+top to bottom direction
+skinparam ranksep 60
+skinparam nodesep 30
+
+skinparam {
+  arrowFontSize 10
+  defaultTextAlignment center
+  wrapWidth 200
+  maxMessageSize 100
+}
+
+hide stereotype
+
+skinparam rectangle<<Application.Application.extractors__aggregateirs>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<Application.Application.extractors__basicnodeextractor>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<Application.Application.extractors__basicwranglerextractor>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<Application.Application.extractors__deduplicatebyid>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<Application.Application.extractors__deduplicatebyname>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<Application.Application.extractors__deduplicaterelationships>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<Application.Application.extractors__run>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<Application.Application>> {
+  BorderColor #9a9a9a
+  FontColor #9a9a9a
+  shadowing false
+}
+
+rectangle "Application\n<size:10>[Container: Application]</size>" <<Application.Application>> {
+  rectangle "==extractors__aggregateirs\n<size:10>[Component: function]</size>\n\nAggregate multiple ArchletteIR objects into a single unified IR" <<Application.Application.extractors__aggregateirs>> as Application.Application.extractors__aggregateirs
+  rectangle "==extractors__deduplicatebyid\n<size:10>[Component: function]</size>\n\nDeduplicate array of entities by their ID field" <<Application.Application.extractors__deduplicatebyid>> as Application.Application.extractors__deduplicatebyid
+  rectangle "==extractors__deduplicatebyname\n<size:10>[Component: function]</size>\n\nDeduplicate array of entities by their name field" <<Application.Application.extractors__deduplicatebyname>> as Application.Application.extractors__deduplicatebyname
+  rectangle "==extractors__deduplicaterelationships\n<size:10>[Component: function]</size>\n\nDeduplicate relationships by source+destination+stereotype combination" <<Application.Application.extractors__deduplicaterelationships>> as Application.Application.extractors__deduplicaterelationships
+  rectangle "==extractors__run\n<size:10>[Component: function]</size>\n\nExecute the extraction stage" <<Application.Application.extractors__run>> as Application.Application.extractors__run
+  rectangle "==extractors__basicnodeextractor\n<size:10>[Component: function]</size>\n\nExtract architecture information from a Node.js/TypeScript codebase" <<Application.Application.extractors__basicnodeextractor>> as Application.Application.extractors__basicnodeextractor
+  rectangle "==extractors__basicwranglerextractor\n<size:10>[Component: function]</size>\n\nExtract deployment topology from Cloudflare Wrangler configuration files" <<Application.Application.extractors__basicwranglerextractor>> as Application.Application.extractors__basicwranglerextractor
+}
+
+@enduml

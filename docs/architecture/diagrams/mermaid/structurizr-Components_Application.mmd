@@ -1,7 +1,7 @@
 graph TB
   linkStyle default fill:#ffffff
 
-  subgraph diagram ["@chrislyons-dev/archlette - @chrislyons-dev/archlette - Components"]
+  subgraph diagram ["Application - Application - Components"]
     style diagram fill:#ffffff,stroke:#ffffff
 
     1["<div style='font-weight: bold'>User</div><div style='font-size: 70%; margin-top: 0px'>[Person]</div><div style='font-size: 80%; margin-top:10px'>End user who runs archlette<br />commands</div>"]
@@ -17,10 +17,10 @@ graph TB
     6["<div style='font-weight: bold'>File System</div><div style='font-size: 70%; margin-top: 0px'>[Software System]</div><div style='font-size: 80%; margin-top:10px'>The local file system for<br />caching downloaded tools.</div>"]
     style 6 fill:#dddddd,stroke:#9a9a9a,color:#000000
 
-    subgraph 8 ["@chrislyons-dev/archlette"]
+    subgraph 8 ["Application"]
       style 8 fill:#ffffff,stroke:#9a9a9a,color:#9a9a9a
 
-      10["<div style='font-weight: bold'>extractors</div><div style='font-size: 70%; margin-top: 0px'>[Component: module]</div><div style='font-size: 80%; margin-top:10px'>ArchletteIR aggregation<br />utilities | Extraction stage<br />of the AAC pipeline |<br />TypeScript/JavaScript code<br />extractor</div>"]
+      10["<div style='font-weight: bold'>extractors</div><div style='font-size: 70%; margin-top: 0px'>[Component: module]</div><div style='font-size: 80%; margin-top:10px'>ArchletteIR aggregation<br />utilities | Extraction stage<br />of the AAC pipeline |<br />TypeScript/JavaScript code<br />extractor | Cloudflare<br />Wrangler deployment extractor</div>"]
       style 10 fill:#dddddd,stroke:#9a9a9a,color:#000000
       11["<div style='font-weight: bold'>validators</div><div style='font-size: 70%; margin-top: 0px'>[Component: module]</div><div style='font-size: 80%; margin-top:10px'>Validation stage of the AAC<br />pipeline | Base IR validator<br />for Archlette pipeline</div>"]
       style 11 fill:#dddddd,stroke:#9a9a9a,color:#000000
@@ -36,6 +36,7 @@ graph TB
       style 9 fill:#dddddd,stroke:#9a9a9a,color:#000000
     end
 
+    15-. "<div>Uses FileSystem for external<br />system integration</div><div style='font-size: 70%'></div>" .->2
     15-. "<div>Uses Github Structurizr Repo<br />for external system<br />integration</div><div style='font-size: 70%'></div>" .->3
     15-. "<div>Uses Github PlantUML Repo for<br />external system integration</div><div style='font-size: 70%'></div>" .->4
     15-. "<div>Uses Local System's unzip<br />utility for external system<br />integration</div><div style='font-size: 70%'></div>" .->5
@@ -51,5 +52,4 @@ graph TB
     13-. "<div>Provides types, module<br />loading, and tool management</div><div style='font-size: 70%'></div>" .->15
     14-. "<div>Provides types, module<br />loading, and path resolution</div><div style='font-size: 70%'></div>" .->15
     1-. "<div>Interacts with CLI</div><div style='font-size: 70%'></div>" .->9
-    15-. "<div>Uses FileSystem for external<br />system integration</div><div style='font-size: 70%'></div>" .->2
   end

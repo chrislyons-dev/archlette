@@ -1,0 +1,62 @@
+@startuml
+set separator none
+title Application - Application - Components
+
+top to bottom direction
+skinparam ranksep 60
+skinparam nodesep 30
+
+skinparam {
+  arrowFontSize 10
+  defaultTextAlignment center
+  wrapWidth 200
+  maxMessageSize 100
+}
+
+hide stereotype
+
+skinparam rectangle<<Application.Application.cli__loadyamlifexists>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<Application.Application.cli__parseargs>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<Application.Application.cli__run>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<Application.Application.cli__stagelistfromarg>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<Application.Application.cli__usageandexit>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<Application.Application>> {
+  BorderColor #9a9a9a
+  FontColor #9a9a9a
+  shadowing false
+}
+
+rectangle "Application\n<size:10>[Container: Application]</size>" <<Application.Application>> {
+  rectangle "==cli__usageandexit\n<size:10>[Component: function]</size>" <<Application.Application.cli__usageandexit>> as Application.Application.cli__usageandexit
+  rectangle "==cli__parseargs\n<size:10>[Component: function]</size>" <<Application.Application.cli__parseargs>> as Application.Application.cli__parseargs
+  rectangle "==cli__stagelistfromarg\n<size:10>[Component: function]</size>" <<Application.Application.cli__stagelistfromarg>> as Application.Application.cli__stagelistfromarg
+  rectangle "==cli__loadyamlifexists\n<size:10>[Component: function]</size>" <<Application.Application.cli__loadyamlifexists>> as Application.Application.cli__loadyamlifexists
+  rectangle "==cli__run\n<size:10>[Component: function]</size>" <<Application.Application.cli__run>> as Application.Application.cli__run
+}
+
+@enduml

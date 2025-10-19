@@ -12,7 +12,7 @@
       "name": "User",
       "type": "Person",
       "targets": [
-        "default-container::cli"
+        "default-container__cli"
       ]
     },
     {
@@ -71,49 +71,49 @@
   "components": [
     {
       "description": "Archlette CLI - Architecture-as-Code toolkit",
-      "id": "default-container::cli",
+      "id": "default-container__cli",
       "containerId": "default-container",
       "name": "CLI",
       "type": "module"
     },
     {
       "description": "ArchletteIR aggregation utilities | Extraction stage of the AAC pipeline | TypeScript/JavaScript code extractor | Cloudflare Wrangler deployment extractor",
-      "id": "default-container::extractors",
+      "id": "default-container__extractors",
       "containerId": "default-container",
       "name": "extractors",
       "type": "module"
     },
     {
       "description": "Validation stage of the AAC pipeline | Base IR validator for Archlette pipeline",
-      "id": "default-container::validators",
+      "id": "default-container__validators",
       "containerId": "default-container",
       "name": "validators",
       "type": "module"
     },
     {
       "description": "Generation stage of the AAC pipeline | Structurizr DSL Generator",
-      "id": "default-container::generators",
+      "id": "default-container__generators",
       "containerId": "default-container",
       "name": "generators",
       "type": "module"
     },
     {
       "description": "Render stage of the AAC pipeline | PlantUML image renderer | Structurizr DSL export renderer",
-      "id": "default-container::renderers",
+      "id": "default-container__renderers",
       "containerId": "default-container",
       "name": "renderers",
       "type": "module"
     },
     {
       "description": "Documentation stage of the AAC pipeline | Markdown documentation generator",
-      "id": "default-container::docs",
+      "id": "default-container__docs",
       "containerId": "default-container",
       "name": "docs",
       "type": "module"
     },
     {
       "description": "Dynamic ESM module loader | Stage module interfaces for the AAC pipeline | Stage module loaders | Tool management for external rendering tools | Architecture-as-Code (AAC) configuration types and schemas | Archlette Intermediate Representation (IR) types and schemas | Core pipeline types",
-      "id": "default-container::core",
+      "id": "default-container__core",
       "containerId": "default-container",
       "name": "core",
       "type": "module"
@@ -121,9 +121,9 @@
   ],
   "code": [
     {
-      "id": "default-container::cli::usageAndExit",
-      "componentId": "default-container::cli",
-      "name": "CLI::usageAndExit",
+      "id": "default-container__cli__usageAndExit",
+      "componentId": "default-container__cli",
+      "name": "CLI__usageAndExit",
       "type": "function",
       "returnType": "void",
       "parameters": [
@@ -139,9 +139,9 @@
       "lineNumber": 68
     },
     {
-      "id": "default-container::cli::parseArgs",
-      "componentId": "default-container::cli",
-      "name": "CLI::parseArgs",
+      "id": "default-container__cli__parseArgs",
+      "componentId": "default-container__cli",
+      "name": "CLI__parseArgs",
       "type": "function",
       "returnType": "{ stageArg: string; yamlPathArg: any; }",
       "parameters": [
@@ -157,9 +157,9 @@
       "lineNumber": 90
     },
     {
-      "id": "default-container::cli::stageListFromArg",
-      "componentId": "default-container::cli",
-      "name": "CLI::stageListFromArg",
+      "id": "default-container__cli__stageListFromArg",
+      "componentId": "default-container__cli",
+      "name": "CLI__stageListFromArg",
       "type": "function",
       "returnType": "string[]",
       "parameters": [
@@ -175,9 +175,9 @@
       "lineNumber": 123
     },
     {
-      "id": "default-container::cli::loadYamlIfExists",
-      "componentId": "default-container::cli",
-      "name": "CLI::loadYamlIfExists",
+      "id": "default-container__cli__loadYamlIfExists",
+      "componentId": "default-container__cli",
+      "name": "CLI__loadYamlIfExists",
       "type": "function",
       "returnType": "Promise<{ config: any; path: string; }>",
       "parameters": [
@@ -193,9 +193,9 @@
       "lineNumber": 129
     },
     {
-      "id": "default-container::cli::run",
-      "componentId": "default-container::cli",
-      "name": "CLI::run",
+      "id": "default-container__cli__run",
+      "componentId": "default-container__cli",
+      "name": "CLI__run",
       "type": "function",
       "returnType": "Promise<void>",
       "parameters": [
@@ -213,9 +213,9 @@
     },
     {
       "description": "Aggregate multiple ArchletteIR objects into a single unified IR",
-      "id": "default-container::extractors::aggregateIRs",
-      "componentId": "default-container::extractors",
-      "name": "extractors::aggregateIRs",
+      "id": "default-container__extractors__aggregateIRs",
+      "componentId": "default-container__extractors",
+      "name": "extractors__aggregateIRs",
       "type": "function",
       "documentation": {
         "summary": "Aggregate multiple ArchletteIR objects into a single unified IR",
@@ -243,9 +243,9 @@
     },
     {
       "description": "Deduplicate array of entities by their ID field",
-      "id": "default-container::extractors::deduplicateById",
-      "componentId": "default-container::extractors",
-      "name": "extractors::deduplicateById",
+      "id": "default-container__extractors__deduplicateById",
+      "componentId": "default-container__extractors",
+      "name": "extractors__deduplicateById",
       "type": "function",
       "documentation": {
         "summary": "Deduplicate array of entities by their ID field",
@@ -270,9 +270,9 @@
     },
     {
       "description": "Deduplicate array of entities by their name field",
-      "id": "default-container::extractors::deduplicateByName",
-      "componentId": "default-container::extractors",
-      "name": "extractors::deduplicateByName",
+      "id": "default-container__extractors__deduplicateByName",
+      "componentId": "default-container__extractors",
+      "name": "extractors__deduplicateByName",
       "type": "function",
       "documentation": {
         "summary": "Deduplicate array of entities by their name field",
@@ -297,9 +297,9 @@
     },
     {
       "description": "Deduplicate relationships by source+destination+stereotype combination",
-      "id": "default-container::extractors::deduplicateRelationships",
-      "componentId": "default-container::extractors",
-      "name": "extractors::deduplicateRelationships",
+      "id": "default-container__extractors__deduplicateRelationships",
+      "componentId": "default-container__extractors",
+      "name": "extractors__deduplicateRelationships",
       "type": "function",
       "documentation": {
         "summary": "Deduplicate relationships by source+destination+stereotype combination",
@@ -324,9 +324,9 @@
     },
     {
       "description": "Execute the extraction stage",
-      "id": "default-container::extractors::run",
-      "componentId": "default-container::extractors",
-      "name": "extractors::run",
+      "id": "default-container__extractors__run",
+      "componentId": "default-container__extractors",
+      "name": "extractors__run",
       "type": "function",
       "documentation": {
         "summary": "Execute the extraction stage"
@@ -347,9 +347,9 @@
     },
     {
       "description": "Execute the validation stage",
-      "id": "default-container::validators::run",
-      "componentId": "default-container::validators",
-      "name": "validators::run",
+      "id": "default-container__validators__run",
+      "componentId": "default-container__validators",
+      "name": "validators__run",
       "type": "function",
       "documentation": {
         "summary": "Execute the validation stage"
@@ -370,9 +370,9 @@
     },
     {
       "description": "Execute the generation stage",
-      "id": "default-container::generators::run",
-      "componentId": "default-container::generators",
-      "name": "generators::run",
+      "id": "default-container__generators__run",
+      "componentId": "default-container__generators",
+      "name": "generators__run",
       "type": "function",
       "documentation": {
         "summary": "Execute the generation stage"
@@ -393,9 +393,9 @@
     },
     {
       "description": "Execute the rendering stage",
-      "id": "default-container::renderers::run",
-      "componentId": "default-container::renderers",
-      "name": "renderers::run",
+      "id": "default-container__renderers__run",
+      "componentId": "default-container__renderers",
+      "name": "renderers__run",
       "type": "function",
       "documentation": {
         "summary": "Execute the rendering stage"
@@ -416,9 +416,9 @@
     },
     {
       "description": "Execute the documentation stage",
-      "id": "default-container::docs::run",
-      "componentId": "default-container::docs",
-      "name": "docs::run",
+      "id": "default-container__docs__run",
+      "componentId": "default-container__docs",
+      "name": "docs__run",
       "type": "function",
       "documentation": {
         "summary": "Execute the documentation stage"
@@ -439,9 +439,9 @@
     },
     {
       "description": "Convert a name to a normalized ID\nUsed for consistent ID generation across extractors and mappers",
-      "id": "default-container::core::nameToId",
-      "componentId": "default-container::core",
-      "name": "core::nameToId",
+      "id": "default-container__core__nameToId",
+      "componentId": "default-container__core",
+      "name": "core__nameToId",
       "type": "function",
       "documentation": {
         "summary": "Convert a name to a normalized ID\nUsed for consistent ID generation across extractors and mappers",
@@ -466,9 +466,9 @@
     },
     {
       "description": "Format timestamp as ISO 8601 (local time)",
-      "id": "default-container::core::formatTimestamp",
-      "componentId": "default-container::core",
-      "name": "core::formatTimestamp",
+      "id": "default-container__core__formatTimestamp",
+      "componentId": "default-container__core",
+      "name": "core__formatTimestamp",
       "type": "function",
       "documentation": {
         "summary": "Format timestamp as ISO 8601 (local time)"
@@ -482,9 +482,9 @@
     },
     {
       "description": "Format log message with timestamp, level, and context",
-      "id": "default-container::core::formatLogMessage",
-      "componentId": "default-container::core",
-      "name": "core::formatLogMessage",
+      "id": "default-container__core__formatLogMessage",
+      "componentId": "default-container__core",
+      "name": "core__formatLogMessage",
       "type": "function",
       "documentation": {
         "summary": "Format log message with timestamp, level, and context"
@@ -520,9 +520,9 @@
     },
     {
       "description": "Create a logger instance",
-      "id": "default-container::core::createLogger",
-      "componentId": "default-container::core",
-      "name": "core::createLogger",
+      "id": "default-container__core__createLogger",
+      "componentId": "default-container__core",
+      "name": "core__createLogger",
       "type": "function",
       "documentation": {
         "summary": "Create a logger instance",
@@ -548,9 +548,9 @@
     },
     {
       "description": "Dynamically load an ESM module from a path or module specifier",
-      "id": "default-container::core::loadModuleFromPath",
-      "componentId": "default-container::core",
-      "name": "core::loadModuleFromPath",
+      "id": "default-container__core__loadModuleFromPath",
+      "componentId": "default-container__core",
+      "name": "core__loadModuleFromPath",
       "type": "function",
       "documentation": {
         "summary": "Dynamically load an ESM module from a path or module specifier",
@@ -581,9 +581,9 @@
       "lineNumber": 62
     },
     {
-      "id": "default-container::core::getCliDir",
-      "componentId": "default-container::core",
-      "name": "core::getCliDir",
+      "id": "default-container__core__getCliDir",
+      "componentId": "default-container__core",
+      "name": "core__getCliDir",
       "type": "function",
       "returnType": "string",
       "parameters": [],
@@ -593,9 +593,9 @@
       "lineNumber": 14
     },
     {
-      "id": "default-container::core::expandTilde",
-      "componentId": "default-container::core",
-      "name": "core::expandTilde",
+      "id": "default-container__core__expandTilde",
+      "componentId": "default-container__core",
+      "name": "core__expandTilde",
       "type": "function",
       "returnType": "string",
       "parameters": [
@@ -618,9 +618,9 @@
     },
     {
       "description": "Core path resolver honoring Archlette rules (no file existence checks).\n- \"~\"  -> user home\n- \"/\"  -> absolute\n- else -> relative to CLI dir",
-      "id": "default-container::core::resolveArchlettePath",
-      "componentId": "default-container::core",
-      "name": "core::resolveArchlettePath",
+      "id": "default-container__core__resolveArchlettePath",
+      "componentId": "default-container__core",
+      "name": "core__resolveArchlettePath",
       "type": "function",
       "documentation": {
         "summary": "Core path resolver honoring Archlette rules (no file existence checks).\n- \"~\"  -> user home\n- \"/\"  -> absolute\n- else -> relative to CLI dir"
@@ -645,9 +645,9 @@
     },
     {
       "description": "Resolve a module entry by probing:\n1) Exact path\n2) With extensions: .ts then .js\n3) If directory: index.ts then index.js",
-      "id": "default-container::core::resolveModuleEntry",
-      "componentId": "default-container::core",
-      "name": "core::resolveModuleEntry",
+      "id": "default-container__core__resolveModuleEntry",
+      "componentId": "default-container__core",
+      "name": "core__resolveModuleEntry",
       "type": "function",
       "documentation": {
         "summary": "Resolve a module entry by probing:\n1) Exact path\n2) With extensions: .ts then .js\n3) If directory: index.ts then index.js"
@@ -671,9 +671,9 @@
       "lineNumber": 61
     },
     {
-      "id": "default-container::core::toFileUrl",
-      "componentId": "default-container::core",
-      "name": "core::toFileUrl",
+      "id": "default-container__core__toFileUrl",
+      "componentId": "default-container__core",
+      "name": "core__toFileUrl",
       "type": "function",
       "returnType": "string",
       "parameters": [
@@ -690,9 +690,9 @@
     },
     {
       "description": "Write content to a file, creating parent directories if needed.",
-      "id": "default-container::core::writeFile",
-      "componentId": "default-container::core",
-      "name": "core::writeFile",
+      "id": "default-container__core__writeFile",
+      "componentId": "default-container__core",
+      "name": "core__writeFile",
       "type": "function",
       "documentation": {
         "summary": "Write content to a file, creating parent directories if needed."
@@ -736,9 +736,9 @@
       "lineNumber": 12
     },
     {
-      "id": "default-container::core::loadExtractorModule",
-      "componentId": "default-container::core",
-      "name": "core::loadExtractorModule",
+      "id": "default-container__core__loadExtractorModule",
+      "componentId": "default-container__core",
+      "name": "core__loadExtractorModule",
       "type": "function",
       "returnType": "Promise<{ entry: any; resolved: string; }>",
       "parameters": [
@@ -754,9 +754,9 @@
       "lineNumber": 13
     },
     {
-      "id": "default-container::core::loadValidatorModule",
-      "componentId": "default-container::core",
-      "name": "core::loadValidatorModule",
+      "id": "default-container__core__loadValidatorModule",
+      "componentId": "default-container__core",
+      "name": "core__loadValidatorModule",
       "type": "function",
       "returnType": "Promise<{ entry: any; resolved: string; }>",
       "parameters": [
@@ -772,9 +772,9 @@
       "lineNumber": 26
     },
     {
-      "id": "default-container::core::loadGeneratorModule",
-      "componentId": "default-container::core",
-      "name": "core::loadGeneratorModule",
+      "id": "default-container__core__loadGeneratorModule",
+      "componentId": "default-container__core",
+      "name": "core__loadGeneratorModule",
       "type": "function",
       "returnType": "Promise<{ entry: any; resolved: string; }>",
       "parameters": [
@@ -790,9 +790,9 @@
       "lineNumber": 39
     },
     {
-      "id": "default-container::core::loadRendererModule",
-      "componentId": "default-container::core",
-      "name": "core::loadRendererModule",
+      "id": "default-container__core__loadRendererModule",
+      "componentId": "default-container__core",
+      "name": "core__loadRendererModule",
       "type": "function",
       "returnType": "Promise<{ entry: any; resolved: string; }>",
       "parameters": [
@@ -808,9 +808,9 @@
       "lineNumber": 52
     },
     {
-      "id": "default-container::core::loadDocModule",
-      "componentId": "default-container::core",
-      "name": "core::loadDocModule",
+      "id": "default-container__core__loadDocModule",
+      "componentId": "default-container__core",
+      "name": "core__loadDocModule",
       "type": "function",
       "returnType": "Promise<{ entry: any; resolved: string; }>",
       "parameters": [
@@ -827,9 +827,9 @@
     },
     {
       "description": "Get the Archlette cache directory",
-      "id": "default-container::core::getCacheDir",
-      "componentId": "default-container::core",
-      "name": "core::getCacheDir",
+      "id": "default-container__core__getCacheDir",
+      "componentId": "default-container__core",
+      "name": "core__getCacheDir",
       "type": "function",
       "documentation": {
         "summary": "Get the Archlette cache directory"
@@ -843,9 +843,9 @@
     },
     {
       "description": "Ensure cache directory exists",
-      "id": "default-container::core::ensureCacheDir",
-      "componentId": "default-container::core",
-      "name": "core::ensureCacheDir",
+      "id": "default-container__core__ensureCacheDir",
+      "componentId": "default-container__core",
+      "name": "core__ensureCacheDir",
       "type": "function",
       "documentation": {
         "summary": "Ensure cache directory exists"
@@ -859,9 +859,9 @@
     },
     {
       "description": "Check if a command exists in PATH",
-      "id": "default-container::core::commandExistsInPath",
-      "componentId": "default-container::core",
-      "name": "core::commandExistsInPath",
+      "id": "default-container__core__commandExistsInPath",
+      "componentId": "default-container__core",
+      "name": "core__commandExistsInPath",
       "type": "function",
       "documentation": {
         "summary": "Check if a command exists in PATH"
@@ -881,9 +881,9 @@
     },
     {
       "description": "Download a file from URL to destination",
-      "id": "default-container::core::downloadFile",
-      "componentId": "default-container::core",
-      "name": "core::downloadFile",
+      "id": "default-container__core__downloadFile",
+      "componentId": "default-container__core",
+      "name": "core__downloadFile",
       "type": "function",
       "documentation": {
         "summary": "Download a file from URL to destination"
@@ -913,9 +913,9 @@
     },
     {
       "description": "Extract a ZIP file (simple extraction for Structurizr CLI)",
-      "id": "default-container::core::extractZip",
-      "componentId": "default-container::core",
-      "name": "core::extractZip",
+      "id": "default-container__core__extractZip",
+      "componentId": "default-container__core",
+      "name": "core__extractZip",
       "type": "function",
       "documentation": {
         "summary": "Extract a ZIP file (simple extraction for Structurizr CLI)"
@@ -945,9 +945,9 @@
     },
     {
       "description": "Make file executable (Unix only)",
-      "id": "default-container::core::makeExecutable",
-      "componentId": "default-container::core",
-      "name": "core::makeExecutable",
+      "id": "default-container__core__makeExecutable",
+      "componentId": "default-container__core",
+      "name": "core__makeExecutable",
       "type": "function",
       "documentation": {
         "summary": "Make file executable (Unix only)"
@@ -967,9 +967,9 @@
     },
     {
       "description": "Download and install Structurizr CLI to cache",
-      "id": "default-container::core::downloadStructurizr",
-      "componentId": "default-container::core",
-      "name": "core::downloadStructurizr",
+      "id": "default-container__core__downloadStructurizr",
+      "componentId": "default-container__core",
+      "name": "core__downloadStructurizr",
       "type": "function",
       "documentation": {
         "summary": "Download and install Structurizr CLI to cache"
@@ -994,9 +994,9 @@
     },
     {
       "description": "Download and install PlantUML to cache",
-      "id": "default-container::core::downloadPlantUML",
-      "componentId": "default-container::core",
-      "name": "core::downloadPlantUML",
+      "id": "default-container__core__downloadPlantUML",
+      "componentId": "default-container__core",
+      "name": "core__downloadPlantUML",
       "type": "function",
       "documentation": {
         "summary": "Download and install PlantUML to cache"
@@ -1021,9 +1021,9 @@
     },
     {
       "description": "Find or download Structurizr CLI",
-      "id": "default-container::core::findStructurizrCLI",
-      "componentId": "default-container::core",
-      "name": "core::findStructurizrCLI",
+      "id": "default-container__core__findStructurizrCLI",
+      "componentId": "default-container__core",
+      "name": "core__findStructurizrCLI",
       "type": "function",
       "documentation": {
         "summary": "Find or download Structurizr CLI"
@@ -1045,9 +1045,9 @@
     },
     {
       "description": "Find or download PlantUML JAR",
-      "id": "default-container::core::findPlantUML",
-      "componentId": "default-container::core",
-      "name": "core::findPlantUML",
+      "id": "default-container__core__findPlantUML",
+      "componentId": "default-container__core",
+      "name": "core__findPlantUML",
       "type": "function",
       "documentation": {
         "summary": "Find or download PlantUML JAR"
@@ -1069,9 +1069,9 @@
     },
     {
       "description": "Verify Java is available",
-      "id": "default-container::core::checkJava",
-      "componentId": "default-container::core",
-      "name": "core::checkJava",
+      "id": "default-container__core__checkJava",
+      "componentId": "default-container__core",
+      "name": "core__checkJava",
       "type": "function",
       "documentation": {
         "summary": "Verify Java is available"
@@ -1086,9 +1086,9 @@
     },
     {
       "description": "Validate Java is installed (throw if not)",
-      "id": "default-container::core::requireJava",
-      "componentId": "default-container::core",
-      "name": "core::requireJava",
+      "id": "default-container__core__requireJava",
+      "componentId": "default-container__core",
+      "name": "core__requireJava",
       "type": "function",
       "documentation": {
         "summary": "Validate Java is installed (throw if not)"
@@ -1102,9 +1102,9 @@
     },
     {
       "description": "For each stage, resolve includes/excludes for each node:\n  - If node omits includes/excludes, inherit from defaults.",
-      "id": "default-container::core::resolveConfig",
-      "componentId": "default-container::core",
-      "name": "core::resolveConfig",
+      "id": "default-container__core__resolveConfig",
+      "componentId": "default-container__core",
+      "name": "core__resolveConfig",
       "type": "function",
       "documentation": {
         "summary": "For each stage, resolve includes/excludes for each node:\n  - If node omits includes/excludes, inherit from defaults."
@@ -1124,9 +1124,9 @@
     },
     {
       "description": "Generate markdown documentation",
-      "id": "default-container::docs::markdownDocs",
-      "componentId": "default-container::docs",
-      "name": "docs::markdownDocs",
+      "id": "default-container__docs__markdownDocs",
+      "componentId": "default-container__docs",
+      "name": "docs__markdownDocs",
       "type": "function",
       "documentation": {
         "summary": "Generate markdown documentation"
@@ -1146,9 +1146,9 @@
     },
     {
       "description": "Find diagram files for a specific view type",
-      "id": "default-container::docs::findDiagramsForView",
-      "componentId": "default-container::docs",
-      "name": "docs::findDiagramsForView",
+      "id": "default-container__docs__findDiagramsForView",
+      "componentId": "default-container__docs",
+      "name": "docs__findDiagramsForView",
       "type": "function",
       "documentation": {
         "summary": "Find diagram files for a specific view type"
@@ -1179,13 +1179,13 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/docs/builtin/markdown-docs.ts",
-      "lineNumber": 196
+      "lineNumber": 199
     },
     {
       "description": "Find component diagrams for a specific component",
-      "id": "default-container::docs::findDiagramsForComponent",
-      "componentId": "default-container::docs",
-      "name": "docs::findDiagramsForComponent",
+      "id": "default-container__docs__findDiagramsForComponent",
+      "componentId": "default-container__docs",
+      "name": "docs__findDiagramsForComponent",
       "type": "function",
       "documentation": {
         "summary": "Find component diagrams for a specific component"
@@ -1216,13 +1216,13 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/docs/builtin/markdown-docs.ts",
-      "lineNumber": 224
+      "lineNumber": 228
     },
     {
       "description": "Find class diagrams for a specific component",
-      "id": "default-container::docs::findClassDiagramsForComponent",
-      "componentId": "default-container::docs",
-      "name": "docs::findClassDiagramsForComponent",
+      "id": "default-container__docs__findClassDiagramsForComponent",
+      "componentId": "default-container__docs",
+      "name": "docs__findClassDiagramsForComponent",
       "type": "function",
       "documentation": {
         "summary": "Find class diagrams for a specific component"
@@ -1253,12 +1253,12 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/docs/builtin/markdown-docs.ts",
-      "lineNumber": 257
+      "lineNumber": 261
     },
     {
-      "id": "default-container::docs::sanitizeFileName",
-      "componentId": "default-container::docs",
-      "name": "docs::sanitizeFileName",
+      "id": "default-container__docs__sanitizeFileName",
+      "componentId": "default-container__docs",
+      "name": "docs__sanitizeFileName",
       "type": "function",
       "returnType": "string",
       "parameters": [
@@ -1271,13 +1271,13 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/docs/builtin/markdown-docs.ts",
-      "lineNumber": 288
+      "lineNumber": 295
     },
     {
       "description": "Extract architecture information from a Node.js/TypeScript codebase",
-      "id": "default-container::extractors::basicNodeExtractor",
-      "componentId": "default-container::extractors",
-      "name": "extractors::basicNodeExtractor",
+      "id": "default-container__extractors__basicNodeExtractor",
+      "componentId": "default-container__extractors",
+      "name": "extractors__basicNodeExtractor",
       "type": "function",
       "documentation": {
         "summary": "Extract architecture information from a Node.js/TypeScript codebase",
@@ -1301,9 +1301,9 @@
     },
     {
       "description": "Extract deployment topology from Cloudflare Wrangler configuration files",
-      "id": "default-container::extractors::basicWranglerExtractor",
-      "componentId": "default-container::extractors",
-      "name": "extractors::basicWranglerExtractor",
+      "id": "default-container__extractors__basicWranglerExtractor",
+      "componentId": "default-container__extractors",
+      "name": "extractors__basicWranglerExtractor",
       "type": "function",
       "documentation": {
         "summary": "Extract deployment topology from Cloudflare Wrangler configuration files",
@@ -1327,9 +1327,9 @@
     },
     {
       "description": "Generate Structurizr DSL from ArchletteIR",
-      "id": "default-container::generators::structurizrGenerator",
-      "componentId": "default-container::generators",
-      "name": "generators::structurizrGenerator",
+      "id": "default-container__generators__structurizrGenerator",
+      "componentId": "default-container__generators",
+      "name": "generators__structurizrGenerator",
       "type": "function",
       "documentation": {
         "summary": "Generate Structurizr DSL from ArchletteIR"
@@ -1356,9 +1356,9 @@
     },
     {
       "description": "Generate all actor-related relationships (bidirectional)\n\nIncludes:\n1. Actor → Component (from actor.targets) - users interacting with system\n2. Component → Actor (from componentRelationships) - system using external actors\n\nStructurizr automatically aggregates relationships in views:\n- System Context view: Shows as actor ↔ system\n- Container view: Shows as actor ↔ container\n- Component view: Shows actual actor ↔ component relationships",
-      "id": "default-container::generators::generateAllActorRelationships",
-      "componentId": "default-container::generators",
-      "name": "generators::generateAllActorRelationships",
+      "id": "default-container__generators__generateAllActorRelationships",
+      "componentId": "default-container__generators",
+      "name": "generators__generateAllActorRelationships",
       "type": "function",
       "documentation": {
         "summary": "Generate all actor-related relationships (bidirectional)\n\nIncludes:\n1. Actor → Component (from actor.targets) - users interacting with system\n2. Component → Actor (from componentRelationships) - system using external actors\n\nStructurizr automatically aggregates relationships in views:\n- System Context view: Shows as actor ↔ system\n- Container view: Shows as actor ↔ container\n- Component view: Shows actual actor ↔ component relationships"
@@ -1380,9 +1380,9 @@
     },
     {
       "description": "Generate the model section of the DSL",
-      "id": "default-container::generators::generateModel",
-      "componentId": "default-container::generators",
-      "name": "generators::generateModel",
+      "id": "default-container__generators__generateModel",
+      "componentId": "default-container__generators",
+      "name": "generators__generateModel",
       "type": "function",
       "documentation": {
         "summary": "Generate the model section of the DSL"
@@ -1407,9 +1407,9 @@
     },
     {
       "description": "Generate the views section of the DSL",
-      "id": "default-container::generators::generateViews",
-      "componentId": "default-container::generators",
-      "name": "generators::generateViews",
+      "id": "default-container__generators__generateViews",
+      "componentId": "default-container__generators",
+      "name": "generators__generateViews",
       "type": "function",
       "documentation": {
         "summary": "Generate the views section of the DSL"
@@ -1434,9 +1434,9 @@
     },
     {
       "description": "Generate System Context view\n\nShows actors and the system boundary. Structurizr automatically aggregates\nactor → component relationships to actor → system for this view since\ncomponents are not explicitly included.",
-      "id": "default-container::generators::generateSystemContextView",
-      "componentId": "default-container::generators",
-      "name": "generators::generateSystemContextView",
+      "id": "default-container__generators__generateSystemContextView",
+      "componentId": "default-container__generators",
+      "name": "generators__generateSystemContextView",
       "type": "function",
       "documentation": {
         "summary": "Generate System Context view\n\nShows actors and the system boundary. Structurizr automatically aggregates\nactor → component relationships to actor → system for this view since\ncomponents are not explicitly included."
@@ -1461,9 +1461,9 @@
     },
     {
       "description": "Generate Container view\n\nShows actors, containers, and their relationships. Actor → component\nrelationships are automatically aggregated to actor → container level\nby Structurizr since components are not shown in this view.",
-      "id": "default-container::generators::generateContainerView",
-      "componentId": "default-container::generators",
-      "name": "generators::generateContainerView",
+      "id": "default-container__generators__generateContainerView",
+      "componentId": "default-container__generators",
+      "name": "generators__generateContainerView",
       "type": "function",
       "documentation": {
         "summary": "Generate Container view\n\nShows actors, containers, and their relationships. Actor → component\nrelationships are automatically aggregated to actor → container level\nby Structurizr since components are not shown in this view."
@@ -1488,9 +1488,9 @@
     },
     {
       "description": "Generate Component view for a container (excludes Code elements)\n\nShows actors, components within the container, and their relationships.\nActor → component relationships are shown explicitly at this level.\nCode elements are excluded to keep the view focused on architecture.",
-      "id": "default-container::generators::generateComponentView",
-      "componentId": "default-container::generators",
-      "name": "generators::generateComponentView",
+      "id": "default-container__generators__generateComponentView",
+      "componentId": "default-container__generators",
+      "name": "generators__generateComponentView",
       "type": "function",
       "documentation": {
         "summary": "Generate Component view for a container (excludes Code elements)\n\nShows actors, components within the container, and their relationships.\nActor → component relationships are shown explicitly at this level.\nCode elements are excluded to keep the view focused on architecture."
@@ -1520,9 +1520,9 @@
     },
     {
       "description": "Generate Class view for a component (only Code elements within that component)\nThis supports the drill-down model: System → Container → Component → Code\n\nNote: Component views in Structurizr require a container ID, not a component ID.\nWe use the component's container and filter to show only this component's code.",
-      "id": "default-container::generators::generateClassView",
-      "componentId": "default-container::generators",
-      "name": "generators::generateClassView",
+      "id": "default-container__generators__generateClassView",
+      "componentId": "default-container__generators",
+      "name": "generators__generateClassView",
       "type": "function",
       "documentation": {
         "summary": "Generate Class view for a component (only Code elements within that component)\nThis supports the drill-down model: System → Container → Component → Code\n\nNote: Component views in Structurizr require a container ID, not a component ID.\nWe use the component's container and filter to show only this component's code."
@@ -1552,9 +1552,9 @@
     },
     {
       "description": "Generate DSL for an actor (person or external system)",
-      "id": "default-container::generators::generateActor",
-      "componentId": "default-container::generators",
-      "name": "generators::generateActor",
+      "id": "default-container__generators__generateActor",
+      "componentId": "default-container__generators",
+      "name": "generators__generateActor",
       "type": "function",
       "documentation": {
         "summary": "Generate DSL for an actor (person or external system)"
@@ -1579,9 +1579,9 @@
     },
     {
       "description": "Generate DSL for a container with its components",
-      "id": "default-container::generators::generateContainer",
-      "componentId": "default-container::generators",
-      "name": "generators::generateContainer",
+      "id": "default-container__generators__generateContainer",
+      "componentId": "default-container__generators",
+      "name": "generators__generateContainer",
       "type": "function",
       "documentation": {
         "summary": "Generate DSL for a container with its components"
@@ -1631,9 +1631,9 @@
     },
     {
       "description": "Generate DSL for a component",
-      "id": "default-container::generators::generateComponent",
-      "componentId": "default-container::generators",
-      "name": "generators::generateComponent",
+      "id": "default-container__generators__generateComponent",
+      "componentId": "default-container__generators",
+      "name": "generators__generateComponent",
       "type": "function",
       "documentation": {
         "summary": "Generate DSL for a component"
@@ -1654,13 +1654,13 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts",
-      "lineNumber": 536
+      "lineNumber": 538
     },
     {
       "description": "Generate DSL for a code item as a component\nAlways tagged with \"Code\" to separate from logical components in views",
-      "id": "default-container::generators::generateCodeAsComponent",
-      "componentId": "default-container::generators",
-      "name": "generators::generateCodeAsComponent",
+      "id": "default-container__generators__generateCodeAsComponent",
+      "componentId": "default-container__generators",
+      "name": "generators__generateCodeAsComponent",
       "type": "function",
       "documentation": {
         "summary": "Generate DSL for a code item as a component\nAlways tagged with \"Code\" to separate from logical components in views"
@@ -1681,13 +1681,13 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts",
-      "lineNumber": 559
+      "lineNumber": 561
     },
     {
       "description": "Generate a unique name for a code item to avoid naming collisions\n\nHandles both hierarchical IDs and file-path-based IDs:\n- Hierarchical: \"container::component::codeName\"\n- File-based: \"C:/path/to/file.ts:functionName\"",
-      "id": "default-container::generators::generateUniqueCodeName",
-      "componentId": "default-container::generators",
-      "name": "generators::generateUniqueCodeName",
+      "id": "default-container__generators__generateUniqueCodeName",
+      "componentId": "default-container__generators",
+      "name": "generators__generateUniqueCodeName",
       "type": "function",
       "documentation": {
         "summary": "Generate a unique name for a code item to avoid naming collisions\n\nHandles both hierarchical IDs and file-path-based IDs:\n- Hierarchical: \"container::component::codeName\"\n- File-based: \"C:/path/to/file.ts:functionName\""
@@ -1705,13 +1705,13 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts",
-      "lineNumber": 599
+      "lineNumber": 601
     },
     {
       "description": "Generate DSL for a relationship",
-      "id": "default-container::generators::generateRelationship",
-      "componentId": "default-container::generators",
-      "name": "generators::generateRelationship",
+      "id": "default-container__generators__generateRelationship",
+      "componentId": "default-container__generators",
+      "name": "generators__generateRelationship",
       "type": "function",
       "documentation": {
         "summary": "Generate DSL for a relationship"
@@ -1732,13 +1732,13 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts",
-      "lineNumber": 647
+      "lineNumber": 649
     },
     {
       "description": "Build technology string from relationship metadata",
-      "id": "default-container::generators::buildTechnologyString",
-      "componentId": "default-container::generators",
-      "name": "generators::buildTechnologyString",
+      "id": "default-container__generators__buildTechnologyString",
+      "componentId": "default-container__generators",
+      "name": "generators__buildTechnologyString",
       "type": "function",
       "documentation": {
         "summary": "Build technology string from relationship metadata"
@@ -1754,13 +1754,13 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts",
-      "lineNumber": 662
+      "lineNumber": 664
     },
     {
       "description": "Generate DSL for a deployment environment\n\nSupports both legacy `nodes` format and new `instances` format.\nGenerates deployment relationships between container instances.",
-      "id": "default-container::generators::generateDeployment",
-      "componentId": "default-container::generators",
-      "name": "generators::generateDeployment",
+      "id": "default-container__generators__generateDeployment",
+      "componentId": "default-container__generators",
+      "name": "generators__generateDeployment",
       "type": "function",
       "documentation": {
         "summary": "Generate DSL for a deployment environment\n\nSupports both legacy `nodes` format and new `instances` format.\nGenerates deployment relationships between container instances."
@@ -1786,13 +1786,13 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts",
-      "lineNumber": 681
+      "lineNumber": 683
     },
     {
       "description": "Sanitize ID for DSL (remove special characters, convert to camelCase)",
-      "id": "default-container::generators::sanitizeId",
-      "componentId": "default-container::generators",
-      "name": "generators::sanitizeId",
+      "id": "default-container__generators__sanitizeId",
+      "componentId": "default-container__generators",
+      "name": "generators__sanitizeId",
       "type": "function",
       "documentation": {
         "summary": "Sanitize ID for DSL (remove special characters, convert to camelCase)"
@@ -1808,13 +1808,13 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts",
-      "lineNumber": 763
+      "lineNumber": 770
     },
     {
       "description": "Escape special characters in strings for DSL",
-      "id": "default-container::generators::escapeString",
-      "componentId": "default-container::generators",
-      "name": "generators::escapeString",
+      "id": "default-container__generators__escapeString",
+      "componentId": "default-container__generators",
+      "name": "generators__escapeString",
       "type": "function",
       "documentation": {
         "summary": "Escape special characters in strings for DSL"
@@ -1830,13 +1830,13 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts",
-      "lineNumber": 770
+      "lineNumber": 777
     },
     {
       "description": "Render PlantUML files to PNG images",
-      "id": "default-container::renderers::plantumlRender",
-      "componentId": "default-container::renderers",
-      "name": "renderers::plantumlRender",
+      "id": "default-container__renderers__plantumlRender",
+      "componentId": "default-container__renderers",
+      "name": "renderers__plantumlRender",
       "type": "function",
       "documentation": {
         "summary": "Render PlantUML files to PNG images"
@@ -1856,9 +1856,9 @@
     },
     {
       "description": "Export Structurizr DSL to PlantUML and Mermaid formats",
-      "id": "default-container::renderers::structurizrExport",
-      "componentId": "default-container::renderers",
-      "name": "renderers::structurizrExport",
+      "id": "default-container__renderers__structurizrExport",
+      "componentId": "default-container__renderers",
+      "name": "renderers__structurizrExport",
       "type": "function",
       "documentation": {
         "summary": "Export Structurizr DSL to PlantUML and Mermaid formats"
@@ -1878,9 +1878,9 @@
     },
     {
       "description": "Validates the IR against the Zod schema. Throws if invalid.",
-      "id": "default-container::validators::baseValidator",
-      "componentId": "default-container::validators",
-      "name": "validators::baseValidator",
+      "id": "default-container__validators__baseValidator",
+      "componentId": "default-container__validators",
+      "name": "validators__baseValidator",
       "type": "function",
       "documentation": {
         "summary": "Validates the IR against the Zod schema. Throws if invalid."
@@ -3115,91 +3115,91 @@
     {
       "description": "Analyzes source code to extract architecture components",
       "tags": [],
-      "source": "default-container::cli",
-      "destination": "default-container::extractors"
+      "source": "default-container__cli",
+      "destination": "default-container__extractors"
     },
     {
       "description": "Validates and enriches intermediate representation",
       "tags": [],
-      "source": "default-container::cli",
-      "destination": "default-container::validators"
+      "source": "default-container__cli",
+      "destination": "default-container__validators"
     },
     {
       "description": "Transforms IR into DSL formats",
       "tags": [],
-      "source": "default-container::cli",
-      "destination": "default-container::generators"
+      "source": "default-container__cli",
+      "destination": "default-container__generators"
     },
     {
       "description": "Converts DSL to visual diagrams",
       "tags": [],
-      "source": "default-container::cli",
-      "destination": "default-container::renderers"
+      "source": "default-container__cli",
+      "destination": "default-container__renderers"
     },
     {
       "description": "Provides shared utilities, types, and module loading",
       "tags": [],
-      "source": "default-container::cli",
-      "destination": "default-container::core"
+      "source": "default-container__cli",
+      "destination": "default-container__core"
     },
     {
       "description": "Provides IR types, validation schemas, and module loading",
       "tags": [],
-      "source": "default-container::extractors",
-      "destination": "default-container::core"
+      "source": "default-container__extractors",
+      "destination": "default-container__core"
     },
     {
       "description": "Provides IR types, validation schemas, and module loading",
       "tags": [],
-      "source": "default-container::validators",
-      "destination": "default-container::core"
+      "source": "default-container__validators",
+      "destination": "default-container__core"
     },
     {
       "description": "Provides IR types, path resolution, and module loading",
       "tags": [],
-      "source": "default-container::generators",
-      "destination": "default-container::core"
+      "source": "default-container__generators",
+      "destination": "default-container__core"
     },
     {
       "description": "Provides types, module loading, and tool management",
       "tags": [],
-      "source": "default-container::renderers",
-      "destination": "default-container::core"
+      "source": "default-container__renderers",
+      "destination": "default-container__core"
     },
     {
       "description": "Provides types, module loading, and path resolution",
       "tags": [],
-      "source": "default-container::docs",
-      "destination": "default-container::core"
+      "source": "default-container__docs",
+      "destination": "default-container__core"
     },
     {
       "description": "Uses FileSystem for external system integration",
       "tags": [],
-      "source": "default-container::core",
+      "source": "default-container__core",
       "destination": "filesystem"
     },
     {
       "description": "Uses Github Structurizr Repo for external system integration",
       "tags": [],
-      "source": "default-container::core",
+      "source": "default-container__core",
       "destination": "github-structurizr-repo"
     },
     {
       "description": "Uses Github PlantUML Repo for external system integration",
       "tags": [],
-      "source": "default-container::core",
+      "source": "default-container__core",
       "destination": "github-plantuml-repo"
     },
     {
       "description": "Uses Local System's unzip utility for external system integration",
       "tags": [],
-      "source": "default-container::core",
+      "source": "default-container__core",
       "destination": "local-systems-unzip-utility"
     },
     {
       "description": "Uses File System for external system integration",
       "tags": [],
-      "source": "default-container::core",
+      "source": "default-container__core",
       "destination": "file-system"
     }
   ],
@@ -3376,12 +3376,6 @@
       "description": "imports resolveArchlettePath",
       "source": "C:/Users/chris/git/archlette/src/2-validate/index.ts",
       "destination": "../core/path-resolver.js:resolveArchlettePath",
-      "stereotype": "import"
-    },
-    {
-      "description": "imports getCliDir",
-      "source": "C:/Users/chris/git/archlette/src/2-validate/index.ts",
-      "destination": "../core/path-resolver.js:getCliDir",
       "stereotype": "import"
     },
     {

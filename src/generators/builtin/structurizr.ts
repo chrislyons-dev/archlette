@@ -178,7 +178,7 @@ function generateModel(ir: ArchletteIR, indent: string): string[] {
     }
   }
 
-  // Container relationships
+  // Container relationships  // // Container relationships
   if (ir.containerRelationships.length > 0) {
     lines.push(`${indent}${indent}${indent}# Container relationships`);
     for (const rel of ir.containerRelationships) {
@@ -397,7 +397,7 @@ function generateClassView(
   const lines: string[] = [];
   // Use container ID (required by Structurizr), not component ID
   lines.push(
-    `${indent}component ${sanitizeId(component.containerId)} "${VIEW_NAMES.CLASSES(sanitizeId(component.name))}" {`,
+    `${indent}component ${sanitizeId(component.containerId)} "${VIEW_NAMES.CLASSES(sanitizeId(component.id))}" {`,
   );
 
   // Explicitly include only the code elements that belong to this component
@@ -464,6 +464,8 @@ function generateContainer(
   }
 
   // Find components for this container
+  // Note: Compare against original container.id, not sanitized version
+  // because components in IR have the original (unsanitized) containerId
   const containerComponents = allComponents.filter(
     (c) => c.containerId === container.id,
   );
@@ -710,29 +712,34 @@ function generateDeployment(
 
     lines.push(`${indent}    }`);
 
-    // Add deployment relationships for this environment
-    const envRelationships = allDeploymentRelationships.filter((rel) =>
-      rel.source.startsWith(`${deployment.environment}::`),
-    );
+    // remove deployment relationships
+    // Structurizr does NOT support environment-specific relationships
+    // Deployment relationships defined within a deployment environment are NOT scoped to that environment - they're treated as global relationships
+    // The correct approach is to define all container relationships once in the model section
+    // Deployment environments only define which containers are deployed, not the relationships between them// // Add deployment relationships for this environment
+    //
+    // const envRelationships = allDeploymentRelationships.filter((rel) =>
+    //   rel.source.startsWith(`${deployment.environment}::`),
+    // );
 
-    if (envRelationships.length > 0) {
-      lines.push('');
-      lines.push(`${indent}    # Deployment relationships`);
-      for (const rel of envRelationships) {
-        // Convert instance IDs to container references for Structurizr
-        // Format: environment::container -> just use container part
-        const sourceContainer = rel.source.split('::').slice(1).join('::');
-        const destContainer = rel.destination.split('::').slice(1).join('::');
+    // if (envRelationships.length > 0) {
+    //   lines.push('');
+    //   lines.push(`${indent}    # Deployment relationships`);
+    //   for (const rel of envRelationships) {
+    //     // Convert instance IDs to container references for Structurizr
+    //     // Format: environment::container -> just use container part
+    //     const sourceContainer = rel.source.split('::').slice(1).join('::');
+    //     const destContainer = rel.destination.split('::').slice(1).join('::');
 
-        const sourceId = sanitizeId(sourceContainer);
-        const destId = sanitizeId(destContainer);
-        const description = rel.description || 'Uses';
+    //     const sourceId = sanitizeId(sourceContainer);
+    //     const destId = sanitizeId(destContainer);
+    //     const description = rel.description || 'Uses';
 
-        lines.push(
-          `${indent}    ${sourceId} -> ${destId} "${escapeString(description)}"`,
-        );
-      }
-    }
+    //     lines.push(
+    //       `${indent}    ${sourceId} -> ${destId} "${escapeString(description)}"`,
+    //     );
+    //   }
+    // }
   }
   // Fallback to legacy `nodes` format
   else if (deployment.nodes) {

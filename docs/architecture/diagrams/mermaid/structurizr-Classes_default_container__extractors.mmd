@@ -1,0 +1,26 @@
+graph TB
+  linkStyle default fill:#ffffff
+
+  subgraph diagram ["Application - Application - Components"]
+    style diagram fill:#ffffff,stroke:#ffffff
+
+    subgraph 8 ["Application"]
+      style 8 fill:#ffffff,stroke:#9a9a9a,color:#9a9a9a
+
+      21["<div style='font-weight: bold'>extractors__aggregateirs</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Aggregate multiple<br />ArchletteIR objects into a<br />single unified IR</div>"]
+      style 21 fill:#dddddd,stroke:#9a9a9a,color:#000000
+      22["<div style='font-weight: bold'>extractors__deduplicatebyid</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Deduplicate array of entities<br />by their ID field</div>"]
+      style 22 fill:#dddddd,stroke:#9a9a9a,color:#000000
+      23["<div style='font-weight: bold'>extractors__deduplicatebyname</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Deduplicate array of entities<br />by their name field</div>"]
+      style 23 fill:#dddddd,stroke:#9a9a9a,color:#000000
+      24["<div style='font-weight: bold'>extractors__deduplicaterelationships</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Deduplicate relationships by<br />source+destination+stereotype<br />combination</div>"]
+      style 24 fill:#dddddd,stroke:#9a9a9a,color:#000000
+      25["<div style='font-weight: bold'>extractors__run</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Execute the extraction stage</div>"]
+      style 25 fill:#dddddd,stroke:#9a9a9a,color:#000000
+      64["<div style='font-weight: bold'>extractors__basicnodeextractor</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Extract architecture<br />information from a<br />Node.js/TypeScript codebase</div>"]
+      style 64 fill:#dddddd,stroke:#9a9a9a,color:#000000
+      65["<div style='font-weight: bold'>extractors__basicwranglerextractor</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Extract deployment topology<br />from Cloudflare Wrangler<br />configuration files</div>"]
+      style 65 fill:#dddddd,stroke:#9a9a9a,color:#000000
+    end
+
+  end

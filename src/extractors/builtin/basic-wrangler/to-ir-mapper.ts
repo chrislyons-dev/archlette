@@ -144,8 +144,8 @@ function extractDeploymentsAndInstances(
       // Get environment-specific configuration
       const envConfig = getEnvironmentConfig(config, envName);
 
-      // Create instance ID: environment::service-name
-      const instanceId = `${envName}::${config.name}`;
+      // Create instance ID: environment__service-name
+      const instanceId = `${envName}__${config.name}`;
 
       // Convert bindings to the IR Binding format
       const bindings = [];
@@ -251,7 +251,7 @@ function extractDeploymentsAndInstances(
   // Assign instances to their respective deployments
   deployments.forEach((deployment) => {
     deployment.instances = allInstances.filter((inst) =>
-      inst.id.startsWith(`${deployment.environment}::`),
+      inst.id.startsWith(`${deployment.environment}__`),
     );
   });
 
@@ -288,7 +288,7 @@ function extractContainerRelationships(configs: WranglerConfig[]): Relationship[
     // Create relationships for each unique service binding
     serviceBindings.forEach((binding) => {
       const targetContainer = binding.service;
-      const relationshipKey = `${sourceContainer}::${targetContainer}`;
+      const relationshipKey = `${sourceContainer}__${targetContainer}`;
 
       if (!relationships.has(relationshipKey)) {
         relationships.set(relationshipKey, {
@@ -330,11 +330,11 @@ function extractDeploymentRelationships(
 
     serviceBindings.forEach((binding) => {
       // Determine target instance ID
-      // Format: environment::service-name
-      const [sourceEnv, _sourceService] = instance.id.split('::');
+      // Format: environment__service-name
+      const [sourceEnv, _sourceService] = instance.id.split('__');
       const targetService = binding.service;
       const targetEnv = binding.environment || sourceEnv; // Use binding's env or fallback to source env
-      const targetInstanceId = `${targetEnv}::${targetService}`;
+      const targetInstanceId = `${targetEnv}__${targetService}`;
 
       relationships.push({
         source: instance.id,

@@ -1,16 +1,16 @@
-# 🧩 validators
+# validators
 
 [← Back to System Overview](./README.md)
 
 ---
 
-## 📋 Component Information
+## Component Information
 
 <table>
 <tbody>
 <tr>
 <td><strong>Container</strong></td>
-<td>@chrislyons-dev/archlette</td>
+<td>Application</td>
 </tr>
 <tr>
 <td><strong>Type</strong></td>
@@ -25,17 +25,17 @@
 
 ---
 
-## 🏗️ Component Architecture
+## Architecture
 
-![Component Diagram](./diagrams/structurizr-Components__chrislyons_dev_archlette.png)
+![Component Diagram](./diagrams/structurizr-Components_Application.png)
 
 ---
 
-## 💻 Code Structure
+## Code Structure
 
 ### Class Diagram
 
-![Class Diagram](./diagrams/structurizr-Classes_validators.png)
+![Class Diagram](./diagrams/structurizr-Classes_default_container__validators.png)
 
 ### Code Elements
 
@@ -46,7 +46,7 @@
 
 #### Functions
 
-##### `run()`
+##### `validators__run()`
 
 Execute the validation stage
 
@@ -80,7 +80,7 @@ Execute the validation stage
 - `ctx`: <code>import("C:/Users/chris/git/archlette/src/core/types").PipelineContext</code> — - Pipeline context with configuration, logging, and aggregated IR
 
 ---
-##### `baseValidator()`
+##### `validators__baseValidator()`
 
 Validates the IR against the Zod schema. Throws if invalid.
 

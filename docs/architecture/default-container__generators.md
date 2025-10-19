@@ -1,16 +1,16 @@
-# 🧩 generators
+# generators
 
 [← Back to System Overview](./README.md)
 
 ---
 
-## 📋 Component Information
+## Component Information
 
 <table>
 <tbody>
 <tr>
 <td><strong>Container</strong></td>
-<td>@chrislyons-dev/archlette</td>
+<td>Application</td>
 </tr>
 <tr>
 <td><strong>Type</strong></td>
@@ -25,17 +25,17 @@
 
 ---
 
-## 🏗️ Component Architecture
+## Architecture
 
-![Component Diagram](./diagrams/structurizr-Components__chrislyons_dev_archlette.png)
+![Component Diagram](./diagrams/structurizr-Components_Application.png)
 
 ---
 
-## 💻 Code Structure
+## Code Structure
 
 ### Class Diagram
 
-![Class Diagram](./diagrams/structurizr-Classes_generators.png)
+![Class Diagram](./diagrams/structurizr-Classes_default_container__generators.png)
 
 ### Code Elements
 
@@ -46,7 +46,7 @@
 
 #### Functions
 
-##### `run()`
+##### `generators__run()`
 
 Execute the generation stage
 
@@ -80,7 +80,7 @@ Execute the generation stage
 - `ctx`: <code>import("C:/Users/chris/git/archlette/src/core/types").PipelineContext</code> — - Pipeline context with configuration, logging, and validated IR
 
 ---
-##### `structurizrGenerator()`
+##### `generators__structurizrGenerator()`
 
 Generate Structurizr DSL from ArchletteIR
 
@@ -110,7 +110,7 @@ Generate Structurizr DSL from ArchletteIR
 - `ir`: <code>z.infer<any></code> — - The validated ArchletteIR to transform- `_node`: <code>any</code> — - Configuration node (unused but required by interface)
 
 ---
-##### `generateAllActorRelationships()`
+##### `generators__generateAllActorRelationships()`
 
 Generate all actor-related relationships (bidirectional)
 
@@ -149,7 +149,7 @@ Structurizr automatically aggregates relationships in views:
 - `ir`: <code>z.infer<any></code> — - The ArchletteIR containing actors and components
 
 ---
-##### `generateModel()`
+##### `generators__generateModel()`
 
 Generate the model section of the DSL
 
@@ -179,7 +179,7 @@ Generate the model section of the DSL
 - `ir`: <code>z.infer<any></code>- `indent`: <code>string</code>
 
 ---
-##### `generateViews()`
+##### `generators__generateViews()`
 
 Generate the views section of the DSL
 
@@ -199,7 +199,7 @@ Generate the views section of the DSL
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts:221</code></td>
+<td><code>C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts:223</code></td>
 </tr>
 </tbody>
 </table>
@@ -209,7 +209,7 @@ Generate the views section of the DSL
 - `ir`: <code>z.infer<any></code>- `indent`: <code>string</code>
 
 ---
-##### `generateSystemContextView()`
+##### `generators__generateSystemContextView()`
 
 Generate System Context view
 
@@ -233,7 +233,7 @@ components are not explicitly included.
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts:263</code></td>
+<td><code>C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts:265</code></td>
 </tr>
 </tbody>
 </table>
@@ -243,7 +243,7 @@ components are not explicitly included.
 - `ir`: <code>z.infer<any></code>- `indent`: <code>string</code>
 
 ---
-##### `generateContainerView()`
+##### `generators__generateContainerView()`
 
 Generate Container view
 
@@ -267,7 +267,7 @@ by Structurizr since components are not shown in this view.
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts:292</code></td>
+<td><code>C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts:294</code></td>
 </tr>
 </tbody>
 </table>
@@ -277,7 +277,7 @@ by Structurizr since components are not shown in this view.
 - `ir`: <code>z.infer<any></code>- `indent`: <code>string</code>
 
 ---
-##### `generateComponentView()`
+##### `generators__generateComponentView()`
 
 Generate Component view for a container (excludes Code elements)
 
@@ -301,7 +301,7 @@ Code elements are excluded to keep the view focused on architecture.
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts:322</code></td>
+<td><code>C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts:324</code></td>
 </tr>
 </tbody>
 </table>
@@ -311,7 +311,7 @@ Code elements are excluded to keep the view focused on architecture.
 - `ir`: <code>z.infer<any></code>- `container`: <code>z.infer<any></code>- `indent`: <code>string</code>
 
 ---
-##### `generateClassView()`
+##### `generators__generateClassView()`
 
 Generate Class view for a component (only Code elements within that component)
 This supports the drill-down model: System → Container → Component → Code
@@ -335,7 +335,7 @@ We use the component's container and filter to show only this component's code.
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts:386</code></td>
+<td><code>C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts:388</code></td>
 </tr>
 </tbody>
 </table>
@@ -345,7 +345,7 @@ We use the component's container and filter to show only this component's code.
 - `ir`: <code>z.infer<any></code>- `component`: <code>z.infer<any></code>- `indent`: <code>string</code>
 
 ---
-##### `generateActor()`
+##### `generators__generateActor()`
 
 Generate DSL for an actor (person or external system)
 
@@ -365,7 +365,7 @@ Generate DSL for an actor (person or external system)
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts:426</code></td>
+<td><code>C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts:428</code></td>
 </tr>
 </tbody>
 </table>
@@ -375,7 +375,7 @@ Generate DSL for an actor (person or external system)
 - `actor`: <code>z.infer<any></code>- `indent`: <code>string</code>
 
 ---
-##### `generateContainer()`
+##### `generators__generateContainer()`
 
 Generate DSL for a container with its components
 
@@ -395,7 +395,7 @@ Generate DSL for a container with its components
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts:441</code></td>
+<td><code>C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts:443</code></td>
 </tr>
 </tbody>
 </table>
@@ -405,7 +405,7 @@ Generate DSL for a container with its components
 - `container`: <code>z.infer<any></code>- `allComponents`: <code>z.infer<any>[]</code>- `allCode`: <code>z.infer<any>[]</code>- `allActors`: <code>z.infer<any>[]</code>- `componentRels`: <code>z.infer<any>[]</code>- `codeRels`: <code>z.infer<any>[]</code>- `indent`: <code>string</code>
 
 ---
-##### `generateComponent()`
+##### `generators__generateComponent()`
 
 Generate DSL for a component
 
@@ -425,7 +425,7 @@ Generate DSL for a component
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts:534</code></td>
+<td><code>C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts:538</code></td>
 </tr>
 </tbody>
 </table>
@@ -435,7 +435,7 @@ Generate DSL for a component
 - `component`: <code>z.infer<any></code>- `indent`: <code>string</code>
 
 ---
-##### `generateCodeAsComponent()`
+##### `generators__generateCodeAsComponent()`
 
 Generate DSL for a code item as a component
 Always tagged with "Code" to separate from logical components in views
@@ -456,7 +456,7 @@ Always tagged with "Code" to separate from logical components in views
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts:557</code></td>
+<td><code>C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts:561</code></td>
 </tr>
 </tbody>
 </table>
@@ -466,12 +466,13 @@ Always tagged with "Code" to separate from logical components in views
 - `code`: <code>z.infer<any></code>- `indent`: <code>string</code>
 
 ---
-##### `generateUniqueCodeName()`
+##### `generators__generateUniqueCodeName()`
 
 Generate a unique name for a code item to avoid naming collisions
 
-Extracts file context from the code ID to create a unique display name.
-Example: "1-extract/index.ts::run" or "cli.ts::run"
+Handles both hierarchical IDs and file-path-based IDs:
+- Hierarchical: "container::component::codeName"
+- File-based: "C:/path/to/file.ts:functionName"
 
 <table>
 <tbody>
@@ -485,11 +486,11 @@ Example: "1-extract/index.ts::run" or "cli.ts::run"
 </tr>
 <tr>
 <td><strong>Returns</strong></td>
-<td><code>string</code> — Unique name incorporating file context</td>
+<td><code>string</code> — Unique name for display</td>
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts:596</code></td>
+<td><code>C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts:601</code></td>
 </tr>
 </tbody>
 </table>
@@ -499,39 +500,9 @@ Example: "1-extract/index.ts::run" or "cli.ts::run"
 - `code`: <code>z.infer<any></code> — - The code item
 
 ---
-##### `generateRelationship()`
+##### `generators__generateRelationship()`
 
 Generate DSL for a relationship
-
-<table>
-<tbody>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>function</code></td>
-</tr>
-<tr>
-<td><strong>Visibility</strong></td>
-<td><code>private</code></td>
-</tr>
-<tr>
-<td><strong>Returns</strong></td>
-<td><code>string</code></td>
-</tr>
-<tr>
-<td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts:634</code></td>
-</tr>
-</tbody>
-</table>
-
-**Parameters:**
-
-- `rel`: <code>z.infer<any></code>- `indent`: <code>string</code>
-
----
-##### `buildTechnologyString()`
-
-Build technology string from relationship metadata
 
 <table>
 <tbody>
@@ -556,12 +527,12 @@ Build technology string from relationship metadata
 
 **Parameters:**
 
-- `rel`: <code>z.infer<any></code>
+- `rel`: <code>z.infer<any></code>- `indent`: <code>string</code>
 
 ---
-##### `generateDeployment()`
+##### `generators__buildTechnologyString()`
 
-Generate DSL for a deployment environment
+Build technology string from relationship metadata
 
 <table>
 <tbody>
@@ -579,17 +550,50 @@ Generate DSL for a deployment environment
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts:665</code></td>
+<td><code>C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts:664</code></td>
 </tr>
 </tbody>
 </table>
 
 **Parameters:**
 
-- `deployment`: <code>z.infer<any></code>- `indent`: <code>string</code>
+- `rel`: <code>z.infer<any></code>
 
 ---
-##### `sanitizeId()`
+##### `generators__generateDeployment()`
+
+Generate DSL for a deployment environment
+
+Supports both legacy `nodes` format and new `instances` format.
+Generates deployment relationships between container instances.
+
+<table>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>function</code></td>
+</tr>
+<tr>
+<td><strong>Visibility</strong></td>
+<td><code>private</code></td>
+</tr>
+<tr>
+<td><strong>Returns</strong></td>
+<td><code>string</code></td>
+</tr>
+<tr>
+<td><strong>Location</strong></td>
+<td><code>C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts:683</code></td>
+</tr>
+</tbody>
+</table>
+
+**Parameters:**
+
+- `deployment`: <code>z.infer<any></code>- `allDeploymentRelationships`: <code>z.infer<any>[]</code>- `indent`: <code>string</code>
+
+---
+##### `generators__sanitizeId()`
 
 Sanitize ID for DSL (remove special characters, convert to camelCase)
 
@@ -609,7 +613,7 @@ Sanitize ID for DSL (remove special characters, convert to camelCase)
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts:695</code></td>
+<td><code>C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts:770</code></td>
 </tr>
 </tbody>
 </table>
@@ -619,7 +623,7 @@ Sanitize ID for DSL (remove special characters, convert to camelCase)
 - `id`: <code>string</code>
 
 ---
-##### `escapeString()`
+##### `generators__escapeString()`
 
 Escape special characters in strings for DSL
 
@@ -639,7 +643,7 @@ Escape special characters in strings for DSL
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts:702</code></td>
+<td><code>C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts:777</code></td>
 </tr>
 </tbody>
 </table>

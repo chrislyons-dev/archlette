@@ -20,7 +20,11 @@ extractors:
   - use: extractors/builtin/basic-wrangler
     inputs:
       include:
-        - 'C:/Users/chris/git/bond-math/iac/workers/*.toml'
+        - 'C:/Users/chris/git/bond-math/iac/workers/daycount.toml'
+        - 'C:/Users/chris/git/bond-math/iac/workers/gateway.toml'
+        - 'C:/Users/chris/git/bond-math/iac/workers/metrics.toml'
+        - 'C:/Users/chris/git/bond-math/iac/workers/pricing.toml'
+        - 'C:/Users/chris/git/bond-math/iac/workers/valuation.toml'
 
   - use: extractors/builtin/basic-node
     inputs:
