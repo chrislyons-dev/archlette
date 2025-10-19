@@ -133,7 +133,7 @@ describe('to-ir-mapper', () => {
       expect(deployment.instances).toHaveLength(1);
 
       const instance = deployment.instances![0];
-      expect(instance.id).toBe('production::gateway');
+      expect(instance.id).toBe('production__gateway');
       expect(instance.containerRef).toBe('gateway');
       expect(instance.name).toBe('gateway');
       expect(instance.type).toBe('Cloudflare Worker');
@@ -309,16 +309,16 @@ describe('to-ir-mapper', () => {
 
       const prodDeployment = ir.deployments.find((d) => d.name === 'production');
       expect(prodDeployment?.instances).toHaveLength(1);
-      expect(prodDeployment?.instances![0].id).toBe('production::api-worker');
+      expect(prodDeployment?.instances![0].id).toBe('production__api-worker');
 
       const devDeployment = ir.deployments.find((d) => d.name === 'development');
       expect(devDeployment?.instances).toHaveLength(1);
-      expect(devDeployment?.instances![0].id).toBe('development::api-worker');
+      expect(devDeployment?.instances![0].id).toBe('development__api-worker');
       expect(devDeployment?.instances![0].name).toBe('api-worker-dev');
 
       const previewDeployment = ir.deployments.find((d) => d.name === 'preview');
       expect(previewDeployment?.instances).toHaveLength(1);
-      expect(previewDeployment?.instances![0].id).toBe('preview::api-worker');
+      expect(previewDeployment?.instances![0].id).toBe('preview__api-worker');
     });
 
     it('should extract container relationships from service bindings', () => {
@@ -402,14 +402,14 @@ describe('to-ir-mapper', () => {
 
       expect(ir.deploymentRelationships).toHaveLength(2);
       expect(ir.deploymentRelationships[0]).toMatchObject({
-        source: 'production::gateway',
-        destination: 'production::auth',
+        source: 'production__gateway',
+        destination: 'production__auth',
         description: 'Service binding: SVC_AUTH',
         tags: ['service-binding', 'runtime'],
       });
       expect(ir.deploymentRelationships[1]).toMatchObject({
-        source: 'production::gateway',
-        destination: 'production::data',
+        source: 'production__gateway',
+        destination: 'production__data',
         description: 'Service binding: SVC_DATA',
         tags: ['service-binding', 'runtime'],
       });
@@ -433,12 +433,12 @@ describe('to-ir-mapper', () => {
       const ir = mapToIR(configs);
 
       const devRelationships = ir.deploymentRelationships.filter((r) =>
-        r.source.startsWith('development::'),
+        r.source.startsWith('development__'),
       );
       expect(devRelationships).toHaveLength(1);
       expect(devRelationships[0]).toMatchObject({
-        source: 'development::gateway',
-        destination: 'production::auth', // Cross-environment binding
+        source: 'development__gateway',
+        destination: 'production__auth', // Cross-environment binding
       });
     });
 

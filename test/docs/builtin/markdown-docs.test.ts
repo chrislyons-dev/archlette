@@ -88,14 +88,14 @@ describe('markdown-docs generator', () => {
       ],
       components: [
         {
-          id: 'comp-auth',
+          id: 'api__auth',
           containerId: 'api',
           name: 'Authentication',
           type: 'module',
           description: 'Authentication component',
         },
         {
-          id: 'comp-user',
+          id: 'api__user',
           containerId: 'api',
           name: 'UserManagement',
           type: 'module',
@@ -104,8 +104,8 @@ describe('markdown-docs generator', () => {
       ],
       code: [
         {
-          id: 'code-auth-handler',
-          componentId: 'comp-auth',
+          id: 'api__auth__handler',
+          componentId: 'api__auth',
           name: 'AuthHandler',
           type: 'class',
           filePath: '/src/auth/handler.ts',
@@ -152,7 +152,7 @@ describe('markdown-docs generator', () => {
               'structurizr-SystemContext.png',
               'structurizr-Containers.png',
               'structurizr-Components.png',
-              'structurizr-Classes_compauth.png',
+              'structurizr-Classes_api__auth.png',
             ],
             timestamp: Date.now(),
           },
@@ -192,13 +192,13 @@ describe('markdown-docs generator', () => {
 
       // Verify component pages were written
       expect(mockFs.writeFileSync).toHaveBeenCalledWith(
-        expect.stringContaining(`${sanitizeFileName('comp-auth.md')}`),
+        expect.stringContaining(`${sanitizeFileName('api__auth.md')}`),
         expect.stringContaining('Generated component.md.njk content'),
         'utf8',
       );
 
       expect(mockFs.writeFileSync).toHaveBeenCalledWith(
-        expect.stringContaining('comp-user.md'),
+        expect.stringContaining('api__user.md'),
         expect.stringContaining('Generated component.md.njk content'),
         'utf8',
       );
@@ -291,13 +291,13 @@ describe('markdown-docs generator', () => {
       // Find the render call for comp-auth
       const authRenderCall = vi
         .mocked(mockEnv.render)
-        .mock.calls.find((call) => call[1]?.component?.id === 'comp-auth');
+        .mock.calls.find((call) => call[1]?.component?.id === 'api__auth');
       if (!authRenderCall || !authRenderCall[1]) {
-        throw new Error('Mock render call for comp-auth not found');
+        throw new Error('Mock render call for api__auth not found');
       } else {
         expect(authRenderCall).toBeDefined();
         expect(authRenderCall![1].codeItems).toHaveLength(1);
-        expect(authRenderCall![1].codeItems[0].id).toBe('code-auth-handler');
+        expect(authRenderCall![1].codeItems[0].id).toBe('api__auth__handler');
       }
     });
 
@@ -308,7 +308,7 @@ describe('markdown-docs generator', () => {
       expect(mockContext.state.docOutputs![0]).toMatchObject({
         generator: 'markdown-docs',
         format: 'markdown',
-        files: expect.arrayContaining(['README.md', 'comp-auth.md', 'comp-user.md']),
+        files: expect.arrayContaining(['README.md', 'api__auth.md', 'api__user.md']),
         timestamp: expect.any(Number),
       });
     });
@@ -407,13 +407,13 @@ describe('markdown-docs generator', () => {
       );
     });
 
-    it('looks for diagrams in docs_out/diagrams directory', async () => {
+    it('looks for diagrams in render_out directory', async () => {
       await markdownDocs(mockContext);
 
-      // Verify existsSync was called with paths in the diagrams directory
+      // Verify existsSync was called with paths in the render_out directory
       const existsSyncCalls = vi.mocked(mockFs.existsSync).mock.calls;
       const diagramCalls = existsSyncCalls.filter((call: any[]) =>
-        call[0].includes('diagrams'),
+        call[0].includes('test-render'),
       );
 
       expect(diagramCalls.length).toBeGreaterThan(0);
@@ -623,7 +623,7 @@ describe('markdown-docs generator', () => {
 
       // Should still generate component page
       expect(mockFs.writeFileSync).toHaveBeenCalledWith(
-        expect.stringContaining(`${sanitizeFileName('comp-auth.md')}`),
+        expect.stringContaining(`${sanitizeFileName('api__auth.md')}`),
         expect.any(String),
         'utf8',
       );

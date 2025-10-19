@@ -48,7 +48,7 @@ describe('Actor relationships - direction handling', () => {
     expect(ir.actors[0].name).toBe('User');
 
     // Actor should have the component in its targets (actor → component)
-    expect(ir.actors[0].targets).toContain('default-container::userservice');
+    expect(ir.actors[0].targets).toContain('default-container__userservice');
 
     // Should NOT have component → actor relationship
     const componentToActorRel = ir.componentRelationships.find(
@@ -78,7 +78,7 @@ describe('Actor relationships - direction handling', () => {
     // Should have component → actor relationship
     const componentToActorRel = ir.componentRelationships.find(
       (rel) =>
-        rel.source === 'default-container::dataservice' &&
+        rel.source === 'default-container__dataservice' &&
         rel.destination === 'database',
     );
     expect(componentToActorRel).toBeDefined();
@@ -101,12 +101,12 @@ describe('Actor relationships - direction handling', () => {
     expect(ir.actors[0].name).toBe('Logger');
 
     // Actor should have the component in its targets (actor → component)
-    expect(ir.actors[0].targets).toContain('default-container::loggingservice');
+    expect(ir.actors[0].targets).toContain('default-container__loggingservice');
 
     // Should have component → actor relationship
     const componentToActorRel = ir.componentRelationships.find(
       (rel) =>
-        rel.source === 'default-container::loggingservice' &&
+        rel.source === 'default-container__loggingservice' &&
         rel.destination === 'logger',
     );
     expect(componentToActorRel).toBeDefined();
@@ -128,12 +128,12 @@ describe('Actor relationships - direction handling', () => {
     expect(ir.actors[0].name).toBe('Cache');
 
     // Actor should have the component in its targets (actor → component)
-    expect(ir.actors[0].targets).toContain('default-container::cacheservice');
+    expect(ir.actors[0].targets).toContain('default-container__cacheservice');
 
     // Should have component → actor relationship
     const componentToActorRel = ir.componentRelationships.find(
       (rel) =>
-        rel.source === 'default-container::cacheservice' && rel.destination === 'cache',
+        rel.source === 'default-container__cacheservice' && rel.destination === 'cache',
     );
     expect(componentToActorRel).toBeDefined();
   });
@@ -156,7 +156,7 @@ describe('Actor relationships - direction handling', () => {
 
     // User {in}: only actor → component
     const userActor = ir.actors.find((a) => a.name === 'User');
-    expect(userActor?.targets).toContain('default-container::apigateway');
+    expect(userActor?.targets).toContain('default-container__apigateway');
     const apiToUser = ir.componentRelationships.find(
       (rel) => rel.source === 'apigateway' && rel.destination === 'user',
     );
@@ -167,17 +167,17 @@ describe('Actor relationships - direction handling', () => {
     expect(dbActor?.targets).not.toContain('apigateway');
     const apiToDb = ir.componentRelationships.find(
       (rel) =>
-        rel.source === 'default-container::apigateway' &&
+        rel.source === 'default-container__apigateway' &&
         rel.destination === 'database',
     );
     expect(apiToDb).toBeDefined();
 
     // MessageQueue {both}: bidirectional
     const mqActor = ir.actors.find((a) => a.name === 'MessageQueue');
-    expect(mqActor?.targets).toContain('default-container::apigateway');
+    expect(mqActor?.targets).toContain('default-container__apigateway');
     const apiToMq = ir.componentRelationships.find(
       (rel) =>
-        rel.source === 'default-container::apigateway' &&
+        rel.source === 'default-container__apigateway' &&
         rel.destination === 'messagequeue',
     );
     expect(apiToMq).toBeDefined();

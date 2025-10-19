@@ -78,8 +78,8 @@ service = "auth-service"
 
     expect(ir.deploymentRelationships).toHaveLength(1);
     expect(ir.deploymentRelationships[0]).toMatchObject({
-      source: 'production::api-worker',
-      destination: 'production::auth-service',
+      source: 'production__api-worker',
+      destination: 'production__auth-service',
     });
   });
 
@@ -222,16 +222,16 @@ environment = "preview"
 
     // Deployment relationships should reference correct environments
     const devRel = ir.deploymentRelationships.find((r) =>
-      r.source.startsWith('development::'),
+      r.source.startsWith('development__'),
     );
     expect(devRel).toBeDefined();
-    expect(devRel?.destination).toBe('development::database');
+    expect(devRel?.destination).toBe('development__database');
 
     const previewRel = ir.deploymentRelationships.find((r) =>
-      r.source.startsWith('preview::'),
+      r.source.startsWith('preview__'),
     );
     expect(previewRel).toBeDefined();
-    expect(previewRel?.destination).toBe('preview::database');
+    expect(previewRel?.destination).toBe('preview__database');
   });
 
   it('should return empty IR when no files found', async () => {
@@ -416,15 +416,15 @@ database_id = "db-bonds"
     // Verify deployment relationships (physical)
     // Production: 2 relationships from gateway
     const prodRels = ir.deploymentRelationships.filter((r) =>
-      r.source.startsWith('production::'),
+      r.source.startsWith('production__'),
     );
     expect(prodRels).toHaveLength(2);
 
     // Development: 1 relationship from gateway
     const devRels = ir.deploymentRelationships.filter((r) =>
-      r.source.startsWith('development::'),
+      r.source.startsWith('development__'),
     );
     expect(devRels).toHaveLength(1);
-    expect(devRels[0].destination).toBe('development::bond-math-daycount');
+    expect(devRels[0].destination).toBe('development__bond-math-daycount');
   });
 });
