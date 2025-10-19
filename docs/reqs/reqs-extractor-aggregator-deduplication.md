@@ -315,7 +315,7 @@ function mergeRelationships(relationships: RelationshipWithSource[]): Relationsh
   const grouped = new Map<string, RelationshipWithSource[]>();
 
   for (const rel of relationships) {
-    const key = `${rel.source}::${rel.destination}::${rel.stereotype || ''}`;
+    const key = `${rel.source}__${rel.destination}__${rel.stereotype || ''}`;
     if (!grouped.has(key)) {
       grouped.set(key, []);
     }

@@ -46,8 +46,8 @@ extractors:
 | Element   | ID Pattern | Example                                   |
 | --------- | ---------- | ----------------------------------------- |
 | Container | `x`        | `bond-math-gateway`                       |
-| Component | `x::y`     | `bond-math-gateway::logger`               |
-| Code      | `x::y::z`  | `bond-math-gateway::logger::createLogger` |
+| Component | `x__y`     | `bond-math-gateway__logger`               |
+| Code      | `x__y__z`  | `bond-math-gateway__logger__createLogger` |
 
 **Why**:
 
@@ -68,16 +68,16 @@ extractors:
 
 // Component
 {
-  id: "bond-math-gateway::logger",
+  id: "bond-math-gateway__logger",
   name: "logger",
   containerId: "bond-math-gateway"
 }
 
 // Code
 {
-  id: "bond-math-gateway::logger::createLogger",
-  name: "logger::createLogger",  // Prefixed for display clarity
-  componentId: "bond-math-gateway::logger"
+  id: "bond-math-gateway__logger__createLogger",
+  name: "logger__createLogger",  // Prefixed for display clarity
+  componentId: "bond-math-gateway__logger"
 }
 ```
 
@@ -90,8 +90,8 @@ extractors:
 1. **Detect packages** via `package.json` files to determine container boundaries
 2. **Create containers** - one per package.json found
 3. **Apply hierarchical IDs**:
-   - Components: `${containerId}::${componentName}`
-   - Code items: `${componentId}::${codeName}`
+   - Components: `${containerId}__${componentName}`
+   - Code items: `${componentId}__${codeName}`
 4. **Update references**: When component IDs change, update `componentId` in code items
 
 ### Files to Modify
@@ -112,8 +112,8 @@ extractors:
 Input: 1 package.json at services/api/package.json
 Expected:
   Container: { id: "api", name: "api" }
-  Component: { id: "api::logger", name: "logger" }
-  Code: { id: "api::logger::createLogger", name: "logger::createLogger" }
+  Component: { id: "api__logger", name: "logger" }
+  Code: { id: "api__logger__createLogger", name: "logger__createLogger" }
 ```
 
 ### Monorepo (bond-math)
@@ -123,10 +123,10 @@ Input: 2 package.json files (gateway, daycount)
 Expected:
   Container: { id: "bond-math-gateway", name: "@bond-math/gateway" }
   Container: { id: "bond-math-daycount", name: "@bond-math/daycount" }
-  Component: { id: "bond-math-gateway::logger", name: "logger" }
-  Component: { id: "bond-math-daycount::logger", name: "logger" }
-  Code: { id: "bond-math-gateway::logger::createLogger", name: "logger::createLogger" }
-  Code: { id: "bond-math-daycount::logger::createLogger", name: "logger::createLogger" }
+  Component: { id: "bond-math-gateway__logger", name: "logger" }
+  Component: { id: "bond-math-daycount__logger", name: "logger" }
+  Code: { id: "bond-math-gateway__logger__createLogger", name: "logger__createLogger" }
+  Code: { id: "bond-math-daycount__logger__createLogger", name: "logger__createLogger" }
 ```
 
 ### No package.json
@@ -135,6 +135,6 @@ Expected:
 Input: 0 package.json files
 Expected:
   Container: { id: "default", name: "Application" }
-  Component: { id: "default::logger", name: "logger" }
-  Code: { id: "default::logger::createLogger", name: "logger::createLogger" }
+  Component: { id: "default__logger", name: "logger" }
+  Code: { id: "default__logger__createLogger", name: "logger__createLogger" }
 ```

@@ -10,7 +10,7 @@ The basic-wrangler extractor should extract **everything it can from wrangler.to
 
 1. **Self-sufficient**: Extract containers, deployments, and relationships from wrangler.toml alone
 2. **Deployment-focused**: Emphasis on physical deployment topology (environments, instances, bindings)
-3. **Simple IDs**: Use `environment::service` pattern, not deep hierarchies
+3. **Simple IDs**: Use `environment__service` pattern, not deep hierarchies
 4. **Both relationship levels**: Capture logical (container-to-container) AND physical (instance-to-instance)
 5. **Platform as metadata**: "Cloudflare Edge" is a property/tag, not part of ID hierarchy
 
@@ -66,7 +66,7 @@ For each environment, create instances:
 
 ```typescript
 {
-  id: "production::gateway",          // Simple: {environment}::{service}
+  id: "production__gateway",          // Simple: {environment}__{service}
   containerRef: "bond-math-gateway",  // References logical container
   name: "bond-math-gateway",          // from wrangler.name (or env override)
   type: "worker",
@@ -122,8 +122,8 @@ From service bindings in each environment, create instance-to-instance relations
 
 ```typescript
 {
-  source: "production::gateway",
-  destination: "production::daycount",
+  source: "production__gateway",
+  destination: "production__daycount",
   binding: "SVC_DAYCOUNT",
   technology: "HTTP",
   tags: ["service-binding", "production"]
@@ -141,7 +141,7 @@ From service bindings in each environment, create instance-to-instance relations
 ```typescript
 // New: Container Instance type
 export const zContainerInstance = zWithMeta.extend({
-  id: z.string(), // e.g., "production::gateway"
+  id: z.string(), // e.g., "production__gateway"
   containerRef: z.string(), // References Container.id
   name: z.string().optional(), // Instance-specific name override
   type: z.string().optional(), // e.g., "worker"
@@ -226,7 +226,7 @@ export const zArchletteIR = z.object({
       platform: "Cloudflare Edge",
       instances: [
         {
-          id: "production::gateway",
+          id: "production__gateway",
           containerRef: "bond-math-gateway",
           name: "bond-math-gateway",
           bindings: [
@@ -234,7 +234,7 @@ export const zArchletteIR = z.object({
           ]
         },
         {
-          id: "production::daycount",
+          id: "production__daycount",
           containerRef: "bond-math-daycount",
           name: "bond-math-daycount",
           bindings: []
@@ -247,7 +247,7 @@ export const zArchletteIR = z.object({
       platform: "Cloudflare Edge",
       instances: [
         {
-          id: "development::gateway",
+          id: "development__gateway",
           containerRef: "bond-math-gateway",
           name: "bond-math-gateway-dev",
           bindings: [
@@ -255,7 +255,7 @@ export const zArchletteIR = z.object({
           ]
         },
         {
-          id: "development::daycount",
+          id: "development__daycount",
           containerRef: "bond-math-daycount",
           name: "bond-math-daycount-dev",
           bindings: []
@@ -267,14 +267,14 @@ export const zArchletteIR = z.object({
 
   deploymentRelationships: [
     {
-      source: "production::gateway",
-      destination: "production::daycount",
+      source: "production__gateway",
+      destination: "production__daycount",
       binding: "SVC_DAYCOUNT",
       tags: ["service-binding", "production"]
     },
     {
-      source: "development::gateway",
-      destination: "development::daycount",
+      source: "development__gateway",
+      destination: "development__daycount",
       binding: "SVC_DAYCOUNT",
       tags: ["service-binding", "development"]
     }
