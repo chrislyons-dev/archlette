@@ -16,6 +16,12 @@ paths:
   docs_out: ./output/docs
 
 extractors:
+  # Wrangler deployment extractor for Cloudflare Workers
+  - use: extractors/builtin/basic-wrangler
+    inputs:
+      include:
+        - 'C:/Users/chris/git/bond-math/iac/workers/*.toml'
+
   - use: extractors/builtin/basic-node
     inputs:
       include:

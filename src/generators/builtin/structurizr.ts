@@ -206,7 +206,9 @@ function generateModel(ir: ArchletteIR, indent: string): string[] {
   if (ir.deployments.length > 0) {
     lines.push(`${indent}${indent}# Deployment environments`);
     for (const deployment of ir.deployments) {
-      lines.push(generateDeployment(deployment, indent + indent));
+      lines.push(
+        generateDeployment(deployment, ir.deploymentRelationships, indent + indent),
+      );
       lines.push('');
     }
   }
@@ -661,13 +663,68 @@ function buildTechnologyString(rel: Relationship): string {
 
 /**
  * Generate DSL for a deployment environment
+ *
+ * Supports both legacy `nodes` format and new `instances` format.
+ * Generates deployment relationships between container instances.
  */
-function generateDeployment(deployment: Deployment, indent: string): string {
+function generateDeployment(
+  deployment: Deployment,
+  allDeploymentRelationships: Relationship[],
+  indent: string,
+): string {
   const lines: string[] = [];
 
   lines.push(`${indent}deploymentEnvironment "${deployment.name}" {`);
 
-  if (deployment.nodes) {
+  // Handle new `instances` format (for Cloudflare Workers, etc.)
+  if (deployment.instances && deployment.instances.length > 0) {
+    // Group instances by platform for better organization
+    const platform = deployment.platform || 'Infrastructure';
+
+    lines.push(`${indent}    deploymentNode "${platform}" {`);
+
+    // Create container instances
+    for (const instance of deployment.instances) {
+      lines.push(
+        `${indent}        containerInstance ${sanitizeId(instance.containerRef)} {`,
+      );
+
+      // Add instance-specific metadata as tags/properties
+      if (instance.routes && instance.routes.length > 0) {
+        lines.push(`${indent}            tags "routes:${instance.routes.join(',')}"`);
+      }
+
+      lines.push(`${indent}        }`);
+    }
+
+    lines.push(`${indent}    }`);
+
+    // Add deployment relationships for this environment
+    const envRelationships = allDeploymentRelationships.filter((rel) =>
+      rel.source.startsWith(`${deployment.environment}::`),
+    );
+
+    if (envRelationships.length > 0) {
+      lines.push('');
+      lines.push(`${indent}    # Deployment relationships`);
+      for (const rel of envRelationships) {
+        // Convert instance IDs to container references for Structurizr
+        // Format: environment::container -> just use container part
+        const sourceContainer = rel.source.split('::').slice(1).join('::');
+        const destContainer = rel.destination.split('::').slice(1).join('::');
+
+        const sourceId = sanitizeId(sourceContainer);
+        const destId = sanitizeId(destContainer);
+        const description = rel.description || 'Uses';
+
+        lines.push(
+          `${indent}    ${sourceId} -> ${destId} "${escapeString(description)}"`,
+        );
+      }
+    }
+  }
+  // Fallback to legacy `nodes` format
+  else if (deployment.nodes) {
     for (const node of deployment.nodes) {
       lines.push(`${indent}    deploymentNode "${node.name}" {`);
       if (node.technology) {

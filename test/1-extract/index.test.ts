@@ -75,6 +75,7 @@ describe('extract stage', () => {
       containerRelationships: [],
       componentRelationships: [],
       codeRelationships: [],
+      deploymentRelationships: [],
     });
 
     await run(mockContext);
@@ -103,6 +104,7 @@ describe('extract stage', () => {
       containerRelationships: [],
       componentRelationships: [],
       codeRelationships: [],
+      deploymentRelationships: [],
     };
 
     const mockExtractor = vi.fn().mockResolvedValue(mockIR);
@@ -168,6 +170,7 @@ describe('extract stage', () => {
       containerRelationships: [],
       componentRelationships: [],
       codeRelationships: [],
+      deploymentRelationships: [],
     });
 
     mockContext.config.extractors = [
@@ -204,6 +207,7 @@ describe('extract stage', () => {
       containerRelationships: [],
       componentRelationships: [],
       codeRelationships: [],
+      deploymentRelationships: [],
     };
 
     const failingExtractor = vi.fn().mockRejectedValue(new Error('Extractor failed'));
@@ -268,6 +272,7 @@ describe('extract stage', () => {
       containerRelationships: [],
       componentRelationships: [],
       codeRelationships: [],
+      deploymentRelationships: [],
     };
 
     vi.mocked(aggregator.aggregateIRs).mockReturnValue(mockIR);
@@ -297,6 +302,7 @@ describe('extract stage', () => {
       containerRelationships: [],
       componentRelationships: [],
       codeRelationships: [],
+      deploymentRelationships: [],
     };
 
     const ir2: ArchletteIR = {
@@ -312,6 +318,7 @@ describe('extract stage', () => {
       containerRelationships: [],
       componentRelationships: [],
       codeRelationships: [],
+      deploymentRelationships: [],
     };
 
     const aggregatedIR: ArchletteIR = {
@@ -328,6 +335,7 @@ describe('extract stage', () => {
       containerRelationships: [],
       componentRelationships: [],
       codeRelationships: [],
+      deploymentRelationships: [],
     };
 
     vi.mocked(stageModuleLoader.loadExtractorModule)

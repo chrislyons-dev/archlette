@@ -84,6 +84,7 @@ function minimalIR(): ArchletteIR {
     ],
     componentRelationships: [],
     codeRelationships: [],
+    deploymentRelationships: [],
   };
 }
 
@@ -91,6 +92,9 @@ describe('types-ir.ts / zod schema', () => {
   it('validates a correct minimal IR', () => {
     const ir = minimalIR();
     const result = zArchletteIR.safeParse(ir);
+    if (!result.success) {
+      console.error('Validation errors:', JSON.stringify(result.error.issues, null, 2));
+    }
     expect(result.success).toBe(true);
     if (result.success) {
       // spot-check a few fields survived as-is
@@ -130,6 +134,7 @@ describe('types-ir.ts / zod schema', () => {
     ir.containerRelationships = [];
     ir.componentRelationships = [];
     ir.codeRelationships = [];
+    ir.deploymentRelationships = [];
 
     const res = zArchletteIR.safeParse(ir);
     expect(res.success).toBe(true);

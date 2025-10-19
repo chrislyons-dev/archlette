@@ -71,6 +71,9 @@ export function aggregateIRs(irs: ArchletteIR[]): ArchletteIR {
   const codeRelationships = deduplicateRelationships(
     irs.flatMap((ir) => ir.codeRelationships),
   );
+  const deploymentRelationships = deduplicateRelationships(
+    irs.flatMap((ir) => ir.deploymentRelationships),
+  );
 
   return {
     version: base.version,
@@ -83,6 +86,7 @@ export function aggregateIRs(irs: ArchletteIR[]): ArchletteIR {
     containerRelationships,
     componentRelationships,
     codeRelationships,
+    deploymentRelationships,
   };
 }
 
@@ -178,7 +182,8 @@ function deduplicateByName<T extends { name: string; description?: string }>(
  */
 function deduplicateRelationships(relationships: Relationship[]): Relationship[] {
   const seen = new Map<string, Relationship>();
-  for (const rel of relationships) {
+  // Filter out undefined/null values before processing
+  for (const rel of relationships.filter((r) => r && r.source && r.destination)) {
     const key = `${rel.source}:${rel.destination}:${rel.stereotype ?? ''}`;
     if (!seen.has(key)) {
       seen.set(key, rel);
@@ -207,5 +212,6 @@ function createEmptyIR(): ArchletteIR {
     containerRelationships: [],
     componentRelationships: [],
     codeRelationships: [],
+    deploymentRelationships: [],
   };
 }

@@ -320,6 +320,7 @@ export function mapToIR(
     containerRelationships: [],
     componentRelationships: uniqueComponentRelationships,
     codeRelationships: relationships,
+    deploymentRelationships: [],
   };
 }
 

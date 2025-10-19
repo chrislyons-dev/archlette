@@ -158,9 +158,44 @@ export const zDeploymentNode = zWithMeta.extend({
 });
 export type DeploymentNode = z.infer<typeof zDeploymentNode>;
 
+// Binding schema for service bindings, KV, R2, D1, Durable Objects, etc.
+export const zBinding = z.object({
+  type: z.string(), // "service", "kv", "r2", "d1", "durable_object", "queue", etc.
+  binding: z.string(), // Variable name used in code (e.g., "SVC_DAYCOUNT")
+  service: z.string().optional(), // Service name for service bindings
+  environment: z.string().optional(), // Target environment for service bindings
+  namespace: z.string().optional(), // KV namespace
+  bucket: z.string().optional(), // R2 bucket
+  database: z.string().optional(), // D1 database
+  className: z.string().optional(), // Durable Object class name
+  scriptName: z.string().optional(), // Durable Object script name
+  queueName: z.string().optional(), // Queue name
+  metadata: z.record(z.string(), z.unknown()).optional(), // Additional binding-specific data
+});
+export type Binding = z.infer<typeof zBinding>;
+
+// Container Instance - represents a deployed instance in a specific environment
+export const zContainerInstance = zWithMeta.extend({
+  id: z.string(), // e.g., "production::gateway"
+  containerRef: z.string(), // References Container.id
+  name: z.string().optional(), // Instance-specific name override
+  type: z.string().optional(), // e.g., "worker", "service"
+  technology: z.string().optional(), // e.g., "TypeScript", "Rust"
+  bindings: z.array(zBinding).optional(), // All bindings for this instance
+  vars: z.record(z.string(), z.string()).optional(), // Environment variables (non-sensitive)
+  routes: z.array(z.string()).optional(), // HTTP routes
+  triggers: z.array(z.unknown()).optional(), // Cron schedules, etc.
+  observability: z.unknown().optional(), // Observability configuration
+});
+export type ContainerInstance = z.infer<typeof zContainerInstance>;
+
+// Enhanced Deployment with environment and instances
 export const zDeployment = zWithMeta.extend({
-  name: z.string(),
-  nodes: z.array(zDeploymentNode).optional(),
+  name: z.string(), // e.g., "production", "development"
+  environment: z.string().optional(), // Environment name (defaults to name if not specified)
+  platform: z.string().optional(), // e.g., "Cloudflare Edge", "AWS", "Azure"
+  nodes: z.array(zDeploymentNode).optional(), // Legacy deployment nodes
+  instances: z.array(zContainerInstance).optional(), // Container instances in this environment
 });
 export type Deployment = z.infer<typeof zDeployment>;
 
@@ -192,6 +227,7 @@ export const zArchletteIR = z.object({
   containerRelationships: z.array(zRelationship),
   componentRelationships: z.array(zRelationship),
   codeRelationships: z.array(zRelationship),
+  deploymentRelationships: z.array(zRelationship), // Instance-to-instance relationships
 });
 
 export type ArchletteIR = z.infer<typeof zArchletteIR>;

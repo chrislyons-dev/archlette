@@ -19,6 +19,7 @@ describe('baseValidator', () => {
       containerRelationships: [],
       componentRelationships: [],
       codeRelationships: [],
+      deploymentRelationships: [],
     };
     expect(() => baseValidator(validIR)).not.toThrow();
     expect(baseValidator(validIR)).toBe(validIR);
@@ -43,6 +44,7 @@ describe('baseValidator', () => {
       containerRelationships: [],
       componentRelationships: [],
       codeRelationships: [],
+      deploymentRelationships: [],
     } as unknown as ArchletteIR;
     expect(() => baseValidator(invalidIR)).toThrow(/ArchletteIR validation failed/);
   });
