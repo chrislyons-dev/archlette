@@ -166,7 +166,7 @@ export default async function markdownDocs(ctx: PipelineContext): Promise<void> 
       ),
     });
 
-    const filename = `${component.id}.md`;
+    const filename = `${sanitizeFileName(component.id)}.md`;
     const componentPagePath = path.join(docsDir, filename);
     fs.writeFileSync(componentPagePath, componentPageContent, 'utf8');
     ctx.log.debug(`  • ${filename}`);
@@ -283,4 +283,16 @@ function findClassDiagramsForComponent(
   }
 
   return diagrams;
+}
+
+function sanitizeFileName(name: string): string {
+  // Remove or replace characters not allowed in Windows or Linux filenames
+  // Windows: \ / : * ? " < > |
+  // Linux: /
+  return name
+    .replace(/[\\/:*?"<>|]/g, '-') // Replace invalid characters with hyphen
+    .replace(/^\.+/, '') // Remove leading dots
+    .replace(/\s+/g, '-') // Replace spaces with hyphen
+    .replace(/-+/g, '-') // Collapse multiple hyphens
+    .replace(/^-+|-+$/g, ''); // Trim leading/trailing hyphens
 }

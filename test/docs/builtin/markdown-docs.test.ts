@@ -112,6 +112,7 @@ describe('markdown-docs generator', () => {
         },
       ],
       deployments: [],
+      deploymentRelationships: [],
       containerRelationships: [],
       componentRelationships: [],
       codeRelationships: [],
@@ -191,7 +192,7 @@ describe('markdown-docs generator', () => {
 
       // Verify component pages were written
       expect(mockFs.writeFileSync).toHaveBeenCalledWith(
-        expect.stringContaining('comp-auth.md'),
+        expect.stringContaining(`${sanitizeFileName('comp-auth.md')}`),
         expect.stringContaining('Generated component.md.njk content'),
         'utf8',
       );
@@ -622,7 +623,7 @@ describe('markdown-docs generator', () => {
 
       // Should still generate component page
       expect(mockFs.writeFileSync).toHaveBeenCalledWith(
-        expect.stringContaining('comp-auth.md'),
+        expect.stringContaining(`${sanitizeFileName('comp-auth.md')}`),
         expect.any(String),
         'utf8',
       );
@@ -667,12 +668,24 @@ describe('markdown-docs generator', () => {
       ];
 
       await markdownDocs(mockContext);
-
+      const name = sanitizeFileName(mockContext.state.aggregatedIR!.components[0].id);
       expect(mockFs.writeFileSync).toHaveBeenCalledWith(
-        expect.stringContaining('comp-auth-v2.md'),
+        expect.stringContaining(name),
         expect.any(String),
         'utf8',
       );
     });
   });
 });
+
+function sanitizeFileName(name: string): string {
+  // Remove or replace characters not allowed in Windows or Linux filenames
+  // Windows: \ / : * ? " < > |
+  // Linux: /
+  return name
+    .replace(/[\\/:*?"<>|]/g, '-') // Replace invalid characters with hyphen
+    .replace(/^\.+/, '') // Remove leading dots
+    .replace(/\s+/g, '-') // Replace spaces with hyphen
+    .replace(/-+/g, '-') // Collapse multiple hyphens
+    .replace(/^-+|-+$/g, ''); // Trim leading/trailing hyphens
+}

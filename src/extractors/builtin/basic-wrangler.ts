@@ -38,6 +38,7 @@
 
 import type { ResolvedStageNode } from '../../core/types-aac.js';
 import type { ArchletteIR } from '../../core/types-ir.js';
+import { emptyIR } from '../../core/types-ir.js';
 import type { ExtractorInputs } from './basic-wrangler/types.js';
 import { findWranglerFiles } from './basic-wrangler/file-finder.js';
 import { parseWranglerFile } from './basic-wrangler/wrangler-parser.js';
@@ -73,7 +74,7 @@ export default async function basicWranglerExtractor(
 
   if (files.length === 0) {
     console.warn('No wrangler.toml files found');
-    return createEmptyIR();
+    return emptyIR;
   }
 
   // 2. Parse wrangler.toml files
@@ -87,26 +88,4 @@ export default async function basicWranglerExtractor(
   );
 
   return ir;
-}
-
-/**
- * Create empty IR with required structure
- */
-function createEmptyIR(): ArchletteIR {
-  return {
-    version: '1.0',
-    system: {
-      name: 'Unknown System',
-      description: 'No wrangler.toml files found or parsed',
-    },
-    actors: [],
-    containers: [],
-    components: [],
-    code: [],
-    deployments: [],
-    containerRelationships: [],
-    componentRelationships: [],
-    codeRelationships: [],
-    deploymentRelationships: [],
-  };
 }

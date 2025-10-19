@@ -1,9 +1,8 @@
 {
   "version": "1.0",
   "system": {
-    "description": "Architecture-as-Code toolkit for automated diagrams, docs, and releases.",
-    "name": "@chrislyons-dev/archlette",
-    "repository": "https://github.com/chrislyons-dev/archlette.git"
+    "description": "Main application container",
+    "name": "Application"
   },
   "actors": [
     {
@@ -13,7 +12,7 @@
       "name": "User",
       "type": "Person",
       "targets": [
-        "cli"
+        "default-container::cli"
       ]
     },
     {
@@ -59,12 +58,12 @@
   ],
   "containers": [
     {
-      "description": "Architecture-as-Code toolkit for automated diagrams, docs, and releases.",
+      "description": "Main application container",
       "tags": [
         "Auto-generated"
       ],
       "id": "default-container",
-      "name": "@chrislyons-dev/archlette",
+      "name": "Application",
       "type": "Application",
       "layer": "Application"
     }
@@ -72,49 +71,49 @@
   "components": [
     {
       "description": "Archlette CLI - Architecture-as-Code toolkit",
-      "id": "cli",
+      "id": "default-container::cli",
       "containerId": "default-container",
       "name": "CLI",
       "type": "module"
     },
     {
-      "description": "ArchletteIR aggregation utilities | Extraction stage of the AAC pipeline | TypeScript/JavaScript code extractor",
-      "id": "extractors",
+      "description": "ArchletteIR aggregation utilities | Extraction stage of the AAC pipeline | TypeScript/JavaScript code extractor | Cloudflare Wrangler deployment extractor",
+      "id": "default-container::extractors",
       "containerId": "default-container",
       "name": "extractors",
       "type": "module"
     },
     {
       "description": "Validation stage of the AAC pipeline | Base IR validator for Archlette pipeline",
-      "id": "validators",
+      "id": "default-container::validators",
       "containerId": "default-container",
       "name": "validators",
       "type": "module"
     },
     {
       "description": "Generation stage of the AAC pipeline | Structurizr DSL Generator",
-      "id": "generators",
+      "id": "default-container::generators",
       "containerId": "default-container",
       "name": "generators",
       "type": "module"
     },
     {
       "description": "Render stage of the AAC pipeline | PlantUML image renderer | Structurizr DSL export renderer",
-      "id": "renderers",
+      "id": "default-container::renderers",
       "containerId": "default-container",
       "name": "renderers",
       "type": "module"
     },
     {
       "description": "Documentation stage of the AAC pipeline | Markdown documentation generator",
-      "id": "docs",
+      "id": "default-container::docs",
       "containerId": "default-container",
       "name": "docs",
       "type": "module"
     },
     {
       "description": "Dynamic ESM module loader | Stage module interfaces for the AAC pipeline | Stage module loaders | Tool management for external rendering tools | Architecture-as-Code (AAC) configuration types and schemas | Archlette Intermediate Representation (IR) types and schemas | Core pipeline types",
-      "id": "core",
+      "id": "default-container::core",
       "containerId": "default-container",
       "name": "core",
       "type": "module"
@@ -122,9 +121,9 @@
   ],
   "code": [
     {
-      "id": "C:/Users/chris/git/archlette/src/cli.ts:usageAndExit",
-      "componentId": "cli",
-      "name": "usageAndExit",
+      "id": "default-container::cli::usageAndExit",
+      "componentId": "default-container::cli",
+      "name": "CLI::usageAndExit",
       "type": "function",
       "returnType": "void",
       "parameters": [
@@ -140,9 +139,9 @@
       "lineNumber": 68
     },
     {
-      "id": "C:/Users/chris/git/archlette/src/cli.ts:parseArgs",
-      "componentId": "cli",
-      "name": "parseArgs",
+      "id": "default-container::cli::parseArgs",
+      "componentId": "default-container::cli",
+      "name": "CLI::parseArgs",
       "type": "function",
       "returnType": "{ stageArg: string; yamlPathArg: any; }",
       "parameters": [
@@ -158,9 +157,9 @@
       "lineNumber": 90
     },
     {
-      "id": "C:/Users/chris/git/archlette/src/cli.ts:stageListFromArg",
-      "componentId": "cli",
-      "name": "stageListFromArg",
+      "id": "default-container::cli::stageListFromArg",
+      "componentId": "default-container::cli",
+      "name": "CLI::stageListFromArg",
       "type": "function",
       "returnType": "string[]",
       "parameters": [
@@ -176,9 +175,9 @@
       "lineNumber": 123
     },
     {
-      "id": "C:/Users/chris/git/archlette/src/cli.ts:loadYamlIfExists",
-      "componentId": "cli",
-      "name": "loadYamlIfExists",
+      "id": "default-container::cli::loadYamlIfExists",
+      "componentId": "default-container::cli",
+      "name": "CLI::loadYamlIfExists",
       "type": "function",
       "returnType": "Promise<{ config: any; path: string; }>",
       "parameters": [
@@ -194,9 +193,9 @@
       "lineNumber": 129
     },
     {
-      "id": "C:/Users/chris/git/archlette/src/cli.ts:run",
-      "componentId": "cli",
-      "name": "run",
+      "id": "default-container::cli::run",
+      "componentId": "default-container::cli",
+      "name": "CLI::run",
       "type": "function",
       "returnType": "Promise<void>",
       "parameters": [
@@ -214,9 +213,9 @@
     },
     {
       "description": "Aggregate multiple ArchletteIR objects into a single unified IR",
-      "id": "C:/Users/chris/git/archlette/src/1-extract/aggregator.ts:aggregateIRs",
-      "componentId": "extractors",
-      "name": "aggregateIRs",
+      "id": "default-container::extractors::aggregateIRs",
+      "componentId": "default-container::extractors",
+      "name": "extractors::aggregateIRs",
       "type": "function",
       "documentation": {
         "summary": "Aggregate multiple ArchletteIR objects into a single unified IR",
@@ -240,13 +239,13 @@
       "visibility": "public",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/1-extract/aggregator.ts",
-      "lineNumber": 46
+      "lineNumber": 47
     },
     {
       "description": "Deduplicate array of entities by their ID field",
-      "id": "C:/Users/chris/git/archlette/src/1-extract/aggregator.ts:deduplicateById",
-      "componentId": "extractors",
-      "name": "deduplicateById",
+      "id": "default-container::extractors::deduplicateById",
+      "componentId": "default-container::extractors",
+      "name": "extractors::deduplicateById",
       "type": "function",
       "documentation": {
         "summary": "Deduplicate array of entities by their ID field",
@@ -267,13 +266,13 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/1-extract/aggregator.ts",
-      "lineNumber": 99
+      "lineNumber": 104
     },
     {
       "description": "Deduplicate array of entities by their name field",
-      "id": "C:/Users/chris/git/archlette/src/1-extract/aggregator.ts:deduplicateByName",
-      "componentId": "extractors",
-      "name": "deduplicateByName",
+      "id": "default-container::extractors::deduplicateByName",
+      "componentId": "default-container::extractors",
+      "name": "extractors::deduplicateByName",
       "type": "function",
       "documentation": {
         "summary": "Deduplicate array of entities by their name field",
@@ -294,13 +293,13 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/1-extract/aggregator.ts",
-      "lineNumber": 137
+      "lineNumber": 142
     },
     {
       "description": "Deduplicate relationships by source+destination+stereotype combination",
-      "id": "C:/Users/chris/git/archlette/src/1-extract/aggregator.ts:deduplicateRelationships",
-      "componentId": "extractors",
-      "name": "deduplicateRelationships",
+      "id": "default-container::extractors::deduplicateRelationships",
+      "componentId": "default-container::extractors",
+      "name": "extractors::deduplicateRelationships",
       "type": "function",
       "documentation": {
         "summary": "Deduplicate relationships by source+destination+stereotype combination",
@@ -321,30 +320,13 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/1-extract/aggregator.ts",
-      "lineNumber": 179
-    },
-    {
-      "description": "Create an empty but valid ArchletteIR structure",
-      "id": "C:/Users/chris/git/archlette/src/1-extract/aggregator.ts:createEmptyIR",
-      "componentId": "extractors",
-      "name": "createEmptyIR",
-      "type": "function",
-      "documentation": {
-        "summary": "Create an empty but valid ArchletteIR structure"
-      },
-      "returnType": "z.infer<any>",
-      "returnDescription": "A minimal valid ArchletteIR with no elements",
-      "parameters": [],
-      "visibility": "private",
-      "isAsync": false,
-      "filePath": "C:/Users/chris/git/archlette/src/1-extract/aggregator.ts",
-      "lineNumber": 195
+      "lineNumber": 184
     },
     {
       "description": "Execute the extraction stage",
-      "id": "C:/Users/chris/git/archlette/src/1-extract/index.ts:run",
-      "componentId": "extractors",
-      "name": "run",
+      "id": "default-container::extractors::run",
+      "componentId": "default-container::extractors",
+      "name": "extractors::run",
       "type": "function",
       "documentation": {
         "summary": "Execute the extraction stage"
@@ -365,9 +347,9 @@
     },
     {
       "description": "Execute the validation stage",
-      "id": "C:/Users/chris/git/archlette/src/2-validate/index.ts:run",
-      "componentId": "validators",
-      "name": "run",
+      "id": "default-container::validators::run",
+      "componentId": "default-container::validators",
+      "name": "validators::run",
       "type": "function",
       "documentation": {
         "summary": "Execute the validation stage"
@@ -388,9 +370,9 @@
     },
     {
       "description": "Execute the generation stage",
-      "id": "C:/Users/chris/git/archlette/src/3-generate/index.ts:run",
-      "componentId": "generators",
-      "name": "run",
+      "id": "default-container::generators::run",
+      "componentId": "default-container::generators",
+      "name": "generators::run",
       "type": "function",
       "documentation": {
         "summary": "Execute the generation stage"
@@ -411,9 +393,9 @@
     },
     {
       "description": "Execute the rendering stage",
-      "id": "C:/Users/chris/git/archlette/src/4-render/index.ts:run",
-      "componentId": "renderers",
-      "name": "run",
+      "id": "default-container::renderers::run",
+      "componentId": "default-container::renderers",
+      "name": "renderers::run",
       "type": "function",
       "documentation": {
         "summary": "Execute the rendering stage"
@@ -434,9 +416,9 @@
     },
     {
       "description": "Execute the documentation stage",
-      "id": "C:/Users/chris/git/archlette/src/5-docs/index.ts:run",
-      "componentId": "docs",
-      "name": "run",
+      "id": "default-container::docs::run",
+      "componentId": "default-container::docs",
+      "name": "docs::run",
       "type": "function",
       "documentation": {
         "summary": "Execute the documentation stage"
@@ -457,9 +439,9 @@
     },
     {
       "description": "Convert a name to a normalized ID\nUsed for consistent ID generation across extractors and mappers",
-      "id": "C:/Users/chris/git/archlette/src/core/constants.ts:nameToId",
-      "componentId": "core",
-      "name": "nameToId",
+      "id": "default-container::core::nameToId",
+      "componentId": "default-container::core",
+      "name": "core::nameToId",
       "type": "function",
       "documentation": {
         "summary": "Convert a name to a normalized ID\nUsed for consistent ID generation across extractors and mappers",
@@ -484,9 +466,9 @@
     },
     {
       "description": "Format timestamp as ISO 8601 (local time)",
-      "id": "C:/Users/chris/git/archlette/src/core/logger.ts:formatTimestamp",
-      "componentId": "core",
-      "name": "formatTimestamp",
+      "id": "default-container::core::formatTimestamp",
+      "componentId": "default-container::core",
+      "name": "core::formatTimestamp",
       "type": "function",
       "documentation": {
         "summary": "Format timestamp as ISO 8601 (local time)"
@@ -500,9 +482,9 @@
     },
     {
       "description": "Format log message with timestamp, level, and context",
-      "id": "C:/Users/chris/git/archlette/src/core/logger.ts:formatLogMessage",
-      "componentId": "core",
-      "name": "formatLogMessage",
+      "id": "default-container::core::formatLogMessage",
+      "componentId": "default-container::core",
+      "name": "core::formatLogMessage",
       "type": "function",
       "documentation": {
         "summary": "Format log message with timestamp, level, and context"
@@ -538,9 +520,9 @@
     },
     {
       "description": "Create a logger instance",
-      "id": "C:/Users/chris/git/archlette/src/core/logger.ts:createLogger",
-      "componentId": "core",
-      "name": "createLogger",
+      "id": "default-container::core::createLogger",
+      "componentId": "default-container::core",
+      "name": "core::createLogger",
       "type": "function",
       "documentation": {
         "summary": "Create a logger instance",
@@ -566,9 +548,9 @@
     },
     {
       "description": "Dynamically load an ESM module from a path or module specifier",
-      "id": "C:/Users/chris/git/archlette/src/core/module-loader.ts:loadModuleFromPath",
-      "componentId": "core",
-      "name": "loadModuleFromPath",
+      "id": "default-container::core::loadModuleFromPath",
+      "componentId": "default-container::core",
+      "name": "core::loadModuleFromPath",
       "type": "function",
       "documentation": {
         "summary": "Dynamically load an ESM module from a path or module specifier",
@@ -599,9 +581,9 @@
       "lineNumber": 62
     },
     {
-      "id": "C:/Users/chris/git/archlette/src/core/path-resolver.ts:getCliDir",
-      "componentId": "core",
-      "name": "getCliDir",
+      "id": "default-container::core::getCliDir",
+      "componentId": "default-container::core",
+      "name": "core::getCliDir",
       "type": "function",
       "returnType": "string",
       "parameters": [],
@@ -611,9 +593,9 @@
       "lineNumber": 14
     },
     {
-      "id": "C:/Users/chris/git/archlette/src/core/path-resolver.ts:expandTilde",
-      "componentId": "core",
-      "name": "expandTilde",
+      "id": "default-container::core::expandTilde",
+      "componentId": "default-container::core",
+      "name": "core::expandTilde",
       "type": "function",
       "returnType": "string",
       "parameters": [
@@ -636,9 +618,9 @@
     },
     {
       "description": "Core path resolver honoring Archlette rules (no file existence checks).\n- \"~\"  -> user home\n- \"/\"  -> absolute\n- else -> relative to CLI dir",
-      "id": "C:/Users/chris/git/archlette/src/core/path-resolver.ts:resolveArchlettePath",
-      "componentId": "core",
-      "name": "resolveArchlettePath",
+      "id": "default-container::core::resolveArchlettePath",
+      "componentId": "default-container::core",
+      "name": "core::resolveArchlettePath",
       "type": "function",
       "documentation": {
         "summary": "Core path resolver honoring Archlette rules (no file existence checks).\n- \"~\"  -> user home\n- \"/\"  -> absolute\n- else -> relative to CLI dir"
@@ -663,9 +645,9 @@
     },
     {
       "description": "Resolve a module entry by probing:\n1) Exact path\n2) With extensions: .ts then .js\n3) If directory: index.ts then index.js",
-      "id": "C:/Users/chris/git/archlette/src/core/path-resolver.ts:resolveModuleEntry",
-      "componentId": "core",
-      "name": "resolveModuleEntry",
+      "id": "default-container::core::resolveModuleEntry",
+      "componentId": "default-container::core",
+      "name": "core::resolveModuleEntry",
       "type": "function",
       "documentation": {
         "summary": "Resolve a module entry by probing:\n1) Exact path\n2) With extensions: .ts then .js\n3) If directory: index.ts then index.js"
@@ -689,9 +671,9 @@
       "lineNumber": 61
     },
     {
-      "id": "C:/Users/chris/git/archlette/src/core/path-resolver.ts:toFileUrl",
-      "componentId": "core",
-      "name": "toFileUrl",
+      "id": "default-container::core::toFileUrl",
+      "componentId": "default-container::core",
+      "name": "core::toFileUrl",
       "type": "function",
       "returnType": "string",
       "parameters": [
@@ -708,9 +690,9 @@
     },
     {
       "description": "Write content to a file, creating parent directories if needed.",
-      "id": "C:/Users/chris/git/archlette/src/core/path-resolver.ts:writeFile",
-      "componentId": "core",
-      "name": "writeFile",
+      "id": "default-container::core::writeFile",
+      "componentId": "default-container::core",
+      "name": "core::writeFile",
       "type": "function",
       "documentation": {
         "summary": "Write content to a file, creating parent directories if needed."
@@ -754,9 +736,9 @@
       "lineNumber": 12
     },
     {
-      "id": "C:/Users/chris/git/archlette/src/core/stage-module-loader.ts:loadExtractorModule",
-      "componentId": "core",
-      "name": "loadExtractorModule",
+      "id": "default-container::core::loadExtractorModule",
+      "componentId": "default-container::core",
+      "name": "core::loadExtractorModule",
       "type": "function",
       "returnType": "Promise<{ entry: any; resolved: string; }>",
       "parameters": [
@@ -772,9 +754,9 @@
       "lineNumber": 13
     },
     {
-      "id": "C:/Users/chris/git/archlette/src/core/stage-module-loader.ts:loadValidatorModule",
-      "componentId": "core",
-      "name": "loadValidatorModule",
+      "id": "default-container::core::loadValidatorModule",
+      "componentId": "default-container::core",
+      "name": "core::loadValidatorModule",
       "type": "function",
       "returnType": "Promise<{ entry: any; resolved: string; }>",
       "parameters": [
@@ -790,9 +772,9 @@
       "lineNumber": 26
     },
     {
-      "id": "C:/Users/chris/git/archlette/src/core/stage-module-loader.ts:loadGeneratorModule",
-      "componentId": "core",
-      "name": "loadGeneratorModule",
+      "id": "default-container::core::loadGeneratorModule",
+      "componentId": "default-container::core",
+      "name": "core::loadGeneratorModule",
       "type": "function",
       "returnType": "Promise<{ entry: any; resolved: string; }>",
       "parameters": [
@@ -808,9 +790,9 @@
       "lineNumber": 39
     },
     {
-      "id": "C:/Users/chris/git/archlette/src/core/stage-module-loader.ts:loadRendererModule",
-      "componentId": "core",
-      "name": "loadRendererModule",
+      "id": "default-container::core::loadRendererModule",
+      "componentId": "default-container::core",
+      "name": "core::loadRendererModule",
       "type": "function",
       "returnType": "Promise<{ entry: any; resolved: string; }>",
       "parameters": [
@@ -826,9 +808,9 @@
       "lineNumber": 52
     },
     {
-      "id": "C:/Users/chris/git/archlette/src/core/stage-module-loader.ts:loadDocModule",
-      "componentId": "core",
-      "name": "loadDocModule",
+      "id": "default-container::core::loadDocModule",
+      "componentId": "default-container::core",
+      "name": "core::loadDocModule",
       "type": "function",
       "returnType": "Promise<{ entry: any; resolved: string; }>",
       "parameters": [
@@ -845,9 +827,9 @@
     },
     {
       "description": "Get the Archlette cache directory",
-      "id": "C:/Users/chris/git/archlette/src/core/tool-manager.ts:getCacheDir",
-      "componentId": "core",
-      "name": "getCacheDir",
+      "id": "default-container::core::getCacheDir",
+      "componentId": "default-container::core",
+      "name": "core::getCacheDir",
       "type": "function",
       "documentation": {
         "summary": "Get the Archlette cache directory"
@@ -861,9 +843,9 @@
     },
     {
       "description": "Ensure cache directory exists",
-      "id": "C:/Users/chris/git/archlette/src/core/tool-manager.ts:ensureCacheDir",
-      "componentId": "core",
-      "name": "ensureCacheDir",
+      "id": "default-container::core::ensureCacheDir",
+      "componentId": "default-container::core",
+      "name": "core::ensureCacheDir",
       "type": "function",
       "documentation": {
         "summary": "Ensure cache directory exists"
@@ -877,9 +859,9 @@
     },
     {
       "description": "Check if a command exists in PATH",
-      "id": "C:/Users/chris/git/archlette/src/core/tool-manager.ts:commandExistsInPath",
-      "componentId": "core",
-      "name": "commandExistsInPath",
+      "id": "default-container::core::commandExistsInPath",
+      "componentId": "default-container::core",
+      "name": "core::commandExistsInPath",
       "type": "function",
       "documentation": {
         "summary": "Check if a command exists in PATH"
@@ -899,9 +881,9 @@
     },
     {
       "description": "Download a file from URL to destination",
-      "id": "C:/Users/chris/git/archlette/src/core/tool-manager.ts:downloadFile",
-      "componentId": "core",
-      "name": "downloadFile",
+      "id": "default-container::core::downloadFile",
+      "componentId": "default-container::core",
+      "name": "core::downloadFile",
       "type": "function",
       "documentation": {
         "summary": "Download a file from URL to destination"
@@ -931,9 +913,9 @@
     },
     {
       "description": "Extract a ZIP file (simple extraction for Structurizr CLI)",
-      "id": "C:/Users/chris/git/archlette/src/core/tool-manager.ts:extractZip",
-      "componentId": "core",
-      "name": "extractZip",
+      "id": "default-container::core::extractZip",
+      "componentId": "default-container::core",
+      "name": "core::extractZip",
       "type": "function",
       "documentation": {
         "summary": "Extract a ZIP file (simple extraction for Structurizr CLI)"
@@ -963,9 +945,9 @@
     },
     {
       "description": "Make file executable (Unix only)",
-      "id": "C:/Users/chris/git/archlette/src/core/tool-manager.ts:makeExecutable",
-      "componentId": "core",
-      "name": "makeExecutable",
+      "id": "default-container::core::makeExecutable",
+      "componentId": "default-container::core",
+      "name": "core::makeExecutable",
       "type": "function",
       "documentation": {
         "summary": "Make file executable (Unix only)"
@@ -985,9 +967,9 @@
     },
     {
       "description": "Download and install Structurizr CLI to cache",
-      "id": "C:/Users/chris/git/archlette/src/core/tool-manager.ts:downloadStructurizr",
-      "componentId": "core",
-      "name": "downloadStructurizr",
+      "id": "default-container::core::downloadStructurizr",
+      "componentId": "default-container::core",
+      "name": "core::downloadStructurizr",
       "type": "function",
       "documentation": {
         "summary": "Download and install Structurizr CLI to cache"
@@ -1012,9 +994,9 @@
     },
     {
       "description": "Download and install PlantUML to cache",
-      "id": "C:/Users/chris/git/archlette/src/core/tool-manager.ts:downloadPlantUML",
-      "componentId": "core",
-      "name": "downloadPlantUML",
+      "id": "default-container::core::downloadPlantUML",
+      "componentId": "default-container::core",
+      "name": "core::downloadPlantUML",
       "type": "function",
       "documentation": {
         "summary": "Download and install PlantUML to cache"
@@ -1039,9 +1021,9 @@
     },
     {
       "description": "Find or download Structurizr CLI",
-      "id": "C:/Users/chris/git/archlette/src/core/tool-manager.ts:findStructurizrCLI",
-      "componentId": "core",
-      "name": "findStructurizrCLI",
+      "id": "default-container::core::findStructurizrCLI",
+      "componentId": "default-container::core",
+      "name": "core::findStructurizrCLI",
       "type": "function",
       "documentation": {
         "summary": "Find or download Structurizr CLI"
@@ -1063,9 +1045,9 @@
     },
     {
       "description": "Find or download PlantUML JAR",
-      "id": "C:/Users/chris/git/archlette/src/core/tool-manager.ts:findPlantUML",
-      "componentId": "core",
-      "name": "findPlantUML",
+      "id": "default-container::core::findPlantUML",
+      "componentId": "default-container::core",
+      "name": "core::findPlantUML",
       "type": "function",
       "documentation": {
         "summary": "Find or download PlantUML JAR"
@@ -1087,9 +1069,9 @@
     },
     {
       "description": "Verify Java is available",
-      "id": "C:/Users/chris/git/archlette/src/core/tool-manager.ts:checkJava",
-      "componentId": "core",
-      "name": "checkJava",
+      "id": "default-container::core::checkJava",
+      "componentId": "default-container::core",
+      "name": "core::checkJava",
       "type": "function",
       "documentation": {
         "summary": "Verify Java is available"
@@ -1104,9 +1086,9 @@
     },
     {
       "description": "Validate Java is installed (throw if not)",
-      "id": "C:/Users/chris/git/archlette/src/core/tool-manager.ts:requireJava",
-      "componentId": "core",
-      "name": "requireJava",
+      "id": "default-container::core::requireJava",
+      "componentId": "default-container::core",
+      "name": "core::requireJava",
       "type": "function",
       "documentation": {
         "summary": "Validate Java is installed (throw if not)"
@@ -1120,9 +1102,9 @@
     },
     {
       "description": "For each stage, resolve includes/excludes for each node:\n  - If node omits includes/excludes, inherit from defaults.",
-      "id": "C:/Users/chris/git/archlette/src/core/types-aac.ts:resolveConfig",
-      "componentId": "core",
-      "name": "resolveConfig",
+      "id": "default-container::core::resolveConfig",
+      "componentId": "default-container::core",
+      "name": "core::resolveConfig",
       "type": "function",
       "documentation": {
         "summary": "For each stage, resolve includes/excludes for each node:\n  - If node omits includes/excludes, inherit from defaults."
@@ -1138,13 +1120,13 @@
       "visibility": "public",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/core/types-aac.ts",
-      "lineNumber": 122
+      "lineNumber": 139
     },
     {
       "description": "Generate markdown documentation",
-      "id": "C:/Users/chris/git/archlette/src/docs/builtin/markdown-docs.ts:markdownDocs",
-      "componentId": "docs",
-      "name": "markdownDocs",
+      "id": "default-container::docs::markdownDocs",
+      "componentId": "default-container::docs",
+      "name": "docs::markdownDocs",
       "type": "function",
       "documentation": {
         "summary": "Generate markdown documentation"
@@ -1164,9 +1146,9 @@
     },
     {
       "description": "Find diagram files for a specific view type",
-      "id": "C:/Users/chris/git/archlette/src/docs/builtin/markdown-docs.ts:findDiagramsForView",
-      "componentId": "docs",
-      "name": "findDiagramsForView",
+      "id": "default-container::docs::findDiagramsForView",
+      "componentId": "default-container::docs",
+      "name": "docs::findDiagramsForView",
       "type": "function",
       "documentation": {
         "summary": "Find diagram files for a specific view type"
@@ -1201,9 +1183,9 @@
     },
     {
       "description": "Find component diagrams for a specific component",
-      "id": "C:/Users/chris/git/archlette/src/docs/builtin/markdown-docs.ts:findDiagramsForComponent",
-      "componentId": "docs",
-      "name": "findDiagramsForComponent",
+      "id": "default-container::docs::findDiagramsForComponent",
+      "componentId": "default-container::docs",
+      "name": "docs::findDiagramsForComponent",
       "type": "function",
       "documentation": {
         "summary": "Find component diagrams for a specific component"
@@ -1238,9 +1220,9 @@
     },
     {
       "description": "Find class diagrams for a specific component",
-      "id": "C:/Users/chris/git/archlette/src/docs/builtin/markdown-docs.ts:findClassDiagramsForComponent",
-      "componentId": "docs",
-      "name": "findClassDiagramsForComponent",
+      "id": "default-container::docs::findClassDiagramsForComponent",
+      "componentId": "default-container::docs",
+      "name": "docs::findClassDiagramsForComponent",
       "type": "function",
       "documentation": {
         "summary": "Find class diagrams for a specific component"
@@ -1274,10 +1256,28 @@
       "lineNumber": 257
     },
     {
+      "id": "default-container::docs::sanitizeFileName",
+      "componentId": "default-container::docs",
+      "name": "docs::sanitizeFileName",
+      "type": "function",
+      "returnType": "string",
+      "parameters": [
+        {
+          "name": "name",
+          "type": "string",
+          "optional": false
+        }
+      ],
+      "visibility": "private",
+      "isAsync": false,
+      "filePath": "C:/Users/chris/git/archlette/src/docs/builtin/markdown-docs.ts",
+      "lineNumber": 288
+    },
+    {
       "description": "Extract architecture information from a Node.js/TypeScript codebase",
-      "id": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node.ts:basicNodeExtractor",
-      "componentId": "extractors",
-      "name": "basicNodeExtractor",
+      "id": "default-container::extractors::basicNodeExtractor",
+      "componentId": "default-container::extractors",
+      "name": "extractors::basicNodeExtractor",
       "type": "function",
       "documentation": {
         "summary": "Extract architecture information from a Node.js/TypeScript codebase",
@@ -1297,13 +1297,39 @@
       "visibility": "public",
       "isAsync": true,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node.ts",
-      "lineNumber": 65
+      "lineNumber": 70
+    },
+    {
+      "description": "Extract deployment topology from Cloudflare Wrangler configuration files",
+      "id": "default-container::extractors::basicWranglerExtractor",
+      "componentId": "default-container::extractors",
+      "name": "extractors::basicWranglerExtractor",
+      "type": "function",
+      "documentation": {
+        "summary": "Extract deployment topology from Cloudflare Wrangler configuration files",
+        "examples": [
+          "```typescript\nconst ir = await basicWranglerExtractor({\n  use: 'builtin/basic-wrangler',\n  name: 'wrangler-extractor',\n  props: {},\n  inputs: {\n    include: ['iac/workers/*.toml']\n  },\n  _effective: { includes: [], excludes: [] }\n});\n```"
+        ]
+      },
+      "returnType": "Promise<z.infer<any>>",
+      "returnDescription": "Promise resolving to ArchletteIR with containers, deployments, and relationships",
+      "parameters": [
+        {
+          "name": "node",
+          "description": "- Configuration node with include/exclude patterns",
+          "optional": false
+        }
+      ],
+      "visibility": "public",
+      "isAsync": true,
+      "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler.ts",
+      "lineNumber": 66
     },
     {
       "description": "Generate Structurizr DSL from ArchletteIR",
-      "id": "C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts:structurizrGenerator",
-      "componentId": "generators",
-      "name": "structurizrGenerator",
+      "id": "default-container::generators::structurizrGenerator",
+      "componentId": "default-container::generators",
+      "name": "generators::structurizrGenerator",
       "type": "function",
       "documentation": {
         "summary": "Generate Structurizr DSL from ArchletteIR"
@@ -1330,9 +1356,9 @@
     },
     {
       "description": "Generate all actor-related relationships (bidirectional)\n\nIncludes:\n1. Actor → Component (from actor.targets) - users interacting with system\n2. Component → Actor (from componentRelationships) - system using external actors\n\nStructurizr automatically aggregates relationships in views:\n- System Context view: Shows as actor ↔ system\n- Container view: Shows as actor ↔ container\n- Component view: Shows actual actor ↔ component relationships",
-      "id": "C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts:generateAllActorRelationships",
-      "componentId": "generators",
-      "name": "generateAllActorRelationships",
+      "id": "default-container::generators::generateAllActorRelationships",
+      "componentId": "default-container::generators",
+      "name": "generators::generateAllActorRelationships",
       "type": "function",
       "documentation": {
         "summary": "Generate all actor-related relationships (bidirectional)\n\nIncludes:\n1. Actor → Component (from actor.targets) - users interacting with system\n2. Component → Actor (from componentRelationships) - system using external actors\n\nStructurizr automatically aggregates relationships in views:\n- System Context view: Shows as actor ↔ system\n- Container view: Shows as actor ↔ container\n- Component view: Shows actual actor ↔ component relationships"
@@ -1354,9 +1380,9 @@
     },
     {
       "description": "Generate the model section of the DSL",
-      "id": "C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts:generateModel",
-      "componentId": "generators",
-      "name": "generateModel",
+      "id": "default-container::generators::generateModel",
+      "componentId": "default-container::generators",
+      "name": "generators::generateModel",
       "type": "function",
       "documentation": {
         "summary": "Generate the model section of the DSL"
@@ -1381,9 +1407,9 @@
     },
     {
       "description": "Generate the views section of the DSL",
-      "id": "C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts:generateViews",
-      "componentId": "generators",
-      "name": "generateViews",
+      "id": "default-container::generators::generateViews",
+      "componentId": "default-container::generators",
+      "name": "generators::generateViews",
       "type": "function",
       "documentation": {
         "summary": "Generate the views section of the DSL"
@@ -1404,13 +1430,13 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts",
-      "lineNumber": 221
+      "lineNumber": 223
     },
     {
       "description": "Generate System Context view\n\nShows actors and the system boundary. Structurizr automatically aggregates\nactor → component relationships to actor → system for this view since\ncomponents are not explicitly included.",
-      "id": "C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts:generateSystemContextView",
-      "componentId": "generators",
-      "name": "generateSystemContextView",
+      "id": "default-container::generators::generateSystemContextView",
+      "componentId": "default-container::generators",
+      "name": "generators::generateSystemContextView",
       "type": "function",
       "documentation": {
         "summary": "Generate System Context view\n\nShows actors and the system boundary. Structurizr automatically aggregates\nactor → component relationships to actor → system for this view since\ncomponents are not explicitly included."
@@ -1431,13 +1457,13 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts",
-      "lineNumber": 263
+      "lineNumber": 265
     },
     {
       "description": "Generate Container view\n\nShows actors, containers, and their relationships. Actor → component\nrelationships are automatically aggregated to actor → container level\nby Structurizr since components are not shown in this view.",
-      "id": "C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts:generateContainerView",
-      "componentId": "generators",
-      "name": "generateContainerView",
+      "id": "default-container::generators::generateContainerView",
+      "componentId": "default-container::generators",
+      "name": "generators::generateContainerView",
       "type": "function",
       "documentation": {
         "summary": "Generate Container view\n\nShows actors, containers, and their relationships. Actor → component\nrelationships are automatically aggregated to actor → container level\nby Structurizr since components are not shown in this view."
@@ -1458,13 +1484,13 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts",
-      "lineNumber": 292
+      "lineNumber": 294
     },
     {
       "description": "Generate Component view for a container (excludes Code elements)\n\nShows actors, components within the container, and their relationships.\nActor → component relationships are shown explicitly at this level.\nCode elements are excluded to keep the view focused on architecture.",
-      "id": "C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts:generateComponentView",
-      "componentId": "generators",
-      "name": "generateComponentView",
+      "id": "default-container::generators::generateComponentView",
+      "componentId": "default-container::generators",
+      "name": "generators::generateComponentView",
       "type": "function",
       "documentation": {
         "summary": "Generate Component view for a container (excludes Code elements)\n\nShows actors, components within the container, and their relationships.\nActor → component relationships are shown explicitly at this level.\nCode elements are excluded to keep the view focused on architecture."
@@ -1490,13 +1516,13 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts",
-      "lineNumber": 322
+      "lineNumber": 324
     },
     {
       "description": "Generate Class view for a component (only Code elements within that component)\nThis supports the drill-down model: System → Container → Component → Code\n\nNote: Component views in Structurizr require a container ID, not a component ID.\nWe use the component's container and filter to show only this component's code.",
-      "id": "C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts:generateClassView",
-      "componentId": "generators",
-      "name": "generateClassView",
+      "id": "default-container::generators::generateClassView",
+      "componentId": "default-container::generators",
+      "name": "generators::generateClassView",
       "type": "function",
       "documentation": {
         "summary": "Generate Class view for a component (only Code elements within that component)\nThis supports the drill-down model: System → Container → Component → Code\n\nNote: Component views in Structurizr require a container ID, not a component ID.\nWe use the component's container and filter to show only this component's code."
@@ -1522,13 +1548,13 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts",
-      "lineNumber": 386
+      "lineNumber": 388
     },
     {
       "description": "Generate DSL for an actor (person or external system)",
-      "id": "C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts:generateActor",
-      "componentId": "generators",
-      "name": "generateActor",
+      "id": "default-container::generators::generateActor",
+      "componentId": "default-container::generators",
+      "name": "generators::generateActor",
       "type": "function",
       "documentation": {
         "summary": "Generate DSL for an actor (person or external system)"
@@ -1549,13 +1575,13 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts",
-      "lineNumber": 426
+      "lineNumber": 428
     },
     {
       "description": "Generate DSL for a container with its components",
-      "id": "C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts:generateContainer",
-      "componentId": "generators",
-      "name": "generateContainer",
+      "id": "default-container::generators::generateContainer",
+      "componentId": "default-container::generators",
+      "name": "generators::generateContainer",
       "type": "function",
       "documentation": {
         "summary": "Generate DSL for a container with its components"
@@ -1601,13 +1627,13 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts",
-      "lineNumber": 441
+      "lineNumber": 443
     },
     {
       "description": "Generate DSL for a component",
-      "id": "C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts:generateComponent",
-      "componentId": "generators",
-      "name": "generateComponent",
+      "id": "default-container::generators::generateComponent",
+      "componentId": "default-container::generators",
+      "name": "generators::generateComponent",
       "type": "function",
       "documentation": {
         "summary": "Generate DSL for a component"
@@ -1628,13 +1654,13 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts",
-      "lineNumber": 534
+      "lineNumber": 536
     },
     {
       "description": "Generate DSL for a code item as a component\nAlways tagged with \"Code\" to separate from logical components in views",
-      "id": "C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts:generateCodeAsComponent",
-      "componentId": "generators",
-      "name": "generateCodeAsComponent",
+      "id": "default-container::generators::generateCodeAsComponent",
+      "componentId": "default-container::generators",
+      "name": "generators::generateCodeAsComponent",
       "type": "function",
       "documentation": {
         "summary": "Generate DSL for a code item as a component\nAlways tagged with \"Code\" to separate from logical components in views"
@@ -1655,19 +1681,19 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts",
-      "lineNumber": 557
+      "lineNumber": 559
     },
     {
-      "description": "Generate a unique name for a code item to avoid naming collisions\n\nExtracts file context from the code ID to create a unique display name.\nExample: \"1-extract/index.ts::run\" or \"cli.ts::run\"",
-      "id": "C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts:generateUniqueCodeName",
-      "componentId": "generators",
-      "name": "generateUniqueCodeName",
+      "description": "Generate a unique name for a code item to avoid naming collisions\n\nHandles both hierarchical IDs and file-path-based IDs:\n- Hierarchical: \"container::component::codeName\"\n- File-based: \"C:/path/to/file.ts:functionName\"",
+      "id": "default-container::generators::generateUniqueCodeName",
+      "componentId": "default-container::generators",
+      "name": "generators::generateUniqueCodeName",
       "type": "function",
       "documentation": {
-        "summary": "Generate a unique name for a code item to avoid naming collisions\n\nExtracts file context from the code ID to create a unique display name.\nExample: \"1-extract/index.ts::run\" or \"cli.ts::run\""
+        "summary": "Generate a unique name for a code item to avoid naming collisions\n\nHandles both hierarchical IDs and file-path-based IDs:\n- Hierarchical: \"container::component::codeName\"\n- File-based: \"C:/path/to/file.ts:functionName\""
       },
       "returnType": "string",
-      "returnDescription": "Unique name incorporating file context",
+      "returnDescription": "Unique name for display",
       "parameters": [
         {
           "name": "code",
@@ -1679,13 +1705,13 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts",
-      "lineNumber": 596
+      "lineNumber": 599
     },
     {
       "description": "Generate DSL for a relationship",
-      "id": "C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts:generateRelationship",
-      "componentId": "generators",
-      "name": "generateRelationship",
+      "id": "default-container::generators::generateRelationship",
+      "componentId": "default-container::generators",
+      "name": "generators::generateRelationship",
       "type": "function",
       "documentation": {
         "summary": "Generate DSL for a relationship"
@@ -1706,13 +1732,13 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts",
-      "lineNumber": 634
+      "lineNumber": 647
     },
     {
       "description": "Build technology string from relationship metadata",
-      "id": "C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts:buildTechnologyString",
-      "componentId": "generators",
-      "name": "buildTechnologyString",
+      "id": "default-container::generators::buildTechnologyString",
+      "componentId": "default-container::generators",
+      "name": "generators::buildTechnologyString",
       "type": "function",
       "documentation": {
         "summary": "Build technology string from relationship metadata"
@@ -1728,22 +1754,27 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts",
-      "lineNumber": 649
+      "lineNumber": 662
     },
     {
-      "description": "Generate DSL for a deployment environment",
-      "id": "C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts:generateDeployment",
-      "componentId": "generators",
-      "name": "generateDeployment",
+      "description": "Generate DSL for a deployment environment\n\nSupports both legacy `nodes` format and new `instances` format.\nGenerates deployment relationships between container instances.",
+      "id": "default-container::generators::generateDeployment",
+      "componentId": "default-container::generators",
+      "name": "generators::generateDeployment",
       "type": "function",
       "documentation": {
-        "summary": "Generate DSL for a deployment environment"
+        "summary": "Generate DSL for a deployment environment\n\nSupports both legacy `nodes` format and new `instances` format.\nGenerates deployment relationships between container instances."
       },
       "returnType": "string",
       "parameters": [
         {
           "name": "deployment",
           "type": "z.infer<any>",
+          "optional": false
+        },
+        {
+          "name": "allDeploymentRelationships",
+          "type": "z.infer<any>[]",
           "optional": false
         },
         {
@@ -1755,13 +1786,13 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts",
-      "lineNumber": 665
+      "lineNumber": 681
     },
     {
       "description": "Sanitize ID for DSL (remove special characters, convert to camelCase)",
-      "id": "C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts:sanitizeId",
-      "componentId": "generators",
-      "name": "sanitizeId",
+      "id": "default-container::generators::sanitizeId",
+      "componentId": "default-container::generators",
+      "name": "generators::sanitizeId",
       "type": "function",
       "documentation": {
         "summary": "Sanitize ID for DSL (remove special characters, convert to camelCase)"
@@ -1777,13 +1808,13 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts",
-      "lineNumber": 695
+      "lineNumber": 763
     },
     {
       "description": "Escape special characters in strings for DSL",
-      "id": "C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts:escapeString",
-      "componentId": "generators",
-      "name": "escapeString",
+      "id": "default-container::generators::escapeString",
+      "componentId": "default-container::generators",
+      "name": "generators::escapeString",
       "type": "function",
       "documentation": {
         "summary": "Escape special characters in strings for DSL"
@@ -1799,13 +1830,13 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts",
-      "lineNumber": 702
+      "lineNumber": 770
     },
     {
       "description": "Render PlantUML files to PNG images",
-      "id": "C:/Users/chris/git/archlette/src/renderers/builtin/plantuml-render.ts:plantumlRender",
-      "componentId": "renderers",
-      "name": "plantumlRender",
+      "id": "default-container::renderers::plantumlRender",
+      "componentId": "default-container::renderers",
+      "name": "renderers::plantumlRender",
       "type": "function",
       "documentation": {
         "summary": "Render PlantUML files to PNG images"
@@ -1825,9 +1856,9 @@
     },
     {
       "description": "Export Structurizr DSL to PlantUML and Mermaid formats",
-      "id": "C:/Users/chris/git/archlette/src/renderers/builtin/structurizr-export.ts:structurizrExport",
-      "componentId": "renderers",
-      "name": "structurizrExport",
+      "id": "default-container::renderers::structurizrExport",
+      "componentId": "default-container::renderers",
+      "name": "renderers::structurizrExport",
       "type": "function",
       "documentation": {
         "summary": "Export Structurizr DSL to PlantUML and Mermaid formats"
@@ -1847,9 +1878,9 @@
     },
     {
       "description": "Validates the IR against the Zod schema. Throws if invalid.",
-      "id": "C:/Users/chris/git/archlette/src/validators/builtin/base-validator.ts:baseValidator",
-      "componentId": "validators",
-      "name": "baseValidator",
+      "id": "default-container::validators::baseValidator",
+      "componentId": "default-container::validators",
+      "name": "validators::baseValidator",
       "type": "function",
       "documentation": {
         "summary": "Validates the IR against the Zod schema. Throws if invalid."
@@ -2347,7 +2378,75 @@
       "visibility": "public",
       "isAsync": true,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/file-finder.ts",
-      "lineNumber": 27
+      "lineNumber": 28
+    },
+    {
+      "description": "Find package.json files within the search paths",
+      "id": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/file-finder.ts:findPackageJsonFiles",
+      "name": "findPackageJsonFiles",
+      "type": "function",
+      "documentation": {
+        "summary": "Find package.json files within the search paths"
+      },
+      "returnType": "Promise<string[]>",
+      "parameters": [
+        {
+          "name": "inputs",
+          "type": "import(\"C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/types\").ExtractorInputs",
+          "optional": true
+        }
+      ],
+      "visibility": "public",
+      "isAsync": true,
+      "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/file-finder.ts",
+      "lineNumber": 44
+    },
+    {
+      "description": "Read and parse package.json file",
+      "id": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/file-finder.ts:readPackageInfo",
+      "name": "readPackageInfo",
+      "type": "function",
+      "documentation": {
+        "summary": "Read and parse package.json file"
+      },
+      "returnType": "Promise<import(\"C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/types\").PackageInfo>",
+      "parameters": [
+        {
+          "name": "filePath",
+          "type": "string",
+          "optional": false
+        }
+      ],
+      "visibility": "public",
+      "isAsync": true,
+      "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/file-finder.ts",
+      "lineNumber": 82
+    },
+    {
+      "description": "Find the nearest parent package.json for a given file",
+      "id": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/file-finder.ts:findNearestPackage",
+      "name": "findNearestPackage",
+      "type": "function",
+      "documentation": {
+        "summary": "Find the nearest parent package.json for a given file"
+      },
+      "returnType": "import(\"C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/types\").PackageInfo",
+      "parameters": [
+        {
+          "name": "filePath",
+          "type": "string",
+          "optional": false
+        },
+        {
+          "name": "packages",
+          "type": "import(\"C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/types\").PackageInfo[]",
+          "optional": false
+        }
+      ],
+      "visibility": "public",
+      "isAsync": false,
+      "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/file-finder.ts",
+      "lineNumber": 106
     },
     {
       "description": "Parse and extract information from source files",
@@ -2500,6 +2599,11 @@
           "optional": false
         },
         {
+          "name": "packages",
+          "type": "import(\"C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/types\").PackageInfo[]",
+          "optional": true
+        },
+        {
           "name": "systemInfo",
           "type": "z.infer<any>",
           "optional": true
@@ -2508,7 +2612,7 @@
       "visibility": "public",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts",
-      "lineNumber": 31
+      "lineNumber": 32
     },
     {
       "description": "Deduplicate relationships by source+destination+stereotype combination\nFirst occurrence wins - preserves description from first relationship\nThis allows multiple relationships between the same elements with different stereotypes",
@@ -2529,7 +2633,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts",
-      "lineNumber": 230
+      "lineNumber": 351
     },
     {
       "description": "Map a function to a CodeItem",
@@ -2560,7 +2664,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts",
-      "lineNumber": 244
+      "lineNumber": 365
     },
     {
       "description": "Map a class to a CodeItem",
@@ -2591,7 +2695,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts",
-      "lineNumber": 272
+      "lineNumber": 393
     },
     {
       "description": "Map a class method to a CodeItem",
@@ -2627,7 +2731,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts",
-      "lineNumber": 301
+      "lineNumber": 422
     },
     {
       "description": "Map imports to relationships",
@@ -2653,7 +2757,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts",
-      "lineNumber": 335
+      "lineNumber": 456
     },
     {
       "description": "Generate a unique ID for a code element\nFormat: filePath:symbolName",
@@ -2679,7 +2783,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts",
-      "lineNumber": 358
+      "lineNumber": 479
     },
     {
       "description": "Get default system info from package.json if available",
@@ -2694,7 +2798,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts",
-      "lineNumber": 367
+      "lineNumber": 488
     },
     {
       "description": "Extract type aliases from a source file\nExamples:\n  type UserRole = 'admin' | 'user' | 'guest'\n  export type ApiResponse<T> = { data: T; status: number }",
@@ -2737,6 +2841,272 @@
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/type-extractor.ts",
       "lineNumber": 55
+    },
+    {
+      "description": "Find wrangler.toml files based on include/exclude patterns",
+      "id": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/file-finder.ts:findWranglerFiles",
+      "name": "findWranglerFiles",
+      "type": "function",
+      "documentation": {
+        "summary": "Find wrangler.toml files based on include/exclude patterns"
+      },
+      "returnType": "Promise<string[]>",
+      "returnDescription": "Array of absolute file paths to wrangler.toml files",
+      "parameters": [
+        {
+          "name": "inputs",
+          "type": "import(\"C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/types\").ExtractorInputs",
+          "description": "- Optional include/exclude patterns",
+          "optional": true
+        }
+      ],
+      "visibility": "public",
+      "isAsync": true,
+      "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/file-finder.ts",
+      "lineNumber": 14
+    },
+    {
+      "description": "Map wrangler configurations to ArchletteIR\n\nThis creates:\n- Containers: One per wrangler.toml file\n- Deployments: One per environment (production, dev, preview, etc.)\n- Container Instances: One per container per environment\n- Container Relationships: Logical dependencies from service bindings\n- Deployment Relationships: Physical instance-to-instance connections",
+      "id": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/to-ir-mapper.ts:mapToIR",
+      "name": "mapToIR",
+      "type": "function",
+      "documentation": {
+        "summary": "Map wrangler configurations to ArchletteIR\n\nThis creates:\n- Containers: One per wrangler.toml file\n- Deployments: One per environment (production, dev, preview, etc.)\n- Container Instances: One per container per environment\n- Container Relationships: Logical dependencies from service bindings\n- Deployment Relationships: Physical instance-to-instance connections"
+      },
+      "returnType": "z.infer<any>",
+      "returnDescription": "Complete ArchletteIR",
+      "parameters": [
+        {
+          "name": "configs",
+          "type": "import(\"C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/types\").WranglerConfig[]",
+          "description": "- Parsed wrangler.toml configurations",
+          "optional": false
+        },
+        {
+          "name": "systemInfo",
+          "type": "z.infer<any>",
+          "description": "- Optional system-level metadata",
+          "optional": true
+        }
+      ],
+      "visibility": "public",
+      "isAsync": false,
+      "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/to-ir-mapper.ts",
+      "lineNumber": 29
+    },
+    {
+      "description": "Extract containers from wrangler configurations\n\nCreates one container per wrangler.toml file.\nEach container represents a Cloudflare Worker.",
+      "id": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/to-ir-mapper.ts:extractContainers",
+      "name": "extractContainers",
+      "type": "function",
+      "documentation": {
+        "summary": "Extract containers from wrangler configurations\n\nCreates one container per wrangler.toml file.\nEach container represents a Cloudflare Worker."
+      },
+      "returnType": "{ id: string; name: string; type: string; layer: string; description: string; tags: string[]; props: { technology: string; filePath: string; }; }[]",
+      "returnDescription": "Array of Container objects",
+      "parameters": [
+        {
+          "name": "configs",
+          "type": "import(\"C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/types\").WranglerConfig[]",
+          "description": "- Parsed wrangler configurations",
+          "optional": false
+        }
+      ],
+      "visibility": "private",
+      "isAsync": false,
+      "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/to-ir-mapper.ts",
+      "lineNumber": 76
+    },
+    {
+      "description": "Build a descriptive summary for a container",
+      "id": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/to-ir-mapper.ts:buildContainerDescription",
+      "name": "buildContainerDescription",
+      "type": "function",
+      "documentation": {
+        "summary": "Build a descriptive summary for a container"
+      },
+      "returnType": "string",
+      "returnDescription": "Description string",
+      "parameters": [
+        {
+          "name": "config",
+          "type": "import(\"C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/types\").WranglerConfig",
+          "description": "- Wrangler configuration",
+          "optional": false
+        }
+      ],
+      "visibility": "private",
+      "isAsync": false,
+      "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/to-ir-mapper.ts",
+      "lineNumber": 101
+    },
+    {
+      "description": "Extract deployments and container instances\n\nCreates:\n- One deployment per environment\n- Container instances for each container in each environment",
+      "id": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/to-ir-mapper.ts:extractDeploymentsAndInstances",
+      "name": "extractDeploymentsAndInstances",
+      "type": "function",
+      "documentation": {
+        "summary": "Extract deployments and container instances\n\nCreates:\n- One deployment per environment\n- Container instances for each container in each environment"
+      },
+      "returnType": "{ deployments: { name: string; environment: string; platform: string; instances: z.infer<any>[]; }[]; instances: z.infer<any>[]; }",
+      "returnDescription": "Deployments and container instances",
+      "parameters": [
+        {
+          "name": "configs",
+          "type": "import(\"C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/types\").WranglerConfig[]",
+          "description": "- Parsed wrangler configurations",
+          "optional": false
+        },
+        {
+          "name": "environments",
+          "type": "string[]",
+          "description": "- Unique environment names",
+          "optional": false
+        }
+      ],
+      "visibility": "private",
+      "isAsync": false,
+      "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/to-ir-mapper.ts",
+      "lineNumber": 126
+    },
+    {
+      "description": "Extract container relationships from service bindings\n\nCreates logical dependencies between containers based on service bindings.\nDeduplicates relationships across all environments.",
+      "id": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/to-ir-mapper.ts:extractContainerRelationships",
+      "name": "extractContainerRelationships",
+      "type": "function",
+      "documentation": {
+        "summary": "Extract container relationships from service bindings\n\nCreates logical dependencies between containers based on service bindings.\nDeduplicates relationships across all environments."
+      },
+      "returnType": "z.infer<any>[]",
+      "returnDescription": "Array of container relationships",
+      "parameters": [
+        {
+          "name": "configs",
+          "type": "import(\"C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/types\").WranglerConfig[]",
+          "description": "- Parsed wrangler configurations",
+          "optional": false
+        }
+      ],
+      "visibility": "private",
+      "isAsync": false,
+      "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/to-ir-mapper.ts",
+      "lineNumber": 270
+    },
+    {
+      "description": "Extract deployment relationships from container instances\n\nCreates physical instance-to-instance relationships based on service bindings.\nEach relationship represents an actual runtime dependency in a specific environment.",
+      "id": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/to-ir-mapper.ts:extractDeploymentRelationships",
+      "name": "extractDeploymentRelationships",
+      "type": "function",
+      "documentation": {
+        "summary": "Extract deployment relationships from container instances\n\nCreates physical instance-to-instance relationships based on service bindings.\nEach relationship represents an actual runtime dependency in a specific environment."
+      },
+      "returnType": "z.infer<any>[]",
+      "returnDescription": "Array of deployment relationships",
+      "parameters": [
+        {
+          "name": "instances",
+          "type": "z.infer<any>[]",
+          "description": "- Container instances",
+          "optional": false
+        }
+      ],
+      "visibility": "private",
+      "isAsync": false,
+      "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/to-ir-mapper.ts",
+      "lineNumber": 316
+    },
+    {
+      "description": "Parse a wrangler.toml file",
+      "id": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/wrangler-parser.ts:parseWranglerFile",
+      "name": "parseWranglerFile",
+      "type": "function",
+      "documentation": {
+        "summary": "Parse a wrangler.toml file"
+      },
+      "returnType": "Promise<import(\"C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/types\").WranglerConfig>",
+      "returnDescription": "Parsed wrangler configuration",
+      "parameters": [
+        {
+          "name": "filePath",
+          "type": "string",
+          "description": "- Absolute path to wrangler.toml file",
+          "optional": false
+        }
+      ],
+      "visibility": "public",
+      "isAsync": true,
+      "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/wrangler-parser.ts",
+      "lineNumber": 23
+    },
+    {
+      "description": "Normalize service bindings from various formats\n\nWrangler supports multiple binding formats:\n- [[services]] array (TOML array of tables)\n- services = [{ binding = \"...\", service = \"...\" }]",
+      "id": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/wrangler-parser.ts:normalizeServiceBindings",
+      "name": "normalizeServiceBindings",
+      "type": "function",
+      "documentation": {
+        "summary": "Normalize service bindings from various formats\n\nWrangler supports multiple binding formats:\n- [[services]] array (TOML array of tables)\n- services = [{ binding = \"...\", service = \"...\" }]"
+      },
+      "returnType": "import(\"C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/types\").ServiceBinding[]",
+      "parameters": [
+        {
+          "name": "services",
+          "optional": false
+        }
+      ],
+      "visibility": "public",
+      "isAsync": false,
+      "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/wrangler-parser.ts",
+      "lineNumber": 65
+    },
+    {
+      "description": "Get all environments from a wrangler config\n\nReturns a list of environment names, including:\n- \"production\" (from root-level config if it has deployable content)\n- All keys from env.* sections",
+      "id": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/wrangler-parser.ts:getEnvironments",
+      "name": "getEnvironments",
+      "type": "function",
+      "documentation": {
+        "summary": "Get all environments from a wrangler config\n\nReturns a list of environment names, including:\n- \"production\" (from root-level config if it has deployable content)\n- All keys from env.* sections"
+      },
+      "returnType": "string[]",
+      "parameters": [
+        {
+          "name": "config",
+          "type": "import(\"C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/types\").WranglerConfig",
+          "optional": false
+        }
+      ],
+      "visibility": "public",
+      "isAsync": false,
+      "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/wrangler-parser.ts",
+      "lineNumber": 83
+    },
+    {
+      "description": "Get configuration for a specific environment\n\nMerges root-level config with environment-specific overrides.\nEnvironment config takes precedence.",
+      "id": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/wrangler-parser.ts:getEnvironmentConfig",
+      "name": "getEnvironmentConfig",
+      "type": "function",
+      "documentation": {
+        "summary": "Get configuration for a specific environment\n\nMerges root-level config with environment-specific overrides.\nEnvironment config takes precedence."
+      },
+      "returnType": "{ name: string; vars?: Record<string, string>; services?: import(\"C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/types\").ServiceBinding[]; kv_namespaces?: import(\"C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/types\").KVBinding[]; r2_buckets?: import(\"C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/types\").R2Binding[]; d1_databases?: import(\"C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/types\").D1Binding[]; durable_objects?: { bindings: import(\"C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/types\").DurableObjectBinding[]; }; queues?: { producers?: import(\"C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/types\").QueueBinding[]; consumers?: import(\"C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/types\").QueueBinding[]; }; routes?: string[]; triggers?: { crons?: string[]; }; observability?: any; }",
+      "returnDescription": "Merged environment configuration",
+      "parameters": [
+        {
+          "name": "config",
+          "type": "import(\"C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/types\").WranglerConfig",
+          "description": "- Parsed wrangler config",
+          "optional": false
+        },
+        {
+          "name": "envName",
+          "type": "string",
+          "description": "- Environment name (e.g., \"production\", \"development\")",
+          "optional": false
+        }
+      ],
+      "visibility": "public",
+      "isAsync": false,
+      "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/wrangler-parser.ts",
+      "lineNumber": 124
     }
   ],
   "deployments": [],
@@ -2745,91 +3115,91 @@
     {
       "description": "Analyzes source code to extract architecture components",
       "tags": [],
-      "source": "cli",
-      "destination": "extractors"
+      "source": "default-container::cli",
+      "destination": "default-container::extractors"
     },
     {
       "description": "Validates and enriches intermediate representation",
       "tags": [],
-      "source": "cli",
-      "destination": "validators"
+      "source": "default-container::cli",
+      "destination": "default-container::validators"
     },
     {
       "description": "Transforms IR into DSL formats",
       "tags": [],
-      "source": "cli",
-      "destination": "generators"
+      "source": "default-container::cli",
+      "destination": "default-container::generators"
     },
     {
       "description": "Converts DSL to visual diagrams",
       "tags": [],
-      "source": "cli",
-      "destination": "renderers"
+      "source": "default-container::cli",
+      "destination": "default-container::renderers"
     },
     {
       "description": "Provides shared utilities, types, and module loading",
       "tags": [],
-      "source": "cli",
-      "destination": "core"
+      "source": "default-container::cli",
+      "destination": "default-container::core"
     },
     {
       "description": "Provides IR types, validation schemas, and module loading",
       "tags": [],
-      "source": "extractors",
-      "destination": "core"
+      "source": "default-container::extractors",
+      "destination": "default-container::core"
     },
     {
       "description": "Provides IR types, validation schemas, and module loading",
       "tags": [],
-      "source": "validators",
-      "destination": "core"
+      "source": "default-container::validators",
+      "destination": "default-container::core"
     },
     {
       "description": "Provides IR types, path resolution, and module loading",
       "tags": [],
-      "source": "generators",
-      "destination": "core"
+      "source": "default-container::generators",
+      "destination": "default-container::core"
     },
     {
       "description": "Provides types, module loading, and tool management",
       "tags": [],
-      "source": "renderers",
-      "destination": "core"
+      "source": "default-container::renderers",
+      "destination": "default-container::core"
     },
     {
       "description": "Provides types, module loading, and path resolution",
       "tags": [],
-      "source": "docs",
-      "destination": "core"
+      "source": "default-container::docs",
+      "destination": "default-container::core"
     },
     {
       "description": "Uses FileSystem for external system integration",
       "tags": [],
-      "source": "core",
+      "source": "default-container::core",
       "destination": "filesystem"
     },
     {
       "description": "Uses Github Structurizr Repo for external system integration",
       "tags": [],
-      "source": "core",
+      "source": "default-container::core",
       "destination": "github-structurizr-repo"
     },
     {
       "description": "Uses Github PlantUML Repo for external system integration",
       "tags": [],
-      "source": "core",
+      "source": "default-container::core",
       "destination": "github-plantuml-repo"
     },
     {
       "description": "Uses Local System's unzip utility for external system integration",
       "tags": [],
-      "source": "core",
+      "source": "default-container::core",
       "destination": "local-systems-unzip-utility"
     },
     {
       "description": "Uses File System for external system integration",
       "tags": [],
-      "source": "core",
+      "source": "default-container::core",
       "destination": "file-system"
     }
   ],
@@ -2917,6 +3287,12 @@
       "source": "C:/Users/chris/git/archlette/src/1-extract/aggregator.ts",
       "destination": "../core/types-ir.js:Relationship",
       "stereotype": "type-import"
+    },
+    {
+      "description": "imports emptyIR",
+      "source": "C:/Users/chris/git/archlette/src/1-extract/aggregator.ts",
+      "destination": "../core/types-ir.js:emptyIR",
+      "stereotype": "import"
     },
     {
       "description": "imports PipelineContext",
@@ -3315,6 +3691,24 @@
       "stereotype": "import"
     },
     {
+      "description": "imports findPackageJsonFiles",
+      "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node.ts",
+      "destination": "./basic-node/file-finder.js:findPackageJsonFiles",
+      "stereotype": "import"
+    },
+    {
+      "description": "imports readPackageInfo",
+      "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node.ts",
+      "destination": "./basic-node/file-finder.js:readPackageInfo",
+      "stereotype": "import"
+    },
+    {
+      "description": "imports findNearestPackage",
+      "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node.ts",
+      "destination": "./basic-node/file-finder.js:findNearestPackage",
+      "stereotype": "import"
+    },
+    {
       "description": "imports parseFiles",
       "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node.ts",
       "destination": "./basic-node/file-parser.js:parseFiles",
@@ -3324,6 +3718,48 @@
       "description": "imports mapToIR",
       "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node.ts",
       "destination": "./basic-node/to-ir-mapper.js:mapToIR",
+      "stereotype": "import"
+    },
+    {
+      "description": "imports ResolvedStageNode",
+      "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler.ts",
+      "destination": "../../core/types-aac.js:ResolvedStageNode",
+      "stereotype": "type-import"
+    },
+    {
+      "description": "imports ArchletteIR",
+      "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler.ts",
+      "destination": "../../core/types-ir.js:ArchletteIR",
+      "stereotype": "type-import"
+    },
+    {
+      "description": "imports emptyIR",
+      "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler.ts",
+      "destination": "../../core/types-ir.js:emptyIR",
+      "stereotype": "import"
+    },
+    {
+      "description": "imports ExtractorInputs",
+      "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler.ts",
+      "destination": "./basic-wrangler/types.js:ExtractorInputs",
+      "stereotype": "type-import"
+    },
+    {
+      "description": "imports findWranglerFiles",
+      "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler.ts",
+      "destination": "./basic-wrangler/file-finder.js:findWranglerFiles",
+      "stereotype": "import"
+    },
+    {
+      "description": "imports parseWranglerFile",
+      "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler.ts",
+      "destination": "./basic-wrangler/wrangler-parser.js:parseWranglerFile",
+      "stereotype": "import"
+    },
+    {
+      "description": "imports mapToIR",
+      "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler.ts",
+      "destination": "./basic-wrangler/to-ir-mapper.js:mapToIR",
       "stereotype": "import"
     },
     {
@@ -3615,9 +4051,27 @@
       "stereotype": "import"
     },
     {
+      "description": "imports sep",
+      "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/file-finder.ts",
+      "destination": "node:path:sep",
+      "stereotype": "import"
+    },
+    {
+      "description": "imports relative",
+      "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/file-finder.ts",
+      "destination": "node:path:relative",
+      "stereotype": "import"
+    },
+    {
       "description": "imports ExtractorInputs",
       "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/file-finder.ts",
       "destination": "./types.js:ExtractorInputs",
+      "stereotype": "type-import"
+    },
+    {
+      "description": "imports PackageInfo",
+      "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/file-finder.ts",
+      "destination": "./types.js:PackageInfo",
       "stereotype": "type-import"
     },
     {
@@ -3795,6 +4249,12 @@
       "stereotype": "type-import"
     },
     {
+      "description": "imports PackageInfo",
+      "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts",
+      "destination": "./types.js:PackageInfo",
+      "stereotype": "type-import"
+    },
+    {
       "description": "imports ExtractedClass",
       "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts",
       "destination": "./types.js:ExtractedClass",
@@ -3883,6 +4343,121 @@
       "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/type-extractor.ts",
       "destination": "./doc-extractor.js:extractDeprecation",
       "stereotype": "import"
+    },
+    {
+      "description": "imports globby",
+      "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/file-finder.ts",
+      "destination": "globby:globby",
+      "stereotype": "import"
+    },
+    {
+      "description": "imports ExtractorInputs",
+      "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/file-finder.ts",
+      "destination": "./types.js:ExtractorInputs",
+      "stereotype": "type-import"
+    },
+    {
+      "description": "imports ArchletteIR",
+      "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/to-ir-mapper.ts",
+      "destination": "../../../core/types-ir.js:ArchletteIR",
+      "stereotype": "type-import"
+    },
+    {
+      "description": "imports System",
+      "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/to-ir-mapper.ts",
+      "destination": "../../../core/types-ir.js:System",
+      "stereotype": "type-import"
+    },
+    {
+      "description": "imports ContainerInstance",
+      "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/to-ir-mapper.ts",
+      "destination": "../../../core/types-ir.js:ContainerInstance",
+      "stereotype": "type-import"
+    },
+    {
+      "description": "imports Relationship",
+      "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/to-ir-mapper.ts",
+      "destination": "../../../core/types-ir.js:Relationship",
+      "stereotype": "type-import"
+    },
+    {
+      "description": "imports WranglerConfig",
+      "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/to-ir-mapper.ts",
+      "destination": "./types.js:WranglerConfig",
+      "stereotype": "type-import"
+    },
+    {
+      "description": "imports IR_VERSION",
+      "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/to-ir-mapper.ts",
+      "destination": "../../../core/constants.js:IR_VERSION",
+      "stereotype": "import"
+    },
+    {
+      "description": "imports getEnvironments",
+      "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/to-ir-mapper.ts",
+      "destination": "./wrangler-parser.js:getEnvironments",
+      "stereotype": "import"
+    },
+    {
+      "description": "imports getEnvironmentConfig",
+      "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/to-ir-mapper.ts",
+      "destination": "./wrangler-parser.js:getEnvironmentConfig",
+      "stereotype": "import"
+    },
+    {
+      "description": "imports readFileSync",
+      "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/wrangler-parser.ts",
+      "destination": "node:fs:readFileSync",
+      "stereotype": "import"
+    },
+    {
+      "description": "imports parse",
+      "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/wrangler-parser.ts",
+      "destination": "smol-toml:parse",
+      "stereotype": "import"
+    },
+    {
+      "description": "imports WranglerConfig",
+      "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/wrangler-parser.ts",
+      "destination": "./types.js:WranglerConfig",
+      "stereotype": "type-import"
+    },
+    {
+      "description": "imports ServiceBinding",
+      "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/wrangler-parser.ts",
+      "destination": "./types.js:ServiceBinding",
+      "stereotype": "type-import"
+    },
+    {
+      "description": "imports KVBinding",
+      "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/wrangler-parser.ts",
+      "destination": "./types.js:KVBinding",
+      "stereotype": "type-import"
+    },
+    {
+      "description": "imports R2Binding",
+      "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/wrangler-parser.ts",
+      "destination": "./types.js:R2Binding",
+      "stereotype": "type-import"
+    },
+    {
+      "description": "imports D1Binding",
+      "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/wrangler-parser.ts",
+      "destination": "./types.js:D1Binding",
+      "stereotype": "type-import"
+    },
+    {
+      "description": "imports DurableObjectBinding",
+      "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/wrangler-parser.ts",
+      "destination": "./types.js:DurableObjectBinding",
+      "stereotype": "type-import"
+    },
+    {
+      "description": "imports QueueBinding",
+      "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/wrangler-parser.ts",
+      "destination": "./types.js:QueueBinding",
+      "stereotype": "type-import"
     }
-  ]
+  ],
+  "deploymentRelationships": []
 }

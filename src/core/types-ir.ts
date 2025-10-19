@@ -230,4 +230,24 @@ export const zArchletteIR = z.object({
   deploymentRelationships: z.array(zRelationship), // Instance-to-instance relationships
 });
 
+/**
+ * Create empty IR with required structure
+ */
+export const emptyIR: ArchletteIR = {
+  version: '1.0',
+  system: {
+    name: 'Unknown System',
+    description: 'No wrangler.toml files found or parsed',
+  },
+  actors: [],
+  containers: [],
+  components: [],
+  code: [],
+  deployments: [],
+  containerRelationships: [],
+  componentRelationships: [],
+  codeRelationships: [],
+  deploymentRelationships: [],
+};
+
 export type ArchletteIR = z.infer<typeof zArchletteIR>;

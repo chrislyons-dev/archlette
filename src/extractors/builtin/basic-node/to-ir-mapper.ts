@@ -291,6 +291,25 @@ export function mapToIR(
     }
   }
 
+  // apply hierarchical IDs to actor relationships
+  for (const actor of actors) {
+    for (let i = 0; i < actor.targets.length; i++) {
+      const targetId = actor.targets[i];
+      if (componentIdMap.has(targetId)) {
+        actor.targets[i] = componentIdMap.get(targetId)!;
+      }
+    }
+  }
+  // apply hierarchical IDs to component relationships
+  for (const rel of componentRelationships) {
+    if (componentIdMap.has(rel.source)) {
+      rel.source = componentIdMap.get(rel.source)!;
+    }
+    if (componentIdMap.has(rel.destination)) {
+      rel.destination = componentIdMap.get(rel.destination)!;
+    }
+  }
+
   // Step 6: Determine system info
   // Priority: 1) provided systemInfo, 2) first container, 3) default
   let system: System;

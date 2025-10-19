@@ -589,23 +589,34 @@ function generateCodeAsComponent(code: CodeItem, indent: string): string {
 /**
  * Generate a unique name for a code item to avoid naming collisions
  *
- * Extracts file context from the code ID to create a unique display name.
- * Example: "1-extract/index.ts::run" or "cli.ts::run"
+ * Handles both hierarchical IDs and file-path-based IDs:
+ * - Hierarchical: "container::component::codeName"
+ * - File-based: "C:/path/to/file.ts:functionName"
  *
  * @param code - The code item
- * @returns Unique name incorporating file context
+ * @returns Unique name for display
  */
 function generateUniqueCodeName(code: CodeItem): string {
-  // ID format: "C:/path/to/file.ts:functionName" or "/path/to/file.ts:functionName"
-  // Handle Windows absolute paths (C:) and Unix paths differently
+  // Check if this is a hierarchical ID (contains ::)
+  if (code.id.includes('::')) {
+    // Hierarchical ID format: "container::component::codeName"
+    // Just use the code name from the hierarchical structure
+    const parts = code.id.split('::');
+    const codeName = parts[parts.length - 1];
+    const componentName = parts.length > 2 ? parts[parts.length - 2] : undefined;
 
-  // Find the last colon that's not part of a Windows drive letter
-  // Windows: "C:/path/file.ts:funcName" -> split at last :
-  // Unix: "/path/file.ts:funcName" -> split at last :
+    // Include component context if available
+    if (componentName) {
+      return `${componentName.toLowerCase()}::${codeName.toLowerCase()}`;
+    }
+    return codeName.toLowerCase();
+  }
+
+  // File-based ID format: "C:/path/to/file.ts:functionName" or "/path/to/file.ts:functionName"
   const lastColonIndex = code.id.lastIndexOf(':');
 
   if (lastColonIndex === -1) {
-    // No colon separator, fall back to original name
+    // No separator, fall back to original name
     return code.name.toLowerCase();
   }
 

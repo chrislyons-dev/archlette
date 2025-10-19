@@ -23,6 +23,7 @@
  */
 
 import type { ArchletteIR, Relationship } from '../core/types-ir.js';
+import { emptyIR } from '../core/types-ir.js';
 
 /**
  * Aggregate multiple ArchletteIR objects into a single unified IR
@@ -45,7 +46,7 @@ import type { ArchletteIR, Relationship } from '../core/types-ir.js';
  */
 export function aggregateIRs(irs: ArchletteIR[]): ArchletteIR {
   if (irs.length === 0) {
-    return createEmptyIR();
+    return emptyIR;
   }
 
   if (irs.length === 1) {
@@ -190,28 +191,4 @@ function deduplicateRelationships(relationships: Relationship[]): Relationship[]
     }
   }
   return Array.from(seen.values());
-}
-
-/**
- * Create an empty but valid ArchletteIR structure
- *
- * @returns A minimal valid ArchletteIR with no elements
- */
-function createEmptyIR(): ArchletteIR {
-  return {
-    version: '1.0',
-    system: {
-      name: 'Unknown System',
-      description: 'No extractors produced valid IR',
-    },
-    actors: [],
-    containers: [],
-    components: [],
-    code: [],
-    deployments: [],
-    containerRelationships: [],
-    componentRelationships: [],
-    codeRelationships: [],
-    deploymentRelationships: [],
-  };
 }
