@@ -67,27 +67,27 @@ import { mapToIR } from './basic-wrangler/to-ir-mapper.js';
  */
 export default async function basicWranglerExtractor(
   node: ResolvedStageNode,
-  ctx?: PipelineContext,
+  ctx: PipelineContext,
 ): Promise<ArchletteIR> {
   const inputs = node.inputs as ExtractorInputs | undefined;
-  const log = ctx?.log;
+  const log = ctx.log;
 
   // 1. Find wrangler.toml files
   const files = await findWranglerFiles(inputs);
-  log?.info(`Found ${files.length} wrangler.toml file(s) to analyze`);
+  log.info(`Found ${files.length} wrangler.toml file(s) to analyze`);
 
   if (files.length === 0) {
-    log?.warn('No wrangler.toml files found');
+    log.warn('No wrangler.toml files found');
     return emptyIR;
   }
 
   // 2. Parse wrangler.toml files
   const configs = await Promise.all(files.map(parseWranglerFile));
-  log?.info(`Parsed ${configs.length} wrangler.toml configuration(s)`);
+  log.info(`Parsed ${configs.length} wrangler.toml configuration(s)`);
 
   // 3. Map to ArchletteIR
   const ir = mapToIR(configs, node._system);
-  log?.info(
+  log.info(
     `Extracted ${ir.containers.length} container(s), ${ir.deployments.length} deployment(s)`,
   );
 

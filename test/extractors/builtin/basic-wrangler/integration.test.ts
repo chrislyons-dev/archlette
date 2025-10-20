@@ -6,6 +6,8 @@ import { mkdirSync, rmSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import basicWranglerExtractor from '../../../../src/extractors/builtin/basic-wrangler.js';
 import type { ResolvedStageNode } from '../../../../src/core/types-aac.js';
+import type { PipelineContext } from '../../../../src/core/types.js';
+import { createLogger } from '../../../../src/core/logger.js';
 
 const TEST_DIR = join(process.cwd(), 'test-tmp-integration');
 
@@ -13,6 +15,14 @@ const TEST_DIR = join(process.cwd(), 'test-tmp-integration');
 const toGlobPattern = (path: string) => path.replace(/\\/g, '/');
 
 describe('basic-wrangler integration', () => {
+  // Create a mock context for tests
+  const mockContext: PipelineContext = {
+    log: createLogger({ context: 'Test', level: 'info' }),
+    config: {} as any,
+    state: {},
+    configBaseDir: TEST_DIR,
+  };
+
   beforeEach(() => {
     mkdirSync(TEST_DIR, { recursive: true });
   });
@@ -52,7 +62,7 @@ service = "auth-service"
       },
     };
 
-    const ir = await basicWranglerExtractor(node);
+    const ir = await basicWranglerExtractor(node, mockContext);
 
     expect(ir.version).toBe('1.0');
     expect(ir.containers).toHaveLength(1);
@@ -137,7 +147,7 @@ id = "kv-456"
       },
     };
 
-    const ir = await basicWranglerExtractor(node);
+    const ir = await basicWranglerExtractor(node, mockContext);
 
     expect(ir.containers).toHaveLength(3);
     const containerNames = ir.containers.map((c) => c.name);
@@ -207,7 +217,7 @@ environment = "preview"
       },
     };
 
-    const ir = await basicWranglerExtractor(node);
+    const ir = await basicWranglerExtractor(node, mockContext);
 
     expect(ir.containers).toHaveLength(1);
     expect(ir.deployments).toHaveLength(3);
@@ -248,7 +258,7 @@ environment = "preview"
       },
     };
 
-    const ir = await basicWranglerExtractor(node);
+    const ir = await basicWranglerExtractor(node, mockContext);
 
     expect(ir.containers).toEqual([]);
     expect(ir.deployments).toEqual([]);
@@ -278,7 +288,7 @@ environment = "preview"
       },
     };
 
-    const ir = await basicWranglerExtractor(node);
+    const ir = await basicWranglerExtractor(node, mockContext);
 
     expect(ir.system.name).toBe('Custom System');
     expect(ir.system.description).toBe('Custom description');
@@ -365,7 +375,7 @@ database_id = "db-bonds"
       },
     };
 
-    const ir = await basicWranglerExtractor(node);
+    const ir = await basicWranglerExtractor(node, mockContext);
 
     // Verify containers
     expect(ir.containers).toHaveLength(3);

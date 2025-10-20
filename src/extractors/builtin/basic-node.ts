@@ -71,14 +71,14 @@ import { mapToIR } from './basic-node/to-ir-mapper.js';
  */
 export default async function basicNodeExtractor(
   node: ResolvedStageNode,
-  ctx?: PipelineContext,
+  ctx: PipelineContext,
 ): Promise<ArchletteIR> {
   const inputs = node.inputs as ExtractorInputs | undefined;
-  const log = ctx?.log;
+  const log = ctx.log;
 
   // 1. Find source files
   const files = await findSourceFiles(inputs);
-  log?.info(`Found ${files.length} source files to analyze`);
+  log.info(`Found ${files.length} source files to analyze`);
 
   // 1.5. Find package.json files to create containers
   const packagePaths = await findPackageJsonFiles(inputs);
@@ -86,7 +86,7 @@ export default async function basicNodeExtractor(
     await Promise.all(packagePaths.map((path) => readPackageInfo(path)))
   ).filter((pkg): pkg is NonNullable<typeof pkg> => pkg !== null);
 
-  log?.info(
+  log.info(
     `Found ${packages.length} package(s): ${packages.map((p) => p.name).join(', ')}`,
   );
 
@@ -94,7 +94,7 @@ export default async function basicNodeExtractor(
   const extractions = await parseFiles(files);
   const successCount = extractions.filter((e) => !e.parseError).length;
   const errorCount = extractions.filter((e) => e.parseError).length;
-  log?.info(`Successfully parsed ${successCount} files, ${errorCount} errors`);
+  log.info(`Successfully parsed ${successCount} files, ${errorCount} errors`);
 
   // 2.5. Assign each file to its nearest package
   for (const extraction of extractions) {
@@ -113,7 +113,8 @@ export default async function basicNodeExtractor(
     : undefined;
 
   const ir = mapToIR(extractions, packages, systemInfo);
-  log?.info(`Extracted ${ir.code.length} code elements`);
+
+  log.info(`Extracted ${ir.code.length} code elements`);
 
   return ir;
 }
