@@ -20,7 +20,7 @@ import * as fs from 'node:fs';
 import * as path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createRequire } from 'node:module';
-import type { PipelineContext, Logger } from '../../core/types.js';
+import type { PipelineContext, Logger, RendererOutput } from '../../core/types.js';
 import type { Component } from '../../core/types-ir.js';
 import { resolveArchlettePath } from '../../core/path-resolver.js';
 
@@ -94,18 +94,29 @@ export default async function markdownDocs(ctx: PipelineContext): Promise<void> 
       .replace('ss', pad(d.getSeconds()));
   });
 
-  env.addFilter('selectattr', (arr: any[], attr: string, test: string, value: any) => {
-    if (test === 'equalto') {
-      return arr.filter((item) => item[attr] === value);
-    }
-    return arr;
-  });
+  env.addFilter(
+    'selectattr',
+    (
+      arr: Array<Record<string, unknown>>,
+      attr: string,
+      test: string,
+      value: unknown,
+    ) => {
+      if (test === 'equalto') {
+        return arr.filter((item) => item[attr] === value);
+      }
+      return arr;
+    },
+  );
 
-  env.addFilter('map', (arr: any[], _mapType: string, attr: string) => {
-    return arr.map((item) => item[attr]);
-  });
+  env.addFilter(
+    'map',
+    (arr: Array<Record<string, unknown>>, _mapType: string, attr: string) => {
+      return arr.map((item) => item[attr]);
+    },
+  );
 
-  env.addFilter('first', (arr: any[]) => {
+  env.addFilter('first', <T>(arr: T[]) => {
     return arr && arr.length > 0 ? arr[0] : undefined;
   });
 
@@ -200,7 +211,7 @@ export default async function markdownDocs(ctx: PipelineContext): Promise<void> 
  * Find diagram files for a specific view type
  */
 function findDiagramsForView(
-  rendererOutputs: any[],
+  rendererOutputs: RendererOutput[],
   diagramsDir: string,
   docsDir: string,
   viewType: string,
@@ -232,7 +243,7 @@ function findDiagramsForView(
  * Find component diagrams for a specific component
  */
 function findDiagramsForComponent(
-  rendererOutputs: any[],
+  rendererOutputs: RendererOutput[],
   diagramsDir: string,
   docsDir: string,
   _component: Component,
@@ -265,7 +276,7 @@ function findDiagramsForComponent(
  * Find class diagrams for a specific component
  */
 function findClassDiagramsForComponent(
-  rendererOutputs: any[],
+  rendererOutputs: RendererOutput[],
   diagramsDir: string,
   docsDir: string,
   component: Component,

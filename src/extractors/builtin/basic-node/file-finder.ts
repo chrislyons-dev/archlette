@@ -4,7 +4,10 @@
 
 import { globby } from 'globby';
 import { sep, relative } from 'node:path';
+import { createLogger } from '../../../core/logger.js';
 import type { ExtractorInputs, PackageInfo } from './types.js';
+
+const log = createLogger({ context: 'FileFinder' });
 
 const DEFAULT_INCLUDE = ['src/**/*.ts', 'src/**/*.tsx', 'src/**/*.js', 'src/**/*.jsx'];
 const DEFAULT_EXCLUDE = [
@@ -95,7 +98,7 @@ export async function readPackageInfo(filePath: string): Promise<PackageInfo | n
       description: pkg.description,
     };
   } catch (error) {
-    console.warn(`Failed to read package.json at ${filePath}:`, error);
+    log.warn(`Failed to read package.json at ${filePath}:`, error);
     return null;
   }
 }

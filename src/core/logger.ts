@@ -45,6 +45,22 @@ function isTTY(): boolean {
 }
 
 /**
+ * Get default log level from environment or fallback to 'info'
+ */
+function getDefaultLogLevel(): LogLevel {
+  const envLevel = process.env.LOG_LEVEL?.toLowerCase();
+  if (
+    envLevel === 'debug' ||
+    envLevel === 'info' ||
+    envLevel === 'warn' ||
+    envLevel === 'error'
+  ) {
+    return envLevel;
+  }
+  return 'info';
+}
+
+/**
  * Create a Pino logger instance with optional pretty printing
  */
 function createPinoLogger(level: LogLevel, pretty: boolean): PinoLogger {
@@ -74,7 +90,9 @@ function createPinoLogger(level: LogLevel, pretty: boolean): PinoLogger {
       },
     };
 
-    return pino(baseOptions, testStream as any);
+    // Pino expects a WritableStream-like object with a write method
+    // Using NodeJS.WritableStream interface for compatibility
+    return pino(baseOptions, testStream as NodeJS.WritableStream);
   }
 
   if (pretty) {
@@ -104,14 +122,14 @@ function createPinoLogger(level: LogLevel, pretty: boolean): PinoLogger {
  *
  * @example
  * ```typescript
- * const log = createLogger({ context: 'Extract', level: 'info' });
+ * const log = createLogger({ context: 'Extract' });
  * log.info('Starting extraction...');
  * log.debug('Processing file', { filePath });
  * log.error('Failed to parse', { error });
  * ```
  */
 export function createLogger(options: LoggerOptions = {}): Logger {
-  const { level = 'info', context, pretty = isTTY() } = options;
+  const { level = getDefaultLogLevel(), context, pretty = isTTY() } = options;
 
   // Create base Pino logger
   const pinoLogger = createPinoLogger(level, pretty);

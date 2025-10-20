@@ -3,8 +3,11 @@
  */
 
 import type { SourceFile } from 'ts-morph';
+import { createLogger } from '../../../core/logger.js';
 import type { ExtractedType, ExtractedInterface } from './types.js';
 import { extractDocumentation, extractDeprecation } from './doc-extractor.js';
+
+const log = createLogger({ context: 'TypeExtractor' });
 
 /**
  * Extract type aliases from a source file
@@ -39,7 +42,7 @@ export function extractTypeAliases(sourceFile: SourceFile): ExtractedType[] {
         definition: typeAlias.getTypeNode()?.getText() || typeAlias.getType().getText(),
       });
     } catch (error) {
-      console.warn(`Error extracting type alias ${typeAlias.getName()}: ${error}`);
+      log.warn(`Error extracting type alias ${typeAlias.getName()}: ${error}`);
     }
   }
 
@@ -94,7 +97,7 @@ export function extractInterfaces(sourceFile: SourceFile): ExtractedInterface[] 
         })),
       });
     } catch (error) {
-      console.warn(`Error extracting interface ${interfaceDecl.getName()}: ${error}`);
+      log.warn(`Error extracting interface ${interfaceDecl.getName()}: ${error}`);
     }
   }
 

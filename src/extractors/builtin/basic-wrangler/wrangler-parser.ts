@@ -4,6 +4,7 @@
 
 import { readFileSync } from 'node:fs';
 import { parse as parseToml } from 'smol-toml';
+import { createLogger } from '../../../core/logger.js';
 import type {
   WranglerConfig,
   ServiceBinding,
@@ -14,6 +15,8 @@ import type {
   QueueBinding,
 } from './types.js';
 
+const log = createLogger({ context: 'WranglerParser' });
+
 /**
  * Parse a wrangler.toml file
  *
@@ -23,34 +26,48 @@ import type {
 export async function parseWranglerFile(filePath: string): Promise<WranglerConfig> {
   try {
     const content = readFileSync(filePath, 'utf-8');
-    const parsed = parseToml(content) as any;
+    // TOML parser returns unknown structure - we validate at runtime
+    const parsed = parseToml(content) as Record<string, unknown>;
 
-    // Build WranglerConfig
+    // Build WranglerConfig with runtime type validation
     const config: WranglerConfig = {
       filePath,
-      name: parsed.name || 'unknown',
-      main: parsed.main,
-      compatibility_date: parsed.compatibility_date,
+      name: (typeof parsed.name === 'string' ? parsed.name : undefined) || 'unknown',
+      main: typeof parsed.main === 'string' ? parsed.main : undefined,
+      compatibility_date:
+        typeof parsed.compatibility_date === 'string'
+          ? parsed.compatibility_date
+          : undefined,
 
       // Root-level configuration (typically production)
-      vars: parsed.vars,
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      vars: parsed.vars as any,
       services: normalizeServiceBindings(parsed.services),
-      kv_namespaces: parsed.kv_namespaces as KVBinding[] | undefined,
-      r2_buckets: parsed.r2_buckets as R2Binding[] | undefined,
-      d1_databases: parsed.d1_databases as D1Binding[] | undefined,
-      durable_objects: parsed.durable_objects,
-      queues: parsed.queues,
-      routes: parsed.routes,
-      triggers: parsed.triggers,
-      observability: parsed.observability,
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      kv_namespaces: parsed.kv_namespaces as any,
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      r2_buckets: parsed.r2_buckets as any,
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      d1_databases: parsed.d1_databases as any,
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      durable_objects: parsed.durable_objects as any,
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      queues: parsed.queues as any,
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      routes: parsed.routes as any,
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      triggers: parsed.triggers as any,
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      observability: parsed.observability as any,
 
       // Named environments
-      env: parsed.env,
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      env: parsed.env as any,
     };
 
     return config;
   } catch (error) {
-    console.error(`Error parsing ${filePath}:`, error);
+    log.error(`Error parsing ${filePath}:`, error);
     throw new Error(`Failed to parse wrangler.toml: ${filePath}`);
   }
 }
@@ -62,14 +79,17 @@ export async function parseWranglerFile(filePath: string): Promise<WranglerConfi
  * - [[services]] array (TOML array of tables)
  * - services = [{ binding = "...", service = "..." }]
  */
-export function normalizeServiceBindings(services: any): ServiceBinding[] | undefined {
+export function normalizeServiceBindings(
+  services: unknown,
+): ServiceBinding[] | undefined {
   if (!services) return undefined;
   if (!Array.isArray(services)) return undefined;
 
-  return services.map((binding: any) => ({
-    binding: binding.binding,
-    service: binding.service,
-    environment: binding.environment,
+  return services.map((binding: Record<string, unknown>) => ({
+    binding: typeof binding.binding === 'string' ? binding.binding : '',
+    service: typeof binding.service === 'string' ? binding.service : '',
+    environment:
+      typeof binding.environment === 'string' ? binding.environment : undefined,
   }));
 }
 
@@ -135,10 +155,22 @@ export function getEnvironmentConfig(
   queues?: { producers?: QueueBinding[]; consumers?: QueueBinding[] };
   routes?: string[];
   triggers?: { crons?: string[] };
-  observability?: any;
+  observability?: Record<string, unknown>;
 } {
   // Start with root-level config
-  const merged: any = {
+  const merged: {
+    name: string;
+    vars?: Record<string, string>;
+    services?: ServiceBinding[];
+    kv_namespaces?: KVBinding[];
+    r2_buckets?: R2Binding[];
+    d1_databases?: D1Binding[];
+    durable_objects?: { bindings: DurableObjectBinding[] };
+    queues?: { producers?: QueueBinding[]; consumers?: QueueBinding[] };
+    routes?: string[];
+    triggers?: { crons?: string[] };
+    observability?: Record<string, unknown>;
+  } = {
     name: config.name,
     vars: { ...config.vars },
     services: config.services ? [...config.services] : undefined,

@@ -81,7 +81,7 @@ export interface WranglerEnvironment {
   queues?: { producers?: QueueBinding[]; consumers?: QueueBinding[] }; // Queue bindings
   routes?: string[]; // HTTP routes
   triggers?: { crons?: string[] }; // Cron triggers
-  observability?: any; // Observability config
+  observability?: Record<string, unknown>; // Observability config
 }
 
 /**
@@ -103,7 +103,7 @@ export interface WranglerConfig {
   queues?: { producers?: QueueBinding[]; consumers?: QueueBinding[] };
   routes?: string[];
   triggers?: { crons?: string[] };
-  observability?: any;
+  observability?: Record<string, unknown>;
 
   // Named environments
   env?: Record<string, WranglerEnvironment>;

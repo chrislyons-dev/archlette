@@ -196,14 +196,17 @@ describe('CLI YAML handling & resolution', () => {
     expect(calls[0].ctxConfig).toEqual({ answer: 42 });
   });
 
-  it('proceeds with empty config if file does not exist', async () => {
+  it('proceeds with default config if file does not exist', async () => {
     const fsMod: any = await import('node:fs');
     fsMod.existsSync.mockImplementation((p: string) => p !== '/does/not/exist.yaml');
 
     const { run } = await freshCli();
     await run(['node', 'cli', 'extract', '-f', '/does/not/exist.yaml']);
 
-    expect(calls[0].ctxConfig).toBeNull();
+    // Config should have default values when file doesn't exist
+    expect(calls[0].ctxConfig).not.toBeNull();
+    // @ts-expect-error: intentionally ignore possible undefined property in test
+    expect(calls[0].ctxConfig?.project.name).toBe('archlette-project');
     expect(spyWarn).not.toHaveBeenCalled();
   });
 
@@ -218,15 +221,22 @@ describe('CLI YAML handling & resolution', () => {
     // and it should print a friendly error
     expect(spyError).toHaveBeenCalled();
 
-    // be tolerant to the logger prefix and multiple args
-    const last = (spyError as any).mock.calls.at(-1) as unknown[]; // ["[archlette:error]", "Error: Unknown option \"-x\".", ...]
-    expect(Array.isArray(last)).toBe(true);
-    // includes our logger prefix
-    expect(String(last[0])).toContain('Error: Unknown option "-x"');
-    // includes the specific unknown option message somewhere
-    expect(
-      last.some((a) => typeof a === 'string' && a.includes('Unknown option "-x"')),
-    ).toBe(true);
+    // Parse JSON log lines from Pino
+    const errorCalls = (spyError as any).mock.calls
+      .map((c: any[]) => {
+        try {
+          return JSON.parse(c[0]);
+        } catch {
+          return null;
+        }
+      })
+      .filter(Boolean);
+
+    // Check that error message contains the unknown option
+    const hasUnknownOption = errorCalls.some(
+      (log: any) => log.msg && log.msg.includes('Unknown option "-x"'),
+    );
+    expect(hasUnknownOption).toBe(true);
   });
 
   it('logs "Using config:" when the YAML file exists', async () => {

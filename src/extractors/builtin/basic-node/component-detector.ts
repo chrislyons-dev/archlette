@@ -2,7 +2,7 @@
  * Component identification from JSDoc annotations
  */
 
-import type { SourceFile, Node } from 'ts-morph';
+import type { SourceFile, Node, JSDoc, JSDocTag } from 'ts-morph';
 import { SyntaxKind } from 'ts-morph';
 import { nameToId } from '../../../core/constants.js';
 
@@ -109,13 +109,13 @@ function extractComponentFromJsDoc(jsDoc: Node): ComponentInfo | undefined {
     return undefined;
   }
 
-  // Cast to any to access JSDoc methods (ts-morph types)
-  const doc = jsDoc as any;
-  const tags = doc.getTags ? doc.getTags() : [];
+  // Access JSDoc methods from ts-morph types
+  const doc = jsDoc as JSDoc;
+  const tags = doc.getTags();
 
   // Look for @component, @module, or @namespace (in that priority order)
   for (const tagName of ['component', 'module', 'namespace']) {
-    const tag = tags.find((t: any) => t.getTagName() === tagName);
+    const tag = tags.find((t) => t.getTagName() === tagName);
     if (tag) {
       const name = extractComponentName(tag);
       if (name) {
@@ -141,11 +141,11 @@ function extractActorsFromJsDoc(jsDoc: Node): ActorInfo[] {
   }
 
   const actors: ActorInfo[] = [];
-  const doc = jsDoc as any;
-  const tags = doc.getTags ? doc.getTags() : [];
+  const doc = jsDoc as JSDoc;
+  const tags = doc.getTags();
 
   // Find all @actor tags
-  const actorTags = tags.filter((t: any) => t.getTagName() === 'actor');
+  const actorTags = tags.filter((t) => t.getTagName() === 'actor');
 
   for (const tag of actorTags) {
     const actor = parseActorTag(tag);
@@ -166,8 +166,8 @@ function extractActorsFromJsDoc(jsDoc: Node): ActorInfo[] {
  * - @actor Logger {System} {both} Shared logging service
  * - @actor Cache {System} Redis cache (defaults to 'both' if direction omitted)
  */
-function parseActorTag(tag: any): ActorInfo | undefined {
-  const text = tag.getCommentText ? tag.getCommentText() : '';
+function parseActorTag(tag: JSDocTag): ActorInfo | undefined {
+  const text = tag.getCommentText() || '';
   if (!text) return undefined;
 
   const trimmed = text.trim();
@@ -209,11 +209,11 @@ function extractRelationshipsFromJsDoc(jsDoc: Node): RelationshipInfo[] {
   }
 
   const relationships: RelationshipInfo[] = [];
-  const doc = jsDoc as any;
-  const tags = doc.getTags ? doc.getTags() : [];
+  const doc = jsDoc as JSDoc;
+  const tags = doc.getTags();
 
   // Find all @uses tags
-  const usesTags = tags.filter((t: any) => t.getTagName() === 'uses');
+  const usesTags = tags.filter((t) => t.getTagName() === 'uses');
   for (const tag of usesTags) {
     const rel = parseUsesTag(tag);
     if (rel) {
@@ -230,8 +230,8 @@ function extractRelationshipsFromJsDoc(jsDoc: Node): RelationshipInfo[] {
  * Example:
  * - @uses Extractor Analyzes source code
  */
-function parseUsesTag(tag: any): RelationshipInfo | undefined {
-  const text = tag.getCommentText ? tag.getCommentText() : '';
+function parseUsesTag(tag: JSDocTag): RelationshipInfo | undefined {
+  const text = tag.getCommentText() || '';
   if (!text) return undefined;
 
   const trimmed = text.trim();
@@ -261,8 +261,8 @@ function parseUsesTag(tag: any): RelationshipInfo | undefined {
  * - @component ComponentName - Description
  * - @module path/to/module
  */
-function extractComponentName(tag: any): string | undefined {
-  const text = tag.getCommentText ? tag.getCommentText() : '';
+function extractComponentName(tag: JSDocTag): string | undefined {
+  const text = tag.getCommentText() || '';
   if (!text) return undefined;
 
   // Remove leading/trailing whitespace

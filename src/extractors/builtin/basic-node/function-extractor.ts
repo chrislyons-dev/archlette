@@ -3,6 +3,7 @@
  */
 
 import { Node, type FunctionDeclaration, type SourceFile } from 'ts-morph';
+import { createLogger } from '../../../core/logger.js';
 import type { ExtractedFunction, ParameterInfo } from './types.js';
 import {
   extractDocumentation,
@@ -10,6 +11,8 @@ import {
   extractParameterDescriptions,
   extractReturnDescription,
 } from './doc-extractor.js';
+
+const log = createLogger({ context: 'FunctionExtractor' });
 
 /**
  * Extract all function declarations from a source file
@@ -25,7 +28,7 @@ export function extractFunctions(sourceFile: SourceFile): ExtractedFunction[] {
       }
     } catch (error) {
       // Log and continue - don't let one bad function stop the whole extraction
-      console.warn(
+      log.warn(
         `Error extracting function ${func.getName() || '<anonymous>'}: ${error}`,
       );
     }
@@ -140,7 +143,7 @@ export function extractArrowFunctions(sourceFile: SourceFile): ExtractedFunction
             returnDescription: extractReturnDescription(jsDocs),
           });
         } catch (error) {
-          console.warn(
+          log.warn(
             `Error extracting arrow function ${declaration.getName()}: ${error}`,
           );
         }

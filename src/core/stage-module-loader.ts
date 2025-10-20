@@ -12,7 +12,7 @@ import { getStageEntry } from './stage-entry.js';
 // Extractor modules: (node: ResolvedStageNode) => ArchletteIR | Promise<ArchletteIR>
 export async function loadExtractorModule(modulePath: string) {
   const { module: mod, path: resolved } = await loadModuleFromPath(modulePath);
-  const m = mod as any;
+  const m = mod as Record<string, unknown>;
   const entry = getStageEntry(m) ?? m.default ?? m.run;
   if (typeof entry !== 'function') {
     throw new Error(
@@ -25,7 +25,7 @@ export async function loadExtractorModule(modulePath: string) {
 // Validator modules: (ir: ArchletteIR) => ArchletteIR | Promise<ArchletteIR>
 export async function loadValidatorModule(modulePath: string) {
   const { module: mod, path: resolved } = await loadModuleFromPath(modulePath);
-  const m = mod as any;
+  const m = mod as Record<string, unknown>;
   const entry = getStageEntry(m) ?? m.default ?? m.run;
   if (typeof entry !== 'function') {
     throw new Error(
@@ -38,7 +38,7 @@ export async function loadValidatorModule(modulePath: string) {
 // Generator modules: (ir: ArchletteIR, node: ResolvedStageNode) => string | Promise<string>
 export async function loadGeneratorModule(modulePath: string) {
   const { module: mod, path: resolved } = await loadModuleFromPath(modulePath);
-  const m = mod as any;
+  const m = mod as Record<string, unknown>;
   const entry = getStageEntry(m) ?? m.default ?? m.run;
   if (typeof entry !== 'function') {
     throw new Error(
@@ -51,7 +51,7 @@ export async function loadGeneratorModule(modulePath: string) {
 // Renderer modules: (ctx: PipelineContext, node: ResolvedStageNode) => void | Promise<void>
 export async function loadRendererModule(modulePath: string) {
   const { module: mod, path: resolved } = await loadModuleFromPath(modulePath);
-  const m = mod as any;
+  const m = mod as Record<string, unknown>;
   const entry = getStageEntry(m) ?? m.default ?? m.run;
   if (typeof entry !== 'function') {
     throw new Error(
@@ -64,7 +64,7 @@ export async function loadRendererModule(modulePath: string) {
 // Doc modules: (ctx: PipelineContext, node: ResolvedStageNode) => void | Promise<void>
 export async function loadDocModule(modulePath: string) {
   const { module: mod, path: resolved } = await loadModuleFromPath(modulePath);
-  const m = mod as any;
+  const m = mod as Record<string, unknown>;
   const entry = getStageEntry(m) ?? m.default ?? m.run;
   if (typeof entry !== 'function') {
     throw new Error(

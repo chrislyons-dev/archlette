@@ -10,6 +10,9 @@
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import * as path from 'node:path';
 import * as fs from 'node:fs';
+import { createLogger } from './logger.js';
+
+const log = createLogger({ context: 'PathResolver' });
 
 export function getCliDir(): string {
   const idx = import.meta.url.indexOf('core');
@@ -45,7 +48,7 @@ export function resolveArchlettePath(input: string, opts: { cliDir: string }): s
   } else if (path.isAbsolute(input) || input.startsWith('/')) {
     candidate = input;
   } else {
-    console.info(`Resolving relative path "${input}" against CLI dir: ${cliDir}`);
+    log.debug(`Resolving relative path "${input}" against CLI dir: ${cliDir}`);
     candidate = path.join(cliDir, input);
   }
 
