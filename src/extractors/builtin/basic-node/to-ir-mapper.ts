@@ -8,6 +8,7 @@ import type {
   System,
   Relationship,
   Component,
+  Actor,
 } from '../../../core/types-ir.js';
 import type {
   FileExtraction,
@@ -37,7 +38,7 @@ export function mapToIR(
   const codeItems: CodeItem[] = [];
   const relationships: Relationship[] = [];
   const componentsMap = new Map<string, Component>();
-  const actorsMap = new Map<string, any>();
+  const actorsMap = new Map<string, Actor>();
   const actorDescriptions = new Map<string, Set<string>>();
   const componentDescriptions = new Map<string, Set<string>>();
   const componentRelationships: Relationship[] = [];
@@ -101,6 +102,9 @@ export function mapToIR(
 
         // Create actor → component relationship if direction is 'in' or 'both'
         if ((direction === 'in' || direction === 'both') && actorData) {
+          if (!actorData.targets) {
+            actorData.targets = [];
+          }
           if (!actorData.targets.includes(componentId)) {
             actorData.targets.push(componentId);
           }
@@ -293,10 +297,12 @@ export function mapToIR(
 
   // apply hierarchical IDs to actor relationships
   for (const actor of actors) {
-    for (let i = 0; i < actor.targets.length; i++) {
-      const targetId = actor.targets[i];
-      if (componentIdMap.has(targetId)) {
-        actor.targets[i] = componentIdMap.get(targetId)!;
+    if (actor.targets) {
+      for (let i = 0; i < actor.targets.length; i++) {
+        const targetId = actor.targets[i];
+        if (componentIdMap.has(targetId)) {
+          actor.targets[i] = componentIdMap.get(targetId)!;
+        }
       }
     }
   }
