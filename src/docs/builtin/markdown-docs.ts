@@ -20,7 +20,7 @@ import * as fs from 'node:fs';
 import * as path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createRequire } from 'node:module';
-import type { PipelineContext } from '../../core/types.js';
+import type { PipelineContext, Logger } from '../../core/types.js';
 import type { Component } from '../../core/types-ir.js';
 import { resolveArchlettePath } from '../../core/path-resolver.js';
 
@@ -115,18 +115,21 @@ export default async function markdownDocs(ctx: PipelineContext): Promise<void> 
     diagramsDir,
     docsDir,
     'SystemContext',
+    ctx.log,
   );
   const containerDiagrams = findDiagramsForView(
     rendererOutputs,
     diagramsDir,
     docsDir,
     'Container',
+    ctx.log,
   );
   const componentDiagrams = findDiagramsForView(
     rendererOutputs,
     diagramsDir,
     docsDir,
     'Component',
+    ctx.log,
   );
 
   // Render system page
@@ -201,10 +204,11 @@ function findDiagramsForView(
   diagramsDir: string,
   docsDir: string,
   viewType: string,
+  log?: Logger,
 ): string[] {
   const diagrams: string[] = [];
-  console.log(
-    `DEBUG:: Searching for diagrams using diagramsDir: ${diagramsDir}, docsDir: ${docsDir}, view type: ${viewType}`,
+  log?.debug(
+    `Searching for diagrams using diagramsDir: ${diagramsDir}, docsDir: ${docsDir}, view type: ${viewType}`,
   );
   for (const output of rendererOutputs) {
     if (output.format === 'png') {
@@ -212,7 +216,7 @@ function findDiagramsForView(
         const filename = path.basename(file, '.png');
         if (filename.includes(viewType) && !filename.includes('-key')) {
           const fullPath = path.join(diagramsDir, file);
-          console.log('DEBUG:: Checking for diagram file:', fullPath);
+          log?.debug('Checking for diagram file:', fullPath);
           if (fs.existsSync(fullPath)) {
             diagrams.push(path.relative(docsDir, fullPath));
           }

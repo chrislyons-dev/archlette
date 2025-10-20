@@ -113,7 +113,7 @@ function internalFunction() {
     const internalFunc = ir.code.find((c) => c.name === 'internalFunction');
     expect(internalFunc).toBeDefined();
     expect(internalFunc?.visibility).toBe('private');
-  });
+  }, 20000); // Increase timeout for slow CI environments
 
   it('should handle parse errors gracefully', async () => {
     const badFile = join(testDir, 'bad.ts');

@@ -133,16 +133,20 @@ describe('extract stage', () => {
     expect(stageModuleLoader.loadExtractorModule).toHaveBeenCalledWith(
       'builtin/basic-node',
     );
-    expect(mockExtractor).toHaveBeenCalledWith({
-      use: 'builtin/basic-node',
-      name: 'test-extractor',
-      inputs: { include: ['src/**/*.ts'], exclude: [] },
-      props: {},
-      _effective: {
-        includes: ['src/**/*.ts'],
-        excludes: [],
+    // Extractor is now called with both node and context
+    expect(mockExtractor).toHaveBeenCalledWith(
+      {
+        use: 'builtin/basic-node',
+        name: 'test-extractor',
+        inputs: { include: ['src/**/*.ts'], exclude: [] },
+        props: {},
+        _effective: {
+          includes: ['src/**/*.ts'],
+          excludes: [],
+        },
       },
-    });
+      mockContext, // Context is now passed as second parameter
+    );
     expect(mockContext.state.extractorResults).toHaveLength(1);
     expect(mockContext.state.aggregatedIR).toBe(mockIR);
     expect(mockLogger.info).toHaveBeenCalledWith(

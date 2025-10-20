@@ -37,6 +37,7 @@
 
 import type { ResolvedStageNode } from '../../core/types-aac.js';
 import type { ArchletteIR } from '../../core/types-ir.js';
+import type { PipelineContext } from '../../core/types.js';
 import type { ExtractorInputs } from './basic-node/types.js';
 import {
   findSourceFiles,
@@ -51,6 +52,7 @@ import { mapToIR } from './basic-node/to-ir-mapper.js';
  * Extract architecture information from a Node.js/TypeScript codebase
  *
  * @param node - Configuration node with include/exclude patterns
+ * @param ctx - Optional pipeline context with logger
  * @returns Promise resolving to ArchletteIR with code, components, and relationships
  *
  * @example
@@ -69,11 +71,14 @@ import { mapToIR } from './basic-node/to-ir-mapper.js';
  */
 export default async function basicNodeExtractor(
   node: ResolvedStageNode,
+  ctx?: PipelineContext,
 ): Promise<ArchletteIR> {
   const inputs = node.inputs as ExtractorInputs | undefined;
+  const log = ctx?.log;
+
   // 1. Find source files
   const files = await findSourceFiles(inputs);
-  console.log(`Found ${files.length} source files to analyze`);
+  log?.info(`Found ${files.length} source files to analyze`);
 
   // 1.5. Find package.json files to create containers
   const packagePaths = await findPackageJsonFiles(inputs);
@@ -81,7 +86,7 @@ export default async function basicNodeExtractor(
     await Promise.all(packagePaths.map((path) => readPackageInfo(path)))
   ).filter((pkg): pkg is NonNullable<typeof pkg> => pkg !== null);
 
-  console.log(
+  log?.info(
     `Found ${packages.length} package(s): ${packages.map((p) => p.name).join(', ')}`,
   );
 
@@ -89,7 +94,7 @@ export default async function basicNodeExtractor(
   const extractions = await parseFiles(files);
   const successCount = extractions.filter((e) => !e.parseError).length;
   const errorCount = extractions.filter((e) => e.parseError).length;
-  console.log(`Successfully parsed ${successCount} files, ${errorCount} errors`);
+  log?.info(`Successfully parsed ${successCount} files, ${errorCount} errors`);
 
   // 2.5. Assign each file to its nearest package
   for (const extraction of extractions) {
@@ -108,7 +113,7 @@ export default async function basicNodeExtractor(
     : undefined;
 
   const ir = mapToIR(extractions, packages, systemInfo);
-  console.log(`Extracted ${ir.code.length} code elements`);
+  log?.info(`Extracted ${ir.code.length} code elements`);
 
   return ir;
 }

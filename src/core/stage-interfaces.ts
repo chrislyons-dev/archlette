@@ -26,20 +26,26 @@ import type { PipelineContext } from './types';
  * ArchletteIR. They are the entry point of the pipeline.
  *
  * @param node - Configuration for this extractor including inputs and options
+ * @param ctx - Optional pipeline context with logger and state (recommended for logging)
  * @returns Promise resolving to ArchletteIR or ArchletteIR directly
  *
  * @example
  * ```typescript
  * // src/extractors/builtin/basic-node.ts
- * export default async function(node: ResolvedStageNode): Promise<ArchletteIR> {
+ * export default async function(
+ *   node: ResolvedStageNode,
+ *   ctx?: PipelineContext
+ * ): Promise<ArchletteIR> {
+ *   const log = ctx?.log || console;
  *   const files = await findFiles(node.inputs.include);
+ *   log.info(`Found ${files.length} files to analyze`);
  *   const ir = await analyzeFiles(files);
  *   return ir;
  * }
  * ```
  */
 export interface ArchletteExtractor {
-  (node: ResolvedStageNode): Promise<ArchletteIR> | ArchletteIR;
+  (node: ResolvedStageNode, ctx?: PipelineContext): Promise<ArchletteIR> | ArchletteIR;
 }
 
 /**

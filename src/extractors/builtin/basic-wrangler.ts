@@ -38,6 +38,7 @@
 
 import type { ResolvedStageNode } from '../../core/types-aac.js';
 import type { ArchletteIR } from '../../core/types-ir.js';
+import type { PipelineContext } from '../../core/types.js';
 import { emptyIR } from '../../core/types-ir.js';
 import type { ExtractorInputs } from './basic-wrangler/types.js';
 import { findWranglerFiles } from './basic-wrangler/file-finder.js';
@@ -48,6 +49,7 @@ import { mapToIR } from './basic-wrangler/to-ir-mapper.js';
  * Extract deployment topology from Cloudflare Wrangler configuration files
  *
  * @param node - Configuration node with include/exclude patterns
+ * @param ctx - Optional pipeline context with logger
  * @returns Promise resolving to ArchletteIR with containers, deployments, and relationships
  *
  * @example
@@ -65,25 +67,27 @@ import { mapToIR } from './basic-wrangler/to-ir-mapper.js';
  */
 export default async function basicWranglerExtractor(
   node: ResolvedStageNode,
+  ctx?: PipelineContext,
 ): Promise<ArchletteIR> {
   const inputs = node.inputs as ExtractorInputs | undefined;
+  const log = ctx?.log;
 
   // 1. Find wrangler.toml files
   const files = await findWranglerFiles(inputs);
-  console.log(`Found ${files.length} wrangler.toml file(s) to analyze`);
+  log?.info(`Found ${files.length} wrangler.toml file(s) to analyze`);
 
   if (files.length === 0) {
-    console.warn('No wrangler.toml files found');
+    log?.warn('No wrangler.toml files found');
     return emptyIR;
   }
 
   // 2. Parse wrangler.toml files
   const configs = await Promise.all(files.map(parseWranglerFile));
-  console.log(`Parsed ${configs.length} wrangler.toml configuration(s)`);
+  log?.info(`Parsed ${configs.length} wrangler.toml configuration(s)`);
 
   // 3. Map to ArchletteIR
   const ir = mapToIR(configs, node._system);
-  console.log(
+  log?.info(
     `Extracted ${ir.containers.length} container(s), ${ir.deployments.length} deployment(s)`,
   );
 
