@@ -1,7 +1,7 @@
 # 🏗️ Application
 
 **Architecture Documentation**
-Generated 2025-10-19 15:03:05
+Generated 2025-10-20 09:17:16
 
 ## Overview
 
@@ -87,7 +87,7 @@ The component diagram shows the internal structure of containers and their respo
 <td><strong>generators</strong></td>
 <td>default-container</td>
 <td><code>module</code></td>
-<td>Generation stage of the AAC pipeline | Structurizr DSL Generator</td>
+<td>Generation stage of the AAC pipeline | Structurizr DSL Generator (Template-based)</td>
 <td><a href="./default-container__generators.md">View →</a></td>
 </tr>
 <tr>
@@ -171,7 +171,7 @@ Quick navigation to detailed component documentation:
 - **[CLI](./default-container__cli.md)** — Archlette CLI - Architecture-as-Code toolkit
 - **[extractors](./default-container__extractors.md)** — ArchletteIR aggregation utilities | Extraction stage of the AAC pipeline | TypeScript/JavaScript code extractor | Cloudflare Wrangler deployment extractor
 - **[validators](./default-container__validators.md)** — Validation stage of the AAC pipeline | Base IR validator for Archlette pipeline
-- **[generators](./default-container__generators.md)** — Generation stage of the AAC pipeline | Structurizr DSL Generator
+- **[generators](./default-container__generators.md)** — Generation stage of the AAC pipeline | Structurizr DSL Generator (Template-based)
 - **[renderers](./default-container__renderers.md)** — Render stage of the AAC pipeline | PlantUML image renderer | Structurizr DSL export renderer
 - **[docs](./default-container__docs.md)** — Documentation stage of the AAC pipeline | Markdown documentation generator
 - **[core](./default-container__core.md)** — Dynamic ESM module loader | Stage module interfaces for the AAC pipeline | Stage module loaders | Tool management for external rendering tools | Architecture-as-Code (AAC) configuration types and schemas | Archlette Intermediate Representation (IR) types and schemas | Core pipeline types

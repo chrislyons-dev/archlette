@@ -40,7 +40,7 @@
 ### Code Elements
 
 <details>
-<summary><strong>29 code element(s)</strong></summary>
+<summary><strong>30 code element(s)</strong></summary>
 
 
 
@@ -81,9 +81,9 @@ Used for consistent ID generation across extractors and mappers
 ```
 
 ---
-##### `core__formatTimestamp()`
+##### `core__isTTY()`
 
-Format timestamp as ISO 8601 (local time)
+Determine if we're in a TTY environment (for pretty printing)
 
 <table>
 <tbody>
@@ -97,11 +97,11 @@ Format timestamp as ISO 8601 (local time)
 </tr>
 <tr>
 <td><strong>Returns</strong></td>
-<td><code>string</code></td>
+<td><code>boolean</code></td>
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/core/logger.ts:84</code></td>
+<td><code>C:/Users/chris/git/archlette/src/core/logger.ts:43</code></td>
 </tr>
 </tbody>
 </table>
@@ -109,9 +109,9 @@ Format timestamp as ISO 8601 (local time)
 
 
 ---
-##### `core__formatLogMessage()`
+##### `core__getDefaultLogLevel()`
 
-Format log message with timestamp, level, and context
+Get default log level from environment or fallback to 'info'
 
 <table>
 <tbody>
@@ -125,18 +125,46 @@ Format log message with timestamp, level, and context
 </tr>
 <tr>
 <td><strong>Returns</strong></td>
-<td><code>string</code></td>
+<td><code>import("C:/Users/chris/git/archlette/src/core/logger").LogLevel</code></td>
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/core/logger.ts:100</code></td>
+<td><code>C:/Users/chris/git/archlette/src/core/logger.ts:50</code></td>
+</tr>
+</tbody>
+</table>
+
+
+
+---
+##### `core__createPinoLogger()`
+
+Create a Pino logger instance with optional pretty printing
+
+<table>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>function</code></td>
+</tr>
+<tr>
+<td><strong>Visibility</strong></td>
+<td><code>private</code></td>
+</tr>
+<tr>
+<td><strong>Returns</strong></td>
+<td><code>PinoLogger</code></td>
+</tr>
+<tr>
+<td><strong>Location</strong></td>
+<td><code>C:/Users/chris/git/archlette/src/core/logger.ts:66</code></td>
 </tr>
 </tbody>
 </table>
 
 **Parameters:**
 
-- `level`: <code>import("C:/Users/chris/git/archlette/src/core/logger").LogLevel</code>- `message`: <code>string</code>- `context`: <code>string</code>- `useColor`: <code>boolean</code>
+- `level`: <code>import("C:/Users/chris/git/archlette/src/core/logger").LogLevel</code>- `pretty`: <code>boolean</code>
 
 ---
 ##### `core__createLogger()`
@@ -159,7 +187,7 @@ Create a logger instance
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/core/logger.ts:133</code></td>
+<td><code>C:/Users/chris/git/archlette/src/core/logger.ts:131</code></td>
 </tr>
 </tbody>
 </table>
@@ -230,7 +258,7 @@ Dynamically load an ESM module from a path or module specifier
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/core/path-resolver.ts:14</code></td>
+<td><code>C:/Users/chris/git/archlette/src/core/path-resolver.ts:17</code></td>
 </tr>
 </tbody>
 </table>
@@ -257,7 +285,7 @@ Dynamically load an ESM module from a path or module specifier
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/core/path-resolver.ts:21</code></td>
+<td><code>C:/Users/chris/git/archlette/src/core/path-resolver.ts:24</code></td>
 </tr>
 </tbody>
 </table>
@@ -290,7 +318,7 @@ Core path resolver honoring Archlette rules (no file existence checks).
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/core/path-resolver.ts:39</code></td>
+<td><code>C:/Users/chris/git/archlette/src/core/path-resolver.ts:42</code></td>
 </tr>
 </tbody>
 </table>
@@ -323,7 +351,7 @@ Resolve a module entry by probing:
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/core/path-resolver.ts:61</code></td>
+<td><code>C:/Users/chris/git/archlette/src/core/path-resolver.ts:64</code></td>
 </tr>
 </tbody>
 </table>
@@ -352,7 +380,7 @@ Resolve a module entry by probing:
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/core/path-resolver.ts:97</code></td>
+<td><code>C:/Users/chris/git/archlette/src/core/path-resolver.ts:100</code></td>
 </tr>
 </tbody>
 </table>
@@ -382,7 +410,7 @@ Write content to a file, creating parent directories if needed.
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/core/path-resolver.ts:107</code></td>
+<td><code>C:/Users/chris/git/archlette/src/core/path-resolver.ts:110</code></td>
 </tr>
 </tbody>
 </table>
@@ -411,7 +439,7 @@ Write content to a file, creating parent directories if needed.
 </tr>
 <tr>
 <td><strong>Returns</strong></td>
-<td><code>Promise<{ entry: any; resolved: string; }></code></td>
+<td><code>Promise<{ entry: Function; resolved: string; }></code></td>
 </tr>
 <tr>
 <td><strong>Location</strong></td>
@@ -444,7 +472,7 @@ Write content to a file, creating parent directories if needed.
 </tr>
 <tr>
 <td><strong>Returns</strong></td>
-<td><code>Promise<{ entry: any; resolved: string; }></code></td>
+<td><code>Promise<{ entry: Function; resolved: string; }></code></td>
 </tr>
 <tr>
 <td><strong>Location</strong></td>
@@ -477,7 +505,7 @@ Write content to a file, creating parent directories if needed.
 </tr>
 <tr>
 <td><strong>Returns</strong></td>
-<td><code>Promise<{ entry: any; resolved: string; }></code></td>
+<td><code>Promise<{ entry: Function; resolved: string; }></code></td>
 </tr>
 <tr>
 <td><strong>Location</strong></td>
@@ -510,7 +538,7 @@ Write content to a file, creating parent directories if needed.
 </tr>
 <tr>
 <td><strong>Returns</strong></td>
-<td><code>Promise<{ entry: any; resolved: string; }></code></td>
+<td><code>Promise<{ entry: Function; resolved: string; }></code></td>
 </tr>
 <tr>
 <td><strong>Location</strong></td>
@@ -543,7 +571,7 @@ Write content to a file, creating parent directories if needed.
 </tr>
 <tr>
 <td><strong>Returns</strong></td>
-<td><code>Promise<{ entry: any; resolved: string; }></code></td>
+<td><code>Promise<{ entry: Function; resolved: string; }></code></td>
 </tr>
 <tr>
 <td><strong>Location</strong></td>

@@ -8,12 +8,14 @@ workspace "Application" "Main application container" {
         github_plantuml_repo = softwareSystem "Github PlantUML Repo" "The github repo hosting the PlantUML CLI releases. https://github.com/plantuml/plantuml/releases/download/v${TOOL_VERSIONS.plantuml}/plantuml-${TOOL_VERSIONS.plantuml}.jar" "External"
         local_systems_unzip_utility = softwareSystem "Local System's unzip utility" "The zip extraction utility on the local system (unzip on Unix, Expand-Archive on Windows)." "External"
         file_system = softwareSystem "File System" "The local file system for caching downloaded tools." "External"
-
         # Application System
         Application = softwareSystem "Application" {
             description "Main application container"
-
             # Containers
+
+
+
+
             default_container = container "Application" {
                 description "Main application container"
                 technology "Application"
@@ -33,7 +35,7 @@ workspace "Application" "Main application container" {
                     technology "module"
                 }
                 default_container__generators = component "generators" {
-                    description "Generation stage of the AAC pipeline | Structurizr DSL Generator"
+                    description "Generation stage of the AAC pipeline | Structurizr DSL Generator (Template-based)"
                     technology "module"
                 }
                 default_container__renderers = component "renderers" {
@@ -120,13 +122,18 @@ workspace "Application" "Main application container" {
                     technology "function"
                     tags "Code"
                 }
-                default_container__core__formatTimestamp = component "core__formattimestamp" {
-                    description "Format timestamp as ISO 8601 (local time)"
+                default_container__core__isTTY = component "core__istty" {
+                    description "Determine if we're in a TTY environment (for pretty printing)"
                     technology "function"
                     tags "Code"
                 }
-                default_container__core__formatLogMessage = component "core__formatlogmessage" {
-                    description "Format log message with timestamp, level, and context"
+                default_container__core__getDefaultLogLevel = component "core__getdefaultloglevel" {
+                    description "Get default log level from environment or fallback to 'info'"
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__core__createPinoLogger = component "core__createpinologger" {
+                    description "Create a Pino logger instance with optional pretty printing"
                     technology "function"
                     tags "Code"
                 }
@@ -291,68 +298,28 @@ workspace "Application" "Main application container" {
                     technology "function"
                     tags "Code"
                 }
+                default_container__generators__prepareContainerData = component "generators__preparecontainerdata" {
+                    description "Prepare container data with components, code, and relationships for template"
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__generators__prepareComponentView = component "generators__preparecomponentview" {
+                    description "Prepare component view data for template"
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__generators__prepareClassView = component "generators__prepareclassview" {
+                    description "Prepare class view data for template"
+                    technology "function"
+                    tags "Code"
+                }
                 default_container__generators__generateAllActorRelationships = component "generators__generateallactorrelationships" {
-                    description "Generate all actor-related relationships (bidirectional)\n\nIncludes:\n1. Actor → Component (from actor.targets) - users interacting with system\n2. Component → Actor (from componentRelationships) - system using external actors\n\nStructurizr automatically aggregates relationships in views:\n- System Context view: Shows as actor ↔ system\n- Container view: Shows as actor ↔ container\n- Component view: Shows actual actor ↔ component relationships"
-                    technology "function"
-                    tags "Code"
-                }
-                default_container__generators__generateModel = component "generators__generatemodel" {
-                    description "Generate the model section of the DSL"
-                    technology "function"
-                    tags "Code"
-                }
-                default_container__generators__generateViews = component "generators__generateviews" {
-                    description "Generate the views section of the DSL"
-                    technology "function"
-                    tags "Code"
-                }
-                default_container__generators__generateSystemContextView = component "generators__generatesystemcontextview" {
-                    description "Generate System Context view\n\nShows actors and the system boundary. Structurizr automatically aggregates\nactor → component relationships to actor → system for this view since\ncomponents are not explicitly included."
-                    technology "function"
-                    tags "Code"
-                }
-                default_container__generators__generateContainerView = component "generators__generatecontainerview" {
-                    description "Generate Container view\n\nShows actors, containers, and their relationships. Actor → component\nrelationships are automatically aggregated to actor → container level\nby Structurizr since components are not shown in this view."
-                    technology "function"
-                    tags "Code"
-                }
-                default_container__generators__generateComponentView = component "generators__generatecomponentview" {
-                    description "Generate Component view for a container (excludes Code elements)\n\nShows actors, components within the container, and their relationships.\nActor → component relationships are shown explicitly at this level.\nCode elements are excluded to keep the view focused on architecture."
-                    technology "function"
-                    tags "Code"
-                }
-                default_container__generators__generateClassView = component "generators__generateclassview" {
-                    description "Generate Class view for a component (only Code elements within that component)\nThis supports the drill-down model: System → Container → Component → Code\n\nNote: Component views in Structurizr require a container ID, not a component ID.\nWe use the component's container and filter to show only this component's code."
-                    technology "function"
-                    tags "Code"
-                }
-                default_container__generators__generateActor = component "generators__generateactor" {
-                    description "Generate DSL for an actor (person or external system)"
-                    technology "function"
-                    tags "Code"
-                }
-                default_container__generators__generateContainer = component "generators__generatecontainer" {
-                    description "Generate DSL for a container with its components"
-                    technology "function"
-                    tags "Code"
-                }
-                default_container__generators__generateComponent = component "generators__generatecomponent" {
-                    description "Generate DSL for a component"
-                    technology "function"
-                    tags "Code"
-                }
-                default_container__generators__generateCodeAsComponent = component "generators__generatecodeascomponent" {
-                    description "Generate DSL for a code item as a component\nAlways tagged with \"Code\" to separate from logical components in views"
+                    description "Generate all actor-related relationships"
                     technology "function"
                     tags "Code"
                 }
                 default_container__generators__generateUniqueCodeName = component "generators__generateuniquecodename" {
-                    description "Generate a unique name for a code item to avoid naming collisions\n\nHandles both hierarchical IDs and file-path-based IDs:\n- Hierarchical: \"container::component::codeName\"\n- File-based: \"C:/path/to/file.ts:functionName\""
-                    technology "function"
-                    tags "Code"
-                }
-                default_container__generators__generateRelationship = component "generators__generaterelationship" {
-                    description "Generate DSL for a relationship"
+                    description "Generate a unique name for a code item to avoid naming collisions"
                     technology "function"
                     tags "Code"
                 }
@@ -361,13 +328,8 @@ workspace "Application" "Main application container" {
                     technology "function"
                     tags "Code"
                 }
-                default_container__generators__generateDeployment = component "generators__generatedeployment" {
-                    description "Generate DSL for a deployment environment\n\nSupports both legacy `nodes` format and new `instances` format.\nGenerates deployment relationships between container instances."
-                    technology "function"
-                    tags "Code"
-                }
                 default_container__generators__sanitizeId = component "generators__sanitizeid" {
-                    description "Sanitize ID for DSL (remove special characters, convert to camelCase)"
+                    description "Sanitize ID for DSL (remove special characters, convert to valid identifier)"
                     technology "function"
                     tags "Code"
                 }
@@ -406,7 +368,6 @@ workspace "Application" "Main application container" {
             }
 
         }
-
         # Actor interactions
         user -> default_container__cli "Interacts with CLI"
         default_container__core -> filesystem "Uses FileSystem for external system integration"
@@ -414,7 +375,6 @@ workspace "Application" "Main application container" {
         default_container__core -> github_plantuml_repo "Uses Github PlantUML Repo for external system integration"
         default_container__core -> local_systems_unzip_utility "Uses Local System's unzip utility for external system integration"
         default_container__core -> file_system "Uses File System for external system integration"
-
     }
 
     views {
@@ -441,6 +401,7 @@ workspace "Application" "Main application container" {
             autoLayout
         }
 
+
         component default_container "Components_Application" {
             include user
             include filesystem
@@ -459,6 +420,7 @@ workspace "Application" "Main application container" {
             autoLayout
         }
 
+
         component default_container "Classes_default_container__cli" {
             include default_container__cli__usageAndExit
             include default_container__cli__parseArgs
@@ -467,6 +429,7 @@ workspace "Application" "Main application container" {
             include default_container__cli__run
             autoLayout
         }
+
 
         component default_container "Classes_default_container__extractors" {
             include default_container__extractors__aggregateIRs
@@ -479,34 +442,28 @@ workspace "Application" "Main application container" {
             autoLayout
         }
 
+
         component default_container "Classes_default_container__validators" {
             include default_container__validators__run
             include default_container__validators__baseValidator
             autoLayout
         }
 
+
         component default_container "Classes_default_container__generators" {
             include default_container__generators__run
             include default_container__generators__structurizrGenerator
+            include default_container__generators__prepareContainerData
+            include default_container__generators__prepareComponentView
+            include default_container__generators__prepareClassView
             include default_container__generators__generateAllActorRelationships
-            include default_container__generators__generateModel
-            include default_container__generators__generateViews
-            include default_container__generators__generateSystemContextView
-            include default_container__generators__generateContainerView
-            include default_container__generators__generateComponentView
-            include default_container__generators__generateClassView
-            include default_container__generators__generateActor
-            include default_container__generators__generateContainer
-            include default_container__generators__generateComponent
-            include default_container__generators__generateCodeAsComponent
             include default_container__generators__generateUniqueCodeName
-            include default_container__generators__generateRelationship
             include default_container__generators__buildTechnologyString
-            include default_container__generators__generateDeployment
             include default_container__generators__sanitizeId
             include default_container__generators__escapeString
             autoLayout
         }
+
 
         component default_container "Classes_default_container__renderers" {
             include default_container__renderers__run
@@ -514,6 +471,7 @@ workspace "Application" "Main application container" {
             include default_container__renderers__structurizrExport
             autoLayout
         }
+
 
         component default_container "Classes_default_container__docs" {
             include default_container__docs__run
@@ -525,10 +483,12 @@ workspace "Application" "Main application container" {
             autoLayout
         }
 
+
         component default_container "Classes_default_container__core" {
             include default_container__core__nameToId
-            include default_container__core__formatTimestamp
-            include default_container__core__formatLogMessage
+            include default_container__core__isTTY
+            include default_container__core__getDefaultLogLevel
+            include default_container__core__createPinoLogger
             include default_container__core__createLogger
             include default_container__core__loadModuleFromPath
             include default_container__core__getCliDir

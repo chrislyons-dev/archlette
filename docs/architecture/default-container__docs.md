@@ -134,14 +134,14 @@ Find diagram files for a specific view type
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/docs/builtin/markdown-docs.ts:199</code></td>
+<td><code>C:/Users/chris/git/archlette/src/docs/builtin/markdown-docs.ts:213</code></td>
 </tr>
 </tbody>
 </table>
 
 **Parameters:**
 
-- `rendererOutputs`: <code>any[]</code>- `diagramsDir`: <code>string</code>- `docsDir`: <code>string</code>- `viewType`: <code>string</code>
+- `rendererOutputs`: <code>import("C:/Users/chris/git/archlette/src/core/types").RendererOutput[]</code>- `diagramsDir`: <code>string</code>- `docsDir`: <code>string</code>- `viewType`: <code>string</code>- `log`: <code>import("C:/Users/chris/git/archlette/src/core/logger").Logger</code>
 
 ---
 ##### `docs__findDiagramsForComponent()`
@@ -164,14 +164,14 @@ Find component diagrams for a specific component
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/docs/builtin/markdown-docs.ts:228</code></td>
+<td><code>C:/Users/chris/git/archlette/src/docs/builtin/markdown-docs.ts:245</code></td>
 </tr>
 </tbody>
 </table>
 
 **Parameters:**
 
-- `rendererOutputs`: <code>any[]</code>- `diagramsDir`: <code>string</code>- `docsDir`: <code>string</code>- `_component`: <code>z.infer<any></code>
+- `rendererOutputs`: <code>import("C:/Users/chris/git/archlette/src/core/types").RendererOutput[]</code>- `diagramsDir`: <code>string</code>- `docsDir`: <code>string</code>- `_component`: <code>z.infer<any></code>
 
 ---
 ##### `docs__findClassDiagramsForComponent()`
@@ -194,14 +194,14 @@ Find class diagrams for a specific component
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/docs/builtin/markdown-docs.ts:261</code></td>
+<td><code>C:/Users/chris/git/archlette/src/docs/builtin/markdown-docs.ts:278</code></td>
 </tr>
 </tbody>
 </table>
 
 **Parameters:**
 
-- `rendererOutputs`: <code>any[]</code>- `diagramsDir`: <code>string</code>- `docsDir`: <code>string</code>- `component`: <code>z.infer<any></code>
+- `rendererOutputs`: <code>import("C:/Users/chris/git/archlette/src/core/types").RendererOutput[]</code>- `diagramsDir`: <code>string</code>- `docsDir`: <code>string</code>- `component`: <code>z.infer<any></code>
 
 ---
 ##### `docs__sanitizeFileName()`
@@ -223,7 +223,7 @@ Find class diagrams for a specific component
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/docs/builtin/markdown-docs.ts:295</code></td>
+<td><code>C:/Users/chris/git/archlette/src/docs/builtin/markdown-docs.ts:312</code></td>
 </tr>
 </tbody>
 </table>

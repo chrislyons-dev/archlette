@@ -33,6 +33,12 @@ skinparam rectangle<<Application.Application.core__createlogger>> {
   BorderColor #9a9a9a
   shadowing false
 }
+skinparam rectangle<<Application.Application.core__createpinologger>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
 skinparam rectangle<<Application.Application.core__downloadfile>> {
   BackgroundColor #dddddd
   FontColor #000000
@@ -81,18 +87,6 @@ skinparam rectangle<<Application.Application.core__findstructurizrcli>> {
   BorderColor #9a9a9a
   shadowing false
 }
-skinparam rectangle<<Application.Application.core__formatlogmessage>> {
-  BackgroundColor #dddddd
-  FontColor #000000
-  BorderColor #9a9a9a
-  shadowing false
-}
-skinparam rectangle<<Application.Application.core__formattimestamp>> {
-  BackgroundColor #dddddd
-  FontColor #000000
-  BorderColor #9a9a9a
-  shadowing false
-}
 skinparam rectangle<<Application.Application.core__getcachedir>> {
   BackgroundColor #dddddd
   FontColor #000000
@@ -100,6 +94,18 @@ skinparam rectangle<<Application.Application.core__getcachedir>> {
   shadowing false
 }
 skinparam rectangle<<Application.Application.core__getclidir>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<Application.Application.core__getdefaultloglevel>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<Application.Application.core__istty>> {
   BackgroundColor #dddddd
   FontColor #000000
   BorderColor #9a9a9a
@@ -197,8 +203,9 @@ skinparam rectangle<<Application.Application>> {
 
 rectangle "Application\n<size:10>[Container: Application]</size>" <<Application.Application>> {
   rectangle "==core__nametoid\n<size:10>[Component: function]</size>\n\nConvert a name to a normalized ID\nUsed for consistent ID generation across extractors and mappers" <<Application.Application.core__nametoid>> as Application.Application.core__nametoid
-  rectangle "==core__formattimestamp\n<size:10>[Component: function]</size>\n\nFormat timestamp as ISO 8601 (local time)" <<Application.Application.core__formattimestamp>> as Application.Application.core__formattimestamp
-  rectangle "==core__formatlogmessage\n<size:10>[Component: function]</size>\n\nFormat log message with timestamp, level, and context" <<Application.Application.core__formatlogmessage>> as Application.Application.core__formatlogmessage
+  rectangle "==core__istty\n<size:10>[Component: function]</size>\n\nDetermine if we're in a TTY environment (for pretty printing)" <<Application.Application.core__istty>> as Application.Application.core__istty
+  rectangle "==core__getdefaultloglevel\n<size:10>[Component: function]</size>\n\nGet default log level from environment or fallback to 'info'" <<Application.Application.core__getdefaultloglevel>> as Application.Application.core__getdefaultloglevel
+  rectangle "==core__createpinologger\n<size:10>[Component: function]</size>\n\nCreate a Pino logger instance with optional pretty printing" <<Application.Application.core__createpinologger>> as Application.Application.core__createpinologger
   rectangle "==core__createlogger\n<size:10>[Component: function]</size>\n\nCreate a logger instance" <<Application.Application.core__createlogger>> as Application.Application.core__createlogger
   rectangle "==core__loadmodulefrompath\n<size:10>[Component: function]</size>\n\nDynamically load an ESM module from a path or module specifier" <<Application.Application.core__loadmodulefrompath>> as Application.Application.core__loadmodulefrompath
   rectangle "==core__getclidir\n<size:10>[Component: function]</size>" <<Application.Application.core__getclidir>> as Application.Application.core__getclidir

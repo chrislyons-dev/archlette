@@ -9,42 +9,24 @@ graph TB
 
       27["<div style='font-weight: bold'>generators__run</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Execute the generation stage</div>"]
       style 27 fill:#dddddd,stroke:#9a9a9a,color:#000000
-      66["<div style='font-weight: bold'>generators__structurizrgenerator</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Generate Structurizr DSL from<br />ArchletteIR</div>"]
-      style 66 fill:#dddddd,stroke:#9a9a9a,color:#000000
-      67["<div style='font-weight: bold'>generators__generateallactorrelationships</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Generate all actor-related<br />relationships (bidirectional)<br />Includes: 1. Actor →<br />Component (from<br />actor.targets) - users<br />interacting with system 2.<br />Component → Actor (from<br />componentRelationships) -<br />system using external actors<br />Structurizr automatically<br />aggregates relationships in<br />views: - System Context view:<br />Shows as actor ↔ system -<br />Container view: Shows as<br />actor ↔ container - Component<br />view: Shows actual actor ↔<br />component relationships</div>"]
+      67["<div style='font-weight: bold'>generators__structurizrgenerator</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Generate Structurizr DSL from<br />ArchletteIR</div>"]
       style 67 fill:#dddddd,stroke:#9a9a9a,color:#000000
-      68["<div style='font-weight: bold'>generators__generatemodel</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Generate the model section of<br />the DSL</div>"]
+      68["<div style='font-weight: bold'>generators__preparecontainerdata</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Prepare container data with<br />components, code, and<br />relationships for template</div>"]
       style 68 fill:#dddddd,stroke:#9a9a9a,color:#000000
-      69["<div style='font-weight: bold'>generators__generateviews</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Generate the views section of<br />the DSL</div>"]
+      69["<div style='font-weight: bold'>generators__preparecomponentview</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Prepare component view data<br />for template</div>"]
       style 69 fill:#dddddd,stroke:#9a9a9a,color:#000000
-      70["<div style='font-weight: bold'>generators__generatesystemcontextview</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Generate System Context view<br />Shows actors and the system<br />boundary. Structurizr<br />automatically aggregates<br />actor → component<br />relationships to actor →<br />system for this view since<br />components are not explicitly<br />included.</div>"]
+      70["<div style='font-weight: bold'>generators__prepareclassview</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Prepare class view data for<br />template</div>"]
       style 70 fill:#dddddd,stroke:#9a9a9a,color:#000000
-      71["<div style='font-weight: bold'>generators__generatecontainerview</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Generate Container view Shows<br />actors, containers, and their<br />relationships. Actor →<br />component relationships are<br />automatically aggregated to<br />actor → container level by<br />Structurizr since components<br />are not shown in this view.</div>"]
+      71["<div style='font-weight: bold'>generators__generateallactorrelationships</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Generate all actor-related<br />relationships</div>"]
       style 71 fill:#dddddd,stroke:#9a9a9a,color:#000000
-      72["<div style='font-weight: bold'>generators__generatecomponentview</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Generate Component view for a<br />container (excludes Code<br />elements) Shows actors,<br />components within the<br />container, and their<br />relationships. Actor →<br />component relationships are<br />shown explicitly at this<br />level. Code elements are<br />excluded to keep the view<br />focused on architecture.</div>"]
+      72["<div style='font-weight: bold'>generators__generateuniquecodename</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Generate a unique name for a<br />code item to avoid naming<br />collisions</div>"]
       style 72 fill:#dddddd,stroke:#9a9a9a,color:#000000
-      73["<div style='font-weight: bold'>generators__generateclassview</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Generate Class view for a<br />component (only Code elements<br />within that component) This<br />supports the drill-down<br />model: System → Container →<br />Component → Code Note:<br />Component views in<br />Structurizr require a<br />container ID, not a component<br />ID. We use the component's<br />container and filter to show<br />only this component's code.</div>"]
+      73["<div style='font-weight: bold'>generators__buildtechnologystring</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Build technology string from<br />relationship metadata</div>"]
       style 73 fill:#dddddd,stroke:#9a9a9a,color:#000000
-      74["<div style='font-weight: bold'>generators__generateactor</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Generate DSL for an actor<br />(person or external system)</div>"]
+      74["<div style='font-weight: bold'>generators__sanitizeid</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Sanitize ID for DSL (remove<br />special characters, convert<br />to valid identifier)</div>"]
       style 74 fill:#dddddd,stroke:#9a9a9a,color:#000000
-      75["<div style='font-weight: bold'>generators__generatecontainer</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Generate DSL for a container<br />with its components</div>"]
+      75["<div style='font-weight: bold'>generators__escapestring</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Escape special characters in<br />strings for DSL</div>"]
       style 75 fill:#dddddd,stroke:#9a9a9a,color:#000000
-      76["<div style='font-weight: bold'>generators__generatecomponent</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Generate DSL for a component</div>"]
-      style 76 fill:#dddddd,stroke:#9a9a9a,color:#000000
-      77["<div style='font-weight: bold'>generators__generatecodeascomponent</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Generate DSL for a code item<br />as a component Always tagged<br />with "Code" to separate from<br />logical components in views</div>"]
-      style 77 fill:#dddddd,stroke:#9a9a9a,color:#000000
-      78["<div style='font-weight: bold'>generators__generateuniquecodename</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Generate a unique name for a<br />code item to avoid naming<br />collisions Handles both<br />hierarchical IDs and<br />file-path-based IDs: -<br />Hierarchical:<br />"container::component::codeName"<br />- File-based:<br />"C:/path/to/file.ts:functionName"</div>"]
-      style 78 fill:#dddddd,stroke:#9a9a9a,color:#000000
-      79["<div style='font-weight: bold'>generators__generaterelationship</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Generate DSL for a<br />relationship</div>"]
-      style 79 fill:#dddddd,stroke:#9a9a9a,color:#000000
-      80["<div style='font-weight: bold'>generators__buildtechnologystring</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Build technology string from<br />relationship metadata</div>"]
-      style 80 fill:#dddddd,stroke:#9a9a9a,color:#000000
-      81["<div style='font-weight: bold'>generators__generatedeployment</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Generate DSL for a deployment<br />environment Supports both<br />legacy `nodes` format and new<br />`instances` format. Generates<br />deployment relationships<br />between container instances.</div>"]
-      style 81 fill:#dddddd,stroke:#9a9a9a,color:#000000
-      82["<div style='font-weight: bold'>generators__sanitizeid</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Sanitize ID for DSL (remove<br />special characters, convert<br />to camelCase)</div>"]
-      style 82 fill:#dddddd,stroke:#9a9a9a,color:#000000
-      83["<div style='font-weight: bold'>generators__escapestring</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Escape special characters in<br />strings for DSL</div>"]
-      style 83 fill:#dddddd,stroke:#9a9a9a,color:#000000
     end
 
   end

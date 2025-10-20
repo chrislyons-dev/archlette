@@ -74,10 +74,10 @@ rectangle "Application\n<size:10>[Software System]</size>" <<Application>> {
   rectangle "==Application\n<size:10>[Container: Application]</size>\n\nMain application container" <<Application.Application>> as Application.Application
 }
 
-Application.Application .[#707070,thickness=2].> FileSystem : "<color:#707070>Uses FileSystem for external system integration"
-Application.Application .[#707070,thickness=2].> GithubStructurizrRepo : "<color:#707070>Uses Github Structurizr Repo for external system integration"
-Application.Application .[#707070,thickness=2].> GithubPlantUMLRepo : "<color:#707070>Uses Github PlantUML Repo for external system integration"
 Application.Application .[#707070,thickness=2].> LocalSystemsunziputility : "<color:#707070>Uses Local System's unzip utility for external system integration"
 Application.Application .[#707070,thickness=2].> FileSystem : "<color:#707070>Uses File System for external system integration"
 User .[#707070,thickness=2].> Application.Application : "<color:#707070>Interacts with CLI"
+Application.Application .[#707070,thickness=2].> FileSystem : "<color:#707070>Uses FileSystem for external system integration"
+Application.Application .[#707070,thickness=2].> GithubStructurizrRepo : "<color:#707070>Uses Github Structurizr Repo for external system integration"
+Application.Application .[#707070,thickness=2].> GithubPlantUMLRepo : "<color:#707070>Uses Github PlantUML Repo for external system integration"
 @enduml

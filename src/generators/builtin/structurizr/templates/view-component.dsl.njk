@@ -1,0 +1,10 @@
+        component {{ containerView.containerId | sanitizeId }} "{{ containerView.viewName }}" {
+{%- for actor in containerView.relevantActors %}
+            include {{ actor.id | sanitizeId }}
+{%- endfor %}
+{%- for component in containerView.components %}
+            include {{ component.id | sanitizeId }}
+{%- endfor %}
+            exclude "element.tag==Code"
+            autoLayout
+        }

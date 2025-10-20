@@ -65,7 +65,7 @@
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/cli.ts:68</code></td>
+<td><code>C:/Users/chris/git/archlette/src/cli.ts:69</code></td>
 </tr>
 </tbody>
 </table>
@@ -94,7 +94,7 @@
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/cli.ts:90</code></td>
+<td><code>C:/Users/chris/git/archlette/src/cli.ts:91</code></td>
 </tr>
 </tbody>
 </table>
@@ -123,7 +123,7 @@
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/cli.ts:123</code></td>
+<td><code>C:/Users/chris/git/archlette/src/cli.ts:124</code></td>
 </tr>
 </tbody>
 </table>
@@ -156,7 +156,7 @@
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/cli.ts:129</code></td>
+<td><code>C:/Users/chris/git/archlette/src/cli.ts:130</code></td>
 </tr>
 </tbody>
 </table>
@@ -189,7 +189,7 @@
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/cli.ts:149</code></td>
+<td><code>C:/Users/chris/git/archlette/src/cli.ts:150</code></td>
 </tr>
 </tbody>
 </table>

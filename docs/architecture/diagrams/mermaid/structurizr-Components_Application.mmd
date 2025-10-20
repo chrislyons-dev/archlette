@@ -24,7 +24,7 @@ graph TB
       style 10 fill:#dddddd,stroke:#9a9a9a,color:#000000
       11["<div style='font-weight: bold'>validators</div><div style='font-size: 70%; margin-top: 0px'>[Component: module]</div><div style='font-size: 80%; margin-top:10px'>Validation stage of the AAC<br />pipeline | Base IR validator<br />for Archlette pipeline</div>"]
       style 11 fill:#dddddd,stroke:#9a9a9a,color:#000000
-      12["<div style='font-weight: bold'>generators</div><div style='font-size: 70%; margin-top: 0px'>[Component: module]</div><div style='font-size: 80%; margin-top:10px'>Generation stage of the AAC<br />pipeline | Structurizr DSL<br />Generator</div>"]
+      12["<div style='font-weight: bold'>generators</div><div style='font-size: 70%; margin-top: 0px'>[Component: module]</div><div style='font-size: 80%; margin-top:10px'>Generation stage of the AAC<br />pipeline | Structurizr DSL<br />Generator (Template-based)</div>"]
       style 12 fill:#dddddd,stroke:#9a9a9a,color:#000000
       13["<div style='font-weight: bold'>renderers</div><div style='font-size: 70%; margin-top: 0px'>[Component: module]</div><div style='font-size: 80%; margin-top:10px'>Render stage of the AAC<br />pipeline | PlantUML image<br />renderer | Structurizr DSL<br />export renderer</div>"]
       style 13 fill:#dddddd,stroke:#9a9a9a,color:#000000
@@ -36,9 +36,6 @@ graph TB
       style 9 fill:#dddddd,stroke:#9a9a9a,color:#000000
     end
 
-    15-. "<div>Uses FileSystem for external<br />system integration</div><div style='font-size: 70%'></div>" .->2
-    15-. "<div>Uses Github Structurizr Repo<br />for external system<br />integration</div><div style='font-size: 70%'></div>" .->3
-    15-. "<div>Uses Github PlantUML Repo for<br />external system integration</div><div style='font-size: 70%'></div>" .->4
     15-. "<div>Uses Local System's unzip<br />utility for external system<br />integration</div><div style='font-size: 70%'></div>" .->5
     15-. "<div>Uses File System for external<br />system integration</div><div style='font-size: 70%'></div>" .->6
     9-. "<div>Analyzes source code to<br />extract architecture<br />components</div><div style='font-size: 70%'></div>" .->10
@@ -52,4 +49,7 @@ graph TB
     13-. "<div>Provides types, module<br />loading, and tool management</div><div style='font-size: 70%'></div>" .->15
     14-. "<div>Provides types, module<br />loading, and path resolution</div><div style='font-size: 70%'></div>" .->15
     1-. "<div>Interacts with CLI</div><div style='font-size: 70%'></div>" .->9
+    15-. "<div>Uses FileSystem for external<br />system integration</div><div style='font-size: 70%'></div>" .->2
+    15-. "<div>Uses Github Structurizr Repo<br />for external system<br />integration</div><div style='font-size: 70%'></div>" .->3
+    15-. "<div>Uses Github PlantUML Repo for<br />external system integration</div><div style='font-size: 70%'></div>" .->4
   end

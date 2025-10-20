@@ -25,6 +25,7 @@ describe('structurizrGenerator', () => {
       code: [],
       deployments: [],
       containerRelationships: [],
+      deploymentRelationships: [],
       componentRelationships: [],
       codeRelationships: [],
     };
@@ -54,6 +55,7 @@ describe('structurizrGenerator', () => {
       code: [],
       deployments: [],
       containerRelationships: [],
+      deploymentRelationships: [],
       componentRelationships: [],
       codeRelationships: [],
     };
@@ -85,6 +87,7 @@ describe('structurizrGenerator', () => {
       code: [],
       deployments: [],
       containerRelationships: [],
+      deploymentRelationships: [],
       componentRelationships: [],
       codeRelationships: [],
     };
@@ -115,6 +118,7 @@ describe('structurizrGenerator', () => {
       code: [],
       deployments: [],
       containerRelationships: [],
+      deploymentRelationships: [],
       componentRelationships: [],
       codeRelationships: [],
     };
@@ -147,6 +151,7 @@ describe('structurizrGenerator', () => {
           auth: 'tls',
         },
       ],
+      deploymentRelationships: [],
       componentRelationships: [],
       codeRelationships: [],
     };
@@ -169,6 +174,7 @@ describe('structurizrGenerator', () => {
       code: [],
       deployments: [],
       containerRelationships: [],
+      deploymentRelationships: [],
       componentRelationships: [
         { source: 'comp.a', destination: 'comp.b', description: 'Uses' },
       ],
@@ -203,6 +209,7 @@ describe('structurizrGenerator', () => {
         },
       ],
       containerRelationships: [],
+      deploymentRelationships: [],
       componentRelationships: [],
       codeRelationships: [],
     };
@@ -225,6 +232,7 @@ describe('structurizrGenerator', () => {
       code: [],
       deployments: [],
       containerRelationships: [],
+      deploymentRelationships: [],
       componentRelationships: [],
       codeRelationships: [],
     };
@@ -271,6 +279,7 @@ describe('structurizrGenerator', () => {
       ],
       deployments: [],
       containerRelationships: [],
+      deploymentRelationships: [],
       componentRelationships: [],
       codeRelationships: [],
     };

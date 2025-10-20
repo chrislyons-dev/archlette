@@ -228,14 +228,14 @@ Extract architecture information from a Node.js/TypeScript codebase
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node.ts:70</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node.ts:72</code></td>
 </tr>
 </tbody>
 </table>
 
 **Parameters:**
 
-- `node`: <code>any</code> — - Configuration node with include/exclude patterns
+- `node`: <code>any</code> — - Configuration node with include/exclude patterns- `ctx`: <code>import("C:/Users/chris/git/archlette/src/core/types").PipelineContext</code> — - Optional pipeline context with logger
 **Examples:**
 ```typescript
 
@@ -266,14 +266,14 @@ Extract deployment topology from Cloudflare Wrangler configuration files
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler.ts:66</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler.ts:68</code></td>
 </tr>
 </tbody>
 </table>
 
 **Parameters:**
 
-- `node`: <code>any</code> — - Configuration node with include/exclude patterns
+- `node`: <code>any</code> — - Configuration node with include/exclude patterns- `ctx`: <code>import("C:/Users/chris/git/archlette/src/core/types").PipelineContext</code> — - Optional pipeline context with logger
 **Examples:**
 ```typescript
 

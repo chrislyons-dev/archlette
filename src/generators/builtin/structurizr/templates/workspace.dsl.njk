@@ -1,0 +1,81 @@
+workspace "{{ system.name }}" "{{ system.description or 'Architecture as Code generated workspace' }}" {
+
+    model {
+{%- if actors.length > 0 %}
+        # External actors
+{%- for actor in actors %}
+        {{ actor.id | sanitizeId }} = {% if actor.type == 'Person' %}person{% else %}softwareSystem{% endif %} "{{ actor.name }}" "{{ actor.description or '' | escapeString }}"{% if actor.type != 'Person' %} "External"{% endif %}
+{%- endfor %}
+
+{%- endif %}
+        # {{ system.name }} System
+        {{ system.name | sanitizeId }} = softwareSystem "{{ system.name }}" {
+{%- if system.description %}
+            description "{{ system.description | escapeString }}"
+{%- endif %}
+
+{%- if containers.length > 0 %}
+            # Containers
+{%- for container in containers %}
+{% set containerComponents = container.containerComponents %}
+{% set containerCode = container.containerCode %}
+{% set relevantCompRels = container.relevantCompRels %}
+{% set relevantCodeRels = container.relevantCodeRels %}
+{% include 'container.dsl.njk' %}
+
+{%- endfor %}
+{%- endif %}
+
+{%- if containerRelationships.length > 0 %}
+            # Container relationships
+{%- for rel in containerRelationships %}
+            {{ rel.source | sanitizeId }} -> {{ rel.destination | sanitizeId }} "{{ (rel.description or rel.stereotype or 'Uses') | escapeString }}"{% if rel | buildTechnology %} "{{ rel | buildTechnology | escapeString }}"{% endif %}
+{%- endfor %}
+{%- endif %}
+        }
+
+{%- if actorRelationships.length > 0 %}
+        # Actor interactions
+{%- for rel in actorRelationships %}
+        {{ rel.source | sanitizeId }} -> {{ rel.destination | sanitizeId }} "{{ (rel.description or rel.stereotype or 'Uses') | escapeString }}"{% if rel | buildTechnology %} "{{ rel | buildTechnology | escapeString }}"{% endif %}
+{%- endfor %}
+
+{%- endif %}
+        {%- if deployments.length > 0 %}
+        # Deployment environments
+{% for deployment in deployments %}
+{% include 'deployment.dsl.njk' %}
+{%- endfor %}
+{%- endif %}
+    }
+
+    views {
+
+        systemContext {{ system.name | sanitizeId }} "{{ VIEW_NAMES.SYSTEM_CONTEXT }}" {
+{%- for actor in actors %}
+            include {{ actor.id | sanitizeId }}
+{%- endfor %}
+            include {{ system.name | sanitizeId }}
+            autoLayout
+        }
+
+        container {{ system.name | sanitizeId }} "{{ VIEW_NAMES.CONTAINERS }}" {
+{%- for actor in actors %}
+            include {{ actor.id | sanitizeId }}
+{%- endfor %}
+{%- for container in containers %}
+            include {{ container.id | sanitizeId }}
+{%- endfor %}
+            autoLayout
+        }
+{% for containerView in componentViews %}
+
+{% include 'view-component.dsl.njk' %}
+{%- endfor %}
+{%- for classView in classViews %}
+
+{% include 'view-class.dsl.njk' %}
+{%- endfor %}
+    }
+
+}
