@@ -84,10 +84,14 @@ export interface ExtractedProperty {
   visibility: 'public' | 'private' | 'protected';
   isStatic: boolean;
   isReadonly: boolean;
+  isProperty: boolean; // True if @property decorator
   location: SourceLocation;
   documentation?: DocInfo;
   type?: string;
   defaultValue?: string;
+  hasGetter?: boolean;
+  hasSetter?: boolean;
+  hasDeleter?: boolean;
 }
 
 export interface ExtractedFunction {
@@ -209,9 +213,15 @@ export interface PythonParserOutput {
       }>;
       properties: Array<{
         name: string;
+        type?: 'property' | 'class_variable';
         annotation?: string;
         default?: string;
         line: number;
+        docstring?: string;
+        isReadonly?: boolean;
+        hasGetter?: boolean;
+        hasSetter?: boolean;
+        hasDeleter?: boolean;
       }>;
     }>;
     functions: Array<{
@@ -244,6 +254,13 @@ export interface PythonParserOutput {
         default?: string;
       }>;
       returnAnnotation?: string;
+    }>;
+    types: Array<{
+      name: string;
+      category: 'TypeAlias' | 'TypedDict' | 'Protocol' | 'Enum' | 'NewType';
+      line: number;
+      definition?: string;
+      docstring?: string;
     }>;
     imports: Array<{
       source: string;

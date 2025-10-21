@@ -15,6 +15,7 @@ import type {
   ExtractedMethod,
   ExtractedProperty,
   ExtractedFunction,
+  ExtractedType,
   ParameterInfo,
   DocInfo,
 } from './types.js';
@@ -115,7 +116,7 @@ function mapToFileExtraction(file: PythonParserOutput['files'][0]): FileExtracti
     })),
     classes: file.classes.map((cls) => mapClass(cls, file.filePath)),
     functions: file.functions.map((func) => mapFunction(func, file.filePath)),
-    types: [], // TODO: Add type extraction in Phase 2
+    types: file.types.map((type) => mapType(type, file.filePath)),
     imports: file.imports.map((imp) => ({
       source: imp.source,
       importedNames: imp.names,
@@ -192,20 +193,25 @@ function mapProperty(
   filePath: string,
 ): ExtractedProperty {
   const visibility = getVisibility(prop.name);
+  const isProperty = prop.type === 'property';
 
   return {
     name: prop.name,
     visibility,
-    isStatic: true, // Class variables are static
-    isReadonly: false, // Can't determine from AST alone
+    isStatic: !isProperty, // Properties are instance members, class variables are static
+    isReadonly: prop.isReadonly || false,
+    isProperty,
     location: {
       filePath,
       line: prop.line,
       column: 0,
     },
-    documentation: undefined, // Properties don't have docstrings in Python
+    documentation: parseDocstring(prop.docstring),
     type: prop.annotation,
     defaultValue: prop.default,
+    hasGetter: prop.hasGetter,
+    hasSetter: prop.hasSetter,
+    hasDeleter: prop.hasDeleter,
   };
 }
 
@@ -234,6 +240,28 @@ function mapFunction(
     returnType: func.returnAnnotation,
     returnDescription:
       func.parsedDoc?.returns?.description || extractReturnDescription(func.docstring),
+  };
+}
+
+/**
+ * Map Python type definition to ExtractedType
+ */
+function mapType(
+  type: PythonParserOutput['files'][0]['types'][0],
+  filePath: string,
+): ExtractedType {
+  return {
+    name: type.name,
+    isExported: !type.name.startsWith('_'),
+    category: type.category,
+    location: {
+      filePath,
+      line: type.line,
+      column: 0,
+    },
+    documentation: parseDocstring(type.docstring),
+    deprecated: extractDeprecation(type.docstring),
+    definition: type.definition || '',
   };
 }
 

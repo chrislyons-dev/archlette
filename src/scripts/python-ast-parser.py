@@ -566,6 +566,7 @@ def parse_file(file_path: str) -> Dict[str, Any]:
             'relationships': extract_relationships(tree),
             'classes': extract_classes(tree),
             'functions': extract_functions(tree),
+            'types': extract_types(tree),
             'imports': extract_imports(tree),
         }
     except SyntaxError as e:
@@ -576,6 +577,7 @@ def parse_file(file_path: str) -> Dict[str, Any]:
             'relationships': [],
             'classes': [],
             'functions': [],
+            'types': [],
             'imports': [],
             'parseError': f"Syntax error at line {e.lineno}: {e.msg}",
         }
@@ -587,6 +589,7 @@ def parse_file(file_path: str) -> Dict[str, Any]:
             'relationships': [],
             'classes': [],
             'functions': [],
+            'types': [],
             'imports': [],
             'parseError': str(e),
         }
@@ -728,17 +731,76 @@ def extract_methods(class_node: ast.ClassDef) -> List[Dict[str, Any]]:
 
 
 def extract_properties(class_node: ast.ClassDef) -> List[Dict[str, Any]]:
-    """Extract class-level properties (annotated assignments)."""
+    """Extract class-level properties and @property decorators."""
     properties = []
     
+    # Track property methods to detect getters/setters
+    property_methods = {}
+    
+    # First pass: Find all @property decorated methods
+    for node in class_node.body:
+        if isinstance(node, ast.FunctionDef):
+            # Check for @property decorator
+            has_property = any(get_decorator_name(d) == 'property' for d in node.decorator_list)
+            
+            if has_property:
+                property_methods[node.name] = {
+                    'name': node.name,
+                    'type': 'property',
+                    'hasGetter': True,
+                    'hasSetter': False,
+                    'hasDeleter': False,
+                    'line': node.lineno,
+                    'docstring': ast.get_docstring(node),
+                    'returnAnnotation': get_annotation(node.returns) if node.returns else None,
+                }
+            
+            # Check for setter (e.g., @name.setter)
+            for dec in node.decorator_list:
+                dec_name = get_decorator_name(dec)
+                if dec_name.endswith('.setter'):
+                    prop_name = dec_name.replace('.setter', '')
+                    if prop_name in property_methods:
+                        property_methods[prop_name]['hasSetter'] = True
+                
+                # Check for deleter (e.g., @name.deleter)
+                if dec_name.endswith('.deleter'):
+                    prop_name = dec_name.replace('.deleter', '')
+                    if prop_name in property_methods:
+                        property_methods[prop_name]['hasDeleter'] = True
+    
+    # Add property decorators to results
+    for prop in property_methods.values():
+        properties.append({
+            'name': prop['name'],
+            'type': 'property',
+            'annotation': prop['returnAnnotation'],
+            'default': None,
+            'line': prop['line'],
+            'docstring': prop['docstring'],
+            'isReadonly': prop['hasGetter'] and not prop['hasSetter'],
+            'hasGetter': prop['hasGetter'],
+            'hasSetter': prop['hasSetter'],
+            'hasDeleter': prop['hasDeleter'],
+        })
+    
+    # Second pass: Extract class variable annotations
     for node in class_node.body:
         if isinstance(node, ast.AnnAssign) and isinstance(node.target, ast.Name):
-            properties.append({
-                'name': node.target.id,
-                'annotation': get_annotation(node.annotation) if node.annotation else None,
-                'default': ast.unparse(node.value) if node.value else None,
-                'line': node.lineno,
-            })
+            # Skip if this is a property (already handled above)
+            if node.target.id not in property_methods:
+                properties.append({
+                    'name': node.target.id,
+                    'type': 'class_variable',
+                    'annotation': get_annotation(node.annotation) if node.annotation else None,
+                    'default': ast.unparse(node.value) if node.value else None,
+                    'line': node.lineno,
+                    'docstring': None,
+                    'isReadonly': False,  # Can't determine from annotation alone
+                    'hasGetter': False,
+                    'hasSetter': False,
+                    'hasDeleter': False,
+                })
     
     return properties
 
@@ -811,6 +873,150 @@ def extract_parameters(func_node) -> List[Dict[str, Any]]:
         })
     
     return params
+
+
+def extract_types(tree: ast.Module) -> List[Dict[str, Any]]:
+    """Extract type definitions (TypeAlias, TypedDict, Protocol, Enum, NewType).
+    
+    Detects:
+    - Type aliases: UserId = str
+    - TypedDict classes
+    - Protocol classes
+    - Enum classes
+    - NewType declarations
+    """
+    types = []
+    
+    for node in tree.body:
+        # Type alias assignments (PEP 613: TypeAlias = ...)
+        if isinstance(node, ast.AnnAssign) and isinstance(node.target, ast.Name):
+            # Check if annotation is TypeAlias
+            if isinstance(node.annotation, ast.Name) and node.annotation.id == 'TypeAlias':
+                types.append({
+                    'name': node.target.id,
+                    'category': 'TypeAlias',
+                    'line': node.lineno,
+                    'definition': ast.unparse(node.value) if node.value else None,
+                    'docstring': None,
+                })
+        
+        # Simple type alias: UserId = str (without TypeAlias annotation)
+        elif isinstance(node, ast.Assign):
+            if len(node.targets) == 1 and isinstance(node.targets[0], ast.Name):
+                target_name = node.targets[0].id
+                # Heuristic: if it looks like a type (uppercase start) and value is a type expression
+                if target_name[0].isupper() and is_type_expression(node.value):
+                    types.append({
+                        'name': target_name,
+                        'category': 'TypeAlias',
+                        'line': node.lineno,
+                        'definition': ast.unparse(node.value),
+                        'docstring': None,
+                    })
+        
+        # Class-based type definitions
+        elif isinstance(node, ast.ClassDef):
+            base_names = [get_name(base) for base in node.bases]
+            
+            # TypedDict
+            if 'TypedDict' in base_names:
+                types.append({
+                    'name': node.name,
+                    'category': 'TypedDict',
+                    'line': node.lineno,
+                    'definition': extract_typeddict_fields(node),
+                    'docstring': ast.get_docstring(node),
+                })
+            
+            # Protocol
+            elif 'Protocol' in base_names or any('Protocol' in bn for bn in base_names):
+                types.append({
+                    'name': node.name,
+                    'category': 'Protocol',
+                    'line': node.lineno,
+                    'definition': extract_protocol_methods(node),
+                    'docstring': ast.get_docstring(node),
+                })
+            
+            # Enum
+            elif 'Enum' in base_names or 'IntEnum' in base_names or 'StrEnum' in base_names:
+                types.append({
+                    'name': node.name,
+                    'category': 'Enum',
+                    'line': node.lineno,
+                    'definition': extract_enum_members(node),
+                    'docstring': ast.get_docstring(node),
+                })
+        
+        # NewType calls: UserId = NewType('UserId', str)
+        elif isinstance(node, ast.Assign):
+            if len(node.targets) == 1 and isinstance(node.targets[0], ast.Name):
+                if isinstance(node.value, ast.Call):
+                    if isinstance(node.value.func, ast.Name) and node.value.func.id == 'NewType':
+                        types.append({
+                            'name': node.targets[0].id,
+                            'category': 'NewType',
+                            'line': node.lineno,
+                            'definition': ast.unparse(node.value),
+                            'docstring': None,
+                        })
+    
+    return types
+
+
+def is_type_expression(node) -> bool:
+    """Check if an AST node represents a type expression."""
+    if isinstance(node, (ast.Name, ast.Constant)):
+        return True
+    if isinstance(node, ast.Subscript):  # List[str], Dict[str, int], etc.
+        return True
+    if isinstance(node, ast.BinOp) and isinstance(node.op, ast.BitOr):  # Union with |
+        return True
+    if isinstance(node, ast.Attribute):  # typing.Optional, etc.
+        return True
+    return False
+
+
+def extract_typeddict_fields(class_node: ast.ClassDef) -> str:
+    """Extract TypedDict field definitions."""
+    fields = []
+    for node in class_node.body:
+        if isinstance(node, ast.AnnAssign) and isinstance(node.target, ast.Name):
+            field_name = node.target.id
+            field_type = get_annotation(node.annotation) if node.annotation else 'Any'
+            fields.append(f"{field_name}: {field_type}")
+    return "{" + ", ".join(fields) + "}"
+
+
+def extract_protocol_methods(class_node: ast.ClassDef) -> str:
+    """Extract Protocol method signatures."""
+    methods = []
+    for node in class_node.body:
+        if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef)):
+            method_sig = f"{'async ' if isinstance(node, ast.AsyncFunctionDef) else ''}{node.name}("
+            params = []
+            for arg in node.args.args:
+                if arg.arg != 'self':
+                    param_str = arg.arg
+                    if arg.annotation:
+                        param_str += f": {get_annotation(arg.annotation)}"
+                    params.append(param_str)
+            method_sig += ", ".join(params) + ")"
+            if node.returns:
+                method_sig += f" -> {get_annotation(node.returns)}"
+            methods.append(method_sig)
+    return "{" + ", ".join(methods) + "}"
+
+
+def extract_enum_members(class_node: ast.ClassDef) -> str:
+    """Extract Enum member names."""
+    members = []
+    for node in class_node.body:
+        if isinstance(node, ast.Assign):
+            for target in node.targets:
+                if isinstance(target, ast.Name):
+                    members.append(target.id)
+    return "{" + ", ".join(members) + "}"
 
 
 def extract_imports(tree: ast.Module) -> List[Dict[str, Any]]:

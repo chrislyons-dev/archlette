@@ -19,6 +19,7 @@ import type {
   ExtractedClass,
   ExtractedMethod,
   ExtractedFunction,
+  ExtractedType,
 } from './types.js';
 
 const log = createLogger({ context: 'PythonIRMapper' });
@@ -84,6 +85,11 @@ export function mapToIR(
     // Functions
     for (const func of extraction.functions) {
       codeItems.push(mapFunctionToCodeItem(func, componentId));
+    }
+
+    // Types (TypedDict, Protocol, Enum, etc.)
+    for (const type of extraction.types) {
+      codeItems.push(mapTypeToCodeItem(type, componentId));
     }
   }
 
@@ -291,6 +297,30 @@ function mapFunctionToCodeItem(
       language: 'python',
       decorators: func.decorators,
       isExported: func.isExported,
+    },
+  };
+}
+
+/**
+ * Map ExtractedType to CodeItem
+ */
+function mapTypeToCodeItem(type: ExtractedType, componentId?: string): CodeItem {
+  return {
+    id: nameToId(type.name),
+    componentId: componentId || undefined,
+    name: type.name,
+    type: 'type', // Using 'type' for type definitions
+    description: type.documentation?.summary,
+    documentation: type.documentation,
+    deprecated: type.deprecated,
+    filePath: type.location.filePath,
+    lineNumber: type.location.line,
+    tags: ['Code', 'Type'],
+    metadata: {
+      language: 'python',
+      typeCategory: type.category,
+      typeDefinition: type.definition,
+      isExported: type.isExported,
     },
   };
 }

@@ -202,4 +202,98 @@ describe('basic-python extractor', () => {
     expect(taxFunction).toBeDefined();
     expect(taxFunction?.description).toContain('Calculate tax on payment amount');
   });
+
+  it('should extract properties and @property decorators', async () => {
+    const node: ResolvedStageNode = {
+      use: 'extractors/builtin/basic-python',
+      name: 'property-demo',
+      inputs: {
+        include: ['test/extractors/builtin/basic-python/fixtures/properties.py'],
+        exclude: [],
+      },
+      props: {},
+      _effective: {
+        includes: ['test/extractors/builtin/basic-python/fixtures/properties.py'],
+        excludes: [],
+      },
+    };
+
+    const ir = await basicPython(node, mockContext);
+
+    // Verify component
+    expect(ir.components).toHaveLength(1);
+    expect(ir.components[0].name).toBe('PropertyDemo');
+
+    // Find User class
+    const userClass = ir.code.find(
+      (item) => item.name === 'User' && item.type === 'class',
+    );
+    expect(userClass).toBeDefined();
+
+    // Verify class has properties in metadata
+    // Properties should be tracked separately from methods
+    expect(userClass?.metadata).toBeDefined();
+
+    // Find Rectangle class to test read-only properties
+    const rectangleClass = ir.code.find(
+      (item) => item.name === 'Rectangle' && item.type === 'class',
+    );
+    expect(rectangleClass).toBeDefined();
+
+    // Product class should have dataclass decorator
+    const productClass = ir.code.find(
+      (item) => item.name === 'Product' && item.type === 'class',
+    );
+    expect(productClass).toBeDefined();
+    expect(productClass?.metadata?.decorators).toContain('dataclass');
+  });
+
+  it('should extract type definitions (TypedDict, Protocol, Enum)', async () => {
+    const node: ResolvedStageNode = {
+      use: 'extractors/builtin/basic-python',
+      name: 'type-definitions',
+      inputs: {
+        include: ['test/extractors/builtin/basic-python/fixtures/type_definitions.py'],
+        exclude: [],
+      },
+      props: {},
+      _effective: {
+        includes: ['test/extractors/builtin/basic-python/fixtures/type_definitions.py'],
+        excludes: [],
+      },
+    };
+
+    const ir = await basicPython(node, mockContext);
+
+    // Verify component
+    expect(ir.components).toHaveLength(1);
+    expect(ir.components[0].name).toBe('TypeDefinitions');
+
+    // Verify code items include type definitions
+    // Look for TypedDict, Protocol, and Enum in code items
+    const codeItems = ir.code;
+
+    // TypedDicts should be extracted
+    const userProfileType = codeItems.find((item) => item.name === 'UserProfile');
+    expect(userProfileType).toBeDefined();
+
+    const paymentDataType = codeItems.find((item) => item.name === 'PaymentData');
+    expect(paymentDataType).toBeDefined();
+
+    // Protocols should be extracted
+    const processorType = codeItems.find((item) => item.name === 'Processor');
+    expect(processorType).toBeDefined();
+
+    // Enums should be extracted
+    const paymentStatusType = codeItems.find((item) => item.name === 'PaymentStatus');
+    expect(paymentStatusType).toBeDefined();
+
+    const httpStatusType = codeItems.find((item) => item.name === 'HttpStatus');
+    expect(httpStatusType).toBeDefined();
+
+    // Functions should still be extracted
+    const createUserFunc = codeItems.find((item) => item.name === 'create_user');
+    expect(createUserFunc).toBeDefined();
+    expect(createUserFunc?.type).toBe('function');
+  });
 });
