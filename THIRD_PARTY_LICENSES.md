@@ -36,8 +36,9 @@ The following packages are installed as production dependencies via `package.jso
 ### NPM Dependencies Summary
 
 ```
-├─ MIT: 53
-├─ ISC: 7
+├─ MIT: 76
+├─ ISC: 10
+├─ BSD-3-Clause: 2
 ├─ Apache-2.0: 1
 └─ BSD-2-Clause: 1
 ```
@@ -60,4 +61,4 @@ This script:
 
 ---
 
-**Last generated**: 2025-10-18
+**Last generated**: 2025-10-20

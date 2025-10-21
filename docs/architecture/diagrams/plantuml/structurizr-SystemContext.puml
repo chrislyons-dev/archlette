@@ -1,6 +1,6 @@
 @startuml
 set separator none
-title @chrislyons-dev/archlette - System Context
+title Application - System Context
 
 top to bottom direction
 skinparam ranksep 60
@@ -15,7 +15,7 @@ skinparam {
 
 hide stereotype
 
-skinparam rectangle<<chrislyonsdevarchlette>> {
+skinparam rectangle<<Application>> {
   BackgroundColor #dddddd
   FontColor #000000
   BorderColor #9a9a9a
@@ -64,12 +64,12 @@ rectangle "==Github Structurizr Repo\n<size:10>[Software System]</size>\n\nThe g
 rectangle "==Github PlantUML Repo\n<size:10>[Software System]</size>\n\nThe github repo hosting the PlantUML CLI releases. https://github.com/plantuml/plantuml/releases/download/v${TOOL_VERSIONS.plantuml}/plantuml-${TOOL_VERSIONS.plantuml}.jar" <<GithubPlantUMLRepo>> as GithubPlantUMLRepo
 rectangle "==Local System's unzip utility\n<size:10>[Software System]</size>\n\nThe zip extraction utility on the local system (unzip on Unix, Expand-Archive on Windows)." <<LocalSystemsunziputility>> as LocalSystemsunziputility
 rectangle "==File System\n<size:10>[Software System]</size>\n\nThe local file system for caching downloaded tools." <<FileSystem>> as FileSystem
-rectangle "==@chrislyons-dev/archlette\n<size:10>[Software System]</size>\n\nArchitecture-as-Code toolkit for automated diagrams, docs, and releases." <<chrislyonsdevarchlette>> as chrislyonsdevarchlette
+rectangle "==Application\n<size:10>[Software System]</size>\n\nMain application container" <<Application>> as Application
 
-chrislyonsdevarchlette .[#707070,thickness=2].> FileSystem : "<color:#707070>Uses FileSystem for external system integration"
-chrislyonsdevarchlette .[#707070,thickness=2].> GithubStructurizrRepo : "<color:#707070>Uses Github Structurizr Repo for external system integration"
-chrislyonsdevarchlette .[#707070,thickness=2].> GithubPlantUMLRepo : "<color:#707070>Uses Github PlantUML Repo for external system integration"
-chrislyonsdevarchlette .[#707070,thickness=2].> LocalSystemsunziputility : "<color:#707070>Uses Local System's unzip utility for external system integration"
-chrislyonsdevarchlette .[#707070,thickness=2].> FileSystem : "<color:#707070>Uses File System for external system integration"
-User .[#707070,thickness=2].> chrislyonsdevarchlette : "<color:#707070>Interacts with CLI"
+Application .[#707070,thickness=2].> GithubPlantUMLRepo : "<color:#707070>Uses Github PlantUML Repo for external system integration"
+Application .[#707070,thickness=2].> LocalSystemsunziputility : "<color:#707070>Uses Local System's unzip utility for external system integration"
+Application .[#707070,thickness=2].> FileSystem : "<color:#707070>Uses File System for external system integration"
+User .[#707070,thickness=2].> Application : "<color:#707070>Interacts with CLI"
+Application .[#707070,thickness=2].> FileSystem : "<color:#707070>Uses FileSystem for external system integration"
+Application .[#707070,thickness=2].> GithubStructurizrRepo : "<color:#707070>Uses Github Structurizr Repo for external system integration"
 @enduml

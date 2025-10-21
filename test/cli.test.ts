@@ -196,14 +196,17 @@ describe('CLI YAML handling & resolution', () => {
     expect(calls[0].ctxConfig).toEqual({ answer: 42 });
   });
 
-  it('proceeds with empty config if file does not exist', async () => {
+  it('proceeds with default config if file does not exist', async () => {
     const fsMod: any = await import('node:fs');
     fsMod.existsSync.mockImplementation((p: string) => p !== '/does/not/exist.yaml');
 
     const { run } = await freshCli();
     await run(['node', 'cli', 'extract', '-f', '/does/not/exist.yaml']);
 
-    expect(calls[0].ctxConfig).toBeNull();
+    // Config should have default values when file doesn't exist
+    expect(calls[0].ctxConfig).not.toBeNull();
+    // @ts-expect-error: intentionally ignore possible undefined property in test
+    expect(calls[0].ctxConfig?.project.name).toBe('archlette-project');
     expect(spyWarn).not.toHaveBeenCalled();
   });
 
@@ -218,27 +221,44 @@ describe('CLI YAML handling & resolution', () => {
     // and it should print a friendly error
     expect(spyError).toHaveBeenCalled();
 
-    // be tolerant to the logger prefix and multiple args
-    const last = (spyError as any).mock.calls.at(-1) as unknown[]; // ["[archlette:error]", "Error: Unknown option \"-x\".", ...]
-    expect(Array.isArray(last)).toBe(true);
-    // includes our logger prefix
-    expect(String(last[0])).toContain('Error: Unknown option "-x"');
-    // includes the specific unknown option message somewhere
-    expect(
-      last.some((a) => typeof a === 'string' && a.includes('Unknown option "-x"')),
-    ).toBe(true);
+    // Parse JSON log lines from Pino
+    const errorCalls = (spyError as any).mock.calls
+      .map((c: any[]) => {
+        try {
+          return JSON.parse(c[0]);
+        } catch {
+          return null;
+        }
+      })
+      .filter(Boolean);
+
+    // Check that error message contains the unknown option
+    const hasUnknownOption = errorCalls.some(
+      (log: any) => log.msg && log.msg.includes('Unknown option "-x"'),
+    );
+    expect(hasUnknownOption).toBe(true);
   });
 
   it('logs "Using config:" when the YAML file exists', async () => {
     const { run } = await freshCli();
     await run(['node', 'cli', 'extract']); // uses default ./templates/default.yaml -> /cfg/default.yaml (exists)
 
-    // find the info log that mentions Using config:
-    const infoCalls = (console.log as any).mock.calls.map((c: any[]) => c.join(' '));
-    // example call looks like: ["[archlette:info]", "Using config:", "/cfg/default.yaml"]
+    // Parse JSON log lines from Pino
+    const infoCalls = (console.log as any).mock.calls
+      .map((c: any[]) => {
+        try {
+          return JSON.parse(c[0]);
+        } catch {
+          return null;
+        }
+      })
+      .filter(Boolean);
+
     const hasUsing = infoCalls.some(
-      (line: string | string[]) =>
-        line.includes('Using config:') && line.includes('/cfg/default.yaml'),
+      (log: any) =>
+        log.msg &&
+        log.msg.includes('Using config:') &&
+        log.msg.includes('/cfg/default.yaml'),
     );
     expect(hasUsing).toBe(true);
   });
@@ -251,13 +271,23 @@ describe('CLI YAML handling & resolution', () => {
     const { run } = await freshCli();
     await run(['node', 'cli', 'extract']); // still looks for ./templates/default.yaml but now "missing"
 
-    const infoCalls = (console.log as any).mock.calls.map((c: any[]) => c.join(' '));
-    const found = infoCalls.find((line: string | string[]) =>
-      line.includes('No config file found'),
+    // Parse JSON log lines from Pino
+    const infoCalls = (console.log as any).mock.calls
+      .map((c: any[]) => {
+        try {
+          return JSON.parse(c[0]);
+        } catch {
+          return null;
+        }
+      })
+      .filter(Boolean);
+
+    const found = infoCalls.find(
+      (log: any) => log.msg && log.msg.includes('No config file found'),
     );
     expect(found).toBeTruthy();
     // should mention what it looked for (the resolved default)
-    expect(found).toContain('/cfg/default.yaml');
+    expect(found.msg).toContain('/cfg/default.yaml');
   });
 
   it('invokes a stage module default export when present', async () => {
@@ -294,12 +324,22 @@ describe('CLI YAML handling & resolution', () => {
     const { run } = await freshCli();
     await run(['node', 'cli', 'extract']);
 
-    // log should include "No exported function in" and the resolved path
-    const logLines = (console.log as any).mock.calls.map((c: any[]) => c.join(' '));
+    // Parse JSON log lines from Pino
+    const logLines = (console.log as any).mock.calls
+      .map((c: any[]) => {
+        try {
+          return JSON.parse(c[0]);
+        } catch {
+          return null;
+        }
+      })
+      .filter(Boolean);
+
     const hit = logLines.find(
-      (line: string | string[]) =>
-        line.includes('No exported function in') &&
-        line.includes('/fake/extract/index.ts'),
+      (log: any) =>
+        log.msg &&
+        log.msg.includes('No exported function in') &&
+        log.msg.includes('/fake/extract/index.ts'),
     );
     expect(hit).toBeTruthy();
   });
@@ -330,12 +370,12 @@ describe('CLI errors', () => {
     const { run } = await freshCli();
     await expect(run(['node', 'cli', 'extract'])).rejects.toThrow(/process\.exit\(1\)/);
 
-    // New logger format outputs a single formatted string: "YYYY-MM-DDTHH:MM:SS.mmm LEVEL [Context] message"
+    // Pino outputs JSON format: {"level":50,"time":"...","context":"Extract","msg":"Stage failed:"}
     expect(spyError).toHaveBeenCalled();
     const firstCall = (spyError as any).mock.calls[0];
-    const logMessage = firstCall[0];
-    expect(logMessage).toMatch(/ERROR/);
-    expect(logMessage).toMatch(/\[Extract\]/);
-    expect(logMessage).toMatch(/Stage failed:/);
+    const logData = JSON.parse(firstCall[0]);
+    expect(logData.level).toBe(50); // error level
+    expect(logData.context).toBe('Extract');
+    expect(logData.msg).toMatch(/Stage failed:/);
   });
 });

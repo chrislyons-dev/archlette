@@ -3,10 +3,10 @@
 project: { name: Archlette }
 
 paths:
-  ir_out: ../docs/architecture/aac-ir.json
-  dsl_out: ../docs/architecture/aac.dsl
-  render_out: ../docs/architecture/diagrams
-  docs_out: ../docs/architecture
+  ir_out: docs/architecture/aac-ir.json
+  dsl_out: docs/architecture/aac.dsl
+  render_out: docs/architecture/diagrams
+  docs_out: docs/architecture
 
 # config yaml in, ir json out
 extractors:

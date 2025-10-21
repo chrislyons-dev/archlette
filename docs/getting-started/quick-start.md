@@ -1,27 +1,26 @@
 # Quick Start
 
-Install. Annotate. Generate. Done.
+Architecture shouldn't live in slides. Extract it from code.
 
 ---
 
-## Install
+## Three Steps
+
+### 1. Install
 
 ```bash
 npm install -D @chrislyons-dev/archlette
 ```
 
-**Requirements:**
+**Java required for rendering.** Archlette handles the rest.
 
-- Node.js ≥ 18
-- Java ≥ 11 (for diagram rendering)
-
-See [Installation](installation.md) for platform-specific setup.
+> [Installation guide](installation.md) for platform-specific setup.
 
 ---
 
-## Annotate
+### 2. Annotate
 
-Mark architectural components in your code:
+Mark components in your code. Archlette extracts the rest.
 
 ```typescript
 /**
@@ -29,7 +28,7 @@ Mark architectural components in your code:
  * User authentication and management
  *
  * @actor User {Person} {in} End user accessing the system
- * @uses Database Stores user credentials and profiles
+ * @uses Database Stores user credentials
  */
 export class UserService {
   async login(email: string, password: string) {
@@ -38,82 +37,56 @@ export class UserService {
 }
 ```
 
-Archlette extracts these annotations automatically. No configuration needed.
+Code speaks. Archlette listens.
 
 ---
 
-## Configure
-
-Create `.aac.yaml` in your project root:
-
-```yaml
-project:
-  name: MyProject
-
-paths:
-  docs_out: docs/architecture
-
-extractors:
-  - use: extractors/builtin/basic-node
-    inputs:
-      include: ['src/**/*.ts']
-      exclude: ['**/*.test.ts']
-```
-
-That's it. Sensible defaults everywhere.
-
----
-
-## Generate
+### 3. Generate
 
 ```bash
 npx archlette
 ```
 
-**Output:**
+**Pipeline runs:**
 
-- `docs/architecture/README.md` — System overview with diagrams
+```
+Extract → Validate → Generate → Render → Publish
+```
+
+**Creates:**
+
+- `docs/architecture/README.md` — Overview with diagrams
 - `docs/architecture/diagrams/*.png` — C4 architecture diagrams
-- `docs/architecture/workspace.dsl` — Structurizr DSL source
+- `docs/architecture/workspace.dsl` — Structurizr DSL
 - `docs/architecture/ir.json` — Intermediate representation
 
-First run downloads Structurizr CLI and PlantUML automatically. Cached for subsequent runs.
+First run downloads tools automatically. Cached for subsequent runs.
 
 ---
 
-## View
+## Done
 
-Open `docs/architecture/README.md` in your browser or editor.
+Open `docs/architecture/README.md`. Your architecture is documented.
 
-**System Context** shows actors and external systems.
-**Container Diagram** shows deployable units.
-**Component Diagram** shows logical architecture.
-
-All synchronized with your code. Always current.
+**Always synchronized.** No manual updates. No drift.
 
 ---
 
-## Next Steps
+## Next: Choose Your Extractor
 
-**Enhance your architecture:**
+Archlette needs to know what to analyze:
 
-- [Annotations Reference](../guide/annotations.md) — All supported JSDoc tags
-- [Configuration](../guide/configuration.md) — Paths, plugins, customization
-
-**Automate:**
-
-- [CI/CD Integration](../guide/ci-cd.md) — Run in GitHub Actions, GitLab CI
-
-**Extend:**
-
-- [Plugin Development](../plugins/extractors.md) — Write custom extractors
+**Building with JavaScript/TypeScript?** → [Basic Node](../extractors/basic-node.md)  
+**Deploying to Cloudflare Workers?** → [Basic Wrangler](../extractors/basic-wrangler.md)  
+**Need both? Not sure?** → [Help me choose](choosing-extractors.md)
 
 ---
 
 ## Common Patterns
 
-**Monorepo:**
-Configure multiple extractors, one per package:
+### Monorepo
+
+Multiple extractors, one per package:
 
 ```yaml
 extractors:
@@ -128,8 +101,9 @@ extractors:
       include: ['packages/web/**/*.tsx']
 ```
 
-**Selective extraction:**
-Only extract specific directories:
+### Selective Extraction
+
+Focus on specific directories:
 
 ```yaml
 extractors:
@@ -143,12 +117,31 @@ extractors:
         - '**/mocks/**'
 ```
 
-**Run specific stages:**
+### Staged Execution
+
+Run specific pipeline stages:
 
 ```bash
-npx archlette extract   # Just extraction
-npx archlette generate  # Extract + validate + generate DSL
-npx archlette render    # Full pipeline through rendering
+npx archlette extract   # Extraction only
+npx archlette generate  # Through DSL generation
+npx archlette render    # Through diagram rendering
 ```
 
-See [CLI Reference](../reference/cli.md) for all commands.
+See [CLI Reference](../reference/cli.md) for all options.
+
+---
+
+## Learn More
+
+**Enhance:**
+
+- [Annotations Reference](../guide/annotations.md) — All JSDoc tags
+- [Configuration](../guide/configuration.md) — Advanced options
+
+**Automate:**
+
+- [CI/CD Integration](../guide/ci-cd.md) — GitHub Actions, GitLab CI
+
+**Extend:**
+
+- [Plugin Development](../plugins/extractors.md) — Custom extractors

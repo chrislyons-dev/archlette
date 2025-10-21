@@ -20,7 +20,7 @@ import * as fs from 'node:fs';
 import * as path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createRequire } from 'node:module';
-import type { PipelineContext } from '../../core/types.js';
+import type { PipelineContext, Logger, RendererOutput } from '../../core/types.js';
 import type { Component } from '../../core/types-ir.js';
 import { resolveArchlettePath } from '../../core/path-resolver.js';
 
@@ -52,7 +52,10 @@ export default async function markdownDocs(ctx: PipelineContext): Promise<void> 
   const docsDir = resolveArchlettePath(ctx.config.paths.docs_out, {
     cliDir: ctx.configBaseDir,
   });
-  const diagramsDir = path.join(docsDir, 'diagrams');
+  // Get diagram directory from render_out config (not docs_out)
+  const diagramsDir = resolveArchlettePath(ctx.config.paths.render_out, {
+    cliDir: ctx.configBaseDir,
+  });
 
   // Ensure output directory exists
   fs.mkdirSync(docsDir, { recursive: true });
@@ -91,18 +94,29 @@ export default async function markdownDocs(ctx: PipelineContext): Promise<void> 
       .replace('ss', pad(d.getSeconds()));
   });
 
-  env.addFilter('selectattr', (arr: any[], attr: string, test: string, value: any) => {
-    if (test === 'equalto') {
-      return arr.filter((item) => item[attr] === value);
-    }
-    return arr;
-  });
+  env.addFilter(
+    'selectattr',
+    (
+      arr: Array<Record<string, unknown>>,
+      attr: string,
+      test: string,
+      value: unknown,
+    ) => {
+      if (test === 'equalto') {
+        return arr.filter((item) => item[attr] === value);
+      }
+      return arr;
+    },
+  );
 
-  env.addFilter('map', (arr: any[], _mapType: string, attr: string) => {
-    return arr.map((item) => item[attr]);
-  });
+  env.addFilter(
+    'map',
+    (arr: Array<Record<string, unknown>>, _mapType: string, attr: string) => {
+      return arr.map((item) => item[attr]);
+    },
+  );
 
-  env.addFilter('first', (arr: any[]) => {
+  env.addFilter('first', <T>(arr: T[]) => {
     return arr && arr.length > 0 ? arr[0] : undefined;
   });
 
@@ -112,18 +126,21 @@ export default async function markdownDocs(ctx: PipelineContext): Promise<void> 
     diagramsDir,
     docsDir,
     'SystemContext',
+    ctx.log,
   );
   const containerDiagrams = findDiagramsForView(
     rendererOutputs,
     diagramsDir,
     docsDir,
     'Container',
+    ctx.log,
   );
   const componentDiagrams = findDiagramsForView(
     rendererOutputs,
     diagramsDir,
     docsDir,
     'Component',
+    ctx.log,
   );
 
   // Render system page
@@ -166,7 +183,7 @@ export default async function markdownDocs(ctx: PipelineContext): Promise<void> 
       ),
     });
 
-    const filename = `${component.id}.md`;
+    const filename = `${sanitizeFileName(component.id)}.md`;
     const componentPagePath = path.join(docsDir, filename);
     fs.writeFileSync(componentPagePath, componentPageContent, 'utf8');
     ctx.log.debug(`  • ${filename}`);
@@ -194,19 +211,23 @@ export default async function markdownDocs(ctx: PipelineContext): Promise<void> 
  * Find diagram files for a specific view type
  */
 function findDiagramsForView(
-  rendererOutputs: any[],
+  rendererOutputs: RendererOutput[],
   diagramsDir: string,
   docsDir: string,
   viewType: string,
+  log?: Logger,
 ): string[] {
   const diagrams: string[] = [];
-
+  log?.debug(
+    `Searching for diagrams using diagramsDir: ${diagramsDir}, docsDir: ${docsDir}, view type: ${viewType}`,
+  );
   for (const output of rendererOutputs) {
     if (output.format === 'png') {
       for (const file of output.files) {
         const filename = path.basename(file, '.png');
         if (filename.includes(viewType) && !filename.includes('-key')) {
           const fullPath = path.join(diagramsDir, file);
+          log?.debug('Checking for diagram file:', fullPath);
           if (fs.existsSync(fullPath)) {
             diagrams.push(path.relative(docsDir, fullPath));
           }
@@ -222,7 +243,7 @@ function findDiagramsForView(
  * Find component diagrams for a specific component
  */
 function findDiagramsForComponent(
-  rendererOutputs: any[],
+  rendererOutputs: RendererOutput[],
   diagramsDir: string,
   docsDir: string,
   _component: Component,
@@ -255,22 +276,25 @@ function findDiagramsForComponent(
  * Find class diagrams for a specific component
  */
 function findClassDiagramsForComponent(
-  rendererOutputs: any[],
+  rendererOutputs: RendererOutput[],
   diagramsDir: string,
   docsDir: string,
   component: Component,
 ): string[] {
   const diagrams: string[] = [];
+  // Sanitize component ID same way as generator does
+  // (replaces non-alphanumeric except underscore with underscore)
+  const sanitizedComponentId = component.id.replace(/[^a-zA-Z0-9_]/g, '_');
 
   for (const output of rendererOutputs) {
     if (output.format === 'png') {
       for (const file of output.files) {
         const filename = path.basename(file, '.png');
         // Look for class diagrams for this specific component
-        // Format: Container-{containerId}-Component-{componentId}-Classes
+        // Format: structurizr-Classes_{sanitized-component-id}
         if (
           filename.includes('Classes') &&
-          filename.includes(component.id.replace(/-/g, '')) &&
+          filename.includes(sanitizedComponentId) &&
           !filename.includes('-key')
         ) {
           const fullPath = path.join(diagramsDir, file);
@@ -283,4 +307,16 @@ function findClassDiagramsForComponent(
   }
 
   return diagrams;
+}
+
+function sanitizeFileName(name: string): string {
+  // Remove or replace characters not allowed in Windows or Linux filenames
+  // Windows: \ / : * ? " < > |
+  // Linux: /
+  return name
+    .replace(/[\\/:*?"<>|]/g, '-') // Replace invalid characters with hyphen
+    .replace(/^\.+/, '') // Remove leading dots
+    .replace(/\s+/g, '-') // Replace spaces with hyphen
+    .replace(/-+/g, '-') // Collapse multiple hyphens
+    .replace(/^-+|-+$/g, ''); // Trim leading/trailing hyphens
 }

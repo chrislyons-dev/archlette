@@ -219,12 +219,12 @@ Configure documentation generation:
 
 ```yaml
 docs:
-  - use: docs/builtin/markdown-docs # System overview + component pages
+  - use: builtin/markdown-docs # System overview + component pages
 ```
 
 **Built-in docs generators:**
 
-- `docs/builtin/markdown-docs` — Markdown pages with embedded diagrams
+- `builtin/markdown-docs` — Markdown pages with embedded diagrams
 
 **Output:**
 

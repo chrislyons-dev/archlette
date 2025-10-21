@@ -1,0 +1,237 @@
+@startuml
+set separator none
+title Application - Application - Components
+
+top to bottom direction
+skinparam ranksep 60
+skinparam nodesep 30
+
+skinparam {
+  arrowFontSize 10
+  defaultTextAlignment center
+  wrapWidth 200
+  maxMessageSize 100
+}
+
+hide stereotype
+
+skinparam rectangle<<Application.Application.core__checkjava>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<Application.Application.core__commandexistsinpath>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<Application.Application.core__createlogger>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<Application.Application.core__createpinologger>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<Application.Application.core__downloadfile>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<Application.Application.core__downloadplantuml>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<Application.Application.core__downloadstructurizr>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<Application.Application.core__ensurecachedir>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<Application.Application.core__expandtilde>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<Application.Application.core__extractzip>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<Application.Application.core__findplantuml>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<Application.Application.core__findstructurizrcli>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<Application.Application.core__getcachedir>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<Application.Application.core__getclidir>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<Application.Application.core__getdefaultloglevel>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<Application.Application.core__istty>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<Application.Application.core__loaddocmodule>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<Application.Application.core__loadextractormodule>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<Application.Application.core__loadgeneratormodule>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<Application.Application.core__loadmodulefrompath>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<Application.Application.core__loadrenderermodule>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<Application.Application.core__loadvalidatormodule>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<Application.Application.core__makeexecutable>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<Application.Application.core__nametoid>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<Application.Application.core__requirejava>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<Application.Application.core__resolvearchlettepath>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<Application.Application.core__resolveconfig>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<Application.Application.core__resolvemoduleentry>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<Application.Application.core__tofileurl>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<Application.Application.core__writefile>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<Application.Application>> {
+  BorderColor #9a9a9a
+  FontColor #9a9a9a
+  shadowing false
+}
+
+rectangle "Application\n<size:10>[Container: Application]</size>" <<Application.Application>> {
+  rectangle "==core__nametoid\n<size:10>[Component: function]</size>\n\nConvert a name to a normalized ID\nUsed for consistent ID generation across extractors and mappers" <<Application.Application.core__nametoid>> as Application.Application.core__nametoid
+  rectangle "==core__istty\n<size:10>[Component: function]</size>\n\nDetermine if we're in a TTY environment (for pretty printing)" <<Application.Application.core__istty>> as Application.Application.core__istty
+  rectangle "==core__getdefaultloglevel\n<size:10>[Component: function]</size>\n\nGet default log level from environment or fallback to 'info'" <<Application.Application.core__getdefaultloglevel>> as Application.Application.core__getdefaultloglevel
+  rectangle "==core__createpinologger\n<size:10>[Component: function]</size>\n\nCreate a Pino logger instance with optional pretty printing" <<Application.Application.core__createpinologger>> as Application.Application.core__createpinologger
+  rectangle "==core__createlogger\n<size:10>[Component: function]</size>\n\nCreate a logger instance" <<Application.Application.core__createlogger>> as Application.Application.core__createlogger
+  rectangle "==core__loadmodulefrompath\n<size:10>[Component: function]</size>\n\nDynamically load an ESM module from a path or module specifier" <<Application.Application.core__loadmodulefrompath>> as Application.Application.core__loadmodulefrompath
+  rectangle "==core__getclidir\n<size:10>[Component: function]</size>" <<Application.Application.core__getclidir>> as Application.Application.core__getclidir
+  rectangle "==core__expandtilde\n<size:10>[Component: function]</size>" <<Application.Application.core__expandtilde>> as Application.Application.core__expandtilde
+  rectangle "==core__resolvearchlettepath\n<size:10>[Component: function]</size>\n\nCore path resolver honoring Archlette rules (no file existence checks).\n- "~"  -> user home\n- "/"  -> absolute\n- else -> relative to CLI dir" <<Application.Application.core__resolvearchlettepath>> as Application.Application.core__resolvearchlettepath
+  rectangle "==core__resolvemoduleentry\n<size:10>[Component: function]</size>\n\nResolve a module entry by probing:\n1) Exact path\n2) With extensions: .ts then .js\n3) If directory: index.ts then index.js" <<Application.Application.core__resolvemoduleentry>> as Application.Application.core__resolvemoduleentry
+  rectangle "==core__tofileurl\n<size:10>[Component: function]</size>" <<Application.Application.core__tofileurl>> as Application.Application.core__tofileurl
+  rectangle "==core__writefile\n<size:10>[Component: function]</size>\n\nWrite content to a file, creating parent directories if needed." <<Application.Application.core__writefile>> as Application.Application.core__writefile
+  rectangle "==core__loadextractormodule\n<size:10>[Component: function]</size>" <<Application.Application.core__loadextractormodule>> as Application.Application.core__loadextractormodule
+  rectangle "==core__loadvalidatormodule\n<size:10>[Component: function]</size>" <<Application.Application.core__loadvalidatormodule>> as Application.Application.core__loadvalidatormodule
+  rectangle "==core__loadgeneratormodule\n<size:10>[Component: function]</size>" <<Application.Application.core__loadgeneratormodule>> as Application.Application.core__loadgeneratormodule
+  rectangle "==core__loadrenderermodule\n<size:10>[Component: function]</size>" <<Application.Application.core__loadrenderermodule>> as Application.Application.core__loadrenderermodule
+  rectangle "==core__loaddocmodule\n<size:10>[Component: function]</size>" <<Application.Application.core__loaddocmodule>> as Application.Application.core__loaddocmodule
+  rectangle "==core__getcachedir\n<size:10>[Component: function]</size>\n\nGet the Archlette cache directory" <<Application.Application.core__getcachedir>> as Application.Application.core__getcachedir
+  rectangle "==core__ensurecachedir\n<size:10>[Component: function]</size>\n\nEnsure cache directory exists" <<Application.Application.core__ensurecachedir>> as Application.Application.core__ensurecachedir
+  rectangle "==core__commandexistsinpath\n<size:10>[Component: function]</size>\n\nCheck if a command exists in PATH" <<Application.Application.core__commandexistsinpath>> as Application.Application.core__commandexistsinpath
+  rectangle "==core__downloadfile\n<size:10>[Component: function]</size>\n\nDownload a file from URL to destination" <<Application.Application.core__downloadfile>> as Application.Application.core__downloadfile
+  rectangle "==core__extractzip\n<size:10>[Component: function]</size>\n\nExtract a ZIP file (simple extraction for Structurizr CLI)" <<Application.Application.core__extractzip>> as Application.Application.core__extractzip
+  rectangle "==core__makeexecutable\n<size:10>[Component: function]</size>\n\nMake file executable (Unix only)" <<Application.Application.core__makeexecutable>> as Application.Application.core__makeexecutable
+  rectangle "==core__downloadstructurizr\n<size:10>[Component: function]</size>\n\nDownload and install Structurizr CLI to cache" <<Application.Application.core__downloadstructurizr>> as Application.Application.core__downloadstructurizr
+  rectangle "==core__downloadplantuml\n<size:10>[Component: function]</size>\n\nDownload and install PlantUML to cache" <<Application.Application.core__downloadplantuml>> as Application.Application.core__downloadplantuml
+  rectangle "==core__findstructurizrcli\n<size:10>[Component: function]</size>\n\nFind or download Structurizr CLI" <<Application.Application.core__findstructurizrcli>> as Application.Application.core__findstructurizrcli
+  rectangle "==core__findplantuml\n<size:10>[Component: function]</size>\n\nFind or download PlantUML JAR" <<Application.Application.core__findplantuml>> as Application.Application.core__findplantuml
+  rectangle "==core__checkjava\n<size:10>[Component: function]</size>\n\nVerify Java is available" <<Application.Application.core__checkjava>> as Application.Application.core__checkjava
+  rectangle "==core__requirejava\n<size:10>[Component: function]</size>\n\nValidate Java is installed (throw if not)" <<Application.Application.core__requirejava>> as Application.Application.core__requirejava
+  rectangle "==core__resolveconfig\n<size:10>[Component: function]</size>\n\nFor each stage, resolve includes/excludes for each node:\n  - If node omits includes/excludes, inherit from defaults." <<Application.Application.core__resolveconfig>> as Application.Application.core__resolveconfig
+}
+
+@enduml

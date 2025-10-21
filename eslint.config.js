@@ -31,7 +31,7 @@ export default [
     },
     rules: {
       'no-console': 'off',
-      '@typescript-eslint/no-explicit-any': 'off',
+      '@typescript-eslint/no-explicit-any': 'warn',
       '@typescript-eslint/no-unused-vars': [
         'error',
         {
@@ -40,6 +40,29 @@ export default [
           ignoreRestSiblings: true,
         },
       ],
+    },
+  },
+
+  // Stricter rules for src directory
+  {
+    files: ['src/**/*.ts', 'src/**/*.js', 'src/**/*.mjs'],
+    rules: {
+      '@typescript-eslint/no-explicit-any': 'error',
+    },
+  },
+
+  // Relaxed rules for test files
+  {
+    files: [
+      'test/**/*.ts',
+      'test/**/*.js',
+      '**/*.test.ts',
+      '**/*.test.js',
+      '**/*.spec.ts',
+      '**/*.spec.js',
+    ],
+    rules: {
+      '@typescript-eslint/no-explicit-any': 'off',
     },
   },
 ];

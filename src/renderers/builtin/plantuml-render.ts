@@ -41,7 +41,8 @@ export default async function plantumlRender(ctx: PipelineContext): Promise<void
     cliDir: ctx.configBaseDir,
   });
   const plantumlDir = path.join(outputBase, 'plantuml');
-  const imagesDir = outputBase; // Output images to root diagrams/ directory
+  // Ensure absolute path for PlantUML (it doesn't handle relative paths correctly)
+  const imagesDir = path.resolve(outputBase);
 
   // Check if PlantUML directory exists
   if (!fs.existsSync(plantumlDir)) {

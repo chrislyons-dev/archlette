@@ -1,0 +1,26 @@
+        deploymentEnvironment "{{ deployment.name }}" {
+{%- if deployment.instances and deployment.instances.length > 0 %}
+            deploymentNode "{{ deployment.platform or 'Infrastructure' }}" {
+{%- for instance in deployment.instances %}
+                containerInstance {{ instance.containerRef | sanitizeId }} {
+{%- if instance.routes and instance.routes.length > 0 %}
+                    tags "routes:{{ instance.routes.join(',') }}"
+{%- endif %}
+                }
+{%- endfor %}
+            }
+{%- elif deployment.nodes %}
+{%- for node in deployment.nodes %}
+            deploymentNode "{{ node.name }}" {
+{%- if node.technology %}
+                technology "{{ node.technology | escapeString }}"
+{%- endif %}
+{%- if node.containers and node.containers.length > 0 %}
+{%- for containerRef in node.containers %}
+                containerInstance {{ containerRef.id | sanitizeId }}
+{%- endfor %}
+{%- endif %}
+            }
+{%- endfor %}
+{%- endif %}
+        }

@@ -25,6 +25,7 @@ describe('structurizrGenerator', () => {
       code: [],
       deployments: [],
       containerRelationships: [],
+      deploymentRelationships: [],
       componentRelationships: [],
       codeRelationships: [],
     };
@@ -54,6 +55,7 @@ describe('structurizrGenerator', () => {
       code: [],
       deployments: [],
       containerRelationships: [],
+      deploymentRelationships: [],
       componentRelationships: [],
       codeRelationships: [],
     };
@@ -85,6 +87,7 @@ describe('structurizrGenerator', () => {
       code: [],
       deployments: [],
       containerRelationships: [],
+      deploymentRelationships: [],
       componentRelationships: [],
       codeRelationships: [],
     };
@@ -115,6 +118,7 @@ describe('structurizrGenerator', () => {
       code: [],
       deployments: [],
       containerRelationships: [],
+      deploymentRelationships: [],
       componentRelationships: [],
       codeRelationships: [],
     };
@@ -147,6 +151,7 @@ describe('structurizrGenerator', () => {
           auth: 'tls',
         },
       ],
+      deploymentRelationships: [],
       componentRelationships: [],
       codeRelationships: [],
     };
@@ -169,6 +174,7 @@ describe('structurizrGenerator', () => {
       code: [],
       deployments: [],
       containerRelationships: [],
+      deploymentRelationships: [],
       componentRelationships: [
         { source: 'comp.a', destination: 'comp.b', description: 'Uses' },
       ],
@@ -203,6 +209,7 @@ describe('structurizrGenerator', () => {
         },
       ],
       containerRelationships: [],
+      deploymentRelationships: [],
       componentRelationships: [],
       codeRelationships: [],
     };
@@ -225,6 +232,7 @@ describe('structurizrGenerator', () => {
       code: [],
       deployments: [],
       containerRelationships: [],
+      deploymentRelationships: [],
       componentRelationships: [],
       codeRelationships: [],
     };
@@ -243,27 +251,27 @@ describe('structurizrGenerator', () => {
       actors: [],
       containers: [{ id: 'api', name: 'API', type: 'Service', layer: 'Application' }],
       components: [
-        { id: 'comp.auth', containerId: 'api', name: 'Auth', type: 'module' },
-        { id: 'comp.user', containerId: 'api', name: 'User', type: 'module' },
+        { id: 'api__auth', containerId: 'api', name: 'Auth', type: 'module' },
+        { id: 'api__user', containerId: 'api', name: 'User', type: 'module' },
       ],
       code: [
         {
-          id: 'code.auth.handler',
-          componentId: 'comp.auth',
+          id: 'api__auth__handler',
+          componentId: 'api__auth',
           name: 'AuthHandler',
           type: 'class',
           filePath: '/auth/handler.ts',
         },
         {
-          id: 'code.auth.service',
-          componentId: 'comp.auth',
+          id: 'api__auth__service',
+          componentId: 'api__auth',
           name: 'AuthService',
           type: 'class',
           filePath: '/auth/service.ts',
         },
         {
-          id: 'code.user.repository',
-          componentId: 'comp.user',
+          id: 'api__user__repository',
+          componentId: 'api__user',
           name: 'UserRepository',
           type: 'class',
           filePath: '/user/repository.ts',
@@ -271,6 +279,7 @@ describe('structurizrGenerator', () => {
       ],
       deployments: [],
       containerRelationships: [],
+      deploymentRelationships: [],
       componentRelationships: [],
       codeRelationships: [],
     };
@@ -279,15 +288,15 @@ describe('structurizrGenerator', () => {
 
     // Should generate separate class views for each component
     // Note: Component views use container ID (api) as scope, not component ID
-    expect(dsl).toContain('component api "Classes_Auth"');
-    expect(dsl).toContain('component api "Classes_User"');
+    expect(dsl).toContain('component api "Classes_api__auth"');
+    expect(dsl).toContain('component api "Classes_api__user"');
 
     // Should explicitly include code elements for the Auth component
-    expect(dsl).toContain('include code_auth_handler');
-    expect(dsl).toContain('include code_auth_service');
+    expect(dsl).toContain('include api__auth__handler');
+    expect(dsl).toContain('include api__auth__service');
 
     // Should explicitly include code elements for the User component
-    expect(dsl).toContain('include code_user_repository');
+    expect(dsl).toContain('include api__user__repository');
 
     // Verify both class views are present (not just one per container)
     const classViewMatches = dsl.match(/component \w+ "Classes_\w+"/g);
@@ -295,11 +304,11 @@ describe('structurizrGenerator', () => {
 
     // Verify code elements are properly scoped to their components
     // Auth view should only include Auth code elements
-    const authViewStart = dsl.indexOf('component api "Classes_Auth"');
+    const authViewStart = dsl.indexOf('component api "Classes_api__auth"');
     const authViewEnd = dsl.indexOf('}', authViewStart);
     const authView = dsl.substring(authViewStart, authViewEnd);
-    expect(authView).toContain('code_auth_handler');
-    expect(authView).toContain('code_auth_service');
-    expect(authView).not.toContain('code_user_repository');
+    expect(authView).toContain('api__auth__handler');
+    expect(authView).toContain('api__auth__service');
+    expect(authView).not.toContain('api__user__repository');
   });
 });

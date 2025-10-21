@@ -9,6 +9,7 @@ import type {
   PropertyDeclaration,
 } from 'ts-morph';
 import { Scope } from 'ts-morph';
+import { createLogger } from '../../../core/logger.js';
 import type {
   ExtractedClass,
   ExtractedMethod,
@@ -21,6 +22,8 @@ import {
   extractParameterDescriptions,
   extractReturnDescription,
 } from './doc-extractor.js';
+
+const log = createLogger({ context: 'ClassExtractor' });
 
 /**
  * Extract all class declarations from a source file
@@ -36,9 +39,7 @@ export function extractClasses(sourceFile: SourceFile): ExtractedClass[] {
       }
     } catch (error) {
       // Log and continue - don't let one bad class stop the whole extraction
-      console.warn(
-        `Error extracting class ${cls.getName() || '<anonymous>'}: ${error}`,
-      );
+      log.warn(`Error extracting class ${cls.getName() || '<anonymous>'}: ${error}`);
     }
   }
 

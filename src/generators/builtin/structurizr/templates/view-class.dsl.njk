@@ -1,0 +1,6 @@
+        component {{ classView.containerId | sanitizeId }} "{{ classView.viewName }}" {
+{%- for code in classView.codeItems %}
+            include {{ code.id | sanitizeId }}
+{%- endfor %}
+            autoLayout
+        }

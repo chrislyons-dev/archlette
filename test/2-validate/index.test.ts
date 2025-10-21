@@ -37,6 +37,7 @@ describe('validate stage', () => {
       components: [],
       code: [],
       deployments: [],
+      deploymentRelationships: [],
       containerRelationships: [],
       componentRelationships: [],
       codeRelationships: [],
@@ -233,7 +234,7 @@ describe('validate stage', () => {
     await run(mockContext);
 
     expect(pathResolver.resolveArchlettePath).toHaveBeenCalledWith('output/ir.json', {
-      cliDir: '/cli',
+      cliDir: undefined,
     });
     expect(pathResolver.writeFile).toHaveBeenCalledWith(
       '/resolved/ir.json',

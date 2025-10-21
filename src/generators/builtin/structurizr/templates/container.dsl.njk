@@ -1,0 +1,53 @@
+            {{ container.id | sanitizeId }} = container "{{ container.name }}" {
+{%- if container.description %}
+                description "{{ container.description | escapeString }}"
+{%- endif %}
+{%- if container.type %}
+                technology "{{ container.type | escapeString }}"
+{%- endif %}
+{%- if container.tags and container.tags.length > 0 %}
+                tags "{{ container.tags.join(',') }}"
+{%- endif %}
+
+{%- if containerComponents.length > 0 or containerCode.length > 0 %}
+
+                # Components
+{%- for component in containerComponents %}
+                {{ component.id | sanitizeId }} = component "{{ component.name }}" {
+{%- if component.description %}
+                    description "{{ component.description | escapeString }}"
+{%- endif %}
+{%- if component.type %}
+                    technology "{{ component.type | escapeString }}"
+{%- endif %}
+{%- if component.tags and component.tags.length > 0 %}
+                    tags "{{ component.tags.join(',') }}"
+{%- endif %}
+                }
+{%- endfor %}
+
+                # Code elements (classes, functions)
+{%- for code in containerCode %}
+                {{ code.id | sanitizeId }} = component "{{ code | uniqueCodeName }}" {
+{%- if code.description or (code.documentation and code.documentation.summary) %}
+                    description "{{ (code.description or code.documentation.summary or '') | escapeString }}"
+{%- endif %}
+{%- if code.type %}
+                    technology "{{ code.type | escapeString }}"
+{%- endif %}
+                    tags "Code{%- if code.tags and code.tags.length > 0 %},{{ code.tags.join(',') }}{%- endif %}"
+                }
+{%- endfor %}
+
+{%- if relevantCompRels.length > 0 or relevantCodeRels.length > 0 %}
+
+                # Component relationships
+{%- for rel in relevantCompRels %}
+                {{ rel.source | sanitizeId }} -> {{ rel.destination | sanitizeId }} "{{ (rel.description or rel.stereotype or 'Uses') | escapeString }}"{% if rel | buildTechnology %} "{{ rel | buildTechnology | escapeString }}"{% endif %}
+{%- endfor %}
+{%- for rel in relevantCodeRels %}
+                {{ rel.source | sanitizeId }} -> {{ rel.destination | sanitizeId }} "{{ (rel.description or rel.stereotype or 'Uses') | escapeString }}"{% if rel | buildTechnology %} "{{ rel | buildTechnology | escapeString }}"{% endif %}
+{%- endfor %}
+{%- endif %}
+{%- endif %}
+            }

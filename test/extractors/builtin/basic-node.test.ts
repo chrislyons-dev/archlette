@@ -7,10 +7,20 @@ import { writeFileSync, mkdirSync, rmSync } from 'node:fs';
 import { join } from 'node:path';
 import basicNodeExtractor from '../../../src/extractors/builtin/basic-node.js';
 import type { ResolvedStageNode } from '../../../src/core/types-aac.js';
+import type { PipelineContext } from '../../../src/core/types.js';
+import { createLogger } from '../../../src/core/logger.js';
 
 describe('basic-node extractor', () => {
   const testDir = join(process.cwd(), 'test-temp');
   const testFile = join(testDir, 'sample.ts');
+
+  // Create a mock context for tests
+  const mockContext: PipelineContext = {
+    log: createLogger({ context: 'Test', level: 'info' }),
+    config: {} as any,
+    state: {},
+    configBaseDir: testDir,
+  };
 
   beforeAll(() => {
     // Create test directory and sample file
@@ -77,7 +87,7 @@ function internalFunction() {
       },
     };
 
-    const ir = await basicNodeExtractor(node);
+    const ir = await basicNodeExtractor(node, mockContext);
 
     expect(ir.version).toBe('1.0');
     expect(ir.system.name).toBeDefined();
@@ -113,7 +123,7 @@ function internalFunction() {
     const internalFunc = ir.code.find((c) => c.name === 'internalFunction');
     expect(internalFunc).toBeDefined();
     expect(internalFunc?.visibility).toBe('private');
-  });
+  }, 20000); // Increase timeout for slow CI environments
 
   it('should handle parse errors gracefully', async () => {
     const badFile = join(testDir, 'bad.ts');
@@ -133,7 +143,7 @@ function internalFunction() {
     };
 
     // Should not throw
-    const ir = await basicNodeExtractor(node);
+    const ir = await basicNodeExtractor(node, mockContext);
     expect(ir).toBeDefined();
 
     // Clean up

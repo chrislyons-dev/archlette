@@ -48,6 +48,7 @@ import * as fs from 'node:fs';
 import * as path from 'node:path';
 
 import type { PipelineContext, StageModule } from './core/types.ts';
+import type { ResolvedAACConfig } from './core/types-aac.ts';
 import { getStageEntry } from './core/stage-entry.js';
 import { loadModuleFromPath } from './core/module-loader.js';
 import { resolveArchlettePath, getCliDir } from './core/path-resolver.js';
@@ -55,7 +56,6 @@ import { AACConfigSchema as aacConfigSchema, resolveConfig } from './core/types-
 import { createLogger } from './core/logger.js';
 
 const DEFAULT_YAML_PATH = 'templates/default.yaml';
-
 const STAGE_DIRS = {
   extract: '1-extract',
   validate: '2-validate',
@@ -64,10 +64,11 @@ const STAGE_DIRS = {
   docs: '5-docs',
 };
 const STAGE_ORDER = ['extract', 'validate', 'generate', 'render', 'docs'];
+const LOGGER = createLogger({ context: 'archlette-cli', level: 'info' });
 
 function usageAndExit(msg: string) {
-  if (msg) console.error(`\nError: ${msg}\n`);
-  console.log(
+  if (msg) LOGGER.error(`\nError: ${msg}\n`);
+  LOGGER.info(
     `Usage: archlette [-f <config.yaml>] [stage]
 
 Stages (optional, defaults to 'all'):
@@ -139,7 +140,7 @@ async function loadYamlIfExists(resolvedFile: string) {
     }
     return { config: parsed ?? null, path: resolvedFile };
   } catch {
-    console.warn(
+    LOGGER.warn(
       `[archlette] Found ${resolvedFile} but "yaml" is not installed; skipping parse.`,
     );
     return { config: null, path: resolvedFile };
@@ -157,12 +158,23 @@ export async function run(argv = process.argv) {
     : defaultYaml;
 
   // Parse and resolve config to match PipelineContext type
-  let config: any = null;
+  let config: ResolvedAACConfig;
   let configPath: string | null = null;
   const loaded = await loadYamlIfExists(chosenYaml);
   if (loaded.config) {
     config = resolveConfig(loaded.config);
     configPath = loaded.path;
+  } else {
+    // Create minimal default config when no config file is found
+    config = resolveConfig({
+      project: { name: 'archlette-project' },
+      paths: {
+        ir_out: './archlette-output/ir',
+        dsl_out: './archlette-output/dsl',
+        render_out: './archlette-output/render',
+        docs_out: './archlette-output/docs',
+      },
+    });
   }
 
   // Determine base directory for resolving config paths:
@@ -176,7 +188,7 @@ export async function run(argv = process.argv) {
   const ctx: PipelineContext = {
     config,
     state: {},
-    log: createLogger({ context: 'CLI', level: 'info' }),
+    log: LOGGER,
     configBaseDir,
   };
 
@@ -234,7 +246,7 @@ const isDirect = (() => {
 
 if (isDirect) {
   run().catch((e) => {
-    console.error('[archlette:fatal]', e?.stack || e);
+    LOGGER.error('[archlette:fatal]', e?.stack || e);
     process.exit(1);
   });
 }

@@ -75,6 +75,7 @@ describe('extract stage', () => {
       containerRelationships: [],
       componentRelationships: [],
       codeRelationships: [],
+      deploymentRelationships: [],
     });
 
     await run(mockContext);
@@ -103,6 +104,7 @@ describe('extract stage', () => {
       containerRelationships: [],
       componentRelationships: [],
       codeRelationships: [],
+      deploymentRelationships: [],
     };
 
     const mockExtractor = vi.fn().mockResolvedValue(mockIR);
@@ -131,16 +133,20 @@ describe('extract stage', () => {
     expect(stageModuleLoader.loadExtractorModule).toHaveBeenCalledWith(
       'builtin/basic-node',
     );
-    expect(mockExtractor).toHaveBeenCalledWith({
-      use: 'builtin/basic-node',
-      name: 'test-extractor',
-      inputs: { include: ['src/**/*.ts'], exclude: [] },
-      props: {},
-      _effective: {
-        includes: ['src/**/*.ts'],
-        excludes: [],
+    // Extractor is now called with both node and context
+    expect(mockExtractor).toHaveBeenCalledWith(
+      {
+        use: 'builtin/basic-node',
+        name: 'test-extractor',
+        inputs: { include: ['src/**/*.ts'], exclude: [] },
+        props: {},
+        _effective: {
+          includes: ['src/**/*.ts'],
+          excludes: [],
+        },
       },
-    });
+      mockContext, // Context is now passed as second parameter
+    );
     expect(mockContext.state.extractorResults).toHaveLength(1);
     expect(mockContext.state.aggregatedIR).toBe(mockIR);
     expect(mockLogger.info).toHaveBeenCalledWith(
@@ -168,6 +174,7 @@ describe('extract stage', () => {
       containerRelationships: [],
       componentRelationships: [],
       codeRelationships: [],
+      deploymentRelationships: [],
     });
 
     mockContext.config.extractors = [
@@ -204,6 +211,7 @@ describe('extract stage', () => {
       containerRelationships: [],
       componentRelationships: [],
       codeRelationships: [],
+      deploymentRelationships: [],
     };
 
     const failingExtractor = vi.fn().mockRejectedValue(new Error('Extractor failed'));
@@ -268,6 +276,7 @@ describe('extract stage', () => {
       containerRelationships: [],
       componentRelationships: [],
       codeRelationships: [],
+      deploymentRelationships: [],
     };
 
     vi.mocked(aggregator.aggregateIRs).mockReturnValue(mockIR);
@@ -297,6 +306,7 @@ describe('extract stage', () => {
       containerRelationships: [],
       componentRelationships: [],
       codeRelationships: [],
+      deploymentRelationships: [],
     };
 
     const ir2: ArchletteIR = {
@@ -312,6 +322,7 @@ describe('extract stage', () => {
       containerRelationships: [],
       componentRelationships: [],
       codeRelationships: [],
+      deploymentRelationships: [],
     };
 
     const aggregatedIR: ArchletteIR = {
@@ -328,6 +339,7 @@ describe('extract stage', () => {
       containerRelationships: [],
       componentRelationships: [],
       codeRelationships: [],
+      deploymentRelationships: [],
     };
 
     vi.mocked(stageModuleLoader.loadExtractorModule)

@@ -3,7 +3,10 @@
  */
 
 import type { SourceFile } from 'ts-morph';
+import { createLogger } from '../../../core/logger.js';
 import type { ExtractedImport } from './types.js';
+
+const log = createLogger({ context: 'ImportExtractor' });
 
 /**
  * Extract all import declarations from a source file
@@ -43,7 +46,7 @@ export function extractImports(sourceFile: SourceFile): ExtractedImport[] {
         isTypeOnly,
       });
     } catch (error) {
-      console.warn(`Error extracting import: ${error}`);
+      log.warn(`Error extracting import: ${error}`);
     }
   }
 

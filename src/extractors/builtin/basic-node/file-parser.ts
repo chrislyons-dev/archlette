@@ -3,6 +3,7 @@
  */
 
 import { Project, ts } from 'ts-morph';
+import { createLogger } from '../../../core/logger.js';
 import type { FileExtraction } from './types.js';
 import { extractClasses } from './class-extractor.js';
 import { extractFunctions, extractArrowFunctions } from './function-extractor.js';
@@ -13,6 +14,8 @@ import {
   extractFileActors,
   extractFileRelationships,
 } from './component-detector.js';
+
+const log = createLogger({ context: 'FileParser' });
 
 /**
  * Parse and extract information from source files
@@ -63,7 +66,7 @@ export async function parseFiles(filePaths: string[]): Promise<FileExtraction[]>
     } catch (error) {
       // Log parse error but continue with other files
       const filePath = sourceFile.getFilePath();
-      console.warn(`Parse error in ${filePath}: ${error}`);
+      log.warn(`Parse error in ${filePath}: ${error}`);
 
       extractions.push({
         filePath,

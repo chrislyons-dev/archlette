@@ -2,11 +2,14 @@
  * @module core
  * @description
  * Structured logging utilities for Archlette pipeline.
- * Provides consistent log formatting with timestamps, levels, and context.
+ * Uses Pino for fast, structured JSON logging with pretty-printing support.
  */
 
+import { pino } from 'pino';
+import type { Logger as PinoLogger } from 'pino';
+
 /**
- * Log level enumeration
+ * Log level enumeration (matches Pino levels)
  */
 export type LogLevel = 'debug' | 'info' | 'warn' | 'error';
 
@@ -28,92 +31,87 @@ export interface LoggerOptions {
   level?: LogLevel;
   /** Context/prefix for log messages (e.g., "Extract", "Validate") */
   context?: string;
-  /** Enable colored output (default: true) */
+  /** Enable colored output (default: true in development) */
   color?: boolean;
+  /** Enable pretty printing (default: true if TTY, false otherwise) */
+  pretty?: boolean;
 }
 
 /**
- * ANSI color codes for console output
+ * Determine if we're in a TTY environment (for pretty printing)
  */
-const COLORS = {
-  reset: '\x1b[0m',
-  bright: '\x1b[1m',
-  dim: '\x1b[2m',
-  red: '\x1b[31m',
-  green: '\x1b[32m',
-  yellow: '\x1b[33m',
-  blue: '\x1b[34m',
-  magenta: '\x1b[35m',
-  cyan: '\x1b[36m',
-  gray: '\x1b[90m',
-} as const;
-
-/**
- * Log level hierarchy for filtering
- */
-const LOG_LEVELS: Record<LogLevel, number> = {
-  debug: 0,
-  info: 1,
-  warn: 2,
-  error: 3,
-};
-
-/**
- * Log level colors
- */
-const LEVEL_COLORS: Record<LogLevel, string> = {
-  debug: COLORS.gray,
-  info: COLORS.blue,
-  warn: COLORS.yellow,
-  error: COLORS.red,
-};
-
-/**
- * Log level labels (fixed width for alignment)
- */
-const LEVEL_LABELS: Record<LogLevel, string> = {
-  debug: 'DEBUG',
-  info: 'INFO ',
-  warn: 'WARN ',
-  error: 'ERROR',
-};
-
-/**
- * Format timestamp as ISO 8601 (local time)
- */
-function formatTimestamp(): string {
-  const now = new Date();
-  const year = now.getFullYear();
-  const month = String(now.getMonth() + 1).padStart(2, '0');
-  const day = String(now.getDate()).padStart(2, '0');
-  const hours = String(now.getHours()).padStart(2, '0');
-  const minutes = String(now.getMinutes()).padStart(2, '0');
-  const seconds = String(now.getSeconds()).padStart(2, '0');
-  const ms = String(now.getMilliseconds()).padStart(3, '0');
-
-  return `${year}-${month}-${day}T${hours}:${minutes}:${seconds}.${ms}`;
+function isTTY(): boolean {
+  return process.stdout.isTTY ?? false;
 }
 
 /**
- * Format log message with timestamp, level, and context
+ * Get default log level from environment or fallback to 'info'
  */
-function formatLogMessage(
-  level: LogLevel,
-  message: string,
-  context?: string,
-  useColor = true,
-): string {
-  const timestamp = formatTimestamp();
-  const levelLabel = LEVEL_LABELS[level];
-  const contextStr = context ? ` [${context}]` : '';
+function getDefaultLogLevel(): LogLevel {
+  const envLevel = process.env.LOG_LEVEL?.toLowerCase();
+  if (
+    envLevel === 'debug' ||
+    envLevel === 'info' ||
+    envLevel === 'warn' ||
+    envLevel === 'error'
+  ) {
+    return envLevel;
+  }
+  return 'info';
+}
 
-  if (useColor) {
-    const color = LEVEL_COLORS[level];
-    const dimColor = COLORS.gray;
-    return `${dimColor}${timestamp}${COLORS.reset} ${color}${levelLabel}${COLORS.reset}${COLORS.cyan}${contextStr}${COLORS.reset} ${message}`;
+/**
+ * Create a Pino logger instance with optional pretty printing
+ */
+function createPinoLogger(level: LogLevel, pretty: boolean): PinoLogger {
+  const baseOptions = {
+    level,
+    timestamp: pino.stdTimeFunctions.isoTime,
+  };
+
+  // In test environments, write JSON logs to console.log/console.error for test mocks
+  if (process.env.NODE_ENV === 'test' || process.env.VITEST === 'true') {
+    // Custom writable stream that routes to console.log/console.error
+    const testStream = {
+      write(msg: string) {
+        // Parse level from JSON to determine console target
+        try {
+          const parsed = JSON.parse(msg);
+          if (parsed.level >= 50) {
+            // error level (50) and fatal (60)
+            console.error(msg);
+          } else {
+            console.log(msg);
+          }
+        } catch {
+          // Fallback if not JSON
+          console.log(msg);
+        }
+      },
+    };
+
+    // Pino expects a WritableStream-like object with a write method
+    // Using NodeJS.WritableStream interface for compatibility
+    return pino(baseOptions, testStream as NodeJS.WritableStream);
   }
 
-  return `${timestamp} ${levelLabel}${contextStr} ${message}`;
+  if (pretty) {
+    // Use pino-pretty for human-readable output
+    return pino({
+      ...baseOptions,
+      transport: {
+        target: 'pino-pretty',
+        options: {
+          colorize: true,
+          translateTime: 'SYS:standard',
+          ignore: 'pid,hostname',
+        },
+      },
+    });
+  }
+
+  // Production mode: structured JSON logs
+  return pino(baseOptions);
 }
 
 /**
@@ -124,40 +122,77 @@ function formatLogMessage(
  *
  * @example
  * ```typescript
- * const log = createLogger({ context: 'Extract', level: 'info' });
+ * const log = createLogger({ context: 'Extract' });
  * log.info('Starting extraction...');
- * log.debug('Processing file', filePath);
- * log.error('Failed to parse', error);
+ * log.debug('Processing file', { filePath });
+ * log.error('Failed to parse', { error });
  * ```
  */
 export function createLogger(options: LoggerOptions = {}): Logger {
-  const { level = 'info', context, color = true } = options;
-  const minLevel = LOG_LEVELS[level];
+  const { level = getDefaultLogLevel(), context, pretty = isTTY() } = options;
 
-  function shouldLog(msgLevel: LogLevel): boolean {
-    return LOG_LEVELS[msgLevel] >= minLevel;
-  }
+  // Create base Pino logger
+  const pinoLogger = createPinoLogger(level, pretty);
 
-  function log(msgLevel: LogLevel, message: string, ...args: unknown[]): void {
-    if (!shouldLog(msgLevel)) return;
+  // Create child logger with context if provided
+  const logger = context ? pinoLogger.child({ context }) : pinoLogger;
 
-    const formatted = formatLogMessage(msgLevel, message, context, color);
-
-    // Output to appropriate stream
-    const stream = msgLevel === 'error' ? console.error : console.log;
-
-    if (args.length > 0) {
-      stream(formatted, ...args);
-    } else {
-      stream(formatted);
-    }
-  }
-
+  // Wrap Pino logger to match our interface
   return {
-    debug: (message: string, ...args: unknown[]) => log('debug', message, ...args),
-    info: (message: string, ...args: unknown[]) => log('info', message, ...args),
-    warn: (message: string, ...args: unknown[]) => log('warn', message, ...args),
-    error: (message: string, ...args: unknown[]) => log('error', message, ...args),
+    debug: (message: string, ...args: unknown[]) => {
+      if (args.length > 0) {
+        // If args are provided, treat first arg as metadata object
+        const [meta] = args;
+        if (typeof meta === 'object' && meta !== null) {
+          logger.debug(meta, message);
+        } else {
+          logger.debug({ args }, message);
+        }
+      } else {
+        logger.debug(message);
+      }
+    },
+    info: (message: string, ...args: unknown[]) => {
+      if (args.length > 0) {
+        const [meta] = args;
+        if (typeof meta === 'object' && meta !== null) {
+          logger.info(meta, message);
+        } else {
+          logger.info({ args }, message);
+        }
+      } else {
+        logger.info(message);
+      }
+    },
+    warn: (message: string, ...args: unknown[]) => {
+      if (args.length > 0) {
+        const [meta] = args;
+        if (typeof meta === 'object' && meta !== null) {
+          logger.warn(meta, message);
+        } else {
+          logger.warn({ args }, message);
+        }
+      } else {
+        logger.warn(message);
+      }
+    },
+    error: (message: string, ...args: unknown[]) => {
+      if (args.length > 0) {
+        const [meta] = args;
+        if (typeof meta === 'object' && meta !== null) {
+          // Handle Error objects specially
+          if (meta instanceof Error) {
+            logger.error({ err: meta }, message);
+          } else {
+            logger.error(meta, message);
+          }
+        } else {
+          logger.error({ args }, message);
+        }
+      } else {
+        logger.error(message);
+      }
+    },
   };
 }
 

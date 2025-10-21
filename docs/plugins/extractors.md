@@ -105,7 +105,7 @@ extractors:
       exclude: ['.terraform/**']
 ```
 
-Path resolves to archlette installation directory. Use `./` for project-relative paths.
+Path resolves relative to Archlette's src directory. Use `./` for project-relative paths.
 
 ---
 

@@ -23,6 +23,7 @@
  */
 
 import type { ArchletteIR, Relationship } from '../core/types-ir.js';
+import { emptyIR } from '../core/types-ir.js';
 
 /**
  * Aggregate multiple ArchletteIR objects into a single unified IR
@@ -45,7 +46,7 @@ import type { ArchletteIR, Relationship } from '../core/types-ir.js';
  */
 export function aggregateIRs(irs: ArchletteIR[]): ArchletteIR {
   if (irs.length === 0) {
-    return createEmptyIR();
+    return emptyIR;
   }
 
   if (irs.length === 1) {
@@ -71,6 +72,9 @@ export function aggregateIRs(irs: ArchletteIR[]): ArchletteIR {
   const codeRelationships = deduplicateRelationships(
     irs.flatMap((ir) => ir.codeRelationships),
   );
+  const deploymentRelationships = deduplicateRelationships(
+    irs.flatMap((ir) => ir.deploymentRelationships),
+  );
 
   return {
     version: base.version,
@@ -83,6 +87,7 @@ export function aggregateIRs(irs: ArchletteIR[]): ArchletteIR {
     containerRelationships,
     componentRelationships,
     codeRelationships,
+    deploymentRelationships,
   };
 }
 
@@ -178,34 +183,12 @@ function deduplicateByName<T extends { name: string; description?: string }>(
  */
 function deduplicateRelationships(relationships: Relationship[]): Relationship[] {
   const seen = new Map<string, Relationship>();
-  for (const rel of relationships) {
+  // Filter out undefined/null values before processing
+  for (const rel of relationships.filter((r) => r && r.source && r.destination)) {
     const key = `${rel.source}:${rel.destination}:${rel.stereotype ?? ''}`;
     if (!seen.has(key)) {
       seen.set(key, rel);
     }
   }
   return Array.from(seen.values());
-}
-
-/**
- * Create an empty but valid ArchletteIR structure
- *
- * @returns A minimal valid ArchletteIR with no elements
- */
-function createEmptyIR(): ArchletteIR {
-  return {
-    version: '1.0',
-    system: {
-      name: 'Unknown System',
-      description: 'No extractors produced valid IR',
-    },
-    actors: [],
-    containers: [],
-    components: [],
-    code: [],
-    deployments: [],
-    containerRelationships: [],
-    componentRelationships: [],
-    codeRelationships: [],
-  };
 }

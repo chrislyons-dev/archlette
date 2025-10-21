@@ -7,6 +7,7 @@ notes/
 archive/
 coverage/
 .claude/
+output/
 
 # MkDocs - files copied from root during build (not committed)
 docs/CONTRIBUTING.md

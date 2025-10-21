@@ -37,8 +37,14 @@
 
 import type { ResolvedStageNode } from '../../core/types-aac.js';
 import type { ArchletteIR } from '../../core/types-ir.js';
+import type { PipelineContext } from '../../core/types.js';
 import type { ExtractorInputs } from './basic-node/types.js';
-import { findSourceFiles } from './basic-node/file-finder.js';
+import {
+  findSourceFiles,
+  findPackageJsonFiles,
+  readPackageInfo,
+  findNearestPackage,
+} from './basic-node/file-finder.js';
 import { parseFiles } from './basic-node/file-parser.js';
 import { mapToIR } from './basic-node/to-ir-mapper.js';
 
@@ -46,6 +52,7 @@ import { mapToIR } from './basic-node/to-ir-mapper.js';
  * Extract architecture information from a Node.js/TypeScript codebase
  *
  * @param node - Configuration node with include/exclude patterns
+ * @param ctx - Optional pipeline context with logger
  * @returns Promise resolving to ArchletteIR with code, components, and relationships
  *
  * @example
@@ -64,23 +71,50 @@ import { mapToIR } from './basic-node/to-ir-mapper.js';
  */
 export default async function basicNodeExtractor(
   node: ResolvedStageNode,
+  ctx: PipelineContext,
 ): Promise<ArchletteIR> {
   const inputs = node.inputs as ExtractorInputs | undefined;
+  const log = ctx.log;
 
   // 1. Find source files
   const files = await findSourceFiles(inputs);
-  console.log(`Found ${files.length} source files to analyze`);
+  log.info(`Found ${files.length} source files to analyze`);
+
+  // 1.5. Find package.json files to create containers
+  const packagePaths = await findPackageJsonFiles(inputs);
+  const packages = (
+    await Promise.all(packagePaths.map((path) => readPackageInfo(path)))
+  ).filter((pkg): pkg is NonNullable<typeof pkg> => pkg !== null);
+
+  log.info(
+    `Found ${packages.length} package(s): ${packages.map((p) => p.name).join(', ')}`,
+  );
 
   // 2. Parse and extract information from files
   const extractions = await parseFiles(files);
-
   const successCount = extractions.filter((e) => !e.parseError).length;
   const errorCount = extractions.filter((e) => e.parseError).length;
-  console.log(`Successfully parsed ${successCount} files, ${errorCount} errors`);
+  log.info(`Successfully parsed ${successCount} files, ${errorCount} errors`);
+
+  // 2.5. Assign each file to its nearest package
+  for (const extraction of extractions) {
+    const pkg = findNearestPackage(extraction.filePath, packages);
+    extraction.packageInfo = pkg ?? undefined;
+  }
 
   // 3. Map to ArchletteIR format
-  const ir = mapToIR(extractions);
-  console.log(`Extracted ${ir.code.length} code elements`);
+  // Pass project info from config if available
+  const systemInfo = node._system
+    ? {
+        name: node._system.name,
+        description: node._system.description,
+        repository: node._system.repository,
+      }
+    : undefined;
+
+  const ir = mapToIR(extractions, packages, systemInfo);
+
+  log.info(`Extracted ${ir.code.length} code elements`);
 
   return ir;
 }

@@ -1,0 +1,32 @@
+graph TB
+  linkStyle default fill:#ffffff
+
+  subgraph diagram ["Application - Application - Components"]
+    style diagram fill:#ffffff,stroke:#ffffff
+
+    subgraph 8 ["Application"]
+      style 8 fill:#ffffff,stroke:#9a9a9a,color:#9a9a9a
+
+      27["<div style='font-weight: bold'>generators__run</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Execute the generation stage</div>"]
+      style 27 fill:#dddddd,stroke:#9a9a9a,color:#000000
+      67["<div style='font-weight: bold'>generators__structurizrgenerator</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Generate Structurizr DSL from<br />ArchletteIR</div>"]
+      style 67 fill:#dddddd,stroke:#9a9a9a,color:#000000
+      68["<div style='font-weight: bold'>generators__preparecontainerdata</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Prepare container data with<br />components, code, and<br />relationships for template</div>"]
+      style 68 fill:#dddddd,stroke:#9a9a9a,color:#000000
+      69["<div style='font-weight: bold'>generators__preparecomponentview</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Prepare component view data<br />for template</div>"]
+      style 69 fill:#dddddd,stroke:#9a9a9a,color:#000000
+      70["<div style='font-weight: bold'>generators__prepareclassview</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Prepare class view data for<br />template</div>"]
+      style 70 fill:#dddddd,stroke:#9a9a9a,color:#000000
+      71["<div style='font-weight: bold'>generators__generateallactorrelationships</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Generate all actor-related<br />relationships</div>"]
+      style 71 fill:#dddddd,stroke:#9a9a9a,color:#000000
+      72["<div style='font-weight: bold'>generators__generateuniquecodename</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Generate a unique name for a<br />code item to avoid naming<br />collisions</div>"]
+      style 72 fill:#dddddd,stroke:#9a9a9a,color:#000000
+      73["<div style='font-weight: bold'>generators__buildtechnologystring</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Build technology string from<br />relationship metadata</div>"]
+      style 73 fill:#dddddd,stroke:#9a9a9a,color:#000000
+      74["<div style='font-weight: bold'>generators__sanitizeid</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Sanitize ID for DSL (remove<br />special characters, convert<br />to valid identifier)</div>"]
+      style 74 fill:#dddddd,stroke:#9a9a9a,color:#000000
+      75["<div style='font-weight: bold'>generators__escapestring</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Escape special characters in<br />strings for DSL</div>"]
+      style 75 fill:#dddddd,stroke:#9a9a9a,color:#000000
+    end
+
+  end

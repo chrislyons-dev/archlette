@@ -28,7 +28,10 @@ and this project adheres to [Conventional Commits](https://www.conventionalcommi
 - Initial public scaffold for `@chrislyons-dev/archlette`
 - CLI with `init`, `generate`, `validate`, `publish`
 - Banner, `--verbose` / `--quiet` / `--help` / `--version`
-- PlantUML/Graphviz, Mermaid CLI, and Inframap wiring (opt-in via `aac.yaml`)
+- Extract architecure information from:
+  - Javascript applications
+  - Cloudflare Wrangler toml files
+- Structurizr CLI, PlantUML, and Mermaid wiring (opt-in via `aac.yaml`)
 - Reusable GitHub Action + pre-commit example
 - MIT `LICENSE`, `NOTICE`, and `THIRD_PARTY_LICENSES.md` scaffolding
 

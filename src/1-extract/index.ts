@@ -47,7 +47,10 @@ export async function run(ctx: PipelineContext): Promise<void> {
       const { entry, resolved } = await loadExtractorModule(node.use);
       ctx.log.debug(`Loaded extractor ${node.use} from ${resolved}`);
       ctx.log.debug(`Invoking extractor ${node.use}`);
-      const result = await entry(node);
+
+      // Pass context to extractor for logging support
+      const result = await entry(node, ctx);
+
       ctx.log.debug(`Validating extractor ${node.use} results`);
       const validation = zArchletteIR.safeParse(result);
       if (!validation.success) {
