@@ -155,4 +155,51 @@ describe('basic-python extractor', () => {
     expect(ir.actors).toHaveLength(0);
     expect(ir.code).toHaveLength(0);
   });
+
+  it('should parse Google-style docstrings', async () => {
+    const node: ResolvedStageNode = {
+      use: 'extractors/builtin/basic-python',
+      name: 'payment-processor',
+      inputs: {
+        include: ['test/extractors/builtin/basic-python/fixtures/google_style.py'],
+        exclude: [],
+      },
+      props: {},
+      _effective: {
+        includes: ['test/extractors/builtin/basic-python/fixtures/google_style.py'],
+        excludes: [],
+      },
+    };
+
+    const ir = await basicPython(node, mockContext);
+
+    // Verify component
+    expect(ir.components).toHaveLength(1);
+    expect(ir.components[0].name).toBe('PaymentProcessor');
+
+    // Verify class extraction
+    const processorClass = ir.code.find(
+      (item) => item.name === 'PaymentProcessor' && item.type === 'class',
+    );
+    expect(processorClass).toBeDefined();
+    expect(processorClass?.description).toContain('Process payment transactions');
+
+    // Verify method extraction with Google-style docstrings
+    const processMethod = ir.code.find(
+      (item) =>
+        item.name === 'PaymentProcessor.process_payment' && item.type === 'method',
+    );
+    expect(processMethod).toBeDefined();
+    expect(processMethod?.description).toContain(
+      'Process a payment request asynchronously',
+    );
+    expect(processMethod?.isAsync).toBe(true);
+
+    // Verify function extraction
+    const taxFunction = ir.code.find(
+      (item) => item.name === 'calculate_tax' && item.type === 'function',
+    );
+    expect(taxFunction).toBeDefined();
+    expect(taxFunction?.description).toContain('Calculate tax on payment amount');
+  });
 });

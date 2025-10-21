@@ -87,14 +87,13 @@ extractors:
 
 Support custom docstring tags matching JSDoc semantics:
 
-| Tag          | Purpose                        | JSDoc Equivalent       |
-| ------------ | ------------------------------ | ---------------------- |
-| `@module`    | Define architectural component | `@module`              |
-| `@component` | Define component (alias)       | `@component`           |
-| `@namespace` | Define namespace               | `@namespace`           |
-| `@actor`     | Define external actor          | `@actor`               |
-| `@uses`      | Define component dependency    | `@uses`                |
-| `@usedBy`    | Document reverse dependency    | `@usedBy` (deprecated) |
+| Tag          | Purpose                        | JSDoc Equivalent |
+| ------------ | ------------------------------ | ---------------- |
+| `@module`    | Define architectural component | `@module`        |
+| `@component` | Define component (alias)       | `@component`     |
+| `@namespace` | Define namespace               | `@namespace`     |
+| `@actor`     | Define external actor          | `@actor`         |
+| `@uses`      | Define component dependency    | `@uses`          |
 
 #### Python Docstring Formats
 
@@ -261,8 +260,6 @@ Order management service.
 - Source component inferred from file's component declaration
 - Target resolved by name (case-insensitive matching)
 - Description stored in relationship
-
-**Note**: `@usedBy` tags are deprecated (ignore or treat as documentation only).
 
 ---
 

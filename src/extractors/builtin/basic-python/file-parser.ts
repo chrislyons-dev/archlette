@@ -172,11 +172,15 @@ function mapMethod(
       line: method.line,
       column: 0,
     },
-    documentation: parseDocstring(method.docstring),
+    documentation: parseDocstring(method.docstring, method.parsedDoc),
     deprecated: extractDeprecation(method.docstring),
-    parameters: method.parameters.map(mapParameter),
+    parameters: method.parameters.map((param, idx) =>
+      mapParameter(param, method.parsedDoc?.args?.[idx]),
+    ),
     returnType: method.returnAnnotation,
-    returnDescription: extractReturnDescription(method.docstring),
+    returnDescription:
+      method.parsedDoc?.returns?.description ||
+      extractReturnDescription(method.docstring),
   };
 }
 
@@ -222,11 +226,14 @@ function mapFunction(
       line: func.line,
       column: 0,
     },
-    documentation: parseDocstring(func.docstring),
+    documentation: parseDocstring(func.docstring, func.parsedDoc),
     deprecated: extractDeprecation(func.docstring),
-    parameters: func.parameters.map(mapParameter),
+    parameters: func.parameters.map((param, idx) =>
+      mapParameter(param, func.parsedDoc?.args?.[idx]),
+    ),
     returnType: func.returnAnnotation,
-    returnDescription: extractReturnDescription(func.docstring),
+    returnDescription:
+      func.parsedDoc?.returns?.description || extractReturnDescription(func.docstring),
   };
 }
 
@@ -235,11 +242,12 @@ function mapFunction(
  */
 function mapParameter(
   param: PythonParserOutput['files'][0]['functions'][0]['parameters'][0],
+  parsedParam?: { name: string; type?: string; description?: string },
 ): ParameterInfo {
   return {
     name: param.name,
     type: param.annotation,
-    description: undefined, // TODO: Parse from docstring in Phase 2
+    description: parsedParam?.description,
     optional: param.default !== null && param.default !== undefined,
     defaultValue: param.default,
   };
@@ -247,13 +255,32 @@ function mapParameter(
 
 /**
  * Parse Python docstring into DocInfo
- * TODO: Phase 2 - Support Google, NumPy, Sphinx styles
+ * Enhanced in Phase 2 to use parsed Google/NumPy/Sphinx docstrings
  */
-function parseDocstring(docstring?: string): DocInfo | undefined {
-  if (!docstring) return undefined;
+function parseDocstring(
+  docstring?: string,
+  parsedDoc?: {
+    summary?: string;
+    description?: string;
+    args?: Array<{ name: string; type?: string; description?: string }>;
+    returns?: { type?: string; description?: string };
+    raises?: Array<{ type: string; description?: string }>;
+    examples?: string;
+  },
+): DocInfo | undefined {
+  if (!docstring && !parsedDoc) return undefined;
 
-  // Simple parsing for MVP - just extract first line as summary
-  const lines = docstring.trim().split('\n');
+  // Use parsed docstring if available (from Google/NumPy/Sphinx parsing)
+  if (parsedDoc) {
+    return {
+      summary: parsedDoc.summary,
+      details: parsedDoc.description,
+      examples: parsedDoc.examples ? [parsedDoc.examples] : undefined,
+    };
+  }
+
+  // Fallback to simple parsing
+  const lines = docstring!.trim().split('\n');
   const summary = lines[0].trim();
   const details = lines.length > 1 ? lines.slice(1).join('\n').trim() : undefined;
 

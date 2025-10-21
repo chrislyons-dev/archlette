@@ -182,6 +182,24 @@ export interface PythonParserOutput {
         decorators: string[];
         line: number;
         docstring?: string;
+        parsedDoc?: {
+          summary?: string;
+          description?: string;
+          args?: Array<{
+            name: string;
+            type?: string;
+            description?: string;
+          }>;
+          returns?: {
+            type?: string;
+            description?: string;
+          };
+          raises?: Array<{
+            type: string;
+            description?: string;
+          }>;
+          examples?: string;
+        };
         parameters: Array<{
           name: string;
           annotation?: string;
@@ -202,6 +220,24 @@ export interface PythonParserOutput {
       decorators: string[];
       line: number;
       docstring?: string;
+      parsedDoc?: {
+        summary?: string;
+        description?: string;
+        args?: Array<{
+          name: string;
+          type?: string;
+          description?: string;
+        }>;
+        returns?: {
+          type?: string;
+          description?: string;
+        };
+        raises?: Array<{
+          type: string;
+          description?: string;
+        }>;
+        examples?: string;
+      };
       parameters: Array<{
         name: string;
         annotation?: string;
