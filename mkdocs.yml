@@ -46,13 +46,13 @@ nav:
 
   - Architecture:
       - System Overview: architecture/README.md
-      - CLI: architecture/cli.md
-      - Core: architecture/core.md
-      - Extractors: architecture/extractors.md
-      - Validators: architecture/validators.md
-      - Generators: architecture/generators.md
-      - Renderers: architecture/renderers.md
-      - Docs: architecture/docs.md
+      - CLI: architecture/default-container__cli.md
+      - Core: architecture/default-container__core.md
+      - Extractors: architecture/default-container__extractors.md
+      - Validators: architecture/default-container__validators.md
+      - Generators: architecture/default-container__generators.md
+      - Renderers: architecture/default-container__renderers.md
+      - Docs: architecture/default-container__docs.md
 
   - Contributing:
       - How to Contribute: CONTRIBUTING.md
