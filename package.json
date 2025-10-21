@@ -41,7 +41,7 @@
     "aac:render": "npx tsx src/cli.ts render",
     "aac:docs": "npx tsx src/cli.ts docs",
     "aac:all": "npx tsx src/cli.ts all",
-    "build": "tsc --outDir dist && cp -r src/templates dist/",
+    "build": "tsc --outDir dist && cp -r src/templates dist/ && cp -r src/scripts dist/",
     "test": "vitest run --reporter=verbose",
     "licenses:generate": "node scripts/generate-licenses.mjs",
     "licenses:check": "node scripts/check-licenses.mjs",
