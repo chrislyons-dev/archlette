@@ -688,6 +688,7 @@ def extract_classes(tree: ast.Module) -> List[Dict[str, Any]]:
                     'name': node.name,
                     'baseClasses': [get_name(base) for base in node.bases],
                     'decorators': [get_decorator_name(dec) for dec in node.decorator_list],
+                    'decoratorDetails': [get_decorator_info(dec) for dec in node.decorator_list],
                     'line': node.lineno,
                     'docstring': ast.get_docstring(node),
                     'methods': extract_methods(node),
@@ -720,6 +721,7 @@ def extract_methods(class_node: ast.ClassDef) -> List[Dict[str, Any]]:
                 'isClassMethod': is_classmethod,
                 'isAbstract': is_abstract,
                 'decorators': [get_decorator_name(dec) for dec in node.decorator_list],
+                'decoratorDetails': [get_decorator_info(dec) for dec in node.decorator_list],
                 'line': node.lineno,
                 'docstring': docstring,
                 'parsedDoc': parsed_doc,
@@ -822,6 +824,7 @@ def extract_functions(tree: ast.Module) -> List[Dict[str, Any]]:
                 'name': node.name,
                 'isAsync': is_async,
                 'decorators': [get_decorator_name(dec) for dec in node.decorator_list],
+                'decoratorDetails': [get_decorator_info(dec) for dec in node.decorator_list],
                 'line': node.lineno,
                 'docstring': docstring,
                 'parsedDoc': parsed_doc,
@@ -1020,25 +1023,75 @@ def extract_enum_members(class_node: ast.ClassDef) -> str:
 
 
 def extract_imports(tree: ast.Module) -> List[Dict[str, Any]]:
-    """Extract import statements."""
+    """Extract and categorize import statements.
+    
+    Categorizes imports as:
+    - stdlib: Python standard library modules
+    - third_party: External packages (from PyPI, etc.)
+    - local: Project-local imports (relative or absolute)
+    """
     imports = []
+    
+    # Python 3.13 standard library modules (commonly used ones)
+    stdlib_modules = {
+        # Built-in modules
+        'abc', 'asyncio', 'collections', 'contextlib', 'copy', 'csv', 'dataclasses',
+        'datetime', 'decimal', 'enum', 'functools', 'glob', 'hashlib', 'heapq',
+        'io', 'itertools', 'json', 'logging', 'math', 'operator', 'os', 'pathlib',
+        'pickle', 're', 'random', 'shutil', 'socket', 'sqlite3', 'statistics',
+        'string', 'struct', 'subprocess', 'sys', 'tempfile', 'threading', 'time',
+        'traceback', 'typing', 'unittest', 'uuid', 'warnings', 'weakref', 'xml',
+        # Common stdlib packages
+        'typing_extensions', 'concurrent', 'concurrent.futures', 'urllib', 'http',
+        'email', 'html', 'multiprocessing', 'queue', 'secrets', 'selectors',
+    }
     
     for node in tree.body:
         if isinstance(node, ast.Import):
             for alias in node.names:
+                source = alias.name
+                top_level = source.split('.')[0]
+                
+                # Categorize import
+                if top_level in stdlib_modules:
+                    category = 'stdlib'
+                else:
+                    category = 'third_party'
+                
                 imports.append({
-                    'source': alias.name,
+                    'source': source,
                     'names': [alias.asname if alias.asname else alias.name],
                     'isRelative': False,
                     'level': 0,
+                    'category': category,
                 })
+                
         elif isinstance(node, ast.ImportFrom):
+            source = node.module or ''
             names = [alias.asname if alias.asname else alias.name for alias in node.names]
+            
+            # Categorize import
+            if node.level > 0:
+                # Relative imports are always local
+                category = 'local'
+            elif source:
+                top_level = source.split('.')[0]
+                if top_level in stdlib_modules:
+                    category = 'stdlib'
+                else:
+                    # Could be third-party or local - default to third-party
+                    # A more sophisticated approach would check if it's a known package
+                    category = 'third_party'
+            else:
+                # from . import something
+                category = 'local'
+            
             imports.append({
-                'source': node.module or '',
+                'source': source,
                 'names': names,
                 'isRelative': node.level > 0,
                 'level': node.level,
+                'category': category,
             })
     
     return imports
@@ -1055,13 +1108,69 @@ def get_name(node) -> str:
 
 
 def get_decorator_name(node) -> str:
-    """Get decorator name."""
+    """Get decorator name (for backward compatibility)."""
     if isinstance(node, ast.Name):
         return node.id
     elif isinstance(node, ast.Call):
         return get_name(node.func)
     else:
         return ast.unparse(node)
+
+
+def get_decorator_info(node) -> Dict[str, Any]:
+    """Get detailed decorator information including arguments.
+    
+    Returns dict with:
+    - name: decorator name
+    - args: list of positional argument values (as strings)
+    - kwargs: dict of keyword argument names to values (as strings)
+    - raw: full decorator expression as string
+    """
+    result = {
+        'name': '',
+        'args': [],
+        'kwargs': {},
+        'raw': ast.unparse(node),
+    }
+    
+    if isinstance(node, ast.Name):
+        # Simple decorator: @property
+        result['name'] = node.id
+    elif isinstance(node, ast.Attribute):
+        # Attribute decorator: @app.route
+        result['name'] = ast.unparse(node)
+    elif isinstance(node, ast.Call):
+        # Decorator with arguments: @app.route('/path', methods=['GET', 'POST'])
+        result['name'] = get_name(node.func)
+        
+        # Extract positional arguments
+        for arg in node.args:
+            try:
+                # Try to get literal value
+                if isinstance(arg, (ast.Constant, ast.Num, ast.Str)):
+                    result['args'].append(ast.literal_eval(arg))
+                else:
+                    # Fall back to string representation
+                    result['args'].append(ast.unparse(arg))
+            except Exception:
+                result['args'].append(ast.unparse(arg))
+        
+        # Extract keyword arguments
+        for keyword in node.keywords:
+            try:
+                # Try to get literal value
+                if isinstance(keyword.value, (ast.Constant, ast.Num, ast.Str, ast.List, ast.Dict)):
+                    result['kwargs'][keyword.arg] = ast.literal_eval(keyword.value)
+                else:
+                    # Fall back to string representation
+                    result['kwargs'][keyword.arg] = ast.unparse(keyword.value)
+            except Exception:
+                result['kwargs'][keyword.arg] = ast.unparse(keyword.value)
+    else:
+        # Unknown decorator type
+        result['name'] = ast.unparse(node)
+    
+    return result
 
 
 def get_annotation(node) -> str:

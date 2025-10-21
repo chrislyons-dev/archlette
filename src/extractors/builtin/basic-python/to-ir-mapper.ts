@@ -232,6 +232,7 @@ function mapClassToCodeItem(cls: ExtractedClass, componentId?: string): CodeItem
       language: 'python',
       baseClasses: cls.baseClasses,
       decorators: cls.decorators,
+      decoratorDetails: cls.decoratorDetails,
       isExported: cls.isExported,
     },
   };
@@ -266,6 +267,7 @@ function mapMethodToCodeItem(
     metadata: {
       language: 'python',
       decorators: method.decorators,
+      decoratorDetails: method.decoratorDetails,
       isClassMethod: method.isClassMethod,
     },
   };
@@ -296,6 +298,7 @@ function mapFunctionToCodeItem(
     metadata: {
       language: 'python',
       decorators: func.decorators,
+      decoratorDetails: func.decoratorDetails,
       isExported: func.isExported,
     },
   };

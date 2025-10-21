@@ -17,6 +17,16 @@ export interface PackageInfo {
   description?: string;
 }
 
+export interface DecoratorInfo {
+  name: string;
+  args: Array<string | number | boolean | null>; // Positional arguments
+  kwargs: Record<
+    string,
+    string | number | boolean | null | Array<string> | Record<string, unknown>
+  >; // Keyword arguments
+  raw: string; // Full decorator expression
+}
+
 export interface FileExtraction {
   filePath: string;
   language: 'python';
@@ -56,6 +66,7 @@ export interface ExtractedClass {
   isExported: boolean; // Python doesn't have export, but we track if name is public
   baseClasses: string[];
   decorators: string[];
+  decoratorDetails: DecoratorInfo[];
   location: SourceLocation;
   documentation?: DocInfo;
   deprecated?: DeprecationInfo;
@@ -71,6 +82,7 @@ export interface ExtractedMethod {
   isAbstract: boolean;
   isClassMethod: boolean;
   decorators: string[];
+  decoratorDetails: DecoratorInfo[];
   location: SourceLocation;
   documentation?: DocInfo;
   deprecated?: DeprecationInfo;
@@ -99,6 +111,7 @@ export interface ExtractedFunction {
   isExported: boolean; // Public at module level
   isAsync: boolean;
   decorators: string[];
+  decoratorDetails: DecoratorInfo[];
   location: SourceLocation;
   documentation?: DocInfo;
   deprecated?: DeprecationInfo;
@@ -112,6 +125,7 @@ export interface ExtractedImport {
   importedNames: string[];
   isRelative: boolean;
   level?: number; // For relative imports (. = 1, .. = 2, etc.)
+  category: 'stdlib' | 'third_party' | 'local';
 }
 
 export interface ParameterInfo {
@@ -175,6 +189,7 @@ export interface PythonParserOutput {
       name: string;
       baseClasses: string[];
       decorators: string[];
+      decoratorDetails: DecoratorInfo[];
       line: number;
       docstring?: string;
       methods: Array<{
@@ -184,6 +199,7 @@ export interface PythonParserOutput {
         isClassMethod: boolean;
         isAbstract: boolean;
         decorators: string[];
+        decoratorDetails: DecoratorInfo[];
         line: number;
         docstring?: string;
         parsedDoc?: {
@@ -228,6 +244,7 @@ export interface PythonParserOutput {
       name: string;
       isAsync: boolean;
       decorators: string[];
+      decoratorDetails: DecoratorInfo[];
       line: number;
       docstring?: string;
       parsedDoc?: {
@@ -267,6 +284,7 @@ export interface PythonParserOutput {
       names: string[];
       isRelative: boolean;
       level?: number;
+      category: 'stdlib' | 'third_party' | 'local';
     }>;
     parseError?: string;
   }>;

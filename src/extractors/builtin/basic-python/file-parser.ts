@@ -122,6 +122,7 @@ function mapToFileExtraction(file: PythonParserOutput['files'][0]): FileExtracti
       importedNames: imp.names,
       isRelative: imp.isRelative,
       level: imp.level,
+      category: imp.category,
     })),
     parseError: file.parseError,
   };
@@ -139,6 +140,7 @@ function mapClass(
     isExported: !cls.name.startsWith('_'), // Python convention: _private
     baseClasses: cls.baseClasses,
     decorators: cls.decorators,
+    decoratorDetails: cls.decoratorDetails,
     location: {
       filePath,
       line: cls.line,
@@ -168,6 +170,7 @@ function mapMethod(
     isAbstract: method.isAbstract,
     isClassMethod: method.isClassMethod,
     decorators: method.decorators,
+    decoratorDetails: method.decoratorDetails,
     location: {
       filePath,
       line: method.line,
@@ -227,6 +230,7 @@ function mapFunction(
     isExported: !func.name.startsWith('_'), // Python convention
     isAsync: func.isAsync,
     decorators: func.decorators,
+    decoratorDetails: func.decoratorDetails,
     location: {
       filePath,
       line: func.line,

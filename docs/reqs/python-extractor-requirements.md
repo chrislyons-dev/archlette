@@ -1137,11 +1137,11 @@ test/extractors/builtin/basic-python/
 
 ## Open Questions
 
-1. **Python AST Parser**: Use Python script via subprocess or find suitable TypeScript library?
+1. **Python AST Parser**: Use Python script via subprocess or find suitable TypeScript library? Use python script
 2. **Type Hints**: How deep to extract type information? Full type resolution or surface-level only?
-3. **Virtual Environments**: Should extractor auto-detect and use project's venv?
-4. **Docstring Standards**: Prefer one style (Google) or support all equally?
-5. **Framework Detection**: Auto-detect or require explicit configuration?
+3. **Virtual Environments**: Should extractor auto-detect and use project's venv? No
+4. **Docstring Standards**: Prefer one style (Google) or support all equally? Support several, listed above.
+5. **Framework Detection**: Auto-detect or require explicit configuration? Save for a future release. YAGNI
 
 ---
 
