@@ -1274,4 +1274,4 @@ async def price_bond_endpoint(request: Request) -> Response:
 - [PEP 257 - Docstring Conventions](https://www.python.org/dev/peps/pep-0257/)
 - [PEP 484 - Type Hints](https://www.python.org/dev/peps/pep-0484/)
 - [PEP 518 - pyproject.toml](https://www.python.org/dev/peps/pep-0518/)
-- [ArchletteIR Schema](../../schemas/aac-ir.json)
+  See the ArchletteIR schema in the source repository for details.

@@ -134,4 +134,4 @@ extractors:
 
 **Choosing an extractor?** → [Decision guide](../getting-started/choosing-extractors.md)  
 **Configuration options?** → [Configuration reference](../guide/configuration.md)  
-**Want to contribute?** → [Contributing guide](../../CONTRIBUTING.md)
+**Want to contribute?** → [Contributing guide](../CONTRIBUTING.md)

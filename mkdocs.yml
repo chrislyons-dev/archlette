@@ -40,19 +40,27 @@ nav:
   - Getting Started:
       - Quick Start: getting-started/quick-start.md
       - Installation: getting-started/installation.md
+      - Choosing Extractors: getting-started/choosing-extractors.md
 
   - User Guide:
       - Component Detection: extractors/component-detection.md
+      - Extractors Overview: extractors/README.md
+      - Basic Node Extractor: extractors/basic-node.md
+      - Basic Wrangler Extractor: extractors/basic-wrangler.md
+      - Annotations Reference: guide/annotations.md
+      - CI/CD Integration: guide/ci-cd.md
+      - Configuration Reference: guide/configuration.md
+      - Troubleshooting: guide/troubleshooting.md
 
   - Architecture:
       - System Overview: architecture/README.md
-      - CLI: architecture/cli.md
-      - Core: architecture/core.md
-      - Extractors: architecture/extractors.md
-      - Validators: architecture/validators.md
-      - Generators: architecture/generators.md
-      - Renderers: architecture/renderers.md
-      - Docs: architecture/docs.md
+      - CLI: architecture/default-container__cli.md
+      - Core: architecture/default-container__core.md
+      - Extractors: architecture/default-container__extractors.md
+      - Validators: architecture/default-container__validators.md
+      - Generators: architecture/default-container__generators.md
+      - Renderers: architecture/default-container__renderers.md
+      - Docs: architecture/default-container__docs.md
 
   - Contributing:
       - How to Contribute: CONTRIBUTING.md
