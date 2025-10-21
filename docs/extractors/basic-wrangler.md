@@ -426,7 +426,6 @@ Captured as instance metadata.
 
 **Understand architecture:**
 
-- [Deployments Guide](../guide/deployments.md) — Deep dive into deployment modeling
 - [Cloudflare Requirements](../reqs/reqs-extractor-cloudflare-wrangler.md) — Technical spec
 
 **Extend:**

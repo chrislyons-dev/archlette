@@ -40,9 +40,17 @@ nav:
   - Getting Started:
       - Quick Start: getting-started/quick-start.md
       - Installation: getting-started/installation.md
+      - Choosing Extractors: getting-started/choosing-extractors.md
 
   - User Guide:
       - Component Detection: extractors/component-detection.md
+      - Extractors Overview: extractors/README.md
+      - Basic Node Extractor: extractors/basic-node.md
+      - Basic Wrangler Extractor: extractors/basic-wrangler.md
+      - Annotations Reference: guide/annotations.md
+      - CI/CD Integration: guide/ci-cd.md
+      - Configuration Reference: guide/configuration.md
+      - Troubleshooting: guide/troubleshooting.md
 
   - Architecture:
       - System Overview: architecture/README.md
