@@ -1,0 +1,35 @@
+# Default AAC YAML configuration
+# (Add your default config values here)
+project: { name: Archlette }
+
+paths:
+  ir_out: ./docs/architecture/aac-ir.json
+  dsl_out: ./docs/architecture/aac.dsl
+  render_out: ./docs/architecture/diagrams
+  docs_out: ./docs/architecture
+
+# config yaml in, ir json out
+extractors:
+  # each extractor receives the specified inputs and produces ir json
+  - use: extractors/builtin/basic-node
+    inputs: { include: ['./src/**/*.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'] }
+
+# ir json in, ir json out (or errors)
+validators:
+  - use: validators/builtin/base-validator
+
+# ir json in, dsl out
+generators:
+  - use: generators/builtin/structurizr
+
+# dsl in, images out
+# Renderers run sequentially - order matters!
+# 1. Export DSL to PlantUML/Mermaid
+# 2. Render PlantUML to PNG images
+renderers:
+  - use: renderers/builtin/structurizr-export
+  - use: renderers/builtin/plantuml-render
+
+# dsl & images in, (likely markdown) docs out
+docs:
+  - use: docs/builtin/markdown-docs
