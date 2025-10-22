@@ -1,4 +1,5 @@
 /**
+ * @module basic_node
  * Map extracted data to ArchletteIR format
  */
 

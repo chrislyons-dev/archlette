@@ -1,4 +1,5 @@
 /**
+ * @module basic_wrangler
  * Map parsed Wrangler configurations to ArchletteIR format
  */
 

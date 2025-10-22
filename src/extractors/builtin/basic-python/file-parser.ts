@@ -1,4 +1,5 @@
 /**
+ * @module basic_python
  * File parsing and extraction orchestrator
  * Shells out to Python AST parser script and maps results to TypeScript types
  */
@@ -34,8 +35,8 @@ export async function parseFiles(
   }
 
   try {
-    // In development: src/extractors/builtin/basic-python -> scripts/
-    // In production: dist/extractors/builtin/basic-python -> dist/scripts/
+    // In development: src/extractors/builtin/basic_python -> scripts/
+    // In production: dist/extractors/builtin/basic_python -> dist/scripts/
     // getCliDir() returns the directory containing cli.ts (src/ or dist/)
     const cliDir = getCliDir();
     const parserScript = path.join(cliDir, 'scripts', 'python-ast-parser.py');
@@ -181,7 +182,7 @@ function mapMethod(
     parameters: method.parameters.map((param, idx) =>
       mapParameter(param, method.parsedDoc?.args?.[idx]),
     ),
-    returnType: method.returnAnnotation,
+    returnType: method.returnAnnotation ?? undefined,
     returnDescription:
       method.parsedDoc?.returns?.description ||
       extractReturnDescription(method.docstring),
@@ -210,8 +211,8 @@ function mapProperty(
       column: 0,
     },
     documentation: parseDocstring(prop.docstring),
-    type: prop.annotation,
-    defaultValue: prop.default,
+    type: prop.annotation ?? undefined,
+    defaultValue: prop.default ?? undefined,
     hasGetter: prop.hasGetter,
     hasSetter: prop.hasSetter,
     hasDeleter: prop.hasDeleter,
@@ -241,7 +242,7 @@ function mapFunction(
     parameters: func.parameters.map((param, idx) =>
       mapParameter(param, func.parsedDoc?.args?.[idx]),
     ),
-    returnType: func.returnAnnotation,
+    returnType: func.returnAnnotation ?? undefined,
     returnDescription:
       func.parsedDoc?.returns?.description || extractReturnDescription(func.docstring),
   };
@@ -278,10 +279,10 @@ function mapParameter(
 ): ParameterInfo {
   return {
     name: param.name,
-    type: param.annotation,
+    type: param.annotation ?? undefined,
     description: parsedParam?.description,
     optional: param.default !== null && param.default !== undefined,
-    defaultValue: param.default,
+    defaultValue: param.default ?? undefined,
   };
 }
 
@@ -305,8 +306,8 @@ function parseDocstring(
   // Use parsed docstring if available (from Google/NumPy/Sphinx parsing)
   if (parsedDoc) {
     return {
-      summary: parsedDoc.summary,
-      details: parsedDoc.description,
+      summary: parsedDoc.summary ?? undefined,
+      details: parsedDoc.description ?? undefined,
       examples: parsedDoc.examples ? [parsedDoc.examples] : undefined,
     };
   }

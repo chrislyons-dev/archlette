@@ -1,0 +1,104 @@
+@startuml
+set separator none
+title Application - Application - Components
+
+top to bottom direction
+skinparam ranksep 60
+skinparam nodesep 30
+
+skinparam {
+  arrowFontSize 10
+  defaultTextAlignment center
+  wrapWidth 200
+  maxMessageSize 100
+}
+
+hide stereotype
+
+skinparam rectangle<<Application.Application.basic__basicpython>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<Application.Application.basic__createemptyir>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<Application.Application.basic__deduplicaterelationships>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<Application.Application.basic__mapactortoir>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<Application.Application.basic__mapclasstocodeitem>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<Application.Application.basic__mapcomponenttoir>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<Application.Application.basic__mapfunctiontocodeitem>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<Application.Application.basic__mapmethodtocodeitem>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<Application.Application.basic__maprelationshipstoir>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<Application.Application.basic__maptoir>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<Application.Application.basic__maptypetocodeitem>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<Application.Application>> {
+  BorderColor #9a9a9a
+  FontColor #9a9a9a
+  shadowing false
+}
+
+rectangle "Application\n<size:10>[Container: Application]</size>" <<Application.Application>> {
+  rectangle "==basic__maptoir\n<size:10>[Component: function]</size>\n\nMap file extractions to ArchletteIR" <<Application.Application.basic__maptoir>> as Application.Application.basic__maptoir
+  rectangle "==basic__mapcomponenttoir\n<size:10>[Component: function]</size>\n\nMap ComponentInfo to Component" <<Application.Application.basic__mapcomponenttoir>> as Application.Application.basic__mapcomponenttoir
+  rectangle "==basic__mapactortoir\n<size:10>[Component: function]</size>\n\nMap ActorInfo to Actor" <<Application.Application.basic__mapactortoir>> as Application.Application.basic__mapactortoir
+  rectangle "==basic__maprelationshipstoir\n<size:10>[Component: function]</size>\n\nMap relationships to Relationship[]\nCreates bidirectional actor relationships" <<Application.Application.basic__maprelationshipstoir>> as Application.Application.basic__maprelationshipstoir
+  rectangle "==basic__deduplicaterelationships\n<size:10>[Component: function]</size>\n\nDeduplicate relationships by source+destination" <<Application.Application.basic__deduplicaterelationships>> as Application.Application.basic__deduplicaterelationships
+  rectangle "==basic__mapclasstocodeitem\n<size:10>[Component: function]</size>\n\nMap ExtractedClass to CodeItem" <<Application.Application.basic__mapclasstocodeitem>> as Application.Application.basic__mapclasstocodeitem
+  rectangle "==basic__mapmethodtocodeitem\n<size:10>[Component: function]</size>\n\nMap ExtractedMethod to CodeItem" <<Application.Application.basic__mapmethodtocodeitem>> as Application.Application.basic__mapmethodtocodeitem
+  rectangle "==basic__mapfunctiontocodeitem\n<size:10>[Component: function]</size>\n\nMap ExtractedFunction to CodeItem" <<Application.Application.basic__mapfunctiontocodeitem>> as Application.Application.basic__mapfunctiontocodeitem
+  rectangle "==basic__maptypetocodeitem\n<size:10>[Component: function]</size>\n\nMap ExtractedType to CodeItem" <<Application.Application.basic__maptypetocodeitem>> as Application.Application.basic__maptypetocodeitem
+  rectangle "==basic__createemptyir\n<size:10>[Component: function]</size>\n\nCreate empty IR when no files found" <<Application.Application.basic__createemptyir>> as Application.Application.basic__createemptyir
+  rectangle "==basic__basicpython\n<size:10>[Component: function]</size>\n\nBasic Python extractor\nAnalyzes Python source code and extracts architectural components" <<Application.Application.basic__basicpython>> as Application.Application.basic__basicpython
+}
+
+@enduml

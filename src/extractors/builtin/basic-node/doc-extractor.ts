@@ -1,4 +1,5 @@
 /**
+ * @module basic_node
  * Documentation extraction utilities
  * Extracts language-agnostic documentation from JSDoc comments
  */

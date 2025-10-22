@@ -3,7 +3,7 @@
  */
 
 import { describe, it, expect } from 'vitest';
-import { basicPython } from '../../../src/extractors/builtin/basic-python/basic-python.js';
+import { basicPython } from '../../../src/extractors/builtin/basic-python.js';
 import type { ResolvedStageNode } from '../../../src/core/types-aac.js';
 import type { PipelineContext } from '../../../src/core/types.js';
 import { createLogger } from '../../../src/core/logger.js';

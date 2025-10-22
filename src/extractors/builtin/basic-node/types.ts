@@ -1,4 +1,5 @@
 /**
+ * @module basic_node
  * Internal types for basic-node extractor
  * These are intermediate representations before mapping to ArchletteIR
  */

@@ -1,4 +1,5 @@
 /**
+ * @module basic-python
  * Internal types for basic-python extractor
  * These are intermediate representations before mapping to ArchletteIR
  */

@@ -1,4 +1,5 @@
 /**
+ * @module basic_node
  * Import extraction utilities
  */
 

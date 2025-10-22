@@ -18,7 +18,7 @@
 </tr>
 <tr>
 <td><strong>Description</strong></td>
-<td>ArchletteIR aggregation utilities | Extraction stage of the AAC pipeline | TypeScript/JavaScript code extractor | Cloudflare Wrangler deployment extractor</td>
+<td>ArchletteIR aggregation utilities | Extraction stage of the AAC pipeline</td>
 </tr>
 </tbody>
 </table>
@@ -40,7 +40,7 @@
 ### Code Elements
 
 <details>
-<summary><strong>7 code element(s)</strong></summary>
+<summary><strong>5 code element(s)</strong></summary>
 
 
 
@@ -194,7 +194,7 @@ Execute the extraction stage
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/1-extract/index.ts:39</code></td>
+<td><code>C:/Users/chris/git/archlette/src/1-extract/index.ts:42</code></td>
 </tr>
 </tbody>
 </table>
@@ -202,82 +202,6 @@ Execute the extraction stage
 **Parameters:**
 
 - `ctx`: <code>import("C:/Users/chris/git/archlette/src/core/types").PipelineContext</code> — - Pipeline context with configuration and logging
-
----
-##### `extractors__basicNodeExtractor()`
-
-Extract architecture information from a Node.js/TypeScript codebase
-
-<table>
-<tbody>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>function</code></td>
-</tr>
-<tr>
-<td><strong>Visibility</strong></td>
-<td><code>public</code></td>
-</tr>
-<tr>
-<td><strong>Async</strong></td>
-<td>Yes</td>
-</tr>
-<tr>
-<td><strong>Returns</strong></td>
-<td><code>Promise<z.infer<any>></code> — Promise resolving to ArchletteIR with code, components, and relationships</td>
-</tr>
-<tr>
-<td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node.ts:72</code></td>
-</tr>
-</tbody>
-</table>
-
-**Parameters:**
-
-- `node`: <code>any</code> — - Configuration node with include/exclude patterns- `ctx`: <code>import("C:/Users/chris/git/archlette/src/core/types").PipelineContext</code> — - Optional pipeline context with logger
-**Examples:**
-```typescript
-
-```
-
----
-##### `extractors__basicWranglerExtractor()`
-
-Extract deployment topology from Cloudflare Wrangler configuration files
-
-<table>
-<tbody>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>function</code></td>
-</tr>
-<tr>
-<td><strong>Visibility</strong></td>
-<td><code>public</code></td>
-</tr>
-<tr>
-<td><strong>Async</strong></td>
-<td>Yes</td>
-</tr>
-<tr>
-<td><strong>Returns</strong></td>
-<td><code>Promise<z.infer<any>></code> — Promise resolving to ArchletteIR with containers, deployments, and relationships</td>
-</tr>
-<tr>
-<td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler.ts:68</code></td>
-</tr>
-</tbody>
-</table>
-
-**Parameters:**
-
-- `node`: <code>any</code> — - Configuration node with include/exclude patterns- `ctx`: <code>import("C:/Users/chris/git/archlette/src/core/types").PipelineContext</code> — - Optional pipeline context with logger
-**Examples:**
-```typescript
-
-```
 
 ---
 

@@ -2,17 +2,16 @@
  * Basic Python Extractor for Archlette
  * Extracts architecture information from Python source code
  *
- * @module extractors
- * @component PythonExtractor
+ * @module basic-python
  */
 
-import { findSourceFiles } from '../basic-node/file-finder.js'; // Reuse file finder
-import { parseFiles } from './file-parser.js';
-import { mapToIR } from './to-ir-mapper.js';
-import type { ArchletteExtractor } from '../../../core/stage-interfaces.js';
-import type { ArchletteIR } from '../../../core/types-ir.js';
-import type { ResolvedStageNode } from '../../../core/types-aac.ts';
-import type { ExtractorInputs } from './types.js';
+import { findSourceFiles } from './basic-node/file-finder.js'; // Reuse file finder
+import { parseFiles } from './basic-python/file-parser.js';
+import { mapToIR } from './basic-python/to-ir-mapper.js';
+import type { ArchletteExtractor } from '../../core/stage-interfaces.js';
+import type { ArchletteIR } from '../../core/types-ir.js';
+import type { ResolvedStageNode } from '../../core/types-aac.ts';
+import type { ExtractorInputs } from './basic-python/types.js';
 
 /**
  * Basic Python extractor

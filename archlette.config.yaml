@@ -20,19 +20,19 @@ extractors:
   - use: extractors/builtin/basic-wrangler
     inputs:
       include:
-        - '~/git/bond-math/iac/workers/daycount.toml'
-        - '~/git/bond-math/iac/workers/gateway.toml'
-        - '~/git/bond-math/iac/workers/metrics.toml'
-        - '~/git/bond-math/iac/workers/pricing.toml'
-        - '~/git/bond-math/iac/workers/valuation.toml'
+        - '/users/chris/git/bond-math/iac/workers/daycount.toml'
+        - '/users/chris/git/bond-math/iac/workers/gateway.toml'
+        - '/users/chris/git/bond-math/iac/workers/metrics.toml'
+        - '/users/chris/git/bond-math/iac/workers/pricing.toml'
+        - '/users/chris/git/bond-math/iac/workers/valuation.toml'
 
   - use: extractors/builtin/basic-node
     inputs:
       include:
-        - '~/git/bond-math/services/gateway/**/*.js'
-        - '~/git/bond-math/services/gateway/**/*.jsx'
-        - '~/git/bond-math/services/gateway/**/*.ts'
-        - '~/git/bond-math/services/gateway/**/*.tsx'
+        - '/users/chris/git/bond-math/services/gateway/**/*.js'
+        - '/users/chris/git/bond-math/services/gateway/**/*.jsx'
+        - '/users/chris/git/bond-math/services/gateway/**/*.ts'
+        - '/users/chris/git/bond-math/services/gateway/**/*.tsx'
       exclude:
         - '**/node_modules/**'
         - '**/*.test.*'
@@ -44,10 +44,10 @@ extractors:
   - use: extractors/builtin/basic-node
     inputs:
       include:
-        - '~/git/bond-math/services/daycount/**/*.js'
-        - '~/git/bond-math/services/daycount/**/*.jsx'
-        - '~/git/bond-math/services/daycount/**/*.ts'
-        - '~/git/bond-math/services/daycount/**/*.tsx'
+        - '/users/chris/git/bond-math/services/daycount/**/*.js'
+        - '/users/chris/git/bond-math/services/daycount/**/*.jsx'
+        - '/users/chris/git/bond-math/services/daycount/**/*.ts'
+        - '/users/chris/git/bond-math/services/daycount/**/*.tsx'
       exclude:
         - '**/node_modules/**'
         - '**/*.test.*'
@@ -55,6 +55,19 @@ extractors:
         - '**/test/**'
         - '**/tests/**'
         - '**/vitest.config.ts'
+
+  - use: extractors/builtin/basic-python
+    inputs:
+      include:
+        - '/users/chris/git/bond-math/services/bond-valuation/**/*.py'
+        - '/users/chris/git/bond-math/services/metrics/**/*.py'
+        - '/users/chris/git/bond-math/services/pricing/**/*.py'
+      exclude:
+        - '**/__pycache__/**'
+        - '**/venv/**'
+        - '**/*.venv/***'
+        - '**/test/**'
+        - '**/tests/**'
 
 # ir json in, ir json out (or errors)
 validators:

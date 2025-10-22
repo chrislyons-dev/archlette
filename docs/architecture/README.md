@@ -1,7 +1,7 @@
 # 🏗️ Application
 
 **Architecture Documentation**
-Generated 2025-10-20 09:17:16
+Generated 2025-10-22 06:20:16
 
 ## Overview
 
@@ -73,7 +73,7 @@ The component diagram shows the internal structure of containers and their respo
 <td><strong>extractors</strong></td>
 <td>default-container</td>
 <td><code>module</code></td>
-<td>ArchletteIR aggregation utilities | Extraction stage of the AAC pipeline | TypeScript/JavaScript code extractor | Cloudflare Wrangler deployment extractor</td>
+<td>ArchletteIR aggregation utilities | Extraction stage of the AAC pipeline</td>
 <td><a href="./default-container__extractors.md">View →</a></td>
 </tr>
 <tr>
@@ -110,6 +110,35 @@ The component diagram shows the internal structure of containers and their respo
 <td><code>module</code></td>
 <td>Dynamic ESM module loader | Stage module interfaces for the AAC pipeline | Stage module loaders | Tool management for external rendering tools | Architecture-as-Code (AAC) configuration types and schemas | Archlette Intermediate Representation (IR) types and schemas | Core pipeline types</td>
 <td><a href="./default-container__core.md">View →</a></td>
+</tr>
+<tr>
+<td><strong>basic_node</strong></td>
+<td>default-container</td>
+<td><code>module</code></td>
+<td>TypeScript/JavaScript code extractor</td>
+<td><a href="./default-container__basicnode.md">View →</a></td>
+</tr>
+<tr>
+<td><strong>basic</strong></td>
+<td>default-container</td>
+<td><code>module</code></td>
+<td>Basic Python Extractor for Archlette
+Extracts architecture information from Python source code</td>
+<td><a href="./default-container__basic.md">View →</a></td>
+</tr>
+<tr>
+<td><strong>basic_wrangler</strong></td>
+<td>default-container</td>
+<td><code>module</code></td>
+<td>Cloudflare Wrangler deployment extractor</td>
+<td><a href="./default-container__basicwrangler.md">View →</a></td>
+</tr>
+<tr>
+<td><strong>basic_python</strong></td>
+<td>default-container</td>
+<td><code>module</code></td>
+<td>—</td>
+<td><a href="./default-container__basicpython.md">View →</a></td>
 </tr>
 </tbody>
 </table>
@@ -169,12 +198,17 @@ The component diagram shows the internal structure of containers and their respo
 Quick navigation to detailed component documentation:
 
 - **[CLI](./default-container__cli.md)** — Archlette CLI - Architecture-as-Code toolkit
-- **[extractors](./default-container__extractors.md)** — ArchletteIR aggregation utilities | Extraction stage of the AAC pipeline | TypeScript/JavaScript code extractor | Cloudflare Wrangler deployment extractor
+- **[extractors](./default-container__extractors.md)** — ArchletteIR aggregation utilities | Extraction stage of the AAC pipeline
 - **[validators](./default-container__validators.md)** — Validation stage of the AAC pipeline | Base IR validator for Archlette pipeline
 - **[generators](./default-container__generators.md)** — Generation stage of the AAC pipeline | Structurizr DSL Generator (Template-based)
 - **[renderers](./default-container__renderers.md)** — Render stage of the AAC pipeline | PlantUML image renderer | Structurizr DSL export renderer
 - **[docs](./default-container__docs.md)** — Documentation stage of the AAC pipeline | Markdown documentation generator
 - **[core](./default-container__core.md)** — Dynamic ESM module loader | Stage module interfaces for the AAC pipeline | Stage module loaders | Tool management for external rendering tools | Architecture-as-Code (AAC) configuration types and schemas | Archlette Intermediate Representation (IR) types and schemas | Core pipeline types
+- **[basic_node](./default-container__basicnode.md)** — TypeScript/JavaScript code extractor
+- **[basic](./default-container__basic.md)** — Basic Python Extractor for Archlette
+Extracts architecture information from Python source code
+- **[basic_wrangler](./default-container__basicwrangler.md)** — Cloudflare Wrangler deployment extractor
+- **[basic_python](./default-container__basicpython.md)** — Component documentation
 
 ---
 

@@ -21,18 +21,6 @@ skinparam rectangle<<Application.Application.extractors__aggregateirs>> {
   BorderColor #9a9a9a
   shadowing false
 }
-skinparam rectangle<<Application.Application.extractors__basicnodeextractor>> {
-  BackgroundColor #dddddd
-  FontColor #000000
-  BorderColor #9a9a9a
-  shadowing false
-}
-skinparam rectangle<<Application.Application.extractors__basicwranglerextractor>> {
-  BackgroundColor #dddddd
-  FontColor #000000
-  BorderColor #9a9a9a
-  shadowing false
-}
 skinparam rectangle<<Application.Application.extractors__deduplicatebyid>> {
   BackgroundColor #dddddd
   FontColor #000000
@@ -69,8 +57,6 @@ rectangle "Application\n<size:10>[Container: Application]</size>" <<Application.
   rectangle "==extractors__deduplicatebyname\n<size:10>[Component: function]</size>\n\nDeduplicate array of entities by their name field" <<Application.Application.extractors__deduplicatebyname>> as Application.Application.extractors__deduplicatebyname
   rectangle "==extractors__deduplicaterelationships\n<size:10>[Component: function]</size>\n\nDeduplicate relationships by source+destination+stereotype combination" <<Application.Application.extractors__deduplicaterelationships>> as Application.Application.extractors__deduplicaterelationships
   rectangle "==extractors__run\n<size:10>[Component: function]</size>\n\nExecute the extraction stage" <<Application.Application.extractors__run>> as Application.Application.extractors__run
-  rectangle "==extractors__basicnodeextractor\n<size:10>[Component: function]</size>\n\nExtract architecture information from a Node.js/TypeScript codebase" <<Application.Application.extractors__basicnodeextractor>> as Application.Application.extractors__basicnodeextractor
-  rectangle "==extractors__basicwranglerextractor\n<size:10>[Component: function]</size>\n\nExtract deployment topology from Cloudflare Wrangler configuration files" <<Application.Application.extractors__basicwranglerextractor>> as Application.Application.extractors__basicwranglerextractor
 }
 
 @enduml

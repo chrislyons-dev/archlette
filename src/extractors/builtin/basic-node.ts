@@ -1,7 +1,7 @@
 /**
  * TypeScript/JavaScript code extractor
  *
- * @module extractors
+ * @module basic_node
  * @description
  * Extracts architectural information from TypeScript and JavaScript codebases
  * using static analysis with ts-morph. Produces ArchletteIR containing:

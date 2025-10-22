@@ -1,4 +1,5 @@
 /**
+ * @module basic_node
  * Component identification from JSDoc annotations
  */
 

@@ -1,7 +1,7 @@
 /**
  * Cloudflare Wrangler deployment extractor
  *
- * @module extractors
+ * @module basic_wrangler
  * @description
  * Extracts deployment topology from Cloudflare Wrangler configuration files.
  * Produces ArchletteIR containing:

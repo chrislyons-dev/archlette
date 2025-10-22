@@ -77,7 +77,7 @@
       "type": "module"
     },
     {
-      "description": "ArchletteIR aggregation utilities | Extraction stage of the AAC pipeline | TypeScript/JavaScript code extractor | Cloudflare Wrangler deployment extractor",
+      "description": "ArchletteIR aggregation utilities | Extraction stage of the AAC pipeline",
       "id": "default-container__extractors",
       "containerId": "default-container",
       "name": "extractors",
@@ -116,6 +116,34 @@
       "id": "default-container__core",
       "containerId": "default-container",
       "name": "core",
+      "type": "module"
+    },
+    {
+      "description": "TypeScript/JavaScript code extractor",
+      "id": "default-container__basicnode",
+      "containerId": "default-container",
+      "name": "basic_node",
+      "type": "module"
+    },
+    {
+      "description": "Basic Python Extractor for Archlette\nExtracts architecture information from Python source code",
+      "id": "default-container__basic",
+      "containerId": "default-container",
+      "name": "basic",
+      "type": "module"
+    },
+    {
+      "description": "Cloudflare Wrangler deployment extractor",
+      "id": "default-container__basicwrangler",
+      "containerId": "default-container",
+      "name": "basic_wrangler",
+      "type": "module"
+    },
+    {
+      "description": "",
+      "id": "default-container__basicpython",
+      "containerId": "default-container",
+      "name": "basic_python",
       "type": "module"
     }
   ],
@@ -343,7 +371,7 @@
       "visibility": "public",
       "isAsync": true,
       "filePath": "C:/Users/chris/git/archlette/src/1-extract/index.ts",
-      "lineNumber": 39
+      "lineNumber": 42
     },
     {
       "description": "Execute the validation stage",
@@ -1285,9 +1313,9 @@
     },
     {
       "description": "Extract architecture information from a Node.js/TypeScript codebase",
-      "id": "default-container__extractors__basicNodeExtractor",
-      "componentId": "default-container__extractors",
-      "name": "extractors__basicNodeExtractor",
+      "id": "default-container__basicnode__basicNodeExtractor",
+      "componentId": "default-container__basicnode",
+      "name": "basic_node__basicNodeExtractor",
       "type": "function",
       "documentation": {
         "summary": "Extract architecture information from a Node.js/TypeScript codebase",
@@ -1316,10 +1344,59 @@
       "lineNumber": 72
     },
     {
+      "description": "Create empty IR when no files found",
+      "id": "default-container__basic__createEmptyIR",
+      "componentId": "default-container__basic",
+      "name": "basic__createEmptyIR",
+      "type": "function",
+      "documentation": {
+        "summary": "Create empty IR when no files found"
+      },
+      "returnType": "z.infer<any>",
+      "parameters": [
+        {
+          "name": "systemName",
+          "type": "string",
+          "optional": false
+        }
+      ],
+      "visibility": "private",
+      "isAsync": false,
+      "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python.ts",
+      "lineNumber": 77
+    },
+    {
+      "description": "Basic Python extractor\nAnalyzes Python source code and extracts architectural components",
+      "id": "default-container__basic__basicPython",
+      "componentId": "default-container__basic",
+      "name": "basic__basicPython",
+      "type": "function",
+      "documentation": {
+        "summary": "Basic Python extractor\nAnalyzes Python source code and extracts architectural components"
+      },
+      "returnType": "Promise<z.infer<any>>",
+      "parameters": [
+        {
+          "name": "node",
+          "type": "any",
+          "optional": false
+        },
+        {
+          "name": "ctx",
+          "type": "import(\"C:/Users/chris/git/archlette/src/core/types\").PipelineContext",
+          "optional": false
+        }
+      ],
+      "visibility": "public",
+      "isAsync": true,
+      "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python.ts",
+      "lineNumber": 20
+    },
+    {
       "description": "Extract deployment topology from Cloudflare Wrangler configuration files",
-      "id": "default-container__extractors__basicWranglerExtractor",
-      "componentId": "default-container__extractors",
-      "name": "extractors__basicWranglerExtractor",
+      "id": "default-container__basicwrangler__basicWranglerExtractor",
+      "componentId": "default-container__basicwrangler",
+      "name": "basic_wrangler__basicWranglerExtractor",
       "type": "function",
       "documentation": {
         "summary": "Extract deployment topology from Cloudflare Wrangler configuration files",
@@ -1634,8 +1711,9 @@
     },
     {
       "description": "Extract all class declarations from a source file",
-      "id": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/class-extractor.ts:extractClasses",
-      "name": "extractClasses",
+      "id": "default-container__basicnode__extractClasses",
+      "componentId": "default-container__basicnode",
+      "name": "basic_node__extractClasses",
       "type": "function",
       "documentation": {
         "summary": "Extract all class declarations from a source file"
@@ -1651,12 +1729,13 @@
       "visibility": "public",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/class-extractor.ts",
-      "lineNumber": 31
+      "lineNumber": 32
     },
     {
       "description": "Extract information from a single class declaration",
-      "id": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/class-extractor.ts:extractClass",
-      "name": "extractClass",
+      "id": "default-container__basicnode__extractClass",
+      "componentId": "default-container__basicnode",
+      "name": "basic_node__extractClass",
       "type": "function",
       "documentation": {
         "summary": "Extract information from a single class declaration"
@@ -1677,12 +1756,13 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/class-extractor.ts",
-      "lineNumber": 52
+      "lineNumber": 53
     },
     {
       "description": "Extract method information from a class",
-      "id": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/class-extractor.ts:extractMethod",
-      "name": "extractMethod",
+      "id": "default-container__basicnode__extractMethod",
+      "componentId": "default-container__basicnode",
+      "name": "basic_node__extractMethod",
       "type": "function",
       "documentation": {
         "summary": "Extract method information from a class"
@@ -1703,12 +1783,13 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/class-extractor.ts",
-      "lineNumber": 91
+      "lineNumber": 92
     },
     {
       "description": "Extract property information from a class",
-      "id": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/class-extractor.ts:extractProperty",
-      "name": "extractProperty",
+      "id": "default-container__basicnode__extractProperty",
+      "componentId": "default-container__basicnode",
+      "name": "basic_node__extractProperty",
       "type": "function",
       "documentation": {
         "summary": "Extract property information from a class"
@@ -1729,12 +1810,13 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/class-extractor.ts",
-      "lineNumber": 120
+      "lineNumber": 121
     },
     {
       "description": "Extract parameter information",
-      "id": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/class-extractor.ts:extractParameter",
-      "name": "extractParameter",
+      "id": "default-container__basicnode__extractMethodParameter",
+      "componentId": "default-container__basicnode",
+      "name": "basic_node__extractMethodParameter",
       "type": "function",
       "documentation": {
         "summary": "Extract parameter information"
@@ -1754,12 +1836,13 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/class-extractor.ts",
-      "lineNumber": 145
+      "lineNumber": 147
     },
     {
       "description": "Map ts-morph Scope to our visibility string",
-      "id": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/class-extractor.ts:mapVisibility",
-      "name": "mapVisibility",
+      "id": "default-container__basicnode__mapVisibility",
+      "componentId": "default-container__basicnode",
+      "name": "basic_node__mapVisibility",
       "type": "function",
       "documentation": {
         "summary": "Map ts-morph Scope to our visibility string"
@@ -1774,12 +1857,13 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/class-extractor.ts",
-      "lineNumber": 166
+      "lineNumber": 168
     },
     {
       "description": "Get JSDoc comments from a source file\nChecks both the first statement and module-level JSDoc",
-      "id": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts:getFileJsDocs",
-      "name": "getFileJsDocs",
+      "id": "default-container__basicnode__getFileJsDocs",
+      "componentId": "default-container__basicnode",
+      "name": "basic_node__getFileJsDocs",
       "type": "function",
       "documentation": {
         "summary": "Get JSDoc comments from a source file\nChecks both the first statement and module-level JSDoc"
@@ -1797,12 +1881,13 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts",
-      "lineNumber": 36
+      "lineNumber": 37
     },
     {
       "description": "Extract component information from file-level JSDoc\nChecks the first JSDoc comment in the file for",
-      "id": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts:extractFileComponent",
-      "name": "extractFileComponent",
+      "id": "default-container__basicnode__extractFileComponent",
+      "componentId": "default-container__basicnode",
+      "name": "basic_node__extractFileComponent",
       "type": "function",
       "documentation": {
         "summary": "Extract component information from file-level JSDoc\nChecks the first JSDoc comment in the file for"
@@ -1818,12 +1903,13 @@
       "visibility": "public",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts",
-      "lineNumber": 53
+      "lineNumber": 54
     },
     {
       "description": "Extract actors from file-level JSDoc\nLooks for",
-      "id": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts:extractFileActors",
-      "name": "extractFileActors",
+      "id": "default-container__basicnode__extractFileActors",
+      "componentId": "default-container__basicnode",
+      "name": "basic_node__extractFileActors",
       "type": "function",
       "documentation": {
         "summary": "Extract actors from file-level JSDoc\nLooks for"
@@ -1839,12 +1925,13 @@
       "visibility": "public",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts",
-      "lineNumber": 72
+      "lineNumber": 73
     },
     {
       "description": "Extract relationships from file-level JSDoc\nLooks for",
-      "id": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts:extractFileRelationships",
-      "name": "extractFileRelationships",
+      "id": "default-container__basicnode__extractFileRelationships",
+      "componentId": "default-container__basicnode",
+      "name": "basic_node__extractFileRelationships",
       "type": "function",
       "documentation": {
         "summary": "Extract relationships from file-level JSDoc\nLooks for"
@@ -1860,12 +1947,13 @@
       "visibility": "public",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts",
-      "lineNumber": 91
+      "lineNumber": 92
     },
     {
       "description": "Extract component info from a JSDoc node",
-      "id": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts:extractComponentFromJsDoc",
-      "name": "extractComponentFromJsDoc",
+      "id": "default-container__basicnode__extractComponentFromJsDoc",
+      "componentId": "default-container__basicnode",
+      "name": "basic_node__extractComponentFromJsDoc",
       "type": "function",
       "documentation": {
         "summary": "Extract component info from a JSDoc node"
@@ -1881,12 +1969,13 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts",
-      "lineNumber": 107
+      "lineNumber": 108
     },
     {
       "description": "Extract actors from a JSDoc node\nParses",
-      "id": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts:extractActorsFromJsDoc",
-      "name": "extractActorsFromJsDoc",
+      "id": "default-container__basicnode__extractActorsFromJsDoc",
+      "componentId": "default-container__basicnode",
+      "name": "basic_node__extractActorsFromJsDoc",
       "type": "function",
       "documentation": {
         "summary": "Extract actors from a JSDoc node\nParses"
@@ -1902,12 +1991,13 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts",
-      "lineNumber": 138
+      "lineNumber": 139
     },
     {
       "description": "Parse an",
-      "id": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts:parseActorTag",
-      "name": "parseActorTag",
+      "id": "default-container__basicnode__parseActorTag",
+      "componentId": "default-container__basicnode",
+      "name": "basic_node__parseActorTag",
       "type": "function",
       "documentation": {
         "summary": "Parse an"
@@ -1923,12 +2013,13 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts",
-      "lineNumber": 169
+      "lineNumber": 170
     },
     {
       "description": "Extract relationships from a JSDoc node\nParses",
-      "id": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts:extractRelationshipsFromJsDoc",
-      "name": "extractRelationshipsFromJsDoc",
+      "id": "default-container__basicnode__extractRelationshipsFromJsDoc",
+      "componentId": "default-container__basicnode",
+      "name": "basic_node__extractRelationshipsFromJsDoc",
       "type": "function",
       "documentation": {
         "summary": "Extract relationships from a JSDoc node\nParses"
@@ -1944,12 +2035,13 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts",
-      "lineNumber": 206
+      "lineNumber": 207
     },
     {
       "description": "Parse a",
-      "id": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts:parseUsesTag",
-      "name": "parseUsesTag",
+      "id": "default-container__basicnode__parseUsesTag",
+      "componentId": "default-container__basicnode",
+      "name": "basic_node__parseUsesTag",
       "type": "function",
       "documentation": {
         "summary": "Parse a"
@@ -1965,12 +2057,13 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts",
-      "lineNumber": 233
+      "lineNumber": 234
     },
     {
       "description": "Extract component name from a JSDoc tag\nHandles formats like:\n-",
-      "id": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts:extractComponentName",
-      "name": "extractComponentName",
+      "id": "default-container__basicnode__extractComponentName",
+      "componentId": "default-container__basicnode",
+      "name": "basic_node__extractComponentName",
       "type": "function",
       "documentation": {
         "summary": "Extract component name from a JSDoc tag\nHandles formats like:\n-"
@@ -1986,12 +2079,13 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts",
-      "lineNumber": 264
+      "lineNumber": 265
     },
     {
       "description": "Extract documentation information from JSDoc",
-      "id": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/doc-extractor.ts:extractDocumentation",
-      "name": "extractDocumentation",
+      "id": "default-container__basicnode__extractDocumentation",
+      "componentId": "default-container__basicnode",
+      "name": "basic_node__extractDocumentation",
       "type": "function",
       "documentation": {
         "summary": "Extract documentation information from JSDoc"
@@ -2007,12 +2101,13 @@
       "visibility": "public",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/doc-extractor.ts",
-      "lineNumber": 12
+      "lineNumber": 13
     },
     {
       "description": "Extract deprecation information from JSDoc",
-      "id": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/doc-extractor.ts:extractDeprecation",
-      "name": "extractDeprecation",
+      "id": "default-container__basicnode__extractDeprecation",
+      "componentId": "default-container__basicnode",
+      "name": "basic_node__extractDeprecation",
       "type": "function",
       "documentation": {
         "summary": "Extract deprecation information from JSDoc"
@@ -2028,12 +2123,13 @@
       "visibility": "public",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/doc-extractor.ts",
-      "lineNumber": 63
+      "lineNumber": 64
     },
     {
       "description": "Extract parameter descriptions from JSDoc",
-      "id": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/doc-extractor.ts:extractParameterDescriptions",
-      "name": "extractParameterDescriptions",
+      "id": "default-container__basicnode__extractParameterDescriptions",
+      "componentId": "default-container__basicnode",
+      "name": "basic_node__extractParameterDescriptions",
       "type": "function",
       "documentation": {
         "summary": "Extract parameter descriptions from JSDoc"
@@ -2049,12 +2145,13 @@
       "visibility": "public",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/doc-extractor.ts",
-      "lineNumber": 92
+      "lineNumber": 93
     },
     {
       "description": "Extract return description from JSDoc",
-      "id": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/doc-extractor.ts:extractReturnDescription",
-      "name": "extractReturnDescription",
+      "id": "default-container__basicnode__extractReturnDescription",
+      "componentId": "default-container__basicnode",
+      "name": "basic_node__extractReturnDescription",
       "type": "function",
       "documentation": {
         "summary": "Extract return description from JSDoc"
@@ -2070,12 +2167,13 @@
       "visibility": "public",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/doc-extractor.ts",
-      "lineNumber": 115
+      "lineNumber": 116
     },
     {
       "description": "Extract parameter name from",
-      "id": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/doc-extractor.ts:extractParameterName",
-      "name": "extractParameterName",
+      "id": "default-container__basicnode__extractParameterName",
+      "componentId": "default-container__basicnode",
+      "name": "basic_node__extractParameterName",
       "type": "function",
       "documentation": {
         "summary": "Extract parameter name from"
@@ -2092,12 +2190,13 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/doc-extractor.ts",
-      "lineNumber": 130
+      "lineNumber": 131
     },
     {
       "description": "Find source files matching include/exclude patterns",
-      "id": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/file-finder.ts:findSourceFiles",
-      "name": "findSourceFiles",
+      "id": "default-container__basicnode__findSourceFiles",
+      "componentId": "default-container__basicnode",
+      "name": "basic_node__findSourceFiles",
       "type": "function",
       "documentation": {
         "summary": "Find source files matching include/exclude patterns"
@@ -2113,12 +2212,13 @@
       "visibility": "public",
       "isAsync": true,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/file-finder.ts",
-      "lineNumber": 31
+      "lineNumber": 32
     },
     {
       "description": "Find package.json files within the search paths",
-      "id": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/file-finder.ts:findPackageJsonFiles",
-      "name": "findPackageJsonFiles",
+      "id": "default-container__basicnode__findPackageJsonFiles",
+      "componentId": "default-container__basicnode",
+      "name": "basic_node__findPackageJsonFiles",
       "type": "function",
       "documentation": {
         "summary": "Find package.json files within the search paths"
@@ -2134,12 +2234,13 @@
       "visibility": "public",
       "isAsync": true,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/file-finder.ts",
-      "lineNumber": 47
+      "lineNumber": 48
     },
     {
       "description": "Read and parse package.json file",
-      "id": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/file-finder.ts:readPackageInfo",
-      "name": "readPackageInfo",
+      "id": "default-container__basicnode__readPackageInfo",
+      "componentId": "default-container__basicnode",
+      "name": "basic_node__readPackageInfo",
       "type": "function",
       "documentation": {
         "summary": "Read and parse package.json file"
@@ -2155,12 +2256,13 @@
       "visibility": "public",
       "isAsync": true,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/file-finder.ts",
-      "lineNumber": 85
+      "lineNumber": 86
     },
     {
       "description": "Find the nearest parent package.json for a given file",
-      "id": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/file-finder.ts:findNearestPackage",
-      "name": "findNearestPackage",
+      "id": "default-container__basicnode__findNearestPackage",
+      "componentId": "default-container__basicnode",
+      "name": "basic_node__findNearestPackage",
       "type": "function",
       "documentation": {
         "summary": "Find the nearest parent package.json for a given file"
@@ -2181,12 +2283,13 @@
       "visibility": "public",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/file-finder.ts",
-      "lineNumber": 109
+      "lineNumber": 110
     },
     {
       "description": "Parse and extract information from source files",
-      "id": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/file-parser.ts:parseFiles",
-      "name": "parseFiles",
+      "id": "default-container__basicnode__parseFiles",
+      "componentId": "default-container__basicnode",
+      "name": "basic_node__parseFiles",
       "type": "function",
       "documentation": {
         "summary": "Parse and extract information from source files"
@@ -2202,12 +2305,13 @@
       "visibility": "public",
       "isAsync": true,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/file-parser.ts",
-      "lineNumber": 23
+      "lineNumber": 24
     },
     {
       "description": "Extract all function declarations from a source file",
-      "id": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/function-extractor.ts:extractFunctions",
-      "name": "extractFunctions",
+      "id": "default-container__basicnode__extractFunctions",
+      "componentId": "default-container__basicnode",
+      "name": "basic_node__extractFunctions",
       "type": "function",
       "documentation": {
         "summary": "Extract all function declarations from a source file"
@@ -2223,12 +2327,13 @@
       "visibility": "public",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/function-extractor.ts",
-      "lineNumber": 20
+      "lineNumber": 21
     },
     {
       "description": "Extract information from a single function declaration",
-      "id": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/function-extractor.ts:extractFunction",
-      "name": "extractFunction",
+      "id": "default-container__basicnode__extractFunction",
+      "componentId": "default-container__basicnode",
+      "name": "basic_node__extractFunction",
       "type": "function",
       "documentation": {
         "summary": "Extract information from a single function declaration"
@@ -2249,12 +2354,13 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/function-extractor.ts",
-      "lineNumber": 43
+      "lineNumber": 44
     },
     {
       "description": "Extract parameter information",
-      "id": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/function-extractor.ts:extractParameter",
-      "name": "extractParameter",
+      "id": "default-container__basicnode__extractFunctionParameter",
+      "componentId": "default-container__basicnode",
+      "name": "basic_node__extractFunctionParameter",
       "type": "function",
       "documentation": {
         "summary": "Extract parameter information"
@@ -2274,12 +2380,13 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/function-extractor.ts",
-      "lineNumber": 79
+      "lineNumber": 80
     },
     {
       "description": "Extract arrow functions assigned to const/let/var\nExamples:\n  const handleClick = () => {}\n  export const createUser = async (data) => {}",
-      "id": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/function-extractor.ts:extractArrowFunctions",
-      "name": "extractArrowFunctions",
+      "id": "default-container__basicnode__extractArrowFunctions",
+      "componentId": "default-container__basicnode",
+      "name": "basic_node__extractArrowFunctions",
       "type": "function",
       "documentation": {
         "summary": "Extract arrow functions assigned to const/let/var\nExamples:\n  const handleClick = () => {}\n  export const createUser = async (data) => {}"
@@ -2295,12 +2402,13 @@
       "visibility": "public",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/function-extractor.ts",
-      "lineNumber": 103
+      "lineNumber": 104
     },
     {
       "description": "Extract all import declarations from a source file",
-      "id": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/import-extractor.ts:extractImports",
-      "name": "extractImports",
+      "id": "default-container__basicnode__extractImports",
+      "componentId": "default-container__basicnode",
+      "name": "basic_node__extractImports",
       "type": "function",
       "documentation": {
         "summary": "Extract all import declarations from a source file"
@@ -2316,12 +2424,13 @@
       "visibility": "public",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/import-extractor.ts",
-      "lineNumber": 14
+      "lineNumber": 15
     },
     {
       "description": "Map file extractions to ArchletteIR",
-      "id": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts:mapToIR",
-      "name": "mapToIR",
+      "id": "default-container__basicnode__mapToIR",
+      "componentId": "default-container__basicnode",
+      "name": "basic_node__mapToIR",
       "type": "function",
       "documentation": {
         "summary": "Map file extractions to ArchletteIR"
@@ -2347,12 +2456,13 @@
       "visibility": "public",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts",
-      "lineNumber": 32
+      "lineNumber": 34
     },
     {
       "description": "Deduplicate relationships by source+destination+stereotype combination\nFirst occurrence wins - preserves description from first relationship\nThis allows multiple relationships between the same elements with different stereotypes",
-      "id": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts:deduplicateRelationships",
-      "name": "deduplicateRelationships",
+      "id": "default-container__basicnode__deduplicateRelationships",
+      "componentId": "default-container__basicnode",
+      "name": "basic_node__deduplicateRelationships",
       "type": "function",
       "documentation": {
         "summary": "Deduplicate relationships by source+destination+stereotype combination\nFirst occurrence wins - preserves description from first relationship\nThis allows multiple relationships between the same elements with different stereotypes"
@@ -2368,12 +2478,13 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts",
-      "lineNumber": 351
+      "lineNumber": 358
     },
     {
       "description": "Map a function to a CodeItem",
-      "id": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts:mapFunction",
-      "name": "mapFunction",
+      "id": "default-container__basicnode__mapFunction",
+      "componentId": "default-container__basicnode",
+      "name": "basic_node__mapFunction",
       "type": "function",
       "documentation": {
         "summary": "Map a function to a CodeItem"
@@ -2399,12 +2510,13 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts",
-      "lineNumber": 365
+      "lineNumber": 372
     },
     {
       "description": "Map a class to a CodeItem",
-      "id": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts:mapClass",
-      "name": "mapClass",
+      "id": "default-container__basicnode__mapClass",
+      "componentId": "default-container__basicnode",
+      "name": "basic_node__mapClass",
       "type": "function",
       "documentation": {
         "summary": "Map a class to a CodeItem"
@@ -2430,12 +2542,13 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts",
-      "lineNumber": 393
+      "lineNumber": 400
     },
     {
       "description": "Map a class method to a CodeItem",
-      "id": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts:mapMethod",
-      "name": "mapMethod",
+      "id": "default-container__basicnode__mapMethod",
+      "componentId": "default-container__basicnode",
+      "name": "basic_node__mapMethod",
       "type": "function",
       "documentation": {
         "summary": "Map a class method to a CodeItem"
@@ -2466,12 +2579,13 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts",
-      "lineNumber": 422
+      "lineNumber": 429
     },
     {
       "description": "Map imports to relationships",
-      "id": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts:mapImportRelationships",
-      "name": "mapImportRelationships",
+      "id": "default-container__basicnode__mapImportRelationships",
+      "componentId": "default-container__basicnode",
+      "name": "basic_node__mapImportRelationships",
       "type": "function",
       "documentation": {
         "summary": "Map imports to relationships"
@@ -2492,12 +2606,13 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts",
-      "lineNumber": 456
+      "lineNumber": 463
     },
     {
       "description": "Generate a unique ID for a code element\nFormat: filePath:symbolName",
-      "id": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts:generateId",
-      "name": "generateId",
+      "id": "default-container__basicnode__generateId",
+      "componentId": "default-container__basicnode",
+      "name": "basic_node__generateId",
       "type": "function",
       "documentation": {
         "summary": "Generate a unique ID for a code element\nFormat: filePath:symbolName"
@@ -2518,12 +2633,13 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts",
-      "lineNumber": 479
+      "lineNumber": 486
     },
     {
       "description": "Get default system info from package.json if available",
-      "id": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts:getDefaultSystem",
-      "name": "getDefaultSystem",
+      "id": "default-container__basicnode__getDefaultSystem",
+      "componentId": "default-container__basicnode",
+      "name": "basic_node__getDefaultSystem",
       "type": "function",
       "documentation": {
         "summary": "Get default system info from package.json if available"
@@ -2533,12 +2649,13 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts",
-      "lineNumber": 488
+      "lineNumber": 495
     },
     {
       "description": "Extract type aliases from a source file\nExamples:\n  type UserRole = 'admin' | 'user' | 'guest'\n  export type ApiResponse<T> = { data: T; status: number }",
-      "id": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/type-extractor.ts:extractTypeAliases",
-      "name": "extractTypeAliases",
+      "id": "default-container__basicnode__extractTypeAliases",
+      "componentId": "default-container__basicnode",
+      "name": "basic_node__extractTypeAliases",
       "type": "function",
       "documentation": {
         "summary": "Extract type aliases from a source file\nExamples:\n  type UserRole = 'admin' | 'user' | 'guest'\n  export type ApiResponse<T> = { data: T; status: number }"
@@ -2554,12 +2671,13 @@
       "visibility": "public",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/type-extractor.ts",
-      "lineNumber": 18
+      "lineNumber": 19
     },
     {
       "description": "Extract interfaces from a source file\nExamples:\n  interface User { id: string; name: string }\n  export interface ApiClient { get<T>(url: string): Promise<T> }",
-      "id": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/type-extractor.ts:extractInterfaces",
-      "name": "extractInterfaces",
+      "id": "default-container__basicnode__extractInterfaces",
+      "componentId": "default-container__basicnode",
+      "name": "basic_node__extractInterfaces",
       "type": "function",
       "documentation": {
         "summary": "Extract interfaces from a source file\nExamples:\n  interface User { id: string; name: string }\n  export interface ApiClient { get<T>(url: string): Promise<T> }"
@@ -2575,12 +2693,603 @@
       "visibility": "public",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/type-extractor.ts",
+      "lineNumber": 59
+    },
+    {
+      "description": "Parse Python files using Python AST parser script",
+      "id": "default-container__basicpython__parseFiles",
+      "componentId": "default-container__basicpython",
+      "name": "basic_python__parseFiles",
+      "type": "function",
+      "documentation": {
+        "summary": "Parse Python files using Python AST parser script"
+      },
+      "returnType": "Promise<import(\"C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/types\").FileExtraction[]>",
+      "parameters": [
+        {
+          "name": "filePaths",
+          "type": "string[]",
+          "optional": false
+        },
+        {
+          "name": "pythonPath",
+          "type": "string",
+          "optional": true,
+          "defaultValue": "'python'"
+        }
+      ],
+      "visibility": "public",
+      "isAsync": true,
+      "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-parser.ts",
+      "lineNumber": 29
+    },
+    {
+      "description": "Run Python parser script and return JSON output",
+      "id": "default-container__basicpython__runPythonParser",
+      "componentId": "default-container__basicpython",
+      "name": "basic_python__runPythonParser",
+      "type": "function",
+      "documentation": {
+        "summary": "Run Python parser script and return JSON output"
+      },
+      "returnType": "Promise<string>",
+      "parameters": [
+        {
+          "name": "scriptPath",
+          "type": "string",
+          "optional": false
+        },
+        {
+          "name": "filePaths",
+          "type": "string[]",
+          "optional": false
+        },
+        {
+          "name": "pythonPath",
+          "type": "string",
+          "optional": false
+        }
+      ],
+      "visibility": "private",
+      "isAsync": false,
+      "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-parser.ts",
       "lineNumber": 58
     },
     {
+      "description": "Map Python parser output to FileExtraction format",
+      "id": "default-container__basicpython__mapToFileExtraction",
+      "componentId": "default-container__basicpython",
+      "name": "basic_python__mapToFileExtraction",
+      "type": "function",
+      "documentation": {
+        "summary": "Map Python parser output to FileExtraction format"
+      },
+      "returnType": "import(\"C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/types\").FileExtraction",
+      "parameters": [
+        {
+          "name": "file",
+          "type": "{ filePath: string; component?: { name: string; description?: string; }; actors: { name: string; type: \"Person\" | \"System\"; direction?: \"in\" | \"out\" | \"both\"; description?: string; }[]; relationships: { target: string; description?: string; }[]; classes: { name: string; baseClasses: string[]; decorators: string[]; decoratorDetails: import(\"C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/types\").DecoratorInfo[]; line: number; docstring?: string; methods: { name: string; isStatic: boolean; isAsync: boolean; isClassMethod: boolean; isAbstract: boolean; decorators: string[]; decoratorDetails: import(\"C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/types\").DecoratorInfo[]; line: number; docstring?: string; parsedDoc?: { summary?: string; description?: string; args?: { name: string; type?: string; description?: string; }[]; returns?: { type?: string; description?: string; }; raises?: { type: string; description?: string; }[]; examples?: string; }; parameters: { name: string; annotation?: string; default?: string; }[]; returnAnnotation?: string; }[]; properties: { name: string; type?: \"property\" | \"class_variable\"; annotation?: string; default?: string; line: number; docstring?: string; isReadonly?: boolean; hasGetter?: boolean; hasSetter?: boolean; hasDeleter?: boolean; }[]; }[]; functions: { name: string; isAsync: boolean; decorators: string[]; decoratorDetails: import(\"C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/types\").DecoratorInfo[]; line: number; docstring?: string; parsedDoc?: { summary?: string; description?: string; args?: { name: string; type?: string; description?: string; }[]; returns?: { type?: string; description?: string; }; raises?: { type: string; description?: string; }[]; examples?: string; }; parameters: { name: string; annotation?: string; default?: string; }[]; returnAnnotation?: string; }[]; types: { name: string; category: \"TypeAlias\" | \"TypedDict\" | \"Protocol\" | \"Enum\" | \"NewType\"; line: number; definition?: string; docstring?: string; }[]; imports: { source: string; names: string[]; isRelative: boolean; level?: number; category: \"stdlib\" | \"third_party\" | \"local\"; }[]; parseError?: string; }",
+          "optional": false
+        }
+      ],
+      "visibility": "private",
+      "isAsync": false,
+      "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-parser.ts",
+      "lineNumber": 95
+    },
+    {
+      "description": "Map Python class to ExtractedClass",
+      "id": "default-container__basicpython__mapClass",
+      "componentId": "default-container__basicpython",
+      "name": "basic_python__mapClass",
+      "type": "function",
+      "documentation": {
+        "summary": "Map Python class to ExtractedClass"
+      },
+      "returnType": "import(\"C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/types\").ExtractedClass",
+      "parameters": [
+        {
+          "name": "cls",
+          "type": "{ name: string; baseClasses: string[]; decorators: string[]; decoratorDetails: import(\"C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/types\").DecoratorInfo[]; line: number; docstring?: string; methods: { name: string; isStatic: boolean; isAsync: boolean; isClassMethod: boolean; isAbstract: boolean; decorators: string[]; decoratorDetails: import(\"C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/types\").DecoratorInfo[]; line: number; docstring?: string; parsedDoc?: { summary?: string; description?: string; args?: { name: string; type?: string; description?: string; }[]; returns?: { type?: string; description?: string; }; raises?: { type: string; description?: string; }[]; examples?: string; }; parameters: { name: string; annotation?: string; default?: string; }[]; returnAnnotation?: string; }[]; properties: { name: string; type?: \"property\" | \"class_variable\"; annotation?: string; default?: string; line: number; docstring?: string; isReadonly?: boolean; hasGetter?: boolean; hasSetter?: boolean; hasDeleter?: boolean; }[]; }",
+          "optional": false
+        },
+        {
+          "name": "filePath",
+          "type": "string",
+          "optional": false
+        }
+      ],
+      "visibility": "private",
+      "isAsync": false,
+      "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-parser.ts",
+      "lineNumber": 135
+    },
+    {
+      "description": "Map Python method to ExtractedMethod",
+      "id": "default-container__basicpython__mapMethod",
+      "componentId": "default-container__basicpython",
+      "name": "basic_python__mapMethod",
+      "type": "function",
+      "documentation": {
+        "summary": "Map Python method to ExtractedMethod"
+      },
+      "returnType": "import(\"C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/types\").ExtractedMethod",
+      "parameters": [
+        {
+          "name": "method",
+          "type": "{ name: string; isStatic: boolean; isAsync: boolean; isClassMethod: boolean; isAbstract: boolean; decorators: string[]; decoratorDetails: import(\"C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/types\").DecoratorInfo[]; line: number; docstring?: string; parsedDoc?: { summary?: string; description?: string; args?: { name: string; type?: string; description?: string; }[]; returns?: { type?: string; description?: string; }; raises?: { type: string; description?: string; }[]; examples?: string; }; parameters: { name: string; annotation?: string; default?: string; }[]; returnAnnotation?: string; }",
+          "optional": false
+        },
+        {
+          "name": "filePath",
+          "type": "string",
+          "optional": false
+        }
+      ],
+      "visibility": "private",
+      "isAsync": false,
+      "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-parser.ts",
+      "lineNumber": 160
+    },
+    {
+      "description": "Map Python property to ExtractedProperty",
+      "id": "default-container__basicpython__mapProperty",
+      "componentId": "default-container__basicpython",
+      "name": "basic_python__mapProperty",
+      "type": "function",
+      "documentation": {
+        "summary": "Map Python property to ExtractedProperty"
+      },
+      "returnType": "import(\"C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/types\").ExtractedProperty",
+      "parameters": [
+        {
+          "name": "prop",
+          "type": "{ name: string; type?: \"property\" | \"class_variable\"; annotation?: string; default?: string; line: number; docstring?: string; isReadonly?: boolean; hasGetter?: boolean; hasSetter?: boolean; hasDeleter?: boolean; }",
+          "optional": false
+        },
+        {
+          "name": "filePath",
+          "type": "string",
+          "optional": false
+        }
+      ],
+      "visibility": "private",
+      "isAsync": false,
+      "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-parser.ts",
+      "lineNumber": 195
+    },
+    {
+      "description": "Map Python function to ExtractedFunction",
+      "id": "default-container__basicpython__mapFunction",
+      "componentId": "default-container__basicpython",
+      "name": "basic_python__mapFunction",
+      "type": "function",
+      "documentation": {
+        "summary": "Map Python function to ExtractedFunction"
+      },
+      "returnType": "import(\"C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/types\").ExtractedFunction",
+      "parameters": [
+        {
+          "name": "func",
+          "type": "{ name: string; isAsync: boolean; decorators: string[]; decoratorDetails: import(\"C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/types\").DecoratorInfo[]; line: number; docstring?: string; parsedDoc?: { summary?: string; description?: string; args?: { name: string; type?: string; description?: string; }[]; returns?: { type?: string; description?: string; }; raises?: { type: string; description?: string; }[]; examples?: string; }; parameters: { name: string; annotation?: string; default?: string; }[]; returnAnnotation?: string; }",
+          "optional": false
+        },
+        {
+          "name": "filePath",
+          "type": "string",
+          "optional": false
+        }
+      ],
+      "visibility": "private",
+      "isAsync": false,
+      "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-parser.ts",
+      "lineNumber": 225
+    },
+    {
+      "description": "Map Python type definition to ExtractedType",
+      "id": "default-container__basicpython__mapType",
+      "componentId": "default-container__basicpython",
+      "name": "basic_python__mapType",
+      "type": "function",
+      "documentation": {
+        "summary": "Map Python type definition to ExtractedType"
+      },
+      "returnType": "import(\"C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/types\").ExtractedType",
+      "parameters": [
+        {
+          "name": "type",
+          "type": "{ name: string; category: \"TypeAlias\" | \"TypedDict\" | \"Protocol\" | \"Enum\" | \"NewType\"; line: number; definition?: string; docstring?: string; }",
+          "optional": false
+        },
+        {
+          "name": "filePath",
+          "type": "string",
+          "optional": false
+        }
+      ],
+      "visibility": "private",
+      "isAsync": false,
+      "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-parser.ts",
+      "lineNumber": 254
+    },
+    {
+      "description": "Map Python parameter to ParameterInfo",
+      "id": "default-container__basicpython__mapParameter",
+      "componentId": "default-container__basicpython",
+      "name": "basic_python__mapParameter",
+      "type": "function",
+      "documentation": {
+        "summary": "Map Python parameter to ParameterInfo"
+      },
+      "returnType": "import(\"C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/types\").ParameterInfo",
+      "parameters": [
+        {
+          "name": "param",
+          "type": "{ name: string; annotation?: string; default?: string; }",
+          "optional": false
+        },
+        {
+          "name": "parsedParam",
+          "type": "{ name: string; type?: string; description?: string; }",
+          "optional": true
+        }
+      ],
+      "visibility": "private",
+      "isAsync": false,
+      "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-parser.ts",
+      "lineNumber": 276
+    },
+    {
+      "description": "Parse Python docstring into DocInfo\nEnhanced in Phase 2 to use parsed Google/NumPy/Sphinx docstrings",
+      "id": "default-container__basicpython__parseDocstring",
+      "componentId": "default-container__basicpython",
+      "name": "basic_python__parseDocstring",
+      "type": "function",
+      "documentation": {
+        "summary": "Parse Python docstring into DocInfo\nEnhanced in Phase 2 to use parsed Google/NumPy/Sphinx docstrings"
+      },
+      "returnType": "import(\"C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/types\").DocInfo",
+      "parameters": [
+        {
+          "name": "docstring",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "parsedDoc",
+          "type": "{ summary?: string; description?: string; args?: { name: string; type?: string; description?: string; }[]; returns?: { type?: string; description?: string; }; raises?: { type: string; description?: string; }[]; examples?: string; }",
+          "optional": true
+        }
+      ],
+      "visibility": "private",
+      "isAsync": false,
+      "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-parser.ts",
+      "lineNumber": 293
+    },
+    {
+      "description": "Extract deprecation info from docstring",
+      "id": "default-container__basicpython__extractDeprecation",
+      "componentId": "default-container__basicpython",
+      "name": "basic_python__extractDeprecation",
+      "type": "function",
+      "documentation": {
+        "summary": "Extract deprecation info from docstring"
+      },
+      "returnType": "{ reason?: string; alternative?: string; }",
+      "parameters": [
+        {
+          "name": "docstring",
+          "type": "string",
+          "optional": true
+        }
+      ],
+      "visibility": "private",
+      "isAsync": false,
+      "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-parser.ts",
+      "lineNumber": 329
+    },
+    {
+      "description": "Extract return description from docstring",
+      "id": "default-container__basicpython__extractReturnDescription",
+      "componentId": "default-container__basicpython",
+      "name": "basic_python__extractReturnDescription",
+      "type": "function",
+      "documentation": {
+        "summary": "Extract return description from docstring"
+      },
+      "returnType": "string",
+      "parameters": [
+        {
+          "name": "docstring",
+          "type": "string",
+          "optional": true
+        }
+      ],
+      "visibility": "private",
+      "isAsync": false,
+      "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-parser.ts",
+      "lineNumber": 345
+    },
+    {
+      "description": "Determine visibility from Python name convention\n- __name: private\n- _name: protected\n- name: public",
+      "id": "default-container__basicpython__getVisibility",
+      "componentId": "default-container__basicpython",
+      "name": "basic_python__getVisibility",
+      "type": "function",
+      "documentation": {
+        "summary": "Determine visibility from Python name convention\n- __name: private\n- _name: protected\n- name: public"
+      },
+      "returnType": "\"public\" | \"private\" | \"protected\"",
+      "parameters": [
+        {
+          "name": "name",
+          "type": "string",
+          "optional": false
+        }
+      ],
+      "visibility": "private",
+      "isAsync": false,
+      "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-parser.ts",
+      "lineNumber": 358
+    },
+    {
+      "description": "Map file extractions to ArchletteIR",
+      "id": "default-container__basic__mapToIR",
+      "componentId": "default-container__basic",
+      "name": "basic__mapToIR",
+      "type": "function",
+      "documentation": {
+        "summary": "Map file extractions to ArchletteIR"
+      },
+      "returnType": "z.infer<any>",
+      "parameters": [
+        {
+          "name": "extractions",
+          "type": "import(\"C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/types\").FileExtraction[]",
+          "optional": false
+        },
+        {
+          "name": "systemName",
+          "type": "string",
+          "optional": false
+        },
+        {
+          "name": "systemDescription",
+          "type": "string",
+          "optional": true
+        }
+      ],
+      "visibility": "public",
+      "isAsync": false,
+      "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts",
+      "lineNumber": 31
+    },
+    {
+      "description": "Map ComponentInfo to Component",
+      "id": "default-container__basic__mapComponentToIR",
+      "componentId": "default-container__basic",
+      "name": "basic__mapComponentToIR",
+      "type": "function",
+      "documentation": {
+        "summary": "Map ComponentInfo to Component"
+      },
+      "returnType": "z.infer<any>",
+      "parameters": [
+        {
+          "name": "comp",
+          "type": "import(\"C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/types\").ComponentInfo",
+          "optional": false
+        }
+      ],
+      "visibility": "private",
+      "isAsync": false,
+      "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts",
+      "lineNumber": 131
+    },
+    {
+      "description": "Map ActorInfo to Actor",
+      "id": "default-container__basic__mapActorToIR",
+      "componentId": "default-container__basic",
+      "name": "basic__mapActorToIR",
+      "type": "function",
+      "documentation": {
+        "summary": "Map ActorInfo to Actor"
+      },
+      "returnType": "z.infer<any>",
+      "parameters": [
+        {
+          "name": "actor",
+          "type": "import(\"C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/types\").ActorInfo",
+          "optional": false
+        },
+        {
+          "name": "actorTargets",
+          "type": "Map<string, string[]>",
+          "optional": false
+        }
+      ],
+      "visibility": "private",
+      "isAsync": false,
+      "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts",
+      "lineNumber": 145
+    },
+    {
+      "description": "Map relationships to Relationship[]\nCreates bidirectional actor relationships",
+      "id": "default-container__basic__mapRelationshipsToIR",
+      "componentId": "default-container__basic",
+      "name": "basic__mapRelationshipsToIR",
+      "type": "function",
+      "documentation": {
+        "summary": "Map relationships to Relationship[]\nCreates bidirectional actor relationships"
+      },
+      "returnType": "z.infer<any>[]",
+      "parameters": [
+        {
+          "name": "relationships",
+          "type": "import(\"C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/types\").RelationshipInfo[]",
+          "optional": false
+        },
+        {
+          "name": "componentMap",
+          "type": "Map<string, import(\"C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/types\").ComponentInfo>",
+          "optional": false
+        },
+        {
+          "name": "actorMap",
+          "type": "Map<string, import(\"C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/types\").ActorInfo>",
+          "optional": false
+        },
+        {
+          "name": "actorTargets",
+          "type": "Map<string, string[]>",
+          "optional": false
+        }
+      ],
+      "visibility": "private",
+      "isAsync": false,
+      "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts",
+      "lineNumber": 159
+    },
+    {
+      "description": "Deduplicate relationships by source+destination",
+      "id": "default-container__basic__deduplicateRelationships",
+      "componentId": "default-container__basic",
+      "name": "basic__deduplicateRelationships",
+      "type": "function",
+      "documentation": {
+        "summary": "Deduplicate relationships by source+destination"
+      },
+      "returnType": "z.infer<any>[]",
+      "parameters": [
+        {
+          "name": "relationships",
+          "type": "z.infer<any>[]",
+          "optional": false
+        }
+      ],
+      "visibility": "private",
+      "isAsync": false,
+      "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts",
+      "lineNumber": 205
+    },
+    {
+      "description": "Map ExtractedClass to CodeItem",
+      "id": "default-container__basic__mapClassToCodeItem",
+      "componentId": "default-container__basic",
+      "name": "basic__mapClassToCodeItem",
+      "type": "function",
+      "documentation": {
+        "summary": "Map ExtractedClass to CodeItem"
+      },
+      "returnType": "z.infer<any>",
+      "parameters": [
+        {
+          "name": "cls",
+          "type": "import(\"C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/types\").ExtractedClass",
+          "optional": false
+        },
+        {
+          "name": "componentId",
+          "type": "string",
+          "optional": true
+        }
+      ],
+      "visibility": "private",
+      "isAsync": false,
+      "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts",
+      "lineNumber": 220
+    },
+    {
+      "description": "Map ExtractedMethod to CodeItem",
+      "id": "default-container__basic__mapMethodToCodeItem",
+      "componentId": "default-container__basic",
+      "name": "basic__mapMethodToCodeItem",
+      "type": "function",
+      "documentation": {
+        "summary": "Map ExtractedMethod to CodeItem"
+      },
+      "returnType": "z.infer<any>",
+      "parameters": [
+        {
+          "name": "method",
+          "type": "import(\"C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/types\").ExtractedMethod",
+          "optional": false
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "optional": false
+        },
+        {
+          "name": "componentId",
+          "type": "string",
+          "optional": true
+        }
+      ],
+      "visibility": "private",
+      "isAsync": false,
+      "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts",
+      "lineNumber": 245
+    },
+    {
+      "description": "Map ExtractedFunction to CodeItem",
+      "id": "default-container__basic__mapFunctionToCodeItem",
+      "componentId": "default-container__basic",
+      "name": "basic__mapFunctionToCodeItem",
+      "type": "function",
+      "documentation": {
+        "summary": "Map ExtractedFunction to CodeItem"
+      },
+      "returnType": "z.infer<any>",
+      "parameters": [
+        {
+          "name": "func",
+          "type": "import(\"C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/types\").ExtractedFunction",
+          "optional": false
+        },
+        {
+          "name": "componentId",
+          "type": "string",
+          "optional": true
+        }
+      ],
+      "visibility": "private",
+      "isAsync": false,
+      "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts",
+      "lineNumber": 280
+    },
+    {
+      "description": "Map ExtractedType to CodeItem",
+      "id": "default-container__basic__mapTypeToCodeItem",
+      "componentId": "default-container__basic",
+      "name": "basic__mapTypeToCodeItem",
+      "type": "function",
+      "documentation": {
+        "summary": "Map ExtractedType to CodeItem"
+      },
+      "returnType": "z.infer<any>",
+      "parameters": [
+        {
+          "name": "type",
+          "type": "import(\"C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/types\").ExtractedType",
+          "optional": false
+        },
+        {
+          "name": "componentId",
+          "type": "string",
+          "optional": true
+        }
+      ],
+      "visibility": "private",
+      "isAsync": false,
+      "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts",
+      "lineNumber": 311
+    },
+    {
       "description": "Find wrangler.toml files based on include/exclude patterns",
-      "id": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/file-finder.ts:findWranglerFiles",
-      "name": "findWranglerFiles",
+      "id": "default-container__basicwrangler__findWranglerFiles",
+      "componentId": "default-container__basicwrangler",
+      "name": "basic_wrangler__findWranglerFiles",
       "type": "function",
       "documentation": {
         "summary": "Find wrangler.toml files based on include/exclude patterns"
@@ -2598,12 +3307,13 @@
       "visibility": "public",
       "isAsync": true,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/file-finder.ts",
-      "lineNumber": 14
+      "lineNumber": 15
     },
     {
       "description": "Map wrangler configurations to ArchletteIR\n\nThis creates:\n- Containers: One per wrangler.toml file\n- Deployments: One per environment (production, dev, preview, etc.)\n- Container Instances: One per container per environment\n- Container Relationships: Logical dependencies from service bindings\n- Deployment Relationships: Physical instance-to-instance connections",
-      "id": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/to-ir-mapper.ts:mapToIR",
-      "name": "mapToIR",
+      "id": "default-container__basicwrangler__mapToIR",
+      "componentId": "default-container__basicwrangler",
+      "name": "basic_wrangler__mapToIR",
       "type": "function",
       "documentation": {
         "summary": "Map wrangler configurations to ArchletteIR\n\nThis creates:\n- Containers: One per wrangler.toml file\n- Deployments: One per environment (production, dev, preview, etc.)\n- Container Instances: One per container per environment\n- Container Relationships: Logical dependencies from service bindings\n- Deployment Relationships: Physical instance-to-instance connections"
@@ -2627,12 +3337,13 @@
       "visibility": "public",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/to-ir-mapper.ts",
-      "lineNumber": 29
+      "lineNumber": 30
     },
     {
       "description": "Extract containers from wrangler configurations\n\nCreates one container per wrangler.toml file.\nEach container represents a Cloudflare Worker.",
-      "id": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/to-ir-mapper.ts:extractContainers",
-      "name": "extractContainers",
+      "id": "default-container__basicwrangler__extractContainers",
+      "componentId": "default-container__basicwrangler",
+      "name": "basic_wrangler__extractContainers",
       "type": "function",
       "documentation": {
         "summary": "Extract containers from wrangler configurations\n\nCreates one container per wrangler.toml file.\nEach container represents a Cloudflare Worker."
@@ -2650,12 +3361,13 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/to-ir-mapper.ts",
-      "lineNumber": 76
+      "lineNumber": 77
     },
     {
       "description": "Build a descriptive summary for a container",
-      "id": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/to-ir-mapper.ts:buildContainerDescription",
-      "name": "buildContainerDescription",
+      "id": "default-container__basicwrangler__buildContainerDescription",
+      "componentId": "default-container__basicwrangler",
+      "name": "basic_wrangler__buildContainerDescription",
       "type": "function",
       "documentation": {
         "summary": "Build a descriptive summary for a container"
@@ -2673,12 +3385,13 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/to-ir-mapper.ts",
-      "lineNumber": 101
+      "lineNumber": 102
     },
     {
       "description": "Extract deployments and container instances\n\nCreates:\n- One deployment per environment\n- Container instances for each container in each environment",
-      "id": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/to-ir-mapper.ts:extractDeploymentsAndInstances",
-      "name": "extractDeploymentsAndInstances",
+      "id": "default-container__basicwrangler__extractDeploymentsAndInstances",
+      "componentId": "default-container__basicwrangler",
+      "name": "basic_wrangler__extractDeploymentsAndInstances",
       "type": "function",
       "documentation": {
         "summary": "Extract deployments and container instances\n\nCreates:\n- One deployment per environment\n- Container instances for each container in each environment"
@@ -2702,12 +3415,13 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/to-ir-mapper.ts",
-      "lineNumber": 126
+      "lineNumber": 127
     },
     {
       "description": "Extract container relationships from service bindings\n\nCreates logical dependencies between containers based on service bindings.\nDeduplicates relationships across all environments.",
-      "id": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/to-ir-mapper.ts:extractContainerRelationships",
-      "name": "extractContainerRelationships",
+      "id": "default-container__basicwrangler__extractContainerRelationships",
+      "componentId": "default-container__basicwrangler",
+      "name": "basic_wrangler__extractContainerRelationships",
       "type": "function",
       "documentation": {
         "summary": "Extract container relationships from service bindings\n\nCreates logical dependencies between containers based on service bindings.\nDeduplicates relationships across all environments."
@@ -2725,12 +3439,13 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/to-ir-mapper.ts",
-      "lineNumber": 270
+      "lineNumber": 271
     },
     {
       "description": "Extract deployment relationships from container instances\n\nCreates physical instance-to-instance relationships based on service bindings.\nEach relationship represents an actual runtime dependency in a specific environment.",
-      "id": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/to-ir-mapper.ts:extractDeploymentRelationships",
-      "name": "extractDeploymentRelationships",
+      "id": "default-container__basicwrangler__extractDeploymentRelationships",
+      "componentId": "default-container__basicwrangler",
+      "name": "basic_wrangler__extractDeploymentRelationships",
       "type": "function",
       "documentation": {
         "summary": "Extract deployment relationships from container instances\n\nCreates physical instance-to-instance relationships based on service bindings.\nEach relationship represents an actual runtime dependency in a specific environment."
@@ -2748,12 +3463,13 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/to-ir-mapper.ts",
-      "lineNumber": 316
+      "lineNumber": 317
     },
     {
       "description": "Parse a wrangler.toml file",
-      "id": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/wrangler-parser.ts:parseWranglerFile",
-      "name": "parseWranglerFile",
+      "id": "default-container__basicwrangler__parseWranglerFile",
+      "componentId": "default-container__basicwrangler",
+      "name": "basic_wrangler__parseWranglerFile",
       "type": "function",
       "documentation": {
         "summary": "Parse a wrangler.toml file"
@@ -2771,12 +3487,13 @@
       "visibility": "public",
       "isAsync": true,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/wrangler-parser.ts",
-      "lineNumber": 26
+      "lineNumber": 27
     },
     {
       "description": "Normalize service bindings from various formats\n\nWrangler supports multiple binding formats:\n- [[services]] array (TOML array of tables)\n- services = [{ binding = \"...\", service = \"...\" }]",
-      "id": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/wrangler-parser.ts:normalizeServiceBindings",
-      "name": "normalizeServiceBindings",
+      "id": "default-container__basicwrangler__normalizeServiceBindings",
+      "componentId": "default-container__basicwrangler",
+      "name": "basic_wrangler__normalizeServiceBindings",
       "type": "function",
       "documentation": {
         "summary": "Normalize service bindings from various formats\n\nWrangler supports multiple binding formats:\n- [[services]] array (TOML array of tables)\n- services = [{ binding = \"...\", service = \"...\" }]"
@@ -2792,12 +3509,13 @@
       "visibility": "public",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/wrangler-parser.ts",
-      "lineNumber": 82
+      "lineNumber": 83
     },
     {
       "description": "Get all environments from a wrangler config\n\nReturns a list of environment names, including:\n- \"production\" (from root-level config if it has deployable content)\n- All keys from env.* sections",
-      "id": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/wrangler-parser.ts:getEnvironments",
-      "name": "getEnvironments",
+      "id": "default-container__basicwrangler__getEnvironments",
+      "componentId": "default-container__basicwrangler",
+      "name": "basic_wrangler__getEnvironments",
       "type": "function",
       "documentation": {
         "summary": "Get all environments from a wrangler config\n\nReturns a list of environment names, including:\n- \"production\" (from root-level config if it has deployable content)\n- All keys from env.* sections"
@@ -2813,12 +3531,13 @@
       "visibility": "public",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/wrangler-parser.ts",
-      "lineNumber": 103
+      "lineNumber": 104
     },
     {
       "description": "Get configuration for a specific environment\n\nMerges root-level config with environment-specific overrides.\nEnvironment config takes precedence.",
-      "id": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/wrangler-parser.ts:getEnvironmentConfig",
-      "name": "getEnvironmentConfig",
+      "id": "default-container__basicwrangler__getEnvironmentConfig",
+      "componentId": "default-container__basicwrangler",
+      "name": "basic_wrangler__getEnvironmentConfig",
       "type": "function",
       "documentation": {
         "summary": "Get configuration for a specific environment\n\nMerges root-level config with environment-specific overrides.\nEnvironment config takes precedence."
@@ -2842,7 +3561,7 @@
       "visibility": "public",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/wrangler-parser.ts",
-      "lineNumber": 144
+      "lineNumber": 145
     }
   ],
   "deployments": [],
@@ -2883,6 +3602,24 @@
       "tags": [],
       "source": "default-container__extractors",
       "destination": "default-container__core"
+    },
+    {
+      "description": "composed of node extractor",
+      "tags": [],
+      "source": "default-container__extractors",
+      "destination": "default-container__basicnode"
+    },
+    {
+      "description": "composed of python extractor",
+      "tags": [],
+      "source": "default-container__extractors",
+      "destination": "default-container__basicpython"
+    },
+    {
+      "description": "composed of cloudflare wrangler extractor",
+      "tags": [],
+      "source": "default-container__extractors",
+      "destination": "default-container__basicwrangler"
     },
     {
       "description": "Provides IR types, validation schemas, and module loading",
@@ -3493,6 +4230,48 @@
       "stereotype": "import"
     },
     {
+      "description": "imports findSourceFiles",
+      "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python.ts",
+      "destination": "./basic-node/file-finder.js:findSourceFiles",
+      "stereotype": "import"
+    },
+    {
+      "description": "imports parseFiles",
+      "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python.ts",
+      "destination": "./basic-python/file-parser.js:parseFiles",
+      "stereotype": "import"
+    },
+    {
+      "description": "imports mapToIR",
+      "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python.ts",
+      "destination": "./basic-python/to-ir-mapper.js:mapToIR",
+      "stereotype": "import"
+    },
+    {
+      "description": "imports ArchletteExtractor",
+      "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python.ts",
+      "destination": "../../core/stage-interfaces.js:ArchletteExtractor",
+      "stereotype": "type-import"
+    },
+    {
+      "description": "imports ArchletteIR",
+      "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python.ts",
+      "destination": "../../core/types-ir.js:ArchletteIR",
+      "stereotype": "type-import"
+    },
+    {
+      "description": "imports ResolvedStageNode",
+      "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python.ts",
+      "destination": "../../core/types-aac.ts:ResolvedStageNode",
+      "stereotype": "type-import"
+    },
+    {
+      "description": "imports ExtractorInputs",
+      "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python.ts",
+      "destination": "./basic-python/types.js:ExtractorInputs",
+      "stereotype": "type-import"
+    },
+    {
       "description": "imports ResolvedStageNode",
       "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler.ts",
       "destination": "../../core/types-aac.js:ResolvedStageNode",
@@ -4069,6 +4848,12 @@
       "stereotype": "type-import"
     },
     {
+      "description": "imports Actor",
+      "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts",
+      "destination": "../../../core/types-ir.js:Actor",
+      "stereotype": "type-import"
+    },
+    {
       "description": "imports FileExtraction",
       "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts",
       "destination": "./types.js:FileExtraction",
@@ -4175,6 +4960,180 @@
       "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/type-extractor.ts",
       "destination": "./doc-extractor.js:extractDeprecation",
       "stereotype": "import"
+    },
+    {
+      "description": "imports spawn",
+      "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-parser.ts",
+      "destination": "child_process:spawn",
+      "stereotype": "import"
+    },
+    {
+      "description": "imports createLogger",
+      "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-parser.ts",
+      "destination": "../../../core/logger.js:createLogger",
+      "stereotype": "import"
+    },
+    {
+      "description": "imports getCliDir",
+      "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-parser.ts",
+      "destination": "../../../core/path-resolver.js:getCliDir",
+      "stereotype": "import"
+    },
+    {
+      "description": "imports nameToId",
+      "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-parser.ts",
+      "destination": "../../../core/constants.js:nameToId",
+      "stereotype": "import"
+    },
+    {
+      "description": "imports * as path",
+      "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-parser.ts",
+      "destination": "path:* as path",
+      "stereotype": "import"
+    },
+    {
+      "description": "imports FileExtraction",
+      "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-parser.ts",
+      "destination": "./types.js:FileExtraction",
+      "stereotype": "type-import"
+    },
+    {
+      "description": "imports PythonParserOutput",
+      "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-parser.ts",
+      "destination": "./types.js:PythonParserOutput",
+      "stereotype": "type-import"
+    },
+    {
+      "description": "imports ExtractedClass",
+      "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-parser.ts",
+      "destination": "./types.js:ExtractedClass",
+      "stereotype": "type-import"
+    },
+    {
+      "description": "imports ExtractedMethod",
+      "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-parser.ts",
+      "destination": "./types.js:ExtractedMethod",
+      "stereotype": "type-import"
+    },
+    {
+      "description": "imports ExtractedProperty",
+      "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-parser.ts",
+      "destination": "./types.js:ExtractedProperty",
+      "stereotype": "type-import"
+    },
+    {
+      "description": "imports ExtractedFunction",
+      "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-parser.ts",
+      "destination": "./types.js:ExtractedFunction",
+      "stereotype": "type-import"
+    },
+    {
+      "description": "imports ExtractedType",
+      "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-parser.ts",
+      "destination": "./types.js:ExtractedType",
+      "stereotype": "type-import"
+    },
+    {
+      "description": "imports ParameterInfo",
+      "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-parser.ts",
+      "destination": "./types.js:ParameterInfo",
+      "stereotype": "type-import"
+    },
+    {
+      "description": "imports DocInfo",
+      "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-parser.ts",
+      "destination": "./types.js:DocInfo",
+      "stereotype": "type-import"
+    },
+    {
+      "description": "imports createLogger",
+      "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts",
+      "destination": "../../../core/logger.js:createLogger",
+      "stereotype": "import"
+    },
+    {
+      "description": "imports nameToId",
+      "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts",
+      "destination": "../../../core/constants.js:nameToId",
+      "stereotype": "import"
+    },
+    {
+      "description": "imports ArchletteIR",
+      "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts",
+      "destination": "../../../core/types-ir.js:ArchletteIR",
+      "stereotype": "type-import"
+    },
+    {
+      "description": "imports Actor",
+      "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts",
+      "destination": "../../../core/types-ir.js:Actor",
+      "stereotype": "type-import"
+    },
+    {
+      "description": "imports Component",
+      "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts",
+      "destination": "../../../core/types-ir.js:Component",
+      "stereotype": "type-import"
+    },
+    {
+      "description": "imports CodeItem",
+      "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts",
+      "destination": "../../../core/types-ir.js:CodeItem",
+      "stereotype": "type-import"
+    },
+    {
+      "description": "imports Relationship",
+      "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts",
+      "destination": "../../../core/types-ir.js:Relationship",
+      "stereotype": "type-import"
+    },
+    {
+      "description": "imports FileExtraction",
+      "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts",
+      "destination": "./types.js:FileExtraction",
+      "stereotype": "type-import"
+    },
+    {
+      "description": "imports ComponentInfo",
+      "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts",
+      "destination": "./types.js:ComponentInfo",
+      "stereotype": "type-import"
+    },
+    {
+      "description": "imports ActorInfo",
+      "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts",
+      "destination": "./types.js:ActorInfo",
+      "stereotype": "type-import"
+    },
+    {
+      "description": "imports RelationshipInfo",
+      "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts",
+      "destination": "./types.js:RelationshipInfo",
+      "stereotype": "type-import"
+    },
+    {
+      "description": "imports ExtractedClass",
+      "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts",
+      "destination": "./types.js:ExtractedClass",
+      "stereotype": "type-import"
+    },
+    {
+      "description": "imports ExtractedMethod",
+      "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts",
+      "destination": "./types.js:ExtractedMethod",
+      "stereotype": "type-import"
+    },
+    {
+      "description": "imports ExtractedFunction",
+      "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts",
+      "destination": "./types.js:ExtractedFunction",
+      "stereotype": "type-import"
+    },
+    {
+      "description": "imports ExtractedType",
+      "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts",
+      "destination": "./types.js:ExtractedType",
+      "stereotype": "type-import"
     },
     {
       "description": "imports globby",

@@ -27,7 +27,7 @@ workspace "Application" "Main application container" {
                     technology "module"
                 }
                 default_container__extractors = component "extractors" {
-                    description "ArchletteIR aggregation utilities | Extraction stage of the AAC pipeline | TypeScript/JavaScript code extractor | Cloudflare Wrangler deployment extractor"
+                    description "ArchletteIR aggregation utilities | Extraction stage of the AAC pipeline"
                     technology "module"
                 }
                 default_container__validators = component "validators" {
@@ -48,6 +48,21 @@ workspace "Application" "Main application container" {
                 }
                 default_container__core = component "core" {
                     description "Dynamic ESM module loader | Stage module interfaces for the AAC pipeline | Stage module loaders | Tool management for external rendering tools | Architecture-as-Code (AAC) configuration types and schemas | Archlette Intermediate Representation (IR) types and schemas | Core pipeline types"
+                    technology "module"
+                }
+                default_container__basicnode = component "basic_node" {
+                    description "TypeScript/JavaScript code extractor"
+                    technology "module"
+                }
+                default_container__basic = component "basic" {
+                    description "Basic Python Extractor for Archlette\nExtracts architecture information from Python source code"
+                    technology "module"
+                }
+                default_container__basicwrangler = component "basic_wrangler" {
+                    description "Cloudflare Wrangler deployment extractor"
+                    technology "module"
+                }
+                default_container__basicpython = component "basic_python" {
                     technology "module"
                 }
 
@@ -283,12 +298,22 @@ workspace "Application" "Main application container" {
                     technology "function"
                     tags "Code"
                 }
-                default_container__extractors__basicNodeExtractor = component "extractors__basicnodeextractor" {
+                default_container__basicnode__basicNodeExtractor = component "basic_node__basicnodeextractor" {
                     description "Extract architecture information from a Node.js/TypeScript codebase"
                     technology "function"
                     tags "Code"
                 }
-                default_container__extractors__basicWranglerExtractor = component "extractors__basicwranglerextractor" {
+                default_container__basic__createEmptyIR = component "basic__createemptyir" {
+                    description "Create empty IR when no files found"
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__basic__basicPython = component "basic__basicpython" {
+                    description "Basic Python extractor\nAnalyzes Python source code and extracts architectural components"
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__basicwrangler__basicWranglerExtractor = component "basic_wrangler__basicwranglerextractor" {
                     description "Extract deployment topology from Cloudflare Wrangler configuration files"
                     technology "function"
                     tags "Code"
@@ -353,6 +378,376 @@ workspace "Application" "Main application container" {
                     technology "function"
                     tags "Code"
                 }
+                default_container__basicnode__extractClasses = component "basic_node__extractclasses" {
+                    description "Extract all class declarations from a source file"
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__basicnode__extractClass = component "basic_node__extractclass" {
+                    description "Extract information from a single class declaration"
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__basicnode__extractMethod = component "basic_node__extractmethod" {
+                    description "Extract method information from a class"
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__basicnode__extractProperty = component "basic_node__extractproperty" {
+                    description "Extract property information from a class"
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__basicnode__extractMethodParameter = component "basic_node__extractmethodparameter" {
+                    description "Extract parameter information"
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__basicnode__mapVisibility = component "basic_node__mapvisibility" {
+                    description "Map ts-morph Scope to our visibility string"
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__basicnode__getFileJsDocs = component "basic_node__getfilejsdocs" {
+                    description "Get JSDoc comments from a source file\nChecks both the first statement and module-level JSDoc"
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__basicnode__extractFileComponent = component "basic_node__extractfilecomponent" {
+                    description "Extract component information from file-level JSDoc\nChecks the first JSDoc comment in the file for"
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__basicnode__extractFileActors = component "basic_node__extractfileactors" {
+                    description "Extract actors from file-level JSDoc\nLooks for"
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__basicnode__extractFileRelationships = component "basic_node__extractfilerelationships" {
+                    description "Extract relationships from file-level JSDoc\nLooks for"
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__basicnode__extractComponentFromJsDoc = component "basic_node__extractcomponentfromjsdoc" {
+                    description "Extract component info from a JSDoc node"
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__basicnode__extractActorsFromJsDoc = component "basic_node__extractactorsfromjsdoc" {
+                    description "Extract actors from a JSDoc node\nParses"
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__basicnode__parseActorTag = component "basic_node__parseactortag" {
+                    description "Parse an"
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__basicnode__extractRelationshipsFromJsDoc = component "basic_node__extractrelationshipsfromjsdoc" {
+                    description "Extract relationships from a JSDoc node\nParses"
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__basicnode__parseUsesTag = component "basic_node__parseusestag" {
+                    description "Parse a"
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__basicnode__extractComponentName = component "basic_node__extractcomponentname" {
+                    description "Extract component name from a JSDoc tag\nHandles formats like:\n-"
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__basicnode__extractDocumentation = component "basic_node__extractdocumentation" {
+                    description "Extract documentation information from JSDoc"
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__basicnode__extractDeprecation = component "basic_node__extractdeprecation" {
+                    description "Extract deprecation information from JSDoc"
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__basicnode__extractParameterDescriptions = component "basic_node__extractparameterdescriptions" {
+                    description "Extract parameter descriptions from JSDoc"
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__basicnode__extractReturnDescription = component "basic_node__extractreturndescription" {
+                    description "Extract return description from JSDoc"
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__basicnode__extractParameterName = component "basic_node__extractparametername" {
+                    description "Extract parameter name from"
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__basicnode__findSourceFiles = component "basic_node__findsourcefiles" {
+                    description "Find source files matching include/exclude patterns"
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__basicnode__findPackageJsonFiles = component "basic_node__findpackagejsonfiles" {
+                    description "Find package.json files within the search paths"
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__basicnode__readPackageInfo = component "basic_node__readpackageinfo" {
+                    description "Read and parse package.json file"
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__basicnode__findNearestPackage = component "basic_node__findnearestpackage" {
+                    description "Find the nearest parent package.json for a given file"
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__basicnode__parseFiles = component "basic_node__parsefiles" {
+                    description "Parse and extract information from source files"
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__basicnode__extractFunctions = component "basic_node__extractfunctions" {
+                    description "Extract all function declarations from a source file"
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__basicnode__extractFunction = component "basic_node__extractfunction" {
+                    description "Extract information from a single function declaration"
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__basicnode__extractFunctionParameter = component "basic_node__extractfunctionparameter" {
+                    description "Extract parameter information"
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__basicnode__extractArrowFunctions = component "basic_node__extractarrowfunctions" {
+                    description "Extract arrow functions assigned to const/let/var\nExamples:\n  const handleClick = () => {}\n  export const createUser = async (data) => {}"
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__basicnode__extractImports = component "basic_node__extractimports" {
+                    description "Extract all import declarations from a source file"
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__basicnode__mapToIR = component "basic_node__maptoir" {
+                    description "Map file extractions to ArchletteIR"
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__basicnode__deduplicateRelationships = component "basic_node__deduplicaterelationships" {
+                    description "Deduplicate relationships by source+destination+stereotype combination\nFirst occurrence wins - preserves description from first relationship\nThis allows multiple relationships between the same elements with different stereotypes"
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__basicnode__mapFunction = component "basic_node__mapfunction" {
+                    description "Map a function to a CodeItem"
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__basicnode__mapClass = component "basic_node__mapclass" {
+                    description "Map a class to a CodeItem"
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__basicnode__mapMethod = component "basic_node__mapmethod" {
+                    description "Map a class method to a CodeItem"
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__basicnode__mapImportRelationships = component "basic_node__mapimportrelationships" {
+                    description "Map imports to relationships"
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__basicnode__generateId = component "basic_node__generateid" {
+                    description "Generate a unique ID for a code element\nFormat: filePath:symbolName"
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__basicnode__getDefaultSystem = component "basic_node__getdefaultsystem" {
+                    description "Get default system info from package.json if available"
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__basicnode__extractTypeAliases = component "basic_node__extracttypealiases" {
+                    description "Extract type aliases from a source file\nExamples:\n  type UserRole = 'admin' | 'user' | 'guest'\n  export type ApiResponse<T> = { data: T; status: number }"
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__basicnode__extractInterfaces = component "basic_node__extractinterfaces" {
+                    description "Extract interfaces from a source file\nExamples:\n  interface User { id: string; name: string }\n  export interface ApiClient { get<T>(url: string): Promise<T> }"
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__basicpython__parseFiles = component "basic_python__parsefiles" {
+                    description "Parse Python files using Python AST parser script"
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__basicpython__runPythonParser = component "basic_python__runpythonparser" {
+                    description "Run Python parser script and return JSON output"
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__basicpython__mapToFileExtraction = component "basic_python__maptofileextraction" {
+                    description "Map Python parser output to FileExtraction format"
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__basicpython__mapClass = component "basic_python__mapclass" {
+                    description "Map Python class to ExtractedClass"
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__basicpython__mapMethod = component "basic_python__mapmethod" {
+                    description "Map Python method to ExtractedMethod"
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__basicpython__mapProperty = component "basic_python__mapproperty" {
+                    description "Map Python property to ExtractedProperty"
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__basicpython__mapFunction = component "basic_python__mapfunction" {
+                    description "Map Python function to ExtractedFunction"
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__basicpython__mapType = component "basic_python__maptype" {
+                    description "Map Python type definition to ExtractedType"
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__basicpython__mapParameter = component "basic_python__mapparameter" {
+                    description "Map Python parameter to ParameterInfo"
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__basicpython__parseDocstring = component "basic_python__parsedocstring" {
+                    description "Parse Python docstring into DocInfo\nEnhanced in Phase 2 to use parsed Google/NumPy/Sphinx docstrings"
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__basicpython__extractDeprecation = component "basic_python__extractdeprecation" {
+                    description "Extract deprecation info from docstring"
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__basicpython__extractReturnDescription = component "basic_python__extractreturndescription" {
+                    description "Extract return description from docstring"
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__basicpython__getVisibility = component "basic_python__getvisibility" {
+                    description "Determine visibility from Python name convention\n- __name: private\n- _name: protected\n- name: public"
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__basic__mapToIR = component "basic__maptoir" {
+                    description "Map file extractions to ArchletteIR"
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__basic__mapComponentToIR = component "basic__mapcomponenttoir" {
+                    description "Map ComponentInfo to Component"
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__basic__mapActorToIR = component "basic__mapactortoir" {
+                    description "Map ActorInfo to Actor"
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__basic__mapRelationshipsToIR = component "basic__maprelationshipstoir" {
+                    description "Map relationships to Relationship[]\nCreates bidirectional actor relationships"
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__basic__deduplicateRelationships = component "basic__deduplicaterelationships" {
+                    description "Deduplicate relationships by source+destination"
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__basic__mapClassToCodeItem = component "basic__mapclasstocodeitem" {
+                    description "Map ExtractedClass to CodeItem"
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__basic__mapMethodToCodeItem = component "basic__mapmethodtocodeitem" {
+                    description "Map ExtractedMethod to CodeItem"
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__basic__mapFunctionToCodeItem = component "basic__mapfunctiontocodeitem" {
+                    description "Map ExtractedFunction to CodeItem"
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__basic__mapTypeToCodeItem = component "basic__maptypetocodeitem" {
+                    description "Map ExtractedType to CodeItem"
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__basicwrangler__findWranglerFiles = component "basic_wrangler__findwranglerfiles" {
+                    description "Find wrangler.toml files based on include/exclude patterns"
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__basicwrangler__mapToIR = component "basic_wrangler__maptoir" {
+                    description "Map wrangler configurations to ArchletteIR\n\nThis creates:\n- Containers: One per wrangler.toml file\n- Deployments: One per environment (production, dev, preview, etc.)\n- Container Instances: One per container per environment\n- Container Relationships: Logical dependencies from service bindings\n- Deployment Relationships: Physical instance-to-instance connections"
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__basicwrangler__extractContainers = component "basic_wrangler__extractcontainers" {
+                    description "Extract containers from wrangler configurations\n\nCreates one container per wrangler.toml file.\nEach container represents a Cloudflare Worker."
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__basicwrangler__buildContainerDescription = component "basic_wrangler__buildcontainerdescription" {
+                    description "Build a descriptive summary for a container"
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__basicwrangler__extractDeploymentsAndInstances = component "basic_wrangler__extractdeploymentsandinstances" {
+                    description "Extract deployments and container instances\n\nCreates:\n- One deployment per environment\n- Container instances for each container in each environment"
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__basicwrangler__extractContainerRelationships = component "basic_wrangler__extractcontainerrelationships" {
+                    description "Extract container relationships from service bindings\n\nCreates logical dependencies between containers based on service bindings.\nDeduplicates relationships across all environments."
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__basicwrangler__extractDeploymentRelationships = component "basic_wrangler__extractdeploymentrelationships" {
+                    description "Extract deployment relationships from container instances\n\nCreates physical instance-to-instance relationships based on service bindings.\nEach relationship represents an actual runtime dependency in a specific environment."
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__basicwrangler__parseWranglerFile = component "basic_wrangler__parsewranglerfile" {
+                    description "Parse a wrangler.toml file"
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__basicwrangler__normalizeServiceBindings = component "basic_wrangler__normalizeservicebindings" {
+                    description "Normalize service bindings from various formats\n\nWrangler supports multiple binding formats:\n- [[services]] array (TOML array of tables)\n- services = [{ binding = \"...\", service = \"...\" }]"
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__basicwrangler__getEnvironments = component "basic_wrangler__getenvironments" {
+                    description "Get all environments from a wrangler config\n\nReturns a list of environment names, including:\n- \"production\" (from root-level config if it has deployable content)\n- All keys from env.* sections"
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__basicwrangler__getEnvironmentConfig = component "basic_wrangler__getenvironmentconfig" {
+                    description "Get configuration for a specific environment\n\nMerges root-level config with environment-specific overrides.\nEnvironment config takes precedence."
+                    technology "function"
+                    tags "Code"
+                }
 
                 # Component relationships
                 default_container__cli -> default_container__extractors "Analyzes source code to extract architecture components"
@@ -361,6 +756,9 @@ workspace "Application" "Main application container" {
                 default_container__cli -> default_container__renderers "Converts DSL to visual diagrams"
                 default_container__cli -> default_container__core "Provides shared utilities, types, and module loading"
                 default_container__extractors -> default_container__core "Provides IR types, validation schemas, and module loading"
+                default_container__extractors -> default_container__basicnode "composed of node extractor"
+                default_container__extractors -> default_container__basicpython "composed of python extractor"
+                default_container__extractors -> default_container__basicwrangler "composed of cloudflare wrangler extractor"
                 default_container__validators -> default_container__core "Provides IR types, validation schemas, and module loading"
                 default_container__generators -> default_container__core "Provides IR types, path resolution, and module loading"
                 default_container__renderers -> default_container__core "Provides types, module loading, and tool management"
@@ -416,6 +814,10 @@ workspace "Application" "Main application container" {
             include default_container__renderers
             include default_container__docs
             include default_container__core
+            include default_container__basicnode
+            include default_container__basic
+            include default_container__basicwrangler
+            include default_container__basicpython
             exclude "element.tag==Code"
             autoLayout
         }
@@ -437,8 +839,6 @@ workspace "Application" "Main application container" {
             include default_container__extractors__deduplicateByName
             include default_container__extractors__deduplicateRelationships
             include default_container__extractors__run
-            include default_container__extractors__basicNodeExtractor
-            include default_container__extractors__basicWranglerExtractor
             autoLayout
         }
 
@@ -515,6 +915,104 @@ workspace "Application" "Main application container" {
             include default_container__core__checkJava
             include default_container__core__requireJava
             include default_container__core__resolveConfig
+            autoLayout
+        }
+
+
+        component default_container "Classes_default_container__basicnode" {
+            include default_container__basicnode__basicNodeExtractor
+            include default_container__basicnode__extractClasses
+            include default_container__basicnode__extractClass
+            include default_container__basicnode__extractMethod
+            include default_container__basicnode__extractProperty
+            include default_container__basicnode__extractMethodParameter
+            include default_container__basicnode__mapVisibility
+            include default_container__basicnode__getFileJsDocs
+            include default_container__basicnode__extractFileComponent
+            include default_container__basicnode__extractFileActors
+            include default_container__basicnode__extractFileRelationships
+            include default_container__basicnode__extractComponentFromJsDoc
+            include default_container__basicnode__extractActorsFromJsDoc
+            include default_container__basicnode__parseActorTag
+            include default_container__basicnode__extractRelationshipsFromJsDoc
+            include default_container__basicnode__parseUsesTag
+            include default_container__basicnode__extractComponentName
+            include default_container__basicnode__extractDocumentation
+            include default_container__basicnode__extractDeprecation
+            include default_container__basicnode__extractParameterDescriptions
+            include default_container__basicnode__extractReturnDescription
+            include default_container__basicnode__extractParameterName
+            include default_container__basicnode__findSourceFiles
+            include default_container__basicnode__findPackageJsonFiles
+            include default_container__basicnode__readPackageInfo
+            include default_container__basicnode__findNearestPackage
+            include default_container__basicnode__parseFiles
+            include default_container__basicnode__extractFunctions
+            include default_container__basicnode__extractFunction
+            include default_container__basicnode__extractFunctionParameter
+            include default_container__basicnode__extractArrowFunctions
+            include default_container__basicnode__extractImports
+            include default_container__basicnode__mapToIR
+            include default_container__basicnode__deduplicateRelationships
+            include default_container__basicnode__mapFunction
+            include default_container__basicnode__mapClass
+            include default_container__basicnode__mapMethod
+            include default_container__basicnode__mapImportRelationships
+            include default_container__basicnode__generateId
+            include default_container__basicnode__getDefaultSystem
+            include default_container__basicnode__extractTypeAliases
+            include default_container__basicnode__extractInterfaces
+            autoLayout
+        }
+
+
+        component default_container "Classes_default_container__basic" {
+            include default_container__basic__createEmptyIR
+            include default_container__basic__basicPython
+            include default_container__basic__mapToIR
+            include default_container__basic__mapComponentToIR
+            include default_container__basic__mapActorToIR
+            include default_container__basic__mapRelationshipsToIR
+            include default_container__basic__deduplicateRelationships
+            include default_container__basic__mapClassToCodeItem
+            include default_container__basic__mapMethodToCodeItem
+            include default_container__basic__mapFunctionToCodeItem
+            include default_container__basic__mapTypeToCodeItem
+            autoLayout
+        }
+
+
+        component default_container "Classes_default_container__basicwrangler" {
+            include default_container__basicwrangler__basicWranglerExtractor
+            include default_container__basicwrangler__findWranglerFiles
+            include default_container__basicwrangler__mapToIR
+            include default_container__basicwrangler__extractContainers
+            include default_container__basicwrangler__buildContainerDescription
+            include default_container__basicwrangler__extractDeploymentsAndInstances
+            include default_container__basicwrangler__extractContainerRelationships
+            include default_container__basicwrangler__extractDeploymentRelationships
+            include default_container__basicwrangler__parseWranglerFile
+            include default_container__basicwrangler__normalizeServiceBindings
+            include default_container__basicwrangler__getEnvironments
+            include default_container__basicwrangler__getEnvironmentConfig
+            autoLayout
+        }
+
+
+        component default_container "Classes_default_container__basicpython" {
+            include default_container__basicpython__parseFiles
+            include default_container__basicpython__runPythonParser
+            include default_container__basicpython__mapToFileExtraction
+            include default_container__basicpython__mapClass
+            include default_container__basicpython__mapMethod
+            include default_container__basicpython__mapProperty
+            include default_container__basicpython__mapFunction
+            include default_container__basicpython__mapType
+            include default_container__basicpython__mapParameter
+            include default_container__basicpython__parseDocstring
+            include default_container__basicpython__extractDeprecation
+            include default_container__basicpython__extractReturnDescription
+            include default_container__basicpython__getVisibility
             autoLayout
         }
 

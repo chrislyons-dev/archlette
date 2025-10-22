@@ -66,10 +66,10 @@ rectangle "==Local System's unzip utility\n<size:10>[Software System]</size>\n\n
 rectangle "==File System\n<size:10>[Software System]</size>\n\nThe local file system for caching downloaded tools." <<FileSystem>> as FileSystem
 rectangle "==Application\n<size:10>[Software System]</size>\n\nMain application container" <<Application>> as Application
 
-Application .[#707070,thickness=2].> GithubPlantUMLRepo : "<color:#707070>Uses Github PlantUML Repo for external system integration"
-Application .[#707070,thickness=2].> LocalSystemsunziputility : "<color:#707070>Uses Local System's unzip utility for external system integration"
-Application .[#707070,thickness=2].> FileSystem : "<color:#707070>Uses File System for external system integration"
 User .[#707070,thickness=2].> Application : "<color:#707070>Interacts with CLI"
 Application .[#707070,thickness=2].> FileSystem : "<color:#707070>Uses FileSystem for external system integration"
 Application .[#707070,thickness=2].> GithubStructurizrRepo : "<color:#707070>Uses Github Structurizr Repo for external system integration"
+Application .[#707070,thickness=2].> GithubPlantUMLRepo : "<color:#707070>Uses Github PlantUML Repo for external system integration"
+Application .[#707070,thickness=2].> LocalSystemsunziputility : "<color:#707070>Uses Local System's unzip utility for external system integration"
+Application .[#707070,thickness=2].> FileSystem : "<color:#707070>Uses File System for external system integration"
 @enduml

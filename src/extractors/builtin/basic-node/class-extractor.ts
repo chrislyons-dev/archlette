@@ -1,4 +1,5 @@
 /**
+ * @module basic_node
  * Class extraction utilities
  */
 
@@ -108,7 +109,7 @@ function extractMethod(method: MethodDeclaration, filePath: string): ExtractedMe
     deprecated: extractDeprecation(jsDocs),
     parameters: method
       .getParameters()
-      .map((param) => extractParameter(param, paramDescriptions)),
+      .map((param) => extractMethodParameter(param, paramDescriptions)),
     returnType: method.getReturnType().getText(),
     returnDescription: extractReturnDescription(jsDocs),
   };
@@ -142,7 +143,8 @@ function extractProperty(
 /**
  * Extract parameter information
  */
-function extractParameter(
+// function extractMethodParameter(
+function extractMethodParameter(
   param: ReturnType<MethodDeclaration['getParameters']>[0],
   descriptions: Map<string, string>,
 ): ParameterInfo {

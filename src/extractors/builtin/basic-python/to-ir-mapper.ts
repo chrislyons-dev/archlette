@@ -1,4 +1,5 @@
 /**
+ * @module basic-python
  * Map Python file extractions to ArchletteIR
  */
 
@@ -222,7 +223,7 @@ function mapClassToCodeItem(cls: ExtractedClass, componentId?: string): CodeItem
     componentId: componentId || undefined,
     name: cls.name,
     type: 'class',
-    description: cls.documentation?.summary,
+    description: cls.documentation?.summary ?? undefined,
     documentation: cls.documentation,
     deprecated: cls.deprecated,
     filePath: cls.location.filePath,
@@ -251,12 +252,12 @@ function mapMethodToCodeItem(
     componentId: componentId || undefined,
     name: `${className}.${method.name}`,
     type: 'method',
-    description: method.documentation?.summary,
+    description: method.documentation?.summary ?? undefined,
     documentation: method.documentation,
     deprecated: method.deprecated,
     parameters: method.parameters,
     returnType: method.returnType,
-    returnDescription: method.returnDescription,
+    returnDescription: method.returnDescription ?? undefined,
     visibility: method.visibility,
     isAsync: method.isAsync,
     isStatic: method.isStatic,
@@ -285,12 +286,12 @@ function mapFunctionToCodeItem(
     componentId: componentId || undefined,
     name: func.name,
     type: 'function',
-    description: func.documentation?.summary,
+    description: func.documentation?.summary ?? undefined,
     documentation: func.documentation,
     deprecated: func.deprecated,
     parameters: func.parameters,
     returnType: func.returnType,
-    returnDescription: func.returnDescription,
+    returnDescription: func.returnDescription ?? undefined,
     isAsync: func.isAsync,
     filePath: func.location.filePath,
     lineNumber: func.location.line,
@@ -313,7 +314,7 @@ function mapTypeToCodeItem(type: ExtractedType, componentId?: string): CodeItem 
     componentId: componentId || undefined,
     name: type.name,
     type: 'type', // Using 'type' for type definitions
-    description: type.documentation?.summary,
+    description: type.documentation?.summary ?? undefined,
     documentation: type.documentation,
     deprecated: type.deprecated,
     filePath: type.location.filePath,
