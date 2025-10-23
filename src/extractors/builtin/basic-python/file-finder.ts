@@ -50,7 +50,8 @@ export async function findPyProjectFiles(inputs: ExtractorInputs): Promise<strin
     let baseDir = '';
     const isAbsolute = normalized.startsWith('/');
     for (const part of parts) {
-      if (part.includes('*') || part === 'src') break;
+      // Stop if we hit a glob pattern, 'src', or a .py file
+      if (part.includes('*') || part === 'src' || part.endsWith('.py')) break;
       if (!part) continue; // Skip empty parts (from leading slash or double slashes)
       baseDir += (baseDir ? '/' : '') + part;
     }

@@ -365,9 +365,9 @@ describe('markdown-docs generator', () => {
       expect(mockContext.log.info).toHaveBeenCalledWith(
         expect.stringContaining('Generating 2 component page(s)'),
       );
-      expect(mockContext.log.info).toHaveBeenCalledWith('✓ Generated README.md');
+      expect(mockContext.log.info).toHaveBeenCalledWith('Generated README.md');
       expect(mockContext.log.info).toHaveBeenCalledWith(
-        expect.stringContaining('✓ Generated 2 component page(s)'),
+        expect.stringContaining('Generated 2 component page(s)'),
       );
       expect(mockContext.log.info).toHaveBeenCalledWith('Markdown Docs: completed');
     });
@@ -648,8 +648,8 @@ describe('markdown-docs generator', () => {
 
       await markdownDocs(mockContext);
 
-      // Should generate README but no component pages
-      expect(mockFs.writeFileSync).toHaveBeenCalledTimes(1);
+      // Should generate README + container page (but no component pages)
+      expect(mockFs.writeFileSync).toHaveBeenCalledTimes(2);
       expect(mockFs.writeFileSync).toHaveBeenCalledWith(
         expect.stringContaining('README.md'),
         expect.any(String),

@@ -256,7 +256,7 @@ describe('tool-manager', () => {
         expect.stringContaining('Downloading Structurizr CLI'),
       );
       expect(mockLogger.info).toHaveBeenCalledWith(
-        expect.stringContaining('✓ Structurizr CLI installed'),
+        expect.stringContaining('Structurizr CLI installed'),
       );
     });
 
@@ -362,7 +362,7 @@ describe('tool-manager', () => {
         expect.stringContaining('Downloading PlantUML'),
       );
       expect(mockLogger.info).toHaveBeenCalledWith(
-        expect.stringContaining('✓ PlantUML installed'),
+        expect.stringContaining('PlantUML installed'),
       );
     });
 

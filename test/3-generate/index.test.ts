@@ -228,7 +228,7 @@ describe('generate stage', () => {
       dslContent,
     );
     expect(mockLogger.info).toHaveBeenCalledWith(
-      '✓ Wrote DSL output to /resolved/workspace.dsl',
+      'Wrote DSL output to /resolved/workspace.dsl',
     );
   });
 

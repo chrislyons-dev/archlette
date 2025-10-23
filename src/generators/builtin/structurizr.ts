@@ -6,12 +6,15 @@
  * Generates Structurizr DSL from ArchletteIR using Nunjucks templates.
  * Produces a complete workspace with model and views following C4 architecture patterns.
  *
+ * Supports custom themes via the `inputs.theme` option. If not provided, uses the default theme.
+ *
  * @example
  * ```yaml
  * generators:
- *   - use: builtin/structurizr
- *     outputs:
- *       workspace_dsl: docs/architecture/workspace.dsl
+ *   - use: generators/builtin/structurizr
+ *     inputs:
+ *       # Optional: Override default theme
+ *       theme: path/to/custom-theme.dsl
  * ```
  */
 
@@ -26,8 +29,8 @@ import type { ResolvedStageNode } from '../../core/types-aac.js';
 import { VIEW_NAMES } from '../../core/constants.js';
 import * as nunjucks from 'nunjucks';
 import { fileURLToPath } from 'node:url';
-import { join, dirname } from 'node:path';
-import { readFileSync } from 'node:fs';
+import { join, dirname, resolve } from 'node:path';
+import { readFileSync, existsSync } from 'node:fs';
 
 // Configure Nunjucks environment
 const __filename = fileURLToPath(import.meta.url);
@@ -50,7 +53,7 @@ nunjucksEnv.addFilter('buildTechnology', buildTechnologyString);
  */
 export default function structurizrGenerator(
   ir: ArchletteIR,
-  _node: ResolvedStageNode,
+  node: ResolvedStageNode,
 ): string {
   // Prepare actor relationships
   const actorRelationships = generateAllActorRelationships(ir);
@@ -71,8 +74,30 @@ export default function structurizrGenerator(
     .filter((view) => view !== null);
 
   // Load theme content
-  const themePath = join(__dirname, '..', '..', 'templates', 'theme.dsl');
-  const themeContent = readFileSync(themePath, 'utf8');
+  let themeContent = '';
+
+  // Check if user provided a custom theme path via inputs
+  const inputs = node.inputs as { theme?: string } | undefined;
+  const customThemePath = inputs?.theme;
+
+  if (customThemePath) {
+    // Try to load custom theme
+    const resolvedPath = resolve(process.cwd(), customThemePath);
+
+    if (existsSync(resolvedPath)) {
+      themeContent = readFileSync(resolvedPath, 'utf8');
+      console.log('Loaded custom theme from:', resolvedPath);
+    } else {
+      // Fall back to default theme if custom theme not found
+      console.warn(`Custom theme not found at ${resolvedPath}, using default theme`);
+      const defaultThemePath = join(__dirname, '..', '..', 'templates', 'theme.dsl');
+      themeContent = readFileSync(defaultThemePath, 'utf8');
+    }
+  } else {
+    // Use default theme
+    const defaultThemePath = join(__dirname, '..', '..', 'templates', 'theme.dsl');
+    themeContent = readFileSync(defaultThemePath, 'utf8');
+  }
 
   // Render using main template
   return nunjucksEnv.render('workspace.dsl.njk', {

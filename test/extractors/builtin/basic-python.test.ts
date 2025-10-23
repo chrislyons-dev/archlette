@@ -34,13 +34,14 @@ describe('basic-python extractor', () => {
 
     const ir = await basicPython(node, mockContext);
 
-    // Verify system
-    expect(ir.system.name).toBe('test-python');
+    // Verify system (uses default "Python System" when no pyproject.toml found)
+    expect(ir.system.name).toBe('Python System');
 
     // Verify component extracted
     expect(ir.components).toHaveLength(1);
     expect(ir.components[0].name).toBe('Utils');
-    expect(ir.components[0].id).toBe('utils');
+    // Component ID is now hierarchical: container__component
+    expect(ir.components[0].id).toBe('default-container__Utils');
     expect(ir.components[0].description).toContain('Simple utility functions');
 
     // Verify functions extracted
@@ -48,7 +49,8 @@ describe('basic-python extractor', () => {
     const capitalizeFunc = ir.code.find((c) => c.name === 'capitalize');
     expect(capitalizeFunc).toBeDefined();
     expect(capitalizeFunc?.type).toBe('function');
-    expect(capitalizeFunc?.componentId).toBe('utils');
+    // ComponentId also uses hierarchical format
+    expect(capitalizeFunc?.componentId).toBe('default-container__Utils');
 
     const addNumbersFunc = ir.code.find((c) => c.name === 'add_numbers');
     expect(addNumbersFunc).toBeDefined();
@@ -72,10 +74,10 @@ describe('basic-python extractor', () => {
 
     const ir = await basicPython(node, mockContext);
 
-    // Verify component
+    // Verify component (ID is now hierarchical: container__component)
     expect(ir.components).toHaveLength(1);
     expect(ir.components[0].name).toBe('PaymentService');
-    expect(ir.components[0].id).toBe('paymentservice');
+    expect(ir.components[0].id).toBe('default-container__PaymentService');
 
     // Verify actors
     expect(ir.actors).toHaveLength(3);
