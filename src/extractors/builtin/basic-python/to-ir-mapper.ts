@@ -4,17 +4,17 @@
  */
 
 import { createLogger } from '../../../core/logger.js';
-import { nameToId } from '../../../core/constants.js';
+import { nameToId, TAGS, DEFAULT_CONTAINER_ID } from '../../../core/constants.js';
 import type {
   ArchletteIR,
   Actor,
   Component,
+  Container,
   CodeItem,
   Relationship,
 } from '../../../core/types-ir.js';
 import type {
   FileExtraction,
-  ComponentInfo,
   ActorInfo,
   RelationshipInfo,
   ExtractedClass,
@@ -22,21 +22,28 @@ import type {
   ExtractedFunction,
   ExtractedType,
 } from './types.js';
+import type { PyProjectInfo } from './file-finder.js';
 
 const log = createLogger({ context: 'PythonIRMapper' });
+
+interface SystemInfo {
+  name?: string;
+  description?: string;
+  repository?: string;
+}
 
 /**
  * Map file extractions to ArchletteIR
  */
 export function mapToIR(
   extractions: FileExtraction[],
-  systemName: string,
-  systemDescription?: string,
+  pyprojects: PyProjectInfo[],
+  systemInfo?: SystemInfo,
 ): ArchletteIR {
   log.info(`Mapping ${extractions.length} Python files to IR`);
 
   // Aggregate all components, actors, relationships
-  const componentMap = new Map<string, ComponentInfo>();
+  const componentsMap = new Map<string, Component>();
   const actorMap = new Map<string, ActorInfo>();
   const relationships: RelationshipInfo[] = [];
   const codeItems: CodeItem[] = [];
@@ -44,9 +51,15 @@ export function mapToIR(
   for (const extraction of extractions) {
     // Collect components
     if (extraction.component) {
-      const existing = componentMap.get(extraction.component.id);
+      const existing = componentsMap.get(extraction.component.id);
       if (!existing) {
-        componentMap.set(extraction.component.id, extraction.component);
+        componentsMap.set(extraction.component.id, {
+          id: extraction.component.id,
+          containerId: '', // Will be filled below based on packageInfo
+          name: extraction.component.name,
+          type: 'module',
+          description: extraction.component.description,
+        });
       }
     }
 
@@ -98,21 +111,100 @@ export function mapToIR(
   const actors = Array.from(actorMap.values());
   const actorTargets = new Map<string, string[]>();
 
+  // Build components array
+  const components = Array.from(componentsMap.values());
+  const containers: Container[] = [];
+  const componentIdMap = new Map<string, string>(); // old ID -> new hierarchical ID
+
+  // Create containers from pyprojects and assign components
+  if (pyprojects.length > 0) {
+    // Step 1: Create containers from pyprojects
+    for (const proj of pyprojects) {
+      const containerId = nameToId(proj.name);
+      containers.push({
+        id: containerId,
+        name: proj.name,
+        type: 'Service',
+        layer: 'Application',
+        description: proj.description || `Service: ${proj.name}`,
+        tags: [TAGS.AUTO_GENERATED],
+      });
+    }
+
+    // Step 2: Apply hierarchical IDs to components: container__component
+    for (const component of components) {
+      const fileWithComponent = extractions.find(
+        (e) => e.component?.id === component.id,
+      );
+      if (fileWithComponent?.packageInfo) {
+        const proj = fileWithComponent.packageInfo;
+        const containerId = nameToId(proj.name);
+
+        const oldId = component.id;
+        component.containerId = containerId;
+        component.id = `${containerId}__${oldId}`;
+        componentIdMap.set(oldId, component.id);
+      }
+    }
+
+    // Step 3: Handle components without package (orphans)
+    const orphanComponents = components.filter((c) => !c.containerId);
+    if (orphanComponents.length > 0) {
+      const defaultContainer = {
+        id: DEFAULT_CONTAINER_ID,
+        name: systemInfo?.name || 'Application',
+        type: 'Application',
+        layer: 'Application',
+        description: systemInfo?.description || 'Main application container',
+        tags: [TAGS.AUTO_GENERATED],
+      };
+      containers.push(defaultContainer);
+
+      for (const component of orphanComponents) {
+        const oldId = component.id;
+        component.containerId = DEFAULT_CONTAINER_ID;
+        component.id = `${DEFAULT_CONTAINER_ID}__${oldId}`;
+        componentIdMap.set(oldId, component.id);
+      }
+    }
+  } else {
+    // No pyprojects found - create default container for all components
+    if (components.length > 0) {
+      const defaultContainer = {
+        id: DEFAULT_CONTAINER_ID,
+        name: systemInfo?.name || 'Application',
+        type: 'Application',
+        layer: 'Application',
+        description: systemInfo?.description || 'Main application container',
+        tags: [TAGS.AUTO_GENERATED],
+      };
+      containers.push(defaultContainer);
+
+      for (const component of components) {
+        const oldId = component.id;
+        component.containerId = DEFAULT_CONTAINER_ID;
+        component.id = `${DEFAULT_CONTAINER_ID}__${oldId}`;
+        componentIdMap.set(oldId, component.id);
+      }
+    }
+  }
+
   // Create IR
   const ir: ArchletteIR = {
     version: '1.0',
     system: {
-      name: systemName,
-      description: systemDescription,
+      name: systemInfo?.name || 'Python System',
+      description: systemInfo?.description,
+      repository: systemInfo?.repository,
     },
     actors: actors.map((actor) => mapActorToIR(actor, actorTargets)),
-    containers: [], // TODO: Infer from package structure in Phase 3
-    components: Array.from(componentMap.values()).map(mapComponentToIR),
+    containers,
+    components, // Already Component objects, no need to map
     code: codeItems,
     deployments: [],
     containerRelationships: [],
     componentRelationships: deduplicateRelationships(
-      mapRelationshipsToIR(relationships, componentMap, actorMap, actorTargets),
+      mapRelationshipsToIR(relationships, componentsMap, actorMap, actorTargets),
     ),
     codeRelationships: [],
     deploymentRelationships: [],
@@ -123,20 +215,6 @@ export function mapToIR(
   );
 
   return ir;
-}
-
-/**
- * Map ComponentInfo to Component
- */
-function mapComponentToIR(comp: ComponentInfo): Component {
-  return {
-    id: comp.id,
-    containerId: '', // Will be filled by validators or other extractors
-    name: comp.name,
-    type: 'module',
-    description: comp.description,
-    tags: ['Code'], // Mark as code element for view filtering
-  };
 }
 
 /**
@@ -158,7 +236,7 @@ function mapActorToIR(actor: ActorInfo, actorTargets: Map<string, string[]>): Ac
  */
 function mapRelationshipsToIR(
   relationships: RelationshipInfo[],
-  componentMap: Map<string, ComponentInfo>,
+  componentMap: Map<string, Component>,
   actorMap: Map<string, ActorInfo>,
   actorTargets: Map<string, string[]>,
 ): Relationship[] {

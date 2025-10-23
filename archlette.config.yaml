@@ -9,7 +9,7 @@ project:
 
 paths:
   output: ./output
-  logs: ./logs
+  logs: ./output/logs
   ir_out: ./output/bond-math-ir.json
   dsl_out: ./output/bond-math.dsl
   render_out: ./output/diagrams

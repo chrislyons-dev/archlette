@@ -5,7 +5,12 @@
  * @module basic-python
  */
 
-import { findSourceFiles } from './basic-node/file-finder.js'; // Reuse file finder
+import {
+  findSourceFiles,
+  findPyProjectFiles,
+  readPyProjectInfo,
+  findNearestPyProject,
+} from './basic-python/file-finder.js';
 import { parseFiles } from './basic-python/file-parser.js';
 import { mapToIR } from './basic-python/to-ir-mapper.js';
 import type { ArchletteExtractor } from '../../core/stage-interfaces.js';
@@ -40,6 +45,16 @@ export const basicPython: ArchletteExtractor = async (
     return createEmptyIR(node.name || 'Python System');
   }
 
+  // Find pyproject.toml files to create containers
+  const pyprojectPaths = await findPyProjectFiles({ include, exclude });
+  const pyprojects = (
+    await Promise.all(pyprojectPaths.map((path) => readPyProjectInfo(path)))
+  ).filter((proj): proj is NonNullable<typeof proj> => proj !== null);
+
+  log.info(
+    `Found ${pyprojects.length} pyproject(s): ${pyprojects.map((p) => p.name).join(', ')}`,
+  );
+
   // Parse files using Python AST parser
   const extractions = await parseFiles(filePaths, pythonPath);
 
@@ -58,9 +73,23 @@ export const basicPython: ArchletteExtractor = async (
     );
   }
 
+  // Assign each file to its nearest pyproject
+  for (const extraction of extractions) {
+    const proj = findNearestPyProject(extraction.filePath, pyprojects);
+    extraction.packageInfo = proj ?? undefined;
+  }
+
   // Map to IR
-  const systemName = node.name || 'Python System';
-  const ir = mapToIR(extractions, systemName);
+  // Pass project info from config if available
+  const systemInfo = node._system
+    ? {
+        name: node._system.name,
+        description: node._system.description,
+        repository: node._system.repository,
+      }
+    : undefined;
+
+  const ir = mapToIR(extractions, pyprojects, systemInfo);
 
   log.info(
     `Extracted IR: ${ir.components.length} components, ` +
