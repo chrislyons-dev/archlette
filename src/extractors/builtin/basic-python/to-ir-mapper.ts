@@ -204,6 +204,13 @@ export function mapToIR(
     }
   }
 
+  // Step 4.5: Make code IDs hierarchical (componentId__codeId)
+  for (const codeItem of codeItems) {
+    if (codeItem.componentId) {
+      codeItem.id = `${codeItem.componentId}__${codeItem.id}`;
+    }
+  }
+
   // Step 5: Update relationships with new hierarchical component IDs
   for (const rel of relationships) {
     const newSource = componentIdMap.get(rel.source);
