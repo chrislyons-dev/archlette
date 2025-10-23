@@ -40,6 +40,7 @@ describe('generate stage', () => {
       containerRelationships: [],
       componentRelationships: [],
       codeRelationships: [],
+      deploymentRelationships: [],
     };
 
     const mockConfig: ResolvedAACConfig = {
