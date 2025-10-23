@@ -3204,7 +3204,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts",
-      "lineNumber": 223
+      "lineNumber": 251
     },
     {
       "description": "Map relationships to Relationship[]\nCreates bidirectional actor relationships",
@@ -3241,7 +3241,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts",
-      "lineNumber": 237
+      "lineNumber": 265
     },
     {
       "description": "Deduplicate relationships by source+destination",
@@ -3263,7 +3263,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts",
-      "lineNumber": 283
+      "lineNumber": 312
     },
     {
       "description": "Map ExtractedClass to CodeItem",
@@ -3290,7 +3290,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts",
-      "lineNumber": 298
+      "lineNumber": 327
     },
     {
       "description": "Map ExtractedMethod to CodeItem",
@@ -3322,7 +3322,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts",
-      "lineNumber": 323
+      "lineNumber": 352
     },
     {
       "description": "Map ExtractedFunction to CodeItem",
@@ -3349,7 +3349,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts",
-      "lineNumber": 358
+      "lineNumber": 387
     },
     {
       "description": "Map ExtractedType to CodeItem",
@@ -3376,7 +3376,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts",
-      "lineNumber": 389
+      "lineNumber": 418
     },
     {
       "description": "Find wrangler.toml files based on include/exclude patterns",

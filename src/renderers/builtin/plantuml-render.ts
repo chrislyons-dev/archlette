@@ -101,7 +101,7 @@ export default async function plantumlRender(ctx: PipelineContext): Promise<void
       });
 
       renderedFiles.push(outputFile);
-      ctx.log.debug(`  ✓ ${outputFile}`);
+      ctx.log.debug(`  ${outputFile}`);
     } catch (err) {
       ctx.log.error(`Failed to render ${pumlFile}:`, err);
       // Continue with other files instead of throwing
@@ -109,7 +109,7 @@ export default async function plantumlRender(ctx: PipelineContext): Promise<void
   }
 
   if (renderedFiles.length > 0) {
-    ctx.log.info(`✓ Generated ${renderedFiles.length} PNG image(s)`);
+    ctx.log.info(`Generated ${renderedFiles.length} PNG image(s)`);
 
     // Add to renderer outputs
     if (!ctx.state.rendererOutputs) {

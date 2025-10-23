@@ -98,7 +98,7 @@ function mapToFileExtraction(file: PythonParserOutput['files'][0]): FileExtracti
     language: 'python',
     component: file.component
       ? {
-          id: nameToId(file.component.name),
+          id: file.component.name, // Use name as-is to preserve underscores
           name: file.component.name,
           description: file.component.description,
         }

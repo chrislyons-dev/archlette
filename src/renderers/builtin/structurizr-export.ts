@@ -81,7 +81,7 @@ export default async function structurizrExport(ctx: PipelineContext): Promise<v
     const plantumlFiles = fs
       .readdirSync(plantumlDir)
       .filter((f) => f.endsWith('.puml'));
-    ctx.log.info(`✓ Generated ${plantumlFiles.length} PlantUML file(s)`);
+    ctx.log.info(`Generated ${plantumlFiles.length} PlantUML file(s)`);
 
     // Add to renderer outputs
     if (!ctx.state.rendererOutputs) {
@@ -118,7 +118,7 @@ export default async function structurizrExport(ctx: PipelineContext): Promise<v
     });
 
     const mermaidFiles = fs.readdirSync(mermaidDir).filter((f) => f.endsWith('.mmd'));
-    ctx.log.info(`✓ Generated ${mermaidFiles.length} Mermaid file(s)`);
+    ctx.log.info(`Generated ${mermaidFiles.length} Mermaid file(s)`);
 
     ctx.state.rendererOutputs.push({
       renderer: 'structurizr-export',

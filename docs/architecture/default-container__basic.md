@@ -326,7 +326,7 @@ Map ActorInfo to Actor
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts:223</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts:251</code></td>
 </tr>
 </tbody>
 </table>
@@ -357,7 +357,7 @@ Creates bidirectional actor relationships
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts:237</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts:265</code></td>
 </tr>
 </tbody>
 </table>
@@ -387,7 +387,7 @@ Deduplicate relationships by source+destination
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts:283</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts:312</code></td>
 </tr>
 </tbody>
 </table>
@@ -417,7 +417,7 @@ Map ExtractedClass to CodeItem
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts:298</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts:327</code></td>
 </tr>
 </tbody>
 </table>
@@ -447,7 +447,7 @@ Map ExtractedMethod to CodeItem
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts:323</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts:352</code></td>
 </tr>
 </tbody>
 </table>
@@ -477,7 +477,7 @@ Map ExtractedFunction to CodeItem
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts:358</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts:387</code></td>
 </tr>
 </tbody>
 </table>
@@ -507,7 +507,7 @@ Map ExtractedType to CodeItem
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts:389</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts:418</code></td>
 </tr>
 </tbody>
 </table>

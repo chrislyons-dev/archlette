@@ -157,7 +157,7 @@ export default async function markdownDocs(ctx: PipelineContext): Promise<void> 
 
   const systemPagePath = path.join(docsDir, 'README.md');
   fs.writeFileSync(systemPagePath, systemPageContent, 'utf8');
-  ctx.log.info(`✓ Generated README.md`);
+  ctx.log.info(`Generated README.md`);
 
   const generatedFiles: string[] = ['README.md'];
 
@@ -191,7 +191,7 @@ export default async function markdownDocs(ctx: PipelineContext): Promise<void> 
     generatedFiles.push(filename);
   }
 
-  ctx.log.info(`✓ Generated ${ir.containers.length} container page(s)`);
+  ctx.log.info(`Generated ${ir.containers.length} container page(s)`);
 
   // Render component pages
   ctx.log.info(`Generating ${ir.components.length} component page(s)...`);
@@ -216,7 +216,7 @@ export default async function markdownDocs(ctx: PipelineContext): Promise<void> 
     generatedFiles.push(filename);
   }
 
-  ctx.log.info(`✓ Generated ${ir.components.length} component page(s)`);
+  ctx.log.info(`Generated ${ir.components.length} component page(s)`);
 
   // Update pipeline state
   if (!ctx.state.docOutputs) {

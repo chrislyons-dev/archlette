@@ -189,6 +189,34 @@ export function mapToIR(
     }
   }
 
+  // Step 4: Update code items with new hierarchical component IDs
+  for (const codeItem of codeItems) {
+    if (codeItem.componentId) {
+      const newComponentId = componentIdMap.get(codeItem.componentId);
+      if (newComponentId) {
+        codeItem.componentId = newComponentId;
+      }
+    }
+  }
+
+  // Step 5: Update relationships with new hierarchical component IDs
+  for (const rel of relationships) {
+    const newSource = componentIdMap.get(rel.source);
+    if (newSource) {
+      rel.source = newSource;
+    }
+    const newTarget = componentIdMap.get(rel.target);
+    if (newTarget) {
+      rel.target = newTarget;
+    }
+  }
+
+  // Step 6: Rebuild componentsMap with new hierarchical IDs
+  componentsMap.clear();
+  for (const component of components) {
+    componentsMap.set(component.id, component);
+  }
+
   // Create IR
   const ir: ArchletteIR = {
     version: '1.0',
@@ -243,7 +271,8 @@ function mapRelationshipsToIR(
   const result: Relationship[] = [];
 
   for (const rel of relationships) {
-    const targetId = nameToId(rel.target);
+    // Use target as-is to preserve underscores (Python naming convention)
+    const targetId = rel.target;
 
     // Check if target is a component
     if (componentMap.has(targetId)) {

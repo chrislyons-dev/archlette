@@ -116,7 +116,7 @@ export async function run(ctx: PipelineContext): Promise<void> {
 
       ctx.log.debug(`Writing DSL output (${content.length} chars) to ${outputPath}`);
       writeFile(outputPath, content);
-      ctx.log.info(`✓ Wrote DSL output to ${outputPath}`);
+      ctx.log.info(`Wrote DSL output to ${outputPath}`);
     } catch (err) {
       ctx.log.error(`Failed to write DSL output to ${config.paths.dsl_out}:`, err);
       throw err;
