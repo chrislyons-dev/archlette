@@ -14,7 +14,33 @@ import ast
 import json
 import sys
 import re
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Optional, TypedDict, cast
+
+
+# Type definitions for docstring parsing
+class ArgInfo(TypedDict, total=False):
+    name: str
+    type: Optional[str]
+    description: Optional[str]
+
+
+class ReturnInfo(TypedDict, total=False):
+    type: Optional[str]
+    description: Optional[str]
+
+
+class RaiseInfo(TypedDict, total=False):
+    exception: str
+    description: Optional[str]
+
+
+class ParsedDocstring(TypedDict, total=False):
+    summary: Optional[str]
+    description: Optional[str]
+    args: List[ArgInfo]
+    returns: Optional[ReturnInfo]
+    raises: List[RaiseInfo]
+    examples: Optional[str]
 
 
 class DocstringParser:
@@ -29,7 +55,7 @@ class DocstringParser:
     - Examples
     """
     
-    def parse(self, docstring: Optional[str]) -> Dict[str, Any]:
+    def parse(self, docstring: Optional[str]) -> ParsedDocstring:
         """Parse a docstring and extract structured information."""
         if not docstring:
             return {
@@ -64,12 +90,12 @@ class DocstringParser:
         """Check if docstring uses Sphinx/reST style."""
         return bool(re.search(r':(param|type|returns?|rtype|raises?)(\s+\w+)?:', docstring))
     
-    def _parse_google(self, docstring: str) -> Dict[str, Any]:
+    def _parse_google(self, docstring: str) -> ParsedDocstring:
         """Parse Google-style docstring."""
         lines = docstring.split('\n')
         sections = self._split_sections_google(lines)
         
-        result = {
+        result: ParsedDocstring = {
             'summary': sections.get('summary'),
             'description': sections.get('description'),
             'args': [],
@@ -81,7 +107,8 @@ class DocstringParser:
         # Parse Args section
         if 'Args' in sections or 'Arguments' in sections:
             args_text = sections.get('Args') or sections.get('Arguments')
-            result['args'] = self._parse_args_google(args_text)
+            if args_text:
+                result['args'] = self._parse_args_google(args_text)
         
         # Parse Returns section
         if 'Returns' in sections:
@@ -93,12 +120,12 @@ class DocstringParser:
         
         return result
     
-    def _parse_numpy(self, docstring: str) -> Dict[str, Any]:
+    def _parse_numpy(self, docstring: str) -> ParsedDocstring:
         """Parse NumPy-style docstring."""
         lines = docstring.split('\n')
         sections = self._split_sections_numpy(lines)
         
-        result = {
+        result: ParsedDocstring = {
             'summary': sections.get('summary'),
             'description': sections.get('description'),
             'args': [],
@@ -121,13 +148,13 @@ class DocstringParser:
         
         return result
     
-    def _parse_sphinx(self, docstring: str) -> Dict[str, Any]:
+    def _parse_sphinx(self, docstring: str) -> ParsedDocstring:
         """Parse Sphinx/reST-style docstring."""
         lines = docstring.split('\n')
         
         # Extract summary (first line until blank line or field list)
-        summary_lines = []
-        description_lines = []
+        summary_lines: List[str] = []
+        description_lines: List[str] = []
         in_summary = True
         in_description = False
         
@@ -152,7 +179,7 @@ class DocstringParser:
             
             i += 1
         
-        result = {
+        result: ParsedDocstring = {
             'summary': ' '.join(summary_lines) if summary_lines else None,
             'description': ' '.join(description_lines) if description_lines else None,
             'args': [],
@@ -168,7 +195,7 @@ class DocstringParser:
         rtype_pattern = r':rtype:\s*(.+)'
         raises_pattern = r':raises?\s+(\w+):\s*(.+)'
         
-        param_types = {}
+        param_types: Dict[str, str] = {}
         
         for line in lines[i:]:
             line = line.strip()
@@ -201,30 +228,32 @@ class DocstringParser:
             return_match = re.match(return_pattern, line)
             if return_match:
                 if result['returns'] is None:
-                    result['returns'] = {}
-                result['returns']['description'] = return_match.group(1)
+                    result['returns'] = {'description': None, 'type': None}
+                returns_info = cast(ReturnInfo, result['returns'])
+                returns_info['description'] = return_match.group(1)
                 continue
             
             # :rtype: type
             rtype_match = re.match(rtype_pattern, line)
             if rtype_match:
                 if result['returns'] is None:
-                    result['returns'] = {}
-                result['returns']['type'] = rtype_match.group(1)
+                    result['returns'] = {'description': None, 'type': None}
+                returns_info = cast(ReturnInfo, result['returns'])
+                returns_info['type'] = rtype_match.group(1)
                 continue
             
             # :raises ExceptionType: description
             raises_match = re.match(raises_pattern, line)
             if raises_match:
                 result['raises'].append({
-                    'type': raises_match.group(1),
+                    'exception': raises_match.group(1),
                     'description': raises_match.group(2),
                 })
                 continue
         
         return result
     
-    def _parse_simple(self, docstring: str) -> Dict[str, Any]:
+    def _parse_simple(self, docstring: str) -> ParsedDocstring:
         """Parse simple docstring (just summary and description)."""
         lines = [line.strip() for line in docstring.split('\n')]
         
@@ -260,7 +289,7 @@ class DocstringParser:
         """Split Google-style docstring into sections."""
         sections = {}
         current_section = 'summary'
-        current_lines = []
+        current_lines: List[str] = []
         
         section_keywords = ['Args', 'Arguments', 'Returns', 'Yields', 'Raises', 
                            'Note', 'Notes', 'Example', 'Examples', 'Attributes']
@@ -275,8 +304,8 @@ class DocstringParser:
                     if current_section == 'summary':
                         # First paragraph is summary, rest is description
                         summary_end = 0
-                        for i, l in enumerate(current_lines):
-                            if not l.strip():
+                        for i, line_text in enumerate(current_lines):
+                            if not line_text.strip():
                                 summary_end = i
                                 break
                         if summary_end == 0:
@@ -297,8 +326,8 @@ class DocstringParser:
         if current_lines:
             if current_section == 'summary':
                 summary_end = 0
-                for i, l in enumerate(current_lines):
-                    if not l.strip():
+                for i, line_text in enumerate(current_lines):
+                    if not line_text.strip():
                         summary_end = i
                         break
                 if summary_end == 0:
@@ -315,7 +344,7 @@ class DocstringParser:
         """Split NumPy-style docstring into sections."""
         sections = {}
         current_section = 'summary'
-        current_lines = []
+        current_lines: List[str] = []
         
         section_keywords = ['Parameters', 'Returns', 'Yields', 'Raises', 
                            'See Also', 'Notes', 'Examples', 'Attributes']
@@ -333,8 +362,8 @@ class DocstringParser:
                     if current_lines:
                         if current_section == 'summary':
                             summary_end = 0
-                            for idx, l in enumerate(current_lines):
-                                if not l.strip():
+                            for idx, line_text in enumerate(current_lines):
+                                if not line_text.strip():
                                     summary_end = idx
                                     break
                             if summary_end == 0:
@@ -358,8 +387,8 @@ class DocstringParser:
         if current_lines:
             if current_section == 'summary':
                 summary_end = 0
-                for idx, l in enumerate(current_lines):
-                    if not l.strip():
+                for idx, line_text in enumerate(current_lines):
+                    if not line_text.strip():
                         summary_end = idx
                         break
                 if summary_end == 0:
@@ -372,7 +401,7 @@ class DocstringParser:
         
         return sections
     
-    def _parse_args_google(self, args_text: str) -> List[Dict[str, Any]]:
+    def _parse_args_google(self, args_text: str) -> List[ArgInfo]:
         """Parse Args section in Google style.
         
         Format:
@@ -407,9 +436,9 @@ class DocstringParser:
         if current_arg:
             args.append(current_arg)
         
-        return args
+        return args  # type: ignore[return-value]
     
-    def _parse_args_numpy(self, args_text: str) -> List[Dict[str, Any]]:
+    def _parse_args_numpy(self, args_text: str) -> List[ArgInfo]:
         """Parse Parameters section in NumPy style.
         
         Format:
@@ -436,20 +465,21 @@ class DocstringParser:
                 current_arg = {
                     'name': name,
                     'type': param_type,
-                    'description': '',
+                    'description': None,
                 }
             elif current_arg:
                 # Description line
                 if current_arg['description']:
-                    current_arg['description'] += ' '
-                current_arg['description'] += stripped
+                    current_arg['description'] += ' ' + stripped
+                else:
+                    current_arg['description'] = stripped
         
         if current_arg:
             args.append(current_arg)
         
-        return args
+        return args  # type: ignore[return-value]
     
-    def _parse_returns_google(self, returns_text: str) -> Dict[str, Any]:
+    def _parse_returns_google(self, returns_text: str) -> ReturnInfo:
         """Parse Returns section in Google style.
         
         Format:
@@ -471,7 +501,7 @@ class DocstringParser:
                 'description': stripped,
             }
     
-    def _parse_returns_numpy(self, returns_text: str) -> Dict[str, Any]:
+    def _parse_returns_numpy(self, returns_text: str) -> ReturnInfo:
         """Parse Returns section in NumPy style.
         
         Format:
@@ -492,7 +522,7 @@ class DocstringParser:
             'description': description if description else None,
         }
     
-    def _parse_raises_google(self, raises_text: str) -> List[Dict[str, Any]]:
+    def _parse_raises_google(self, raises_text: str) -> List[RaiseInfo]:
         """Parse Raises section in Google style."""
         raises = []
         current_raise = None
@@ -510,18 +540,21 @@ class DocstringParser:
                         raises.append(current_raise)
                     
                     current_raise = {
-                        'type': match.group(1),
+                        'exception': match.group(1),
                         'description': match.group(2),
                     }
             elif current_raise:
-                current_raise['description'] += ' ' + stripped
+                if current_raise['description']:
+                    current_raise['description'] += ' ' + stripped
+                else:
+                    current_raise['description'] = stripped
         
         if current_raise:
             raises.append(current_raise)
         
-        return raises
+        return raises  # type: ignore[return-value]
     
-    def _parse_raises_numpy(self, raises_text: str) -> List[Dict[str, Any]]:
+    def _parse_raises_numpy(self, raises_text: str) -> List[RaiseInfo]:
         """Parse Raises section in NumPy style."""
         raises = []
         current_raise = None
@@ -537,18 +570,19 @@ class DocstringParser:
                     raises.append(current_raise)
                 
                 current_raise = {
-                    'type': stripped,
-                    'description': '',
+                    'exception': stripped,
+                    'description': None,
                 }
             elif current_raise:
                 if current_raise['description']:
-                    current_raise['description'] += ' '
-                current_raise['description'] += stripped
+                    current_raise['description'] += ' ' + stripped
+                else:
+                    current_raise['description'] = stripped
         
         if current_raise:
             raises.append(current_raise)
         
-        return raises
+        return raises  # type: ignore[return-value]
 
 
 def parse_file(file_path: str) -> Dict[str, Any]:
@@ -1126,7 +1160,7 @@ def get_decorator_info(node) -> Dict[str, Any]:
     - kwargs: dict of keyword argument names to values (as strings)
     - raw: full decorator expression as string
     """
-    result = {
+    result: Dict[str, Any] = {
         'name': '',
         'args': [],
         'kwargs': {},

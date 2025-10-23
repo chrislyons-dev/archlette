@@ -19,7 +19,8 @@ EmailAddress: TypeAlias = str
 
 # Complex type aliases
 ConfigDict: TypeAlias = Dict[str, str | int | bool]
-UserList: TypeAlias = List['User']
+# Forward reference for demonstration (actual User class would be defined elsewhere)
+UserList: TypeAlias = List['UserProfile']  # Using UserProfile as a stand-in
 
 
 # TypedDict definitions
