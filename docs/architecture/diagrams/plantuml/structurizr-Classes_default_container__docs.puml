@@ -21,7 +21,7 @@ skinparam rectangle<<Application.Application.docs__findclassdiagramsforcomponent
   BorderColor #9a9a9a
   shadowing false
 }
-skinparam rectangle<<Application.Application.docs__finddiagramsforcomponent>> {
+skinparam rectangle<<Application.Application.docs__finddiagramsforcontainer>> {
   BackgroundColor #dddddd
   FontColor #000000
   BorderColor #9a9a9a
@@ -61,7 +61,7 @@ rectangle "Application\n<size:10>[Container: Application]</size>" <<Application.
   rectangle "==docs__run\n<size:10>[Component: function]</size>\n\nExecute the documentation stage" <<Application.Application.docs__run>> as Application.Application.docs__run
   rectangle "==docs__markdowndocs\n<size:10>[Component: function]</size>\n\nGenerate markdown documentation" <<Application.Application.docs__markdowndocs>> as Application.Application.docs__markdowndocs
   rectangle "==docs__finddiagramsforview\n<size:10>[Component: function]</size>\n\nFind diagram files for a specific view type" <<Application.Application.docs__finddiagramsforview>> as Application.Application.docs__finddiagramsforview
-  rectangle "==docs__finddiagramsforcomponent\n<size:10>[Component: function]</size>\n\nFind component diagrams for a specific component" <<Application.Application.docs__finddiagramsforcomponent>> as Application.Application.docs__finddiagramsforcomponent
+  rectangle "==docs__finddiagramsforcontainer\n<size:10>[Component: function]</size>\n\nFind component diagrams for a specific container" <<Application.Application.docs__finddiagramsforcontainer>> as Application.Application.docs__finddiagramsforcontainer
   rectangle "==docs__findclassdiagramsforcomponent\n<size:10>[Component: function]</size>\n\nFind class diagrams for a specific component" <<Application.Application.docs__findclassdiagramsforcomponent>> as Application.Application.docs__findclassdiagramsforcomponent
   rectangle "==docs__sanitizefilename\n<size:10>[Component: function]</size>" <<Application.Application.docs__sanitizefilename>> as Application.Application.docs__sanitizefilename
 }

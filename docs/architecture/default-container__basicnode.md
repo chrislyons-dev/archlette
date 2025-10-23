@@ -1,6 +1,6 @@
-# basic_node
+# basic_node — Code View
 
-[← Back to System Overview](./README.md)
+[← Back to Container](./default-container.md) | [← Back to System](./README.md)
 
 ---
 
@@ -8,6 +8,10 @@
 
 <table>
 <tbody>
+<tr>
+<td><strong>Component</strong></td>
+<td>basic_node</td>
+</tr>
 <tr>
 <td><strong>Container</strong></td>
 <td>Application</td>
@@ -22,12 +26,6 @@
 </tr>
 </tbody>
 </table>
-
----
-
-## Architecture
-
-![Component Diagram](./diagrams/structurizr-Components_Application.png)
 
 ---
 
@@ -814,7 +812,7 @@ Read and parse package.json file
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/file-finder.ts:86</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/file-finder.ts:98</code></td>
 </tr>
 </tbody>
 </table>
@@ -844,7 +842,7 @@ Find the nearest parent package.json for a given file
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/file-finder.ts:110</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/file-finder.ts:122</code></td>
 </tr>
 </tbody>
 </table>
@@ -1354,5 +1352,5 @@ Examples:
 ---
 
 <div align="center">
-<sub><a href="./README.md">← Back to System Overview</a> | Generated with <a href="https://github.com/architectlabs/archlette">Archlette</a></sub>
+<sub><a href="./default-container.md">← Back to Container</a> | <a href="./README.md">← Back to System</a> | Generated with <a href="https://github.com/architectlabs/archlette">Archlette</a></sub>
 </div>

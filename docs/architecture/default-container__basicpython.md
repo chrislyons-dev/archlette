@@ -1,6 +1,6 @@
-# basic_python
+# basic_python — Code View
 
-[← Back to System Overview](./README.md)
+[← Back to Container](./default-container.md) | [← Back to System](./README.md)
 
 ---
 
@@ -8,6 +8,10 @@
 
 <table>
 <tbody>
+<tr>
+<td><strong>Component</strong></td>
+<td>basic_python</td>
+</tr>
 <tr>
 <td><strong>Container</strong></td>
 <td>Application</td>
@@ -18,12 +22,6 @@
 </tr>
 </tbody>
 </table>
-
----
-
-## Architecture
-
-![Component Diagram](./diagrams/structurizr-Components_Application.png)
 
 ---
 
@@ -446,5 +444,5 @@ Determine visibility from Python name convention
 ---
 
 <div align="center">
-<sub><a href="./README.md">← Back to System Overview</a> | Generated with <a href="https://github.com/architectlabs/archlette">Archlette</a></sub>
+<sub><a href="./default-container.md">← Back to Container</a> | <a href="./README.md">← Back to System</a> | Generated with <a href="https://github.com/architectlabs/archlette">Archlette</a></sub>
 </div>

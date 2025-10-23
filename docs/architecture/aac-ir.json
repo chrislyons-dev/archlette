@@ -1217,16 +1217,16 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/docs/builtin/markdown-docs.ts",
-      "lineNumber": 213
+      "lineNumber": 239
     },
     {
-      "description": "Find component diagrams for a specific component",
-      "id": "default-container__docs__findDiagramsForComponent",
+      "description": "Find component diagrams for a specific container",
+      "id": "default-container__docs__findDiagramsForContainer",
       "componentId": "default-container__docs",
-      "name": "docs__findDiagramsForComponent",
+      "name": "docs__findDiagramsForContainer",
       "type": "function",
       "documentation": {
-        "summary": "Find component diagrams for a specific component"
+        "summary": "Find component diagrams for a specific container"
       },
       "returnType": "string[]",
       "parameters": [
@@ -1246,15 +1246,15 @@
           "optional": false
         },
         {
-          "name": "_component",
-          "type": "z.infer<any>",
+          "name": "container",
+          "type": "{ id: string; }",
           "optional": false
         }
       ],
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/docs/builtin/markdown-docs.ts",
-      "lineNumber": 245
+      "lineNumber": 271
     },
     {
       "description": "Find class diagrams for a specific component",
@@ -1291,7 +1291,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/docs/builtin/markdown-docs.ts",
-      "lineNumber": 278
+      "lineNumber": 308
     },
     {
       "id": "default-container__docs__sanitizeFileName",
@@ -1309,7 +1309,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/docs/builtin/markdown-docs.ts",
-      "lineNumber": 312
+      "lineNumber": 342
     },
     {
       "description": "Extract architecture information from a Node.js/TypeScript codebase",
@@ -1363,7 +1363,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python.ts",
-      "lineNumber": 77
+      "lineNumber": 106
     },
     {
       "description": "Basic Python extractor\nAnalyzes Python source code and extracts architectural components",
@@ -1390,7 +1390,7 @@
       "visibility": "public",
       "isAsync": true,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python.ts",
-      "lineNumber": 20
+      "lineNumber": 25
     },
     {
       "description": "Extract deployment topology from Cloudflare Wrangler configuration files",
@@ -2256,7 +2256,7 @@
       "visibility": "public",
       "isAsync": true,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/file-finder.ts",
-      "lineNumber": 86
+      "lineNumber": 98
     },
     {
       "description": "Find the nearest parent package.json for a given file",
@@ -2283,7 +2283,7 @@
       "visibility": "public",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/file-finder.ts",
-      "lineNumber": 110
+      "lineNumber": 122
     },
     {
       "description": "Parse and extract information from source files",
@@ -2696,6 +2696,121 @@
       "lineNumber": 59
     },
     {
+      "description": "Find source files matching include/exclude patterns",
+      "id": "default-container__basic__findSourceFiles",
+      "componentId": "default-container__basic",
+      "name": "basic__findSourceFiles",
+      "type": "function",
+      "documentation": {
+        "summary": "Find source files matching include/exclude patterns"
+      },
+      "returnType": "Promise<string[]>",
+      "parameters": [
+        {
+          "name": "inputs",
+          "type": "import(\"C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/types\").ExtractorInputs",
+          "optional": false
+        }
+      ],
+      "visibility": "public",
+      "isAsync": true,
+      "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-finder.ts",
+      "lineNumber": 25
+    },
+    {
+      "description": "Find pyproject.toml files within the search paths",
+      "id": "default-container__basic__findPyProjectFiles",
+      "componentId": "default-container__basic",
+      "name": "basic__findPyProjectFiles",
+      "type": "function",
+      "documentation": {
+        "summary": "Find pyproject.toml files within the search paths"
+      },
+      "returnType": "Promise<string[]>",
+      "parameters": [
+        {
+          "name": "inputs",
+          "type": "import(\"C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/types\").ExtractorInputs",
+          "optional": false
+        }
+      ],
+      "visibility": "public",
+      "isAsync": true,
+      "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-finder.ts",
+      "lineNumber": 41
+    },
+    {
+      "description": "Read and parse pyproject.toml file",
+      "id": "default-container__basic__readPyProjectInfo",
+      "componentId": "default-container__basic",
+      "name": "basic__readPyProjectInfo",
+      "type": "function",
+      "documentation": {
+        "summary": "Read and parse pyproject.toml file"
+      },
+      "returnType": "Promise<import(\"C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-finder\").PyProjectInfo>",
+      "parameters": [
+        {
+          "name": "filePath",
+          "type": "string",
+          "optional": false
+        }
+      ],
+      "visibility": "public",
+      "isAsync": true,
+      "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-finder.ts",
+      "lineNumber": 89
+    },
+    {
+      "description": "Simple TOML parser for pyproject.toml\nOnly handles the subset we need: [project] and [tool.poetry] sections",
+      "id": "default-container__basic__parsePyProjectToml",
+      "componentId": "default-container__basic",
+      "name": "basic__parsePyProjectToml",
+      "type": "function",
+      "documentation": {
+        "summary": "Simple TOML parser for pyproject.toml\nOnly handles the subset we need: [project] and [tool.poetry] sections"
+      },
+      "returnType": "PyProjectToml",
+      "parameters": [
+        {
+          "name": "content",
+          "type": "string",
+          "optional": false
+        }
+      ],
+      "visibility": "private",
+      "isAsync": false,
+      "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-finder.ts",
+      "lineNumber": 140
+    },
+    {
+      "description": "Find the nearest parent pyproject.toml for a given file",
+      "id": "default-container__basic__findNearestPyProject",
+      "componentId": "default-container__basic",
+      "name": "basic__findNearestPyProject",
+      "type": "function",
+      "documentation": {
+        "summary": "Find the nearest parent pyproject.toml for a given file"
+      },
+      "returnType": "import(\"C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-finder\").PyProjectInfo",
+      "parameters": [
+        {
+          "name": "filePath",
+          "type": "string",
+          "optional": false
+        },
+        {
+          "name": "pyprojects",
+          "type": "import(\"C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-finder\").PyProjectInfo[]",
+          "optional": false
+        }
+      ],
+      "visibility": "public",
+      "isAsync": false,
+      "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-finder.ts",
+      "lineNumber": 194
+    },
+    {
       "description": "Parse Python files using Python AST parser script",
       "id": "default-container__basicpython__parseFiles",
       "componentId": "default-container__basicpython",
@@ -3049,42 +3164,20 @@
           "optional": false
         },
         {
-          "name": "systemName",
-          "type": "string",
+          "name": "pyprojects",
+          "type": "import(\"C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-finder\").PyProjectInfo[]",
           "optional": false
         },
         {
-          "name": "systemDescription",
-          "type": "string",
+          "name": "systemInfo",
+          "type": "SystemInfo",
           "optional": true
         }
       ],
       "visibility": "public",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts",
-      "lineNumber": 31
-    },
-    {
-      "description": "Map ComponentInfo to Component",
-      "id": "default-container__basic__mapComponentToIR",
-      "componentId": "default-container__basic",
-      "name": "basic__mapComponentToIR",
-      "type": "function",
-      "documentation": {
-        "summary": "Map ComponentInfo to Component"
-      },
-      "returnType": "z.infer<any>",
-      "parameters": [
-        {
-          "name": "comp",
-          "type": "import(\"C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/types\").ComponentInfo",
-          "optional": false
-        }
-      ],
-      "visibility": "private",
-      "isAsync": false,
-      "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts",
-      "lineNumber": 131
+      "lineNumber": 38
     },
     {
       "description": "Map ActorInfo to Actor",
@@ -3111,7 +3204,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts",
-      "lineNumber": 145
+      "lineNumber": 223
     },
     {
       "description": "Map relationships to Relationship[]\nCreates bidirectional actor relationships",
@@ -3131,7 +3224,7 @@
         },
         {
           "name": "componentMap",
-          "type": "Map<string, import(\"C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/types\").ComponentInfo>",
+          "type": "Map<string, z.infer<any>>",
           "optional": false
         },
         {
@@ -3148,7 +3241,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts",
-      "lineNumber": 159
+      "lineNumber": 237
     },
     {
       "description": "Deduplicate relationships by source+destination",
@@ -3170,7 +3263,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts",
-      "lineNumber": 205
+      "lineNumber": 283
     },
     {
       "description": "Map ExtractedClass to CodeItem",
@@ -3197,7 +3290,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts",
-      "lineNumber": 220
+      "lineNumber": 298
     },
     {
       "description": "Map ExtractedMethod to CodeItem",
@@ -3229,7 +3322,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts",
-      "lineNumber": 245
+      "lineNumber": 323
     },
     {
       "description": "Map ExtractedFunction to CodeItem",
@@ -3256,7 +3349,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts",
-      "lineNumber": 280
+      "lineNumber": 358
     },
     {
       "description": "Map ExtractedType to CodeItem",
@@ -3283,7 +3376,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts",
-      "lineNumber": 311
+      "lineNumber": 389
     },
     {
       "description": "Find wrangler.toml files based on include/exclude patterns",
@@ -4232,7 +4325,25 @@
     {
       "description": "imports findSourceFiles",
       "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python.ts",
-      "destination": "./basic-node/file-finder.js:findSourceFiles",
+      "destination": "./basic-python/file-finder.js:findSourceFiles",
+      "stereotype": "import"
+    },
+    {
+      "description": "imports findPyProjectFiles",
+      "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python.ts",
+      "destination": "./basic-python/file-finder.js:findPyProjectFiles",
+      "stereotype": "import"
+    },
+    {
+      "description": "imports readPyProjectInfo",
+      "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python.ts",
+      "destination": "./basic-python/file-finder.js:readPyProjectInfo",
+      "stereotype": "import"
+    },
+    {
+      "description": "imports findNearestPyProject",
+      "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python.ts",
+      "destination": "./basic-python/file-finder.js:findNearestPyProject",
       "stereotype": "import"
     },
     {
@@ -4962,6 +5073,48 @@
       "stereotype": "import"
     },
     {
+      "description": "imports globby",
+      "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-finder.ts",
+      "destination": "globby:globby",
+      "stereotype": "import"
+    },
+    {
+      "description": "imports sep",
+      "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-finder.ts",
+      "destination": "node:path:sep",
+      "stereotype": "import"
+    },
+    {
+      "description": "imports relative",
+      "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-finder.ts",
+      "destination": "node:path:relative",
+      "stereotype": "import"
+    },
+    {
+      "description": "imports dirname",
+      "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-finder.ts",
+      "destination": "node:path:dirname",
+      "stereotype": "import"
+    },
+    {
+      "description": "imports readFile",
+      "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-finder.ts",
+      "destination": "node:fs/promises:readFile",
+      "stereotype": "import"
+    },
+    {
+      "description": "imports createLogger",
+      "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-finder.ts",
+      "destination": "../../../core/logger.js:createLogger",
+      "stereotype": "import"
+    },
+    {
+      "description": "imports ExtractorInputs",
+      "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-finder.ts",
+      "destination": "./types.js:ExtractorInputs",
+      "stereotype": "type-import"
+    },
+    {
       "description": "imports spawn",
       "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-parser.ts",
       "destination": "child_process:spawn",
@@ -5058,6 +5211,18 @@
       "stereotype": "import"
     },
     {
+      "description": "imports TAGS",
+      "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts",
+      "destination": "../../../core/constants.js:TAGS",
+      "stereotype": "import"
+    },
+    {
+      "description": "imports DEFAULT_CONTAINER_ID",
+      "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts",
+      "destination": "../../../core/constants.js:DEFAULT_CONTAINER_ID",
+      "stereotype": "import"
+    },
+    {
       "description": "imports ArchletteIR",
       "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts",
       "destination": "../../../core/types-ir.js:ArchletteIR",
@@ -5076,6 +5241,12 @@
       "stereotype": "type-import"
     },
     {
+      "description": "imports Container",
+      "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts",
+      "destination": "../../../core/types-ir.js:Container",
+      "stereotype": "type-import"
+    },
+    {
       "description": "imports CodeItem",
       "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts",
       "destination": "../../../core/types-ir.js:CodeItem",
@@ -5091,12 +5262,6 @@
       "description": "imports FileExtraction",
       "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts",
       "destination": "./types.js:FileExtraction",
-      "stereotype": "type-import"
-    },
-    {
-      "description": "imports ComponentInfo",
-      "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts",
-      "destination": "./types.js:ComponentInfo",
       "stereotype": "type-import"
     },
     {
@@ -5133,6 +5298,12 @@
       "description": "imports ExtractedType",
       "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts",
       "destination": "./types.js:ExtractedType",
+      "stereotype": "type-import"
+    },
+    {
+      "description": "imports PyProjectInfo",
+      "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts",
+      "destination": "./file-finder.js:PyProjectInfo",
       "stereotype": "type-import"
     },
     {

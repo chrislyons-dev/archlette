@@ -284,8 +284,8 @@ workspace "Application" "Main application container" {
                     technology "function"
                     tags "Code"
                 }
-                default_container__docs__findDiagramsForComponent = component "docs__finddiagramsforcomponent" {
-                    description "Find component diagrams for a specific component"
+                default_container__docs__findDiagramsForContainer = component "docs__finddiagramsforcontainer" {
+                    description "Find component diagrams for a specific container"
                     technology "function"
                     tags "Code"
                 }
@@ -583,6 +583,31 @@ workspace "Application" "Main application container" {
                     technology "function"
                     tags "Code"
                 }
+                default_container__basic__findSourceFiles = component "basic__findsourcefiles" {
+                    description "Find source files matching include/exclude patterns"
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__basic__findPyProjectFiles = component "basic__findpyprojectfiles" {
+                    description "Find pyproject.toml files within the search paths"
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__basic__readPyProjectInfo = component "basic__readpyprojectinfo" {
+                    description "Read and parse pyproject.toml file"
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__basic__parsePyProjectToml = component "basic__parsepyprojecttoml" {
+                    description "Simple TOML parser for pyproject.toml\nOnly handles the subset we need: [project] and [tool.poetry] sections"
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__basic__findNearestPyProject = component "basic__findnearestpyproject" {
+                    description "Find the nearest parent pyproject.toml for a given file"
+                    technology "function"
+                    tags "Code"
+                }
                 default_container__basicpython__parseFiles = component "basic_python__parsefiles" {
                     description "Parse Python files using Python AST parser script"
                     technology "function"
@@ -650,11 +675,6 @@ workspace "Application" "Main application container" {
                 }
                 default_container__basic__mapToIR = component "basic__maptoir" {
                     description "Map file extractions to ArchletteIR"
-                    technology "function"
-                    tags "Code"
-                }
-                default_container__basic__mapComponentToIR = component "basic__mapcomponenttoir" {
-                    description "Map ComponentInfo to Component"
                     technology "function"
                     tags "Code"
                 }
@@ -877,7 +897,7 @@ workspace "Application" "Main application container" {
             include default_container__docs__run
             include default_container__docs__markdownDocs
             include default_container__docs__findDiagramsForView
-            include default_container__docs__findDiagramsForComponent
+            include default_container__docs__findDiagramsForContainer
             include default_container__docs__findClassDiagramsForComponent
             include default_container__docs__sanitizeFileName
             autoLayout
@@ -969,8 +989,12 @@ workspace "Application" "Main application container" {
         component default_container "Classes_default_container__basic" {
             include default_container__basic__createEmptyIR
             include default_container__basic__basicPython
+            include default_container__basic__findSourceFiles
+            include default_container__basic__findPyProjectFiles
+            include default_container__basic__readPyProjectInfo
+            include default_container__basic__parsePyProjectToml
+            include default_container__basic__findNearestPyProject
             include default_container__basic__mapToIR
-            include default_container__basic__mapComponentToIR
             include default_container__basic__mapActorToIR
             include default_container__basic__mapRelationshipsToIR
             include default_container__basic__deduplicateRelationships

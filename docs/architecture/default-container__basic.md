@@ -1,6 +1,6 @@
-# basic
+# basic — Code View
 
-[← Back to System Overview](./README.md)
+[← Back to Container](./default-container.md) | [← Back to System](./README.md)
 
 ---
 
@@ -8,6 +8,10 @@
 
 <table>
 <tbody>
+<tr>
+<td><strong>Component</strong></td>
+<td>basic</td>
+</tr>
 <tr>
 <td><strong>Container</strong></td>
 <td>Application</td>
@@ -26,12 +30,6 @@ Extracts architecture information from Python source code</td>
 
 ---
 
-## Architecture
-
-![Component Diagram](./diagrams/structurizr-Components_Application.png)
-
----
-
 ## Code Structure
 
 ### Class Diagram
@@ -44,7 +42,7 @@ Extracts architecture information from Python source code</td>
 ### Code Elements
 
 <details>
-<summary><strong>11 code element(s)</strong></summary>
+<summary><strong>15 code element(s)</strong></summary>
 
 
 
@@ -70,7 +68,7 @@ Create empty IR when no files found
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python.ts:77</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python.ts:106</code></td>
 </tr>
 </tbody>
 </table>
@@ -105,7 +103,7 @@ Analyzes Python source code and extracts architectural components
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python.ts:20</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python.ts:25</code></td>
 </tr>
 </tbody>
 </table>
@@ -113,6 +111,169 @@ Analyzes Python source code and extracts architectural components
 **Parameters:**
 
 - `node`: <code>any</code>- `ctx`: <code>import("C:/Users/chris/git/archlette/src/core/types").PipelineContext</code>
+
+---
+##### `basic__findSourceFiles()`
+
+Find source files matching include/exclude patterns
+
+<table>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>function</code></td>
+</tr>
+<tr>
+<td><strong>Visibility</strong></td>
+<td><code>public</code></td>
+</tr>
+<tr>
+<td><strong>Async</strong></td>
+<td>Yes</td>
+</tr>
+<tr>
+<td><strong>Returns</strong></td>
+<td><code>Promise<string[]></code></td>
+</tr>
+<tr>
+<td><strong>Location</strong></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-finder.ts:25</code></td>
+</tr>
+</tbody>
+</table>
+
+**Parameters:**
+
+- `inputs`: <code>import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/types").ExtractorInputs</code>
+
+---
+##### `basic__findPyProjectFiles()`
+
+Find pyproject.toml files within the search paths
+
+<table>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>function</code></td>
+</tr>
+<tr>
+<td><strong>Visibility</strong></td>
+<td><code>public</code></td>
+</tr>
+<tr>
+<td><strong>Async</strong></td>
+<td>Yes</td>
+</tr>
+<tr>
+<td><strong>Returns</strong></td>
+<td><code>Promise<string[]></code></td>
+</tr>
+<tr>
+<td><strong>Location</strong></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-finder.ts:41</code></td>
+</tr>
+</tbody>
+</table>
+
+**Parameters:**
+
+- `inputs`: <code>import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/types").ExtractorInputs</code>
+
+---
+##### `basic__readPyProjectInfo()`
+
+Read and parse pyproject.toml file
+
+<table>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>function</code></td>
+</tr>
+<tr>
+<td><strong>Visibility</strong></td>
+<td><code>public</code></td>
+</tr>
+<tr>
+<td><strong>Async</strong></td>
+<td>Yes</td>
+</tr>
+<tr>
+<td><strong>Returns</strong></td>
+<td><code>Promise<import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-finder").PyProjectInfo></code></td>
+</tr>
+<tr>
+<td><strong>Location</strong></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-finder.ts:89</code></td>
+</tr>
+</tbody>
+</table>
+
+**Parameters:**
+
+- `filePath`: <code>string</code>
+
+---
+##### `basic__parsePyProjectToml()`
+
+Simple TOML parser for pyproject.toml
+Only handles the subset we need: [project] and [tool.poetry] sections
+
+<table>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>function</code></td>
+</tr>
+<tr>
+<td><strong>Visibility</strong></td>
+<td><code>private</code></td>
+</tr>
+<tr>
+<td><strong>Returns</strong></td>
+<td><code>PyProjectToml</code></td>
+</tr>
+<tr>
+<td><strong>Location</strong></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-finder.ts:140</code></td>
+</tr>
+</tbody>
+</table>
+
+**Parameters:**
+
+- `content`: <code>string</code>
+
+---
+##### `basic__findNearestPyProject()`
+
+Find the nearest parent pyproject.toml for a given file
+
+<table>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>function</code></td>
+</tr>
+<tr>
+<td><strong>Visibility</strong></td>
+<td><code>public</code></td>
+</tr>
+<tr>
+<td><strong>Returns</strong></td>
+<td><code>import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-finder").PyProjectInfo</code></td>
+</tr>
+<tr>
+<td><strong>Location</strong></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-finder.ts:194</code></td>
+</tr>
+</tbody>
+</table>
+
+**Parameters:**
+
+- `filePath`: <code>string</code>- `pyprojects`: <code>import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-finder").PyProjectInfo[]</code>
 
 ---
 ##### `basic__mapToIR()`
@@ -135,44 +296,14 @@ Map file extractions to ArchletteIR
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts:31</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts:38</code></td>
 </tr>
 </tbody>
 </table>
 
 **Parameters:**
 
-- `extractions`: <code>import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/types").FileExtraction[]</code>- `systemName`: <code>string</code>- `systemDescription`: <code>string</code>
-
----
-##### `basic__mapComponentToIR()`
-
-Map ComponentInfo to Component
-
-<table>
-<tbody>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>function</code></td>
-</tr>
-<tr>
-<td><strong>Visibility</strong></td>
-<td><code>private</code></td>
-</tr>
-<tr>
-<td><strong>Returns</strong></td>
-<td><code>z.infer<any></code></td>
-</tr>
-<tr>
-<td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts:131</code></td>
-</tr>
-</tbody>
-</table>
-
-**Parameters:**
-
-- `comp`: <code>import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/types").ComponentInfo</code>
+- `extractions`: <code>import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/types").FileExtraction[]</code>- `pyprojects`: <code>import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-finder").PyProjectInfo[]</code>- `systemInfo`: <code>SystemInfo</code>
 
 ---
 ##### `basic__mapActorToIR()`
@@ -195,7 +326,7 @@ Map ActorInfo to Actor
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts:145</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts:223</code></td>
 </tr>
 </tbody>
 </table>
@@ -226,14 +357,14 @@ Creates bidirectional actor relationships
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts:159</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts:237</code></td>
 </tr>
 </tbody>
 </table>
 
 **Parameters:**
 
-- `relationships`: <code>import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/types").RelationshipInfo[]</code>- `componentMap`: <code>Map<string, import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/types").ComponentInfo></code>- `actorMap`: <code>Map<string, import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/types").ActorInfo></code>- `actorTargets`: <code>Map<string, string[]></code>
+- `relationships`: <code>import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/types").RelationshipInfo[]</code>- `componentMap`: <code>Map<string, z.infer<any>></code>- `actorMap`: <code>Map<string, import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/types").ActorInfo></code>- `actorTargets`: <code>Map<string, string[]></code>
 
 ---
 ##### `basic__deduplicateRelationships()`
@@ -256,7 +387,7 @@ Deduplicate relationships by source+destination
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts:205</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts:283</code></td>
 </tr>
 </tbody>
 </table>
@@ -286,7 +417,7 @@ Map ExtractedClass to CodeItem
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts:220</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts:298</code></td>
 </tr>
 </tbody>
 </table>
@@ -316,7 +447,7 @@ Map ExtractedMethod to CodeItem
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts:245</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts:323</code></td>
 </tr>
 </tbody>
 </table>
@@ -346,7 +477,7 @@ Map ExtractedFunction to CodeItem
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts:280</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts:358</code></td>
 </tr>
 </tbody>
 </table>
@@ -376,7 +507,7 @@ Map ExtractedType to CodeItem
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts:311</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts:389</code></td>
 </tr>
 </tbody>
 </table>
@@ -392,5 +523,5 @@ Map ExtractedType to CodeItem
 ---
 
 <div align="center">
-<sub><a href="./README.md">← Back to System Overview</a> | Generated with <a href="https://github.com/architectlabs/archlette">Archlette</a></sub>
+<sub><a href="./default-container.md">← Back to Container</a> | <a href="./README.md">← Back to System</a> | Generated with <a href="https://github.com/architectlabs/archlette">Archlette</a></sub>
 </div>

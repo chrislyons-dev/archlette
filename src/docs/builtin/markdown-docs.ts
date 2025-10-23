@@ -161,6 +161,38 @@ export default async function markdownDocs(ctx: PipelineContext): Promise<void> 
 
   const generatedFiles: string[] = ['README.md'];
 
+  // Render container pages
+  ctx.log.info(`Generating ${ir.containers.length} container page(s)...`);
+  for (const container of ir.containers) {
+    const containerComponents = ir.components.filter(
+      (c) => c.containerId === container.id,
+    );
+
+    // Find component diagrams for this container
+    const containerComponentDiagrams = findDiagramsForContainer(
+      rendererOutputs,
+      diagramsDir,
+      docsDir,
+      container,
+    );
+
+    const containerPageContent = env.render('container.md.njk', {
+      container,
+      system: ir.system,
+      components: containerComponents,
+      containerDiagrams,
+      componentDiagrams: containerComponentDiagrams,
+    });
+
+    const filename = `${sanitizeFileName(container.id)}.md`;
+    const containerPagePath = path.join(docsDir, filename);
+    fs.writeFileSync(containerPagePath, containerPageContent, 'utf8');
+    ctx.log.debug(`  • ${filename}`);
+    generatedFiles.push(filename);
+  }
+
+  ctx.log.info(`✓ Generated ${ir.containers.length} container page(s)`);
+
   // Render component pages
   ctx.log.info(`Generating ${ir.components.length} component page(s)...`);
   for (const component of ir.components) {
@@ -169,12 +201,6 @@ export default async function markdownDocs(ctx: PipelineContext): Promise<void> 
       system: ir.system,
       container: ir.containers.find((c) => c.id === component.containerId),
       codeItems: ir.code.filter((item) => item.componentId === component.id),
-      componentDiagrams: findDiagramsForComponent(
-        rendererOutputs,
-        diagramsDir,
-        docsDir,
-        component,
-      ),
       codeDiagrams: findClassDiagramsForComponent(
         rendererOutputs,
         diagramsDir,
@@ -240,23 +266,27 @@ function findDiagramsForView(
 }
 
 /**
- * Find component diagrams for a specific component
+ * Find component diagrams for a specific container
  */
-function findDiagramsForComponent(
+function findDiagramsForContainer(
   rendererOutputs: RendererOutput[],
   diagramsDir: string,
   docsDir: string,
-  _component: Component,
+  container: { id: string },
 ): string[] {
   const diagrams: string[] = [];
+  // Sanitize container ID same way as generator does
+  const sanitizedContainerId = container.id.replace(/[^a-zA-Z0-9_]/g, '_');
 
   for (const output of rendererOutputs) {
     if (output.format === 'png') {
       for (const file of output.files) {
         const filename = path.basename(file, '.png');
-        // Look for component view diagrams that might include this component
+        // Look for component view diagrams for this specific container
+        // Format: structurizr-Component_{sanitized-container-id}
         if (
           filename.includes('Component') &&
+          filename.includes(sanitizedContainerId) &&
           !filename.includes('Classes') &&
           !filename.includes('-key')
         ) {
