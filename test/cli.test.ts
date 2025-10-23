@@ -42,16 +42,35 @@ vi.mock(new URL('../src/core/path-resolver.js', import.meta.url).href, () => ({
     if (input.startsWith('/')) return input;
     return `/cli/${input}`;
   }),
+  expandTilde: vi.fn((input: string) => {
+    if (input.startsWith('~/')) return `/home/user/${input.slice(2)}`;
+    if (input === '~') return '/home/user';
+    return input;
+  }),
 }));
 
 // Mock fs: pretend only default/custom YAML exist
-vi.mock('node:fs', () => {
+vi.mock('node:fs', async () => {
+  const path = await import('node:path');
+  // Calculate platform-specific paths for tilde expansion test
+  const homeUserPath = path.resolve(process.cwd(), '/home/user/custom.yaml');
+
   const existsSync = vi.fn(
-    (p: string) => p === '/cfg/default.yaml' || p === '/cfg/custom.yaml',
+    (p: string) =>
+      p === '/cfg/default.yaml' ||
+      p === '/cfg/custom.yaml' ||
+      p === '/home/user/custom.yaml' ||
+      p === homeUserPath,
   );
   const readFileSync = vi.fn((p: string) => {
     if (p === '/cfg/default.yaml') return 'default: true';
-    if (p === '/cfg/custom.yaml') return 'answer: 42';
+    if (
+      p === '/cfg/custom.yaml' ||
+      p === '/home/user/custom.yaml' ||
+      p === homeUserPath
+    ) {
+      return 'answer: 42';
+    }
     return '';
   });
   return { existsSync, readFileSync };
@@ -72,7 +91,25 @@ vi.mock('../src/core/types-aac.js', () => ({
   AACConfigSchema: {
     safeParse: (input: any) => ({ success: true, data: input }),
   },
-  resolveConfig: (input: any) => input || null,
+  resolveConfig: (input: any, _options: any) => {
+    if (!input) return null;
+    // If input has project and paths, add stage array defaults
+    // Otherwise return as-is for simple test configs
+    if (input.project !== undefined || input.paths !== undefined) {
+      return {
+        project: input.project,
+        paths: input.paths,
+        system: input.system,
+        defaults: input.defaults || { includes: [], excludes: [], props: {} },
+        extractors: input.extractors || [],
+        validators: input.validators || [],
+        generators: input.generators || [],
+        renderers: input.renderers || [],
+        docs: input.docs || [],
+      };
+    }
+    return input;
+  },
 }));
 
 // Console + exit spies
@@ -177,6 +214,7 @@ describe('CLI YAML handling & resolution', () => {
   });
 
   it('honors -f <yaml> with tilde expansion', async () => {
+    const path = await import('node:path');
     const resolver: any = await import(
       new URL('../src/core/path-resolver.js', import.meta.url).href
     );
@@ -192,13 +230,22 @@ describe('CLI YAML handling & resolution', () => {
     await run(['node', 'cli', 'extract', '-f', '~/custom.yaml']);
 
     const fsMod: any = await import('node:fs');
-    expect(fsMod.existsSync).toHaveBeenCalledWith('/cfg/custom.yaml');
+    // Calculate expected path: path.resolve(cwd, expandTilde('~/custom.yaml'))
+    // expandTilde returns '/home/user/custom.yaml'
+    // path.resolve(cwd, '/home/user/custom.yaml') depends on platform
+    const expectedPath = path.resolve(process.cwd(), '/home/user/custom.yaml');
+    expect(fsMod.existsSync).toHaveBeenCalledWith(expectedPath);
     expect(calls[0].ctxConfig).toEqual({ answer: 42 });
   });
 
   it('proceeds with default config if file does not exist', async () => {
+    const path = await import('node:path');
     const fsMod: any = await import('node:fs');
-    fsMod.existsSync.mockImplementation((p: string) => p !== '/does/not/exist.yaml');
+    // Calculate platform-specific path for the non-existent file
+    const nonExistentPath = path.resolve(process.cwd(), '/does/not/exist.yaml');
+    fsMod.existsSync.mockImplementation(
+      (p: string) => p !== '/does/not/exist.yaml' && p !== nonExistentPath,
+    );
 
     const { run } = await freshCli();
     await run(['node', 'cli', 'extract', '-f', '/does/not/exist.yaml']);
@@ -206,7 +253,7 @@ describe('CLI YAML handling & resolution', () => {
     // Config should have default values when file doesn't exist
     expect(calls[0].ctxConfig).not.toBeNull();
     // @ts-expect-error: intentionally ignore possible undefined property in test
-    expect(calls[0].ctxConfig?.project.name).toBe('archlette-project');
+    expect(calls[0].ctxConfig?.project?.name).toBe('archlette-project');
     expect(spyWarn).not.toHaveBeenCalled();
   });
 

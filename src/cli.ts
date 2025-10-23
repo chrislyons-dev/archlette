@@ -51,7 +51,7 @@ import type { PipelineContext, StageModule } from './core/types.ts';
 import type { ResolvedAACConfig } from './core/types-aac.ts';
 import { getStageEntry } from './core/stage-entry.js';
 import { loadModuleFromPath } from './core/module-loader.js';
-import { resolveArchlettePath, getCliDir } from './core/path-resolver.js';
+import { resolveArchlettePath, getCliDir, expandTilde } from './core/path-resolver.js';
 import { AACConfigSchema as aacConfigSchema, resolveConfig } from './core/types-aac.js';
 import { createLogger } from './core/logger.js';
 
@@ -151,38 +151,40 @@ export async function run(argv = process.argv) {
   const { stageArg, yamlPathArg } = parseArgs(argv);
   const cliDir = getCliDir();
 
-  // config path: default DEFAULT_YAML_PATH (CLI-relative) or user -f path (~/, /, or CLI-relative)
+  // Config path resolution:
+  // - Default: templates/default.yaml (CLI-relative, in Archlette installation)
+  // - User -f: resolve from CWD (where user runs command), with tilde expansion
   const defaultYaml = resolveArchlettePath(DEFAULT_YAML_PATH, { cliDir });
   const chosenYaml = yamlPathArg
-    ? resolveArchlettePath(yamlPathArg, { cliDir })
+    ? path.resolve(process.cwd(), expandTilde(yamlPathArg))
     : defaultYaml;
 
-  // Parse and resolve config to match PipelineContext type
-  let config: ResolvedAACConfig;
-  let configPath: string | null = null;
+  // Determine base directory for resolving config-relative paths FIRST:
+  // - If config file found: use its directory
+  // - Otherwise: use current working directory
   const loaded = await loadYamlIfExists(chosenYaml);
+  const configPath = loaded.path;
+  const configBaseDir = configPath ? path.dirname(configPath) : process.cwd();
+
+  // Parse and resolve config, passing configBaseDir for stage nodes
+  let config: ResolvedAACConfig;
   if (loaded.config) {
-    config = resolveConfig(loaded.config);
-    configPath = loaded.path;
+    config = resolveConfig(loaded.config, { configBaseDir });
   } else {
     // Create minimal default config when no config file is found
-    config = resolveConfig({
-      project: { name: 'archlette-project' },
-      paths: {
-        ir_out: './archlette-output/ir',
-        dsl_out: './archlette-output/dsl',
-        render_out: './archlette-output/render',
-        docs_out: './archlette-output/docs',
+    config = resolveConfig(
+      {
+        project: { name: 'archlette-project' },
+        paths: {
+          ir_out: './archlette-output/ir',
+          dsl_out: './archlette-output/dsl',
+          render_out: './archlette-output/render',
+          docs_out: './archlette-output/docs',
+        },
       },
-    });
+      { configBaseDir },
+    );
   }
-
-  // Determine base directory for resolving config paths:
-  // - If user provided -f: use the directory containing that config file
-  // - If no -f (using default config): use current working directory
-  const configBaseDir = yamlPathArg
-    ? path.dirname(resolveArchlettePath(yamlPathArg, { cliDir }))
-    : process.cwd();
 
   /** Shared pipeline context passed to stages if they export a function */
   const ctx: PipelineContext = {

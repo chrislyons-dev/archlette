@@ -34,6 +34,7 @@
 ### Class Diagram
 
 ![Class Diagram](./diagrams/structurizr-Classes_default_container__core.png)
+![Class Diagram](./diagrams/structurizr-Classes_default_container__core_path.png)
 
 ### Code Elements
 
@@ -974,6 +975,7 @@ Validate Java is installed (throw if not)
 For each stage, resolve includes/excludes for each node:
 
 - If node omits includes/excludes, inherit from defaults.
+- Add configBaseDir for resolving config-relative paths
 
 <table>
 <tbody>
@@ -991,14 +993,14 @@ For each stage, resolve includes/excludes for each node:
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/core/types-aac.ts:139</code></td>
+<td><code>C:/Users/chris/git/archlette/src/core/types-aac.ts:142</code></td>
 </tr>
 </tbody>
 </table>
 
 **Parameters:**
 
-- `raw`: <code>unknown</code>
+- `raw`: <code>unknown</code>- `options`: <code>{ configBaseDir?: string; }</code>
 
 ---
 

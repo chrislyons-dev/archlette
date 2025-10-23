@@ -50,6 +50,9 @@ workspace "Application" "Main application container" {
                     description "Dynamic ESM module loader | Stage module interfaces for the AAC pipeline | Stage module loaders | Tool management for external rendering tools | Architecture-as-Code (AAC) configuration types and schemas | Archlette Intermediate Representation (IR) types and schemas | Core pipeline types"
                     technology "module"
                 }
+                default_container__core_path = component "core/path" {
+                    technology "module"
+                }
                 default_container__basicnode = component "basic_node" {
                     description "TypeScript/JavaScript code extractor"
                     technology "module"
@@ -189,6 +192,26 @@ workspace "Application" "Main application container" {
                     technology "function"
                     tags "Code"
                 }
+                default_container__core_path__validatePathSecurity = component "core/path__validatepathsecurity" {
+                    description "Validate path for security issues"
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__core_path__resolveSecurePath = component "core/path__resolvesecurepath" {
+                    description "Securely resolve a user-provided path with validation"
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__core_path__resolveUserContentPath = component "core/path__resolveusercontentpath" {
+                    description "Convenience function for resolving user content paths (themes, input files)\nUses 'config-relative' strategy by default"
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__core_path__resolvePluginPath = component "core/path__resolvepluginpath" {
+                    description "Convenience function for resolving plugin paths\nUses 'cli-relative' strategy by default"
+                    technology "function"
+                    tags "Code"
+                }
                 default_container__core__loadExtractorModule = component "core__loadextractormodule" {
                     technology "function"
                     tags "Code"
@@ -270,7 +293,7 @@ workspace "Application" "Main application container" {
                     tags "Code"
                 }
                 default_container__core__resolveConfig = component "core__resolveconfig" {
-                    description "For each stage, resolve includes/excludes for each node:\n  - If node omits includes/excludes, inherit from defaults."
+                    description "For each stage, resolve includes/excludes for each node:\n  - If node omits includes/excludes, inherit from defaults.\n  - Add configBaseDir for resolving config-relative paths"
                     technology "function"
                     tags "Code"
                 }
@@ -1015,6 +1038,7 @@ branding {
             include default_container__renderers
             include default_container__docs
             include default_container__core
+            include default_container__core_path
             include default_container__basicnode
             include default_container__basic
             include default_container__basicwrangler
@@ -1116,6 +1140,15 @@ branding {
             include default_container__core__checkJava
             include default_container__core__requireJava
             include default_container__core__resolveConfig
+            autoLayout
+        }
+
+
+        component default_container "Classes_default_container__core_path" {
+            include default_container__core_path__validatePathSecurity
+            include default_container__core_path__resolveSecurePath
+            include default_container__core_path__resolveUserContentPath
+            include default_container__core_path__resolvePluginPath
             autoLayout
         }
 

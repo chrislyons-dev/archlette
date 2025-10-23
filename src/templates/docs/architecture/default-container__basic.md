@@ -207,7 +207,7 @@ Read and parse pyproject.toml file
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-finder.ts:89</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-finder.ts:90</code></td>
 </tr>
 </tbody>
 </table>
@@ -239,7 +239,7 @@ Only handles the subset we need: [project] and [tool.poetry] sections
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-finder.ts:140</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-finder.ts:141</code></td>
 </tr>
 </tbody>
 </table>
@@ -270,7 +270,7 @@ Find the nearest parent pyproject.toml for a given file
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-finder.ts:194</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-finder.ts:195</code></td>
 </tr>
 </tbody>
 </table>

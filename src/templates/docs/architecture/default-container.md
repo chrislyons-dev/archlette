@@ -96,6 +96,12 @@
 <td><a href="./default-container__core.md">View →</a></td>
 </tr>
 <tr>
+<td><strong>core/path</strong></td>
+<td><code>module</code></td>
+<td>—</td>
+<td><a href="./default-container__core-path.md">View →</a></td>
+</tr>
+<tr>
 <td><strong>basic_node</strong></td>
 <td><code>module</code></td>
 <td>TypeScript/JavaScript code extractor</td>

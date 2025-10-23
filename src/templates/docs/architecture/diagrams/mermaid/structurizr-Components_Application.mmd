@@ -32,14 +32,16 @@ graph TB
       style 14 fill:#85bbf0,stroke:#5d82a8,color:#000000
       15("<div style='font-weight: bold'>core</div><div style='font-size: 70%; margin-top: 0px'>[Component: module]</div><div style='font-size: 80%; margin-top:10px'>Dynamic ESM module loader |<br />Stage module interfaces for<br />the AAC pipeline | Stage<br />module loaders | Tool<br />management for external<br />rendering tools |<br />Architecture-as-Code (AAC)<br />configuration types and<br />schemas | Archlette<br />Intermediate Representation<br />(IR) types and schemas | Core<br />pipeline types</div>")
       style 15 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      16("<div style='font-weight: bold'>basic_node</div><div style='font-size: 70%; margin-top: 0px'>[Component: module]</div><div style='font-size: 80%; margin-top:10px'>TypeScript/JavaScript code<br />extractor</div>")
+      16("<div style='font-weight: bold'>core/path</div><div style='font-size: 70%; margin-top: 0px'>[Component: module]</div>")
       style 16 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      17("<div style='font-weight: bold'>basic</div><div style='font-size: 70%; margin-top: 0px'>[Component: module]</div><div style='font-size: 80%; margin-top:10px'>Basic Python Extractor for<br />Archlette Extracts<br />architecture information from<br />Python source code</div>")
+      17("<div style='font-weight: bold'>basic_node</div><div style='font-size: 70%; margin-top: 0px'>[Component: module]</div><div style='font-size: 80%; margin-top:10px'>TypeScript/JavaScript code<br />extractor</div>")
       style 17 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      18("<div style='font-weight: bold'>basic_wrangler</div><div style='font-size: 70%; margin-top: 0px'>[Component: module]</div><div style='font-size: 80%; margin-top:10px'>Cloudflare Wrangler<br />deployment extractor</div>")
+      18("<div style='font-weight: bold'>basic</div><div style='font-size: 70%; margin-top: 0px'>[Component: module]</div><div style='font-size: 80%; margin-top:10px'>Basic Python Extractor for<br />Archlette Extracts<br />architecture information from<br />Python source code</div>")
       style 18 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      19("<div style='font-weight: bold'>basic_python</div><div style='font-size: 70%; margin-top: 0px'>[Component: module]</div>")
+      19("<div style='font-weight: bold'>basic_wrangler</div><div style='font-size: 70%; margin-top: 0px'>[Component: module]</div><div style='font-size: 80%; margin-top:10px'>Cloudflare Wrangler<br />deployment extractor</div>")
       style 19 fill:#85bbf0,stroke:#5d82a8,color:#000000
+      20("<div style='font-weight: bold'>basic_python</div><div style='font-size: 70%; margin-top: 0px'>[Component: module]</div>")
+      style 20 fill:#85bbf0,stroke:#5d82a8,color:#000000
       9("<div style='font-weight: bold'>CLI</div><div style='font-size: 70%; margin-top: 0px'>[Component: module]</div><div style='font-size: 80%; margin-top:10px'>Archlette CLI -<br />Architecture-as-Code toolkit</div>")
       style 9 fill:#85bbf0,stroke:#5d82a8,color:#000000
     end
@@ -50,9 +52,9 @@ graph TB
     9-- "<div>Converts DSL to visual<br />diagrams</div><div style='font-size: 70%'></div>" -->13
     9-- "<div>Provides shared utilities,<br />types, and module loading</div><div style='font-size: 70%'></div>" -->15
     10-- "<div>Provides IR types, validation<br />schemas, and module loading</div><div style='font-size: 70%'></div>" -->15
-    10-- "<div>composed of node extractor</div><div style='font-size: 70%'></div>" -->16
-    10-- "<div>composed of python extractor</div><div style='font-size: 70%'></div>" -->19
-    10-- "<div>composed of cloudflare<br />wrangler extractor</div><div style='font-size: 70%'></div>" -->18
+    10-- "<div>composed of node extractor</div><div style='font-size: 70%'></div>" -->17
+    10-- "<div>composed of python extractor</div><div style='font-size: 70%'></div>" -->20
+    10-- "<div>composed of cloudflare<br />wrangler extractor</div><div style='font-size: 70%'></div>" -->19
     11-- "<div>Provides IR types, validation<br />schemas, and module loading</div><div style='font-size: 70%'></div>" -->15
     12-- "<div>Provides IR types, path<br />resolution, and module<br />loading</div><div style='font-size: 70%'></div>" -->15
     13-- "<div>Provides types, module<br />loading, and tool management</div><div style='font-size: 70%'></div>" -->15

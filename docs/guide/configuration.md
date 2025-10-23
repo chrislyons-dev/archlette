@@ -20,6 +20,23 @@ That's it. Sensible defaults for everything else.
 
 ---
 
+## Config File Location
+
+**Default:** Archlette looks for `templates/default.yaml` in its installation directory.
+
+**Custom config:**
+
+```bash
+archlette -f .aac.yaml           # Current directory
+archlette -f configs/dev.yaml    # Relative to current directory
+archlette -f ~/configs/prod.yaml # Home directory
+archlette -f /etc/archlette.yaml # Absolute path
+```
+
+**Config file path resolution:** The `-f` flag resolves paths from your current working directory (where you run the command).
+
+---
+
 ## Project Metadata
 
 ```yaml
@@ -45,11 +62,23 @@ paths:
   docs_out: docs/architecture # Documentation pages
 ```
 
-**Path resolution:**
+**Path resolution:** Relative paths resolve from config file location.
 
-- Relative paths resolve to project directory (where config file lives)
-- Absolute paths work as-is
-- `~` expands to home directory
+**Examples:**
+
+```yaml
+# Relative to config file
+paths:
+  docs_out: docs/architecture        # ./docs/architecture from config location
+
+# Absolute paths
+paths:
+  docs_out: /var/www/architecture    # exact location
+
+# Home directory
+paths:
+  docs_out: ~/Documents/architecture # expands to user home
+```
 
 **Defaults:**
 
@@ -341,11 +370,28 @@ generators:
   - use: ./plugins/custom-dsl-generator
 ```
 
-**Path resolution:**
+**Plugin Path Resolution:**
 
-- Relative paths resolve to archlette installation directory
-- Use `./` for plugins in project directory
-- Use full paths for external plugins
+Plugin paths (`use:` field) are resolved relative to Archlette's installation directory. This allows using built-in plugins like `extractors/builtin/basic-node`.
+
+**For custom plugins:**
+
+- Relative paths (no leading `./` or `/`) resolve to Archlette installation
+- `./` prefix resolves to project directory (not recommended for plugins)
+- Absolute paths work as-is
+- `~` expands to home directory
+
+**Recommended pattern:** Install custom plugins in Archlette's plugin directory or use absolute paths:
+
+```yaml
+# Absolute path (recommended for project-specific plugins)
+extractors:
+  - use: /home/user/myproject/plugins/custom-extractor
+
+# Home directory
+extractors:
+  - use: ~/shared-plugins/terraform-extractor
+```
 
 ---
 
@@ -368,8 +414,106 @@ npx archlette -f .aac.prod.yaml
 
 ---
 
+## Path Resolution Reference
+
+Archlette uses different path resolution strategies depending on context. Understanding these helps you organize configs, plugins, and themes effectively.
+
+### Config File Path (`-f` flag)
+
+**Resolution:** From your current working directory (where you run `archlette`).
+
+**Examples:**
+
+```bash
+# Current directory
+archlette -f .aac.yaml
+
+# Relative to CWD
+archlette -f configs/dev.yaml
+
+# Home directory
+archlette -f ~/.config/archlette.yaml
+
+# Absolute path
+archlette -f /etc/archlette/config.yaml
+```
+
+**Why CWD-relative:** Users expect `-f ./config.yaml` to work from wherever they run the command.
+
+### Output Paths (in config)
+
+**Resolution:** From config file location.
+
+**Examples:**
+
+```yaml
+# With config at: /home/user/project/.aac.yaml
+
+paths:
+  docs_out: docs/architecture        # → /home/user/project/docs/architecture
+  docs_out: ../shared/docs           # → /home/user/shared/docs
+  docs_out: ~/output/docs            # → /home/user/output/docs
+  docs_out: /var/www/docs            # → /var/www/docs
+```
+
+**Why config-relative:** Keeps output near your project, regardless of where you run `archlette`.
+
+### Plugin Paths (`use:` field)
+
+**Resolution:** From Archlette installation directory.
+
+**Examples:**
+
+```yaml
+# With Archlette installed at: /usr/local/lib/node_modules/archlette/
+
+extractors:
+  - use: extractors/builtin/basic-node
+    # → /usr/local/lib/node_modules/archlette/extractors/builtin/basic-node
+
+  - use: ~/plugins/terraform-extractor
+    # → /home/user/plugins/terraform-extractor
+
+  - use: /opt/company/plugins/custom-extractor
+    # → /opt/company/plugins/custom-extractor
+```
+
+**Why CLI-relative:** Built-in plugins resolve automatically. Custom plugins use absolute paths or home directory.
+
+### Theme Paths (in generator inputs)
+
+**Resolution:** From config file location.
+
+**Examples:**
+
+```yaml
+# With config at: /home/user/project/.aac.yaml
+
+generators:
+  - use: generators/builtin/structurizr
+    inputs:
+      theme: themes/custom.dsl       # → /home/user/project/themes/custom.dsl
+      theme: ../shared-themes/dark.dsl # → /home/user/shared-themes/dark.dsl
+      theme: ~/themes/brand.dsl      # → /home/user/themes/brand.dsl
+      theme: /opt/themes/company.dsl # → /opt/themes/company.dsl
+```
+
+**Why config-relative:** Themes are project assets, kept alongside config files.
+
+### Summary Table
+
+| Context          | Base Directory            | Supports `~` | Supports `/` |
+| ---------------- | ------------------------- | ------------ | ------------ |
+| `-f` config file | Current working directory | ✓            | ✓            |
+| Output paths     | Config file directory     | ✓            | ✓            |
+| Plugin `use:`    | Archlette installation    | ✓            | ✓            |
+| Theme paths      | Config file directory     | ✓            | ✓            |
+
+---
+
 ## See Also
 
 - [Quick Start](../getting-started/quick-start.md) — Working example
 - [Annotations](annotations.md) — JSDoc tags reference
 - [CLI Reference](../reference/cli.md) — Command-line options
+- [Themes](../themes.md) — Custom theme configuration

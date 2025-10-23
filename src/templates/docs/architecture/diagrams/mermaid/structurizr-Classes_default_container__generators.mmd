@@ -7,26 +7,26 @@ graph TB
     subgraph 8 ["Application"]
       style 8 fill:#ffffff,stroke:#2e6295,color:#2e6295
 
-      31("<div style='font-weight: bold'>generators__run</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Execute the generation stage</div>")
-      style 31 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      73("<div style='font-weight: bold'>generators__structurizrgenerator</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Generate Structurizr DSL from<br />ArchletteIR</div>")
-      style 73 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      74("<div style='font-weight: bold'>generators__preparecontainerdata</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Prepare container data with<br />components, code, and<br />relationships for template</div>")
-      style 74 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      75("<div style='font-weight: bold'>generators__preparecomponentview</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Prepare component view data<br />for template</div>")
-      style 75 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      76("<div style='font-weight: bold'>generators__prepareclassview</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Prepare class view data for<br />template</div>")
-      style 76 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      77("<div style='font-weight: bold'>generators__generateallactorrelationships</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Generate all actor-related<br />relationships</div>")
-      style 77 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      78("<div style='font-weight: bold'>generators__generateuniquecodename</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Generate a unique name for a<br />code item to avoid naming<br />collisions</div>")
+      32("<div style='font-weight: bold'>generators__run</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Execute the generation stage</div>")
+      style 32 fill:#85bbf0,stroke:#5d82a8,color:#000000
+      78("<div style='font-weight: bold'>generators__structurizrgenerator</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Generate Structurizr DSL from<br />ArchletteIR</div>")
       style 78 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      79("<div style='font-weight: bold'>generators__buildtechnologystring</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Build technology string from<br />relationship metadata</div>")
+      79("<div style='font-weight: bold'>generators__preparecontainerdata</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Prepare container data with<br />components, code, and<br />relationships for template</div>")
       style 79 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      80("<div style='font-weight: bold'>generators__sanitizeid</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Sanitize ID for DSL (remove<br />special characters, convert<br />to valid identifier)</div>")
+      80("<div style='font-weight: bold'>generators__preparecomponentview</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Prepare component view data<br />for template</div>")
       style 80 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      81("<div style='font-weight: bold'>generators__escapestring</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Escape special characters in<br />strings for DSL</div>")
+      81("<div style='font-weight: bold'>generators__prepareclassview</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Prepare class view data for<br />template</div>")
       style 81 fill:#85bbf0,stroke:#5d82a8,color:#000000
+      82("<div style='font-weight: bold'>generators__generateallactorrelationships</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Generate all actor-related<br />relationships</div>")
+      style 82 fill:#85bbf0,stroke:#5d82a8,color:#000000
+      83("<div style='font-weight: bold'>generators__generateuniquecodename</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Generate a unique name for a<br />code item to avoid naming<br />collisions</div>")
+      style 83 fill:#85bbf0,stroke:#5d82a8,color:#000000
+      84("<div style='font-weight: bold'>generators__buildtechnologystring</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Build technology string from<br />relationship metadata</div>")
+      style 84 fill:#85bbf0,stroke:#5d82a8,color:#000000
+      85("<div style='font-weight: bold'>generators__sanitizeid</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Sanitize ID for DSL (remove<br />special characters, convert<br />to valid identifier)</div>")
+      style 85 fill:#85bbf0,stroke:#5d82a8,color:#000000
+      86("<div style='font-weight: bold'>generators__escapestring</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Escape special characters in<br />strings for DSL</div>")
+      style 86 fill:#85bbf0,stroke:#5d82a8,color:#000000
     end
 
   end

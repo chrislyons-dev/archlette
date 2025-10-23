@@ -28,7 +28,22 @@ generators:
       theme: path/to/custom-theme.dsl
 ```
 
-The theme path is resolved relative to your current working directory.
+**Path Resolution:**
+Theme paths are resolved relative to your config file location. This allows you to keep themes alongside your configuration.
+
+**Examples:**
+
+```yaml
+# Relative to config file (recommended)
+theme: themes/custom.dsl           # ./themes/custom.dsl from config location
+theme: ../shared-themes/dark.dsl   # shared themes in parent directory
+
+# Absolute paths
+theme: /opt/company/themes/brand.dsl
+
+# Home directory
+theme: ~/archlette-themes/custom.dsl
+```
 
 ### Theme File Format
 

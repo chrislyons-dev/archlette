@@ -317,6 +317,11 @@ skinparam rectangle<<Application.Application>> {
 }
 
 rectangle "Application\n<size:10>[Container: Application]</size>" <<Application.Application>> {
+  rectangle "==basic_node__extractcomponentfromjsdoc\n<size:10>[Component: function]</size>\n\nExtract component info from a JSDoc node" <<Application.Application.basic_node__extractcomponentfromjsdoc>> as Application.Application.basic_node__extractcomponentfromjsdoc
+  rectangle "==basic_node__extractactorsfromjsdoc\n<size:10>[Component: function]</size>\n\nExtract actors from a JSDoc node\nParses" <<Application.Application.basic_node__extractactorsfromjsdoc>> as Application.Application.basic_node__extractactorsfromjsdoc
+  rectangle "==basic_node__parseactortag\n<size:10>[Component: function]</size>\n\nParse an" <<Application.Application.basic_node__parseactortag>> as Application.Application.basic_node__parseactortag
+  rectangle "==basic_node__extractrelationshipsfromjsdoc\n<size:10>[Component: function]</size>\n\nExtract relationships from a JSDoc node\nParses" <<Application.Application.basic_node__extractrelationshipsfromjsdoc>> as Application.Application.basic_node__extractrelationshipsfromjsdoc
+  rectangle "==basic_node__parseusestag\n<size:10>[Component: function]</size>\n\nParse a" <<Application.Application.basic_node__parseusestag>> as Application.Application.basic_node__parseusestag
   rectangle "==basic_node__extractcomponentname\n<size:10>[Component: function]</size>\n\nExtract component name from a JSDoc tag\nHandles formats like:\n-" <<Application.Application.basic_node__extractcomponentname>> as Application.Application.basic_node__extractcomponentname
   rectangle "==basic_node__extractdocumentation\n<size:10>[Component: function]</size>\n\nExtract documentation information from JSDoc" <<Application.Application.basic_node__extractdocumentation>> as Application.Application.basic_node__extractdocumentation
   rectangle "==basic_node__extractdeprecation\n<size:10>[Component: function]</size>\n\nExtract deprecation information from JSDoc" <<Application.Application.basic_node__extractdeprecation>> as Application.Application.basic_node__extractdeprecation
@@ -354,11 +359,6 @@ rectangle "Application\n<size:10>[Container: Application]</size>" <<Application.
   rectangle "==basic_node__extractfilecomponent\n<size:10>[Component: function]</size>\n\nExtract component information from file-level JSDoc\nChecks the first JSDoc comment in the file for" <<Application.Application.basic_node__extractfilecomponent>> as Application.Application.basic_node__extractfilecomponent
   rectangle "==basic_node__extractfileactors\n<size:10>[Component: function]</size>\n\nExtract actors from file-level JSDoc\nLooks for" <<Application.Application.basic_node__extractfileactors>> as Application.Application.basic_node__extractfileactors
   rectangle "==basic_node__extractfilerelationships\n<size:10>[Component: function]</size>\n\nExtract relationships from file-level JSDoc\nLooks for" <<Application.Application.basic_node__extractfilerelationships>> as Application.Application.basic_node__extractfilerelationships
-  rectangle "==basic_node__extractcomponentfromjsdoc\n<size:10>[Component: function]</size>\n\nExtract component info from a JSDoc node" <<Application.Application.basic_node__extractcomponentfromjsdoc>> as Application.Application.basic_node__extractcomponentfromjsdoc
-  rectangle "==basic_node__extractactorsfromjsdoc\n<size:10>[Component: function]</size>\n\nExtract actors from a JSDoc node\nParses" <<Application.Application.basic_node__extractactorsfromjsdoc>> as Application.Application.basic_node__extractactorsfromjsdoc
-  rectangle "==basic_node__parseactortag\n<size:10>[Component: function]</size>\n\nParse an" <<Application.Application.basic_node__parseactortag>> as Application.Application.basic_node__parseactortag
-  rectangle "==basic_node__extractrelationshipsfromjsdoc\n<size:10>[Component: function]</size>\n\nExtract relationships from a JSDoc node\nParses" <<Application.Application.basic_node__extractrelationshipsfromjsdoc>> as Application.Application.basic_node__extractrelationshipsfromjsdoc
-  rectangle "==basic_node__parseusestag\n<size:10>[Component: function]</size>\n\nParse a" <<Application.Application.basic_node__parseusestag>> as Application.Application.basic_node__parseusestag
 }
 
 @enduml

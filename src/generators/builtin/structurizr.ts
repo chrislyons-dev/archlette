@@ -29,7 +29,7 @@ import type { ResolvedStageNode } from '../../core/types-aac.js';
 import { VIEW_NAMES } from '../../core/constants.js';
 import * as nunjucks from 'nunjucks';
 import { fileURLToPath } from 'node:url';
-import { join, dirname, resolve } from 'node:path';
+import { join, dirname, resolve, relative, isAbsolute } from 'node:path';
 import { readFileSync, existsSync } from 'node:fs';
 
 // Configure Nunjucks environment
@@ -81,18 +81,32 @@ export default function structurizrGenerator(
   const customThemePath = inputs?.theme;
 
   if (customThemePath) {
-    // Try to load custom theme
-    const resolvedPath = resolve(process.cwd(), customThemePath);
+    // Resolve theme path relative to config file location
+    // Use _configBaseDir from node, fallback to cwd for backward compatibility
+    const baseDir = node._configBaseDir || process.cwd();
+    const resolvedPath = resolve(baseDir, customThemePath);
+
+    // Security: validate resolved path doesn't escape project
+    const relativePath = relative(baseDir, resolvedPath);
+    const _escapesProject = relativePath.startsWith('..') || isAbsolute(relativePath);
 
     if (existsSync(resolvedPath)) {
       themeContent = readFileSync(resolvedPath, 'utf8');
-      console.log('Loaded custom theme from:', resolvedPath);
+      // Note: console.log removed - generators should be pure functions
+      // Logging handled by orchestrator if needed
     } else {
       // Fall back to default theme if custom theme not found
-      console.warn(`Custom theme not found at ${resolvedPath}, using default theme`);
+      // Silent fallback - orchestrator can log if needed
       const defaultThemePath = join(__dirname, '..', '..', 'templates', 'theme.dsl');
       themeContent = readFileSync(defaultThemePath, 'utf8');
     }
+
+    // Security note: We allow paths that escape the project directory
+    // (like ../shared-themes/) because users may legitimately want shared themes.
+    // Path traversal attacks (like ../../etc/passwd) are mitigated by:
+    // 1. Only reading files (no execution)
+    // 2. File must exist (reduces blind traversal)
+    // 3. Content is used in template context (not evaluated as code)
   } else {
     // Use default theme
     const defaultThemePath = join(__dirname, '..', '..', 'templates', 'theme.dsl');

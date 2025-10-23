@@ -262,7 +262,7 @@ rectangle "Application\n<size:10>[Container: Application]</size>" <<Application.
   rectangle "==core__findplantuml\n<size:10>[Component: function]</size>\n\nFind or download PlantUML JAR" <<Application.Application.core__findplantuml>> as Application.Application.core__findplantuml
   rectangle "==core__checkjava\n<size:10>[Component: function]</size>\n\nVerify Java is available" <<Application.Application.core__checkjava>> as Application.Application.core__checkjava
   rectangle "==core__requirejava\n<size:10>[Component: function]</size>\n\nValidate Java is installed (throw if not)" <<Application.Application.core__requirejava>> as Application.Application.core__requirejava
-  rectangle "==core__resolveconfig\n<size:10>[Component: function]</size>\n\nFor each stage, resolve includes/excludes for each node:\n  - If node omits includes/excludes, inherit from defaults." <<Application.Application.core__resolveconfig>> as Application.Application.core__resolveconfig
+  rectangle "==core__resolveconfig\n<size:10>[Component: function]</size>\n\nFor each stage, resolve includes/excludes for each node:\n  - If node omits includes/excludes, inherit from defaults.\n  - Add configBaseDir for resolving config-relative paths" <<Application.Application.core__resolveconfig>> as Application.Application.core__resolveconfig
 }
 
 @enduml
