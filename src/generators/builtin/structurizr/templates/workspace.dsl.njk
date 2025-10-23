@@ -50,6 +50,7 @@ workspace "{{ system.name }}" "{{ system.description or 'Architecture as Code ge
     }
 
     views {
+{{ themeContent }}
 
         systemContext {{ system.name | sanitizeId }} "{{ VIEW_NAMES.SYSTEM_CONTEXT }}" {
 {%- for actor in actors %}

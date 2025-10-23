@@ -27,6 +27,7 @@ import { VIEW_NAMES } from '../../core/constants.js';
 import * as nunjucks from 'nunjucks';
 import { fileURLToPath } from 'node:url';
 import { join, dirname } from 'node:path';
+import { readFileSync } from 'node:fs';
 
 // Configure Nunjucks environment
 const __filename = fileURLToPath(import.meta.url);
@@ -69,6 +70,10 @@ export default function structurizrGenerator(
     .map((component) => prepareClassView(component, ir))
     .filter((view) => view !== null);
 
+  // Load theme content
+  const themePath = join(__dirname, '..', '..', 'templates', 'theme.dsl');
+  const themeContent = readFileSync(themePath, 'utf8');
+
   // Render using main template
   return nunjucksEnv.render('workspace.dsl.njk', {
     system: ir.system,
@@ -80,6 +85,7 @@ export default function structurizrGenerator(
     componentViews,
     classViews,
     VIEW_NAMES,
+    themeContent,
   });
 }
 

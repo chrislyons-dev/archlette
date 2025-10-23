@@ -169,7 +169,7 @@ Find component diagrams for a specific container
 
 **Parameters:**
 
-- `rendererOutputs`: <code>import("C:/Users/chris/git/archlette/src/core/types").RendererOutput[]</code>- `diagramsDir`: <code>string</code>- `docsDir`: <code>string</code>- `container`: <code>{ id: string; }</code>
+- `rendererOutputs`: <code>import("C:/Users/chris/git/archlette/src/core/types").RendererOutput[]</code>- `diagramsDir`: <code>string</code>- `docsDir`: <code>string</code>- `container`: <code>{ id: string; name: string; }</code>
 
 ---
 ##### `docs__findClassDiagramsForComponent()`
@@ -192,7 +192,7 @@ Find class diagrams for a specific component
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/docs/builtin/markdown-docs.ts:308</code></td>
+<td><code>C:/Users/chris/git/archlette/src/docs/builtin/markdown-docs.ts:309</code></td>
 </tr>
 </tbody>
 </table>
@@ -221,7 +221,7 @@ Find class diagrams for a specific component
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/docs/builtin/markdown-docs.ts:342</code></td>
+<td><code>C:/Users/chris/git/archlette/src/docs/builtin/markdown-docs.ts:343</code></td>
 </tr>
 </tbody>
 </table>

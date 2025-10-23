@@ -98,7 +98,7 @@ Generate Structurizr DSL from ArchletteIR
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts:50</code></td>
+<td><code>C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts:51</code></td>
 </tr>
 </tbody>
 </table>
@@ -128,7 +128,7 @@ Prepare container data with components, code, and relationships for template
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts:89</code></td>
+<td><code>C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts:95</code></td>
 </tr>
 </tbody>
 </table>
@@ -158,7 +158,7 @@ Prepare component view data for template
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts:131</code></td>
+<td><code>C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts:137</code></td>
 </tr>
 </tbody>
 </table>
@@ -188,7 +188,7 @@ Prepare class view data for template
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts:168</code></td>
+<td><code>C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts:174</code></td>
 </tr>
 </tbody>
 </table>
@@ -218,7 +218,7 @@ Generate all actor-related relationships
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts:183</code></td>
+<td><code>C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts:189</code></td>
 </tr>
 </tbody>
 </table>
@@ -248,7 +248,7 @@ Generate a unique name for a code item to avoid naming collisions
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts:230</code></td>
+<td><code>C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts:236</code></td>
 </tr>
 </tbody>
 </table>
@@ -278,7 +278,7 @@ Build technology string from relationship metadata
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts:268</code></td>
+<td><code>C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts:274</code></td>
 </tr>
 </tbody>
 </table>
@@ -308,7 +308,7 @@ Sanitize ID for DSL (remove special characters, convert to valid identifier)
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts:284</code></td>
+<td><code>C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts:290</code></td>
 </tr>
 </tbody>
 </table>
@@ -338,7 +338,7 @@ Escape special characters in strings for DSL
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts:291</code></td>
+<td><code>C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts:297</code></td>
 </tr>
 </tbody>
 </table>

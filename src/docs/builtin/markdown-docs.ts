@@ -272,21 +272,22 @@ function findDiagramsForContainer(
   rendererOutputs: RendererOutput[],
   diagramsDir: string,
   docsDir: string,
-  container: { id: string },
+  container: { id: string; name: string },
 ): string[] {
   const diagrams: string[] = [];
-  // Sanitize container ID same way as generator does
-  const sanitizedContainerId = container.id.replace(/[^a-zA-Z0-9_]/g, '_');
+  // Sanitize container NAME same way as generator does (not ID)
+  // The DSL generator uses container.name to create the view name
+  const sanitizedContainerName = container.name.replace(/[^a-zA-Z0-9_]/g, '_');
 
   for (const output of rendererOutputs) {
     if (output.format === 'png') {
       for (const file of output.files) {
         const filename = path.basename(file, '.png');
         // Look for component view diagrams for this specific container
-        // Format: structurizr-Component_{sanitized-container-id}
+        // Format: structurizr-Components_{sanitized-container-name}
         if (
           filename.includes('Component') &&
-          filename.includes(sanitizedContainerId) &&
+          filename.includes(sanitizedContainerName) &&
           !filename.includes('Classes') &&
           !filename.includes('-key')
         ) {

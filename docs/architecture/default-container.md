@@ -38,6 +38,9 @@
 ## Components
 
 
+### Component View
+
+![Component Diagram](./diagrams/structurizr-Components_Application.png)
 
 ### Component Details
 

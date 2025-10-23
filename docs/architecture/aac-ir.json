@@ -1247,7 +1247,7 @@
         },
         {
           "name": "container",
-          "type": "{ id: string; }",
+          "type": "{ id: string; name: string; }",
           "optional": false
         }
       ],
@@ -1291,7 +1291,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/docs/builtin/markdown-docs.ts",
-      "lineNumber": 308
+      "lineNumber": 309
     },
     {
       "id": "default-container__docs__sanitizeFileName",
@@ -1309,7 +1309,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/docs/builtin/markdown-docs.ts",
-      "lineNumber": 342
+      "lineNumber": 343
     },
     {
       "description": "Extract architecture information from a Node.js/TypeScript codebase",
@@ -1448,7 +1448,7 @@
       "visibility": "public",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts",
-      "lineNumber": 50
+      "lineNumber": 51
     },
     {
       "description": "Prepare container data with components, code, and relationships for template",
@@ -1475,7 +1475,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts",
-      "lineNumber": 89
+      "lineNumber": 95
     },
     {
       "description": "Prepare component view data for template",
@@ -1502,7 +1502,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts",
-      "lineNumber": 131
+      "lineNumber": 137
     },
     {
       "description": "Prepare class view data for template",
@@ -1529,7 +1529,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts",
-      "lineNumber": 168
+      "lineNumber": 174
     },
     {
       "description": "Generate all actor-related relationships",
@@ -1551,7 +1551,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts",
-      "lineNumber": 183
+      "lineNumber": 189
     },
     {
       "description": "Generate a unique name for a code item to avoid naming collisions",
@@ -1573,7 +1573,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts",
-      "lineNumber": 230
+      "lineNumber": 236
     },
     {
       "description": "Build technology string from relationship metadata",
@@ -1595,7 +1595,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts",
-      "lineNumber": 268
+      "lineNumber": 274
     },
     {
       "description": "Sanitize ID for DSL (remove special characters, convert to valid identifier)",
@@ -1617,7 +1617,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts",
-      "lineNumber": 284
+      "lineNumber": 290
     },
     {
       "description": "Escape special characters in strings for DSL",
@@ -1639,7 +1639,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts",
-      "lineNumber": 291
+      "lineNumber": 297
     },
     {
       "description": "Render PlantUML files to PNG images",
@@ -4494,6 +4494,12 @@
       "description": "imports dirname",
       "source": "C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts",
       "destination": "node:path:dirname",
+      "stereotype": "import"
+    },
+    {
+      "description": "imports readFileSync",
+      "source": "C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts",
+      "destination": "node:fs:readFileSync",
       "stereotype": "import"
     },
     {
