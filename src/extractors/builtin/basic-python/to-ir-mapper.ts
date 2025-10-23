@@ -4,7 +4,12 @@
  */
 
 import { createLogger } from '../../../core/logger.js';
-import { nameToId, TAGS, DEFAULT_CONTAINER_ID } from '../../../core/constants.js';
+import {
+  nameToId,
+  sanitizeId,
+  TAGS,
+  DEFAULT_CONTAINER_ID,
+} from '../../../core/constants.js';
 import type {
   ArchletteIR,
   Actor,
@@ -326,7 +331,7 @@ function deduplicateRelationships(relationships: Relationship[]): Relationship[]
  */
 function mapClassToCodeItem(cls: ExtractedClass, componentId?: string): CodeItem {
   return {
-    id: nameToId(cls.name),
+    id: sanitizeId(cls.name),
     componentId: componentId || undefined,
     name: cls.name,
     type: 'class',
@@ -355,7 +360,7 @@ function mapMethodToCodeItem(
   componentId?: string,
 ): CodeItem {
   return {
-    id: nameToId(`${className}.${method.name}`),
+    id: sanitizeId(`${className}.${method.name}`),
     componentId: componentId || undefined,
     name: `${className}.${method.name}`,
     type: 'method',
@@ -389,7 +394,7 @@ function mapFunctionToCodeItem(
   componentId?: string,
 ): CodeItem {
   return {
-    id: nameToId(func.name),
+    id: sanitizeId(func.name),
     componentId: componentId || undefined,
     name: func.name,
     type: 'function',
@@ -417,7 +422,7 @@ function mapFunctionToCodeItem(
  */
 function mapTypeToCodeItem(type: ExtractedType, componentId?: string): CodeItem {
   return {
-    id: nameToId(type.name),
+    id: sanitizeId(type.name),
     componentId: componentId || undefined,
     name: type.name,
     type: 'type', // Using 'type' for type definitions

@@ -61,3 +61,19 @@ export function nameToId(name: string): string {
     .replace(/-+/g, '-') // Collapse multiple dashes
     .replace(/^-|-$/g, ''); // Remove leading/trailing dashes
 }
+
+/**
+ * Sanitize ID for DSL and code identifiers (preserves underscores)
+ * Used for Python code identifiers where underscores are significant
+ *
+ * @param id - The ID to sanitize
+ * @returns Sanitized ID (alphanumeric and underscores only)
+ *
+ * @example
+ * sanitizeId('my_function') // 'my_function'
+ * sanitizeId('my-function') // 'my_function'
+ * sanitizeId('123invalid') // '_123invalid'
+ */
+export function sanitizeId(id: string): string {
+  return id.replace(/[^a-zA-Z0-9_]/g, '_').replace(/^[0-9]/, '_$&');
+}
