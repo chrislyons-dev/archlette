@@ -40,6 +40,8 @@
 <details>
 <summary><strong>42 code element(s)</strong></summary>
 
+
+
 #### Functions
 
 ##### `basicNodeExtractor()`
@@ -74,14 +76,12 @@ Extract architecture information from a Node.js/TypeScript codebase
 **Parameters:**
 
 - `node`: <code>any</code> — - Configuration node with include/exclude patterns- `ctx`: <code>import("C:/Users/chris/git/archlette/src/core/types").PipelineContext</code> — - Optional pipeline context with logger
-  **Examples:**
-
+**Examples:**
 ```typescript
 
 ```
 
 ---
-
 ##### `extractClasses()`
 
 Extract all class declarations from a source file
@@ -112,7 +112,6 @@ Extract all class declarations from a source file
 - `sourceFile`: <code>SourceFile</code>
 
 ---
-
 ##### `extractClass()`
 
 Extract information from a single class declaration
@@ -143,7 +142,6 @@ Extract information from a single class declaration
 - `cls`: <code>ClassDeclaration</code>- `filePath`: <code>string</code>
 
 ---
-
 ##### `extractMethod()`
 
 Extract method information from a class
@@ -174,7 +172,6 @@ Extract method information from a class
 - `method`: <code>MethodDeclaration</code>- `filePath`: <code>string</code>
 
 ---
-
 ##### `extractProperty()`
 
 Extract property information from a class
@@ -205,7 +202,6 @@ Extract property information from a class
 - `prop`: <code>PropertyDeclaration</code>- `filePath`: <code>string</code>
 
 ---
-
 ##### `extractMethodParameter()`
 
 Extract parameter information
@@ -236,7 +232,6 @@ Extract parameter information
 - `param`: <code>any</code>- `descriptions`: <code>Map<string, string></code>
 
 ---
-
 ##### `mapVisibility()`
 
 Map ts-morph Scope to our visibility string
@@ -267,7 +262,6 @@ Map ts-morph Scope to our visibility string
 - `scope`: <code>any</code>
 
 ---
-
 ##### `getFileJsDocs()`
 
 Get JSDoc comments from a source file
@@ -299,7 +293,6 @@ Checks both the first statement and module-level JSDoc
 - `sourceFile`: <code>SourceFile</code> — - TypeScript source file to extract JSDoc from
 
 ---
-
 ##### `extractFileComponent()`
 
 Extract component information from file-level JSDoc
@@ -331,7 +324,6 @@ Checks the first JSDoc comment in the file for
 - `sourceFile`: <code>SourceFile</code>
 
 ---
-
 ##### `extractFileActors()`
 
 Extract actors from file-level JSDoc
@@ -363,7 +355,6 @@ Looks for
 - `sourceFile`: <code>SourceFile</code>
 
 ---
-
 ##### `extractFileRelationships()`
 
 Extract relationships from file-level JSDoc
@@ -395,7 +386,6 @@ Looks for
 - `sourceFile`: <code>SourceFile</code>
 
 ---
-
 ##### `extractComponentFromJsDoc()`
 
 Extract component info from a JSDoc node
@@ -426,7 +416,6 @@ Extract component info from a JSDoc node
 - `jsDoc`: <code>Node</code>
 
 ---
-
 ##### `extractActorsFromJsDoc()`
 
 Extract actors from a JSDoc node
@@ -458,7 +447,6 @@ Parses
 - `jsDoc`: <code>Node</code>
 
 ---
-
 ##### `parseActorTag()`
 
 Parse an
@@ -489,7 +477,6 @@ Parse an
 - `tag`: <code>JSDocTag</code>
 
 ---
-
 ##### `extractRelationshipsFromJsDoc()`
 
 Extract relationships from a JSDoc node
@@ -521,7 +508,6 @@ Parses
 - `jsDoc`: <code>Node</code>
 
 ---
-
 ##### `parseUsesTag()`
 
 Parse a
@@ -552,12 +538,10 @@ Parse a
 - `tag`: <code>JSDocTag</code>
 
 ---
-
 ##### `extractComponentName()`
 
 Extract component name from a JSDoc tag
 Handles formats like:
-
 -
 
 <table>
@@ -586,7 +570,6 @@ Handles formats like:
 - `tag`: <code>JSDocTag</code>
 
 ---
-
 ##### `extractDocumentation()`
 
 Extract documentation information from JSDoc
@@ -617,7 +600,6 @@ Extract documentation information from JSDoc
 - `jsDocs`: <code>JSDoc[]</code>
 
 ---
-
 ##### `extractDeprecation()`
 
 Extract deprecation information from JSDoc
@@ -648,7 +630,6 @@ Extract deprecation information from JSDoc
 - `jsDocs`: <code>JSDoc[]</code>
 
 ---
-
 ##### `extractParameterDescriptions()`
 
 Extract parameter descriptions from JSDoc
@@ -679,7 +660,6 @@ Extract parameter descriptions from JSDoc
 - `jsDocs`: <code>JSDoc[]</code>
 
 ---
-
 ##### `extractReturnDescription()`
 
 Extract return description from JSDoc
@@ -710,7 +690,6 @@ Extract return description from JSDoc
 - `jsDocs`: <code>JSDoc[]</code>
 
 ---
-
 ##### `extractParameterName()`
 
 Extract parameter name from
@@ -741,7 +720,6 @@ Extract parameter name from
 - `tag`: <code>JSDocTag</code> — Handles formats like:
 
 ---
-
 ##### `findSourceFiles()`
 
 Find source files matching include/exclude patterns
@@ -776,7 +754,6 @@ Find source files matching include/exclude patterns
 - `inputs`: <code>import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/types").ExtractorInputs</code>
 
 ---
-
 ##### `findPackageJsonFiles()`
 
 Find package.json files within the search paths
@@ -811,7 +788,6 @@ Find package.json files within the search paths
 - `inputs`: <code>import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/types").ExtractorInputs</code>
 
 ---
-
 ##### `readPackageInfo()`
 
 Read and parse package.json file
@@ -846,7 +822,6 @@ Read and parse package.json file
 - `filePath`: <code>string</code>
 
 ---
-
 ##### `findNearestPackage()`
 
 Find the nearest parent package.json for a given file
@@ -877,7 +852,6 @@ Find the nearest parent package.json for a given file
 - `filePath`: <code>string</code>- `packages`: <code>import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/types").PackageInfo[]</code>
 
 ---
-
 ##### `parseFiles()`
 
 Parse and extract information from source files
@@ -912,7 +886,6 @@ Parse and extract information from source files
 - `filePaths`: <code>string[]</code>
 
 ---
-
 ##### `extractFunctions()`
 
 Extract all function declarations from a source file
@@ -943,7 +916,6 @@ Extract all function declarations from a source file
 - `sourceFile`: <code>SourceFile</code>
 
 ---
-
 ##### `extractFunction()`
 
 Extract information from a single function declaration
@@ -974,7 +946,6 @@ Extract information from a single function declaration
 - `func`: <code>FunctionDeclaration</code>- `filePath`: <code>string</code>
 
 ---
-
 ##### `extractFunctionParameter()`
 
 Extract parameter information
@@ -1005,13 +976,12 @@ Extract parameter information
 - `param`: <code>any</code>- `descriptions`: <code>Map<string, string></code>
 
 ---
-
 ##### `extractArrowFunctions()`
 
 Extract arrow functions assigned to const/let/var
 Examples:
-const handleClick = () => {}
-export const createUser = async (data) => {}
+  const handleClick = () => {}
+  export const createUser = async (data) => {}
 
 <table>
 <tbody>
@@ -1039,7 +1009,6 @@ export const createUser = async (data) => {}
 - `sourceFile`: <code>SourceFile</code>
 
 ---
-
 ##### `extractImports()`
 
 Extract all import declarations from a source file
@@ -1070,7 +1039,6 @@ Extract all import declarations from a source file
 - `sourceFile`: <code>SourceFile</code>
 
 ---
-
 ##### `mapToIR()`
 
 Map file extractions to ArchletteIR
@@ -1101,7 +1069,6 @@ Map file extractions to ArchletteIR
 - `extractions`: <code>import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/types").FileExtraction[]</code>- `packages`: <code>import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/types").PackageInfo[]</code>- `systemInfo`: <code>z.infer<any></code>
 
 ---
-
 ##### `deduplicateRelationships()`
 
 Deduplicate relationships by source+destination+stereotype combination
@@ -1134,7 +1101,6 @@ This allows multiple relationships between the same elements with different ster
 - `relationships`: <code>z.infer<any>[]</code>
 
 ---
-
 ##### `mapFunction()`
 
 Map a function to a CodeItem
@@ -1165,7 +1131,6 @@ Map a function to a CodeItem
 - `func`: <code>import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/types").ExtractedFunction</code>- `filePath`: <code>string</code>- `componentId`: <code>string</code>
 
 ---
-
 ##### `mapClass()`
 
 Map a class to a CodeItem
@@ -1196,7 +1161,6 @@ Map a class to a CodeItem
 - `cls`: <code>import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/types").ExtractedClass</code>- `filePath`: <code>string</code>- `componentId`: <code>string</code>
 
 ---
-
 ##### `mapMethod()`
 
 Map a class method to a CodeItem
@@ -1227,7 +1191,6 @@ Map a class method to a CodeItem
 - `method`: <code>import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/types").ExtractedMethod</code>- `className`: <code>string</code>- `filePath`: <code>string</code>- `componentId`: <code>string</code>
 
 ---
-
 ##### `mapImportRelationships()`
 
 Map imports to relationships
@@ -1258,7 +1221,6 @@ Map imports to relationships
 - `imp`: <code>import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/types").ExtractedImport</code>- `filePath`: <code>string</code>
 
 ---
-
 ##### `generateId()`
 
 Generate a unique ID for a code element
@@ -1290,7 +1252,6 @@ Format: filePath:symbolName
 - `filePath`: <code>string</code>- `symbolName`: <code>string</code>
 
 ---
-
 ##### `getDefaultSystem()`
 
 Get default system info from package.json if available
@@ -1316,14 +1277,15 @@ Get default system info from package.json if available
 </tbody>
 </table>
 
----
 
+
+---
 ##### `extractTypeAliases()`
 
 Extract type aliases from a source file
 Examples:
-type UserRole = 'admin' | 'user' | 'guest'
-export type ApiResponse<T> = { data: T; status: number }
+  type UserRole = 'admin' | 'user' | 'guest'
+  export type ApiResponse<T> = { data: T; status: number }
 
 <table>
 <tbody>
@@ -1351,13 +1313,12 @@ export type ApiResponse<T> = { data: T; status: number }
 - `sourceFile`: <code>SourceFile</code>
 
 ---
-
 ##### `extractInterfaces()`
 
 Extract interfaces from a source file
 Examples:
-interface User { id: string; name: string }
-export interface ApiClient { get<T>(url: string): Promise<T> }
+  interface User { id: string; name: string }
+  export interface ApiClient { get<T>(url: string): Promise<T> }
 
 <table>
 <tbody>

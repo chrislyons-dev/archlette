@@ -40,6 +40,8 @@
 <details>
 <summary><strong>11 code element(s)</strong></summary>
 
+
+
 #### Functions
 
 ##### `run()`
@@ -76,7 +78,6 @@ Execute the generation stage
 - `ctx`: <code>import("C:/Users/chris/git/archlette/src/core/types").PipelineContext</code> — - Pipeline context with configuration, logging, and validated IR
 
 ---
-
 ##### `loadDefaultTheme()`
 
 Load the default Structurizr theme from templates directory
@@ -102,8 +103,9 @@ Load the default Structurizr theme from templates directory
 </tbody>
 </table>
 
----
 
+
+---
 ##### `structurizrGenerator()`
 
 Generate Structurizr DSL from ArchletteIR
@@ -134,7 +136,6 @@ Generate Structurizr DSL from ArchletteIR
 - `ir`: <code>z.infer<any></code>- `node`: <code>any</code>
 
 ---
-
 ##### `prepareContainerData()`
 
 Prepare container data with components, code, and relationships for template
@@ -165,7 +166,6 @@ Prepare container data with components, code, and relationships for template
 - `container`: <code>z.infer<any></code>- `ir`: <code>z.infer<any></code>
 
 ---
-
 ##### `prepareComponentView()`
 
 Prepare component view data for template
@@ -196,7 +196,6 @@ Prepare component view data for template
 - `container`: <code>z.infer<any></code>- `ir`: <code>z.infer<any></code>
 
 ---
-
 ##### `prepareClassView()`
 
 Prepare class view data for template
@@ -227,7 +226,6 @@ Prepare class view data for template
 - `component`: <code>z.infer<any></code>- `ir`: <code>z.infer<any></code>
 
 ---
-
 ##### `generateAllActorRelationships()`
 
 Generate all actor-related relationships
@@ -258,7 +256,6 @@ Generate all actor-related relationships
 - `ir`: <code>z.infer<any></code>
 
 ---
-
 ##### `generateUniqueCodeName()`
 
 Generate a unique name for a code item to avoid naming collisions
@@ -289,7 +286,6 @@ Generate a unique name for a code item to avoid naming collisions
 - `code`: <code>z.infer<any></code>
 
 ---
-
 ##### `buildTechnologyString()`
 
 Build technology string from relationship metadata
@@ -320,7 +316,6 @@ Build technology string from relationship metadata
 - `rel`: <code>z.infer<any></code>
 
 ---
-
 ##### `sanitizeId()`
 
 Sanitize ID for DSL (remove special characters, convert to valid identifier)
@@ -351,7 +346,6 @@ Sanitize ID for DSL (remove special characters, convert to valid identifier)
 - `id`: <code>string</code>
 
 ---
-
 ##### `escapeString()`
 
 Escape special characters in strings for DSL

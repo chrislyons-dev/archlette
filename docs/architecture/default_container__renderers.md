@@ -40,6 +40,8 @@
 <details>
 <summary><strong>3 code element(s)</strong></summary>
 
+
+
 #### Functions
 
 ##### `run()`
@@ -76,7 +78,6 @@ Execute the rendering stage
 - `ctx`: <code>import("C:/Users/chris/git/archlette/src/core/types").PipelineContext</code> — - Pipeline context with configuration, logging, and DSL file location
 
 ---
-
 ##### `plantumlRender()`
 
 Render PlantUML files to PNG images
@@ -111,7 +112,6 @@ Render PlantUML files to PNG images
 - `ctx`: <code>import("C:/Users/chris/git/archlette/src/core/types").PipelineContext</code>
 
 ---
-
 ##### `structurizrExport()`
 
 Export Structurizr DSL to PlantUML and Mermaid formats

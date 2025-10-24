@@ -37,6 +37,7 @@
 
 ## Components
 
+
 ### Component View
 
 ![Component Diagram](./diagrams/structurizr-Components_Application.png)
@@ -128,6 +129,7 @@ Extracts architecture information from Python source code</td>
 </tr>
 </tbody>
 </table>
+
 
 ---
 

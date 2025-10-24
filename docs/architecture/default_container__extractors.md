@@ -40,6 +40,8 @@
 <details>
 <summary><strong>5 code element(s)</strong></summary>
 
+
+
 #### Functions
 
 ##### `aggregateIRs()`
@@ -70,14 +72,12 @@ Aggregate multiple ArchletteIR objects into a single unified IR
 **Parameters:**
 
 - `irs`: <code>z.infer<any>[]</code> — - Array of ArchletteIR objects to merge
-  **Examples:**
-
+**Examples:**
 ```typescript
 
 ```
 
 ---
-
 ##### `deduplicateById()`
 
 Deduplicate array of entities by their ID field
@@ -108,7 +108,6 @@ Deduplicate array of entities by their ID field
 - `items`: <code>T[]</code> — - Array of entities with id property
 
 ---
-
 ##### `deduplicateByName()`
 
 Deduplicate array of entities by their name field
@@ -139,7 +138,6 @@ Deduplicate array of entities by their name field
 - `items`: <code>T[]</code> — - Array of entities with name property
 
 ---
-
 ##### `deduplicateRelationships()`
 
 Deduplicate relationships by source+destination+stereotype combination
@@ -170,7 +168,6 @@ Deduplicate relationships by source+destination+stereotype combination
 - `relationships`: <code>z.infer<any>[]</code> — - Array of relationships to deduplicate
 
 ---
-
 ##### `run()`
 
 Execute the extraction stage

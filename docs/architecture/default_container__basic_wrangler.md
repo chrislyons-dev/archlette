@@ -40,6 +40,8 @@
 <details>
 <summary><strong>12 code element(s)</strong></summary>
 
+
+
 #### Functions
 
 ##### `basicWranglerExtractor()`
@@ -74,14 +76,12 @@ Extract deployment topology from Cloudflare Wrangler configuration files
 **Parameters:**
 
 - `node`: <code>any</code> — - Configuration node with include/exclude patterns- `ctx`: <code>import("C:/Users/chris/git/archlette/src/core/types").PipelineContext</code> — - Optional pipeline context with logger
-  **Examples:**
-
+**Examples:**
 ```typescript
 
 ```
 
 ---
-
 ##### `findWranglerFiles()`
 
 Find wrangler.toml files based on include/exclude patterns
@@ -116,13 +116,11 @@ Find wrangler.toml files based on include/exclude patterns
 - `inputs`: <code>import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/types").ExtractorInputs</code> — - Optional include/exclude patterns
 
 ---
-
 ##### `mapToIR()`
 
 Map wrangler configurations to ArchletteIR
 
 This creates:
-
 - Containers: One per wrangler.toml file
 - Deployments: One per environment (production, dev, preview, etc.)
 - Container Instances: One per container per environment
@@ -155,7 +153,6 @@ This creates:
 - `configs`: <code>import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/types").WranglerConfig[]</code> — - Parsed wrangler.toml configurations- `systemInfo`: <code>z.infer<any></code> — - Optional system-level metadata
 
 ---
-
 ##### `extractContainers()`
 
 Extract containers from wrangler configurations
@@ -189,7 +186,6 @@ Each container represents a Cloudflare Worker.
 - `configs`: <code>import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/types").WranglerConfig[]</code> — - Parsed wrangler configurations
 
 ---
-
 ##### `buildContainerDescription()`
 
 Build a descriptive summary for a container
@@ -220,13 +216,11 @@ Build a descriptive summary for a container
 - `config`: <code>import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/types").WranglerConfig</code> — - Wrangler configuration
 
 ---
-
 ##### `extractDeploymentsAndInstances()`
 
 Extract deployments and container instances
 
 Creates:
-
 - One deployment per environment
 - Container instances for each container in each environment
 
@@ -256,7 +250,6 @@ Creates:
 - `configs`: <code>import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/types").WranglerConfig[]</code> — - Parsed wrangler configurations- `environments`: <code>string[]</code> — - Unique environment names
 
 ---
-
 ##### `extractContainerRelationships()`
 
 Extract container relationships from service bindings
@@ -290,7 +283,6 @@ Deduplicates relationships across all environments.
 - `configs`: <code>import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/types").WranglerConfig[]</code> — - Parsed wrangler configurations
 
 ---
-
 ##### `extractDeploymentRelationships()`
 
 Extract deployment relationships from container instances
@@ -324,7 +316,6 @@ Each relationship represents an actual runtime dependency in a specific environm
 - `instances`: <code>z.infer<any>[]</code> — - Container instances
 
 ---
-
 ##### `parseWranglerFile()`
 
 Parse a wrangler.toml file
@@ -359,13 +350,11 @@ Parse a wrangler.toml file
 - `filePath`: <code>string</code> — - Absolute path to wrangler.toml file
 
 ---
-
 ##### `normalizeServiceBindings()`
 
 Normalize service bindings from various formats
 
 Wrangler supports multiple binding formats:
-
 - [[services]] array (TOML array of tables)
 - services = [{ binding = "...", service = "..." }]
 
@@ -395,15 +384,13 @@ Wrangler supports multiple binding formats:
 - `services`: <code>unknown</code>
 
 ---
-
 ##### `getEnvironments()`
 
 Get all environments from a wrangler config
 
 Returns a list of environment names, including:
-
 - "production" (from root-level config if it has deployable content)
-- All keys from env.\* sections
+- All keys from env.* sections
 
 <table>
 <tbody>
@@ -431,7 +418,6 @@ Returns a list of environment names, including:
 - `config`: <code>import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/types").WranglerConfig</code>
 
 ---
-
 ##### `getEnvironmentConfig()`
 
 Get configuration for a specific environment

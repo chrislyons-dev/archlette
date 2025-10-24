@@ -36,6 +36,8 @@
 <details>
 <summary><strong>4 code element(s)</strong></summary>
 
+
+
 #### Functions
 
 ##### `validatePathSecurity()`
@@ -68,7 +70,6 @@ Validate path for security issues
 - `userPath`: <code>string</code>- `resolvedPath`: <code>string</code>- `baseDir`: <code>string</code>- `strategy`: <code>import("C:/Users/chris/git/archlette/src/core/path-security").PathResolutionStrategy</code>- `allowedAbsolutePaths`: <code>string[]</code>
 
 ---
-
 ##### `resolveSecurePath()`
 
 Securely resolve a user-provided path with validation
@@ -97,14 +98,12 @@ Securely resolve a user-provided path with validation
 **Parameters:**
 
 - `userPath`: <code>string</code> — - Path provided by user (from config, CLI, etc.)- `options`: <code>import("C:/Users/chris/git/archlette/src/core/path-security").SecurePathOptions</code> — - Resolution and validation options
-  **Examples:**
-
+**Examples:**
 ```typescript
 
 ```
 
 ---
-
 ##### `resolveUserContentPath()`
 
 Convenience function for resolving user content paths (themes, input files)
@@ -136,7 +135,6 @@ Uses 'config-relative' strategy by default
 - `userPath`: <code>string</code>- `configBaseDir`: <code>string</code>- `allowedExtensions`: <code>string[]</code>
 
 ---
-
 ##### `resolvePluginPath()`
 
 Convenience function for resolving plugin paths

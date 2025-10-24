@@ -40,6 +40,8 @@
 <details>
 <summary><strong>2 code element(s)</strong></summary>
 
+
+
 #### Functions
 
 ##### `run()`
@@ -76,7 +78,6 @@ Execute the validation stage
 - `ctx`: <code>import("C:/Users/chris/git/archlette/src/core/types").PipelineContext</code> — - Pipeline context with configuration, logging, and aggregated IR
 
 ---
-
 ##### `baseValidator()`
 
 Validates the IR against the Zod schema. Throws if invalid.

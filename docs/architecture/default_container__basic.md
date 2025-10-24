@@ -44,6 +44,8 @@ Extracts architecture information from Python source code</td>
 <details>
 <summary><strong>15 code element(s)</strong></summary>
 
+
+
 #### Functions
 
 ##### `createEmptyIR()`
@@ -76,7 +78,6 @@ Create empty IR when no files found
 - `systemName`: <code>string</code>
 
 ---
-
 ##### `basicPython()`
 
 Basic Python extractor
@@ -112,7 +113,6 @@ Analyzes Python source code and extracts architectural components
 - `node`: <code>any</code>- `ctx`: <code>import("C:/Users/chris/git/archlette/src/core/types").PipelineContext</code>
 
 ---
-
 ##### `findSourceFiles()`
 
 Find source files matching include/exclude patterns
@@ -147,7 +147,6 @@ Find source files matching include/exclude patterns
 - `inputs`: <code>import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/types").ExtractorInputs</code>
 
 ---
-
 ##### `findPyProjectFiles()`
 
 Find pyproject.toml files within the search paths
@@ -182,7 +181,6 @@ Find pyproject.toml files within the search paths
 - `inputs`: <code>import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/types").ExtractorInputs</code>
 
 ---
-
 ##### `readPyProjectInfo()`
 
 Read and parse pyproject.toml file
@@ -217,7 +215,6 @@ Read and parse pyproject.toml file
 - `filePath`: <code>string</code>
 
 ---
-
 ##### `parsePyProjectToml()`
 
 Simple TOML parser for pyproject.toml
@@ -249,7 +246,6 @@ Only handles the subset we need: [project] and [tool.poetry] sections
 - `content`: <code>string</code>
 
 ---
-
 ##### `findNearestPyProject()`
 
 Find the nearest parent pyproject.toml for a given file
@@ -280,7 +276,6 @@ Find the nearest parent pyproject.toml for a given file
 - `filePath`: <code>string</code>- `pyprojects`: <code>import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-finder").PyProjectInfo[]</code>
 
 ---
-
 ##### `mapToIR()`
 
 Map file extractions to ArchletteIR
@@ -311,7 +306,6 @@ Map file extractions to ArchletteIR
 - `extractions`: <code>import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/types").FileExtraction[]</code>- `pyprojects`: <code>import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-finder").PyProjectInfo[]</code>- `systemInfo`: <code>SystemInfo</code>
 
 ---
-
 ##### `mapActorToIR()`
 
 Map ActorInfo to Actor
@@ -342,7 +336,6 @@ Map ActorInfo to Actor
 - `actor`: <code>import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/types").ActorInfo</code>- `actorTargets`: <code>Map<string, string[]></code>
 
 ---
-
 ##### `mapRelationshipsToIR()`
 
 Map relationships to Relationship[]
@@ -374,7 +367,6 @@ Creates bidirectional actor relationships
 - `relationships`: <code>import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/types").RelationshipInfo[]</code>- `componentMap`: <code>Map<string, z.infer<any>></code>- `actorMap`: <code>Map<string, import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/types").ActorInfo></code>- `actorTargets`: <code>Map<string, string[]></code>
 
 ---
-
 ##### `deduplicateRelationships()`
 
 Deduplicate relationships by source+destination
@@ -405,7 +397,6 @@ Deduplicate relationships by source+destination
 - `relationships`: <code>z.infer<any>[]</code>
 
 ---
-
 ##### `mapClassToCodeItem()`
 
 Map ExtractedClass to CodeItem
@@ -436,7 +427,6 @@ Map ExtractedClass to CodeItem
 - `cls`: <code>import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/types").ExtractedClass</code>- `componentId`: <code>string</code>
 
 ---
-
 ##### `mapMethodToCodeItem()`
 
 Map ExtractedMethod to CodeItem
@@ -467,7 +457,6 @@ Map ExtractedMethod to CodeItem
 - `method`: <code>import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/types").ExtractedMethod</code>- `className`: <code>string</code>- `componentId`: <code>string</code>
 
 ---
-
 ##### `mapFunctionToCodeItem()`
 
 Map ExtractedFunction to CodeItem
@@ -498,7 +487,6 @@ Map ExtractedFunction to CodeItem
 - `func`: <code>import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/types").ExtractedFunction</code>- `componentId`: <code>string</code>
 
 ---
-
 ##### `mapTypeToCodeItem()`
 
 Map ExtractedType to CodeItem

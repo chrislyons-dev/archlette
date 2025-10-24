@@ -160,11 +160,14 @@ export async function run(argv = process.argv) {
     : defaultYaml;
 
   // Determine base directory for resolving config-relative paths FIRST:
-  // - If config file found: use its directory
+  // - If user specified a config file with -f: use its directory
+  // - If using default template: use current working directory
   // - Otherwise: use current working directory
   const loaded = await loadYamlIfExists(chosenYaml);
   const configPath = loaded.path;
-  const configBaseDir = configPath ? path.dirname(configPath) : process.cwd();
+  const isUsingDefaultTemplate = !yamlPathArg && configPath === defaultYaml;
+  const configBaseDir =
+    configPath && !isUsingDefaultTemplate ? path.dirname(configPath) : process.cwd();
 
   // Parse and resolve config, passing configBaseDir for stage nodes
   let config: ResolvedAACConfig;

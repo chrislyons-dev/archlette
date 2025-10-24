@@ -41,6 +41,8 @@
 <details>
 <summary><strong>31 code element(s)</strong></summary>
 
+
+
 #### Functions
 
 ##### `nameToId()`
@@ -72,14 +74,12 @@ Used for consistent ID generation across extractors and mappers
 **Parameters:**
 
 - `name`: <code>string</code> — - The name to convert (component, actor, etc.)
-  **Examples:**
-
+**Examples:**
 ```typescript
 
 ```
 
 ---
-
 ##### `sanitizeId()`
 
 Sanitize ID for DSL and code identifiers (preserves underscores)
@@ -109,14 +109,12 @@ Used for Python code identifiers where underscores are significant
 **Parameters:**
 
 - `id`: <code>string</code> — - The ID to sanitize
-  **Examples:**
-
+**Examples:**
 ```typescript
 
 ```
 
 ---
-
 ##### `isTTY()`
 
 Determine if we're in a TTY environment (for pretty printing)
@@ -142,8 +140,9 @@ Determine if we're in a TTY environment (for pretty printing)
 </tbody>
 </table>
 
----
 
+
+---
 ##### `getDefaultLogLevel()`
 
 Get default log level from environment or fallback to 'info'
@@ -169,8 +168,9 @@ Get default log level from environment or fallback to 'info'
 </tbody>
 </table>
 
----
 
+
+---
 ##### `createPinoLogger()`
 
 Create a Pino logger instance with optional pretty printing
@@ -201,7 +201,6 @@ Create a Pino logger instance with optional pretty printing
 - `level`: <code>import("C:/Users/chris/git/archlette/src/core/logger").LogLevel</code>- `pretty`: <code>boolean</code>
 
 ---
-
 ##### `createLogger()`
 
 Create a logger instance
@@ -230,14 +229,12 @@ Create a logger instance
 **Parameters:**
 
 - `options`: <code>import("C:/Users/chris/git/archlette/src/core/logger").LoggerOptions</code> — - Logger configuration
-  **Examples:**
-
+**Examples:**
 ```typescript
 
 ```
 
 ---
-
 ##### `loadModuleFromPath()`
 
 Dynamically load an ESM module from a path or module specifier
@@ -270,15 +267,14 @@ Dynamically load an ESM module from a path or module specifier
 **Parameters:**
 
 - `spec`: <code>string</code> — - Module specifier (relative path, absolute path, or ~/ path)- `exts`: <code>(".ts" | ".js")[]</code> — - File extensions to probe (in order of preference)
-  **Examples:**
-
+**Examples:**
 ```typescript
 
 ```
 
 ---
-
 ##### `getCliDir()`
+
 
 <table>
 <tbody>
@@ -301,9 +297,11 @@ Dynamically load an ESM module from a path or module specifier
 </tbody>
 </table>
 
----
 
+
+---
 ##### `expandTilde()`
+
 
 <table>
 <tbody>
@@ -331,13 +329,11 @@ Dynamically load an ESM module from a path or module specifier
 - `p`: <code>string</code>- `homeDir`: <code>string</code>
 
 ---
-
 ##### `resolveArchlettePath()`
 
 Core path resolver honoring Archlette rules (no file existence checks).
-
-- "~" -> user home
-- "/" -> absolute
+- "~"  -> user home
+- "/"  -> absolute
 - else -> relative to CLI dir
 
 <table>
@@ -366,14 +362,12 @@ Core path resolver honoring Archlette rules (no file existence checks).
 - `input`: <code>string</code>- `opts`: <code>{ cliDir: string; }</code>
 
 ---
-
 ##### `resolveModuleEntry()`
 
 Resolve a module entry by probing:
-
-1. Exact path
-2. With extensions: .ts then .js
-3. If directory: index.ts then index.js
+1) Exact path
+2) With extensions: .ts then .js
+3) If directory: index.ts then index.js
 
 <table>
 <tbody>
@@ -401,8 +395,8 @@ Resolve a module entry by probing:
 - `input`: <code>string</code>- `opts`: <code>{ cliDir: string; wantedExts?: (".ts" | ".js")[]; }</code>
 
 ---
-
 ##### `toFileUrl()`
+
 
 <table>
 <tbody>
@@ -430,7 +424,6 @@ Resolve a module entry by probing:
 - `p`: <code>string</code>
 
 ---
-
 ##### `writeFile()`
 
 Write content to a file, creating parent directories if needed.
@@ -461,8 +454,8 @@ Write content to a file, creating parent directories if needed.
 - `filename`: <code>string</code> — - Absolute path to the file- `content`: <code>string</code> — - Content to write
 
 ---
-
 ##### `loadExtractorModule()`
+
 
 <table>
 <tbody>
@@ -494,8 +487,8 @@ Write content to a file, creating parent directories if needed.
 - `modulePath`: <code>string</code>
 
 ---
-
 ##### `loadValidatorModule()`
+
 
 <table>
 <tbody>
@@ -527,8 +520,8 @@ Write content to a file, creating parent directories if needed.
 - `modulePath`: <code>string</code>
 
 ---
-
 ##### `loadGeneratorModule()`
+
 
 <table>
 <tbody>
@@ -560,8 +553,8 @@ Write content to a file, creating parent directories if needed.
 - `modulePath`: <code>string</code>
 
 ---
-
 ##### `loadRendererModule()`
+
 
 <table>
 <tbody>
@@ -593,8 +586,8 @@ Write content to a file, creating parent directories if needed.
 - `modulePath`: <code>string</code>
 
 ---
-
 ##### `loadDocModule()`
+
 
 <table>
 <tbody>
@@ -626,7 +619,6 @@ Write content to a file, creating parent directories if needed.
 - `modulePath`: <code>string</code>
 
 ---
-
 ##### `getCacheDir()`
 
 Get the Archlette cache directory
@@ -652,8 +644,9 @@ Get the Archlette cache directory
 </tbody>
 </table>
 
----
 
+
+---
 ##### `ensureCacheDir()`
 
 Ensure cache directory exists
@@ -679,8 +672,9 @@ Ensure cache directory exists
 </tbody>
 </table>
 
----
 
+
+---
 ##### `commandExistsInPath()`
 
 Check if a command exists in PATH
@@ -711,7 +705,6 @@ Check if a command exists in PATH
 - `command`: <code>string</code>
 
 ---
-
 ##### `downloadFile()`
 
 Download a file from URL to destination
@@ -746,7 +739,6 @@ Download a file from URL to destination
 - `url`: <code>string</code>- `dest`: <code>string</code>- `log`: <code>import("C:/Users/chris/git/archlette/src/core/logger").Logger</code>
 
 ---
-
 ##### `extractZip()`
 
 Extract a ZIP file (simple extraction for Structurizr CLI)
@@ -781,7 +773,6 @@ Extract a ZIP file (simple extraction for Structurizr CLI)
 - `zipPath`: <code>string</code>- `destDir`: <code>string</code>- `log`: <code>import("C:/Users/chris/git/archlette/src/core/logger").Logger</code>
 
 ---
-
 ##### `makeExecutable()`
 
 Make file executable (Unix only)
@@ -812,7 +803,6 @@ Make file executable (Unix only)
 - `filePath`: <code>string</code>
 
 ---
-
 ##### `downloadStructurizr()`
 
 Download and install Structurizr CLI to cache
@@ -847,7 +837,6 @@ Download and install Structurizr CLI to cache
 - `cacheDir`: <code>string</code>- `log`: <code>import("C:/Users/chris/git/archlette/src/core/logger").Logger</code>
 
 ---
-
 ##### `downloadPlantUML()`
 
 Download and install PlantUML to cache
@@ -882,7 +871,6 @@ Download and install PlantUML to cache
 - `cacheDir`: <code>string</code>- `log`: <code>import("C:/Users/chris/git/archlette/src/core/logger").Logger</code>
 
 ---
-
 ##### `findStructurizrCLI()`
 
 Find or download Structurizr CLI
@@ -917,7 +905,6 @@ Find or download Structurizr CLI
 - `log`: <code>import("C:/Users/chris/git/archlette/src/core/logger").Logger</code> — - Optional logger
 
 ---
-
 ##### `findPlantUML()`
 
 Find or download PlantUML JAR
@@ -952,7 +939,6 @@ Find or download PlantUML JAR
 - `log`: <code>import("C:/Users/chris/git/archlette/src/core/logger").Logger</code> — - Optional logger
 
 ---
-
 ##### `checkJava()`
 
 Verify Java is available
@@ -978,8 +964,9 @@ Verify Java is available
 </tbody>
 </table>
 
----
 
+
+---
 ##### `requireJava()`
 
 Validate Java is installed (throw if not)
@@ -1005,14 +992,14 @@ Validate Java is installed (throw if not)
 </tbody>
 </table>
 
----
 
+
+---
 ##### `resolveConfig()`
 
 For each stage, resolve includes/excludes for each node:
-
-- If node omits includes/excludes, inherit from defaults.
-- Add configBaseDir for resolving config-relative paths
+  - If node omits includes/excludes, inherit from defaults.
+  - Add configBaseDir for resolving config-relative paths
 
 <table>
 <tbody>

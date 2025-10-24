@@ -36,6 +36,8 @@
 <details>
 <summary><strong>13 code element(s)</strong></summary>
 
+
+
 #### Functions
 
 ##### `parseFiles()`
@@ -72,7 +74,6 @@ Parse Python files using Python AST parser script
 - `filePaths`: <code>string[]</code>- `pythonPath`: <code>string</code>
 
 ---
-
 ##### `runPythonParser()`
 
 Run Python parser script and return JSON output
@@ -103,7 +104,6 @@ Run Python parser script and return JSON output
 - `scriptPath`: <code>string</code>- `filePaths`: <code>string[]</code>- `pythonPath`: <code>string</code>
 
 ---
-
 ##### `mapToFileExtraction()`
 
 Map Python parser output to FileExtraction format
@@ -134,7 +134,6 @@ Map Python parser output to FileExtraction format
 - `file`: <code>{ filePath: string; component?: { name: string; description?: string; }; actors: { name: string; type: "Person" | "System"; direction?: "in" | "out" | "both"; description?: string; }[]; relationships: { target: string; description?: string; }[]; classes: { name: string; baseClasses: string[]; decorators: string[]; decoratorDetails: import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/types").DecoratorInfo[]; line: number; docstring?: string; methods: { name: string; isStatic: boolean; isAsync: boolean; isClassMethod: boolean; isAbstract: boolean; decorators: string[]; decoratorDetails: import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/types").DecoratorInfo[]; line: number; docstring?: string; parsedDoc?: { summary?: string; description?: string; args?: { name: string; type?: string; description?: string; }[]; returns?: { type?: string; description?: string; }; raises?: { type: string; description?: string; }[]; examples?: string; }; parameters: { name: string; annotation?: string; default?: string; }[]; returnAnnotation?: string; }[]; properties: { name: string; type?: "property" | "class_variable"; annotation?: string; default?: string; line: number; docstring?: string; isReadonly?: boolean; hasGetter?: boolean; hasSetter?: boolean; hasDeleter?: boolean; }[]; }[]; functions: { name: string; isAsync: boolean; decorators: string[]; decoratorDetails: import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/types").DecoratorInfo[]; line: number; docstring?: string; parsedDoc?: { summary?: string; description?: string; args?: { name: string; type?: string; description?: string; }[]; returns?: { type?: string; description?: string; }; raises?: { type: string; description?: string; }[]; examples?: string; }; parameters: { name: string; annotation?: string; default?: string; }[]; returnAnnotation?: string; }[]; types: { name: string; category: "TypeAlias" | "TypedDict" | "Protocol" | "Enum" | "NewType"; line: number; definition?: string; docstring?: string; }[]; imports: { source: string; names: string[]; isRelative: boolean; level?: number; category: "stdlib" | "third_party" | "local"; }[]; parseError?: string; }</code>
 
 ---
-
 ##### `mapClass()`
 
 Map Python class to ExtractedClass
@@ -165,7 +164,6 @@ Map Python class to ExtractedClass
 - `cls`: <code>{ name: string; baseClasses: string[]; decorators: string[]; decoratorDetails: import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/types").DecoratorInfo[]; line: number; docstring?: string; methods: { name: string; isStatic: boolean; isAsync: boolean; isClassMethod: boolean; isAbstract: boolean; decorators: string[]; decoratorDetails: import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/types").DecoratorInfo[]; line: number; docstring?: string; parsedDoc?: { summary?: string; description?: string; args?: { name: string; type?: string; description?: string; }[]; returns?: { type?: string; description?: string; }; raises?: { type: string; description?: string; }[]; examples?: string; }; parameters: { name: string; annotation?: string; default?: string; }[]; returnAnnotation?: string; }[]; properties: { name: string; type?: "property" | "class_variable"; annotation?: string; default?: string; line: number; docstring?: string; isReadonly?: boolean; hasGetter?: boolean; hasSetter?: boolean; hasDeleter?: boolean; }[]; }</code>- `filePath`: <code>string</code>
 
 ---
-
 ##### `mapMethod()`
 
 Map Python method to ExtractedMethod
@@ -196,7 +194,6 @@ Map Python method to ExtractedMethod
 - `method`: <code>{ name: string; isStatic: boolean; isAsync: boolean; isClassMethod: boolean; isAbstract: boolean; decorators: string[]; decoratorDetails: import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/types").DecoratorInfo[]; line: number; docstring?: string; parsedDoc?: { summary?: string; description?: string; args?: { name: string; type?: string; description?: string; }[]; returns?: { type?: string; description?: string; }; raises?: { type: string; description?: string; }[]; examples?: string; }; parameters: { name: string; annotation?: string; default?: string; }[]; returnAnnotation?: string; }</code>- `filePath`: <code>string</code>
 
 ---
-
 ##### `mapProperty()`
 
 Map Python property to ExtractedProperty
@@ -227,7 +224,6 @@ Map Python property to ExtractedProperty
 - `prop`: <code>{ name: string; type?: "property" | "class_variable"; annotation?: string; default?: string; line: number; docstring?: string; isReadonly?: boolean; hasGetter?: boolean; hasSetter?: boolean; hasDeleter?: boolean; }</code>- `filePath`: <code>string</code>
 
 ---
-
 ##### `mapFunction()`
 
 Map Python function to ExtractedFunction
@@ -258,7 +254,6 @@ Map Python function to ExtractedFunction
 - `func`: <code>{ name: string; isAsync: boolean; decorators: string[]; decoratorDetails: import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/types").DecoratorInfo[]; line: number; docstring?: string; parsedDoc?: { summary?: string; description?: string; args?: { name: string; type?: string; description?: string; }[]; returns?: { type?: string; description?: string; }; raises?: { type: string; description?: string; }[]; examples?: string; }; parameters: { name: string; annotation?: string; default?: string; }[]; returnAnnotation?: string; }</code>- `filePath`: <code>string</code>
 
 ---
-
 ##### `mapType()`
 
 Map Python type definition to ExtractedType
@@ -289,7 +284,6 @@ Map Python type definition to ExtractedType
 - `type`: <code>{ name: string; category: "TypeAlias" | "TypedDict" | "Protocol" | "Enum" | "NewType"; line: number; definition?: string; docstring?: string; }</code>- `filePath`: <code>string</code>
 
 ---
-
 ##### `mapParameter()`
 
 Map Python parameter to ParameterInfo
@@ -320,7 +314,6 @@ Map Python parameter to ParameterInfo
 - `param`: <code>{ name: string; annotation?: string; default?: string; }</code>- `parsedParam`: <code>{ name: string; type?: string; description?: string; }</code>
 
 ---
-
 ##### `parseDocstring()`
 
 Parse Python docstring into DocInfo
@@ -352,7 +345,6 @@ Enhanced in Phase 2 to use parsed Google/NumPy/Sphinx docstrings
 - `docstring`: <code>string</code>- `parsedDoc`: <code>{ summary?: string; description?: string; args?: { name: string; type?: string; description?: string; }[]; returns?: { type?: string; description?: string; }; raises?: { type: string; description?: string; }[]; examples?: string; }</code>
 
 ---
-
 ##### `extractDeprecation()`
 
 Extract deprecation info from docstring
@@ -383,7 +375,6 @@ Extract deprecation info from docstring
 - `docstring`: <code>string</code>
 
 ---
-
 ##### `extractReturnDescription()`
 
 Extract return description from docstring
@@ -414,13 +405,11 @@ Extract return description from docstring
 - `docstring`: <code>string</code>
 
 ---
-
 ##### `getVisibility()`
 
 Determine visibility from Python name convention
-
-- \_\_name: private
-- \_name: protected
+- __name: private
+- _name: protected
 - name: public
 
 <table>

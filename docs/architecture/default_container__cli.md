@@ -40,9 +40,12 @@
 <details>
 <summary><strong>5 code element(s)</strong></summary>
 
+
+
 #### Functions
 
 ##### `usageAndExit()`
+
 
 <table>
 <tbody>
@@ -70,8 +73,8 @@
 - `msg`: <code>string</code>
 
 ---
-
 ##### `parseArgs()`
+
 
 <table>
 <tbody>
@@ -99,8 +102,8 @@
 - `argv`: <code>string[]</code>
 
 ---
-
 ##### `stageListFromArg()`
+
 
 <table>
 <tbody>
@@ -128,8 +131,8 @@
 - `stageArg`: <code>string</code>
 
 ---
-
 ##### `loadYamlIfExists()`
+
 
 <table>
 <tbody>
@@ -161,8 +164,8 @@
 - `resolvedFile`: <code>string</code>
 
 ---
-
 ##### `run()`
+
 
 <table>
 <tbody>

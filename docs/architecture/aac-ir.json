@@ -11,7 +11,9 @@
       "id": "user",
       "name": "User",
       "type": "Person",
-      "targets": ["default_container__cli"]
+      "targets": [
+        "default_container__cli"
+      ]
     },
     {
       "description": "File system for reading and writing files",
@@ -57,7 +59,9 @@
   "containers": [
     {
       "description": "Main application container",
-      "tags": ["Auto-generated"],
+      "tags": [
+        "Auto-generated"
+      ],
       "id": "default-container",
       "name": "Application",
       "type": "Application",

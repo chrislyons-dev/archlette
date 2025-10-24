@@ -40,6 +40,8 @@
 <details>
 <summary><strong>6 code element(s)</strong></summary>
 
+
+
 #### Functions
 
 ##### `run()`
@@ -76,7 +78,6 @@ Execute the documentation stage
 - `ctx`: <code>import("C:/Users/chris/git/archlette/src/core/types").PipelineContext</code> — - Pipeline context with configuration, logging, IR, and rendered diagrams
 
 ---
-
 ##### `markdownDocs()`
 
 Generate markdown documentation
@@ -111,7 +112,6 @@ Generate markdown documentation
 - `ctx`: <code>import("C:/Users/chris/git/archlette/src/core/types").PipelineContext</code>
 
 ---
-
 ##### `findDiagramsForView()`
 
 Find diagram files for a specific view type
@@ -142,7 +142,6 @@ Find diagram files for a specific view type
 - `rendererOutputs`: <code>import("C:/Users/chris/git/archlette/src/core/types").RendererOutput[]</code>- `diagramsDir`: <code>string</code>- `docsDir`: <code>string</code>- `viewType`: <code>string</code>- `log`: <code>import("C:/Users/chris/git/archlette/src/core/logger").Logger</code>
 
 ---
-
 ##### `findDiagramsForContainer()`
 
 Find component diagrams for a specific container
@@ -173,7 +172,6 @@ Find component diagrams for a specific container
 - `rendererOutputs`: <code>import("C:/Users/chris/git/archlette/src/core/types").RendererOutput[]</code>- `diagramsDir`: <code>string</code>- `docsDir`: <code>string</code>- `container`: <code>{ id: string; name: string; }</code>
 
 ---
-
 ##### `findClassDiagramsForComponent()`
 
 Find class diagrams for a specific component
@@ -204,8 +202,8 @@ Find class diagrams for a specific component
 - `rendererOutputs`: <code>import("C:/Users/chris/git/archlette/src/core/types").RendererOutput[]</code>- `diagramsDir`: <code>string</code>- `docsDir`: <code>string</code>- `component`: <code>z.infer<any></code>
 
 ---
-
 ##### `sanitizeFileName()`
+
 
 <table>
 <tbody>
