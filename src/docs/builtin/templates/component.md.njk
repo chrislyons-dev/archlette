@@ -1,6 +1,6 @@
 # {{ component.name }} — Code View
 
-[← Back to Container](./{{ container.id | kebabCase }}.md) | [← Back to System](./README.md)
+[← Back to Container](./{{ container.id | sanitizeFileName }}.md) | [← Back to System](./README.md)
 
 ---
 
@@ -183,5 +183,5 @@
 ---
 
 <div align="center">
-<sub><a href="./{{ container.id | kebabCase }}.md">← Back to Container</a> | <a href="./README.md">← Back to System</a> | Generated with <a href="https://github.com/architectlabs/archlette">Archlette</a></sub>
+<sub><a href="./{{ container.id | sanitizeFileName }}.md">← Back to Container</a> | <a href="./README.md">← Back to System</a> | Generated with <a href="https://github.com/architectlabs/archlette">Archlette</a></sub>
 </div>

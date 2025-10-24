@@ -16,28 +16,28 @@ skinparam {
 
 hide stereotype
 
-skinparam rectangle<<Application.Application.corepath__resolvepluginpath>> {
+skinparam rectangle<<Application.Application.default_container__core_path__resolvepluginpath>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.corepath__resolvesecurepath>> {
+skinparam rectangle<<Application.Application.default_container__core_path__resolvesecurepath>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.corepath__resolveusercontentpath>> {
+skinparam rectangle<<Application.Application.default_container__core_path__resolveusercontentpath>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.corepath__validatepathsecurity>> {
+skinparam rectangle<<Application.Application.default_container__core_path__validatepathsecurity>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
@@ -51,10 +51,10 @@ skinparam rectangle<<Application.Application>> {
 }
 
 rectangle "Application\n<size:10>[Container: Application]</size>" <<Application.Application>> {
-  rectangle "==core/path__validatepathsecurity\n<size:10>[Component: function]</size>\n\nValidate path for security issues" <<Application.Application.corepath__validatepathsecurity>> as Application.Application.corepath__validatepathsecurity
-  rectangle "==core/path__resolvesecurepath\n<size:10>[Component: function]</size>\n\nSecurely resolve a user-provided path with validation" <<Application.Application.corepath__resolvesecurepath>> as Application.Application.corepath__resolvesecurepath
-  rectangle "==core/path__resolveusercontentpath\n<size:10>[Component: function]</size>\n\nConvenience function for resolving user content paths (themes, input files)\nUses 'config-relative' strategy by default" <<Application.Application.corepath__resolveusercontentpath>> as Application.Application.corepath__resolveusercontentpath
-  rectangle "==core/path__resolvepluginpath\n<size:10>[Component: function]</size>\n\nConvenience function for resolving plugin paths\nUses 'cli-relative' strategy by default" <<Application.Application.corepath__resolvepluginpath>> as Application.Application.corepath__resolvepluginpath
+  rectangle "==default_container__core_path__validatepathsecurity\n<size:10>[Component: function]</size>\n\nValidate path for security issues" <<Application.Application.default_container__core_path__validatepathsecurity>> as Application.Application.default_container__core_path__validatepathsecurity
+  rectangle "==default_container__core_path__resolvesecurepath\n<size:10>[Component: function]</size>\n\nSecurely resolve a user-provided path with validation" <<Application.Application.default_container__core_path__resolvesecurepath>> as Application.Application.default_container__core_path__resolvesecurepath
+  rectangle "==default_container__core_path__resolveusercontentpath\n<size:10>[Component: function]</size>\n\nConvenience function for resolving user content paths (themes, input files)\nUses 'config-relative' strategy by default" <<Application.Application.default_container__core_path__resolveusercontentpath>> as Application.Application.default_container__core_path__resolveusercontentpath
+  rectangle "==default_container__core_path__resolvepluginpath\n<size:10>[Component: function]</size>\n\nConvenience function for resolving plugin paths\nUses 'cli-relative' strategy by default" <<Application.Application.default_container__core_path__resolvepluginpath>> as Application.Application.default_container__core_path__resolvepluginpath
 }
 
 @enduml

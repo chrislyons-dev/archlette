@@ -16,21 +16,21 @@ skinparam {
 
 hide stereotype
 
-skinparam rectangle<<Application.Application.renderers__plantumlrender>> {
+skinparam rectangle<<Application.Application.default_container__renderers__plantumlrender>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.renderers__run>> {
+skinparam rectangle<<Application.Application.default_container__renderers__run>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.renderers__structurizrexport>> {
+skinparam rectangle<<Application.Application.default_container__renderers__structurizrexport>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
@@ -44,9 +44,9 @@ skinparam rectangle<<Application.Application>> {
 }
 
 rectangle "Application\n<size:10>[Container: Application]</size>" <<Application.Application>> {
-  rectangle "==renderers__run\n<size:10>[Component: function]</size>\n\nExecute the rendering stage" <<Application.Application.renderers__run>> as Application.Application.renderers__run
-  rectangle "==renderers__plantumlrender\n<size:10>[Component: function]</size>\n\nRender PlantUML files to PNG images" <<Application.Application.renderers__plantumlrender>> as Application.Application.renderers__plantumlrender
-  rectangle "==renderers__structurizrexport\n<size:10>[Component: function]</size>\n\nExport Structurizr DSL to PlantUML and Mermaid formats" <<Application.Application.renderers__structurizrexport>> as Application.Application.renderers__structurizrexport
+  rectangle "==default_container__renderers__run\n<size:10>[Component: function]</size>\n\nExecute the rendering stage" <<Application.Application.default_container__renderers__run>> as Application.Application.default_container__renderers__run
+  rectangle "==default_container__renderers__plantumlrender\n<size:10>[Component: function]</size>\n\nRender PlantUML files to PNG images" <<Application.Application.default_container__renderers__plantumlrender>> as Application.Application.default_container__renderers__plantumlrender
+  rectangle "==default_container__renderers__structurizrexport\n<size:10>[Component: function]</size>\n\nExport Structurizr DSL to PlantUML and Mermaid formats" <<Application.Application.default_container__renderers__structurizrexport>> as Application.Application.default_container__renderers__structurizrexport
 }
 
 @enduml

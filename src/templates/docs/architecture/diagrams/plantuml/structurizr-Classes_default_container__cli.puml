@@ -16,35 +16,35 @@ skinparam {
 
 hide stereotype
 
-skinparam rectangle<<Application.Application.cli__loadyamlifexists>> {
+skinparam rectangle<<Application.Application.default_container__cli__loadyamlifexists>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.cli__parseargs>> {
+skinparam rectangle<<Application.Application.default_container__cli__parseargs>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.cli__run>> {
+skinparam rectangle<<Application.Application.default_container__cli__run>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.cli__stagelistfromarg>> {
+skinparam rectangle<<Application.Application.default_container__cli__stagelistfromarg>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.cli__usageandexit>> {
+skinparam rectangle<<Application.Application.default_container__cli__usageandexit>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
@@ -58,11 +58,11 @@ skinparam rectangle<<Application.Application>> {
 }
 
 rectangle "Application\n<size:10>[Container: Application]</size>" <<Application.Application>> {
-  rectangle "==cli__usageandexit\n<size:10>[Component: function]</size>" <<Application.Application.cli__usageandexit>> as Application.Application.cli__usageandexit
-  rectangle "==cli__parseargs\n<size:10>[Component: function]</size>" <<Application.Application.cli__parseargs>> as Application.Application.cli__parseargs
-  rectangle "==cli__stagelistfromarg\n<size:10>[Component: function]</size>" <<Application.Application.cli__stagelistfromarg>> as Application.Application.cli__stagelistfromarg
-  rectangle "==cli__loadyamlifexists\n<size:10>[Component: function]</size>" <<Application.Application.cli__loadyamlifexists>> as Application.Application.cli__loadyamlifexists
-  rectangle "==cli__run\n<size:10>[Component: function]</size>" <<Application.Application.cli__run>> as Application.Application.cli__run
+  rectangle "==default_container__cli__usageandexit\n<size:10>[Component: function]</size>" <<Application.Application.default_container__cli__usageandexit>> as Application.Application.default_container__cli__usageandexit
+  rectangle "==default_container__cli__parseargs\n<size:10>[Component: function]</size>" <<Application.Application.default_container__cli__parseargs>> as Application.Application.default_container__cli__parseargs
+  rectangle "==default_container__cli__stagelistfromarg\n<size:10>[Component: function]</size>" <<Application.Application.default_container__cli__stagelistfromarg>> as Application.Application.default_container__cli__stagelistfromarg
+  rectangle "==default_container__cli__loadyamlifexists\n<size:10>[Component: function]</size>" <<Application.Application.default_container__cli__loadyamlifexists>> as Application.Application.default_container__cli__loadyamlifexists
+  rectangle "==default_container__cli__run\n<size:10>[Component: function]</size>" <<Application.Application.default_container__cli__run>> as Application.Application.default_container__cli__run
 }
 
 @enduml

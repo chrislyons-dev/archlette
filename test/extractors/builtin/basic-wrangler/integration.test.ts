@@ -67,7 +67,7 @@ service = "auth-service"
     expect(ir.version).toBe('1.0');
     expect(ir.containers).toHaveLength(1);
     expect(ir.containers[0]).toMatchObject({
-      id: 'api-worker',
+      id: 'api_worker',
       name: 'api-worker',
       type: 'Cloudflare Worker',
       layer: 'Application',
@@ -82,14 +82,14 @@ service = "auth-service"
 
     expect(ir.containerRelationships).toHaveLength(1);
     expect(ir.containerRelationships[0]).toMatchObject({
-      source: 'api-worker',
-      destination: 'auth-service',
+      source: 'api_worker',
+      destination: 'auth_service',
     });
 
     expect(ir.deploymentRelationships).toHaveLength(1);
     expect(ir.deploymentRelationships[0]).toMatchObject({
-      source: 'production__api-worker',
-      destination: 'production__auth-service',
+      source: 'production__api_worker',
+      destination: 'production__auth_service',
     });
   });
 
@@ -395,14 +395,14 @@ database_id = "db-bonds"
 
     // Verify gateway production instance bindings
     const gatewayProdInstance = prodDeployment?.instances!.find(
-      (i) => i.containerRef === 'bond-math-gateway',
+      (i) => i.containerRef === 'bond_math_gateway',
     );
     expect(gatewayProdInstance?.bindings).toHaveLength(2);
     expect(gatewayProdInstance?.vars).toEqual({ INTERNAL_JWT_TTL: '90' });
 
     // Verify pricing instance has both R2 and D1 bindings
     const pricingInstance = prodDeployment?.instances!.find(
-      (i) => i.containerRef === 'bond-math-pricing',
+      (i) => i.containerRef === 'bond_math_pricing',
     );
     expect(pricingInstance?.bindings).toHaveLength(2);
     expect(pricingInstance?.bindings!.some((b) => b.type === 'r2')).toBe(true);
@@ -413,13 +413,13 @@ database_id = "db-bonds"
     expect(
       ir.containerRelationships.some(
         (r) =>
-          r.source === 'bond-math-gateway' && r.destination === 'bond-math-daycount',
+          r.source === 'bond_math_gateway' && r.destination === 'bond_math_daycount',
       ),
     ).toBe(true);
     expect(
       ir.containerRelationships.some(
         (r) =>
-          r.source === 'bond-math-gateway' && r.destination === 'bond-math-pricing',
+          r.source === 'bond_math_gateway' && r.destination === 'bond_math_pricing',
       ),
     ).toBe(true);
 
@@ -435,6 +435,6 @@ database_id = "db-bonds"
       r.source.startsWith('development__'),
     );
     expect(devRels).toHaveLength(1);
-    expect(devRels[0].destination).toBe('development__bond-math-daycount');
+    expect(devRels[0].destination).toBe('development__bond_math_daycount');
   });
 });

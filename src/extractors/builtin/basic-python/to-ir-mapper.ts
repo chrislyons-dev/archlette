@@ -125,7 +125,7 @@ export function mapToIR(
   if (pyprojects.length > 0) {
     // Step 1: Create containers from pyprojects
     for (const proj of pyprojects) {
-      const containerId = nameToId(proj.name);
+      const containerId = sanitizeId(nameToId(proj.name));
       containers.push({
         id: containerId,
         name: proj.name,
@@ -143,11 +143,11 @@ export function mapToIR(
       );
       if (fileWithComponent?.packageInfo) {
         const proj = fileWithComponent.packageInfo;
-        const containerId = nameToId(proj.name);
+        const containerId = sanitizeId(nameToId(proj.name));
 
         const oldId = component.id;
         component.containerId = containerId;
-        component.id = `${containerId}__${oldId}`;
+        component.id = sanitizeId(`${containerId}__${oldId}`);
         componentIdMap.set(oldId, component.id);
       }
     }
@@ -168,7 +168,7 @@ export function mapToIR(
       for (const component of orphanComponents) {
         const oldId = component.id;
         component.containerId = DEFAULT_CONTAINER_ID;
-        component.id = `${DEFAULT_CONTAINER_ID}__${oldId}`;
+        component.id = sanitizeId(`${DEFAULT_CONTAINER_ID}__${oldId}`);
         componentIdMap.set(oldId, component.id);
       }
     }
@@ -188,7 +188,7 @@ export function mapToIR(
       for (const component of components) {
         const oldId = component.id;
         component.containerId = DEFAULT_CONTAINER_ID;
-        component.id = `${DEFAULT_CONTAINER_ID}__${oldId}`;
+        component.id = sanitizeId(`${DEFAULT_CONTAINER_ID}__${oldId}`);
         componentIdMap.set(oldId, component.id);
       }
     }
@@ -207,7 +207,7 @@ export function mapToIR(
   // Step 4.5: Make code IDs hierarchical (componentId__codeId)
   for (const codeItem of codeItems) {
     if (codeItem.componentId) {
-      codeItem.id = `${codeItem.componentId}__${codeItem.id}`;
+      codeItem.id = sanitizeId(`${codeItem.componentId}__${codeItem.id}`);
     }
   }
 

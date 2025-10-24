@@ -11,7 +11,7 @@
       "id": "user",
       "name": "User",
       "type": "Person",
-      "targets": ["default-container__cli"]
+      "targets": ["default_container__cli"]
     },
     {
       "description": "File system for reading and writing files",
@@ -24,7 +24,7 @@
     {
       "description": "The github repo hosting the Structurizr CLI releases. https://github.com/structurizr/cli/releases/download/v${TOOL_VERSIONS.structurizr}/structurizr-cli.zip",
       "tags": [],
-      "id": "github-structurizr-repo",
+      "id": "github_structurizr_repo",
       "name": "Github Structurizr Repo",
       "type": "System",
       "targets": []
@@ -32,7 +32,7 @@
     {
       "description": "The github repo hosting the PlantUML CLI releases. https://github.com/plantuml/plantuml/releases/download/v${TOOL_VERSIONS.plantuml}/plantuml-${TOOL_VERSIONS.plantuml}.jar",
       "tags": [],
-      "id": "github-plantuml-repo",
+      "id": "github_plantuml_repo",
       "name": "Github PlantUML Repo",
       "type": "System",
       "targets": []
@@ -40,7 +40,7 @@
     {
       "description": "The zip extraction utility on the local system (unzip on Unix, Expand-Archive on Windows).",
       "tags": [],
-      "id": "local-systems-unzip-utility",
+      "id": "local_system_s_unzip_utility",
       "name": "Local System's unzip utility",
       "type": "System",
       "targets": []
@@ -48,7 +48,7 @@
     {
       "description": "The local file system for caching downloaded tools.",
       "tags": [],
-      "id": "file-system",
+      "id": "file_system",
       "name": "File System",
       "type": "System",
       "targets": []
@@ -67,84 +67,84 @@
   "components": [
     {
       "description": "Archlette CLI - Architecture-as-Code toolkit",
-      "id": "default-container__cli",
+      "id": "default_container__cli",
       "containerId": "default-container",
       "name": "CLI",
       "type": "module"
     },
     {
       "description": "ArchletteIR aggregation utilities | Extraction stage of the AAC pipeline",
-      "id": "default-container__extractors",
+      "id": "default_container__extractors",
       "containerId": "default-container",
       "name": "extractors",
       "type": "module"
     },
     {
       "description": "Validation stage of the AAC pipeline | Base IR validator for Archlette pipeline",
-      "id": "default-container__validators",
+      "id": "default_container__validators",
       "containerId": "default-container",
       "name": "validators",
       "type": "module"
     },
     {
       "description": "Generation stage of the AAC pipeline | Structurizr DSL Generator (Template-based)",
-      "id": "default-container__generators",
+      "id": "default_container__generators",
       "containerId": "default-container",
       "name": "generators",
       "type": "module"
     },
     {
       "description": "Render stage of the AAC pipeline | PlantUML image renderer | Structurizr DSL export renderer",
-      "id": "default-container__renderers",
+      "id": "default_container__renderers",
       "containerId": "default-container",
       "name": "renderers",
       "type": "module"
     },
     {
       "description": "Documentation stage of the AAC pipeline | Markdown documentation generator",
-      "id": "default-container__docs",
+      "id": "default_container__docs",
       "containerId": "default-container",
       "name": "docs",
       "type": "module"
     },
     {
       "description": "Dynamic ESM module loader | Stage module interfaces for the AAC pipeline | Stage module loaders | Tool management for external rendering tools | Architecture-as-Code (AAC) configuration types and schemas | Archlette Intermediate Representation (IR) types and schemas | Core pipeline types",
-      "id": "default-container__core",
+      "id": "default_container__core",
       "containerId": "default-container",
       "name": "core",
       "type": "module"
     },
     {
       "description": "",
-      "id": "default-container__core-path",
+      "id": "default_container__core_path",
       "containerId": "default-container",
       "name": "core/path",
       "type": "module"
     },
     {
       "description": "TypeScript/JavaScript code extractor",
-      "id": "default-container__basicnode",
+      "id": "default_container__basic_node",
       "containerId": "default-container",
       "name": "basic_node",
       "type": "module"
     },
     {
       "description": "Basic Python Extractor for Archlette\nExtracts architecture information from Python source code",
-      "id": "default-container__basic",
+      "id": "default_container__basic",
       "containerId": "default-container",
       "name": "basic",
       "type": "module"
     },
     {
       "description": "Cloudflare Wrangler deployment extractor",
-      "id": "default-container__basicwrangler",
+      "id": "default_container__basic_wrangler",
       "containerId": "default-container",
       "name": "basic_wrangler",
       "type": "module"
     },
     {
       "description": "",
-      "id": "default-container__basicpython",
+      "id": "default_container__basic_python",
       "containerId": "default-container",
       "name": "basic_python",
       "type": "module"
@@ -152,9 +152,9 @@
   ],
   "code": [
     {
-      "id": "default-container__cli__usageAndExit",
-      "componentId": "default-container__cli",
-      "name": "CLI__usageAndExit",
+      "id": "default_container__cli__usageandexit",
+      "componentId": "default_container__cli",
+      "name": "usageAndExit",
       "type": "function",
       "returnType": "void",
       "parameters": [
@@ -170,9 +170,9 @@
       "lineNumber": 69
     },
     {
-      "id": "default-container__cli__parseArgs",
-      "componentId": "default-container__cli",
-      "name": "CLI__parseArgs",
+      "id": "default_container__cli__parseargs",
+      "componentId": "default_container__cli",
+      "name": "parseArgs",
       "type": "function",
       "returnType": "{ stageArg: string; yamlPathArg: any; }",
       "parameters": [
@@ -188,9 +188,9 @@
       "lineNumber": 91
     },
     {
-      "id": "default-container__cli__stageListFromArg",
-      "componentId": "default-container__cli",
-      "name": "CLI__stageListFromArg",
+      "id": "default_container__cli__stagelistfromarg",
+      "componentId": "default_container__cli",
+      "name": "stageListFromArg",
       "type": "function",
       "returnType": "string[]",
       "parameters": [
@@ -206,9 +206,9 @@
       "lineNumber": 124
     },
     {
-      "id": "default-container__cli__loadYamlIfExists",
-      "componentId": "default-container__cli",
-      "name": "CLI__loadYamlIfExists",
+      "id": "default_container__cli__loadyamlifexists",
+      "componentId": "default_container__cli",
+      "name": "loadYamlIfExists",
       "type": "function",
       "returnType": "Promise<{ config: any; path: string; }>",
       "parameters": [
@@ -224,9 +224,9 @@
       "lineNumber": 130
     },
     {
-      "id": "default-container__cli__run",
-      "componentId": "default-container__cli",
-      "name": "CLI__run",
+      "id": "default_container__cli__run",
+      "componentId": "default_container__cli",
+      "name": "run",
       "type": "function",
       "returnType": "Promise<void>",
       "parameters": [
@@ -244,9 +244,9 @@
     },
     {
       "description": "Aggregate multiple ArchletteIR objects into a single unified IR",
-      "id": "default-container__extractors__aggregateIRs",
-      "componentId": "default-container__extractors",
-      "name": "extractors__aggregateIRs",
+      "id": "default_container__extractors__aggregateirs",
+      "componentId": "default_container__extractors",
+      "name": "aggregateIRs",
       "type": "function",
       "documentation": {
         "summary": "Aggregate multiple ArchletteIR objects into a single unified IR",
@@ -274,9 +274,9 @@
     },
     {
       "description": "Deduplicate array of entities by their ID field",
-      "id": "default-container__extractors__deduplicateById",
-      "componentId": "default-container__extractors",
-      "name": "extractors__deduplicateById",
+      "id": "default_container__extractors__deduplicatebyid",
+      "componentId": "default_container__extractors",
+      "name": "deduplicateById",
       "type": "function",
       "documentation": {
         "summary": "Deduplicate array of entities by their ID field",
@@ -301,9 +301,9 @@
     },
     {
       "description": "Deduplicate array of entities by their name field",
-      "id": "default-container__extractors__deduplicateByName",
-      "componentId": "default-container__extractors",
-      "name": "extractors__deduplicateByName",
+      "id": "default_container__extractors__deduplicatebyname",
+      "componentId": "default_container__extractors",
+      "name": "deduplicateByName",
       "type": "function",
       "documentation": {
         "summary": "Deduplicate array of entities by their name field",
@@ -328,9 +328,9 @@
     },
     {
       "description": "Deduplicate relationships by source+destination+stereotype combination",
-      "id": "default-container__extractors__deduplicateRelationships",
-      "componentId": "default-container__extractors",
-      "name": "extractors__deduplicateRelationships",
+      "id": "default_container__extractors__deduplicaterelationships",
+      "componentId": "default_container__extractors",
+      "name": "deduplicateRelationships",
       "type": "function",
       "documentation": {
         "summary": "Deduplicate relationships by source+destination+stereotype combination",
@@ -355,9 +355,9 @@
     },
     {
       "description": "Execute the extraction stage",
-      "id": "default-container__extractors__run",
-      "componentId": "default-container__extractors",
-      "name": "extractors__run",
+      "id": "default_container__extractors__run",
+      "componentId": "default_container__extractors",
+      "name": "run",
       "type": "function",
       "documentation": {
         "summary": "Execute the extraction stage"
@@ -378,9 +378,9 @@
     },
     {
       "description": "Execute the validation stage",
-      "id": "default-container__validators__run",
-      "componentId": "default-container__validators",
-      "name": "validators__run",
+      "id": "default_container__validators__run",
+      "componentId": "default_container__validators",
+      "name": "run",
       "type": "function",
       "documentation": {
         "summary": "Execute the validation stage"
@@ -401,9 +401,9 @@
     },
     {
       "description": "Execute the generation stage",
-      "id": "default-container__generators__run",
-      "componentId": "default-container__generators",
-      "name": "generators__run",
+      "id": "default_container__generators__run",
+      "componentId": "default_container__generators",
+      "name": "run",
       "type": "function",
       "documentation": {
         "summary": "Execute the generation stage"
@@ -424,9 +424,9 @@
     },
     {
       "description": "Execute the rendering stage",
-      "id": "default-container__renderers__run",
-      "componentId": "default-container__renderers",
-      "name": "renderers__run",
+      "id": "default_container__renderers__run",
+      "componentId": "default_container__renderers",
+      "name": "run",
       "type": "function",
       "documentation": {
         "summary": "Execute the rendering stage"
@@ -447,9 +447,9 @@
     },
     {
       "description": "Execute the documentation stage",
-      "id": "default-container__docs__run",
-      "componentId": "default-container__docs",
-      "name": "docs__run",
+      "id": "default_container__docs__run",
+      "componentId": "default_container__docs",
+      "name": "run",
       "type": "function",
       "documentation": {
         "summary": "Execute the documentation stage"
@@ -470,9 +470,9 @@
     },
     {
       "description": "Convert a name to a normalized ID\nUsed for consistent ID generation across extractors and mappers",
-      "id": "default-container__core__nameToId",
-      "componentId": "default-container__core",
-      "name": "core__nameToId",
+      "id": "default_container__core__nametoid",
+      "componentId": "default_container__core",
+      "name": "nameToId",
       "type": "function",
       "documentation": {
         "summary": "Convert a name to a normalized ID\nUsed for consistent ID generation across extractors and mappers",
@@ -496,10 +496,37 @@
       "lineNumber": 56
     },
     {
+      "description": "Sanitize ID for DSL and code identifiers (preserves underscores)\nUsed for Python code identifiers where underscores are significant",
+      "id": "default_container__core__sanitizeid",
+      "componentId": "default_container__core",
+      "name": "sanitizeId",
+      "type": "function",
+      "documentation": {
+        "summary": "Sanitize ID for DSL and code identifiers (preserves underscores)\nUsed for Python code identifiers where underscores are significant",
+        "examples": [
+          "sanitizeId('my_function') // 'my_function'\nsanitizeId('my-function') // 'my_function'\nsanitizeId('MyClass') // 'myclass'\nsanitizeId('123invalid') // '_123invalid'"
+        ]
+      },
+      "returnType": "string",
+      "returnDescription": "Sanitized ID (lowercase alphanumeric and underscores only)",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "description": "- The ID to sanitize",
+          "optional": false
+        }
+      ],
+      "visibility": "public",
+      "isAsync": false,
+      "filePath": "C:/Users/chris/git/archlette/src/core/constants.ts",
+      "lineNumber": 78
+    },
+    {
       "description": "Determine if we're in a TTY environment (for pretty printing)",
-      "id": "default-container__core__isTTY",
-      "componentId": "default-container__core",
-      "name": "core__isTTY",
+      "id": "default_container__core__istty",
+      "componentId": "default_container__core",
+      "name": "isTTY",
       "type": "function",
       "documentation": {
         "summary": "Determine if we're in a TTY environment (for pretty printing)"
@@ -513,9 +540,9 @@
     },
     {
       "description": "Get default log level from environment or fallback to 'info'",
-      "id": "default-container__core__getDefaultLogLevel",
-      "componentId": "default-container__core",
-      "name": "core__getDefaultLogLevel",
+      "id": "default_container__core__getdefaultloglevel",
+      "componentId": "default_container__core",
+      "name": "getDefaultLogLevel",
       "type": "function",
       "documentation": {
         "summary": "Get default log level from environment or fallback to 'info'"
@@ -529,9 +556,9 @@
     },
     {
       "description": "Create a Pino logger instance with optional pretty printing",
-      "id": "default-container__core__createPinoLogger",
-      "componentId": "default-container__core",
-      "name": "core__createPinoLogger",
+      "id": "default_container__core__createpinologger",
+      "componentId": "default_container__core",
+      "name": "createPinoLogger",
       "type": "function",
       "documentation": {
         "summary": "Create a Pino logger instance with optional pretty printing"
@@ -556,9 +583,9 @@
     },
     {
       "description": "Create a logger instance",
-      "id": "default-container__core__createLogger",
-      "componentId": "default-container__core",
-      "name": "core__createLogger",
+      "id": "default_container__core__createlogger",
+      "componentId": "default_container__core",
+      "name": "createLogger",
       "type": "function",
       "documentation": {
         "summary": "Create a logger instance",
@@ -584,9 +611,9 @@
     },
     {
       "description": "Dynamically load an ESM module from a path or module specifier",
-      "id": "default-container__core__loadModuleFromPath",
-      "componentId": "default-container__core",
-      "name": "core__loadModuleFromPath",
+      "id": "default_container__core__loadmodulefrompath",
+      "componentId": "default_container__core",
+      "name": "loadModuleFromPath",
       "type": "function",
       "documentation": {
         "summary": "Dynamically load an ESM module from a path or module specifier",
@@ -617,9 +644,9 @@
       "lineNumber": 62
     },
     {
-      "id": "default-container__core__getCliDir",
-      "componentId": "default-container__core",
-      "name": "core__getCliDir",
+      "id": "default_container__core__getclidir",
+      "componentId": "default_container__core",
+      "name": "getCliDir",
       "type": "function",
       "returnType": "string",
       "parameters": [],
@@ -629,9 +656,9 @@
       "lineNumber": 17
     },
     {
-      "id": "default-container__core__expandTilde",
-      "componentId": "default-container__core",
-      "name": "core__expandTilde",
+      "id": "default_container__core__expandtilde",
+      "componentId": "default_container__core",
+      "name": "expandTilde",
       "type": "function",
       "returnType": "string",
       "parameters": [
@@ -654,9 +681,9 @@
     },
     {
       "description": "Core path resolver honoring Archlette rules (no file existence checks).\n- \"~\"  -> user home\n- \"/\"  -> absolute\n- else -> relative to CLI dir",
-      "id": "default-container__core__resolveArchlettePath",
-      "componentId": "default-container__core",
-      "name": "core__resolveArchlettePath",
+      "id": "default_container__core__resolvearchlettepath",
+      "componentId": "default_container__core",
+      "name": "resolveArchlettePath",
       "type": "function",
       "documentation": {
         "summary": "Core path resolver honoring Archlette rules (no file existence checks).\n- \"~\"  -> user home\n- \"/\"  -> absolute\n- else -> relative to CLI dir"
@@ -681,9 +708,9 @@
     },
     {
       "description": "Resolve a module entry by probing:\n1) Exact path\n2) With extensions: .ts then .js\n3) If directory: index.ts then index.js",
-      "id": "default-container__core__resolveModuleEntry",
-      "componentId": "default-container__core",
-      "name": "core__resolveModuleEntry",
+      "id": "default_container__core__resolvemoduleentry",
+      "componentId": "default_container__core",
+      "name": "resolveModuleEntry",
       "type": "function",
       "documentation": {
         "summary": "Resolve a module entry by probing:\n1) Exact path\n2) With extensions: .ts then .js\n3) If directory: index.ts then index.js"
@@ -707,9 +734,9 @@
       "lineNumber": 64
     },
     {
-      "id": "default-container__core__toFileUrl",
-      "componentId": "default-container__core",
-      "name": "core__toFileUrl",
+      "id": "default_container__core__tofileurl",
+      "componentId": "default_container__core",
+      "name": "toFileUrl",
       "type": "function",
       "returnType": "string",
       "parameters": [
@@ -726,9 +753,9 @@
     },
     {
       "description": "Write content to a file, creating parent directories if needed.",
-      "id": "default-container__core__writeFile",
-      "componentId": "default-container__core",
-      "name": "core__writeFile",
+      "id": "default_container__core__writefile",
+      "componentId": "default_container__core",
+      "name": "writeFile",
       "type": "function",
       "documentation": {
         "summary": "Write content to a file, creating parent directories if needed."
@@ -756,9 +783,9 @@
     },
     {
       "description": "Validate path for security issues",
-      "id": "default-container__core-path__validatePathSecurity",
-      "componentId": "default-container__core-path",
-      "name": "core/path__validatePathSecurity",
+      "id": "default_container__core_path__validatepathsecurity",
+      "componentId": "default_container__core_path",
+      "name": "validatePathSecurity",
       "type": "function",
       "documentation": {
         "summary": "Validate path for security issues"
@@ -799,9 +826,9 @@
     },
     {
       "description": "Securely resolve a user-provided path with validation",
-      "id": "default-container__core-path__resolveSecurePath",
-      "componentId": "default-container__core-path",
-      "name": "core/path__resolveSecurePath",
+      "id": "default_container__core_path__resolvesecurepath",
+      "componentId": "default_container__core_path",
+      "name": "resolveSecurePath",
       "type": "function",
       "documentation": {
         "summary": "Securely resolve a user-provided path with validation",
@@ -832,9 +859,9 @@
     },
     {
       "description": "Convenience function for resolving user content paths (themes, input files)\nUses 'config-relative' strategy by default",
-      "id": "default-container__core-path__resolveUserContentPath",
-      "componentId": "default-container__core-path",
-      "name": "core/path__resolveUserContentPath",
+      "id": "default_container__core_path__resolveusercontentpath",
+      "componentId": "default_container__core_path",
+      "name": "resolveUserContentPath",
       "type": "function",
       "documentation": {
         "summary": "Convenience function for resolving user content paths (themes, input files)\nUses 'config-relative' strategy by default"
@@ -860,13 +887,13 @@
       "visibility": "public",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/core/path-security.ts",
-      "lineNumber": 267
+      "lineNumber": 275
     },
     {
       "description": "Convenience function for resolving plugin paths\nUses 'cli-relative' strategy by default",
-      "id": "default-container__core-path__resolvePluginPath",
-      "componentId": "default-container__core-path",
-      "name": "core/path__resolvePluginPath",
+      "id": "default_container__core_path__resolvepluginpath",
+      "componentId": "default_container__core_path",
+      "name": "resolvePluginPath",
       "type": "function",
       "documentation": {
         "summary": "Convenience function for resolving plugin paths\nUses 'cli-relative' strategy by default"
@@ -892,7 +919,7 @@
       "visibility": "public",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/core/path-security.ts",
-      "lineNumber": 284
+      "lineNumber": 292
     },
     {
       "id": "C:/Users/chris/git/archlette/src/core/stage-entry.js:getStageEntry",
@@ -912,9 +939,9 @@
       "lineNumber": 12
     },
     {
-      "id": "default-container__core__loadExtractorModule",
-      "componentId": "default-container__core",
-      "name": "core__loadExtractorModule",
+      "id": "default_container__core__loadextractormodule",
+      "componentId": "default_container__core",
+      "name": "loadExtractorModule",
       "type": "function",
       "returnType": "Promise<{ entry: Function; resolved: string; }>",
       "parameters": [
@@ -930,9 +957,9 @@
       "lineNumber": 13
     },
     {
-      "id": "default-container__core__loadValidatorModule",
-      "componentId": "default-container__core",
-      "name": "core__loadValidatorModule",
+      "id": "default_container__core__loadvalidatormodule",
+      "componentId": "default_container__core",
+      "name": "loadValidatorModule",
       "type": "function",
       "returnType": "Promise<{ entry: Function; resolved: string; }>",
       "parameters": [
@@ -948,9 +975,9 @@
       "lineNumber": 26
     },
     {
-      "id": "default-container__core__loadGeneratorModule",
-      "componentId": "default-container__core",
-      "name": "core__loadGeneratorModule",
+      "id": "default_container__core__loadgeneratormodule",
+      "componentId": "default_container__core",
+      "name": "loadGeneratorModule",
       "type": "function",
       "returnType": "Promise<{ entry: Function; resolved: string; }>",
       "parameters": [
@@ -966,9 +993,9 @@
       "lineNumber": 39
     },
     {
-      "id": "default-container__core__loadRendererModule",
-      "componentId": "default-container__core",
-      "name": "core__loadRendererModule",
+      "id": "default_container__core__loadrenderermodule",
+      "componentId": "default_container__core",
+      "name": "loadRendererModule",
       "type": "function",
       "returnType": "Promise<{ entry: Function; resolved: string; }>",
       "parameters": [
@@ -984,9 +1011,9 @@
       "lineNumber": 52
     },
     {
-      "id": "default-container__core__loadDocModule",
-      "componentId": "default-container__core",
-      "name": "core__loadDocModule",
+      "id": "default_container__core__loaddocmodule",
+      "componentId": "default_container__core",
+      "name": "loadDocModule",
       "type": "function",
       "returnType": "Promise<{ entry: Function; resolved: string; }>",
       "parameters": [
@@ -1003,9 +1030,9 @@
     },
     {
       "description": "Get the Archlette cache directory",
-      "id": "default-container__core__getCacheDir",
-      "componentId": "default-container__core",
-      "name": "core__getCacheDir",
+      "id": "default_container__core__getcachedir",
+      "componentId": "default_container__core",
+      "name": "getCacheDir",
       "type": "function",
       "documentation": {
         "summary": "Get the Archlette cache directory"
@@ -1019,9 +1046,9 @@
     },
     {
       "description": "Ensure cache directory exists",
-      "id": "default-container__core__ensureCacheDir",
-      "componentId": "default-container__core",
-      "name": "core__ensureCacheDir",
+      "id": "default_container__core__ensurecachedir",
+      "componentId": "default_container__core",
+      "name": "ensureCacheDir",
       "type": "function",
       "documentation": {
         "summary": "Ensure cache directory exists"
@@ -1035,9 +1062,9 @@
     },
     {
       "description": "Check if a command exists in PATH",
-      "id": "default-container__core__commandExistsInPath",
-      "componentId": "default-container__core",
-      "name": "core__commandExistsInPath",
+      "id": "default_container__core__commandexistsinpath",
+      "componentId": "default_container__core",
+      "name": "commandExistsInPath",
       "type": "function",
       "documentation": {
         "summary": "Check if a command exists in PATH"
@@ -1057,9 +1084,9 @@
     },
     {
       "description": "Download a file from URL to destination",
-      "id": "default-container__core__downloadFile",
-      "componentId": "default-container__core",
-      "name": "core__downloadFile",
+      "id": "default_container__core__downloadfile",
+      "componentId": "default_container__core",
+      "name": "downloadFile",
       "type": "function",
       "documentation": {
         "summary": "Download a file from URL to destination"
@@ -1089,9 +1116,9 @@
     },
     {
       "description": "Extract a ZIP file (simple extraction for Structurizr CLI)",
-      "id": "default-container__core__extractZip",
-      "componentId": "default-container__core",
-      "name": "core__extractZip",
+      "id": "default_container__core__extractzip",
+      "componentId": "default_container__core",
+      "name": "extractZip",
       "type": "function",
       "documentation": {
         "summary": "Extract a ZIP file (simple extraction for Structurizr CLI)"
@@ -1121,9 +1148,9 @@
     },
     {
       "description": "Make file executable (Unix only)",
-      "id": "default-container__core__makeExecutable",
-      "componentId": "default-container__core",
-      "name": "core__makeExecutable",
+      "id": "default_container__core__makeexecutable",
+      "componentId": "default_container__core",
+      "name": "makeExecutable",
       "type": "function",
       "documentation": {
         "summary": "Make file executable (Unix only)"
@@ -1143,9 +1170,9 @@
     },
     {
       "description": "Download and install Structurizr CLI to cache",
-      "id": "default-container__core__downloadStructurizr",
-      "componentId": "default-container__core",
-      "name": "core__downloadStructurizr",
+      "id": "default_container__core__downloadstructurizr",
+      "componentId": "default_container__core",
+      "name": "downloadStructurizr",
       "type": "function",
       "documentation": {
         "summary": "Download and install Structurizr CLI to cache"
@@ -1170,9 +1197,9 @@
     },
     {
       "description": "Download and install PlantUML to cache",
-      "id": "default-container__core__downloadPlantUML",
-      "componentId": "default-container__core",
-      "name": "core__downloadPlantUML",
+      "id": "default_container__core__downloadplantuml",
+      "componentId": "default_container__core",
+      "name": "downloadPlantUML",
       "type": "function",
       "documentation": {
         "summary": "Download and install PlantUML to cache"
@@ -1197,9 +1224,9 @@
     },
     {
       "description": "Find or download Structurizr CLI",
-      "id": "default-container__core__findStructurizrCLI",
-      "componentId": "default-container__core",
-      "name": "core__findStructurizrCLI",
+      "id": "default_container__core__findstructurizrcli",
+      "componentId": "default_container__core",
+      "name": "findStructurizrCLI",
       "type": "function",
       "documentation": {
         "summary": "Find or download Structurizr CLI"
@@ -1221,9 +1248,9 @@
     },
     {
       "description": "Find or download PlantUML JAR",
-      "id": "default-container__core__findPlantUML",
-      "componentId": "default-container__core",
-      "name": "core__findPlantUML",
+      "id": "default_container__core__findplantuml",
+      "componentId": "default_container__core",
+      "name": "findPlantUML",
       "type": "function",
       "documentation": {
         "summary": "Find or download PlantUML JAR"
@@ -1245,9 +1272,9 @@
     },
     {
       "description": "Verify Java is available",
-      "id": "default-container__core__checkJava",
-      "componentId": "default-container__core",
-      "name": "core__checkJava",
+      "id": "default_container__core__checkjava",
+      "componentId": "default_container__core",
+      "name": "checkJava",
       "type": "function",
       "documentation": {
         "summary": "Verify Java is available"
@@ -1262,9 +1289,9 @@
     },
     {
       "description": "Validate Java is installed (throw if not)",
-      "id": "default-container__core__requireJava",
-      "componentId": "default-container__core",
-      "name": "core__requireJava",
+      "id": "default_container__core__requirejava",
+      "componentId": "default_container__core",
+      "name": "requireJava",
       "type": "function",
       "documentation": {
         "summary": "Validate Java is installed (throw if not)"
@@ -1278,9 +1305,9 @@
     },
     {
       "description": "For each stage, resolve includes/excludes for each node:\n  - If node omits includes/excludes, inherit from defaults.\n  - Add configBaseDir for resolving config-relative paths",
-      "id": "default-container__core__resolveConfig",
-      "componentId": "default-container__core",
-      "name": "core__resolveConfig",
+      "id": "default_container__core__resolveconfig",
+      "componentId": "default_container__core",
+      "name": "resolveConfig",
       "type": "function",
       "documentation": {
         "summary": "For each stage, resolve includes/excludes for each node:\n  - If node omits includes/excludes, inherit from defaults.\n  - Add configBaseDir for resolving config-relative paths"
@@ -1305,9 +1332,9 @@
     },
     {
       "description": "Generate markdown documentation",
-      "id": "default-container__docs__markdownDocs",
-      "componentId": "default-container__docs",
-      "name": "docs__markdownDocs",
+      "id": "default_container__docs__markdowndocs",
+      "componentId": "default_container__docs",
+      "name": "markdownDocs",
       "type": "function",
       "documentation": {
         "summary": "Generate markdown documentation"
@@ -1327,9 +1354,9 @@
     },
     {
       "description": "Find diagram files for a specific view type",
-      "id": "default-container__docs__findDiagramsForView",
-      "componentId": "default-container__docs",
-      "name": "docs__findDiagramsForView",
+      "id": "default_container__docs__finddiagramsforview",
+      "componentId": "default_container__docs",
+      "name": "findDiagramsForView",
       "type": "function",
       "documentation": {
         "summary": "Find diagram files for a specific view type"
@@ -1365,13 +1392,13 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/docs/builtin/markdown-docs.ts",
-      "lineNumber": 239
+      "lineNumber": 243
     },
     {
       "description": "Find component diagrams for a specific container",
-      "id": "default-container__docs__findDiagramsForContainer",
-      "componentId": "default-container__docs",
-      "name": "docs__findDiagramsForContainer",
+      "id": "default_container__docs__finddiagramsforcontainer",
+      "componentId": "default_container__docs",
+      "name": "findDiagramsForContainer",
       "type": "function",
       "documentation": {
         "summary": "Find component diagrams for a specific container"
@@ -1402,13 +1429,13 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/docs/builtin/markdown-docs.ts",
-      "lineNumber": 271
+      "lineNumber": 275
     },
     {
       "description": "Find class diagrams for a specific component",
-      "id": "default-container__docs__findClassDiagramsForComponent",
-      "componentId": "default-container__docs",
-      "name": "docs__findClassDiagramsForComponent",
+      "id": "default_container__docs__findclassdiagramsforcomponent",
+      "componentId": "default_container__docs",
+      "name": "findClassDiagramsForComponent",
       "type": "function",
       "documentation": {
         "summary": "Find class diagrams for a specific component"
@@ -1439,12 +1466,12 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/docs/builtin/markdown-docs.ts",
-      "lineNumber": 309
+      "lineNumber": 313
     },
     {
-      "id": "default-container__docs__sanitizeFileName",
-      "componentId": "default-container__docs",
-      "name": "docs__sanitizeFileName",
+      "id": "default_container__docs__sanitizefilename",
+      "componentId": "default_container__docs",
+      "name": "sanitizeFileName",
       "type": "function",
       "returnType": "string",
       "parameters": [
@@ -1457,13 +1484,13 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/docs/builtin/markdown-docs.ts",
-      "lineNumber": 343
+      "lineNumber": 347
     },
     {
       "description": "Extract architecture information from a Node.js/TypeScript codebase",
-      "id": "default-container__basicnode__basicNodeExtractor",
-      "componentId": "default-container__basicnode",
-      "name": "basic_node__basicNodeExtractor",
+      "id": "default_container__basic_node__basicnodeextractor",
+      "componentId": "default_container__basic_node",
+      "name": "basicNodeExtractor",
       "type": "function",
       "documentation": {
         "summary": "Extract architecture information from a Node.js/TypeScript codebase",
@@ -1493,9 +1520,9 @@
     },
     {
       "description": "Create empty IR when no files found",
-      "id": "default-container__basic__createEmptyIR",
-      "componentId": "default-container__basic",
-      "name": "basic__createEmptyIR",
+      "id": "default_container__basic__createemptyir",
+      "componentId": "default_container__basic",
+      "name": "createEmptyIR",
       "type": "function",
       "documentation": {
         "summary": "Create empty IR when no files found"
@@ -1515,9 +1542,9 @@
     },
     {
       "description": "Basic Python extractor\nAnalyzes Python source code and extracts architectural components",
-      "id": "default-container__basic__basicPython",
-      "componentId": "default-container__basic",
-      "name": "basic__basicPython",
+      "id": "default_container__basic__basicpython",
+      "componentId": "default_container__basic",
+      "name": "basicPython",
       "type": "function",
       "documentation": {
         "summary": "Basic Python extractor\nAnalyzes Python source code and extracts architectural components"
@@ -1542,9 +1569,9 @@
     },
     {
       "description": "Extract deployment topology from Cloudflare Wrangler configuration files",
-      "id": "default-container__basicwrangler__basicWranglerExtractor",
-      "componentId": "default-container__basicwrangler",
-      "name": "basic_wrangler__basicWranglerExtractor",
+      "id": "default_container__basic_wrangler__basicwranglerextractor",
+      "componentId": "default_container__basic_wrangler",
+      "name": "basicWranglerExtractor",
       "type": "function",
       "documentation": {
         "summary": "Extract deployment topology from Cloudflare Wrangler configuration files",
@@ -1573,10 +1600,27 @@
       "lineNumber": 68
     },
     {
+      "description": "Load the default Structurizr theme from templates directory",
+      "id": "default_container__generators__loaddefaulttheme",
+      "componentId": "default_container__generators",
+      "name": "loadDefaultTheme",
+      "type": "function",
+      "documentation": {
+        "summary": "Load the default Structurizr theme from templates directory"
+      },
+      "returnType": "string",
+      "returnDescription": "Theme DSL content as string",
+      "parameters": [],
+      "visibility": "private",
+      "isAsync": false,
+      "filePath": "C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts",
+      "lineNumber": 57
+    },
+    {
       "description": "Generate Structurizr DSL from ArchletteIR",
-      "id": "default-container__generators__structurizrGenerator",
-      "componentId": "default-container__generators",
-      "name": "generators__structurizrGenerator",
+      "id": "default_container__generators__structurizrgenerator",
+      "componentId": "default_container__generators",
+      "name": "structurizrGenerator",
       "type": "function",
       "documentation": {
         "summary": "Generate Structurizr DSL from ArchletteIR"
@@ -1596,13 +1640,13 @@
       "visibility": "public",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts",
-      "lineNumber": 54
+      "lineNumber": 73
     },
     {
       "description": "Prepare container data with components, code, and relationships for template",
-      "id": "default-container__generators__prepareContainerData",
-      "componentId": "default-container__generators",
-      "name": "generators__prepareContainerData",
+      "id": "default_container__generators__preparecontainerdata",
+      "componentId": "default_container__generators",
+      "name": "prepareContainerData",
       "type": "function",
       "documentation": {
         "summary": "Prepare container data with components, code, and relationships for template"
@@ -1623,13 +1667,13 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts",
-      "lineNumber": 134
+      "lineNumber": 148
     },
     {
       "description": "Prepare component view data for template",
-      "id": "default-container__generators__prepareComponentView",
-      "componentId": "default-container__generators",
-      "name": "generators__prepareComponentView",
+      "id": "default_container__generators__preparecomponentview",
+      "componentId": "default_container__generators",
+      "name": "prepareComponentView",
       "type": "function",
       "documentation": {
         "summary": "Prepare component view data for template"
@@ -1650,13 +1694,13 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts",
-      "lineNumber": 176
+      "lineNumber": 190
     },
     {
       "description": "Prepare class view data for template",
-      "id": "default-container__generators__prepareClassView",
-      "componentId": "default-container__generators",
-      "name": "generators__prepareClassView",
+      "id": "default_container__generators__prepareclassview",
+      "componentId": "default_container__generators",
+      "name": "prepareClassView",
       "type": "function",
       "documentation": {
         "summary": "Prepare class view data for template"
@@ -1677,13 +1721,13 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts",
-      "lineNumber": 213
+      "lineNumber": 227
     },
     {
       "description": "Generate all actor-related relationships",
-      "id": "default-container__generators__generateAllActorRelationships",
-      "componentId": "default-container__generators",
-      "name": "generators__generateAllActorRelationships",
+      "id": "default_container__generators__generateallactorrelationships",
+      "componentId": "default_container__generators",
+      "name": "generateAllActorRelationships",
       "type": "function",
       "documentation": {
         "summary": "Generate all actor-related relationships"
@@ -1699,13 +1743,13 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts",
-      "lineNumber": 228
+      "lineNumber": 242
     },
     {
       "description": "Generate a unique name for a code item to avoid naming collisions",
-      "id": "default-container__generators__generateUniqueCodeName",
-      "componentId": "default-container__generators",
-      "name": "generators__generateUniqueCodeName",
+      "id": "default_container__generators__generateuniquecodename",
+      "componentId": "default_container__generators",
+      "name": "generateUniqueCodeName",
       "type": "function",
       "documentation": {
         "summary": "Generate a unique name for a code item to avoid naming collisions"
@@ -1721,13 +1765,13 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts",
-      "lineNumber": 275
+      "lineNumber": 289
     },
     {
       "description": "Build technology string from relationship metadata",
-      "id": "default-container__generators__buildTechnologyString",
-      "componentId": "default-container__generators",
-      "name": "generators__buildTechnologyString",
+      "id": "default_container__generators__buildtechnologystring",
+      "componentId": "default_container__generators",
+      "name": "buildTechnologyString",
       "type": "function",
       "documentation": {
         "summary": "Build technology string from relationship metadata"
@@ -1743,13 +1787,13 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts",
-      "lineNumber": 313
+      "lineNumber": 327
     },
     {
       "description": "Sanitize ID for DSL (remove special characters, convert to valid identifier)",
-      "id": "default-container__generators__sanitizeId",
-      "componentId": "default-container__generators",
-      "name": "generators__sanitizeId",
+      "id": "default_container__generators__sanitizeid",
+      "componentId": "default_container__generators",
+      "name": "sanitizeId",
       "type": "function",
       "documentation": {
         "summary": "Sanitize ID for DSL (remove special characters, convert to valid identifier)"
@@ -1765,13 +1809,13 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts",
-      "lineNumber": 329
+      "lineNumber": 343
     },
     {
       "description": "Escape special characters in strings for DSL",
-      "id": "default-container__generators__escapeString",
-      "componentId": "default-container__generators",
-      "name": "generators__escapeString",
+      "id": "default_container__generators__escapestring",
+      "componentId": "default_container__generators",
+      "name": "escapeString",
       "type": "function",
       "documentation": {
         "summary": "Escape special characters in strings for DSL"
@@ -1787,13 +1831,13 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts",
-      "lineNumber": 336
+      "lineNumber": 350
     },
     {
       "description": "Render PlantUML files to PNG images",
-      "id": "default-container__renderers__plantumlRender",
-      "componentId": "default-container__renderers",
-      "name": "renderers__plantumlRender",
+      "id": "default_container__renderers__plantumlrender",
+      "componentId": "default_container__renderers",
+      "name": "plantumlRender",
       "type": "function",
       "documentation": {
         "summary": "Render PlantUML files to PNG images"
@@ -1813,9 +1857,9 @@
     },
     {
       "description": "Export Structurizr DSL to PlantUML and Mermaid formats",
-      "id": "default-container__renderers__structurizrExport",
-      "componentId": "default-container__renderers",
-      "name": "renderers__structurizrExport",
+      "id": "default_container__renderers__structurizrexport",
+      "componentId": "default_container__renderers",
+      "name": "structurizrExport",
       "type": "function",
       "documentation": {
         "summary": "Export Structurizr DSL to PlantUML and Mermaid formats"
@@ -1835,9 +1879,9 @@
     },
     {
       "description": "Validates the IR against the Zod schema. Throws if invalid.",
-      "id": "default-container__validators__baseValidator",
-      "componentId": "default-container__validators",
-      "name": "validators__baseValidator",
+      "id": "default_container__validators__basevalidator",
+      "componentId": "default_container__validators",
+      "name": "baseValidator",
       "type": "function",
       "documentation": {
         "summary": "Validates the IR against the Zod schema. Throws if invalid."
@@ -1859,9 +1903,9 @@
     },
     {
       "description": "Extract all class declarations from a source file",
-      "id": "default-container__basicnode__extractClasses",
-      "componentId": "default-container__basicnode",
-      "name": "basic_node__extractClasses",
+      "id": "default_container__basic_node__extractclasses",
+      "componentId": "default_container__basic_node",
+      "name": "extractClasses",
       "type": "function",
       "documentation": {
         "summary": "Extract all class declarations from a source file"
@@ -1881,9 +1925,9 @@
     },
     {
       "description": "Extract information from a single class declaration",
-      "id": "default-container__basicnode__extractClass",
-      "componentId": "default-container__basicnode",
-      "name": "basic_node__extractClass",
+      "id": "default_container__basic_node__extractclass",
+      "componentId": "default_container__basic_node",
+      "name": "extractClass",
       "type": "function",
       "documentation": {
         "summary": "Extract information from a single class declaration"
@@ -1908,9 +1952,9 @@
     },
     {
       "description": "Extract method information from a class",
-      "id": "default-container__basicnode__extractMethod",
-      "componentId": "default-container__basicnode",
-      "name": "basic_node__extractMethod",
+      "id": "default_container__basic_node__extractmethod",
+      "componentId": "default_container__basic_node",
+      "name": "extractMethod",
       "type": "function",
       "documentation": {
         "summary": "Extract method information from a class"
@@ -1935,9 +1979,9 @@
     },
     {
       "description": "Extract property information from a class",
-      "id": "default-container__basicnode__extractProperty",
-      "componentId": "default-container__basicnode",
-      "name": "basic_node__extractProperty",
+      "id": "default_container__basic_node__extractproperty",
+      "componentId": "default_container__basic_node",
+      "name": "extractProperty",
       "type": "function",
       "documentation": {
         "summary": "Extract property information from a class"
@@ -1962,9 +2006,9 @@
     },
     {
       "description": "Extract parameter information",
-      "id": "default-container__basicnode__extractMethodParameter",
-      "componentId": "default-container__basicnode",
-      "name": "basic_node__extractMethodParameter",
+      "id": "default_container__basic_node__extractmethodparameter",
+      "componentId": "default_container__basic_node",
+      "name": "extractMethodParameter",
       "type": "function",
       "documentation": {
         "summary": "Extract parameter information"
@@ -1988,9 +2032,9 @@
     },
     {
       "description": "Map ts-morph Scope to our visibility string",
-      "id": "default-container__basicnode__mapVisibility",
-      "componentId": "default-container__basicnode",
-      "name": "basic_node__mapVisibility",
+      "id": "default_container__basic_node__mapvisibility",
+      "componentId": "default_container__basic_node",
+      "name": "mapVisibility",
       "type": "function",
       "documentation": {
         "summary": "Map ts-morph Scope to our visibility string"
@@ -2009,9 +2053,9 @@
     },
     {
       "description": "Get JSDoc comments from a source file\nChecks both the first statement and module-level JSDoc",
-      "id": "default-container__basicnode__getFileJsDocs",
-      "componentId": "default-container__basicnode",
-      "name": "basic_node__getFileJsDocs",
+      "id": "default_container__basic_node__getfilejsdocs",
+      "componentId": "default_container__basic_node",
+      "name": "getFileJsDocs",
       "type": "function",
       "documentation": {
         "summary": "Get JSDoc comments from a source file\nChecks both the first statement and module-level JSDoc"
@@ -2033,9 +2077,9 @@
     },
     {
       "description": "Extract component information from file-level JSDoc\nChecks the first JSDoc comment in the file for",
-      "id": "default-container__basicnode__extractFileComponent",
-      "componentId": "default-container__basicnode",
-      "name": "basic_node__extractFileComponent",
+      "id": "default_container__basic_node__extractfilecomponent",
+      "componentId": "default_container__basic_node",
+      "name": "extractFileComponent",
       "type": "function",
       "documentation": {
         "summary": "Extract component information from file-level JSDoc\nChecks the first JSDoc comment in the file for"
@@ -2055,9 +2099,9 @@
     },
     {
       "description": "Extract actors from file-level JSDoc\nLooks for",
-      "id": "default-container__basicnode__extractFileActors",
-      "componentId": "default-container__basicnode",
-      "name": "basic_node__extractFileActors",
+      "id": "default_container__basic_node__extractfileactors",
+      "componentId": "default_container__basic_node",
+      "name": "extractFileActors",
       "type": "function",
       "documentation": {
         "summary": "Extract actors from file-level JSDoc\nLooks for"
@@ -2077,9 +2121,9 @@
     },
     {
       "description": "Extract relationships from file-level JSDoc\nLooks for",
-      "id": "default-container__basicnode__extractFileRelationships",
-      "componentId": "default-container__basicnode",
-      "name": "basic_node__extractFileRelationships",
+      "id": "default_container__basic_node__extractfilerelationships",
+      "componentId": "default_container__basic_node",
+      "name": "extractFileRelationships",
       "type": "function",
       "documentation": {
         "summary": "Extract relationships from file-level JSDoc\nLooks for"
@@ -2099,9 +2143,9 @@
     },
     {
       "description": "Extract component info from a JSDoc node",
-      "id": "default-container__basicnode__extractComponentFromJsDoc",
-      "componentId": "default-container__basicnode",
-      "name": "basic_node__extractComponentFromJsDoc",
+      "id": "default_container__basic_node__extractcomponentfromjsdoc",
+      "componentId": "default_container__basic_node",
+      "name": "extractComponentFromJsDoc",
       "type": "function",
       "documentation": {
         "summary": "Extract component info from a JSDoc node"
@@ -2121,9 +2165,9 @@
     },
     {
       "description": "Extract actors from a JSDoc node\nParses",
-      "id": "default-container__basicnode__extractActorsFromJsDoc",
-      "componentId": "default-container__basicnode",
-      "name": "basic_node__extractActorsFromJsDoc",
+      "id": "default_container__basic_node__extractactorsfromjsdoc",
+      "componentId": "default_container__basic_node",
+      "name": "extractActorsFromJsDoc",
       "type": "function",
       "documentation": {
         "summary": "Extract actors from a JSDoc node\nParses"
@@ -2143,9 +2187,9 @@
     },
     {
       "description": "Parse an",
-      "id": "default-container__basicnode__parseActorTag",
-      "componentId": "default-container__basicnode",
-      "name": "basic_node__parseActorTag",
+      "id": "default_container__basic_node__parseactortag",
+      "componentId": "default_container__basic_node",
+      "name": "parseActorTag",
       "type": "function",
       "documentation": {
         "summary": "Parse an"
@@ -2165,9 +2209,9 @@
     },
     {
       "description": "Extract relationships from a JSDoc node\nParses",
-      "id": "default-container__basicnode__extractRelationshipsFromJsDoc",
-      "componentId": "default-container__basicnode",
-      "name": "basic_node__extractRelationshipsFromJsDoc",
+      "id": "default_container__basic_node__extractrelationshipsfromjsdoc",
+      "componentId": "default_container__basic_node",
+      "name": "extractRelationshipsFromJsDoc",
       "type": "function",
       "documentation": {
         "summary": "Extract relationships from a JSDoc node\nParses"
@@ -2187,9 +2231,9 @@
     },
     {
       "description": "Parse a",
-      "id": "default-container__basicnode__parseUsesTag",
-      "componentId": "default-container__basicnode",
-      "name": "basic_node__parseUsesTag",
+      "id": "default_container__basic_node__parseusestag",
+      "componentId": "default_container__basic_node",
+      "name": "parseUsesTag",
       "type": "function",
       "documentation": {
         "summary": "Parse a"
@@ -2209,9 +2253,9 @@
     },
     {
       "description": "Extract component name from a JSDoc tag\nHandles formats like:\n-",
-      "id": "default-container__basicnode__extractComponentName",
-      "componentId": "default-container__basicnode",
-      "name": "basic_node__extractComponentName",
+      "id": "default_container__basic_node__extractcomponentname",
+      "componentId": "default_container__basic_node",
+      "name": "extractComponentName",
       "type": "function",
       "documentation": {
         "summary": "Extract component name from a JSDoc tag\nHandles formats like:\n-"
@@ -2231,9 +2275,9 @@
     },
     {
       "description": "Extract documentation information from JSDoc",
-      "id": "default-container__basicnode__extractDocumentation",
-      "componentId": "default-container__basicnode",
-      "name": "basic_node__extractDocumentation",
+      "id": "default_container__basic_node__extractdocumentation",
+      "componentId": "default_container__basic_node",
+      "name": "extractDocumentation",
       "type": "function",
       "documentation": {
         "summary": "Extract documentation information from JSDoc"
@@ -2253,9 +2297,9 @@
     },
     {
       "description": "Extract deprecation information from JSDoc",
-      "id": "default-container__basicnode__extractDeprecation",
-      "componentId": "default-container__basicnode",
-      "name": "basic_node__extractDeprecation",
+      "id": "default_container__basic_node__extractdeprecation",
+      "componentId": "default_container__basic_node",
+      "name": "extractDeprecation",
       "type": "function",
       "documentation": {
         "summary": "Extract deprecation information from JSDoc"
@@ -2275,9 +2319,9 @@
     },
     {
       "description": "Extract parameter descriptions from JSDoc",
-      "id": "default-container__basicnode__extractParameterDescriptions",
-      "componentId": "default-container__basicnode",
-      "name": "basic_node__extractParameterDescriptions",
+      "id": "default_container__basic_node__extractparameterdescriptions",
+      "componentId": "default_container__basic_node",
+      "name": "extractParameterDescriptions",
       "type": "function",
       "documentation": {
         "summary": "Extract parameter descriptions from JSDoc"
@@ -2297,9 +2341,9 @@
     },
     {
       "description": "Extract return description from JSDoc",
-      "id": "default-container__basicnode__extractReturnDescription",
-      "componentId": "default-container__basicnode",
-      "name": "basic_node__extractReturnDescription",
+      "id": "default_container__basic_node__extractreturndescription",
+      "componentId": "default_container__basic_node",
+      "name": "extractReturnDescription",
       "type": "function",
       "documentation": {
         "summary": "Extract return description from JSDoc"
@@ -2319,9 +2363,9 @@
     },
     {
       "description": "Extract parameter name from",
-      "id": "default-container__basicnode__extractParameterName",
-      "componentId": "default-container__basicnode",
-      "name": "basic_node__extractParameterName",
+      "id": "default_container__basic_node__extractparametername",
+      "componentId": "default_container__basic_node",
+      "name": "extractParameterName",
       "type": "function",
       "documentation": {
         "summary": "Extract parameter name from"
@@ -2342,9 +2386,9 @@
     },
     {
       "description": "Find source files matching include/exclude patterns",
-      "id": "default-container__basicnode__findSourceFiles",
-      "componentId": "default-container__basicnode",
-      "name": "basic_node__findSourceFiles",
+      "id": "default_container__basic_node__findsourcefiles",
+      "componentId": "default_container__basic_node",
+      "name": "findSourceFiles",
       "type": "function",
       "documentation": {
         "summary": "Find source files matching include/exclude patterns"
@@ -2364,9 +2408,9 @@
     },
     {
       "description": "Find package.json files within the search paths",
-      "id": "default-container__basicnode__findPackageJsonFiles",
-      "componentId": "default-container__basicnode",
-      "name": "basic_node__findPackageJsonFiles",
+      "id": "default_container__basic_node__findpackagejsonfiles",
+      "componentId": "default_container__basic_node",
+      "name": "findPackageJsonFiles",
       "type": "function",
       "documentation": {
         "summary": "Find package.json files within the search paths"
@@ -2386,9 +2430,9 @@
     },
     {
       "description": "Read and parse package.json file",
-      "id": "default-container__basicnode__readPackageInfo",
-      "componentId": "default-container__basicnode",
-      "name": "basic_node__readPackageInfo",
+      "id": "default_container__basic_node__readpackageinfo",
+      "componentId": "default_container__basic_node",
+      "name": "readPackageInfo",
       "type": "function",
       "documentation": {
         "summary": "Read and parse package.json file"
@@ -2408,9 +2452,9 @@
     },
     {
       "description": "Find the nearest parent package.json for a given file",
-      "id": "default-container__basicnode__findNearestPackage",
-      "componentId": "default-container__basicnode",
-      "name": "basic_node__findNearestPackage",
+      "id": "default_container__basic_node__findnearestpackage",
+      "componentId": "default_container__basic_node",
+      "name": "findNearestPackage",
       "type": "function",
       "documentation": {
         "summary": "Find the nearest parent package.json for a given file"
@@ -2435,9 +2479,9 @@
     },
     {
       "description": "Parse and extract information from source files",
-      "id": "default-container__basicnode__parseFiles",
-      "componentId": "default-container__basicnode",
-      "name": "basic_node__parseFiles",
+      "id": "default_container__basic_node__parsefiles",
+      "componentId": "default_container__basic_node",
+      "name": "parseFiles",
       "type": "function",
       "documentation": {
         "summary": "Parse and extract information from source files"
@@ -2457,9 +2501,9 @@
     },
     {
       "description": "Extract all function declarations from a source file",
-      "id": "default-container__basicnode__extractFunctions",
-      "componentId": "default-container__basicnode",
-      "name": "basic_node__extractFunctions",
+      "id": "default_container__basic_node__extractfunctions",
+      "componentId": "default_container__basic_node",
+      "name": "extractFunctions",
       "type": "function",
       "documentation": {
         "summary": "Extract all function declarations from a source file"
@@ -2479,9 +2523,9 @@
     },
     {
       "description": "Extract information from a single function declaration",
-      "id": "default-container__basicnode__extractFunction",
-      "componentId": "default-container__basicnode",
-      "name": "basic_node__extractFunction",
+      "id": "default_container__basic_node__extractfunction",
+      "componentId": "default_container__basic_node",
+      "name": "extractFunction",
       "type": "function",
       "documentation": {
         "summary": "Extract information from a single function declaration"
@@ -2506,9 +2550,9 @@
     },
     {
       "description": "Extract parameter information",
-      "id": "default-container__basicnode__extractFunctionParameter",
-      "componentId": "default-container__basicnode",
-      "name": "basic_node__extractFunctionParameter",
+      "id": "default_container__basic_node__extractfunctionparameter",
+      "componentId": "default_container__basic_node",
+      "name": "extractFunctionParameter",
       "type": "function",
       "documentation": {
         "summary": "Extract parameter information"
@@ -2532,9 +2576,9 @@
     },
     {
       "description": "Extract arrow functions assigned to const/let/var\nExamples:\n  const handleClick = () => {}\n  export const createUser = async (data) => {}",
-      "id": "default-container__basicnode__extractArrowFunctions",
-      "componentId": "default-container__basicnode",
-      "name": "basic_node__extractArrowFunctions",
+      "id": "default_container__basic_node__extractarrowfunctions",
+      "componentId": "default_container__basic_node",
+      "name": "extractArrowFunctions",
       "type": "function",
       "documentation": {
         "summary": "Extract arrow functions assigned to const/let/var\nExamples:\n  const handleClick = () => {}\n  export const createUser = async (data) => {}"
@@ -2554,9 +2598,9 @@
     },
     {
       "description": "Extract all import declarations from a source file",
-      "id": "default-container__basicnode__extractImports",
-      "componentId": "default-container__basicnode",
-      "name": "basic_node__extractImports",
+      "id": "default_container__basic_node__extractimports",
+      "componentId": "default_container__basic_node",
+      "name": "extractImports",
       "type": "function",
       "documentation": {
         "summary": "Extract all import declarations from a source file"
@@ -2576,9 +2620,9 @@
     },
     {
       "description": "Map file extractions to ArchletteIR",
-      "id": "default-container__basicnode__mapToIR",
-      "componentId": "default-container__basicnode",
-      "name": "basic_node__mapToIR",
+      "id": "default_container__basic_node__maptoir",
+      "componentId": "default_container__basic_node",
+      "name": "mapToIR",
       "type": "function",
       "documentation": {
         "summary": "Map file extractions to ArchletteIR"
@@ -2604,13 +2648,13 @@
       "visibility": "public",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts",
-      "lineNumber": 34
+      "lineNumber": 35
     },
     {
       "description": "Deduplicate relationships by source+destination+stereotype combination\nFirst occurrence wins - preserves description from first relationship\nThis allows multiple relationships between the same elements with different stereotypes",
-      "id": "default-container__basicnode__deduplicateRelationships",
-      "componentId": "default-container__basicnode",
-      "name": "basic_node__deduplicateRelationships",
+      "id": "default_container__basic_node__deduplicaterelationships",
+      "componentId": "default_container__basic_node",
+      "name": "deduplicateRelationships",
       "type": "function",
       "documentation": {
         "summary": "Deduplicate relationships by source+destination+stereotype combination\nFirst occurrence wins - preserves description from first relationship\nThis allows multiple relationships between the same elements with different stereotypes"
@@ -2626,13 +2670,13 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts",
-      "lineNumber": 358
+      "lineNumber": 354
     },
     {
       "description": "Map a function to a CodeItem",
-      "id": "default-container__basicnode__mapFunction",
-      "componentId": "default-container__basicnode",
-      "name": "basic_node__mapFunction",
+      "id": "default_container__basic_node__mapfunction",
+      "componentId": "default_container__basic_node",
+      "name": "mapFunction",
       "type": "function",
       "documentation": {
         "summary": "Map a function to a CodeItem"
@@ -2658,13 +2702,13 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts",
-      "lineNumber": 372
+      "lineNumber": 368
     },
     {
       "description": "Map a class to a CodeItem",
-      "id": "default-container__basicnode__mapClass",
-      "componentId": "default-container__basicnode",
-      "name": "basic_node__mapClass",
+      "id": "default_container__basic_node__mapclass",
+      "componentId": "default_container__basic_node",
+      "name": "mapClass",
       "type": "function",
       "documentation": {
         "summary": "Map a class to a CodeItem"
@@ -2690,13 +2734,13 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts",
-      "lineNumber": 400
+      "lineNumber": 396
     },
     {
       "description": "Map a class method to a CodeItem",
-      "id": "default-container__basicnode__mapMethod",
-      "componentId": "default-container__basicnode",
-      "name": "basic_node__mapMethod",
+      "id": "default_container__basic_node__mapmethod",
+      "componentId": "default_container__basic_node",
+      "name": "mapMethod",
       "type": "function",
       "documentation": {
         "summary": "Map a class method to a CodeItem"
@@ -2727,13 +2771,13 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts",
-      "lineNumber": 429
+      "lineNumber": 425
     },
     {
       "description": "Map imports to relationships",
-      "id": "default-container__basicnode__mapImportRelationships",
-      "componentId": "default-container__basicnode",
-      "name": "basic_node__mapImportRelationships",
+      "id": "default_container__basic_node__mapimportrelationships",
+      "componentId": "default_container__basic_node",
+      "name": "mapImportRelationships",
       "type": "function",
       "documentation": {
         "summary": "Map imports to relationships"
@@ -2754,13 +2798,13 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts",
-      "lineNumber": 463
+      "lineNumber": 459
     },
     {
       "description": "Generate a unique ID for a code element\nFormat: filePath:symbolName",
-      "id": "default-container__basicnode__generateId",
-      "componentId": "default-container__basicnode",
-      "name": "basic_node__generateId",
+      "id": "default_container__basic_node__generateid",
+      "componentId": "default_container__basic_node",
+      "name": "generateId",
       "type": "function",
       "documentation": {
         "summary": "Generate a unique ID for a code element\nFormat: filePath:symbolName"
@@ -2781,13 +2825,13 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts",
-      "lineNumber": 486
+      "lineNumber": 482
     },
     {
       "description": "Get default system info from package.json if available",
-      "id": "default-container__basicnode__getDefaultSystem",
-      "componentId": "default-container__basicnode",
-      "name": "basic_node__getDefaultSystem",
+      "id": "default_container__basic_node__getdefaultsystem",
+      "componentId": "default_container__basic_node",
+      "name": "getDefaultSystem",
       "type": "function",
       "documentation": {
         "summary": "Get default system info from package.json if available"
@@ -2797,13 +2841,13 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts",
-      "lineNumber": 495
+      "lineNumber": 492
     },
     {
       "description": "Extract type aliases from a source file\nExamples:\n  type UserRole = 'admin' | 'user' | 'guest'\n  export type ApiResponse<T> = { data: T; status: number }",
-      "id": "default-container__basicnode__extractTypeAliases",
-      "componentId": "default-container__basicnode",
-      "name": "basic_node__extractTypeAliases",
+      "id": "default_container__basic_node__extracttypealiases",
+      "componentId": "default_container__basic_node",
+      "name": "extractTypeAliases",
       "type": "function",
       "documentation": {
         "summary": "Extract type aliases from a source file\nExamples:\n  type UserRole = 'admin' | 'user' | 'guest'\n  export type ApiResponse<T> = { data: T; status: number }"
@@ -2823,9 +2867,9 @@
     },
     {
       "description": "Extract interfaces from a source file\nExamples:\n  interface User { id: string; name: string }\n  export interface ApiClient { get<T>(url: string): Promise<T> }",
-      "id": "default-container__basicnode__extractInterfaces",
-      "componentId": "default-container__basicnode",
-      "name": "basic_node__extractInterfaces",
+      "id": "default_container__basic_node__extractinterfaces",
+      "componentId": "default_container__basic_node",
+      "name": "extractInterfaces",
       "type": "function",
       "documentation": {
         "summary": "Extract interfaces from a source file\nExamples:\n  interface User { id: string; name: string }\n  export interface ApiClient { get<T>(url: string): Promise<T> }"
@@ -2845,9 +2889,9 @@
     },
     {
       "description": "Find source files matching include/exclude patterns",
-      "id": "default-container__basic__findSourceFiles",
-      "componentId": "default-container__basic",
-      "name": "basic__findSourceFiles",
+      "id": "default_container__basic__findsourcefiles",
+      "componentId": "default_container__basic",
+      "name": "findSourceFiles",
       "type": "function",
       "documentation": {
         "summary": "Find source files matching include/exclude patterns"
@@ -2867,9 +2911,9 @@
     },
     {
       "description": "Find pyproject.toml files within the search paths",
-      "id": "default-container__basic__findPyProjectFiles",
-      "componentId": "default-container__basic",
-      "name": "basic__findPyProjectFiles",
+      "id": "default_container__basic__findpyprojectfiles",
+      "componentId": "default_container__basic",
+      "name": "findPyProjectFiles",
       "type": "function",
       "documentation": {
         "summary": "Find pyproject.toml files within the search paths"
@@ -2889,9 +2933,9 @@
     },
     {
       "description": "Read and parse pyproject.toml file",
-      "id": "default-container__basic__readPyProjectInfo",
-      "componentId": "default-container__basic",
-      "name": "basic__readPyProjectInfo",
+      "id": "default_container__basic__readpyprojectinfo",
+      "componentId": "default_container__basic",
+      "name": "readPyProjectInfo",
       "type": "function",
       "documentation": {
         "summary": "Read and parse pyproject.toml file"
@@ -2911,9 +2955,9 @@
     },
     {
       "description": "Simple TOML parser for pyproject.toml\nOnly handles the subset we need: [project] and [tool.poetry] sections",
-      "id": "default-container__basic__parsePyProjectToml",
-      "componentId": "default-container__basic",
-      "name": "basic__parsePyProjectToml",
+      "id": "default_container__basic__parsepyprojecttoml",
+      "componentId": "default_container__basic",
+      "name": "parsePyProjectToml",
       "type": "function",
       "documentation": {
         "summary": "Simple TOML parser for pyproject.toml\nOnly handles the subset we need: [project] and [tool.poetry] sections"
@@ -2933,9 +2977,9 @@
     },
     {
       "description": "Find the nearest parent pyproject.toml for a given file",
-      "id": "default-container__basic__findNearestPyProject",
-      "componentId": "default-container__basic",
-      "name": "basic__findNearestPyProject",
+      "id": "default_container__basic__findnearestpyproject",
+      "componentId": "default_container__basic",
+      "name": "findNearestPyProject",
       "type": "function",
       "documentation": {
         "summary": "Find the nearest parent pyproject.toml for a given file"
@@ -2960,9 +3004,9 @@
     },
     {
       "description": "Parse Python files using Python AST parser script",
-      "id": "default-container__basicpython__parseFiles",
-      "componentId": "default-container__basicpython",
-      "name": "basic_python__parseFiles",
+      "id": "default_container__basic_python__parsefiles",
+      "componentId": "default_container__basic_python",
+      "name": "parseFiles",
       "type": "function",
       "documentation": {
         "summary": "Parse Python files using Python AST parser script"
@@ -2988,9 +3032,9 @@
     },
     {
       "description": "Run Python parser script and return JSON output",
-      "id": "default-container__basicpython__runPythonParser",
-      "componentId": "default-container__basicpython",
-      "name": "basic_python__runPythonParser",
+      "id": "default_container__basic_python__runpythonparser",
+      "componentId": "default_container__basic_python",
+      "name": "runPythonParser",
       "type": "function",
       "documentation": {
         "summary": "Run Python parser script and return JSON output"
@@ -3020,9 +3064,9 @@
     },
     {
       "description": "Map Python parser output to FileExtraction format",
-      "id": "default-container__basicpython__mapToFileExtraction",
-      "componentId": "default-container__basicpython",
-      "name": "basic_python__mapToFileExtraction",
+      "id": "default_container__basic_python__maptofileextraction",
+      "componentId": "default_container__basic_python",
+      "name": "mapToFileExtraction",
       "type": "function",
       "documentation": {
         "summary": "Map Python parser output to FileExtraction format"
@@ -3042,9 +3086,9 @@
     },
     {
       "description": "Map Python class to ExtractedClass",
-      "id": "default-container__basicpython__mapClass",
-      "componentId": "default-container__basicpython",
-      "name": "basic_python__mapClass",
+      "id": "default_container__basic_python__mapclass",
+      "componentId": "default_container__basic_python",
+      "name": "mapClass",
       "type": "function",
       "documentation": {
         "summary": "Map Python class to ExtractedClass"
@@ -3069,9 +3113,9 @@
     },
     {
       "description": "Map Python method to ExtractedMethod",
-      "id": "default-container__basicpython__mapMethod",
-      "componentId": "default-container__basicpython",
-      "name": "basic_python__mapMethod",
+      "id": "default_container__basic_python__mapmethod",
+      "componentId": "default_container__basic_python",
+      "name": "mapMethod",
       "type": "function",
       "documentation": {
         "summary": "Map Python method to ExtractedMethod"
@@ -3096,9 +3140,9 @@
     },
     {
       "description": "Map Python property to ExtractedProperty",
-      "id": "default-container__basicpython__mapProperty",
-      "componentId": "default-container__basicpython",
-      "name": "basic_python__mapProperty",
+      "id": "default_container__basic_python__mapproperty",
+      "componentId": "default_container__basic_python",
+      "name": "mapProperty",
       "type": "function",
       "documentation": {
         "summary": "Map Python property to ExtractedProperty"
@@ -3123,9 +3167,9 @@
     },
     {
       "description": "Map Python function to ExtractedFunction",
-      "id": "default-container__basicpython__mapFunction",
-      "componentId": "default-container__basicpython",
-      "name": "basic_python__mapFunction",
+      "id": "default_container__basic_python__mapfunction",
+      "componentId": "default_container__basic_python",
+      "name": "mapFunction",
       "type": "function",
       "documentation": {
         "summary": "Map Python function to ExtractedFunction"
@@ -3150,9 +3194,9 @@
     },
     {
       "description": "Map Python type definition to ExtractedType",
-      "id": "default-container__basicpython__mapType",
-      "componentId": "default-container__basicpython",
-      "name": "basic_python__mapType",
+      "id": "default_container__basic_python__maptype",
+      "componentId": "default_container__basic_python",
+      "name": "mapType",
       "type": "function",
       "documentation": {
         "summary": "Map Python type definition to ExtractedType"
@@ -3177,9 +3221,9 @@
     },
     {
       "description": "Map Python parameter to ParameterInfo",
-      "id": "default-container__basicpython__mapParameter",
-      "componentId": "default-container__basicpython",
-      "name": "basic_python__mapParameter",
+      "id": "default_container__basic_python__mapparameter",
+      "componentId": "default_container__basic_python",
+      "name": "mapParameter",
       "type": "function",
       "documentation": {
         "summary": "Map Python parameter to ParameterInfo"
@@ -3204,9 +3248,9 @@
     },
     {
       "description": "Parse Python docstring into DocInfo\nEnhanced in Phase 2 to use parsed Google/NumPy/Sphinx docstrings",
-      "id": "default-container__basicpython__parseDocstring",
-      "componentId": "default-container__basicpython",
-      "name": "basic_python__parseDocstring",
+      "id": "default_container__basic_python__parsedocstring",
+      "componentId": "default_container__basic_python",
+      "name": "parseDocstring",
       "type": "function",
       "documentation": {
         "summary": "Parse Python docstring into DocInfo\nEnhanced in Phase 2 to use parsed Google/NumPy/Sphinx docstrings"
@@ -3231,9 +3275,9 @@
     },
     {
       "description": "Extract deprecation info from docstring",
-      "id": "default-container__basicpython__extractDeprecation",
-      "componentId": "default-container__basicpython",
-      "name": "basic_python__extractDeprecation",
+      "id": "default_container__basic_python__extractdeprecation",
+      "componentId": "default_container__basic_python",
+      "name": "extractDeprecation",
       "type": "function",
       "documentation": {
         "summary": "Extract deprecation info from docstring"
@@ -3253,9 +3297,9 @@
     },
     {
       "description": "Extract return description from docstring",
-      "id": "default-container__basicpython__extractReturnDescription",
-      "componentId": "default-container__basicpython",
-      "name": "basic_python__extractReturnDescription",
+      "id": "default_container__basic_python__extractreturndescription",
+      "componentId": "default_container__basic_python",
+      "name": "extractReturnDescription",
       "type": "function",
       "documentation": {
         "summary": "Extract return description from docstring"
@@ -3275,9 +3319,9 @@
     },
     {
       "description": "Determine visibility from Python name convention\n- __name: private\n- _name: protected\n- name: public",
-      "id": "default-container__basicpython__getVisibility",
-      "componentId": "default-container__basicpython",
-      "name": "basic_python__getVisibility",
+      "id": "default_container__basic_python__getvisibility",
+      "componentId": "default_container__basic_python",
+      "name": "getVisibility",
       "type": "function",
       "documentation": {
         "summary": "Determine visibility from Python name convention\n- __name: private\n- _name: protected\n- name: public"
@@ -3297,9 +3341,9 @@
     },
     {
       "description": "Map file extractions to ArchletteIR",
-      "id": "default-container__basic__mapToIR",
-      "componentId": "default-container__basic",
-      "name": "basic__mapToIR",
+      "id": "default_container__basic__maptoir",
+      "componentId": "default_container__basic",
+      "name": "mapToIR",
       "type": "function",
       "documentation": {
         "summary": "Map file extractions to ArchletteIR"
@@ -3325,13 +3369,13 @@
       "visibility": "public",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts",
-      "lineNumber": 38
+      "lineNumber": 43
     },
     {
       "description": "Map ActorInfo to Actor",
-      "id": "default-container__basic__mapActorToIR",
-      "componentId": "default-container__basic",
-      "name": "basic__mapActorToIR",
+      "id": "default_container__basic__mapactortoir",
+      "componentId": "default_container__basic",
+      "name": "mapActorToIR",
       "type": "function",
       "documentation": {
         "summary": "Map ActorInfo to Actor"
@@ -3352,13 +3396,13 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts",
-      "lineNumber": 251
+      "lineNumber": 263
     },
     {
       "description": "Map relationships to Relationship[]\nCreates bidirectional actor relationships",
-      "id": "default-container__basic__mapRelationshipsToIR",
-      "componentId": "default-container__basic",
-      "name": "basic__mapRelationshipsToIR",
+      "id": "default_container__basic__maprelationshipstoir",
+      "componentId": "default_container__basic",
+      "name": "mapRelationshipsToIR",
       "type": "function",
       "documentation": {
         "summary": "Map relationships to Relationship[]\nCreates bidirectional actor relationships"
@@ -3389,13 +3433,13 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts",
-      "lineNumber": 265
+      "lineNumber": 277
     },
     {
       "description": "Deduplicate relationships by source+destination",
-      "id": "default-container__basic__deduplicateRelationships",
-      "componentId": "default-container__basic",
-      "name": "basic__deduplicateRelationships",
+      "id": "default_container__basic__deduplicaterelationships",
+      "componentId": "default_container__basic",
+      "name": "deduplicateRelationships",
       "type": "function",
       "documentation": {
         "summary": "Deduplicate relationships by source+destination"
@@ -3411,13 +3455,13 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts",
-      "lineNumber": 312
+      "lineNumber": 324
     },
     {
       "description": "Map ExtractedClass to CodeItem",
-      "id": "default-container__basic__mapClassToCodeItem",
-      "componentId": "default-container__basic",
-      "name": "basic__mapClassToCodeItem",
+      "id": "default_container__basic__mapclasstocodeitem",
+      "componentId": "default_container__basic",
+      "name": "mapClassToCodeItem",
       "type": "function",
       "documentation": {
         "summary": "Map ExtractedClass to CodeItem"
@@ -3438,13 +3482,13 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts",
-      "lineNumber": 327
+      "lineNumber": 339
     },
     {
       "description": "Map ExtractedMethod to CodeItem",
-      "id": "default-container__basic__mapMethodToCodeItem",
-      "componentId": "default-container__basic",
-      "name": "basic__mapMethodToCodeItem",
+      "id": "default_container__basic__mapmethodtocodeitem",
+      "componentId": "default_container__basic",
+      "name": "mapMethodToCodeItem",
       "type": "function",
       "documentation": {
         "summary": "Map ExtractedMethod to CodeItem"
@@ -3470,13 +3514,13 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts",
-      "lineNumber": 352
+      "lineNumber": 364
     },
     {
       "description": "Map ExtractedFunction to CodeItem",
-      "id": "default-container__basic__mapFunctionToCodeItem",
-      "componentId": "default-container__basic",
-      "name": "basic__mapFunctionToCodeItem",
+      "id": "default_container__basic__mapfunctiontocodeitem",
+      "componentId": "default_container__basic",
+      "name": "mapFunctionToCodeItem",
       "type": "function",
       "documentation": {
         "summary": "Map ExtractedFunction to CodeItem"
@@ -3497,13 +3541,13 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts",
-      "lineNumber": 387
+      "lineNumber": 399
     },
     {
       "description": "Map ExtractedType to CodeItem",
-      "id": "default-container__basic__mapTypeToCodeItem",
-      "componentId": "default-container__basic",
-      "name": "basic__mapTypeToCodeItem",
+      "id": "default_container__basic__maptypetocodeitem",
+      "componentId": "default_container__basic",
+      "name": "mapTypeToCodeItem",
       "type": "function",
       "documentation": {
         "summary": "Map ExtractedType to CodeItem"
@@ -3524,13 +3568,13 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts",
-      "lineNumber": 418
+      "lineNumber": 430
     },
     {
       "description": "Find wrangler.toml files based on include/exclude patterns",
-      "id": "default-container__basicwrangler__findWranglerFiles",
-      "componentId": "default-container__basicwrangler",
-      "name": "basic_wrangler__findWranglerFiles",
+      "id": "default_container__basic_wrangler__findwranglerfiles",
+      "componentId": "default_container__basic_wrangler",
+      "name": "findWranglerFiles",
       "type": "function",
       "documentation": {
         "summary": "Find wrangler.toml files based on include/exclude patterns"
@@ -3552,9 +3596,9 @@
     },
     {
       "description": "Map wrangler configurations to ArchletteIR\n\nThis creates:\n- Containers: One per wrangler.toml file\n- Deployments: One per environment (production, dev, preview, etc.)\n- Container Instances: One per container per environment\n- Container Relationships: Logical dependencies from service bindings\n- Deployment Relationships: Physical instance-to-instance connections",
-      "id": "default-container__basicwrangler__mapToIR",
-      "componentId": "default-container__basicwrangler",
-      "name": "basic_wrangler__mapToIR",
+      "id": "default_container__basic_wrangler__maptoir",
+      "componentId": "default_container__basic_wrangler",
+      "name": "mapToIR",
       "type": "function",
       "documentation": {
         "summary": "Map wrangler configurations to ArchletteIR\n\nThis creates:\n- Containers: One per wrangler.toml file\n- Deployments: One per environment (production, dev, preview, etc.)\n- Container Instances: One per container per environment\n- Container Relationships: Logical dependencies from service bindings\n- Deployment Relationships: Physical instance-to-instance connections"
@@ -3582,9 +3626,9 @@
     },
     {
       "description": "Extract containers from wrangler configurations\n\nCreates one container per wrangler.toml file.\nEach container represents a Cloudflare Worker.",
-      "id": "default-container__basicwrangler__extractContainers",
-      "componentId": "default-container__basicwrangler",
-      "name": "basic_wrangler__extractContainers",
+      "id": "default_container__basic_wrangler__extractcontainers",
+      "componentId": "default_container__basic_wrangler",
+      "name": "extractContainers",
       "type": "function",
       "documentation": {
         "summary": "Extract containers from wrangler configurations\n\nCreates one container per wrangler.toml file.\nEach container represents a Cloudflare Worker."
@@ -3606,9 +3650,9 @@
     },
     {
       "description": "Build a descriptive summary for a container",
-      "id": "default-container__basicwrangler__buildContainerDescription",
-      "componentId": "default-container__basicwrangler",
-      "name": "basic_wrangler__buildContainerDescription",
+      "id": "default_container__basic_wrangler__buildcontainerdescription",
+      "componentId": "default_container__basic_wrangler",
+      "name": "buildContainerDescription",
       "type": "function",
       "documentation": {
         "summary": "Build a descriptive summary for a container"
@@ -3630,9 +3674,9 @@
     },
     {
       "description": "Extract deployments and container instances\n\nCreates:\n- One deployment per environment\n- Container instances for each container in each environment",
-      "id": "default-container__basicwrangler__extractDeploymentsAndInstances",
-      "componentId": "default-container__basicwrangler",
-      "name": "basic_wrangler__extractDeploymentsAndInstances",
+      "id": "default_container__basic_wrangler__extractdeploymentsandinstances",
+      "componentId": "default_container__basic_wrangler",
+      "name": "extractDeploymentsAndInstances",
       "type": "function",
       "documentation": {
         "summary": "Extract deployments and container instances\n\nCreates:\n- One deployment per environment\n- Container instances for each container in each environment"
@@ -3660,9 +3704,9 @@
     },
     {
       "description": "Extract container relationships from service bindings\n\nCreates logical dependencies between containers based on service bindings.\nDeduplicates relationships across all environments.",
-      "id": "default-container__basicwrangler__extractContainerRelationships",
-      "componentId": "default-container__basicwrangler",
-      "name": "basic_wrangler__extractContainerRelationships",
+      "id": "default_container__basic_wrangler__extractcontainerrelationships",
+      "componentId": "default_container__basic_wrangler",
+      "name": "extractContainerRelationships",
       "type": "function",
       "documentation": {
         "summary": "Extract container relationships from service bindings\n\nCreates logical dependencies between containers based on service bindings.\nDeduplicates relationships across all environments."
@@ -3684,9 +3728,9 @@
     },
     {
       "description": "Extract deployment relationships from container instances\n\nCreates physical instance-to-instance relationships based on service bindings.\nEach relationship represents an actual runtime dependency in a specific environment.",
-      "id": "default-container__basicwrangler__extractDeploymentRelationships",
-      "componentId": "default-container__basicwrangler",
-      "name": "basic_wrangler__extractDeploymentRelationships",
+      "id": "default_container__basic_wrangler__extractdeploymentrelationships",
+      "componentId": "default_container__basic_wrangler",
+      "name": "extractDeploymentRelationships",
       "type": "function",
       "documentation": {
         "summary": "Extract deployment relationships from container instances\n\nCreates physical instance-to-instance relationships based on service bindings.\nEach relationship represents an actual runtime dependency in a specific environment."
@@ -3708,9 +3752,9 @@
     },
     {
       "description": "Parse a wrangler.toml file",
-      "id": "default-container__basicwrangler__parseWranglerFile",
-      "componentId": "default-container__basicwrangler",
-      "name": "basic_wrangler__parseWranglerFile",
+      "id": "default_container__basic_wrangler__parsewranglerfile",
+      "componentId": "default_container__basic_wrangler",
+      "name": "parseWranglerFile",
       "type": "function",
       "documentation": {
         "summary": "Parse a wrangler.toml file"
@@ -3732,9 +3776,9 @@
     },
     {
       "description": "Normalize service bindings from various formats\n\nWrangler supports multiple binding formats:\n- [[services]] array (TOML array of tables)\n- services = [{ binding = \"...\", service = \"...\" }]",
-      "id": "default-container__basicwrangler__normalizeServiceBindings",
-      "componentId": "default-container__basicwrangler",
-      "name": "basic_wrangler__normalizeServiceBindings",
+      "id": "default_container__basic_wrangler__normalizeservicebindings",
+      "componentId": "default_container__basic_wrangler",
+      "name": "normalizeServiceBindings",
       "type": "function",
       "documentation": {
         "summary": "Normalize service bindings from various formats\n\nWrangler supports multiple binding formats:\n- [[services]] array (TOML array of tables)\n- services = [{ binding = \"...\", service = \"...\" }]"
@@ -3754,9 +3798,9 @@
     },
     {
       "description": "Get all environments from a wrangler config\n\nReturns a list of environment names, including:\n- \"production\" (from root-level config if it has deployable content)\n- All keys from env.* sections",
-      "id": "default-container__basicwrangler__getEnvironments",
-      "componentId": "default-container__basicwrangler",
-      "name": "basic_wrangler__getEnvironments",
+      "id": "default_container__basic_wrangler__getenvironments",
+      "componentId": "default_container__basic_wrangler",
+      "name": "getEnvironments",
       "type": "function",
       "documentation": {
         "summary": "Get all environments from a wrangler config\n\nReturns a list of environment names, including:\n- \"production\" (from root-level config if it has deployable content)\n- All keys from env.* sections"
@@ -3776,9 +3820,9 @@
     },
     {
       "description": "Get configuration for a specific environment\n\nMerges root-level config with environment-specific overrides.\nEnvironment config takes precedence.",
-      "id": "default-container__basicwrangler__getEnvironmentConfig",
-      "componentId": "default-container__basicwrangler",
-      "name": "basic_wrangler__getEnvironmentConfig",
+      "id": "default_container__basic_wrangler__getenvironmentconfig",
+      "componentId": "default_container__basic_wrangler",
+      "name": "getEnvironmentConfig",
       "type": "function",
       "documentation": {
         "summary": "Get configuration for a specific environment\n\nMerges root-level config with environment-specific overrides.\nEnvironment config takes precedence."
@@ -3811,110 +3855,110 @@
     {
       "description": "Analyzes source code to extract architecture components",
       "tags": [],
-      "source": "default-container__cli",
-      "destination": "default-container__extractors"
+      "source": "default_container__cli",
+      "destination": "default_container__extractors"
     },
     {
       "description": "Validates and enriches intermediate representation",
       "tags": [],
-      "source": "default-container__cli",
-      "destination": "default-container__validators"
+      "source": "default_container__cli",
+      "destination": "default_container__validators"
     },
     {
       "description": "Transforms IR into DSL formats",
       "tags": [],
-      "source": "default-container__cli",
-      "destination": "default-container__generators"
+      "source": "default_container__cli",
+      "destination": "default_container__generators"
     },
     {
       "description": "Converts DSL to visual diagrams",
       "tags": [],
-      "source": "default-container__cli",
-      "destination": "default-container__renderers"
+      "source": "default_container__cli",
+      "destination": "default_container__renderers"
     },
     {
       "description": "Provides shared utilities, types, and module loading",
       "tags": [],
-      "source": "default-container__cli",
-      "destination": "default-container__core"
+      "source": "default_container__cli",
+      "destination": "default_container__core"
     },
     {
       "description": "Provides IR types, validation schemas, and module loading",
       "tags": [],
-      "source": "default-container__extractors",
-      "destination": "default-container__core"
+      "source": "default_container__extractors",
+      "destination": "default_container__core"
     },
     {
       "description": "composed of node extractor",
       "tags": [],
-      "source": "default-container__extractors",
-      "destination": "default-container__basicnode"
+      "source": "default_container__extractors",
+      "destination": "default_container__basic_node"
     },
     {
       "description": "composed of python extractor",
       "tags": [],
-      "source": "default-container__extractors",
-      "destination": "default-container__basicpython"
+      "source": "default_container__extractors",
+      "destination": "default_container__basic_python"
     },
     {
       "description": "composed of cloudflare wrangler extractor",
       "tags": [],
-      "source": "default-container__extractors",
-      "destination": "default-container__basicwrangler"
+      "source": "default_container__extractors",
+      "destination": "default_container__basic_wrangler"
     },
     {
       "description": "Provides IR types, validation schemas, and module loading",
       "tags": [],
-      "source": "default-container__validators",
-      "destination": "default-container__core"
+      "source": "default_container__validators",
+      "destination": "default_container__core"
     },
     {
       "description": "Provides IR types, path resolution, and module loading",
       "tags": [],
-      "source": "default-container__generators",
-      "destination": "default-container__core"
+      "source": "default_container__generators",
+      "destination": "default_container__core"
     },
     {
       "description": "Provides types, module loading, and tool management",
       "tags": [],
-      "source": "default-container__renderers",
-      "destination": "default-container__core"
+      "source": "default_container__renderers",
+      "destination": "default_container__core"
     },
     {
       "description": "Provides types, module loading, and path resolution",
       "tags": [],
-      "source": "default-container__docs",
-      "destination": "default-container__core"
+      "source": "default_container__docs",
+      "destination": "default_container__core"
     },
     {
       "description": "Uses FileSystem for external system integration",
       "tags": [],
-      "source": "default-container__core",
+      "source": "default_container__core",
       "destination": "filesystem"
     },
     {
       "description": "Uses Github Structurizr Repo for external system integration",
       "tags": [],
-      "source": "default-container__core",
-      "destination": "github-structurizr-repo"
+      "source": "default_container__core",
+      "destination": "github_structurizr_repo"
     },
     {
       "description": "Uses Github PlantUML Repo for external system integration",
       "tags": [],
-      "source": "default-container__core",
-      "destination": "github-plantuml-repo"
+      "source": "default_container__core",
+      "destination": "github_plantuml_repo"
     },
     {
       "description": "Uses Local System's unzip utility for external system integration",
       "tags": [],
-      "source": "default-container__core",
-      "destination": "local-systems-unzip-utility"
+      "source": "default_container__core",
+      "destination": "local_system_s_unzip_utility"
     },
     {
       "description": "Uses File System for external system integration",
       "tags": [],
-      "source": "default-container__core",
-      "destination": "file-system"
+      "source": "default_container__core",
+      "destination": "file_system"
     }
   ],
   "codeRelationships": [
@@ -4282,12 +4326,6 @@
       "description": "imports isAbsolute",
       "source": "C:/Users/chris/git/archlette/src/core/path-security.ts",
       "destination": "node:path:isAbsolute",
-      "stereotype": "import"
-    },
-    {
-      "description": "imports sep",
-      "source": "C:/Users/chris/git/archlette/src/core/path-security.ts",
-      "destination": "node:path:sep",
       "stereotype": "import"
     },
     {
@@ -4675,6 +4713,12 @@
       "stereotype": "import"
     },
     {
+      "description": "imports resolveUserContentPath",
+      "source": "C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts",
+      "destination": "../../core/path-security.js:resolveUserContentPath",
+      "stereotype": "import"
+    },
+    {
       "description": "imports * as nunjucks",
       "source": "C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts",
       "destination": "nunjucks:* as nunjucks",
@@ -4699,33 +4743,9 @@
       "stereotype": "import"
     },
     {
-      "description": "imports resolve",
-      "source": "C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts",
-      "destination": "node:path:resolve",
-      "stereotype": "import"
-    },
-    {
-      "description": "imports relative",
-      "source": "C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts",
-      "destination": "node:path:relative",
-      "stereotype": "import"
-    },
-    {
-      "description": "imports isAbsolute",
-      "source": "C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts",
-      "destination": "node:path:isAbsolute",
-      "stereotype": "import"
-    },
-    {
       "description": "imports readFileSync",
       "source": "C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts",
       "destination": "node:fs:readFileSync",
-      "stereotype": "import"
-    },
-    {
-      "description": "imports existsSync",
-      "source": "C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts",
-      "destination": "node:fs:existsSync",
       "stereotype": "import"
     },
     {
@@ -4939,9 +4959,9 @@
       "stereotype": "import"
     },
     {
-      "description": "imports nameToId",
+      "description": "imports sanitizeId",
       "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts",
-      "destination": "../../../core/constants.js:nameToId",
+      "destination": "../../../core/constants.js:sanitizeId",
       "stereotype": "import"
     },
     {
@@ -5269,6 +5289,12 @@
       "stereotype": "import"
     },
     {
+      "description": "imports sanitizeId",
+      "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts",
+      "destination": "../../../core/constants.js:sanitizeId",
+      "stereotype": "import"
+    },
+    {
       "description": "imports SourceFile",
       "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/type-extractor.ts",
       "destination": "ts-morph:SourceFile",
@@ -5365,9 +5391,9 @@
       "stereotype": "import"
     },
     {
-      "description": "imports nameToId",
+      "description": "imports sanitizeId",
       "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-parser.ts",
-      "destination": "../../../core/constants.js:nameToId",
+      "destination": "../../../core/constants.js:sanitizeId",
       "stereotype": "import"
     },
     {
@@ -5440,6 +5466,12 @@
       "description": "imports nameToId",
       "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts",
       "destination": "../../../core/constants.js:nameToId",
+      "stereotype": "import"
+    },
+    {
+      "description": "imports sanitizeId",
+      "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts",
+      "destination": "../../../core/constants.js:sanitizeId",
       "stereotype": "import"
     },
     {
@@ -5584,6 +5616,12 @@
       "description": "imports IR_VERSION",
       "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/to-ir-mapper.ts",
       "destination": "../../../core/constants.js:IR_VERSION",
+      "stereotype": "import"
+    },
+    {
+      "description": "imports sanitizeId",
+      "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/to-ir-mapper.ts",
+      "destination": "../../../core/constants.js:sanitizeId",
       "stereotype": "import"
     },
     {

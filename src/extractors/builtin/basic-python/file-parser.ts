@@ -7,7 +7,7 @@
 import { spawn } from 'child_process';
 import { createLogger } from '../../../core/logger.js';
 import { getCliDir } from '../../../core/path-resolver.js';
-import { nameToId } from '../../../core/constants.js';
+import { sanitizeId } from '../../../core/constants.js';
 import * as path from 'path';
 import type {
   FileExtraction,
@@ -98,13 +98,13 @@ function mapToFileExtraction(file: PythonParserOutput['files'][0]): FileExtracti
     language: 'python',
     component: file.component
       ? {
-          id: file.component.name, // Use name as-is to preserve underscores
+          id: sanitizeId(file.component.name),
           name: file.component.name,
           description: file.component.description,
         }
       : undefined,
     actors: file.actors.map((actor) => ({
-      id: nameToId(actor.name),
+      id: sanitizeId(actor.name),
       name: actor.name,
       type: actor.type,
       direction: actor.direction,
@@ -112,7 +112,7 @@ function mapToFileExtraction(file: PythonParserOutput['files'][0]): FileExtracti
     })),
     relationships: file.relationships.map((rel) => ({
       source: '', // Will be filled by mapper with component ID
-      target: rel.target,
+      target: sanitizeId(rel.target),
       description: rel.description,
     })),
     classes: file.classes.map((cls) => mapClass(cls, file.filePath)),

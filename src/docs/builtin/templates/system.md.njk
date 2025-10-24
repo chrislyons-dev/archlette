@@ -51,7 +51,7 @@ The container diagram shows the high-level technology choices and how containers
 <td><strong>{{ container.name }}</strong></td>
 <td><code>{{ container.type }}</code></td>
 <td>{{ container.description or "—" }}</td>
-<td><a href="./{{ container.id | kebabCase }}.md">View →</a></td>
+<td><a href="./{{ container.id | sanitizeFileName }}.md">View →</a></td>
 </tr>
 {% endfor %}
 </tbody>

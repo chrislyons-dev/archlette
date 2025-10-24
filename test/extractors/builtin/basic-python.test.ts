@@ -41,7 +41,7 @@ describe('basic-python extractor', () => {
     expect(ir.components).toHaveLength(1);
     expect(ir.components[0].name).toBe('Utils');
     // Component ID is now hierarchical: container__component
-    expect(ir.components[0].id).toBe('default-container__Utils');
+    expect(ir.components[0].id).toBe('default_container__utils');
     expect(ir.components[0].description).toContain('Simple utility functions');
 
     // Verify functions extracted
@@ -50,7 +50,7 @@ describe('basic-python extractor', () => {
     expect(capitalizeFunc).toBeDefined();
     expect(capitalizeFunc?.type).toBe('function');
     // ComponentId also uses hierarchical format
-    expect(capitalizeFunc?.componentId).toBe('default-container__Utils');
+    expect(capitalizeFunc?.componentId).toBe('default_container__utils');
 
     const addNumbersFunc = ir.code.find((c) => c.name === 'add_numbers');
     expect(addNumbersFunc).toBeDefined();
@@ -77,7 +77,7 @@ describe('basic-python extractor', () => {
     // Verify component (ID is now hierarchical: container__component)
     expect(ir.components).toHaveLength(1);
     expect(ir.components[0].name).toBe('PaymentService');
-    expect(ir.components[0].id).toBe('default-container__PaymentService');
+    expect(ir.components[0].id).toBe('default_container__paymentservice');
 
     // Verify actors
     expect(ir.actors).toHaveLength(3);

@@ -78,6 +78,10 @@ export default async function markdownDocs(ctx: PipelineContext): Promise<void> 
       .replace(/[^a-z0-9-]/g, '');
   });
 
+  env.addFilter('sanitizeFileName', (str: string) => {
+    return sanitizeFileName(str);
+  });
+
   env.addFilter('forwardSlashes', (str: string) => {
     return str.replace(/\\/g, '/');
   });

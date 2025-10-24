@@ -16,70 +16,77 @@ skinparam {
 
 hide stereotype
 
-skinparam rectangle<<Application.Application.generators__buildtechnologystring>> {
+skinparam rectangle<<Application.Application.default_container__generators__buildtechnologystring>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.generators__escapestring>> {
+skinparam rectangle<<Application.Application.default_container__generators__escapestring>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.generators__generateallactorrelationships>> {
+skinparam rectangle<<Application.Application.default_container__generators__generateallactorrelationships>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.generators__generateuniquecodename>> {
+skinparam rectangle<<Application.Application.default_container__generators__generateuniquecodename>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.generators__prepareclassview>> {
+skinparam rectangle<<Application.Application.default_container__generators__loaddefaulttheme>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.generators__preparecomponentview>> {
+skinparam rectangle<<Application.Application.default_container__generators__prepareclassview>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.generators__preparecontainerdata>> {
+skinparam rectangle<<Application.Application.default_container__generators__preparecomponentview>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.generators__run>> {
+skinparam rectangle<<Application.Application.default_container__generators__preparecontainerdata>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.generators__sanitizeid>> {
+skinparam rectangle<<Application.Application.default_container__generators__run>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.generators__structurizrgenerator>> {
+skinparam rectangle<<Application.Application.default_container__generators__sanitizeid>> {
+  BackgroundColor #85bbf0
+  FontColor #000000
+  BorderColor #5d82a8
+  roundCorner 20
+  shadowing false
+}
+skinparam rectangle<<Application.Application.default_container__generators__structurizrgenerator>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
@@ -93,16 +100,17 @@ skinparam rectangle<<Application.Application>> {
 }
 
 rectangle "Application\n<size:10>[Container: Application]</size>" <<Application.Application>> {
-  rectangle "==generators__run\n<size:10>[Component: function]</size>\n\nExecute the generation stage" <<Application.Application.generators__run>> as Application.Application.generators__run
-  rectangle "==generators__structurizrgenerator\n<size:10>[Component: function]</size>\n\nGenerate Structurizr DSL from ArchletteIR" <<Application.Application.generators__structurizrgenerator>> as Application.Application.generators__structurizrgenerator
-  rectangle "==generators__preparecontainerdata\n<size:10>[Component: function]</size>\n\nPrepare container data with components, code, and relationships for template" <<Application.Application.generators__preparecontainerdata>> as Application.Application.generators__preparecontainerdata
-  rectangle "==generators__preparecomponentview\n<size:10>[Component: function]</size>\n\nPrepare component view data for template" <<Application.Application.generators__preparecomponentview>> as Application.Application.generators__preparecomponentview
-  rectangle "==generators__prepareclassview\n<size:10>[Component: function]</size>\n\nPrepare class view data for template" <<Application.Application.generators__prepareclassview>> as Application.Application.generators__prepareclassview
-  rectangle "==generators__generateallactorrelationships\n<size:10>[Component: function]</size>\n\nGenerate all actor-related relationships" <<Application.Application.generators__generateallactorrelationships>> as Application.Application.generators__generateallactorrelationships
-  rectangle "==generators__generateuniquecodename\n<size:10>[Component: function]</size>\n\nGenerate a unique name for a code item to avoid naming collisions" <<Application.Application.generators__generateuniquecodename>> as Application.Application.generators__generateuniquecodename
-  rectangle "==generators__buildtechnologystring\n<size:10>[Component: function]</size>\n\nBuild technology string from relationship metadata" <<Application.Application.generators__buildtechnologystring>> as Application.Application.generators__buildtechnologystring
-  rectangle "==generators__sanitizeid\n<size:10>[Component: function]</size>\n\nSanitize ID for DSL (remove special characters, convert to valid identifier)" <<Application.Application.generators__sanitizeid>> as Application.Application.generators__sanitizeid
-  rectangle "==generators__escapestring\n<size:10>[Component: function]</size>\n\nEscape special characters in strings for DSL" <<Application.Application.generators__escapestring>> as Application.Application.generators__escapestring
+  rectangle "==default_container__generators__run\n<size:10>[Component: function]</size>\n\nExecute the generation stage" <<Application.Application.default_container__generators__run>> as Application.Application.default_container__generators__run
+  rectangle "==default_container__generators__loaddefaulttheme\n<size:10>[Component: function]</size>\n\nLoad the default Structurizr theme from templates directory" <<Application.Application.default_container__generators__loaddefaulttheme>> as Application.Application.default_container__generators__loaddefaulttheme
+  rectangle "==default_container__generators__structurizrgenerator\n<size:10>[Component: function]</size>\n\nGenerate Structurizr DSL from ArchletteIR" <<Application.Application.default_container__generators__structurizrgenerator>> as Application.Application.default_container__generators__structurizrgenerator
+  rectangle "==default_container__generators__preparecontainerdata\n<size:10>[Component: function]</size>\n\nPrepare container data with components, code, and relationships for template" <<Application.Application.default_container__generators__preparecontainerdata>> as Application.Application.default_container__generators__preparecontainerdata
+  rectangle "==default_container__generators__preparecomponentview\n<size:10>[Component: function]</size>\n\nPrepare component view data for template" <<Application.Application.default_container__generators__preparecomponentview>> as Application.Application.default_container__generators__preparecomponentview
+  rectangle "==default_container__generators__prepareclassview\n<size:10>[Component: function]</size>\n\nPrepare class view data for template" <<Application.Application.default_container__generators__prepareclassview>> as Application.Application.default_container__generators__prepareclassview
+  rectangle "==default_container__generators__generateallactorrelationships\n<size:10>[Component: function]</size>\n\nGenerate all actor-related relationships" <<Application.Application.default_container__generators__generateallactorrelationships>> as Application.Application.default_container__generators__generateallactorrelationships
+  rectangle "==default_container__generators__generateuniquecodename\n<size:10>[Component: function]</size>\n\nGenerate a unique name for a code item to avoid naming collisions" <<Application.Application.default_container__generators__generateuniquecodename>> as Application.Application.default_container__generators__generateuniquecodename
+  rectangle "==default_container__generators__buildtechnologystring\n<size:10>[Component: function]</size>\n\nBuild technology string from relationship metadata" <<Application.Application.default_container__generators__buildtechnologystring>> as Application.Application.default_container__generators__buildtechnologystring
+  rectangle "==default_container__generators__sanitizeid\n<size:10>[Component: function]</size>\n\nSanitize ID for DSL (remove special characters, convert to valid identifier)" <<Application.Application.default_container__generators__sanitizeid>> as Application.Application.default_container__generators__sanitizeid
+  rectangle "==default_container__generators__escapestring\n<size:10>[Component: function]</size>\n\nEscape special characters in strings for DSL" <<Application.Application.default_container__generators__escapestring>> as Application.Application.default_container__generators__escapestring
 }
 
 @enduml

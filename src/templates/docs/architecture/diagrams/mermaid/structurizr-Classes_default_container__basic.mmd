@@ -7,36 +7,36 @@ graph TB
     subgraph 8 ["Application"]
       style 8 fill:#ffffff,stroke:#2e6295,color:#2e6295
 
-      131("<div style='font-weight: bold'>basic__findsourcefiles</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Find source files matching<br />include/exclude patterns</div>")
-      style 131 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      132("<div style='font-weight: bold'>basic__findpyprojectfiles</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Find pyproject.toml files<br />within the search paths</div>")
-      style 132 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      133("<div style='font-weight: bold'>basic__readpyprojectinfo</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Read and parse pyproject.toml<br />file</div>")
+      133("<div style='font-weight: bold'>default_container__basic__findsourcefiles</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Find source files matching<br />include/exclude patterns</div>")
       style 133 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      134("<div style='font-weight: bold'>basic__parsepyprojecttoml</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Simple TOML parser for<br />pyproject.toml Only handles<br />the subset we need: [project]<br />and [tool.poetry] sections</div>")
+      134("<div style='font-weight: bold'>default_container__basic__findpyprojectfiles</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Find pyproject.toml files<br />within the search paths</div>")
       style 134 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      135("<div style='font-weight: bold'>basic__findnearestpyproject</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Find the nearest parent<br />pyproject.toml for a given<br />file</div>")
+      135("<div style='font-weight: bold'>default_container__basic__readpyprojectinfo</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Read and parse pyproject.toml<br />file</div>")
       style 135 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      149("<div style='font-weight: bold'>basic__maptoir</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Map file extractions to<br />ArchletteIR</div>")
-      style 149 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      150("<div style='font-weight: bold'>basic__mapactortoir</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Map ActorInfo to Actor</div>")
-      style 150 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      151("<div style='font-weight: bold'>basic__maprelationshipstoir</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Map relationships to<br />Relationship[] Creates<br />bidirectional actor<br />relationships</div>")
+      136("<div style='font-weight: bold'>default_container__basic__parsepyprojecttoml</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Simple TOML parser for<br />pyproject.toml Only handles<br />the subset we need: [project]<br />and [tool.poetry] sections</div>")
+      style 136 fill:#85bbf0,stroke:#5d82a8,color:#000000
+      137("<div style='font-weight: bold'>default_container__basic__findnearestpyproject</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Find the nearest parent<br />pyproject.toml for a given<br />file</div>")
+      style 137 fill:#85bbf0,stroke:#5d82a8,color:#000000
+      151("<div style='font-weight: bold'>default_container__basic__maptoir</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Map file extractions to<br />ArchletteIR</div>")
       style 151 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      152("<div style='font-weight: bold'>basic__deduplicaterelationships</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Deduplicate relationships by<br />source+destination</div>")
+      152("<div style='font-weight: bold'>default_container__basic__mapactortoir</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Map ActorInfo to Actor</div>")
       style 152 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      153("<div style='font-weight: bold'>basic__mapclasstocodeitem</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Map ExtractedClass to<br />CodeItem</div>")
+      153("<div style='font-weight: bold'>default_container__basic__maprelationshipstoir</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Map relationships to<br />Relationship[] Creates<br />bidirectional actor<br />relationships</div>")
       style 153 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      154("<div style='font-weight: bold'>basic__mapmethodtocodeitem</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Map ExtractedMethod to<br />CodeItem</div>")
+      154("<div style='font-weight: bold'>default_container__basic__deduplicaterelationships</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Deduplicate relationships by<br />source+destination</div>")
       style 154 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      155("<div style='font-weight: bold'>basic__mapfunctiontocodeitem</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Map ExtractedFunction to<br />CodeItem</div>")
+      155("<div style='font-weight: bold'>default_container__basic__mapclasstocodeitem</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Map ExtractedClass to<br />CodeItem</div>")
       style 155 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      156("<div style='font-weight: bold'>basic__maptypetocodeitem</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Map ExtractedType to CodeItem</div>")
+      156("<div style='font-weight: bold'>default_container__basic__mapmethodtocodeitem</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Map ExtractedMethod to<br />CodeItem</div>")
       style 156 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      75("<div style='font-weight: bold'>basic__createemptyir</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Create empty IR when no files<br />found</div>")
-      style 75 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      76("<div style='font-weight: bold'>basic__basicpython</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Basic Python extractor<br />Analyzes Python source code<br />and extracts architectural<br />components</div>")
+      157("<div style='font-weight: bold'>default_container__basic__mapfunctiontocodeitem</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Map ExtractedFunction to<br />CodeItem</div>")
+      style 157 fill:#85bbf0,stroke:#5d82a8,color:#000000
+      158("<div style='font-weight: bold'>default_container__basic__maptypetocodeitem</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Map ExtractedType to CodeItem</div>")
+      style 158 fill:#85bbf0,stroke:#5d82a8,color:#000000
+      76("<div style='font-weight: bold'>default_container__basic__createemptyir</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Create empty IR when no files<br />found</div>")
       style 76 fill:#85bbf0,stroke:#5d82a8,color:#000000
+      77("<div style='font-weight: bold'>default_container__basic__basicpython</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Basic Python extractor<br />Analyzes Python source code<br />and extracts architectural<br />components</div>")
+      style 77 fill:#85bbf0,stroke:#5d82a8,color:#000000
     end
 
   end

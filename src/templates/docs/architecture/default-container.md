@@ -57,74 +57,74 @@
 <td><strong>CLI</strong></td>
 <td><code>module</code></td>
 <td>Archlette CLI - Architecture-as-Code toolkit</td>
-<td><a href="./default-container__cli.md">View →</a></td>
+<td><a href="./default_container__cli.md">View →</a></td>
 </tr>
 <tr>
 <td><strong>extractors</strong></td>
 <td><code>module</code></td>
 <td>ArchletteIR aggregation utilities | Extraction stage of the AAC pipeline</td>
-<td><a href="./default-container__extractors.md">View →</a></td>
+<td><a href="./default_container__extractors.md">View →</a></td>
 </tr>
 <tr>
 <td><strong>validators</strong></td>
 <td><code>module</code></td>
 <td>Validation stage of the AAC pipeline | Base IR validator for Archlette pipeline</td>
-<td><a href="./default-container__validators.md">View →</a></td>
+<td><a href="./default_container__validators.md">View →</a></td>
 </tr>
 <tr>
 <td><strong>generators</strong></td>
 <td><code>module</code></td>
 <td>Generation stage of the AAC pipeline | Structurizr DSL Generator (Template-based)</td>
-<td><a href="./default-container__generators.md">View →</a></td>
+<td><a href="./default_container__generators.md">View →</a></td>
 </tr>
 <tr>
 <td><strong>renderers</strong></td>
 <td><code>module</code></td>
 <td>Render stage of the AAC pipeline | PlantUML image renderer | Structurizr DSL export renderer</td>
-<td><a href="./default-container__renderers.md">View →</a></td>
+<td><a href="./default_container__renderers.md">View →</a></td>
 </tr>
 <tr>
 <td><strong>docs</strong></td>
 <td><code>module</code></td>
 <td>Documentation stage of the AAC pipeline | Markdown documentation generator</td>
-<td><a href="./default-container__docs.md">View →</a></td>
+<td><a href="./default_container__docs.md">View →</a></td>
 </tr>
 <tr>
 <td><strong>core</strong></td>
 <td><code>module</code></td>
 <td>Dynamic ESM module loader | Stage module interfaces for the AAC pipeline | Stage module loaders | Tool management for external rendering tools | Architecture-as-Code (AAC) configuration types and schemas | Archlette Intermediate Representation (IR) types and schemas | Core pipeline types</td>
-<td><a href="./default-container__core.md">View →</a></td>
+<td><a href="./default_container__core.md">View →</a></td>
 </tr>
 <tr>
 <td><strong>core/path</strong></td>
 <td><code>module</code></td>
 <td>—</td>
-<td><a href="./default-container__core-path.md">View →</a></td>
+<td><a href="./default_container__core_path.md">View →</a></td>
 </tr>
 <tr>
 <td><strong>basic_node</strong></td>
 <td><code>module</code></td>
 <td>TypeScript/JavaScript code extractor</td>
-<td><a href="./default-container__basicnode.md">View →</a></td>
+<td><a href="./default_container__basic_node.md">View →</a></td>
 </tr>
 <tr>
 <td><strong>basic</strong></td>
 <td><code>module</code></td>
 <td>Basic Python Extractor for Archlette
 Extracts architecture information from Python source code</td>
-<td><a href="./default-container__basic.md">View →</a></td>
+<td><a href="./default_container__basic.md">View →</a></td>
 </tr>
 <tr>
 <td><strong>basic_wrangler</strong></td>
 <td><code>module</code></td>
 <td>Cloudflare Wrangler deployment extractor</td>
-<td><a href="./default-container__basicwrangler.md">View →</a></td>
+<td><a href="./default_container__basic_wrangler.md">View →</a></td>
 </tr>
 <tr>
 <td><strong>basic_python</strong></td>
 <td><code>module</code></td>
 <td>—</td>
-<td><a href="./default-container__basicpython.md">View →</a></td>
+<td><a href="./default_container__basic_python.md">View →</a></td>
 </tr>
 </tbody>
 </table>
