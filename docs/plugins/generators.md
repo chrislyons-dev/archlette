@@ -277,11 +277,3 @@ paths:
 ```
 
 Generator doesn't handle file I/O. Returns string. Pipeline writes to disk.
-
----
-
-## See Also
-
-- [Configuration](../guide/configuration.md) — Using custom generators
-- [Structurizr Generator](../../src/generators/builtin/structurizr.ts) — Reference implementation
-- [IR Schema](../../src/core/types-ir.ts) — Complete schema

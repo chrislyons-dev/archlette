@@ -214,10 +214,3 @@ if (!VALID_ID_PATTERN.test(component.id)) {
   errors.push(new Error(`Invalid component ID format: ${component.id}`));
 }
 ```
-
----
-
-## See Also
-
-- [Configuration](../guide/configuration.md) — Using custom validators
-- [IR Schema](../../src/core/types-ir.ts) — Complete schema reference

@@ -312,11 +312,3 @@ const format = node.config?.format ?? 'png';
 const scale = node.config?.scale ?? 1;
 const theme = node.config?.theme ?? 'light';
 ```
-
----
-
-## See Also
-
-- [Configuration](../guide/configuration.md) — Using custom renderers
-- [PlantUML Renderer](../../src/renderers/builtin/plantuml-render.ts) — Reference implementation
-- [Tool Manager](../../src/core/tool-manager.ts) — Managing external tools
