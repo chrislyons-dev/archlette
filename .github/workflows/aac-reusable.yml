@@ -1,22 +1,39 @@
 name: AAC Reusable
 on:
+  workflow_dispatch:
   workflow_call:
     inputs:
       docs_out_dir:
         required: false
         type: string
         default: docs/architecture
+      config_file:
+        required: false
+        type: string
+        default: archlette.config.yaml
+        description: Path to Archlette configuration file
 jobs:
   build-docs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
-      - uses: actions/setup-node@v6
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
         with:
           node-version: '20'
-      - uses: ./.github/actions/aac-generate
-      - name: Publish to gh-pages
-        uses: peaceiris/actions-gh-pages@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ${{ inputs.docs_out_dir }}
+          python-version: '3.11'
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - uses: ./.github/actions/aac-generate
+        with:
+          config_file: ${{ inputs.config_file }}

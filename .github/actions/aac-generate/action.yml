@@ -1,5 +1,10 @@
 name: AAC Generate
 description: Generate Architecture-as-Code artifacts (IR, DSL, diagrams)
+inputs:
+  config_file:
+    description: Path to Archlette configuration file
+    required: false
+    default: archlette.config.yaml
 runs:
   using: 'composite'
   steps:
@@ -45,5 +50,5 @@ runs:
     # Run full AAC pipeline (extract → validate → generate → render)
     # Structurizr CLI and PlantUML will be auto-downloaded to ~/.archlette/tools if not cached
     - name: Generate architecture artifacts
-      run: npm run aac:all
+      run: npx tsx src/cli.ts -f ${{ inputs.config_file }} all
       shell: bash
