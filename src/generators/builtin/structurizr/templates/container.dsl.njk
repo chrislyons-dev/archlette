@@ -28,7 +28,7 @@
 
                 # Code elements (classes, functions)
 {%- for code in containerCode %}
-                {{ code.id | sanitizeId }} = component "{{ code | uniqueCodeName }}" {
+                {{ code.id | sanitizeId }} = component "{{ code.id | sanitizeId }}" {
 {%- if code.description or (code.documentation and code.documentation.summary) %}
                     description "{{ (code.description or code.documentation.summary or '') | escapeString }}"
 {%- endif %}

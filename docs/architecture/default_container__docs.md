@@ -1,6 +1,6 @@
-# docs
+# docs — Code View
 
-[← Back to System Overview](./README.md)
+[← Back to Container](./default-container.md) | [← Back to System](./README.md)
 
 ---
 
@@ -8,6 +8,10 @@
 
 <table>
 <tbody>
+<tr>
+<td><strong>Component</strong></td>
+<td>docs</td>
+</tr>
 <tr>
 <td><strong>Container</strong></td>
 <td>Application</td>
@@ -22,12 +26,6 @@
 </tr>
 </tbody>
 </table>
-
----
-
-## Architecture
-
-![Component Diagram](./diagrams/structurizr-Components_Application.png)
 
 ---
 
@@ -46,7 +44,7 @@
 
 #### Functions
 
-##### `docs__run()`
+##### `run()`
 
 Execute the documentation stage
 
@@ -80,7 +78,7 @@ Execute the documentation stage
 - `ctx`: <code>import("C:/Users/chris/git/archlette/src/core/types").PipelineContext</code> — - Pipeline context with configuration, logging, IR, and rendered diagrams
 
 ---
-##### `docs__markdownDocs()`
+##### `markdownDocs()`
 
 Generate markdown documentation
 
@@ -114,7 +112,7 @@ Generate markdown documentation
 - `ctx`: <code>import("C:/Users/chris/git/archlette/src/core/types").PipelineContext</code>
 
 ---
-##### `docs__findDiagramsForView()`
+##### `findDiagramsForView()`
 
 Find diagram files for a specific view type
 
@@ -134,7 +132,7 @@ Find diagram files for a specific view type
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/docs/builtin/markdown-docs.ts:213</code></td>
+<td><code>C:/Users/chris/git/archlette/src/docs/builtin/markdown-docs.ts:243</code></td>
 </tr>
 </tbody>
 </table>
@@ -144,9 +142,9 @@ Find diagram files for a specific view type
 - `rendererOutputs`: <code>import("C:/Users/chris/git/archlette/src/core/types").RendererOutput[]</code>- `diagramsDir`: <code>string</code>- `docsDir`: <code>string</code>- `viewType`: <code>string</code>- `log`: <code>import("C:/Users/chris/git/archlette/src/core/logger").Logger</code>
 
 ---
-##### `docs__findDiagramsForComponent()`
+##### `findDiagramsForContainer()`
 
-Find component diagrams for a specific component
+Find component diagrams for a specific container
 
 <table>
 <tbody>
@@ -164,17 +162,17 @@ Find component diagrams for a specific component
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/docs/builtin/markdown-docs.ts:245</code></td>
+<td><code>C:/Users/chris/git/archlette/src/docs/builtin/markdown-docs.ts:275</code></td>
 </tr>
 </tbody>
 </table>
 
 **Parameters:**
 
-- `rendererOutputs`: <code>import("C:/Users/chris/git/archlette/src/core/types").RendererOutput[]</code>- `diagramsDir`: <code>string</code>- `docsDir`: <code>string</code>- `_component`: <code>z.infer<any></code>
+- `rendererOutputs`: <code>import("C:/Users/chris/git/archlette/src/core/types").RendererOutput[]</code>- `diagramsDir`: <code>string</code>- `docsDir`: <code>string</code>- `container`: <code>{ id: string; name: string; }</code>
 
 ---
-##### `docs__findClassDiagramsForComponent()`
+##### `findClassDiagramsForComponent()`
 
 Find class diagrams for a specific component
 
@@ -194,7 +192,7 @@ Find class diagrams for a specific component
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/docs/builtin/markdown-docs.ts:278</code></td>
+<td><code>C:/Users/chris/git/archlette/src/docs/builtin/markdown-docs.ts:313</code></td>
 </tr>
 </tbody>
 </table>
@@ -204,7 +202,7 @@ Find class diagrams for a specific component
 - `rendererOutputs`: <code>import("C:/Users/chris/git/archlette/src/core/types").RendererOutput[]</code>- `diagramsDir`: <code>string</code>- `docsDir`: <code>string</code>- `component`: <code>z.infer<any></code>
 
 ---
-##### `docs__sanitizeFileName()`
+##### `sanitizeFileName()`
 
 
 <table>
@@ -223,7 +221,7 @@ Find class diagrams for a specific component
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/docs/builtin/markdown-docs.ts:312</code></td>
+<td><code>C:/Users/chris/git/archlette/src/docs/builtin/markdown-docs.ts:347</code></td>
 </tr>
 </tbody>
 </table>
@@ -239,5 +237,5 @@ Find class diagrams for a specific component
 ---
 
 <div align="center">
-<sub><a href="./README.md">← Back to System Overview</a> | Generated with <a href="https://github.com/architectlabs/archlette">Archlette</a></sub>
+<sub><a href="./default-container.md">← Back to Container</a> | <a href="./README.md">← Back to System</a> | Generated with <a href="https://github.com/architectlabs/archlette">Archlette</a></sub>
 </div>

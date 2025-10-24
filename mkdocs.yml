@@ -50,17 +50,19 @@ nav:
       - Annotations Reference: guide/annotations.md
       - CI/CD Integration: guide/ci-cd.md
       - Configuration Reference: guide/configuration.md
+      - Security Guide: guide/security.md
       - Troubleshooting: guide/troubleshooting.md
 
   - Architecture:
       - System Overview: architecture/README.md
-      - CLI: architecture/default-container__cli.md
-      - Core: architecture/default-container__core.md
-      - Extractors: architecture/default-container__extractors.md
-      - Validators: architecture/default-container__validators.md
-      - Generators: architecture/default-container__generators.md
-      - Renderers: architecture/default-container__renderers.md
-      - Docs: architecture/default-container__docs.md
+      - Archlette IR: architecture/aac-ir.json
+      - Archlette Structurizr DSL: architecture/aac.dsl
+
+  - Extending Archlette:
+      - Plugin Development: plugins/extractors.md
+      - Custom Generators: plugins/generators.md
+      - Custom Renderers: plugins/renderers.md
+      - Custom Validators: plugins/validators.md
 
   - Contributing:
       - How to Contribute: CONTRIBUTING.md

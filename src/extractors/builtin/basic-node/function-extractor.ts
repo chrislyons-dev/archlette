@@ -1,4 +1,5 @@
 /**
+ * @module basic_node
  * Function extraction utilities
  */
 
@@ -67,7 +68,7 @@ function extractFunction(
     deprecated: extractDeprecation(jsDocs),
     parameters: func
       .getParameters()
-      .map((param) => extractParameter(param, paramDescriptions)),
+      .map((param) => extractFunctionParameter(param, paramDescriptions)),
     returnType: func.getReturnType().getText(),
     returnDescription: extractReturnDescription(jsDocs),
   };
@@ -76,7 +77,7 @@ function extractFunction(
 /**
  * Extract parameter information
  */
-function extractParameter(
+function extractFunctionParameter(
   param: ReturnType<FunctionDeclaration['getParameters']>[0],
   descriptions: Map<string, string>,
 ): ParameterInfo {

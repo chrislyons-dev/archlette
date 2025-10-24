@@ -1,4 +1,5 @@
 /**
+ * @module basic_node
  * Type alias and interface extraction utilities
  */
 

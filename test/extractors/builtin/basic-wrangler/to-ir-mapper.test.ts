@@ -37,7 +37,7 @@ describe('to-ir-mapper', () => {
 
       expect(ir.containers).toHaveLength(2);
       expect(ir.containers[0]).toMatchObject({
-        id: 'api-worker',
+        id: 'api_worker',
         name: 'api-worker',
         type: 'Cloudflare Worker',
         layer: 'Application',
@@ -52,7 +52,7 @@ describe('to-ir-mapper', () => {
       );
 
       expect(ir.containers[1]).toMatchObject({
-        id: 'auth-worker',
+        id: 'auth_worker',
         name: 'auth-worker',
         type: 'Cloudflare Worker',
         layer: 'Application',
@@ -309,16 +309,16 @@ describe('to-ir-mapper', () => {
 
       const prodDeployment = ir.deployments.find((d) => d.name === 'production');
       expect(prodDeployment?.instances).toHaveLength(1);
-      expect(prodDeployment?.instances![0].id).toBe('production__api-worker');
+      expect(prodDeployment?.instances![0].id).toBe('production__api_worker');
 
       const devDeployment = ir.deployments.find((d) => d.name === 'development');
       expect(devDeployment?.instances).toHaveLength(1);
-      expect(devDeployment?.instances![0].id).toBe('development__api-worker');
+      expect(devDeployment?.instances![0].id).toBe('development__api_worker');
       expect(devDeployment?.instances![0].name).toBe('api-worker-dev');
 
       const previewDeployment = ir.deployments.find((d) => d.name === 'preview');
       expect(previewDeployment?.instances).toHaveLength(1);
-      expect(previewDeployment?.instances![0].id).toBe('preview__api-worker');
+      expect(previewDeployment?.instances![0].id).toBe('preview__api_worker');
     });
 
     it('should extract container relationships from service bindings', () => {
@@ -355,7 +355,7 @@ describe('to-ir-mapper', () => {
       });
       expect(ir.containerRelationships[2]).toMatchObject({
         source: 'auth',
-        destination: 'user-service',
+        destination: 'user_service',
       });
     });
 

@@ -40,6 +40,7 @@ describe('generate stage', () => {
       containerRelationships: [],
       componentRelationships: [],
       codeRelationships: [],
+      deploymentRelationships: [],
     };
 
     const mockConfig: ResolvedAACConfig = {
@@ -228,7 +229,7 @@ describe('generate stage', () => {
       dslContent,
     );
     expect(mockLogger.info).toHaveBeenCalledWith(
-      '✓ Wrote DSL output to /resolved/workspace.dsl',
+      'Wrote DSL output to /resolved/workspace.dsl',
     );
   });
 

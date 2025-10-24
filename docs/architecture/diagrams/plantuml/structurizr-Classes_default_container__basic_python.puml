@@ -1,0 +1,132 @@
+@startuml
+set separator none
+title Application - Application - Components
+
+top to bottom direction
+skinparam ranksep 60
+skinparam nodesep 30
+
+skinparam {
+  arrowFontSize 10
+  defaultTextAlignment center
+  wrapWidth 200
+  maxMessageSize 100
+  defaultFontName "Arial"
+}
+
+hide stereotype
+
+skinparam rectangle<<Application.Application.default_container__basic_python__extractdeprecation>> {
+  BackgroundColor #85bbf0
+  FontColor #000000
+  BorderColor #5d82a8
+  roundCorner 20
+  shadowing false
+}
+skinparam rectangle<<Application.Application.default_container__basic_python__extractreturndescription>> {
+  BackgroundColor #85bbf0
+  FontColor #000000
+  BorderColor #5d82a8
+  roundCorner 20
+  shadowing false
+}
+skinparam rectangle<<Application.Application.default_container__basic_python__getvisibility>> {
+  BackgroundColor #85bbf0
+  FontColor #000000
+  BorderColor #5d82a8
+  roundCorner 20
+  shadowing false
+}
+skinparam rectangle<<Application.Application.default_container__basic_python__mapclass>> {
+  BackgroundColor #85bbf0
+  FontColor #000000
+  BorderColor #5d82a8
+  roundCorner 20
+  shadowing false
+}
+skinparam rectangle<<Application.Application.default_container__basic_python__mapfunction>> {
+  BackgroundColor #85bbf0
+  FontColor #000000
+  BorderColor #5d82a8
+  roundCorner 20
+  shadowing false
+}
+skinparam rectangle<<Application.Application.default_container__basic_python__mapmethod>> {
+  BackgroundColor #85bbf0
+  FontColor #000000
+  BorderColor #5d82a8
+  roundCorner 20
+  shadowing false
+}
+skinparam rectangle<<Application.Application.default_container__basic_python__mapparameter>> {
+  BackgroundColor #85bbf0
+  FontColor #000000
+  BorderColor #5d82a8
+  roundCorner 20
+  shadowing false
+}
+skinparam rectangle<<Application.Application.default_container__basic_python__mapproperty>> {
+  BackgroundColor #85bbf0
+  FontColor #000000
+  BorderColor #5d82a8
+  roundCorner 20
+  shadowing false
+}
+skinparam rectangle<<Application.Application.default_container__basic_python__maptofileextraction>> {
+  BackgroundColor #85bbf0
+  FontColor #000000
+  BorderColor #5d82a8
+  roundCorner 20
+  shadowing false
+}
+skinparam rectangle<<Application.Application.default_container__basic_python__maptype>> {
+  BackgroundColor #85bbf0
+  FontColor #000000
+  BorderColor #5d82a8
+  roundCorner 20
+  shadowing false
+}
+skinparam rectangle<<Application.Application.default_container__basic_python__parsedocstring>> {
+  BackgroundColor #85bbf0
+  FontColor #000000
+  BorderColor #5d82a8
+  roundCorner 20
+  shadowing false
+}
+skinparam rectangle<<Application.Application.default_container__basic_python__parsefiles>> {
+  BackgroundColor #85bbf0
+  FontColor #000000
+  BorderColor #5d82a8
+  roundCorner 20
+  shadowing false
+}
+skinparam rectangle<<Application.Application.default_container__basic_python__runpythonparser>> {
+  BackgroundColor #85bbf0
+  FontColor #000000
+  BorderColor #5d82a8
+  roundCorner 20
+  shadowing false
+}
+skinparam rectangle<<Application.Application>> {
+  BorderColor #2e6295
+  FontColor #2e6295
+  shadowing false
+}
+
+rectangle "Application\n<size:10>[Container: Application]</size>" <<Application.Application>> {
+  rectangle "==default_container__basic_python__parsefiles\n<size:10>[Component: function]</size>\n\nParse Python files using Python AST parser script" <<Application.Application.default_container__basic_python__parsefiles>> as Application.Application.default_container__basic_python__parsefiles
+  rectangle "==default_container__basic_python__runpythonparser\n<size:10>[Component: function]</size>\n\nRun Python parser script and return JSON output" <<Application.Application.default_container__basic_python__runpythonparser>> as Application.Application.default_container__basic_python__runpythonparser
+  rectangle "==default_container__basic_python__maptofileextraction\n<size:10>[Component: function]</size>\n\nMap Python parser output to FileExtraction format" <<Application.Application.default_container__basic_python__maptofileextraction>> as Application.Application.default_container__basic_python__maptofileextraction
+  rectangle "==default_container__basic_python__mapclass\n<size:10>[Component: function]</size>\n\nMap Python class to ExtractedClass" <<Application.Application.default_container__basic_python__mapclass>> as Application.Application.default_container__basic_python__mapclass
+  rectangle "==default_container__basic_python__mapmethod\n<size:10>[Component: function]</size>\n\nMap Python method to ExtractedMethod" <<Application.Application.default_container__basic_python__mapmethod>> as Application.Application.default_container__basic_python__mapmethod
+  rectangle "==default_container__basic_python__mapproperty\n<size:10>[Component: function]</size>\n\nMap Python property to ExtractedProperty" <<Application.Application.default_container__basic_python__mapproperty>> as Application.Application.default_container__basic_python__mapproperty
+  rectangle "==default_container__basic_python__mapfunction\n<size:10>[Component: function]</size>\n\nMap Python function to ExtractedFunction" <<Application.Application.default_container__basic_python__mapfunction>> as Application.Application.default_container__basic_python__mapfunction
+  rectangle "==default_container__basic_python__maptype\n<size:10>[Component: function]</size>\n\nMap Python type definition to ExtractedType" <<Application.Application.default_container__basic_python__maptype>> as Application.Application.default_container__basic_python__maptype
+  rectangle "==default_container__basic_python__mapparameter\n<size:10>[Component: function]</size>\n\nMap Python parameter to ParameterInfo" <<Application.Application.default_container__basic_python__mapparameter>> as Application.Application.default_container__basic_python__mapparameter
+  rectangle "==default_container__basic_python__parsedocstring\n<size:10>[Component: function]</size>\n\nParse Python docstring into DocInfo\nEnhanced in Phase 2 to use parsed Google/NumPy/Sphinx docstrings" <<Application.Application.default_container__basic_python__parsedocstring>> as Application.Application.default_container__basic_python__parsedocstring
+  rectangle "==default_container__basic_python__extractdeprecation\n<size:10>[Component: function]</size>\n\nExtract deprecation info from docstring" <<Application.Application.default_container__basic_python__extractdeprecation>> as Application.Application.default_container__basic_python__extractdeprecation
+  rectangle "==default_container__basic_python__extractreturndescription\n<size:10>[Component: function]</size>\n\nExtract return description from docstring" <<Application.Application.default_container__basic_python__extractreturndescription>> as Application.Application.default_container__basic_python__extractreturndescription
+  rectangle "==default_container__basic_python__getvisibility\n<size:10>[Component: function]</size>\n\nDetermine visibility from Python name convention\n- __name: private\n- _name: protected\n- name: public" <<Application.Application.default_container__basic_python__getvisibility>> as Application.Application.default_container__basic_python__getvisibility
+}
+
+@enduml

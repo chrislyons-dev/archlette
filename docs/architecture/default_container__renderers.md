@@ -1,6 +1,6 @@
-# renderers
+# renderers — Code View
 
-[← Back to System Overview](./README.md)
+[← Back to Container](./default-container.md) | [← Back to System](./README.md)
 
 ---
 
@@ -8,6 +8,10 @@
 
 <table>
 <tbody>
+<tr>
+<td><strong>Component</strong></td>
+<td>renderers</td>
+</tr>
 <tr>
 <td><strong>Container</strong></td>
 <td>Application</td>
@@ -22,12 +26,6 @@
 </tr>
 </tbody>
 </table>
-
----
-
-## Architecture
-
-![Component Diagram](./diagrams/structurizr-Components_Application.png)
 
 ---
 
@@ -46,7 +44,7 @@
 
 #### Functions
 
-##### `renderers__run()`
+##### `run()`
 
 Execute the rendering stage
 
@@ -80,7 +78,7 @@ Execute the rendering stage
 - `ctx`: <code>import("C:/Users/chris/git/archlette/src/core/types").PipelineContext</code> — - Pipeline context with configuration, logging, and DSL file location
 
 ---
-##### `renderers__plantumlRender()`
+##### `plantumlRender()`
 
 Render PlantUML files to PNG images
 
@@ -114,7 +112,7 @@ Render PlantUML files to PNG images
 - `ctx`: <code>import("C:/Users/chris/git/archlette/src/core/types").PipelineContext</code>
 
 ---
-##### `renderers__structurizrExport()`
+##### `structurizrExport()`
 
 Export Structurizr DSL to PlantUML and Mermaid formats
 
@@ -154,5 +152,5 @@ Export Structurizr DSL to PlantUML and Mermaid formats
 ---
 
 <div align="center">
-<sub><a href="./README.md">← Back to System Overview</a> | Generated with <a href="https://github.com/architectlabs/archlette">Archlette</a></sub>
+<sub><a href="./default-container.md">← Back to Container</a> | <a href="./README.md">← Back to System</a> | Generated with <a href="https://github.com/architectlabs/archlette">Archlette</a></sub>
 </div>

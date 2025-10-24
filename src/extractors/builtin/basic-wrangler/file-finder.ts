@@ -1,4 +1,5 @@
 /**
+ * @module basic_wrangler
  * File discovery for wrangler.toml files
  */
 

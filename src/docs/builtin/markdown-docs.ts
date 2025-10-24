@@ -78,6 +78,10 @@ export default async function markdownDocs(ctx: PipelineContext): Promise<void> 
       .replace(/[^a-z0-9-]/g, '');
   });
 
+  env.addFilter('sanitizeFileName', (str: string) => {
+    return sanitizeFileName(str);
+  });
+
   env.addFilter('forwardSlashes', (str: string) => {
     return str.replace(/\\/g, '/');
   });
@@ -157,9 +161,41 @@ export default async function markdownDocs(ctx: PipelineContext): Promise<void> 
 
   const systemPagePath = path.join(docsDir, 'README.md');
   fs.writeFileSync(systemPagePath, systemPageContent, 'utf8');
-  ctx.log.info(`✓ Generated README.md`);
+  ctx.log.info(`Generated README.md`);
 
   const generatedFiles: string[] = ['README.md'];
+
+  // Render container pages
+  ctx.log.info(`Generating ${ir.containers.length} container page(s)...`);
+  for (const container of ir.containers) {
+    const containerComponents = ir.components.filter(
+      (c) => c.containerId === container.id,
+    );
+
+    // Find component diagrams for this container
+    const containerComponentDiagrams = findDiagramsForContainer(
+      rendererOutputs,
+      diagramsDir,
+      docsDir,
+      container,
+    );
+
+    const containerPageContent = env.render('container.md.njk', {
+      container,
+      system: ir.system,
+      components: containerComponents,
+      containerDiagrams,
+      componentDiagrams: containerComponentDiagrams,
+    });
+
+    const filename = `${sanitizeFileName(container.id)}.md`;
+    const containerPagePath = path.join(docsDir, filename);
+    fs.writeFileSync(containerPagePath, containerPageContent, 'utf8');
+    ctx.log.debug(`  • ${filename}`);
+    generatedFiles.push(filename);
+  }
+
+  ctx.log.info(`Generated ${ir.containers.length} container page(s)`);
 
   // Render component pages
   ctx.log.info(`Generating ${ir.components.length} component page(s)...`);
@@ -169,12 +205,6 @@ export default async function markdownDocs(ctx: PipelineContext): Promise<void> 
       system: ir.system,
       container: ir.containers.find((c) => c.id === component.containerId),
       codeItems: ir.code.filter((item) => item.componentId === component.id),
-      componentDiagrams: findDiagramsForComponent(
-        rendererOutputs,
-        diagramsDir,
-        docsDir,
-        component,
-      ),
       codeDiagrams: findClassDiagramsForComponent(
         rendererOutputs,
         diagramsDir,
@@ -190,7 +220,7 @@ export default async function markdownDocs(ctx: PipelineContext): Promise<void> 
     generatedFiles.push(filename);
   }
 
-  ctx.log.info(`✓ Generated ${ir.components.length} component page(s)`);
+  ctx.log.info(`Generated ${ir.components.length} component page(s)`);
 
   // Update pipeline state
   if (!ctx.state.docOutputs) {
@@ -240,23 +270,28 @@ function findDiagramsForView(
 }
 
 /**
- * Find component diagrams for a specific component
+ * Find component diagrams for a specific container
  */
-function findDiagramsForComponent(
+function findDiagramsForContainer(
   rendererOutputs: RendererOutput[],
   diagramsDir: string,
   docsDir: string,
-  _component: Component,
+  container: { id: string; name: string },
 ): string[] {
   const diagrams: string[] = [];
+  // Sanitize container NAME same way as generator does (not ID)
+  // The DSL generator uses container.name to create the view name
+  const sanitizedContainerName = container.name.replace(/[^a-zA-Z0-9_]/g, '_');
 
   for (const output of rendererOutputs) {
     if (output.format === 'png') {
       for (const file of output.files) {
         const filename = path.basename(file, '.png');
-        // Look for component view diagrams that might include this component
+        // Look for component view diagrams for this specific container
+        // Format: structurizr-Components_{sanitized-container-name}
         if (
           filename.includes('Component') &&
+          filename.includes(sanitizedContainerName) &&
           !filename.includes('Classes') &&
           !filename.includes('-key')
         ) {

@@ -1,0 +1,28 @@
+# Test config with custom theme
+project: { name: 'Bond Math Test' }
+
+paths:
+  ir_out: output/test-ir.json
+  dsl_out: output/test.dsl
+  render_out: output/test-diagrams
+  docs_out: output/test-docs
+
+extractors:
+  - use: extractors/builtin/basic-wrangler
+    inputs:
+      include:
+        - ../../bond-math/services/**/wrangler.toml
+
+validators:
+  - use: validators/builtin/base-validator
+
+generators:
+  - use: generators/builtin/structurizr
+    inputs:
+      theme: custom-theme-test.dsl # Custom theme path
+
+renderers:
+  - use: renderers/builtin/structurizr-export
+
+docs:
+  - use: docs/builtin/markdown-docs

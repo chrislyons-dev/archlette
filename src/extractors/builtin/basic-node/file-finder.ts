@@ -1,4 +1,5 @@
 /**
+ * @module basic_node
  * File discovery utilities
  */
 
@@ -56,9 +57,15 @@ export async function findPackageJsonFiles(
     const normalized = pattern.replace(/\\/g, '/');
     const parts = normalized.split('/');
     let baseDir = '';
+    const isAbsolute = normalized.startsWith('/');
     for (const part of parts) {
       if (part.includes('*') || part === 'src') break;
+      if (!part) continue; // Skip empty parts (from leading slash or double slashes)
       baseDir += (baseDir ? '/' : '') + part;
+    }
+    // Add leading slash back for absolute paths
+    if (isAbsolute && baseDir) {
+      baseDir = '/' + baseDir;
     }
     if (baseDir) baseDirs.add(baseDir);
   }
@@ -71,10 +78,16 @@ export async function findPackageJsonFiles(
     packagePatterns.push(`${baseDir}/*/*/package.json`);
   }
 
+  log.debug(`Package search base dirs: ${Array.from(baseDirs).join(', ')}`);
+  log.debug(`Package search patterns: ${packagePatterns.join(', ')}`);
+
   const files = await globby(packagePatterns, {
     absolute: true,
     gitignore: false,
+    ignore: ['**/node_modules/**'], // Exclude node_modules packages
   });
+
+  log.debug(`Found ${files.length} package.json files: ${files.join(', ')}`);
 
   return files;
 }

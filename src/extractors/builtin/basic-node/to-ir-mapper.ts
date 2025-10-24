@@ -1,4 +1,5 @@
 /**
+ * @module basic_node
  * Map extracted data to ArchletteIR format
  */
 
@@ -25,6 +26,7 @@ import {
   DEFAULT_CONTAINER_ID,
   IR_VERSION,
   nameToId,
+  sanitizeId,
 } from '../../../core/constants.js';
 
 /**
@@ -136,7 +138,7 @@ export function mapToIR(
     for (const rel of file.relationships) {
       if (componentId) {
         // Convert target name to ID (lowercase, etc.)
-        const targetId = nameToId(rel.target);
+        const targetId = sanitizeId(rel.target);
 
         // Create component → component relationship
         componentRelationships.push({
@@ -197,7 +199,7 @@ export function mapToIR(
   if (packages && packages.length > 0) {
     // Create one container per package
     for (const pkg of packages) {
-      const containerId = nameToId(pkg.name);
+      const containerId = sanitizeId(nameToId(pkg.name));
       containers.push({
         id: containerId,
         name: pkg.name,
@@ -215,11 +217,11 @@ export function mapToIR(
       );
       if (fileWithComponent?.packageInfo) {
         const pkg = fileWithComponent.packageInfo;
-        const containerId = nameToId(pkg.name);
+        const containerId = sanitizeId(nameToId(pkg.name));
 
         const oldId = component.id;
         component.containerId = containerId;
-        component.id = `${containerId}__${oldId}`;
+        component.id = sanitizeId(`${containerId}__${oldId}`);
         componentIdMap.set(oldId, component.id);
       }
     }
@@ -241,7 +243,7 @@ export function mapToIR(
         const oldId = component.id;
         component.containerId = DEFAULT_CONTAINER_ID;
         // Apply same hierarchical ID pattern
-        component.id = `${DEFAULT_CONTAINER_ID}__${oldId}`;
+        component.id = sanitizeId(`${DEFAULT_CONTAINER_ID}__${oldId}`);
         componentIdMap.set(oldId, component.id);
       }
     }
@@ -262,7 +264,7 @@ export function mapToIR(
       for (const component of components) {
         const oldId = component.id;
         component.containerId = DEFAULT_CONTAINER_ID;
-        component.id = `${DEFAULT_CONTAINER_ID}__${oldId}`;
+        component.id = sanitizeId(`${DEFAULT_CONTAINER_ID}__${oldId}`);
         componentIdMap.set(oldId, component.id);
       }
     }
@@ -271,7 +273,10 @@ export function mapToIR(
   // Step 3: Update code item componentId references
   for (const codeItem of codeItems) {
     if (codeItem.componentId && componentIdMap.has(codeItem.componentId)) {
-      codeItem.componentId = componentIdMap.get(codeItem.componentId);
+      const newComponentId = componentIdMap.get(codeItem.componentId);
+      if (newComponentId) {
+        codeItem.componentId = newComponentId;
+      }
     }
   }
 
@@ -283,15 +288,7 @@ export function mapToIR(
       const codeName = parts[parts.length - 1] || codeItem.name;
 
       // Build hierarchical ID: container__component__code
-      codeItem.id = `${codeItem.componentId}__${codeName}`;
-
-      // Update name for display: component__code
-      const component = components.find((c) => c.id === codeItem.componentId);
-      if (component) {
-        // Extract component name without container prefix
-        const componentName = component.name;
-        codeItem.name = `${componentName}__${codeName}`;
-      }
+      codeItem.id = sanitizeId(`${codeItem.componentId}__${codeName}`);
     }
   }
 
@@ -485,6 +482,7 @@ function mapImportRelationships(
 function generateId(filePath: string, symbolName: string): string {
   // Normalize path separators
   const normalized = filePath.replace(/\\/g, '/');
+  // Don't sanitize here - keep the colon separator so we can split later
   return `${normalized}:${symbolName}`;
 }
 

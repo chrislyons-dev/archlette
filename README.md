@@ -37,6 +37,8 @@ npm install -D @chrislyons-dev/archlette
 
 **Requirements:** Node.js ≥ 18, Java ≥ 11
 
+**Free and open-source** — MIT licensed. No accounts, no telemetry, no lock-in.
+
 See [Installation Guide](https://chrislyons-dev.github.io/archlette/getting-started/installation/) for platform-specific setup.
 
 ### Annotate
@@ -106,10 +108,12 @@ npx archlette
 **Extending:**
 
 - [Plugin Development](https://chrislyons-dev.github.io/archlette/plugins/extractors/) — Write custom extractors
+- [Security Guide](docs/guide/security.md) — Input validation and security model
 
 **Contributing:**
 
-- [How to Contribute](https://chrislyons-dev.github.io/archlette/CONTRIBUTING/) — Development setup
+- [How to Contribute](CONTRIBUTING.md) — Development setup
+- [Security Guide](docs/guide/security.md) — Security architecture and best practices
 - [Changelog](CHANGELOG.md) — Release history
 
 ---

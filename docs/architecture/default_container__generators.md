@@ -1,6 +1,6 @@
-# generators
+# generators — Code View
 
-[← Back to System Overview](./README.md)
+[← Back to Container](./default-container.md) | [← Back to System](./README.md)
 
 ---
 
@@ -8,6 +8,10 @@
 
 <table>
 <tbody>
+<tr>
+<td><strong>Component</strong></td>
+<td>generators</td>
+</tr>
 <tr>
 <td><strong>Container</strong></td>
 <td>Application</td>
@@ -25,12 +29,6 @@
 
 ---
 
-## Architecture
-
-![Component Diagram](./diagrams/structurizr-Components_Application.png)
-
----
-
 ## Code Structure
 
 ### Class Diagram
@@ -40,13 +38,13 @@
 ### Code Elements
 
 <details>
-<summary><strong>10 code element(s)</strong></summary>
+<summary><strong>11 code element(s)</strong></summary>
 
 
 
 #### Functions
 
-##### `generators__run()`
+##### `run()`
 
 Execute the generation stage
 
@@ -80,7 +78,35 @@ Execute the generation stage
 - `ctx`: <code>import("C:/Users/chris/git/archlette/src/core/types").PipelineContext</code> — - Pipeline context with configuration, logging, and validated IR
 
 ---
-##### `generators__structurizrGenerator()`
+##### `loadDefaultTheme()`
+
+Load the default Structurizr theme from templates directory
+
+<table>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>function</code></td>
+</tr>
+<tr>
+<td><strong>Visibility</strong></td>
+<td><code>private</code></td>
+</tr>
+<tr>
+<td><strong>Returns</strong></td>
+<td><code>string</code> — Theme DSL content as string</td>
+</tr>
+<tr>
+<td><strong>Location</strong></td>
+<td><code>C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts:57</code></td>
+</tr>
+</tbody>
+</table>
+
+
+
+---
+##### `structurizrGenerator()`
 
 Generate Structurizr DSL from ArchletteIR
 
@@ -100,17 +126,17 @@ Generate Structurizr DSL from ArchletteIR
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts:50</code></td>
+<td><code>C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts:73</code></td>
 </tr>
 </tbody>
 </table>
 
 **Parameters:**
 
-- `ir`: <code>z.infer<any></code>- `_node`: <code>any</code>
+- `ir`: <code>z.infer<any></code>- `node`: <code>any</code>
 
 ---
-##### `generators__prepareContainerData()`
+##### `prepareContainerData()`
 
 Prepare container data with components, code, and relationships for template
 
@@ -130,7 +156,7 @@ Prepare container data with components, code, and relationships for template
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts:89</code></td>
+<td><code>C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts:148</code></td>
 </tr>
 </tbody>
 </table>
@@ -140,7 +166,7 @@ Prepare container data with components, code, and relationships for template
 - `container`: <code>z.infer<any></code>- `ir`: <code>z.infer<any></code>
 
 ---
-##### `generators__prepareComponentView()`
+##### `prepareComponentView()`
 
 Prepare component view data for template
 
@@ -160,7 +186,7 @@ Prepare component view data for template
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts:131</code></td>
+<td><code>C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts:190</code></td>
 </tr>
 </tbody>
 </table>
@@ -170,7 +196,7 @@ Prepare component view data for template
 - `container`: <code>z.infer<any></code>- `ir`: <code>z.infer<any></code>
 
 ---
-##### `generators__prepareClassView()`
+##### `prepareClassView()`
 
 Prepare class view data for template
 
@@ -190,7 +216,7 @@ Prepare class view data for template
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts:168</code></td>
+<td><code>C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts:227</code></td>
 </tr>
 </tbody>
 </table>
@@ -200,7 +226,7 @@ Prepare class view data for template
 - `component`: <code>z.infer<any></code>- `ir`: <code>z.infer<any></code>
 
 ---
-##### `generators__generateAllActorRelationships()`
+##### `generateAllActorRelationships()`
 
 Generate all actor-related relationships
 
@@ -220,7 +246,7 @@ Generate all actor-related relationships
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts:183</code></td>
+<td><code>C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts:242</code></td>
 </tr>
 </tbody>
 </table>
@@ -230,7 +256,7 @@ Generate all actor-related relationships
 - `ir`: <code>z.infer<any></code>
 
 ---
-##### `generators__generateUniqueCodeName()`
+##### `generateUniqueCodeName()`
 
 Generate a unique name for a code item to avoid naming collisions
 
@@ -250,7 +276,7 @@ Generate a unique name for a code item to avoid naming collisions
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts:230</code></td>
+<td><code>C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts:289</code></td>
 </tr>
 </tbody>
 </table>
@@ -260,7 +286,7 @@ Generate a unique name for a code item to avoid naming collisions
 - `code`: <code>z.infer<any></code>
 
 ---
-##### `generators__buildTechnologyString()`
+##### `buildTechnologyString()`
 
 Build technology string from relationship metadata
 
@@ -280,7 +306,7 @@ Build technology string from relationship metadata
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts:268</code></td>
+<td><code>C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts:327</code></td>
 </tr>
 </tbody>
 </table>
@@ -290,7 +316,7 @@ Build technology string from relationship metadata
 - `rel`: <code>z.infer<any></code>
 
 ---
-##### `generators__sanitizeId()`
+##### `sanitizeId()`
 
 Sanitize ID for DSL (remove special characters, convert to valid identifier)
 
@@ -310,7 +336,7 @@ Sanitize ID for DSL (remove special characters, convert to valid identifier)
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts:284</code></td>
+<td><code>C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts:343</code></td>
 </tr>
 </tbody>
 </table>
@@ -320,7 +346,7 @@ Sanitize ID for DSL (remove special characters, convert to valid identifier)
 - `id`: <code>string</code>
 
 ---
-##### `generators__escapeString()`
+##### `escapeString()`
 
 Escape special characters in strings for DSL
 
@@ -340,7 +366,7 @@ Escape special characters in strings for DSL
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts:291</code></td>
+<td><code>C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts:350</code></td>
 </tr>
 </tbody>
 </table>
@@ -356,5 +382,5 @@ Escape special characters in strings for DSL
 ---
 
 <div align="center">
-<sub><a href="./README.md">← Back to System Overview</a> | Generated with <a href="https://github.com/architectlabs/archlette">Archlette</a></sub>
+<sub><a href="./default-container.md">← Back to Container</a> | <a href="./README.md">← Back to System</a> | Generated with <a href="https://github.com/architectlabs/archlette">Archlette</a></sub>
 </div>

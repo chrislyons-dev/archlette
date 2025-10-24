@@ -1,4 +1,5 @@
 /**
+ * @module basic_wrangler
  * Type definitions for Wrangler configuration parsing
  */
 

@@ -1,6 +1,6 @@
-# {{ component.name }}
+# {{ component.name }} — Code View
 
-[← Back to System Overview](./README.md)
+[← Back to Container](./{{ container.id | sanitizeFileName }}.md) | [← Back to System](./README.md)
 
 ---
 
@@ -8,6 +8,10 @@
 
 <table>
 <tbody>
+<tr>
+<td><strong>Component</strong></td>
+<td>{{ component.name }}</td>
+</tr>
 <tr>
 <td><strong>Container</strong></td>
 <td>{{ container.name if container else component.containerId }}</td>
@@ -30,18 +34,6 @@
 {% endif %}
 </tbody>
 </table>
-
----
-
-## Architecture
-
-{% if componentDiagrams.length > 0 %}
-{% for diagram in componentDiagrams %}
-![Component Diagram](./{{ diagram | forwardSlashes }})
-{% endfor %}
-{% else %}
-> No component diagrams available. Run the render stage to generate diagrams.
-{% endif %}
 
 ---
 
@@ -191,5 +183,5 @@
 ---
 
 <div align="center">
-<sub><a href="./README.md">← Back to System Overview</a> | Generated with <a href="https://github.com/architectlabs/archlette">Archlette</a></sub>
+<sub><a href="./{{ container.id | sanitizeFileName }}.md">← Back to Container</a> | <a href="./README.md">← Back to System</a> | Generated with <a href="https://github.com/architectlabs/archlette">Archlette</a></sub>
 </div>

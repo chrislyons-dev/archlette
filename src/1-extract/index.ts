@@ -18,6 +18,9 @@
  * use by subsequent pipeline stages.
  *
  * @uses core Provides IR types, validation schemas, and module loading
+ * @uses basic_node composed of node extractor
+ * @uses basic_python composed of python extractor
+ * @uses basic_wrangler composed of cloudflare wrangler extractor
  *
  * @see {@link module:core/types-ir} for ArchletteIR schema
  * @see {@link module:core/stage-interfaces.ArchletteExtractor} for extractor interface

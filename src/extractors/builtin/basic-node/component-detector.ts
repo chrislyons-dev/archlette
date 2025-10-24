@@ -1,10 +1,11 @@
 /**
+ * @module basic_node
  * Component identification from JSDoc annotations
  */
 
 import type { SourceFile, Node, JSDoc, JSDocTag } from 'ts-morph';
 import { SyntaxKind } from 'ts-morph';
-import { nameToId } from '../../../core/constants.js';
+import { sanitizeId } from '../../../core/constants.js';
 
 export interface ComponentInfo {
   id: string;
@@ -120,7 +121,7 @@ function extractComponentFromJsDoc(jsDoc: Node): ComponentInfo | undefined {
       const name = extractComponentName(tag);
       if (name) {
         return {
-          id: nameToId(name),
+          id: sanitizeId(name),
           name,
           description: doc.getDescription ? doc.getDescription().trim() : undefined,
         };
@@ -188,7 +189,7 @@ function parseActorTag(tag: JSDocTag): ActorInfo | undefined {
     const description = match[4].trim() || undefined;
 
     return {
-      id: nameToId(name),
+      id: sanitizeId(name),
       name,
       type,
       direction,

@@ -1,0 +1,46 @@
+# Python Extractor Example Configuration
+
+project:
+  name: MyPythonProject
+  description: Example Python application using Archlette
+
+paths:
+  ir_out: docs/architecture/ir.json
+  dsl_out: docs/architecture/workspace.dsl
+  render_out: docs/architecture/diagrams
+  docs_out: docs/architecture
+
+extractors:
+  # Python source code extraction
+  - use: extractors/builtin/basic-python
+    name: my-python-app
+    inputs:
+      include:
+        - 'src/**/*.py'
+        - 'lib/**/*.py'
+      exclude:
+        - '**/__pycache__/**'
+        - '**/tests/**'
+        - '**/*.pyc'
+        - '**/venv/**'
+        - '**/.venv/**'
+        - '**/test_*.py'
+        - '**/*_test.py'
+    props:
+      # Optional: specify Python interpreter path
+      # pythonPath: 'python3'
+      # pythonPath: '/usr/bin/python3'
+      # pythonPath: 'C:\Python313\python.exe'
+
+validators:
+  - use: validators/builtin/base-validator
+
+generators:
+  - use: generators/builtin/structurizr
+
+renderers:
+  - use: renderers/builtin/structurizr-export
+  - use: renderers/builtin/plantuml-render
+
+docs:
+  - use: docs/builtin/markdown-docs

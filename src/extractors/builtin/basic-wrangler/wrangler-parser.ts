@@ -1,4 +1,5 @@
 /**
+ * @module basic_wrangler
  * Parser for wrangler.toml configuration files
  */
 

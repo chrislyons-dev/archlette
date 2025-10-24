@@ -6,12 +6,15 @@
  * Generates Structurizr DSL from ArchletteIR using Nunjucks templates.
  * Produces a complete workspace with model and views following C4 architecture patterns.
  *
+ * Supports custom themes via the `inputs.theme` option. If not provided, uses the default theme.
+ *
  * @example
  * ```yaml
  * generators:
- *   - use: builtin/structurizr
- *     outputs:
- *       workspace_dsl: docs/architecture/workspace.dsl
+ *   - use: generators/builtin/structurizr
+ *     inputs:
+ *       # Optional: Override default theme
+ *       theme: path/to/custom-theme.dsl
  * ```
  */
 
@@ -24,9 +27,11 @@ import type {
 } from '../../core/types-ir.js';
 import type { ResolvedStageNode } from '../../core/types-aac.js';
 import { VIEW_NAMES } from '../../core/constants.js';
+import { resolveUserContentPath } from '../../core/path-security.js';
 import * as nunjucks from 'nunjucks';
 import { fileURLToPath } from 'node:url';
 import { join, dirname } from 'node:path';
+import { readFileSync } from 'node:fs';
 
 // Configure Nunjucks environment
 const __filename = fileURLToPath(import.meta.url);
@@ -45,11 +50,29 @@ nunjucksEnv.addFilter('uniqueCodeName', generateUniqueCodeName);
 nunjucksEnv.addFilter('buildTechnology', buildTechnologyString);
 
 /**
+ * Load the default Structurizr theme from templates directory
+ * @returns Theme DSL content as string
+ * @throws Error if default theme file is missing (indicates corrupted installation)
+ */
+function loadDefaultTheme(): string {
+  const defaultThemePath = join(__dirname, '..', '..', 'templates', 'theme.dsl');
+  try {
+    return readFileSync(defaultThemePath, 'utf8');
+  } catch (error) {
+    throw new Error(
+      `Failed to load default Structurizr theme at ${defaultThemePath}. ` +
+        `This may indicate a corrupted installation. ` +
+        `Original error: ${error instanceof Error ? error.message : String(error)}`,
+    );
+  }
+}
+
+/**
  * Generate Structurizr DSL from ArchletteIR
  */
 export default function structurizrGenerator(
   ir: ArchletteIR,
-  _node: ResolvedStageNode,
+  node: ResolvedStageNode,
 ): string {
   // Prepare actor relationships
   const actorRelationships = generateAllActorRelationships(ir);
@@ -69,6 +92,41 @@ export default function structurizrGenerator(
     .map((component) => prepareClassView(component, ir))
     .filter((view) => view !== null);
 
+  // Load theme content
+  let themeContent = '';
+
+  // Check if user provided a custom theme path via inputs
+  const inputs = node.inputs as { theme?: string } | undefined;
+  const customThemePath = inputs?.theme;
+
+  if (customThemePath) {
+    // Resolve and validate theme path using centralized security utilities
+    // Use _configBaseDir from node, fallback to cwd for backward compatibility
+    const baseDir = node._configBaseDir || process.cwd();
+    const pathResult = resolveUserContentPath(customThemePath, baseDir, ['.dsl']);
+
+    // Path security warnings are logged by the path-security module
+    // We use config-relative strategy which allows legitimate shared themes (../shared-themes/)
+    // while still protecting against obvious attacks
+
+    if (pathResult.exists && pathResult.isSecure) {
+      try {
+        themeContent = readFileSync(pathResult.absolutePath, 'utf8');
+      } catch {
+        // File exists but couldn't be read (permissions, encoding, etc.)
+        // Fall back to default theme silently - orchestrator can log if needed
+        themeContent = loadDefaultTheme();
+      }
+    } else {
+      // Custom theme not found or security validation failed
+      // Fall back to default theme - orchestrator can log warnings if needed
+      themeContent = loadDefaultTheme();
+    }
+  } else {
+    // Use default theme
+    themeContent = loadDefaultTheme();
+  }
+
   // Render using main template
   return nunjucksEnv.render('workspace.dsl.njk', {
     system: ir.system,
@@ -80,6 +138,7 @@ export default function structurizrGenerator(
     componentViews,
     classViews,
     VIEW_NAMES,
+    themeContent,
   });
 }
 

@@ -1,0 +1,148 @@
+@startuml
+set separator none
+title Application - Application - Components
+
+top to bottom direction
+skinparam ranksep 60
+skinparam nodesep 30
+
+skinparam {
+  arrowFontSize 10
+  defaultTextAlignment center
+  wrapWidth 200
+  maxMessageSize 100
+  defaultFontName "Arial"
+}
+
+hide stereotype
+
+skinparam rectangle<<Application.Application.default_container__basic__basicpython>> {
+  BackgroundColor #85bbf0
+  FontColor #000000
+  BorderColor #5d82a8
+  roundCorner 20
+  shadowing false
+}
+skinparam rectangle<<Application.Application.default_container__basic__createemptyir>> {
+  BackgroundColor #85bbf0
+  FontColor #000000
+  BorderColor #5d82a8
+  roundCorner 20
+  shadowing false
+}
+skinparam rectangle<<Application.Application.default_container__basic__deduplicaterelationships>> {
+  BackgroundColor #85bbf0
+  FontColor #000000
+  BorderColor #5d82a8
+  roundCorner 20
+  shadowing false
+}
+skinparam rectangle<<Application.Application.default_container__basic__findnearestpyproject>> {
+  BackgroundColor #85bbf0
+  FontColor #000000
+  BorderColor #5d82a8
+  roundCorner 20
+  shadowing false
+}
+skinparam rectangle<<Application.Application.default_container__basic__findpyprojectfiles>> {
+  BackgroundColor #85bbf0
+  FontColor #000000
+  BorderColor #5d82a8
+  roundCorner 20
+  shadowing false
+}
+skinparam rectangle<<Application.Application.default_container__basic__findsourcefiles>> {
+  BackgroundColor #85bbf0
+  FontColor #000000
+  BorderColor #5d82a8
+  roundCorner 20
+  shadowing false
+}
+skinparam rectangle<<Application.Application.default_container__basic__mapactortoir>> {
+  BackgroundColor #85bbf0
+  FontColor #000000
+  BorderColor #5d82a8
+  roundCorner 20
+  shadowing false
+}
+skinparam rectangle<<Application.Application.default_container__basic__mapclasstocodeitem>> {
+  BackgroundColor #85bbf0
+  FontColor #000000
+  BorderColor #5d82a8
+  roundCorner 20
+  shadowing false
+}
+skinparam rectangle<<Application.Application.default_container__basic__mapfunctiontocodeitem>> {
+  BackgroundColor #85bbf0
+  FontColor #000000
+  BorderColor #5d82a8
+  roundCorner 20
+  shadowing false
+}
+skinparam rectangle<<Application.Application.default_container__basic__mapmethodtocodeitem>> {
+  BackgroundColor #85bbf0
+  FontColor #000000
+  BorderColor #5d82a8
+  roundCorner 20
+  shadowing false
+}
+skinparam rectangle<<Application.Application.default_container__basic__maprelationshipstoir>> {
+  BackgroundColor #85bbf0
+  FontColor #000000
+  BorderColor #5d82a8
+  roundCorner 20
+  shadowing false
+}
+skinparam rectangle<<Application.Application.default_container__basic__maptoir>> {
+  BackgroundColor #85bbf0
+  FontColor #000000
+  BorderColor #5d82a8
+  roundCorner 20
+  shadowing false
+}
+skinparam rectangle<<Application.Application.default_container__basic__maptypetocodeitem>> {
+  BackgroundColor #85bbf0
+  FontColor #000000
+  BorderColor #5d82a8
+  roundCorner 20
+  shadowing false
+}
+skinparam rectangle<<Application.Application.default_container__basic__parsepyprojecttoml>> {
+  BackgroundColor #85bbf0
+  FontColor #000000
+  BorderColor #5d82a8
+  roundCorner 20
+  shadowing false
+}
+skinparam rectangle<<Application.Application.default_container__basic__readpyprojectinfo>> {
+  BackgroundColor #85bbf0
+  FontColor #000000
+  BorderColor #5d82a8
+  roundCorner 20
+  shadowing false
+}
+skinparam rectangle<<Application.Application>> {
+  BorderColor #2e6295
+  FontColor #2e6295
+  shadowing false
+}
+
+rectangle "Application\n<size:10>[Container: Application]</size>" <<Application.Application>> {
+  rectangle "==default_container__basic__findsourcefiles\n<size:10>[Component: function]</size>\n\nFind source files matching include/exclude patterns" <<Application.Application.default_container__basic__findsourcefiles>> as Application.Application.default_container__basic__findsourcefiles
+  rectangle "==default_container__basic__findpyprojectfiles\n<size:10>[Component: function]</size>\n\nFind pyproject.toml files within the search paths" <<Application.Application.default_container__basic__findpyprojectfiles>> as Application.Application.default_container__basic__findpyprojectfiles
+  rectangle "==default_container__basic__readpyprojectinfo\n<size:10>[Component: function]</size>\n\nRead and parse pyproject.toml file" <<Application.Application.default_container__basic__readpyprojectinfo>> as Application.Application.default_container__basic__readpyprojectinfo
+  rectangle "==default_container__basic__parsepyprojecttoml\n<size:10>[Component: function]</size>\n\nSimple TOML parser for pyproject.toml\nOnly handles the subset we need: [project] and [tool.poetry] sections" <<Application.Application.default_container__basic__parsepyprojecttoml>> as Application.Application.default_container__basic__parsepyprojecttoml
+  rectangle "==default_container__basic__findnearestpyproject\n<size:10>[Component: function]</size>\n\nFind the nearest parent pyproject.toml for a given file" <<Application.Application.default_container__basic__findnearestpyproject>> as Application.Application.default_container__basic__findnearestpyproject
+  rectangle "==default_container__basic__maptoir\n<size:10>[Component: function]</size>\n\nMap file extractions to ArchletteIR" <<Application.Application.default_container__basic__maptoir>> as Application.Application.default_container__basic__maptoir
+  rectangle "==default_container__basic__mapactortoir\n<size:10>[Component: function]</size>\n\nMap ActorInfo to Actor" <<Application.Application.default_container__basic__mapactortoir>> as Application.Application.default_container__basic__mapactortoir
+  rectangle "==default_container__basic__maprelationshipstoir\n<size:10>[Component: function]</size>\n\nMap relationships to Relationship[]\nCreates bidirectional actor relationships" <<Application.Application.default_container__basic__maprelationshipstoir>> as Application.Application.default_container__basic__maprelationshipstoir
+  rectangle "==default_container__basic__deduplicaterelationships\n<size:10>[Component: function]</size>\n\nDeduplicate relationships by source+destination" <<Application.Application.default_container__basic__deduplicaterelationships>> as Application.Application.default_container__basic__deduplicaterelationships
+  rectangle "==default_container__basic__mapclasstocodeitem\n<size:10>[Component: function]</size>\n\nMap ExtractedClass to CodeItem" <<Application.Application.default_container__basic__mapclasstocodeitem>> as Application.Application.default_container__basic__mapclasstocodeitem
+  rectangle "==default_container__basic__mapmethodtocodeitem\n<size:10>[Component: function]</size>\n\nMap ExtractedMethod to CodeItem" <<Application.Application.default_container__basic__mapmethodtocodeitem>> as Application.Application.default_container__basic__mapmethodtocodeitem
+  rectangle "==default_container__basic__mapfunctiontocodeitem\n<size:10>[Component: function]</size>\n\nMap ExtractedFunction to CodeItem" <<Application.Application.default_container__basic__mapfunctiontocodeitem>> as Application.Application.default_container__basic__mapfunctiontocodeitem
+  rectangle "==default_container__basic__maptypetocodeitem\n<size:10>[Component: function]</size>\n\nMap ExtractedType to CodeItem" <<Application.Application.default_container__basic__maptypetocodeitem>> as Application.Application.default_container__basic__maptypetocodeitem
+  rectangle "==default_container__basic__createemptyir\n<size:10>[Component: function]</size>\n\nCreate empty IR when no files found" <<Application.Application.default_container__basic__createemptyir>> as Application.Application.default_container__basic__createemptyir
+  rectangle "==default_container__basic__basicpython\n<size:10>[Component: function]</size>\n\nBasic Python extractor\nAnalyzes Python source code and extracts architectural components" <<Application.Application.default_container__basic__basicpython>> as Application.Application.default_container__basic__basicpython
+}
+
+@enduml

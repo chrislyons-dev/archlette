@@ -11,38 +11,42 @@ skinparam {
   defaultTextAlignment center
   wrapWidth 200
   maxMessageSize 100
+  defaultFontName "Arial"
 }
 
 hide stereotype
 
-skinparam rectangle<<Application.Application.renderers__plantumlrender>> {
-  BackgroundColor #dddddd
+skinparam rectangle<<Application.Application.default_container__renderers__plantumlrender>> {
+  BackgroundColor #85bbf0
   FontColor #000000
-  BorderColor #9a9a9a
+  BorderColor #5d82a8
+  roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.renderers__run>> {
-  BackgroundColor #dddddd
+skinparam rectangle<<Application.Application.default_container__renderers__run>> {
+  BackgroundColor #85bbf0
   FontColor #000000
-  BorderColor #9a9a9a
+  BorderColor #5d82a8
+  roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.renderers__structurizrexport>> {
-  BackgroundColor #dddddd
+skinparam rectangle<<Application.Application.default_container__renderers__structurizrexport>> {
+  BackgroundColor #85bbf0
   FontColor #000000
-  BorderColor #9a9a9a
+  BorderColor #5d82a8
+  roundCorner 20
   shadowing false
 }
 skinparam rectangle<<Application.Application>> {
-  BorderColor #9a9a9a
-  FontColor #9a9a9a
+  BorderColor #2e6295
+  FontColor #2e6295
   shadowing false
 }
 
 rectangle "Application\n<size:10>[Container: Application]</size>" <<Application.Application>> {
-  rectangle "==renderers__run\n<size:10>[Component: function]</size>\n\nExecute the rendering stage" <<Application.Application.renderers__run>> as Application.Application.renderers__run
-  rectangle "==renderers__plantumlrender\n<size:10>[Component: function]</size>\n\nRender PlantUML files to PNG images" <<Application.Application.renderers__plantumlrender>> as Application.Application.renderers__plantumlrender
-  rectangle "==renderers__structurizrexport\n<size:10>[Component: function]</size>\n\nExport Structurizr DSL to PlantUML and Mermaid formats" <<Application.Application.renderers__structurizrexport>> as Application.Application.renderers__structurizrexport
+  rectangle "==default_container__renderers__run\n<size:10>[Component: function]</size>\n\nExecute the rendering stage" <<Application.Application.default_container__renderers__run>> as Application.Application.default_container__renderers__run
+  rectangle "==default_container__renderers__plantumlrender\n<size:10>[Component: function]</size>\n\nRender PlantUML files to PNG images" <<Application.Application.default_container__renderers__plantumlrender>> as Application.Application.default_container__renderers__plantumlrender
+  rectangle "==default_container__renderers__structurizrexport\n<size:10>[Component: function]</size>\n\nExport Structurizr DSL to PlantUML and Mermaid formats" <<Application.Application.default_container__renderers__structurizrexport>> as Application.Application.default_container__renderers__structurizrexport
 }
 
 @enduml

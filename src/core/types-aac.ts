@@ -119,6 +119,8 @@ export type ResolvedStageNode = z.infer<typeof StageNode> & {
     description?: string;
     repository?: string;
   };
+  /** Base directory for resolving config-relative paths (themes, inputs, etc.) */
+  _configBaseDir?: string;
 };
 
 export type ResolvedAACConfig = Omit<
@@ -135,8 +137,12 @@ export type ResolvedAACConfig = Omit<
 /**
  * For each stage, resolve includes/excludes for each node:
  *   - If node omits includes/excludes, inherit from defaults.
+ *   - Add configBaseDir for resolving config-relative paths
  */
-export function resolveConfig(raw: unknown): ResolvedAACConfig {
+export function resolveConfig(
+  raw: unknown,
+  options?: { configBaseDir?: string },
+): ResolvedAACConfig {
   const parsed = AACConfigSchema.parse(raw);
 
   const resolveStage = (nodes: z.infer<typeof StageNode>[]): ResolvedStageNode[] => {
@@ -152,6 +158,7 @@ export function resolveConfig(raw: unknown): ResolvedAACConfig {
           excludes: nodeExcludes,
         },
         _system: parsed.system,
+        _configBaseDir: options?.configBaseDir,
       };
     });
   };

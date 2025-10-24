@@ -1,0 +1,16 @@
+{
+  "version": "1.0",
+  "system": {
+    "name": "Unknown System",
+    "description": "No wrangler.toml files found or parsed"
+  },
+  "actors": [],
+  "containers": [],
+  "components": [],
+  "code": [],
+  "deployments": [],
+  "containerRelationships": [],
+  "componentRelationships": [],
+  "codeRelationships": [],
+  "deploymentRelationships": []
+}

@@ -1,6 +1,6 @@
-# core
+# core — Code View
 
-[← Back to System Overview](./README.md)
+[← Back to Container](./default-container.md) | [← Back to System](./README.md)
 
 ---
 
@@ -8,6 +8,10 @@
 
 <table>
 <tbody>
+<tr>
+<td><strong>Component</strong></td>
+<td>core</td>
+</tr>
 <tr>
 <td><strong>Container</strong></td>
 <td>Application</td>
@@ -25,28 +29,24 @@
 
 ---
 
-## Architecture
-
-![Component Diagram](./diagrams/structurizr-Components_Application.png)
-
----
-
 ## Code Structure
 
 ### Class Diagram
 
 ![Class Diagram](./diagrams/structurizr-Classes_default_container__core.png)
+![Class Diagram](./diagrams/structurizr-Classes_default_container__core_config.png)
+![Class Diagram](./diagrams/structurizr-Classes_default_container__core_path.png)
 
 ### Code Elements
 
 <details>
-<summary><strong>30 code element(s)</strong></summary>
+<summary><strong>32 code element(s)</strong></summary>
 
 
 
 #### Functions
 
-##### `core__nameToId()`
+##### `nameToId()`
 
 Convert a name to a normalized ID
 Used for consistent ID generation across extractors and mappers
@@ -81,7 +81,42 @@ Used for consistent ID generation across extractors and mappers
 ```
 
 ---
-##### `core__isTTY()`
+##### `sanitizeId()`
+
+Sanitize ID for DSL and code identifiers (preserves underscores)
+Used for Python code identifiers where underscores are significant
+
+<table>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>function</code></td>
+</tr>
+<tr>
+<td><strong>Visibility</strong></td>
+<td><code>public</code></td>
+</tr>
+<tr>
+<td><strong>Returns</strong></td>
+<td><code>string</code> — Sanitized ID (lowercase alphanumeric and underscores only)</td>
+</tr>
+<tr>
+<td><strong>Location</strong></td>
+<td><code>C:/Users/chris/git/archlette/src/core/constants.ts:78</code></td>
+</tr>
+</tbody>
+</table>
+
+**Parameters:**
+
+- `id`: <code>string</code> — - The ID to sanitize
+**Examples:**
+```typescript
+
+```
+
+---
+##### `isTTY()`
 
 Determine if we're in a TTY environment (for pretty printing)
 
@@ -109,7 +144,7 @@ Determine if we're in a TTY environment (for pretty printing)
 
 
 ---
-##### `core__getDefaultLogLevel()`
+##### `getDefaultLogLevel()`
 
 Get default log level from environment or fallback to 'info'
 
@@ -137,7 +172,7 @@ Get default log level from environment or fallback to 'info'
 
 
 ---
-##### `core__createPinoLogger()`
+##### `createPinoLogger()`
 
 Create a Pino logger instance with optional pretty printing
 
@@ -167,7 +202,7 @@ Create a Pino logger instance with optional pretty printing
 - `level`: <code>import("C:/Users/chris/git/archlette/src/core/logger").LogLevel</code>- `pretty`: <code>boolean</code>
 
 ---
-##### `core__createLogger()`
+##### `createLogger()`
 
 Create a logger instance
 
@@ -201,9 +236,38 @@ Create a logger instance
 ```
 
 ---
-##### `core__loadModuleFromPath()`
+##### `getDefaultUserPluginDir()`
 
-Dynamically load an ESM module from a path or module specifier
+Default base directory for user plugins: ~/.archlette/mods
+This provides a standard location for external plugins and custom modules
+
+<table>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>function</code></td>
+</tr>
+<tr>
+<td><strong>Visibility</strong></td>
+<td><code>private</code></td>
+</tr>
+<tr>
+<td><strong>Returns</strong></td>
+<td><code>string</code></td>
+</tr>
+<tr>
+<td><strong>Location</strong></td>
+<td><code>C:/Users/chris/git/archlette/src/core/module-loader.ts:54</code></td>
+</tr>
+</tbody>
+</table>
+
+
+
+---
+##### `loadModuleFromPath()`
+
+Dynamically load an ESM module from a path or module specifier with security validation
 
 <table>
 <tbody>
@@ -225,21 +289,22 @@ Dynamically load an ESM module from a path or module specifier
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/core/module-loader.ts:62</code></td>
+<td><code>C:/Users/chris/git/archlette/src/core/module-loader.ts:104</code></td>
 </tr>
 </tbody>
 </table>
 
 **Parameters:**
 
-- `spec`: <code>string</code> — - Module specifier (relative path, absolute path, or ~/ path)- `exts`: <code>(".ts" | ".js")[]</code> — - File extensions to probe (in order of preference)
+- `spec`: <code>string</code> — - Module specifier (relative path, absolute path, or ~/ path)- `exts`: <code>(".ts" | ".js")[]</code> — - File extensions to probe (in order of preference)- `allowedAbsolutePaths`: <code>string[]</code> — - Optional allowlist for absolute plugin paths (external plugins)
+   Defaults to [~/.archlette/mods] for user plugins
 **Examples:**
 ```typescript
 
 ```
 
 ---
-##### `core__getCliDir()`
+##### `getCliDir()`
 
 
 <table>
@@ -266,7 +331,7 @@ Dynamically load an ESM module from a path or module specifier
 
 
 ---
-##### `core__expandTilde()`
+##### `expandTilde()`
 
 
 <table>
@@ -295,7 +360,7 @@ Dynamically load an ESM module from a path or module specifier
 - `p`: <code>string</code>- `homeDir`: <code>string</code>
 
 ---
-##### `core__resolveArchlettePath()`
+##### `resolveArchlettePath()`
 
 Core path resolver honoring Archlette rules (no file existence checks).
 - "~"  -> user home
@@ -328,7 +393,7 @@ Core path resolver honoring Archlette rules (no file existence checks).
 - `input`: <code>string</code>- `opts`: <code>{ cliDir: string; }</code>
 
 ---
-##### `core__resolveModuleEntry()`
+##### `resolveModuleEntry()`
 
 Resolve a module entry by probing:
 1) Exact path
@@ -361,7 +426,7 @@ Resolve a module entry by probing:
 - `input`: <code>string</code>- `opts`: <code>{ cliDir: string; wantedExts?: (".ts" | ".js")[]; }</code>
 
 ---
-##### `core__toFileUrl()`
+##### `toFileUrl()`
 
 
 <table>
@@ -390,7 +455,7 @@ Resolve a module entry by probing:
 - `p`: <code>string</code>
 
 ---
-##### `core__writeFile()`
+##### `writeFile()`
 
 Write content to a file, creating parent directories if needed.
 
@@ -420,7 +485,7 @@ Write content to a file, creating parent directories if needed.
 - `filename`: <code>string</code> — - Absolute path to the file- `content`: <code>string</code> — - Content to write
 
 ---
-##### `core__loadExtractorModule()`
+##### `loadExtractorModule()`
 
 
 <table>
@@ -453,7 +518,7 @@ Write content to a file, creating parent directories if needed.
 - `modulePath`: <code>string</code>
 
 ---
-##### `core__loadValidatorModule()`
+##### `loadValidatorModule()`
 
 
 <table>
@@ -486,7 +551,7 @@ Write content to a file, creating parent directories if needed.
 - `modulePath`: <code>string</code>
 
 ---
-##### `core__loadGeneratorModule()`
+##### `loadGeneratorModule()`
 
 
 <table>
@@ -519,7 +584,7 @@ Write content to a file, creating parent directories if needed.
 - `modulePath`: <code>string</code>
 
 ---
-##### `core__loadRendererModule()`
+##### `loadRendererModule()`
 
 
 <table>
@@ -552,7 +617,7 @@ Write content to a file, creating parent directories if needed.
 - `modulePath`: <code>string</code>
 
 ---
-##### `core__loadDocModule()`
+##### `loadDocModule()`
 
 
 <table>
@@ -585,7 +650,7 @@ Write content to a file, creating parent directories if needed.
 - `modulePath`: <code>string</code>
 
 ---
-##### `core__getCacheDir()`
+##### `getCacheDir()`
 
 Get the Archlette cache directory
 
@@ -613,7 +678,7 @@ Get the Archlette cache directory
 
 
 ---
-##### `core__ensureCacheDir()`
+##### `ensureCacheDir()`
 
 Ensure cache directory exists
 
@@ -641,7 +706,7 @@ Ensure cache directory exists
 
 
 ---
-##### `core__commandExistsInPath()`
+##### `commandExistsInPath()`
 
 Check if a command exists in PATH
 
@@ -671,7 +736,7 @@ Check if a command exists in PATH
 - `command`: <code>string</code>
 
 ---
-##### `core__downloadFile()`
+##### `downloadFile()`
 
 Download a file from URL to destination
 
@@ -705,7 +770,7 @@ Download a file from URL to destination
 - `url`: <code>string</code>- `dest`: <code>string</code>- `log`: <code>import("C:/Users/chris/git/archlette/src/core/logger").Logger</code>
 
 ---
-##### `core__extractZip()`
+##### `extractZip()`
 
 Extract a ZIP file (simple extraction for Structurizr CLI)
 
@@ -739,7 +804,7 @@ Extract a ZIP file (simple extraction for Structurizr CLI)
 - `zipPath`: <code>string</code>- `destDir`: <code>string</code>- `log`: <code>import("C:/Users/chris/git/archlette/src/core/logger").Logger</code>
 
 ---
-##### `core__makeExecutable()`
+##### `makeExecutable()`
 
 Make file executable (Unix only)
 
@@ -769,7 +834,7 @@ Make file executable (Unix only)
 - `filePath`: <code>string</code>
 
 ---
-##### `core__downloadStructurizr()`
+##### `downloadStructurizr()`
 
 Download and install Structurizr CLI to cache
 
@@ -803,7 +868,7 @@ Download and install Structurizr CLI to cache
 - `cacheDir`: <code>string</code>- `log`: <code>import("C:/Users/chris/git/archlette/src/core/logger").Logger</code>
 
 ---
-##### `core__downloadPlantUML()`
+##### `downloadPlantUML()`
 
 Download and install PlantUML to cache
 
@@ -837,7 +902,7 @@ Download and install PlantUML to cache
 - `cacheDir`: <code>string</code>- `log`: <code>import("C:/Users/chris/git/archlette/src/core/logger").Logger</code>
 
 ---
-##### `core__findStructurizrCLI()`
+##### `findStructurizrCLI()`
 
 Find or download Structurizr CLI
 
@@ -871,7 +936,7 @@ Find or download Structurizr CLI
 - `log`: <code>import("C:/Users/chris/git/archlette/src/core/logger").Logger</code> — - Optional logger
 
 ---
-##### `core__findPlantUML()`
+##### `findPlantUML()`
 
 Find or download PlantUML JAR
 
@@ -905,7 +970,7 @@ Find or download PlantUML JAR
 - `log`: <code>import("C:/Users/chris/git/archlette/src/core/logger").Logger</code> — - Optional logger
 
 ---
-##### `core__checkJava()`
+##### `checkJava()`
 
 Verify Java is available
 
@@ -933,7 +998,7 @@ Verify Java is available
 
 
 ---
-##### `core__requireJava()`
+##### `requireJava()`
 
 Validate Java is installed (throw if not)
 
@@ -961,10 +1026,11 @@ Validate Java is installed (throw if not)
 
 
 ---
-##### `core__resolveConfig()`
+##### `resolveConfig()`
 
 For each stage, resolve includes/excludes for each node:
   - If node omits includes/excludes, inherit from defaults.
+  - Add configBaseDir for resolving config-relative paths
 
 <table>
 <tbody>
@@ -982,14 +1048,14 @@ For each stage, resolve includes/excludes for each node:
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/core/types-aac.ts:139</code></td>
+<td><code>C:/Users/chris/git/archlette/src/core/types-aac.ts:142</code></td>
 </tr>
 </tbody>
 </table>
 
 **Parameters:**
 
-- `raw`: <code>unknown</code>
+- `raw`: <code>unknown</code>- `options`: <code>{ configBaseDir?: string; }</code>
 
 ---
 
@@ -998,5 +1064,5 @@ For each stage, resolve includes/excludes for each node:
 ---
 
 <div align="center">
-<sub><a href="./README.md">← Back to System Overview</a> | Generated with <a href="https://github.com/architectlabs/archlette">Archlette</a></sub>
+<sub><a href="./default-container.md">← Back to Container</a> | <a href="./README.md">← Back to System</a> | Generated with <a href="https://github.com/architectlabs/archlette">Archlette</a></sub>
 </div>

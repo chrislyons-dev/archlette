@@ -1,4 +1,5 @@
 /**
+ * @module basic_wrangler
  * Map parsed Wrangler configurations to ArchletteIR format
  */
 
@@ -9,7 +10,7 @@ import type {
   Relationship,
 } from '../../../core/types-ir.js';
 import type { WranglerConfig } from './types.js';
-import { IR_VERSION } from '../../../core/constants.js';
+import { IR_VERSION, sanitizeId } from '../../../core/constants.js';
 import { getEnvironments, getEnvironmentConfig } from './wrangler-parser.js';
 
 /**
@@ -78,7 +79,7 @@ function extractContainers(configs: WranglerConfig[]) {
     const description = buildContainerDescription(config);
 
     return {
-      id: config.name,
+      id: sanitizeId(config.name),
       name: config.name,
       type: 'Cloudflare Worker',
       layer: 'Application',
@@ -145,7 +146,7 @@ function extractDeploymentsAndInstances(
       const envConfig = getEnvironmentConfig(config, envName);
 
       // Create instance ID: environment__service-name
-      const instanceId = `${envName}__${config.name}`;
+      const instanceId = sanitizeId(`${envName}__${config.name}`);
 
       // Convert bindings to the IR Binding format
       const bindings = [];
@@ -232,7 +233,7 @@ function extractDeploymentsAndInstances(
       // Create container instance
       const instance: ContainerInstance = {
         id: instanceId,
-        containerRef: config.name,
+        containerRef: sanitizeId(config.name),
         name: envConfig.name,
         type: 'Cloudflare Worker',
         bindings: bindings.length > 0 ? bindings : undefined,
@@ -271,7 +272,7 @@ function extractContainerRelationships(configs: WranglerConfig[]): Relationship[
   const relationships = new Map<string, Relationship>();
 
   configs.forEach((config) => {
-    const sourceContainer = config.name;
+    const sourceContainer = sanitizeId(config.name);
 
     // Collect service bindings from root-level config
     const serviceBindings = config.services || [];
@@ -287,7 +288,7 @@ function extractContainerRelationships(configs: WranglerConfig[]): Relationship[
 
     // Create relationships for each unique service binding
     serviceBindings.forEach((binding) => {
-      const targetContainer = binding.service;
+      const targetContainer = sanitizeId(binding.service);
       const relationshipKey = `${sourceContainer}__${targetContainer}`;
 
       if (!relationships.has(relationshipKey)) {
@@ -334,7 +335,7 @@ function extractDeploymentRelationships(
       const [sourceEnv, _sourceService] = instance.id.split('__');
       const targetService = binding.service;
       const targetEnv = binding.environment || sourceEnv; // Use binding's env or fallback to source env
-      const targetInstanceId = `${targetEnv}__${targetService}`;
+      const targetInstanceId = sanitizeId(`${targetEnv}__${targetService}`);
 
       relationships.push({
         source: instance.id,

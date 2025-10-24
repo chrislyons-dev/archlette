@@ -1,0 +1,89 @@
+# {{ container.name }}
+
+[← Back to System Overview](./README.md)
+
+---
+
+## Container Context
+
+{% if containerDiagrams.length > 0 %}
+{% for diagram in containerDiagrams %}
+![Container Diagram](./{{ diagram | forwardSlashes }})
+{% endfor %}
+{% endif %}
+
+---
+
+## Container Information
+
+<table>
+<tbody>
+<tr>
+<td><strong>Name</strong></td>
+<td>{{ container.name }}</td>
+</tr>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>{{ container.type }}</code></td>
+</tr>
+{% if container.description %}
+<tr>
+<td><strong>Description</strong></td>
+<td>{{ container.description }}</td>
+</tr>
+{% endif %}
+{% if container.tags and container.tags.length > 0 %}
+<tr>
+<td><strong>Tags</strong></td>
+<td>{% for tag in container.tags %}<code>{{ tag }}</code>{% if not loop.last %}, {% endif %}{% endfor %}</td>
+</tr>
+{% endif %}
+</tbody>
+</table>
+
+---
+
+## Components
+
+{% if components.length > 0 %}
+
+{% if componentDiagrams.length > 0 %}
+### Component View
+
+{% for diagram in componentDiagrams %}
+![Component Diagram](./{{ diagram | forwardSlashes }})
+{% endfor %}
+{% endif %}
+
+### Component Details
+
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Type</th>
+<th>Description</th>
+<th>Code</th>
+</tr>
+</thead>
+<tbody>
+{% for component in components %}
+<tr>
+<td><strong>{{ component.name }}</strong></td>
+<td><code>{{ component.type }}</code></td>
+<td>{{ component.description or "—" }}</td>
+<td><a href="./{{ component.id }}.md">View →</a></td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+
+{% else %}
+> No components defined for this container.
+{% endif %}
+
+---
+
+<div align="center">
+<sub><a href="./README.md">← Back to System Overview</a> | Generated with <a href="https://github.com/architectlabs/archlette">Archlette</a></sub>
+</div>

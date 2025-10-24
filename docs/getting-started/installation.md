@@ -97,10 +97,10 @@ Should print the current version number.
 
 First run downloads external tools to `~/.archlette/tools/`:
 
-- **Structurizr CLI** (v2025.05.28) — DSL export
-- **PlantUML** (v1.2025.8) — Diagram rendering
+- **Structurizr CLI** — DSL export
+- **PlantUML** — Diagram rendering
 
-Downloads happen once. Cached for all subsequent runs.
+Latest compatible versions downloaded automatically. Cached for all subsequent runs.
 
 **Cache location:**
 

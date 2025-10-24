@@ -204,7 +204,7 @@ async function downloadStructurizr(cacheDir: string, log?: Logger): Promise<stri
     // Clean up ZIP
     fs.unlinkSync(zipPath);
 
-    log?.info(`✓ Structurizr CLI installed to ${toolDir}`);
+    log?.info(`Structurizr CLI installed to ${toolDir}`);
     return scriptPath;
   } catch (err) {
     log?.error('Failed to download Structurizr CLI:', err);
@@ -227,7 +227,7 @@ async function downloadPlantUML(cacheDir: string, log?: Logger): Promise<string>
 
   try {
     await downloadFile(TOOL_URLS.plantuml, jarPath, log);
-    log?.info(`✓ PlantUML installed to ${jarPath}`);
+    log?.info(`PlantUML installed to ${jarPath}`);
     return jarPath;
   } catch (err) {
     log?.error('Failed to download PlantUML:', err);

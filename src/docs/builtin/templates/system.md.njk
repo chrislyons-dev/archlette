@@ -11,9 +11,7 @@ Generated {{ "now" | date("YYYY-MM-DD HH:mm:ss") }}
 
 ---
 
-## System Architecture
-
-### System Context
+## System Context
 
 The system context diagram shows how {{ system.name }} fits into its environment, including external systems and users.
 
@@ -44,6 +42,7 @@ The container diagram shows the high-level technology choices and how containers
 <th>Container</th>
 <th>Type</th>
 <th>Description</th>
+<th>Details</th>
 </tr>
 </thead>
 <tbody>
@@ -52,6 +51,7 @@ The container diagram shows the high-level technology choices and how containers
 <td><strong>{{ container.name }}</strong></td>
 <td><code>{{ container.type }}</code></td>
 <td>{{ container.description or "—" }}</td>
+<td><a href="./{{ container.id | sanitizeFileName }}.md">View →</a></td>
 </tr>
 {% endfor %}
 </tbody>
@@ -60,84 +60,6 @@ The container diagram shows the high-level technology choices and how containers
 {% else %}
 > No containers defined.
 {% endif %}
-
----
-
-## Components
-
-{% if components.length > 0 %}
-The component diagram shows the internal structure of containers and their responsibilities.
-
-{% if componentDiagrams.length > 0 %}
-{% for diagram in componentDiagrams %}
-![Component Diagram](./{{ diagram | forwardSlashes }})
-{% endfor %}
-{% endif %}
-
-<table>
-<thead>
-<tr>
-<th>Component</th>
-<th>Container</th>
-<th>Type</th>
-<th>Description</th>
-<th>Details</th>
-</tr>
-</thead>
-<tbody>
-{% for component in components %}
-<tr>
-<td><strong>{{ component.name }}</strong></td>
-<td>{{ containers | selectattr("id", "equalto", component.containerId) | map(attribute="name") | first or component.containerId }}</td>
-<td><code>{{ component.type }}</code></td>
-<td>{{ component.description or "—" }}</td>
-<td><a href="./{{ component.id }}.md">View →</a></td>
-</tr>
-{% endfor %}
-</tbody>
-</table>
-
-{% else %}
-> No components defined.
-{% endif %}
-
----
-
-## Actors
-
-{% if actors.length > 0 %}
-<table>
-<thead>
-<tr>
-<th>Actor</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-{% for actor in actors %}
-<tr>
-<td><strong>{{ actor.name }}</strong></td>
-<td><code>{{ actor.type }}</code></td>
-<td>{{ actor.description or "—" }}</td>
-</tr>
-{% endfor %}
-</tbody>
-</table>
-
-{% else %}
-> No actors defined.
-{% endif %}
-
----
-
-## Component Reference
-
-Quick navigation to detailed component documentation:
-
-{% for component in components %}
-- **[{{ component.name }}](./{{ component.id }}.md)** — {{ component.description or "Component documentation" }}
-{% endfor %}
 
 ---
 

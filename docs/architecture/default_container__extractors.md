@@ -1,6 +1,6 @@
-# extractors
+# extractors — Code View
 
-[← Back to System Overview](./README.md)
+[← Back to Container](./default-container.md) | [← Back to System](./README.md)
 
 ---
 
@@ -8,6 +8,10 @@
 
 <table>
 <tbody>
+<tr>
+<td><strong>Component</strong></td>
+<td>extractors</td>
+</tr>
 <tr>
 <td><strong>Container</strong></td>
 <td>Application</td>
@@ -18,16 +22,10 @@
 </tr>
 <tr>
 <td><strong>Description</strong></td>
-<td>ArchletteIR aggregation utilities | Extraction stage of the AAC pipeline | TypeScript/JavaScript code extractor | Cloudflare Wrangler deployment extractor</td>
+<td>ArchletteIR aggregation utilities | Extraction stage of the AAC pipeline</td>
 </tr>
 </tbody>
 </table>
-
----
-
-## Architecture
-
-![Component Diagram](./diagrams/structurizr-Components_Application.png)
 
 ---
 
@@ -40,13 +38,13 @@
 ### Code Elements
 
 <details>
-<summary><strong>7 code element(s)</strong></summary>
+<summary><strong>5 code element(s)</strong></summary>
 
 
 
 #### Functions
 
-##### `extractors__aggregateIRs()`
+##### `aggregateIRs()`
 
 Aggregate multiple ArchletteIR objects into a single unified IR
 
@@ -80,7 +78,7 @@ Aggregate multiple ArchletteIR objects into a single unified IR
 ```
 
 ---
-##### `extractors__deduplicateById()`
+##### `deduplicateById()`
 
 Deduplicate array of entities by their ID field
 
@@ -110,7 +108,7 @@ Deduplicate array of entities by their ID field
 - `items`: <code>T[]</code> — - Array of entities with id property
 
 ---
-##### `extractors__deduplicateByName()`
+##### `deduplicateByName()`
 
 Deduplicate array of entities by their name field
 
@@ -140,7 +138,7 @@ Deduplicate array of entities by their name field
 - `items`: <code>T[]</code> — - Array of entities with name property
 
 ---
-##### `extractors__deduplicateRelationships()`
+##### `deduplicateRelationships()`
 
 Deduplicate relationships by source+destination+stereotype combination
 
@@ -170,7 +168,7 @@ Deduplicate relationships by source+destination+stereotype combination
 - `relationships`: <code>z.infer<any>[]</code> — - Array of relationships to deduplicate
 
 ---
-##### `extractors__run()`
+##### `run()`
 
 Execute the extraction stage
 
@@ -194,7 +192,7 @@ Execute the extraction stage
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/1-extract/index.ts:39</code></td>
+<td><code>C:/Users/chris/git/archlette/src/1-extract/index.ts:42</code></td>
 </tr>
 </tbody>
 </table>
@@ -204,87 +202,11 @@ Execute the extraction stage
 - `ctx`: <code>import("C:/Users/chris/git/archlette/src/core/types").PipelineContext</code> — - Pipeline context with configuration and logging
 
 ---
-##### `extractors__basicNodeExtractor()`
-
-Extract architecture information from a Node.js/TypeScript codebase
-
-<table>
-<tbody>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>function</code></td>
-</tr>
-<tr>
-<td><strong>Visibility</strong></td>
-<td><code>public</code></td>
-</tr>
-<tr>
-<td><strong>Async</strong></td>
-<td>Yes</td>
-</tr>
-<tr>
-<td><strong>Returns</strong></td>
-<td><code>Promise<z.infer<any>></code> — Promise resolving to ArchletteIR with code, components, and relationships</td>
-</tr>
-<tr>
-<td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node.ts:72</code></td>
-</tr>
-</tbody>
-</table>
-
-**Parameters:**
-
-- `node`: <code>any</code> — - Configuration node with include/exclude patterns- `ctx`: <code>import("C:/Users/chris/git/archlette/src/core/types").PipelineContext</code> — - Optional pipeline context with logger
-**Examples:**
-```typescript
-
-```
-
----
-##### `extractors__basicWranglerExtractor()`
-
-Extract deployment topology from Cloudflare Wrangler configuration files
-
-<table>
-<tbody>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>function</code></td>
-</tr>
-<tr>
-<td><strong>Visibility</strong></td>
-<td><code>public</code></td>
-</tr>
-<tr>
-<td><strong>Async</strong></td>
-<td>Yes</td>
-</tr>
-<tr>
-<td><strong>Returns</strong></td>
-<td><code>Promise<z.infer<any>></code> — Promise resolving to ArchletteIR with containers, deployments, and relationships</td>
-</tr>
-<tr>
-<td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler.ts:68</code></td>
-</tr>
-</tbody>
-</table>
-
-**Parameters:**
-
-- `node`: <code>any</code> — - Configuration node with include/exclude patterns- `ctx`: <code>import("C:/Users/chris/git/archlette/src/core/types").PipelineContext</code> — - Optional pipeline context with logger
-**Examples:**
-```typescript
-
-```
-
----
 
 </details>
 
 ---
 
 <div align="center">
-<sub><a href="./README.md">← Back to System Overview</a> | Generated with <a href="https://github.com/architectlabs/archlette">Archlette</a></sub>
+<sub><a href="./default-container.md">← Back to Container</a> | <a href="./README.md">← Back to System</a> | Generated with <a href="https://github.com/architectlabs/archlette">Archlette</a></sub>
 </div>
