@@ -50,6 +50,7 @@ nav:
       - Annotations Reference: guide/annotations.md
       - CI/CD Integration: guide/ci-cd.md
       - Configuration Reference: guide/configuration.md
+      - Security Guide: guide/security.md
       - Troubleshooting: guide/troubleshooting.md
 
   - Architecture:
@@ -61,6 +62,12 @@ nav:
       - Generators: architecture/default-container__generators.md
       - Renderers: architecture/default-container__renderers.md
       - Docs: architecture/default-container__docs.md
+
+  - Extending Archlette:
+      - Plugin Development: plugins/extractors.md
+      - Custom Generators: plugins/generators.md
+      - Custom Renderers: plugins/renderers.md
+      - Custom Validators: plugins/validators.md
 
   - Contributing:
       - How to Contribute: CONTRIBUTING.md

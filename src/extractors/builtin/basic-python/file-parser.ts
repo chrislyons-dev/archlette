@@ -43,12 +43,49 @@ export async function parseFiles(
     log.info(`Parsing ${filePaths.length} Python files using ${parserScript}`);
 
     const output = await runPythonParser(parserScript, filePaths, pythonPath);
-    const parsed: PythonParserOutput = JSON.parse(output);
+
+    // Parse JSON output with improved error handling
+    let parsed: PythonParserOutput;
+    try {
+      parsed = JSON.parse(output);
+    } catch (jsonError) {
+      const errorMsg =
+        jsonError instanceof Error ? jsonError.message : String(jsonError);
+      const preview = output.length > 200 ? output.slice(0, 200) + '...' : output;
+
+      throw new Error(
+        `Python parser returned invalid JSON:\n${errorMsg}\n\n` +
+          `Output preview:\n${preview}\n\n` +
+          `This may indicate:\n` +
+          `- Python version mismatch (parser requires Python 3.7+)\n` +
+          `- Corrupted parser script at: ${parserScript}\n` +
+          `- Python runtime error that wasn't caught`,
+      );
+    }
+
+    // Validate output structure
+    if (!parsed.files || !Array.isArray(parsed.files)) {
+      throw new Error(
+        `Python parser output has unexpected format.\n\n` +
+          `Expected: { files: [...] }\n` +
+          `Got: ${JSON.stringify(parsed).slice(0, 100)}...\n\n` +
+          `Parser script: ${parserScript}`,
+      );
+    }
 
     return parsed.files.map((file) => mapToFileExtraction(file));
   } catch (error) {
-    log.error(`Failed to parse Python files: ${error}`);
-    throw error;
+    // Re-throw with context if not already a detailed error
+    if (error instanceof Error && error.message.includes('Python')) {
+      throw error; // Already has good context
+    }
+
+    const errorMsg = error instanceof Error ? error.message : String(error);
+    throw new Error(
+      `Failed to parse Python files:\n${errorMsg}\n\n` +
+        `Files: ${filePaths.length} files\n` +
+        `Python: ${pythonPath}`,
+    );
   }
 }
 
@@ -77,14 +114,69 @@ function runPythonParser(
 
     process.on('close', (code) => {
       if (code !== 0) {
-        reject(new Error(`Python parser failed with code ${code}: ${stderr}`));
+        // Python process exited with error
+        const errorLines = stderr.split('\n').filter((line) => line.trim());
+        const lastError = errorLines[errorLines.length - 1] || 'Unknown error';
+
+        // Check for common Python errors
+        if (stderr.includes('SyntaxError')) {
+          reject(
+            new Error(
+              `Python syntax error in source file:\n${lastError}\n\n` +
+                `This usually means one of the Python files being analyzed has invalid syntax.\n` +
+                `Files analyzed: ${filePaths.length} files`,
+            ),
+          );
+        } else if (
+          stderr.includes('ModuleNotFoundError') ||
+          stderr.includes('ImportError')
+        ) {
+          reject(
+            new Error(
+              `Python import error:\n${lastError}\n\n` +
+                `The Python parser script may be missing required dependencies.\n` +
+                `Try: pip install typing-extensions`,
+            ),
+          );
+        } else {
+          reject(
+            new Error(
+              `Python parser failed with exit code ${code}:\n${stderr}\n\n` +
+                `Script: ${scriptPath}\n` +
+                `Python: ${pythonPath}\n` +
+                `Files: ${filePaths.length} files`,
+            ),
+          );
+        }
       } else {
         resolve(stdout);
       }
     });
 
     process.on('error', (error) => {
-      reject(new Error(`Failed to spawn Python process: ${error.message}`));
+      // Failed to spawn process (Python not found)
+      if ((error as NodeJS.ErrnoException).code === 'ENOENT') {
+        reject(
+          new Error(
+            `Python executable not found at '${pythonPath}'.\n\n` +
+              `Make sure Python is installed and available in your PATH, or ` +
+              `specify the path in your config:\n\n` +
+              `extractors:\n` +
+              `  - use: extractors/builtin/basic-python\n` +
+              `    inputs:\n` +
+              `      pythonPath: /path/to/python\n\n` +
+              `Original error: ${error.message}`,
+          ),
+        );
+      } else {
+        reject(
+          new Error(
+            `Failed to spawn Python process:\n${error.message}\n\n` +
+              `Python path: ${pythonPath}\n` +
+              `Script: ${scriptPath}`,
+          ),
+        );
+      }
     });
   });
 }

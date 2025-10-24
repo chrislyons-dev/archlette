@@ -91,6 +91,12 @@
 <td><a href="./default_container__docs.md">View →</a></td>
 </tr>
 <tr>
+<td><strong>core/config</strong></td>
+<td><code>module</code></td>
+<td>—</td>
+<td><a href="./default_container__core_config.md">View →</a></td>
+</tr>
+<tr>
 <td><strong>core</strong></td>
 <td><code>module</code></td>
 <td>Dynamic ESM module loader | Stage module interfaces for the AAC pipeline | Stage module loaders | Tool management for external rendering tools | Architecture-as-Code (AAC) configuration types and schemas | Archlette Intermediate Representation (IR) types and schemas | Core pipeline types</td>

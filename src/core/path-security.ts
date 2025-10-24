@@ -199,14 +199,15 @@ export function resolveSecurePath(
     mustExist,
   } = options;
 
-  // Normalize user input
-  const normalizedInput = normalize(userPath);
-
-  // Handle tilde expansion
-  let pathToResolve = normalizedInput;
-  if (normalizedInput.startsWith('~')) {
-    pathToResolve = expandTilde(normalizedInput);
+  // Handle tilde expansion BEFORE normalization to preserve ~/ pattern
+  // (normalize() on Windows converts ~/path to ~\path which breaks tilde detection)
+  let pathToResolve = userPath;
+  if (userPath.startsWith('~')) {
+    pathToResolve = expandTilde(userPath);
   }
+
+  // Normalize after tilde expansion for security validation
+  const normalizedInput = normalize(userPath);
 
   // Resolve path
   let absolutePath: string;

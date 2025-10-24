@@ -142,13 +142,24 @@ describe('loadModuleFromPath dynamic import', () => {
 
   it('imports an absolute path as-is', async () => {
     const abs = path.join(tmpRoot, 'abs.js');
-    const { module, path: found } = await loadModuleFromPath<any>(abs);
+    // External plugins require allowlist for security validation
+    const { module, path: found } = await loadModuleFromPath<any>(
+      abs,
+      ['.ts', '.js'],
+      [tmpRoot],
+    );
     expect(found).toBe(abs);
     expect(module.ok).toBe('abs.js');
   });
 
   it('imports a home-path module', async () => {
-    const { module } = await loadModuleFromPath<any>('~/mods/homeMod');
+    // Home directory paths need to be in allowlist
+    const homeDir = process.env.HOME || process.env.USERPROFILE || '';
+    const { module } = await loadModuleFromPath<any>(
+      '~/mods/homeMod',
+      ['.ts', '.js'],
+      [homeDir],
+    );
     expect(module.ok).toBe('homeMod.ts');
   });
 });

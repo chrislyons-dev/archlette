@@ -112,6 +112,13 @@
       "type": "module"
     },
     {
+      "description": "",
+      "id": "default_container__core_config",
+      "containerId": "default-container",
+      "name": "core/config",
+      "type": "module"
+    },
+    {
       "description": "Dynamic ESM module loader | Stage module interfaces for the AAC pipeline | Stage module loaders | Tool management for external rendering tools | Architecture-as-Code (AAC) configuration types and schemas | Archlette Intermediate Representation (IR) types and schemas | Core pipeline types",
       "id": "default_container__core",
       "containerId": "default-container",
@@ -171,14 +178,14 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/cli.ts",
-      "lineNumber": 69
+      "lineNumber": 63
     },
     {
       "id": "default_container__cli__parseargs",
       "componentId": "default_container__cli",
       "name": "parseArgs",
       "type": "function",
-      "returnType": "{ stageArg: string; yamlPathArg: any; }",
+      "returnType": "{ stageArg: string; yamlPathArg: string; }",
       "parameters": [
         {
           "name": "argv",
@@ -189,7 +196,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/cli.ts",
-      "lineNumber": 91
+      "lineNumber": 85
     },
     {
       "id": "default_container__cli__stagelistfromarg",
@@ -207,25 +214,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/cli.ts",
-      "lineNumber": 124
-    },
-    {
-      "id": "default_container__cli__loadyamlifexists",
-      "componentId": "default_container__cli",
-      "name": "loadYamlIfExists",
-      "type": "function",
-      "returnType": "Promise<{ config: any; path: string; }>",
-      "parameters": [
-        {
-          "name": "resolvedFile",
-          "type": "string",
-          "optional": false
-        }
-      ],
-      "visibility": "private",
-      "isAsync": true,
-      "filePath": "C:/Users/chris/git/archlette/src/cli.ts",
-      "lineNumber": 130
+      "lineNumber": 118
     },
     {
       "id": "default_container__cli__run",
@@ -244,7 +233,7 @@
       "visibility": "public",
       "isAsync": true,
       "filePath": "C:/Users/chris/git/archlette/src/cli.ts",
-      "lineNumber": 150
+      "lineNumber": 124
     },
     {
       "description": "Aggregate multiple ArchletteIR objects into a single unified IR",
@@ -473,6 +462,141 @@
       "lineNumber": 35
     },
     {
+      "description": "Resolve config file path from CLI arguments",
+      "id": "default_container__core_config__resolveconfigfilepath",
+      "componentId": "default_container__core_config",
+      "name": "resolveConfigFilePath",
+      "type": "function",
+      "documentation": {
+        "summary": "Resolve config file path from CLI arguments",
+        "examples": [
+          "```typescript\n// User didn't provide -f, use default\nconst resolved = resolveConfigFilePath();\n// resolved.path = '/archlette/templates/default.yaml'\n// resolved.isDefaultTemplate = true\n\n// User provided relative path\nconst resolved = resolveConfigFilePath('./archlette.config.yaml');\n// resolved.path = '/project/archlette.config.yaml'\n// resolved.isDefaultTemplate = false\n\n// User provided absolute or tilde path\nconst resolved = resolveConfigFilePath('~/archlette.config.yaml');\n// resolved.path = '/home/user/archlette.config.yaml'\n```"
+        ]
+      },
+      "returnType": "import(\"C:/Users/chris/git/archlette/src/core/config-resolver\").ResolvedConfigFile",
+      "returnDescription": "Resolved config file information",
+      "parameters": [
+        {
+          "name": "userProvidedPath",
+          "type": "string",
+          "description": "- Path from -f argument (or undefined for default)",
+          "optional": true
+        }
+      ],
+      "visibility": "public",
+      "isAsync": false,
+      "filePath": "C:/Users/chris/git/archlette/src/core/config-resolver.ts",
+      "lineNumber": 70
+    },
+    {
+      "description": "Determine base directory for resolving config-relative paths\n\nLogic:\n- If using default template: CWD (user's project directory)\n- If user provided config file: config file's directory\n- Fallback: CWD",
+      "id": "default_container__core_config__resolveconfigbasedir",
+      "componentId": "default_container__core_config",
+      "name": "resolveConfigBaseDir",
+      "type": "function",
+      "documentation": {
+        "summary": "Determine base directory for resolving config-relative paths\n\nLogic:\n- If using default template: CWD (user's project directory)\n- If user provided config file: config file's directory\n- Fallback: CWD",
+        "examples": [
+          "```typescript\n// Using default template\nconst baseDir = resolveConfigBaseDir(undefined, true);\n// Returns: process.cwd() - user's project directory\n\n// Using user config file\nconst baseDir = resolveConfigBaseDir('/project/config/archlette.yaml', false);\n// Returns: '/project/config' - config file's directory\n```"
+        ]
+      },
+      "returnType": "string",
+      "returnDescription": "Base directory for config-relative path resolution",
+      "parameters": [
+        {
+          "name": "configPath",
+          "type": "string",
+          "description": "- Absolute path to config file (or undefined)",
+          "optional": false
+        },
+        {
+          "name": "isDefaultTemplate",
+          "type": "boolean",
+          "description": "- Whether using default template",
+          "optional": false
+        }
+      ],
+      "visibility": "public",
+      "isAsync": false,
+      "filePath": "C:/Users/chris/git/archlette/src/core/config-resolver.ts",
+      "lineNumber": 117
+    },
+    {
+      "description": "Load and parse YAML config file",
+      "id": "default_container__core_config__loadyamlfile",
+      "componentId": "default_container__core_config",
+      "name": "loadYamlFile",
+      "type": "function",
+      "documentation": {
+        "summary": "Load and parse YAML config file"
+      },
+      "returnType": "unknown",
+      "returnDescription": "Parsed config object or null if file doesn't exist/is invalid",
+      "parameters": [
+        {
+          "name": "filePath",
+          "type": "string",
+          "description": "- Absolute path to YAML file",
+          "optional": false
+        }
+      ],
+      "visibility": "private",
+      "isAsync": false,
+      "filePath": "C:/Users/chris/git/archlette/src/core/config-resolver.ts",
+      "lineNumber": 141
+    },
+    {
+      "description": "Create minimal default configuration when no config file is found",
+      "id": "default_container__core_config__createdefaultconfig",
+      "componentId": "default_container__core_config",
+      "name": "createDefaultConfig",
+      "type": "function",
+      "documentation": {
+        "summary": "Create minimal default configuration when no config file is found"
+      },
+      "returnType": "import(\"C:/Users/chris/git/archlette/src/core/types-aac\").ResolvedAACConfig",
+      "returnDescription": "Default configuration",
+      "parameters": [
+        {
+          "name": "baseDir",
+          "type": "string",
+          "description": "- Base directory for output paths",
+          "optional": false
+        }
+      ],
+      "visibility": "private",
+      "isAsync": false,
+      "filePath": "C:/Users/chris/git/archlette/src/core/config-resolver.ts",
+      "lineNumber": 164
+    },
+    {
+      "description": "Load configuration from file path (high-level API)\n\nThis is the main entry point for config loading. It handles:\n1. Config file path resolution (default vs user-provided)\n2. Base directory determination\n3. YAML parsing\n4. Config validation and resolution\n5. Fallback to default config",
+      "id": "default_container__core_config__loadconfig",
+      "componentId": "default_container__core_config",
+      "name": "loadConfig",
+      "type": "function",
+      "documentation": {
+        "summary": "Load configuration from file path (high-level API)\n\nThis is the main entry point for config loading. It handles:\n1. Config file path resolution (default vs user-provided)\n2. Base directory determination\n3. YAML parsing\n4. Config validation and resolution\n5. Fallback to default config",
+        "examples": [
+          "```typescript\n// Load default config\nconst loaded = await loadConfig();\n\n// Load user config\nconst loaded = await loadConfig('./archlette.config.yaml');\n\n// Use loaded config\nconst ctx: PipelineContext = {\n  config: loaded.config,\n  configBaseDir: loaded.baseDir,\n  state: {},\n  log: logger\n};\n```"
+        ]
+      },
+      "returnType": "import(\"C:/Users/chris/git/archlette/src/core/config-resolver\").LoadedConfig",
+      "returnDescription": "Loaded configuration with all metadata",
+      "parameters": [
+        {
+          "name": "userProvidedPath",
+          "type": "string",
+          "description": "- Path from -f argument (or undefined for default)",
+          "optional": true
+        }
+      ],
+      "visibility": "public",
+      "isAsync": false,
+      "filePath": "C:/Users/chris/git/archlette/src/core/config-resolver.ts",
+      "lineNumber": 210
+    },
+    {
       "description": "Convert a name to a normalized ID\nUsed for consistent ID generation across extractors and mappers",
       "id": "default_container__core__nametoid",
       "componentId": "default_container__core",
@@ -614,15 +738,31 @@
       "lineNumber": 131
     },
     {
-      "description": "Dynamically load an ESM module from a path or module specifier",
+      "description": "Default base directory for user plugins: ~/.archlette/mods\nThis provides a standard location for external plugins and custom modules",
+      "id": "default_container__core__getdefaultuserplugindir",
+      "componentId": "default_container__core",
+      "name": "getDefaultUserPluginDir",
+      "type": "function",
+      "documentation": {
+        "summary": "Default base directory for user plugins: ~/.archlette/mods\nThis provides a standard location for external plugins and custom modules"
+      },
+      "returnType": "string",
+      "parameters": [],
+      "visibility": "private",
+      "isAsync": false,
+      "filePath": "C:/Users/chris/git/archlette/src/core/module-loader.ts",
+      "lineNumber": 54
+    },
+    {
+      "description": "Dynamically load an ESM module from a path or module specifier with security validation",
       "id": "default_container__core__loadmodulefrompath",
       "componentId": "default_container__core",
       "name": "loadModuleFromPath",
       "type": "function",
       "documentation": {
-        "summary": "Dynamically load an ESM module from a path or module specifier",
+        "summary": "Dynamically load an ESM module from a path or module specifier with security validation",
         "examples": [
-          "```typescript\n// Load with default extensions (.ts, .js)\nconst result = await loadModuleFromPath('utils/helper');\n\n// Load with specific extensions\nconst result = await loadModuleFromPath('config', ['.json', '.js']);\n```"
+          "```typescript\n// Load built-in plugin (relative to CLI dir)\nconst result = await loadModuleFromPath('extractors/builtin/basic-node');\n\n// Load user plugin from default ~/.archlette/mods directory\nconst result = await loadModuleFromPath('~/.archlette/mods/my-extractor');\n\n// Load external plugin with custom allowlist\nconst result = await loadModuleFromPath(\n  '/custom/plugins/my-extractor',\n  ['.ts', '.js'],\n  ['/custom/plugins']\n);\n```"
         ]
       },
       "returnType": "Promise<import(\"C:/Users/chris/git/archlette/src/core/module-loader\").LoadedModule<T>>",
@@ -640,12 +780,18 @@
           "description": "- File extensions to probe (in order of preference)",
           "optional": true,
           "defaultValue": "['.ts', '.js']"
+        },
+        {
+          "name": "allowedAbsolutePaths",
+          "type": "string[]",
+          "description": "- Optional allowlist for absolute plugin paths (external plugins)\n   Defaults to [~/.archlette/mods] for user plugins",
+          "optional": true
         }
       ],
       "visibility": "public",
       "isAsync": true,
       "filePath": "C:/Users/chris/git/archlette/src/core/module-loader.ts",
-      "lineNumber": 62
+      "lineNumber": 104
     },
     {
       "id": "default_container__core__getclidir",
@@ -891,7 +1037,7 @@
       "visibility": "public",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/core/path-security.ts",
-      "lineNumber": 275
+      "lineNumber": 276
     },
     {
       "description": "Convenience function for resolving plugin paths\nUses 'cli-relative' strategy by default",
@@ -923,7 +1069,7 @@
       "visibility": "public",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/core/path-security.ts",
-      "lineNumber": 292
+      "lineNumber": 293
     },
     {
       "id": "C:/Users/chris/git/archlette/src/core/stage-entry.js:getStageEntry",
@@ -1520,7 +1666,7 @@
       "visibility": "public",
       "isAsync": true,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node.ts",
-      "lineNumber": 72
+      "lineNumber": 73
     },
     {
       "description": "Create empty IR when no files found",
@@ -1542,7 +1688,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python.ts",
-      "lineNumber": 106
+      "lineNumber": 151
     },
     {
       "description": "Basic Python extractor\nAnalyzes Python source code and extracts architectural components",
@@ -1569,7 +1715,7 @@
       "visibility": "public",
       "isAsync": true,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python.ts",
-      "lineNumber": 25
+      "lineNumber": 26
     },
     {
       "description": "Extract deployment topology from Cloudflare Wrangler configuration files",
@@ -3973,18 +4119,6 @@
       "stereotype": "import"
     },
     {
-      "description": "imports * as fs",
-      "source": "C:/Users/chris/git/archlette/src/cli.ts",
-      "destination": "node:fs:* as fs",
-      "stereotype": "import"
-    },
-    {
-      "description": "imports * as path",
-      "source": "C:/Users/chris/git/archlette/src/cli.ts",
-      "destination": "node:path:* as path",
-      "stereotype": "import"
-    },
-    {
       "description": "imports PipelineContext",
       "source": "C:/Users/chris/git/archlette/src/cli.ts",
       "destination": "./core/types.ts:PipelineContext",
@@ -3994,12 +4128,6 @@
       "description": "imports StageModule",
       "source": "C:/Users/chris/git/archlette/src/cli.ts",
       "destination": "./core/types.ts:StageModule",
-      "stereotype": "type-import"
-    },
-    {
-      "description": "imports ResolvedAACConfig",
-      "source": "C:/Users/chris/git/archlette/src/cli.ts",
-      "destination": "./core/types-aac.ts:ResolvedAACConfig",
       "stereotype": "type-import"
     },
     {
@@ -4015,33 +4143,9 @@
       "stereotype": "import"
     },
     {
-      "description": "imports resolveArchlettePath",
+      "description": "imports loadConfig",
       "source": "C:/Users/chris/git/archlette/src/cli.ts",
-      "destination": "./core/path-resolver.js:resolveArchlettePath",
-      "stereotype": "import"
-    },
-    {
-      "description": "imports getCliDir",
-      "source": "C:/Users/chris/git/archlette/src/cli.ts",
-      "destination": "./core/path-resolver.js:getCliDir",
-      "stereotype": "import"
-    },
-    {
-      "description": "imports expandTilde",
-      "source": "C:/Users/chris/git/archlette/src/cli.ts",
-      "destination": "./core/path-resolver.js:expandTilde",
-      "stereotype": "import"
-    },
-    {
-      "description": "imports AACConfigSchema",
-      "source": "C:/Users/chris/git/archlette/src/cli.ts",
-      "destination": "./core/types-aac.js:AACConfigSchema",
-      "stereotype": "import"
-    },
-    {
-      "description": "imports resolveConfig",
-      "source": "C:/Users/chris/git/archlette/src/cli.ts",
-      "destination": "./core/types-aac.js:resolveConfig",
+      "destination": "./core/config-resolver.js:loadConfig",
       "stereotype": "import"
     },
     {
@@ -4249,6 +4353,60 @@
       "stereotype": "import"
     },
     {
+      "description": "imports * as path",
+      "source": "C:/Users/chris/git/archlette/src/core/config-resolver.ts",
+      "destination": "node:path:* as path",
+      "stereotype": "import"
+    },
+    {
+      "description": "imports * as fs",
+      "source": "C:/Users/chris/git/archlette/src/core/config-resolver.ts",
+      "destination": "node:fs:* as fs",
+      "stereotype": "import"
+    },
+    {
+      "description": "imports * as yaml",
+      "source": "C:/Users/chris/git/archlette/src/core/config-resolver.ts",
+      "destination": "yaml:* as yaml",
+      "stereotype": "import"
+    },
+    {
+      "description": "imports resolveArchlettePath",
+      "source": "C:/Users/chris/git/archlette/src/core/config-resolver.ts",
+      "destination": "./path-resolver.js:resolveArchlettePath",
+      "stereotype": "import"
+    },
+    {
+      "description": "imports expandTilde",
+      "source": "C:/Users/chris/git/archlette/src/core/config-resolver.ts",
+      "destination": "./path-resolver.js:expandTilde",
+      "stereotype": "import"
+    },
+    {
+      "description": "imports getCliDir",
+      "source": "C:/Users/chris/git/archlette/src/core/config-resolver.ts",
+      "destination": "./path-resolver.js:getCliDir",
+      "stereotype": "import"
+    },
+    {
+      "description": "imports resolveConfig",
+      "source": "C:/Users/chris/git/archlette/src/core/config-resolver.ts",
+      "destination": "./types-aac.js:resolveConfig",
+      "stereotype": "import"
+    },
+    {
+      "description": "imports ResolvedAACConfig",
+      "source": "C:/Users/chris/git/archlette/src/core/config-resolver.ts",
+      "destination": "./types-aac.js:ResolvedAACConfig",
+      "stereotype": "import"
+    },
+    {
+      "description": "imports createLogger",
+      "source": "C:/Users/chris/git/archlette/src/core/config-resolver.ts",
+      "destination": "./logger.js:createLogger",
+      "stereotype": "import"
+    },
+    {
       "description": "imports pino",
       "source": "C:/Users/chris/git/archlette/src/core/logger.ts",
       "destination": "pino:pino",
@@ -4276,6 +4434,24 @@
       "description": "imports toFileUrl",
       "source": "C:/Users/chris/git/archlette/src/core/module-loader.ts",
       "destination": "./path-resolver.js:toFileUrl",
+      "stereotype": "import"
+    },
+    {
+      "description": "imports expandTilde",
+      "source": "C:/Users/chris/git/archlette/src/core/module-loader.ts",
+      "destination": "./path-resolver.js:expandTilde",
+      "stereotype": "import"
+    },
+    {
+      "description": "imports resolvePluginPath",
+      "source": "C:/Users/chris/git/archlette/src/core/module-loader.ts",
+      "destination": "./path-security.js:resolvePluginPath",
+      "stereotype": "import"
+    },
+    {
+      "description": "imports createLogger",
+      "source": "C:/Users/chris/git/archlette/src/core/module-loader.ts",
+      "destination": "./logger.js:createLogger",
       "stereotype": "import"
     },
     {
@@ -4567,6 +4743,12 @@
       "stereotype": "import"
     },
     {
+      "description": "imports resolveSecurePath",
+      "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node.ts",
+      "destination": "../../core/path-security.js:resolveSecurePath",
+      "stereotype": "import"
+    },
+    {
       "description": "imports findSourceFiles",
       "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python.ts",
       "destination": "./basic-python/file-finder.js:findSourceFiles",
@@ -4600,6 +4782,12 @@
       "description": "imports mapToIR",
       "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python.ts",
       "destination": "./basic-python/to-ir-mapper.js:mapToIR",
+      "stereotype": "import"
+    },
+    {
+      "description": "imports resolveSecurePath",
+      "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python.ts",
+      "destination": "../../core/path-security.js:resolveSecurePath",
       "stereotype": "import"
     },
     {

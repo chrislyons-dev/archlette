@@ -68,7 +68,7 @@ Extract architecture information from a Node.js/TypeScript codebase
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node.ts:72</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node.ts:73</code></td>
 </tr>
 </tbody>
 </table>

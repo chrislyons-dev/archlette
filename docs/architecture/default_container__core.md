@@ -34,12 +34,13 @@
 ### Class Diagram
 
 ![Class Diagram](./diagrams/structurizr-Classes_default_container__core.png)
+![Class Diagram](./diagrams/structurizr-Classes_default_container__core_config.png)
 ![Class Diagram](./diagrams/structurizr-Classes_default_container__core_path.png)
 
 ### Code Elements
 
 <details>
-<summary><strong>31 code element(s)</strong></summary>
+<summary><strong>32 code element(s)</strong></summary>
 
 
 
@@ -235,9 +236,38 @@ Create a logger instance
 ```
 
 ---
+##### `getDefaultUserPluginDir()`
+
+Default base directory for user plugins: ~/.archlette/mods
+This provides a standard location for external plugins and custom modules
+
+<table>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>function</code></td>
+</tr>
+<tr>
+<td><strong>Visibility</strong></td>
+<td><code>private</code></td>
+</tr>
+<tr>
+<td><strong>Returns</strong></td>
+<td><code>string</code></td>
+</tr>
+<tr>
+<td><strong>Location</strong></td>
+<td><code>C:/Users/chris/git/archlette/src/core/module-loader.ts:54</code></td>
+</tr>
+</tbody>
+</table>
+
+
+
+---
 ##### `loadModuleFromPath()`
 
-Dynamically load an ESM module from a path or module specifier
+Dynamically load an ESM module from a path or module specifier with security validation
 
 <table>
 <tbody>
@@ -259,14 +289,15 @@ Dynamically load an ESM module from a path or module specifier
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/core/module-loader.ts:62</code></td>
+<td><code>C:/Users/chris/git/archlette/src/core/module-loader.ts:104</code></td>
 </tr>
 </tbody>
 </table>
 
 **Parameters:**
 
-- `spec`: <code>string</code> — - Module specifier (relative path, absolute path, or ~/ path)- `exts`: <code>(".ts" | ".js")[]</code> — - File extensions to probe (in order of preference)
+- `spec`: <code>string</code> — - Module specifier (relative path, absolute path, or ~/ path)- `exts`: <code>(".ts" | ".js")[]</code> — - File extensions to probe (in order of preference)- `allowedAbsolutePaths`: <code>string[]</code> — - Optional allowlist for absolute plugin paths (external plugins)
+   Defaults to [~/.archlette/mods] for user plugins
 **Examples:**
 ```typescript
 

@@ -46,6 +46,9 @@ workspace "Application" "Main application container" {
                     description "Documentation stage of the AAC pipeline | Markdown documentation generator"
                     technology "module"
                 }
+                default_container__core_config = component "core/config" {
+                    technology "module"
+                }
                 default_container__core = component "core" {
                     description "Dynamic ESM module loader | Stage module interfaces for the AAC pipeline | Stage module loaders | Tool management for external rendering tools | Architecture-as-Code (AAC) configuration types and schemas | Archlette Intermediate Representation (IR) types and schemas | Core pipeline types"
                     technology "module"
@@ -79,10 +82,6 @@ workspace "Application" "Main application container" {
                     tags "Code"
                 }
                 default_container__cli__stagelistfromarg = component "default_container__cli__stagelistfromarg" {
-                    technology "function"
-                    tags "Code"
-                }
-                default_container__cli__loadyamlifexists = component "default_container__cli__loadyamlifexists" {
                     technology "function"
                     tags "Code"
                 }
@@ -135,6 +134,31 @@ workspace "Application" "Main application container" {
                     technology "function"
                     tags "Code"
                 }
+                default_container__core_config__resolveconfigfilepath = component "default_container__core_config__resolveconfigfilepath" {
+                    description "Resolve config file path from CLI arguments"
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__core_config__resolveconfigbasedir = component "default_container__core_config__resolveconfigbasedir" {
+                    description "Determine base directory for resolving config-relative paths\n\nLogic:\n- If using default template: CWD (user's project directory)\n- If user provided config file: config file's directory\n- Fallback: CWD"
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__core_config__loadyamlfile = component "default_container__core_config__loadyamlfile" {
+                    description "Load and parse YAML config file"
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__core_config__createdefaultconfig = component "default_container__core_config__createdefaultconfig" {
+                    description "Create minimal default configuration when no config file is found"
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__core_config__loadconfig = component "default_container__core_config__loadconfig" {
+                    description "Load configuration from file path (high-level API)\n\nThis is the main entry point for config loading. It handles:\n1. Config file path resolution (default vs user-provided)\n2. Base directory determination\n3. YAML parsing\n4. Config validation and resolution\n5. Fallback to default config"
+                    technology "function"
+                    tags "Code"
+                }
                 default_container__core__nametoid = component "default_container__core__nametoid" {
                     description "Convert a name to a normalized ID\nUsed for consistent ID generation across extractors and mappers"
                     technology "function"
@@ -165,8 +189,13 @@ workspace "Application" "Main application container" {
                     technology "function"
                     tags "Code"
                 }
+                default_container__core__getdefaultuserplugindir = component "default_container__core__getdefaultuserplugindir" {
+                    description "Default base directory for user plugins: ~/.archlette/mods\nThis provides a standard location for external plugins and custom modules"
+                    technology "function"
+                    tags "Code"
+                }
                 default_container__core__loadmodulefrompath = component "default_container__core__loadmodulefrompath" {
-                    description "Dynamically load an ESM module from a path or module specifier"
+                    description "Dynamically load an ESM module from a path or module specifier with security validation"
                     technology "function"
                     tags "Code"
                 }
@@ -1047,6 +1076,7 @@ branding {
             include default_container__generators
             include default_container__renderers
             include default_container__docs
+            include default_container__core_config
             include default_container__core
             include default_container__core_path
             include default_container__basic_node
@@ -1062,7 +1092,6 @@ branding {
             include default_container__cli__usageandexit
             include default_container__cli__parseargs
             include default_container__cli__stagelistfromarg
-            include default_container__cli__loadyamlifexists
             include default_container__cli__run
             autoLayout
         }
@@ -1120,6 +1149,16 @@ branding {
         }
 
 
+        component default_container "Classes_default_container__core_config" {
+            include default_container__core_config__resolveconfigfilepath
+            include default_container__core_config__resolveconfigbasedir
+            include default_container__core_config__loadyamlfile
+            include default_container__core_config__createdefaultconfig
+            include default_container__core_config__loadconfig
+            autoLayout
+        }
+
+
         component default_container "Classes_default_container__core" {
             include default_container__core__nametoid
             include default_container__core__sanitizeid
@@ -1127,6 +1166,7 @@ branding {
             include default_container__core__getdefaultloglevel
             include default_container__core__createpinologger
             include default_container__core__createlogger
+            include default_container__core__getdefaultuserplugindir
             include default_container__core__loadmodulefrompath
             include default_container__core__getclidir
             include default_container__core__expandtilde

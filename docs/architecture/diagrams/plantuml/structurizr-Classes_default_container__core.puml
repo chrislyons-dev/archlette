@@ -121,6 +121,13 @@ skinparam rectangle<<Application.Application.default_container__core__getdefault
   roundCorner 20
   shadowing false
 }
+skinparam rectangle<<Application.Application.default_container__core__getdefaultuserplugindir>> {
+  BackgroundColor #85bbf0
+  FontColor #000000
+  BorderColor #5d82a8
+  roundCorner 20
+  shadowing false
+}
 skinparam rectangle<<Application.Application.default_container__core__istty>> {
   BackgroundColor #85bbf0
   FontColor #000000
@@ -246,7 +253,8 @@ rectangle "Application\n<size:10>[Container: Application]</size>" <<Application.
   rectangle "==default_container__core__getdefaultloglevel\n<size:10>[Component: function]</size>\n\nGet default log level from environment or fallback to 'info'" <<Application.Application.default_container__core__getdefaultloglevel>> as Application.Application.default_container__core__getdefaultloglevel
   rectangle "==default_container__core__createpinologger\n<size:10>[Component: function]</size>\n\nCreate a Pino logger instance with optional pretty printing" <<Application.Application.default_container__core__createpinologger>> as Application.Application.default_container__core__createpinologger
   rectangle "==default_container__core__createlogger\n<size:10>[Component: function]</size>\n\nCreate a logger instance" <<Application.Application.default_container__core__createlogger>> as Application.Application.default_container__core__createlogger
-  rectangle "==default_container__core__loadmodulefrompath\n<size:10>[Component: function]</size>\n\nDynamically load an ESM module from a path or module specifier" <<Application.Application.default_container__core__loadmodulefrompath>> as Application.Application.default_container__core__loadmodulefrompath
+  rectangle "==default_container__core__getdefaultuserplugindir\n<size:10>[Component: function]</size>\n\nDefault base directory for user plugins: ~/.archlette/mods\nThis provides a standard location for external plugins and custom modules" <<Application.Application.default_container__core__getdefaultuserplugindir>> as Application.Application.default_container__core__getdefaultuserplugindir
+  rectangle "==default_container__core__loadmodulefrompath\n<size:10>[Component: function]</size>\n\nDynamically load an ESM module from a path or module specifier with security validation" <<Application.Application.default_container__core__loadmodulefrompath>> as Application.Application.default_container__core__loadmodulefrompath
   rectangle "==default_container__core__getclidir\n<size:10>[Component: function]</size>" <<Application.Application.default_container__core__getclidir>> as Application.Application.default_container__core__getclidir
   rectangle "==default_container__core__expandtilde\n<size:10>[Component: function]</size>" <<Application.Application.default_container__core__expandtilde>> as Application.Application.default_container__core__expandtilde
   rectangle "==default_container__core__resolvearchlettepath\n<size:10>[Component: function]</size>\n\nCore path resolver honoring Archlette rules (no file existence checks).\n- "~"  -> user home\n- "/"  -> absolute\n- else -> relative to CLI dir" <<Application.Application.default_container__core__resolvearchlettepath>> as Application.Application.default_container__core__resolvearchlettepath

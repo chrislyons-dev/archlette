@@ -47,6 +47,7 @@ import {
 } from './basic-node/file-finder.js';
 import { parseFiles } from './basic-node/file-parser.js';
 import { mapToIR } from './basic-node/to-ir-mapper.js';
+import { resolveSecurePath } from '../../core/path-security.js';
 
 /**
  * Extract architecture information from a Node.js/TypeScript codebase
@@ -80,6 +81,73 @@ export default async function basicNodeExtractor(
   const files = await findSourceFiles(inputs);
   log.info(`Found ${files.length} source files to analyze`);
 
+  // 1.1. Validate file paths for security before parsing
+  // This prevents path traversal attacks and ensures files are within allowed boundaries
+  const validatedFiles: string[] = [];
+  const invalidFiles: string[] = [];
+
+  for (const filePath of files) {
+    try {
+      const resolved = resolveSecurePath(filePath, {
+        baseDir: ctx.configBaseDir,
+        strategy: 'config-relative',
+        allowedExtensions: [
+          '.ts',
+          '.tsx',
+          '.js',
+          '.jsx',
+          '.mts',
+          '.mjs',
+          '.cts',
+          '.cjs',
+        ],
+        mustExist: true,
+      });
+
+      // Log warnings for suspicious paths
+      if (resolved.warnings.length > 0) {
+        log.warn(
+          `Security warnings for ${filePath}:\n` +
+            resolved.warnings.map((w) => `  - ${w}`).join('\n'),
+        );
+      }
+
+      validatedFiles.push(resolved.absolutePath);
+    } catch (error) {
+      const errorMsg =
+        error instanceof Error ? error.message : 'Unknown validation error';
+      log.warn(`Skipping invalid path ${filePath}: ${errorMsg}`);
+      invalidFiles.push(filePath);
+    }
+  }
+
+  if (invalidFiles.length > 0) {
+    log.warn(`Skipped ${invalidFiles.length} files due to path validation failures`);
+  }
+
+  if (validatedFiles.length === 0) {
+    log.warn('No valid source files after security validation');
+    // Return empty IR instead of throwing
+    return {
+      version: '1.0',
+      system: {
+        name: node.name || 'Node System',
+        description: 'No valid source files found',
+      },
+      actors: [],
+      containers: [],
+      components: [],
+      code: [],
+      deployments: [],
+      containerRelationships: [],
+      componentRelationships: [],
+      codeRelationships: [],
+      deploymentRelationships: [],
+    };
+  }
+
+  log.info(`Validated ${validatedFiles.length} source files for parsing`);
+
   // 1.5. Find package.json files to create containers
   const packagePaths = await findPackageJsonFiles(inputs);
   const packages = (
@@ -90,8 +158,8 @@ export default async function basicNodeExtractor(
     `Found ${packages.length} package(s): ${packages.map((p) => p.name).join(', ')}`,
   );
 
-  // 2. Parse and extract information from files
-  const extractions = await parseFiles(files);
+  // 2. Parse and extract information from files (with validated paths)
+  const extractions = await parseFiles(validatedFiles);
   const successCount = extractions.filter((e) => !e.parseError).length;
   const errorCount = extractions.filter((e) => e.parseError).length;
   log.info(`Successfully parsed ${successCount} files, ${errorCount} errors`);

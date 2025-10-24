@@ -68,7 +68,7 @@ Create empty IR when no files found
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python.ts:106</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python.ts:151</code></td>
 </tr>
 </tbody>
 </table>
@@ -103,7 +103,7 @@ Analyzes Python source code and extracts architectural components
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python.ts:25</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python.ts:26</code></td>
 </tr>
 </tbody>
 </table>

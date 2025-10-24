@@ -6,6 +6,7 @@
 import { globby } from 'globby';
 import { sep, relative, dirname } from 'node:path';
 import { readFile } from 'node:fs/promises';
+import { parse as parseToml } from 'smol-toml';
 import { createLogger } from '../../../core/logger.js';
 import type { ExtractorInputs } from './types.js';
 
@@ -135,58 +136,18 @@ interface PyProjectToml {
 }
 
 /**
- * Simple TOML parser for pyproject.toml
- * Only handles the subset we need: [project] and [tool.poetry] sections
+ * Parse pyproject.toml using smol-toml library
+ * Handles full TOML spec including multiline strings, arrays, and nested tables
  */
 function parsePyProjectToml(content: string): PyProjectToml {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const result: Record<string, any> = {};
-  let currentSection: string[] = [];
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  let currentObject: Record<string, any> = result;
-
-  const lines = content.split('\n');
-  for (const line of lines) {
-    const trimmed = line.trim();
-
-    // Skip comments and empty lines
-    if (!trimmed || trimmed.startsWith('#')) continue;
-
-    // Section header like [project] or [tool.poetry]
-    if (trimmed.startsWith('[') && trimmed.endsWith(']')) {
-      const section = trimmed.slice(1, -1);
-      currentSection = section.split('.');
-      currentObject = result;
-
-      // Navigate/create nested objects
-      for (const key of currentSection) {
-        if (!currentObject[key]) {
-          currentObject[key] = {};
-        }
-        currentObject = currentObject[key];
-      }
-      continue;
-    }
-
-    // Key-value pair
-    const eqIndex = trimmed.indexOf('=');
-    if (eqIndex > 0) {
-      const key = trimmed.slice(0, eqIndex).trim();
-      let value = trimmed.slice(eqIndex + 1).trim();
-
-      // Remove quotes from string values
-      if (
-        (value.startsWith('"') && value.endsWith('"')) ||
-        (value.startsWith("'") && value.endsWith("'"))
-      ) {
-        value = value.slice(1, -1);
-      }
-
-      currentObject[key] = value;
-    }
+  try {
+    return parseToml(content);
+  } catch (error) {
+    const errorMsg = error instanceof Error ? error.message : String(error);
+    log.warn(`Failed to parse TOML: ${errorMsg}`);
+    // Return empty structure on parse failure
+    return {};
   }
-
-  return result;
 }
 
 /**

@@ -7,68 +7,70 @@ graph TB
     subgraph 8 ["Application"]
       style 8 fill:#ffffff,stroke:#2e6295,color:#2e6295
 
-      35("<div style='font-weight: bold'>default_container__core__nametoid</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Convert a name to a<br />normalized ID Used for<br />consistent ID generation<br />across extractors and mappers</div>")
-      style 35 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      36("<div style='font-weight: bold'>default_container__core__sanitizeid</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Sanitize ID for DSL and code<br />identifiers (preserves<br />underscores) Used for Python<br />code identifiers where<br />underscores are significant</div>")
-      style 36 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      37("<div style='font-weight: bold'>default_container__core__istty</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Determine if we're in a TTY<br />environment (for pretty<br />printing)</div>")
-      style 37 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      38("<div style='font-weight: bold'>default_container__core__getdefaultloglevel</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Get default log level from<br />environment or fallback to<br />'info'</div>")
-      style 38 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      39("<div style='font-weight: bold'>default_container__core__createpinologger</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Create a Pino logger instance<br />with optional pretty printing</div>")
-      style 39 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      40("<div style='font-weight: bold'>default_container__core__createlogger</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Create a logger instance</div>")
+      40("<div style='font-weight: bold'>default_container__core__nametoid</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Convert a name to a<br />normalized ID Used for<br />consistent ID generation<br />across extractors and mappers</div>")
       style 40 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      41("<div style='font-weight: bold'>default_container__core__loadmodulefrompath</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Dynamically load an ESM<br />module from a path or module<br />specifier</div>")
+      41("<div style='font-weight: bold'>default_container__core__sanitizeid</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Sanitize ID for DSL and code<br />identifiers (preserves<br />underscores) Used for Python<br />code identifiers where<br />underscores are significant</div>")
       style 41 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      42("<div style='font-weight: bold'>default_container__core__getclidir</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div>")
+      42("<div style='font-weight: bold'>default_container__core__istty</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Determine if we're in a TTY<br />environment (for pretty<br />printing)</div>")
       style 42 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      43("<div style='font-weight: bold'>default_container__core__expandtilde</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div>")
+      43("<div style='font-weight: bold'>default_container__core__getdefaultloglevel</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Get default log level from<br />environment or fallback to<br />'info'</div>")
       style 43 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      44("<div style='font-weight: bold'>default_container__core__resolvearchlettepath</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Core path resolver honoring<br />Archlette rules (no file<br />existence checks). - "~" -><br />user home - "/" -> absolute -<br />else -> relative to CLI dir</div>")
+      44("<div style='font-weight: bold'>default_container__core__createpinologger</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Create a Pino logger instance<br />with optional pretty printing</div>")
       style 44 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      45("<div style='font-weight: bold'>default_container__core__resolvemoduleentry</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Resolve a module entry by<br />probing: 1) Exact path 2)<br />With extensions: .ts then .js<br />3) If directory: index.ts<br />then index.js</div>")
+      45("<div style='font-weight: bold'>default_container__core__createlogger</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Create a logger instance</div>")
       style 45 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      46("<div style='font-weight: bold'>default_container__core__tofileurl</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div>")
+      46("<div style='font-weight: bold'>default_container__core__getdefaultuserplugindir</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Default base directory for<br />user plugins:<br />~/.archlette/mods This<br />provides a standard location<br />for external plugins and<br />custom modules</div>")
       style 46 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      47("<div style='font-weight: bold'>default_container__core__writefile</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Write content to a file,<br />creating parent directories<br />if needed.</div>")
+      47("<div style='font-weight: bold'>default_container__core__loadmodulefrompath</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Dynamically load an ESM<br />module from a path or module<br />specifier with security<br />validation</div>")
       style 47 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      52("<div style='font-weight: bold'>default_container__core__loadextractormodule</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div>")
+      48("<div style='font-weight: bold'>default_container__core__getclidir</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div>")
+      style 48 fill:#85bbf0,stroke:#5d82a8,color:#000000
+      49("<div style='font-weight: bold'>default_container__core__expandtilde</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div>")
+      style 49 fill:#85bbf0,stroke:#5d82a8,color:#000000
+      50("<div style='font-weight: bold'>default_container__core__resolvearchlettepath</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Core path resolver honoring<br />Archlette rules (no file<br />existence checks). - "~" -><br />user home - "/" -> absolute -<br />else -> relative to CLI dir</div>")
+      style 50 fill:#85bbf0,stroke:#5d82a8,color:#000000
+      51("<div style='font-weight: bold'>default_container__core__resolvemoduleentry</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Resolve a module entry by<br />probing: 1) Exact path 2)<br />With extensions: .ts then .js<br />3) If directory: index.ts<br />then index.js</div>")
+      style 51 fill:#85bbf0,stroke:#5d82a8,color:#000000
+      52("<div style='font-weight: bold'>default_container__core__tofileurl</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div>")
       style 52 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      53("<div style='font-weight: bold'>default_container__core__loadvalidatormodule</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div>")
+      53("<div style='font-weight: bold'>default_container__core__writefile</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Write content to a file,<br />creating parent directories<br />if needed.</div>")
       style 53 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      54("<div style='font-weight: bold'>default_container__core__loadgeneratormodule</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div>")
-      style 54 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      55("<div style='font-weight: bold'>default_container__core__loadrenderermodule</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div>")
-      style 55 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      56("<div style='font-weight: bold'>default_container__core__loaddocmodule</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div>")
-      style 56 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      57("<div style='font-weight: bold'>default_container__core__getcachedir</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Get the Archlette cache<br />directory</div>")
-      style 57 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      58("<div style='font-weight: bold'>default_container__core__ensurecachedir</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Ensure cache directory exists</div>")
+      58("<div style='font-weight: bold'>default_container__core__loadextractormodule</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div>")
       style 58 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      59("<div style='font-weight: bold'>default_container__core__commandexistsinpath</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Check if a command exists in<br />PATH</div>")
+      59("<div style='font-weight: bold'>default_container__core__loadvalidatormodule</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div>")
       style 59 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      60("<div style='font-weight: bold'>default_container__core__downloadfile</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Download a file from URL to<br />destination</div>")
+      60("<div style='font-weight: bold'>default_container__core__loadgeneratormodule</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div>")
       style 60 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      61("<div style='font-weight: bold'>default_container__core__extractzip</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Extract a ZIP file (simple<br />extraction for Structurizr<br />CLI)</div>")
+      61("<div style='font-weight: bold'>default_container__core__loadrenderermodule</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div>")
       style 61 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      62("<div style='font-weight: bold'>default_container__core__makeexecutable</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Make file executable (Unix<br />only)</div>")
+      62("<div style='font-weight: bold'>default_container__core__loaddocmodule</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div>")
       style 62 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      63("<div style='font-weight: bold'>default_container__core__downloadstructurizr</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Download and install<br />Structurizr CLI to cache</div>")
+      63("<div style='font-weight: bold'>default_container__core__getcachedir</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Get the Archlette cache<br />directory</div>")
       style 63 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      64("<div style='font-weight: bold'>default_container__core__downloadplantuml</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Download and install PlantUML<br />to cache</div>")
+      64("<div style='font-weight: bold'>default_container__core__ensurecachedir</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Ensure cache directory exists</div>")
       style 64 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      65("<div style='font-weight: bold'>default_container__core__findstructurizrcli</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Find or download Structurizr<br />CLI</div>")
+      65("<div style='font-weight: bold'>default_container__core__commandexistsinpath</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Check if a command exists in<br />PATH</div>")
       style 65 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      66("<div style='font-weight: bold'>default_container__core__findplantuml</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Find or download PlantUML JAR</div>")
+      66("<div style='font-weight: bold'>default_container__core__downloadfile</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Download a file from URL to<br />destination</div>")
       style 66 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      67("<div style='font-weight: bold'>default_container__core__checkjava</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Verify Java is available</div>")
+      67("<div style='font-weight: bold'>default_container__core__extractzip</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Extract a ZIP file (simple<br />extraction for Structurizr<br />CLI)</div>")
       style 67 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      68("<div style='font-weight: bold'>default_container__core__requirejava</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Validate Java is installed<br />(throw if not)</div>")
+      68("<div style='font-weight: bold'>default_container__core__makeexecutable</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Make file executable (Unix<br />only)</div>")
       style 68 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      69("<div style='font-weight: bold'>default_container__core__resolveconfig</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>For each stage, resolve<br />includes/excludes for each<br />node: - If node omits<br />includes/excludes, inherit<br />from defaults. - Add<br />configBaseDir for resolving<br />config-relative paths</div>")
+      69("<div style='font-weight: bold'>default_container__core__downloadstructurizr</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Download and install<br />Structurizr CLI to cache</div>")
       style 69 fill:#85bbf0,stroke:#5d82a8,color:#000000
+      70("<div style='font-weight: bold'>default_container__core__downloadplantuml</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Download and install PlantUML<br />to cache</div>")
+      style 70 fill:#85bbf0,stroke:#5d82a8,color:#000000
+      71("<div style='font-weight: bold'>default_container__core__findstructurizrcli</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Find or download Structurizr<br />CLI</div>")
+      style 71 fill:#85bbf0,stroke:#5d82a8,color:#000000
+      72("<div style='font-weight: bold'>default_container__core__findplantuml</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Find or download PlantUML JAR</div>")
+      style 72 fill:#85bbf0,stroke:#5d82a8,color:#000000
+      73("<div style='font-weight: bold'>default_container__core__checkjava</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Verify Java is available</div>")
+      style 73 fill:#85bbf0,stroke:#5d82a8,color:#000000
+      74("<div style='font-weight: bold'>default_container__core__requirejava</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Validate Java is installed<br />(throw if not)</div>")
+      style 74 fill:#85bbf0,stroke:#5d82a8,color:#000000
+      75("<div style='font-weight: bold'>default_container__core__resolveconfig</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>For each stage, resolve<br />includes/excludes for each<br />node: - If node omits<br />includes/excludes, inherit<br />from defaults. - Add<br />configBaseDir for resolving<br />config-relative paths</div>")
+      style 75 fill:#85bbf0,stroke:#5d82a8,color:#000000
     end
 
   end

@@ -44,18 +44,12 @@
  */
 
 import { pathToFileURL } from 'node:url';
-import * as fs from 'node:fs';
-import * as path from 'node:path';
 
 import type { PipelineContext, StageModule } from './core/types.ts';
-import type { ResolvedAACConfig } from './core/types-aac.ts';
 import { getStageEntry } from './core/stage-entry.js';
 import { loadModuleFromPath } from './core/module-loader.js';
-import { resolveArchlettePath, getCliDir, expandTilde } from './core/path-resolver.js';
-import { AACConfigSchema as aacConfigSchema, resolveConfig } from './core/types-aac.js';
+import { loadConfig } from './core/config-resolver.js';
 import { createLogger } from './core/logger.js';
-
-const DEFAULT_YAML_PATH = 'templates/default.yaml';
 const STAGE_DIRS = {
   extract: '1-extract',
   validate: '2-validate',
@@ -93,7 +87,7 @@ function parseArgs(argv: string[]) {
   const valid = new Set(['all', ...STAGE_ORDER]);
 
   let stageArg = 'all'; // Default stage
-  let yamlPathArg = null;
+  let yamlPathArg: string | undefined = undefined;
 
   // Parse arguments - handle -f flag and optional stage
   let i = 0;
@@ -127,83 +121,33 @@ function stageListFromArg(stageArg: string) {
   return STAGE_ORDER.slice(0, idx + 1);
 }
 
-async function loadYamlIfExists(resolvedFile: string) {
-  if (!resolvedFile) return { config: null, path: null };
-  if (!fs.existsSync(resolvedFile)) return { config: null, path: null };
-  try {
-    const YAML: typeof import('yaml') = await import('yaml'); // <- typed
-    const text = fs.readFileSync(resolvedFile, 'utf8');
-    const parsed = YAML.parse(text);
-    const result = aacConfigSchema.safeParse(parsed);
-    if (!result.success) {
-      usageAndExit(`[archlette] Config validation failed: ${result.error}`);
-    }
-    return { config: parsed ?? null, path: resolvedFile };
-  } catch {
-    LOGGER.warn(
-      `[archlette] Found ${resolvedFile} but "yaml" is not installed; skipping parse.`,
-    );
-    return { config: null, path: resolvedFile };
-  }
-}
-
 export async function run(argv = process.argv) {
   const { stageArg, yamlPathArg } = parseArgs(argv);
-  const cliDir = getCliDir();
 
-  // Config path resolution:
-  // - Default: templates/default.yaml (CLI-relative, in Archlette installation)
-  // - User -f: resolve from CWD (where user runs command), with tilde expansion
-  const defaultYaml = resolveArchlettePath(DEFAULT_YAML_PATH, { cliDir });
-  const chosenYaml = yamlPathArg
-    ? path.resolve(process.cwd(), expandTilde(yamlPathArg))
-    : defaultYaml;
-
-  // Determine base directory for resolving config-relative paths FIRST:
-  // - If user specified a config file with -f: use its directory
-  // - If using default template: use current working directory
-  // - Otherwise: use current working directory
-  const loaded = await loadYamlIfExists(chosenYaml);
-  const configPath = loaded.path;
-  const isUsingDefaultTemplate = !yamlPathArg && configPath === defaultYaml;
-  const configBaseDir =
-    configPath && !isUsingDefaultTemplate ? path.dirname(configPath) : process.cwd();
-
-  // Parse and resolve config, passing configBaseDir for stage nodes
-  let config: ResolvedAACConfig;
-  if (loaded.config) {
-    config = resolveConfig(loaded.config, { configBaseDir });
-  } else {
-    // Create minimal default config when no config file is found
-    config = resolveConfig(
-      {
-        project: { name: 'archlette-project' },
-        paths: {
-          ir_out: './archlette-output/ir',
-          dsl_out: './archlette-output/dsl',
-          render_out: './archlette-output/render',
-          docs_out: './archlette-output/docs',
-        },
-      },
-      { configBaseDir },
-    );
-  }
+  // Load configuration using config-resolver module
+  // Handles: path resolution, base directory determination, YAML parsing, validation
+  const loaded = loadConfig(yamlPathArg);
 
   /** Shared pipeline context passed to stages if they export a function */
   const ctx: PipelineContext = {
-    config,
+    config: loaded.config,
     state: {},
     log: LOGGER,
-    configBaseDir,
+    configBaseDir: loaded.baseDir,
   };
 
   const stagesToRun = stageListFromArg(stageArg);
   ctx.log.info(`Starting pipeline: ${stagesToRun.join(' → ')}`);
-  ctx.log.info(
-    configPath
-      ? `Using config: ${configPath}`
-      : `No config file found (looked for: ${chosenYaml}). Proceeding.`,
-  );
+
+  // Log config status (loaded.configPath contains the path that was attempted)
+  // For tests and debugging, we need to show what was looked for
+  if (loaded.configPath) {
+    ctx.log.info(`Using config: ${loaded.configPath}`);
+  } else {
+    // No config file - show what we looked for
+    const attemptedPath = loaded.attemptedPath || 'config file';
+    ctx.log.info(`No config file found (looked for: ${attemptedPath}). Proceeding.`);
+  }
 
   for (const stage of stagesToRun) {
     const stageKey = stage as keyof typeof STAGE_DIRS;

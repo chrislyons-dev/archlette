@@ -1,0 +1,68 @@
+@startuml
+set separator none
+title Application - Application - Components
+
+top to bottom direction
+skinparam ranksep 60
+skinparam nodesep 30
+
+skinparam {
+  arrowFontSize 10
+  defaultTextAlignment center
+  wrapWidth 200
+  maxMessageSize 100
+  defaultFontName "Arial"
+}
+
+hide stereotype
+
+skinparam rectangle<<Application.Application.default_container__core_config__createdefaultconfig>> {
+  BackgroundColor #85bbf0
+  FontColor #000000
+  BorderColor #5d82a8
+  roundCorner 20
+  shadowing false
+}
+skinparam rectangle<<Application.Application.default_container__core_config__loadconfig>> {
+  BackgroundColor #85bbf0
+  FontColor #000000
+  BorderColor #5d82a8
+  roundCorner 20
+  shadowing false
+}
+skinparam rectangle<<Application.Application.default_container__core_config__loadyamlfile>> {
+  BackgroundColor #85bbf0
+  FontColor #000000
+  BorderColor #5d82a8
+  roundCorner 20
+  shadowing false
+}
+skinparam rectangle<<Application.Application.default_container__core_config__resolveconfigbasedir>> {
+  BackgroundColor #85bbf0
+  FontColor #000000
+  BorderColor #5d82a8
+  roundCorner 20
+  shadowing false
+}
+skinparam rectangle<<Application.Application.default_container__core_config__resolveconfigfilepath>> {
+  BackgroundColor #85bbf0
+  FontColor #000000
+  BorderColor #5d82a8
+  roundCorner 20
+  shadowing false
+}
+skinparam rectangle<<Application.Application>> {
+  BorderColor #2e6295
+  FontColor #2e6295
+  shadowing false
+}
+
+rectangle "Application\n<size:10>[Container: Application]</size>" <<Application.Application>> {
+  rectangle "==default_container__core_config__resolveconfigfilepath\n<size:10>[Component: function]</size>\n\nResolve config file path from CLI arguments" <<Application.Application.default_container__core_config__resolveconfigfilepath>> as Application.Application.default_container__core_config__resolveconfigfilepath
+  rectangle "==default_container__core_config__resolveconfigbasedir\n<size:10>[Component: function]</size>\n\nDetermine base directory for resolving config-relative paths\n\nLogic:\n- If using default template: CWD (user's project directory)\n- If user provided config file: config file's directory\n- Fallback: CWD" <<Application.Application.default_container__core_config__resolveconfigbasedir>> as Application.Application.default_container__core_config__resolveconfigbasedir
+  rectangle "==default_container__core_config__loadyamlfile\n<size:10>[Component: function]</size>\n\nLoad and parse YAML config file" <<Application.Application.default_container__core_config__loadyamlfile>> as Application.Application.default_container__core_config__loadyamlfile
+  rectangle "==default_container__core_config__createdefaultconfig\n<size:10>[Component: function]</size>\n\nCreate minimal default configuration when no config file is found" <<Application.Application.default_container__core_config__createdefaultconfig>> as Application.Application.default_container__core_config__createdefaultconfig
+  rectangle "==default_container__core_config__loadconfig\n<size:10>[Component: function]</size>\n\nLoad configuration from file path (high-level API)\n\nThis is the main entry point for config loading. It handles:\n1. Config file path resolution (default vs user-provided)\n2. Base directory determination\n3. YAML parsing\n4. Config validation and resolution\n5. Fallback to default config" <<Application.Application.default_container__core_config__loadconfig>> as Application.Application.default_container__core_config__loadconfig
+}
+
+@enduml

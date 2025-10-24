@@ -13,6 +13,7 @@ import {
 } from './basic-python/file-finder.js';
 import { parseFiles } from './basic-python/file-parser.js';
 import { mapToIR } from './basic-python/to-ir-mapper.js';
+import { resolveSecurePath } from '../../core/path-security.js';
 import type { ArchletteExtractor } from '../../core/stage-interfaces.js';
 import type { ArchletteIR } from '../../core/types-ir.js';
 import type { ResolvedStageNode } from '../../core/types-aac.ts';
@@ -45,6 +46,48 @@ export const basicPython: ArchletteExtractor = async (
     return createEmptyIR(node.name || 'Python System');
   }
 
+  // Validate file paths for security before passing to Python parser
+  // This prevents path traversal attacks and ensures files are within allowed boundaries
+  const validatedPaths: string[] = [];
+  const invalidPaths: string[] = [];
+
+  for (const filePath of filePaths) {
+    try {
+      const resolved = resolveSecurePath(filePath, {
+        baseDir: ctx.configBaseDir,
+        strategy: 'config-relative',
+        allowedExtensions: ['.py', '.pyi'],
+        mustExist: true,
+      });
+
+      // Log warnings for suspicious paths
+      if (resolved.warnings.length > 0) {
+        log.warn(
+          `Security warnings for ${filePath}:\n` +
+            resolved.warnings.map((w) => `  - ${w}`).join('\n'),
+        );
+      }
+
+      validatedPaths.push(resolved.absolutePath);
+    } catch (error) {
+      const errorMsg =
+        error instanceof Error ? error.message : 'Unknown validation error';
+      log.warn(`Skipping invalid path ${filePath}: ${errorMsg}`);
+      invalidPaths.push(filePath);
+    }
+  }
+
+  if (invalidPaths.length > 0) {
+    log.warn(`Skipped ${invalidPaths.length} files due to path validation failures`);
+  }
+
+  if (validatedPaths.length === 0) {
+    log.warn('No valid Python files after security validation');
+    return createEmptyIR(node.name || 'Python System');
+  }
+
+  log.info(`Validated ${validatedPaths.length} Python files for parsing`);
+
   // Find pyproject.toml files to create containers
   const pyprojectPaths = await findPyProjectFiles({ include, exclude });
   const pyprojects = (
@@ -55,8 +98,8 @@ export const basicPython: ArchletteExtractor = async (
     `Found ${pyprojects.length} pyproject(s): ${pyprojects.map((p) => p.name).join(', ')}`,
   );
 
-  // Parse files using Python AST parser
-  const extractions = await parseFiles(filePaths, pythonPath);
+  // Parse files using Python AST parser (with validated paths)
+  const extractions = await parseFiles(validatedPaths, pythonPath);
 
   // Count successful vs failed parses
   const successful = extractions.filter((e) => !e.parseError).length;

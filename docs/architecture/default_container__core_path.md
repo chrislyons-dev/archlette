@@ -125,7 +125,7 @@ Uses 'config-relative' strategy by default
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/core/path-security.ts:275</code></td>
+<td><code>C:/Users/chris/git/archlette/src/core/path-security.ts:276</code></td>
 </tr>
 </tbody>
 </table>
@@ -156,7 +156,7 @@ Uses 'cli-relative' strategy by default
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/core/path-security.ts:292</code></td>
+<td><code>C:/Users/chris/git/archlette/src/core/path-security.ts:293</code></td>
 </tr>
 </tbody>
 </table>

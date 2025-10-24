@@ -38,7 +38,7 @@
 ### Code Elements
 
 <details>
-<summary><strong>5 code element(s)</strong></summary>
+<summary><strong>4 code element(s)</strong></summary>
 
 
 
@@ -63,7 +63,7 @@
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/cli.ts:69</code></td>
+<td><code>C:/Users/chris/git/archlette/src/cli.ts:63</code></td>
 </tr>
 </tbody>
 </table>
@@ -88,11 +88,11 @@
 </tr>
 <tr>
 <td><strong>Returns</strong></td>
-<td><code>{ stageArg: string; yamlPathArg: any; }</code></td>
+<td><code>{ stageArg: string; yamlPathArg: string; }</code></td>
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/cli.ts:91</code></td>
+<td><code>C:/Users/chris/git/archlette/src/cli.ts:85</code></td>
 </tr>
 </tbody>
 </table>
@@ -121,7 +121,7 @@
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/cli.ts:124</code></td>
+<td><code>C:/Users/chris/git/archlette/src/cli.ts:118</code></td>
 </tr>
 </tbody>
 </table>
@@ -129,39 +129,6 @@
 **Parameters:**
 
 - `stageArg`: <code>string</code>
-
----
-##### `loadYamlIfExists()`
-
-
-<table>
-<tbody>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>function</code></td>
-</tr>
-<tr>
-<td><strong>Visibility</strong></td>
-<td><code>private</code></td>
-</tr>
-<tr>
-<td><strong>Async</strong></td>
-<td>Yes</td>
-</tr>
-<tr>
-<td><strong>Returns</strong></td>
-<td><code>Promise<{ config: any; path: string; }></code></td>
-</tr>
-<tr>
-<td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/cli.ts:130</code></td>
-</tr>
-</tbody>
-</table>
-
-**Parameters:**
-
-- `resolvedFile`: <code>string</code>
 
 ---
 ##### `run()`
@@ -187,7 +154,7 @@
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/cli.ts:150</code></td>
+<td><code>C:/Users/chris/git/archlette/src/cli.ts:124</code></td>
 </tr>
 </tbody>
 </table>

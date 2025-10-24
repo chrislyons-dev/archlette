@@ -108,10 +108,12 @@ npx archlette
 **Extending:**
 
 - [Plugin Development](https://chrislyons-dev.github.io/archlette/plugins/extractors/) — Write custom extractors
+- [Security Guide](docs/guide/security.md) — Input validation and security model
 
 **Contributing:**
 
 - [How to Contribute](CONTRIBUTING.md) — Development setup
+- [Security Guide](docs/guide/security.md) — Security architecture and best practices
 - [Changelog](CHANGELOG.md) — Release history
 
 ---
