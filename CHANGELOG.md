@@ -7,10 +7,9 @@ and this project adheres to [Conventional Commits](https://www.conventionalcommi
 
 ## [1.0.1](https://github.com/chrislyons-dev/archlette/compare/v1.0.0...v1.0.1) (2025-10-25)
 
-
 ### Bug Fixes
 
-* release-please format issue ([#26](https://github.com/chrislyons-dev/archlette/issues/26)) ([13c16d5](https://github.com/chrislyons-dev/archlette/commit/13c16d553d701efaf9b296db7f453e1e31bd3468))
+- release-please format issue ([#26](https://github.com/chrislyons-dev/archlette/issues/26)) ([13c16d5](https://github.com/chrislyons-dev/archlette/commit/13c16d553d701efaf9b296db7f453e1e31bd3468))
 
 ## 1.0.0 (2025-10-25)
 
