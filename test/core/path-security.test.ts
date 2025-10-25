@@ -491,9 +491,12 @@ describe('path-security', () => {
       mkdirSync(allowedDir, { recursive: true });
       writeFileSync(join(allowedDir, 'plugin.js'), 'export default {}');
 
-      const result = resolvePluginPath(join(allowedDir, 'plugin.js'), TEST_DIR, [
-        allowedDir,
-      ]);
+      const result = resolvePluginPath(
+        join(allowedDir, 'plugin.js'),
+        TEST_DIR,
+        undefined, // allowedExtensions
+        [allowedDir], // allowedAbsolutePaths
+      );
 
       expect(result.isSecure).toBe(true);
     });

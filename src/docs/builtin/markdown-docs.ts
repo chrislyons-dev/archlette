@@ -230,6 +230,7 @@ export default async function markdownDocs(ctx: PipelineContext): Promise<void> 
   ctx.state.docOutputs.push({
     generator: 'markdown-docs',
     format: 'markdown',
+    directory: docsDir,
     files: generatedFiles,
     timestamp: Date.now(),
   });

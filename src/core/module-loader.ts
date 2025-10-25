@@ -130,7 +130,7 @@ export async function loadModuleFromPath<T = unknown>(
   // Validate resolved path for security using path-security module
   // This prevents path traversal and validates external plugins
   try {
-    const secureResult = resolvePluginPath(spec, cliDir, fullAllowlist);
+    const secureResult = resolvePluginPath(spec, cliDir, undefined, fullAllowlist);
 
     // Log security warnings if any
     if (secureResult.warnings.length > 0) {

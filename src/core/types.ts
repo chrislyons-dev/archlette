@@ -6,8 +6,8 @@
  * Defines the core types for the AAC pipeline including logger, context, and state.
  */
 
-import type { ResolvedAACConfig } from './types-aac';
-import type { ArchletteIR } from './types-ir';
+import type { ResolvedAACConfig } from './types-aac.js';
+import type { ArchletteIR } from './types-ir.js';
 import type { Logger } from './logger.js';
 
 export type { Logger };
@@ -46,6 +46,8 @@ export interface DocOutput {
   generator: string;
   /** Output format (e.g., 'markdown', 'html', 'pdf') */
   format: string;
+  /** Output directory (full path) */
+  directory: string;
   /** File paths generated (relative to docs_out) */
   files: string[];
   /** Generation timestamp */

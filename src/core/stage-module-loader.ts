@@ -6,7 +6,7 @@
  * Dynamic loaders for stage modules (extractors, validators, generators).
  */
 
-import { loadModuleFromPath } from './module-loader';
+import { loadModuleFromPath } from './module-loader.js';
 import { getStageEntry } from './stage-entry.js';
 
 // Extractor modules: (node: ResolvedStageNode) => ArchletteIR | Promise<ArchletteIR>

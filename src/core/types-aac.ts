@@ -87,6 +87,9 @@ export const AACConfigSchema = z.object({
     docs_out: z.string().min(1),
   }),
 
+  allowedPluginPaths: z.array(z.string()).optional(),
+  allowedAbsolutePaths: z.array(z.string()).optional(),
+
   defaults: z
     .object({
       includes: GlobArray,
@@ -167,6 +170,8 @@ export function resolveConfig(
     project: parsed.project,
     paths: parsed.paths,
     defaults: parsed.defaults,
+    allowedPluginPaths: parsed.allowedPluginPaths,
+    allowedAbsolutePaths: parsed.allowedAbsolutePaths,
     extractors: resolveStage(parsed.extractors),
     validators: resolveStage(parsed.validators),
     generators: resolveStage(parsed.generators),

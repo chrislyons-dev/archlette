@@ -101,6 +101,7 @@ export default async function basicNodeExtractor(
           '.cts',
           '.cjs',
         ],
+        allowedAbsolutePaths: ctx.config.allowedAbsolutePaths || [],
         mustExist: true,
       });
 

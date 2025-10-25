@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-
 /**
  * Archlette CLI - Architecture-as-Code toolkit
  *
@@ -45,7 +44,7 @@
 
 import { pathToFileURL } from 'node:url';
 
-import type { PipelineContext, StageModule } from './core/types.ts';
+import type { PipelineContext, StageModule } from './core/types.js';
 import { getStageEntry } from './core/stage-entry.js';
 import { loadModuleFromPath } from './core/module-loader.js';
 import { loadConfig } from './core/config-resolver.js';
@@ -61,25 +60,27 @@ const STAGE_ORDER = ['extract', 'validate', 'generate', 'render', 'docs'];
 const LOGGER = createLogger({ context: 'archlette-cli', level: 'info' });
 
 function usageAndExit(msg: string) {
-  if (msg) LOGGER.error(`\nError: ${msg}\n`);
-  LOGGER.info(
-    `Usage: archlette [-f <config.yaml>] [stage]
+  LOGGER.info(`Usage: archlette [-f <config.yaml>] [stage]
 
-Stages (optional, defaults to 'all'):
-  all | extract | validate | generate | render | docs
-  - "all" and "docs" both run the full pipeline (extract→validate→generate→render→docs)
-  - Each stage runs all previous stages automatically
+  Stages (optional, defaults to 'all'):
+    all | extract | validate | generate | render | docs
+    - "all" and "docs" both run the full pipeline (extract-->validate-->generate-->render-->docs)
+    - Each stage runs all previous stages automatically
 
-Options:
-  -f <file>   YAML config file path. Defaults to templates/default.yaml
+  Options:
+    -f <file>   YAML config file path. Defaults to templates/default.yaml
 
-Examples:
-  archlette                     # Run 'all' with default config
-  archlette -f .aac.yaml        # Run 'all' with custom config
-  archlette extract             # Run 'extract' with default config
-  archlette -f .aac.yaml extract # Run 'extract' with custom config`,
-  );
-  process.exit(2);
+  Examples:
+    archlette                     # Run 'all' with default config
+    archlette -f .aac.yaml        # Run 'all' with custom config
+    archlette extract             # Run 'extract' with default config
+    archlette -f .aac.yaml extract # Run 'extract' with custom config`);
+  if (msg) {
+    LOGGER.error(`\nError: ${msg}\n`);
+    process.exit(2);
+  } else {
+    process.exit(0);
+  }
 }
 
 function parseArgs(argv: string[]) {
@@ -99,6 +100,8 @@ function parseArgs(argv: string[]) {
       if (!next) usageAndExit('Missing value for -f <file>.');
       yamlPathArg = next;
       i += 2;
+    } else if (arg === '--help' || arg === '-h') {
+      usageAndExit('');
     } else if (arg.startsWith('-')) {
       usageAndExit(`Unknown option "${arg}".`);
     } else {
