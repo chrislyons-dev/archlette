@@ -257,7 +257,7 @@ This provides a standard location for external plugins and custom modules
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/core/module-loader.ts:54</code></td>
+<td><code>C:/Users/chris/git/archlette/src/core/module-loader.ts:59</code></td>
 </tr>
 </tbody>
 </table>
@@ -289,7 +289,7 @@ Dynamically load an ESM module from a path or module specifier with security val
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/core/module-loader.ts:104</code></td>
+<td><code>C:/Users/chris/git/archlette/src/core/module-loader.ts:111</code></td>
 </tr>
 </tbody>
 </table>

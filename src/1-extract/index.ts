@@ -27,10 +27,10 @@
  */
 
 import type { PipelineContext } from '../core/types.js';
-import { loadExtractorModule } from '../core/stage-module-loader';
-import { zArchletteIR, type ArchletteIR } from '../core/types-ir';
+import { loadExtractorModule } from '../core/stage-module-loader.js';
+import { zArchletteIR, type ArchletteIR } from '../core/types-ir.js';
 import { resolveArchlettePath, writeFile } from '../core/path-resolver.js';
-import type { ResolvedAACConfig, ResolvedStageNode } from '../core/types-aac';
+import type { ResolvedAACConfig, ResolvedStageNode } from '../core/types-aac.js';
 import { aggregateIRs } from './aggregator.js';
 
 /**

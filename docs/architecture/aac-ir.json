@@ -178,7 +178,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/cli.ts",
-      "lineNumber": 63
+      "lineNumber": 62
     },
     {
       "id": "default_container__cli__parseargs",
@@ -196,7 +196,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/cli.ts",
-      "lineNumber": 85
+      "lineNumber": 87
     },
     {
       "id": "default_container__cli__stagelistfromarg",
@@ -214,7 +214,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/cli.ts",
-      "lineNumber": 118
+      "lineNumber": 122
     },
     {
       "id": "default_container__cli__run",
@@ -233,7 +233,7 @@
       "visibility": "public",
       "isAsync": true,
       "filePath": "C:/Users/chris/git/archlette/src/cli.ts",
-      "lineNumber": 124
+      "lineNumber": 128
     },
     {
       "description": "Aggregate multiple ArchletteIR objects into a single unified IR",
@@ -751,7 +751,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/core/module-loader.ts",
-      "lineNumber": 54
+      "lineNumber": 59
     },
     {
       "description": "Dynamically load an ESM module from a path or module specifier with security validation",
@@ -791,7 +791,7 @@
       "visibility": "public",
       "isAsync": true,
       "filePath": "C:/Users/chris/git/archlette/src/core/module-loader.ts",
-      "lineNumber": 104
+      "lineNumber": 111
     },
     {
       "id": "default_container__core__getclidir",
@@ -1542,7 +1542,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/docs/builtin/markdown-docs.ts",
-      "lineNumber": 243
+      "lineNumber": 244
     },
     {
       "description": "Find component diagrams for a specific container",
@@ -1579,7 +1579,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/docs/builtin/markdown-docs.ts",
-      "lineNumber": 275
+      "lineNumber": 276
     },
     {
       "description": "Find class diagrams for a specific component",
@@ -1616,7 +1616,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/docs/builtin/markdown-docs.ts",
-      "lineNumber": 313
+      "lineNumber": 314
     },
     {
       "id": "default_container__docs__sanitizefilename",
@@ -1634,7 +1634,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/docs/builtin/markdown-docs.ts",
-      "lineNumber": 347
+      "lineNumber": 348
     },
     {
       "description": "Extract architecture information from a Node.js/TypeScript codebase",
@@ -1688,7 +1688,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python.ts",
-      "lineNumber": 151
+      "lineNumber": 149
     },
     {
       "description": "Basic Python extractor\nAnalyzes Python source code and extracts architectural components",
@@ -3057,7 +3057,7 @@
       "visibility": "public",
       "isAsync": true,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-finder.ts",
-      "lineNumber": 25
+      "lineNumber": 26
     },
     {
       "description": "Find pyproject.toml files within the search paths",
@@ -3079,7 +3079,7 @@
       "visibility": "public",
       "isAsync": true,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-finder.ts",
-      "lineNumber": 41
+      "lineNumber": 42
     },
     {
       "description": "Read and parse pyproject.toml file",
@@ -3101,16 +3101,16 @@
       "visibility": "public",
       "isAsync": true,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-finder.ts",
-      "lineNumber": 90
+      "lineNumber": 91
     },
     {
-      "description": "Simple TOML parser for pyproject.toml\nOnly handles the subset we need: [project] and [tool.poetry] sections",
+      "description": "Parse pyproject.toml using smol-toml library\nHandles full TOML spec including multiline strings, arrays, and nested tables",
       "id": "default_container__basic__parsepyprojecttoml",
       "componentId": "default_container__basic",
       "name": "parsePyProjectToml",
       "type": "function",
       "documentation": {
-        "summary": "Simple TOML parser for pyproject.toml\nOnly handles the subset we need: [project] and [tool.poetry] sections"
+        "summary": "Parse pyproject.toml using smol-toml library\nHandles full TOML spec including multiline strings, arrays, and nested tables"
       },
       "returnType": "PyProjectToml",
       "parameters": [
@@ -3123,7 +3123,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-finder.ts",
-      "lineNumber": 141
+      "lineNumber": 142
     },
     {
       "description": "Find the nearest parent pyproject.toml for a given file",
@@ -3150,7 +3150,7 @@
       "visibility": "public",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-finder.ts",
-      "lineNumber": 195
+      "lineNumber": 156
     },
     {
       "description": "Parse Python files using Python AST parser script",
@@ -3210,7 +3210,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-parser.ts",
-      "lineNumber": 58
+      "lineNumber": 95
     },
     {
       "description": "Map Python parser output to FileExtraction format",
@@ -3232,7 +3232,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-parser.ts",
-      "lineNumber": 95
+      "lineNumber": 187
     },
     {
       "description": "Map Python class to ExtractedClass",
@@ -3259,7 +3259,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-parser.ts",
-      "lineNumber": 135
+      "lineNumber": 227
     },
     {
       "description": "Map Python method to ExtractedMethod",
@@ -3286,7 +3286,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-parser.ts",
-      "lineNumber": 160
+      "lineNumber": 252
     },
     {
       "description": "Map Python property to ExtractedProperty",
@@ -3313,7 +3313,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-parser.ts",
-      "lineNumber": 195
+      "lineNumber": 287
     },
     {
       "description": "Map Python function to ExtractedFunction",
@@ -3340,7 +3340,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-parser.ts",
-      "lineNumber": 225
+      "lineNumber": 317
     },
     {
       "description": "Map Python type definition to ExtractedType",
@@ -3367,7 +3367,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-parser.ts",
-      "lineNumber": 254
+      "lineNumber": 346
     },
     {
       "description": "Map Python parameter to ParameterInfo",
@@ -3394,7 +3394,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-parser.ts",
-      "lineNumber": 276
+      "lineNumber": 368
     },
     {
       "description": "Parse Python docstring into DocInfo\nEnhanced in Phase 2 to use parsed Google/NumPy/Sphinx docstrings",
@@ -3421,7 +3421,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-parser.ts",
-      "lineNumber": 293
+      "lineNumber": 385
     },
     {
       "description": "Extract deprecation info from docstring",
@@ -3443,7 +3443,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-parser.ts",
-      "lineNumber": 329
+      "lineNumber": 421
     },
     {
       "description": "Extract return description from docstring",
@@ -3465,7 +3465,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-parser.ts",
-      "lineNumber": 345
+      "lineNumber": 437
     },
     {
       "description": "Determine visibility from Python name convention\n- __name: private\n- _name: protected\n- name: public",
@@ -3487,7 +3487,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-parser.ts",
-      "lineNumber": 358
+      "lineNumber": 450
     },
     {
       "description": "Map file extractions to ArchletteIR",
@@ -4121,13 +4121,13 @@
     {
       "description": "imports PipelineContext",
       "source": "C:/Users/chris/git/archlette/src/cli.ts",
-      "destination": "./core/types.ts:PipelineContext",
+      "destination": "./core/types.js:PipelineContext",
       "stereotype": "type-import"
     },
     {
       "description": "imports StageModule",
       "source": "C:/Users/chris/git/archlette/src/cli.ts",
-      "destination": "./core/types.ts:StageModule",
+      "destination": "./core/types.js:StageModule",
       "stereotype": "type-import"
     },
     {
@@ -4181,19 +4181,19 @@
     {
       "description": "imports loadExtractorModule",
       "source": "C:/Users/chris/git/archlette/src/1-extract/index.ts",
-      "destination": "../core/stage-module-loader:loadExtractorModule",
+      "destination": "../core/stage-module-loader.js:loadExtractorModule",
       "stereotype": "import"
     },
     {
       "description": "imports zArchletteIR",
       "source": "C:/Users/chris/git/archlette/src/1-extract/index.ts",
-      "destination": "../core/types-ir:zArchletteIR",
+      "destination": "../core/types-ir.js:zArchletteIR",
       "stereotype": "import"
     },
     {
       "description": "imports ArchletteIR",
       "source": "C:/Users/chris/git/archlette/src/1-extract/index.ts",
-      "destination": "../core/types-ir:ArchletteIR",
+      "destination": "../core/types-ir.js:ArchletteIR",
       "stereotype": "import"
     },
     {
@@ -4211,13 +4211,13 @@
     {
       "description": "imports ResolvedAACConfig",
       "source": "C:/Users/chris/git/archlette/src/1-extract/index.ts",
-      "destination": "../core/types-aac:ResolvedAACConfig",
+      "destination": "../core/types-aac.js:ResolvedAACConfig",
       "stereotype": "type-import"
     },
     {
       "description": "imports ResolvedStageNode",
       "source": "C:/Users/chris/git/archlette/src/1-extract/index.ts",
-      "destination": "../core/types-aac:ResolvedStageNode",
+      "destination": "../core/types-aac.js:ResolvedStageNode",
       "stereotype": "type-import"
     },
     {
@@ -4529,25 +4529,25 @@
     {
       "description": "imports ArchletteIR",
       "source": "C:/Users/chris/git/archlette/src/core/stage-interfaces.ts",
-      "destination": "./types-ir:ArchletteIR",
+      "destination": "./types-ir.js:ArchletteIR",
       "stereotype": "type-import"
     },
     {
       "description": "imports ResolvedStageNode",
       "source": "C:/Users/chris/git/archlette/src/core/stage-interfaces.ts",
-      "destination": "./types-aac:ResolvedStageNode",
+      "destination": "./types-aac.js:ResolvedStageNode",
       "stereotype": "type-import"
     },
     {
       "description": "imports PipelineContext",
       "source": "C:/Users/chris/git/archlette/src/core/stage-interfaces.ts",
-      "destination": "./types:PipelineContext",
+      "destination": "./types.js:PipelineContext",
       "stereotype": "type-import"
     },
     {
       "description": "imports loadModuleFromPath",
       "source": "C:/Users/chris/git/archlette/src/core/stage-module-loader.ts",
-      "destination": "./module-loader:loadModuleFromPath",
+      "destination": "./module-loader.js:loadModuleFromPath",
       "stereotype": "import"
     },
     {
@@ -4613,13 +4613,13 @@
     {
       "description": "imports ResolvedAACConfig",
       "source": "C:/Users/chris/git/archlette/src/core/types.ts",
-      "destination": "./types-aac:ResolvedAACConfig",
+      "destination": "./types-aac.js:ResolvedAACConfig",
       "stereotype": "type-import"
     },
     {
       "description": "imports ArchletteIR",
       "source": "C:/Users/chris/git/archlette/src/core/types.ts",
-      "destination": "./types-ir:ArchletteIR",
+      "destination": "./types-ir.js:ArchletteIR",
       "stereotype": "type-import"
     },
     {
@@ -5550,6 +5550,12 @@
       "description": "imports readFile",
       "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-finder.ts",
       "destination": "node:fs/promises:readFile",
+      "stereotype": "import"
+    },
+    {
+      "description": "imports parse",
+      "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-finder.ts",
+      "destination": "smol-toml:parse",
       "stereotype": "import"
     },
     {

@@ -36,7 +36,7 @@ import { readFileSync } from 'node:fs';
 // Configure Nunjucks environment
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
-const templatesDir = join(__dirname, 'structurizr', 'templates');
+const templatesDir = join(__dirname, 'templates');
 
 const nunjucksEnv = new nunjucks.Environment(
   new nunjucks.FileSystemLoader(templatesDir),

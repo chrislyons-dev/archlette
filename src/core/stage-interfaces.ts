@@ -14,9 +14,9 @@
  * @see {@link module:core/types-ir} for IR types
  */
 
-import type { ArchletteIR } from './types-ir';
-import type { ResolvedStageNode } from './types-aac';
-import type { PipelineContext } from './types';
+import type { ArchletteIR } from './types-ir.js';
+import type { ResolvedStageNode } from './types-aac.js';
+import type { PipelineContext } from './types.js';
 
 /**
  * Extractor module interface

@@ -77,4 +77,7 @@ export async function run(ctx: PipelineContext): Promise<void> {
   ctx.log.info(
     `Docs: completed ${docs.length} generator(s), generated ${totalFiles} file(s).`,
   );
+  for (const output of ctx.state.docOutputs || []) {
+    ctx.log.info(`Docs: documents created in ${output.directory}`);
+  }
 }

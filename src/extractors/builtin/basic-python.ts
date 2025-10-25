@@ -57,6 +57,7 @@ export const basicPython: ArchletteExtractor = async (
         baseDir: ctx.configBaseDir,
         strategy: 'config-relative',
         allowedExtensions: ['.py', '.pyi'],
+        allowedAbsolutePaths: ctx.config.allowedAbsolutePaths || [],
         mustExist: true,
       });
 

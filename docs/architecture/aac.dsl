@@ -661,7 +661,7 @@ workspace "Application" "Main application container" {
                     tags "Code"
                 }
                 default_container__basic__parsepyprojecttoml = component "default_container__basic__parsepyprojecttoml" {
-                    description "Simple TOML parser for pyproject.toml\nOnly handles the subset we need: [project] and [tool.poetry] sections"
+                    description "Parse pyproject.toml using smol-toml library\nHandles full TOML spec including multiline strings, arrays, and nested tables"
                     technology "function"
                     tags "Code"
                 }

@@ -15,6 +15,13 @@ paths:
   render_out: ./output/diagrams
   docs_out: ./output/docs
 
+allowedPluginPaths:
+  - ./plugins
+  - ./custom-plugins
+allowedAbsolutePaths:
+  - /users/chris/git/bond-math
+  - C:\users\chris\git\bond-math
+
 extractors:
   # Wrangler deployment extractor for Cloudflare Workers
   - use: extractors/builtin/basic-wrangler

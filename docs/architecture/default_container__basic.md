@@ -68,7 +68,7 @@ Create empty IR when no files found
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python.ts:151</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python.ts:149</code></td>
 </tr>
 </tbody>
 </table>
@@ -137,7 +137,7 @@ Find source files matching include/exclude patterns
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-finder.ts:25</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-finder.ts:26</code></td>
 </tr>
 </tbody>
 </table>
@@ -171,7 +171,7 @@ Find pyproject.toml files within the search paths
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-finder.ts:41</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-finder.ts:42</code></td>
 </tr>
 </tbody>
 </table>
@@ -205,7 +205,7 @@ Read and parse pyproject.toml file
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-finder.ts:90</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-finder.ts:91</code></td>
 </tr>
 </tbody>
 </table>
@@ -217,8 +217,8 @@ Read and parse pyproject.toml file
 ---
 ##### `parsePyProjectToml()`
 
-Simple TOML parser for pyproject.toml
-Only handles the subset we need: [project] and [tool.poetry] sections
+Parse pyproject.toml using smol-toml library
+Handles full TOML spec including multiline strings, arrays, and nested tables
 
 <table>
 <tbody>
@@ -236,7 +236,7 @@ Only handles the subset we need: [project] and [tool.poetry] sections
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-finder.ts:141</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-finder.ts:142</code></td>
 </tr>
 </tbody>
 </table>
@@ -266,7 +266,7 @@ Find the nearest parent pyproject.toml for a given file
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-finder.ts:195</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-finder.ts:156</code></td>
 </tr>
 </tbody>
 </table>

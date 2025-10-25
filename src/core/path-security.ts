@@ -93,7 +93,9 @@ function validatePathSecurity(
       if (rel.startsWith('..') || isAbsolute(rel)) {
         return {
           isSecure: false,
-          warnings: ['Path must be within project directory (restricted mode)'],
+          warnings: [
+            `Path must be within project directory (restricted mode): ${resolvedPath}`,
+          ],
         };
       }
       break;
@@ -103,21 +105,29 @@ function validatePathSecurity(
       // Allow paths relative to config, tilde expansion, but validate absolute paths
       if (isAbsolute(userPath) && !userPath.startsWith('~')) {
         // Check if absolute path is in allowed list
-        const isAllowed = allowedAbsolutePaths.some((allowed) =>
-          resolvedPath.startsWith(normalize(allowed)),
-        );
+        // Normalize both paths for comparison (handles forward/back slashes on Windows)
+        const normalizedResolved = normalize(resolvedPath).toLowerCase();
+        const isAllowed = allowedAbsolutePaths.some((allowed) => {
+          const normalizedAllowed = normalize(allowed).toLowerCase();
+          return normalizedResolved.startsWith(normalizedAllowed);
+        });
 
         if (!isAllowed) {
+          const allowList = allowedAbsolutePaths
+            .map((allowed) => normalize(allowed))
+            .join(', ');
           warnings.push(
-            'Absolute path used without explicit allowlist. Consider using relative paths.',
+            `Absolute path used without explicit allowlist: ${resolvedPath}. Allowed paths are: ${allowList}. Consider using relative paths.`,
           );
         }
-      }
-
-      // Warn on traversal but don't block
-      const rel = relative(baseDir, resolvedPath);
-      if (rel.startsWith('..')) {
-        warnings.push('Path traverses outside config directory');
+        // If absolute path is allowed, don't warn about traversal
+        // (traversal check is only relevant for relative paths)
+      } else {
+        // Only check traversal for relative paths
+        const rel = relative(baseDir, resolvedPath);
+        if (rel.startsWith('..')) {
+          warnings.push('Path traverses outside config directory');
+        }
       }
       break;
     }
@@ -126,9 +136,12 @@ function validatePathSecurity(
       // For plugins: paths relative to Archlette installation
       // Absolute paths for external plugins must be explicitly allowed
       if (isAbsolute(userPath)) {
-        const isAllowed = allowedAbsolutePaths.some((allowed) =>
-          resolvedPath.startsWith(normalize(allowed)),
-        );
+        // Normalize both paths for comparison (handles forward/back slashes on Windows)
+        const normalizedResolved = normalize(resolvedPath).toLowerCase();
+        const isAllowed = allowedAbsolutePaths.some((allowed) => {
+          const normalizedAllowed = normalize(allowed).toLowerCase();
+          return normalizedResolved.startsWith(normalizedAllowed);
+        });
 
         if (!isAllowed) {
           return {
@@ -277,11 +290,13 @@ export function resolveUserContentPath(
   userPath: string,
   configBaseDir: string,
   allowedExtensions?: string[],
+  allowedAbsolutePaths?: string[],
 ): ResolvedSecurePath {
   return resolveSecurePath(userPath, {
     baseDir: configBaseDir,
     strategy: 'config-relative',
     allowedExtensions,
+    allowedAbsolutePaths,
     mustExist: false,
   });
 }
@@ -293,11 +308,13 @@ export function resolveUserContentPath(
 export function resolvePluginPath(
   userPath: string,
   cliDir: string,
+  allowedExtensions?: string[],
   allowedAbsolutePaths?: string[],
 ): ResolvedSecurePath {
   return resolveSecurePath(userPath, {
     baseDir: cliDir,
     strategy: 'cli-relative',
+    allowedExtensions,
     allowedAbsolutePaths,
     mustExist: false,
   });
