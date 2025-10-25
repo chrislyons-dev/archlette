@@ -14,10 +14,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: googleapis/release-please-action@v4
-        id: release
         with:
           release-type: node
-          package-name: '@chrislyons-dev/archlette'
+          token: ${{ secrets.RELEASE_TOKEN }}
 
       # Auto-format release files when PR is created/updated
       - name: Checkout PR branch
@@ -25,7 +24,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           ref: ${{ fromJSON(steps.release.outputs.pr).headBranchName }}
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.RELEASE_TOKEN }}
 
       - name: Setup Node.js
         if: ${{ steps.release.outputs.pr }}
