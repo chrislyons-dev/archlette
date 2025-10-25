@@ -17,32 +17,3 @@ jobs:
         with:
           release-type: node
           token: ${{ secrets.RELEASE_TOKEN }}
-
-      # Auto-format release files when PR is created/updated
-      - name: Checkout PR branch
-        if: ${{ steps.release.outputs.pr }}
-        uses: actions/checkout@v4
-        with:
-          ref: ${{ fromJSON(steps.release.outputs.pr).headBranchName }}
-          token: ${{ secrets.RELEASE_TOKEN }}
-
-      - name: Setup Node.js
-        if: ${{ steps.release.outputs.pr }}
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-
-      - name: Install dependencies
-        if: ${{ steps.release.outputs.pr }}
-        run: npm ci
-
-      - name: Format release files
-        if: ${{ steps.release.outputs.pr }}
-        run: npm run format
-
-      - name: Commit formatting changes
-        if: ${{ steps.release.outputs.pr }}
-        uses: stefanzweifel/git-auto-commit-action@v5
-        with:
-          commit_message: 'chore: auto-format release files'
-          branch: ${{ fromJSON(steps.release.outputs.pr).headBranchName }}

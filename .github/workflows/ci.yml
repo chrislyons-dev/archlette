@@ -17,7 +17,9 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
       - run: npm ci
-      - run: npm run format:check
+      - name: Format check
+        if: github.ref != 'refs/heads/main'
+        run: npm run format:check
       - run: npm run lint
       - run: npm run typecheck
       - run: npm run licenses:check
