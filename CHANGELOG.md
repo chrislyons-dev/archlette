@@ -5,6 +5,19 @@ All notable changes to **Archlette** will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and this project adheres to [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
 
+## [1.1.0](https://github.com/chrislyons-dev/archlette/compare/v1.0.1...v1.1.0) (2025-10-26)
+
+
+### Features
+
+* improve container description and DSL generation for cloudflare wrangler sources [#30](https://github.com/chrislyons-dev/archlette/issues/30) ([4f0b374](https://github.com/chrislyons-dev/archlette/commit/4f0b374d4701a52983699d8e7b468dcc50784ca6))
+
+
+### Bug Fixes
+
+* grant the release-please workflow authority to trigger the cd workflow ([#28](https://github.com/chrislyons-dev/archlette/issues/28)) ([1052f26](https://github.com/chrislyons-dev/archlette/commit/1052f26485facf3ea085ad9ce8e4afacd39c9065))
+* resolve the latest release please configuration and permission issues  ([#29](https://github.com/chrislyons-dev/archlette/issues/29)) ([fb85252](https://github.com/chrislyons-dev/archlette/commit/fb85252cdf255f576ccc3b930e10ac1ff88a9e65))
+
 ## [1.0.1](https://github.com/chrislyons-dev/archlette/compare/v1.0.0...v1.0.1) (2025-10-25)
 
 ### Bug Fixes
