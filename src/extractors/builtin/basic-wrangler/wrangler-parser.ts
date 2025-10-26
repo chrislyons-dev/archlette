@@ -19,6 +19,27 @@ import type {
 const log = createLogger({ context: 'WranglerParser' });
 
 /**
+ * Extract description from @description comment tag in TOML content
+ *
+ * @param content - Raw TOML file content
+ * @returns Description string if found, undefined otherwise
+ */
+function extractDescription(content: string): string | undefined {
+  // Split by both Unix (\n) and Windows (\r\n) line endings
+  const lines = content.split(/\r?\n/);
+  for (const line of lines) {
+    const match = line.match(/^#\s*@description\s+(.+)$/);
+    if (match) {
+      const description = match[1].trim();
+      log.debug(`Found @description: "${description}"`);
+      return description;
+    }
+  }
+  log.debug('No @description tag found in file');
+  return undefined;
+}
+
+/**
  * Parse a wrangler.toml file
  *
  * @param filePath - Absolute path to wrangler.toml file
@@ -26,10 +47,13 @@ const log = createLogger({ context: 'WranglerParser' });
  */
 export async function parseWranglerFile(filePath: string): Promise<WranglerConfig> {
   try {
+    log.debug(`Parsing wrangler file: ${filePath}`);
     const content = readFileSync(filePath, 'utf-8');
     // TOML parser returns unknown structure - we validate at runtime
     const parsed = parseToml(content) as Record<string, unknown>;
-
+    // Extract description from comments
+    const description = extractDescription(content);
+    log.debug(`Extracted description: ${description ? `"${description}"` : 'none'}`);
     // Build WranglerConfig with runtime type validation
     const config: WranglerConfig = {
       filePath,
@@ -39,6 +63,7 @@ export async function parseWranglerFile(filePath: string): Promise<WranglerConfi
         typeof parsed.compatibility_date === 'string'
           ? parsed.compatibility_date
           : undefined,
+      description,
 
       // Root-level configuration (typically production)
       // eslint-disable-next-line @typescript-eslint/no-explicit-any

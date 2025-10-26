@@ -196,7 +196,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/cli.ts",
-      "lineNumber": 87
+      "lineNumber": 86
     },
     {
       "id": "default_container__cli__stagelistfromarg",
@@ -214,7 +214,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/cli.ts",
-      "lineNumber": 122
+      "lineNumber": 121
     },
     {
       "id": "default_container__cli__run",
@@ -233,7 +233,7 @@
       "visibility": "public",
       "isAsync": true,
       "filePath": "C:/Users/chris/git/archlette/src/cli.ts",
-      "lineNumber": 128
+      "lineNumber": 127
     },
     {
       "description": "Aggregate multiple ArchletteIR objects into a single unified IR",
@@ -1005,7 +1005,7 @@
       "visibility": "public",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/core/path-security.ts",
-      "lineNumber": 190
+      "lineNumber": 203
     },
     {
       "description": "Convenience function for resolving user content paths (themes, input files)\nUses 'config-relative' strategy by default",
@@ -1032,12 +1032,17 @@
           "name": "allowedExtensions",
           "type": "string[]",
           "optional": true
+        },
+        {
+          "name": "allowedAbsolutePaths",
+          "type": "string[]",
+          "optional": true
         }
       ],
       "visibility": "public",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/core/path-security.ts",
-      "lineNumber": 276
+      "lineNumber": 289
     },
     {
       "description": "Convenience function for resolving plugin paths\nUses 'cli-relative' strategy by default",
@@ -1061,6 +1066,11 @@
           "optional": false
         },
         {
+          "name": "allowedExtensions",
+          "type": "string[]",
+          "optional": true
+        },
+        {
           "name": "allowedAbsolutePaths",
           "type": "string[]",
           "optional": true
@@ -1069,7 +1079,7 @@
       "visibility": "public",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/core/path-security.ts",
-      "lineNumber": 293
+      "lineNumber": 308
     },
     {
       "id": "C:/Users/chris/git/archlette/src/core/stage-entry.js:getStageEntry",
@@ -1478,7 +1488,7 @@
       "visibility": "public",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/core/types-aac.ts",
-      "lineNumber": 142
+      "lineNumber": 145
     },
     {
       "description": "Generate markdown documentation",
@@ -1688,7 +1698,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python.ts",
-      "lineNumber": 149
+      "lineNumber": 150
     },
     {
       "description": "Basic Python extractor\nAnalyzes Python source code and extracts architectural components",
@@ -3775,13 +3785,13 @@
       "lineNumber": 30
     },
     {
-      "description": "Extract containers from wrangler configurations\n\nCreates one container per wrangler.toml file.\nEach container represents a Cloudflare Worker.",
+      "description": "Extract containers from wrangler configurations\n\nCreates one container per wrangler.toml file.\nEach container represents a Cloudflare Worker (if main exists) or other Cloudflare service.",
       "id": "default_container__basic_wrangler__extractcontainers",
       "componentId": "default_container__basic_wrangler",
       "name": "extractContainers",
       "type": "function",
       "documentation": {
-        "summary": "Extract containers from wrangler configurations\n\nCreates one container per wrangler.toml file.\nEach container represents a Cloudflare Worker."
+        "summary": "Extract containers from wrangler configurations\n\nCreates one container per wrangler.toml file.\nEach container represents a Cloudflare Worker (if main exists) or other Cloudflare service."
       },
       "returnType": "{ id: string; name: string; type: string; layer: string; description: string; tags: string[]; props: { technology: string; filePath: string; }; }[]",
       "returnDescription": "Array of Container objects",
@@ -3799,16 +3809,16 @@
       "lineNumber": 77
     },
     {
-      "description": "Build a descriptive summary for a container",
-      "id": "default_container__basic_wrangler__buildcontainerdescription",
+      "description": "Derive container type from wrangler configuration\n\nLogic:\n- If 'main' field exists → Cloudflare Worker\n- Otherwise → Cloudflare Service (generic)",
+      "id": "default_container__basic_wrangler__derivecontainertype",
       "componentId": "default_container__basic_wrangler",
-      "name": "buildContainerDescription",
+      "name": "deriveContainerType",
       "type": "function",
       "documentation": {
-        "summary": "Build a descriptive summary for a container"
+        "summary": "Derive container type from wrangler configuration\n\nLogic:\n- If 'main' field exists → Cloudflare Worker\n- Otherwise → Cloudflare Service (generic)"
       },
       "returnType": "string",
-      "returnDescription": "Description string",
+      "returnDescription": "Container type string",
       "parameters": [
         {
           "name": "config",
@@ -3820,7 +3830,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/to-ir-mapper.ts",
-      "lineNumber": 102
+      "lineNumber": 110
     },
     {
       "description": "Extract deployments and container instances\n\nCreates:\n- One deployment per environment\n- Container instances for each container in each environment",
@@ -3850,7 +3860,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/to-ir-mapper.ts",
-      "lineNumber": 127
+      "lineNumber": 131
     },
     {
       "description": "Extract container relationships from service bindings\n\nCreates logical dependencies between containers based on service bindings.\nDeduplicates relationships across all environments.",
@@ -3874,7 +3884,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/to-ir-mapper.ts",
-      "lineNumber": 271
+      "lineNumber": 275
     },
     {
       "description": "Extract deployment relationships from container instances\n\nCreates physical instance-to-instance relationships based on service bindings.\nEach relationship represents an actual runtime dependency in a specific environment.",
@@ -3898,7 +3908,31 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/to-ir-mapper.ts",
-      "lineNumber": 317
+      "lineNumber": 321
+    },
+    {
+      "description": "Extract description from",
+      "id": "default_container__basic_wrangler__extractdescription",
+      "componentId": "default_container__basic_wrangler",
+      "name": "extractDescription",
+      "type": "function",
+      "documentation": {
+        "summary": "Extract description from"
+      },
+      "returnType": "string",
+      "returnDescription": "Description string if found, undefined otherwise",
+      "parameters": [
+        {
+          "name": "content",
+          "type": "string",
+          "description": "- Raw TOML file content",
+          "optional": false
+        }
+      ],
+      "visibility": "private",
+      "isAsync": false,
+      "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/wrangler-parser.ts",
+      "lineNumber": 27
     },
     {
       "description": "Parse a wrangler.toml file",
@@ -3922,7 +3956,7 @@
       "visibility": "public",
       "isAsync": true,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/wrangler-parser.ts",
-      "lineNumber": 27
+      "lineNumber": 44
     },
     {
       "description": "Normalize service bindings from various formats\n\nWrangler supports multiple binding formats:\n- [[services]] array (TOML array of tables)\n- services = [{ binding = \"...\", service = \"...\" }]",
@@ -3944,7 +3978,7 @@
       "visibility": "public",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/wrangler-parser.ts",
-      "lineNumber": 83
+      "lineNumber": 102
     },
     {
       "description": "Get all environments from a wrangler config\n\nReturns a list of environment names, including:\n- \"production\" (from root-level config if it has deployable content)\n- All keys from env.* sections",
@@ -3966,7 +4000,7 @@
       "visibility": "public",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/wrangler-parser.ts",
-      "lineNumber": 104
+      "lineNumber": 123
     },
     {
       "description": "Get configuration for a specific environment\n\nMerges root-level config with environment-specific overrides.\nEnvironment config takes precedence.",
@@ -3996,7 +4030,7 @@
       "visibility": "public",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/wrangler-parser.ts",
-      "lineNumber": 145
+      "lineNumber": 164
     }
   ],
   "deployments": [],

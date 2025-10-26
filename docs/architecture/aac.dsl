@@ -786,12 +786,12 @@ workspace "Application" "Main application container" {
                     tags "Code"
                 }
                 default_container__basic_wrangler__extractcontainers = component "default_container__basic_wrangler__extractcontainers" {
-                    description "Extract containers from wrangler configurations\n\nCreates one container per wrangler.toml file.\nEach container represents a Cloudflare Worker."
+                    description "Extract containers from wrangler configurations\n\nCreates one container per wrangler.toml file.\nEach container represents a Cloudflare Worker (if main exists) or other Cloudflare service."
                     technology "function"
                     tags "Code"
                 }
-                default_container__basic_wrangler__buildcontainerdescription = component "default_container__basic_wrangler__buildcontainerdescription" {
-                    description "Build a descriptive summary for a container"
+                default_container__basic_wrangler__derivecontainertype = component "default_container__basic_wrangler__derivecontainertype" {
+                    description "Derive container type from wrangler configuration\n\nLogic:\n- If 'main' field exists → Cloudflare Worker\n- Otherwise → Cloudflare Service (generic)"
                     technology "function"
                     tags "Code"
                 }
@@ -807,6 +807,11 @@ workspace "Application" "Main application container" {
                 }
                 default_container__basic_wrangler__extractdeploymentrelationships = component "default_container__basic_wrangler__extractdeploymentrelationships" {
                     description "Extract deployment relationships from container instances\n\nCreates physical instance-to-instance relationships based on service bindings.\nEach relationship represents an actual runtime dependency in a specific environment."
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__basic_wrangler__extractdescription = component "default_container__basic_wrangler__extractdescription" {
+                    description "Extract description from"
                     technology "function"
                     tags "Code"
                 }
@@ -1277,10 +1282,11 @@ branding {
             include default_container__basic_wrangler__findwranglerfiles
             include default_container__basic_wrangler__maptoir
             include default_container__basic_wrangler__extractcontainers
-            include default_container__basic_wrangler__buildcontainerdescription
+            include default_container__basic_wrangler__derivecontainertype
             include default_container__basic_wrangler__extractdeploymentsandinstances
             include default_container__basic_wrangler__extractcontainerrelationships
             include default_container__basic_wrangler__extractdeploymentrelationships
+            include default_container__basic_wrangler__extractdescription
             include default_container__basic_wrangler__parsewranglerfile
             include default_container__basic_wrangler__normalizeservicebindings
             include default_container__basic_wrangler__getenvironments

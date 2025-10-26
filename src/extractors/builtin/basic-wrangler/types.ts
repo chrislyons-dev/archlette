@@ -93,6 +93,7 @@ export interface WranglerConfig {
   name: string; // Worker/service name
   main?: string; // Entry point file path
   compatibility_date?: string;
+  description?: string; // Extracted from @description comment tag
 
   // Root-level configuration (typically production)
   vars?: Record<string, string>;
