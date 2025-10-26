@@ -374,7 +374,7 @@ Parse a wrangler.toml file
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/wrangler-parser.ts:44</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/wrangler-parser.ts:48</code></td>
 </tr>
 </tbody>
 </table>
@@ -408,7 +408,7 @@ Wrangler supports multiple binding formats:
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/wrangler-parser.ts:102</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/wrangler-parser.ts:108</code></td>
 </tr>
 </tbody>
 </table>
@@ -442,7 +442,7 @@ Returns a list of environment names, including:
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/wrangler-parser.ts:123</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/wrangler-parser.ts:129</code></td>
 </tr>
 </tbody>
 </table>
@@ -475,7 +475,7 @@ Environment config takes precedence.
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/wrangler-parser.ts:164</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/wrangler-parser.ts:170</code></td>
 </tr>
 </tbody>
 </table>

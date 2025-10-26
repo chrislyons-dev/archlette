@@ -1972,13 +1972,13 @@
       "lineNumber": 343
     },
     {
-      "description": "Escape special characters in strings for DSL",
+      "description": "Escape special characters in strings for DSL\n\nStructurizr DSL doesn't support \\n escape sequences in strings,\nso we replace newlines with spaces for cleaner output.",
       "id": "default_container__generators__escapestring",
       "componentId": "default_container__generators",
       "name": "escapeString",
       "type": "function",
       "documentation": {
-        "summary": "Escape special characters in strings for DSL"
+        "summary": "Escape special characters in strings for DSL\n\nStructurizr DSL doesn't support \\n escape sequences in strings,\nso we replace newlines with spaces for cleaner output."
       },
       "returnType": "string",
       "parameters": [
@@ -1991,7 +1991,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts",
-      "lineNumber": 350
+      "lineNumber": 353
     },
     {
       "description": "Render PlantUML files to PNG images",
@@ -3956,7 +3956,7 @@
       "visibility": "public",
       "isAsync": true,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/wrangler-parser.ts",
-      "lineNumber": 44
+      "lineNumber": 48
     },
     {
       "description": "Normalize service bindings from various formats\n\nWrangler supports multiple binding formats:\n- [[services]] array (TOML array of tables)\n- services = [{ binding = \"...\", service = \"...\" }]",
@@ -3978,7 +3978,7 @@
       "visibility": "public",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/wrangler-parser.ts",
-      "lineNumber": 102
+      "lineNumber": 108
     },
     {
       "description": "Get all environments from a wrangler config\n\nReturns a list of environment names, including:\n- \"production\" (from root-level config if it has deployable content)\n- All keys from env.* sections",
@@ -4000,7 +4000,7 @@
       "visibility": "public",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/wrangler-parser.ts",
-      "lineNumber": 123
+      "lineNumber": 129
     },
     {
       "description": "Get configuration for a specific environment\n\nMerges root-level config with environment-specific overrides.\nEnvironment config takes precedence.",
@@ -4030,7 +4030,7 @@
       "visibility": "public",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/wrangler-parser.ts",
-      "lineNumber": 164
+      "lineNumber": 170
     }
   ],
   "deployments": [],

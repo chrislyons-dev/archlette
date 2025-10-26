@@ -110,7 +110,7 @@ rectangle "Application\n<size:10>[Container: Application]</size>" <<Application.
   rectangle "==default_container__generators__generateuniquecodename\n<size:10>[Component: function]</size>\n\nGenerate a unique name for a code item to avoid naming collisions" <<Application.Application.default_container__generators__generateuniquecodename>> as Application.Application.default_container__generators__generateuniquecodename
   rectangle "==default_container__generators__buildtechnologystring\n<size:10>[Component: function]</size>\n\nBuild technology string from relationship metadata" <<Application.Application.default_container__generators__buildtechnologystring>> as Application.Application.default_container__generators__buildtechnologystring
   rectangle "==default_container__generators__sanitizeid\n<size:10>[Component: function]</size>\n\nSanitize ID for DSL (remove special characters, convert to valid identifier)" <<Application.Application.default_container__generators__sanitizeid>> as Application.Application.default_container__generators__sanitizeid
-  rectangle "==default_container__generators__escapestring\n<size:10>[Component: function]</size>\n\nEscape special characters in strings for DSL" <<Application.Application.default_container__generators__escapestring>> as Application.Application.default_container__generators__escapestring
+  rectangle "==default_container__generators__escapestring\n<size:10>[Component: function]</size>\n\nEscape special characters in strings for DSL Structurizr DSL doesn't support \\n escape sequences in strings, so we replace newlines with spaces for cleaner output." <<Application.Application.default_container__generators__escapestring>> as Application.Application.default_container__generators__escapestring
 }
 
 @enduml
