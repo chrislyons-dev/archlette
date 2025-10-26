@@ -64,6 +64,7 @@
     "pack:test": "npm run build && npm pack --pack-destination ./dist && node scripts/inspect-pack.js"
   },
   "dependencies": {
+    "@astrojs/compiler": "^2.10.3",
     "execa": "^9.5.1",
     "globby": "^15.0.0",
     "nunjucks": "^3.2.4",
