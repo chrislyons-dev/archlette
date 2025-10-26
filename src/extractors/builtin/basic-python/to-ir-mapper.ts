@@ -194,6 +194,17 @@ export function mapToIR(
     }
   }
 
+  // Step 3.5: Replace __CONTAINER__ component names with actual container names
+  for (const component of components) {
+    if (component.name === '__CONTAINER__' && component.containerId) {
+      const container = containers.find((c) => c.id === component.containerId);
+      if (container) {
+        component.name = container.name;
+        component.description = `Component derived from root file in ${container.name}`;
+      }
+    }
+  }
+
   // Step 4: Update code items with new hierarchical component IDs
   for (const codeItem of codeItems) {
     if (codeItem.componentId) {

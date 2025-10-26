@@ -164,13 +164,14 @@ export function capitalize() {}
 
     const ir = await basicNodeExtractor(node, mockContext);
 
-    // No components should be extracted
-    expect(ir.components).toHaveLength(0);
+    // A components should be extracted wit the directory name
+    console.log('DEBUG::Components found:', ir.components);
+    expect(ir.components).toHaveLength(1);
+    expect(ir.components[0].name).toContain('test-temp-components'); // Default to directory name
 
-    // Code should still be extracted, but without componentId
     const helperFunc = ir.code.find((c) => c.name === 'helper');
     expect(helperFunc).toBeDefined();
-    expect(helperFunc?.componentId).toBeUndefined();
+    expect(helperFunc?.componentId).toContain('test_temp_components');
   });
 
   it('should deduplicate components from multiple files', async () => {

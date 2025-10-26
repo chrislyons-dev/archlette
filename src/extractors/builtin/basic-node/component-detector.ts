@@ -48,17 +48,33 @@ function getFileJsDocs(sourceFile: SourceFile): Node[] {
 }
 
 /**
+ * Special marker used when file is in root directory
+ * Will be replaced with container name during IR mapping
+ */
+export const ROOT_COMPONENT_MARKER = '__USE_CONTAINER_NAME__';
+
+/**
  * Extract component information from file-level JSDoc
  * Checks the first JSDoc comment in the file for @component, @module, or @namespace tags
+ * If no tags found, infers component from directory structure:
+ * - Files in subdirectories use the immediate parent folder name
+ * - Files in root directory use a special marker that will be replaced with container name
  */
 export function extractFileComponent(
   sourceFile: SourceFile,
 ): ComponentInfo | undefined {
   const jsDocs = getFileJsDocs(sourceFile);
-  if (jsDocs.length === 0) return undefined;
 
-  // Check the first JSDoc for component/module/namespace tags
-  return extractComponentFromJsDoc(jsDocs[0]);
+  // First, try to extract from JSDoc tags
+  if (jsDocs.length > 0) {
+    const componentFromJsDoc = extractComponentFromJsDoc(jsDocs[0]);
+    if (componentFromJsDoc) {
+      return componentFromJsDoc;
+    }
+  }
+
+  // If no JSDoc tags found, infer from file path
+  return inferComponentFromPath(sourceFile.getFilePath());
 }
 
 /**
@@ -276,4 +292,41 @@ function extractComponentName(tag: JSDocTag): string | undefined {
   }
 
   return trimmed;
+}
+
+/**
+ * Infer component name from file path
+ * - Files in subdirectories use the immediate parent folder name
+ * - Files in root directory use a special marker that will be replaced with container name
+ *
+ * Examples:
+ * - /path/to/project/src/utils/helper.ts -> 'utils'
+ * - /path/to/project/src/index.ts -> ROOT_COMPONENT_MARKER
+ * - /path/to/project/services/api/client.ts -> 'api'
+ */
+function inferComponentFromPath(filePath: string): ComponentInfo {
+  // Normalize path separators to forward slashes
+  const normalizedPath = filePath.replace(/\\/g, '/');
+
+  // Split the path into parts
+  const parts = normalizedPath.split('/').filter((p) => p.length > 0);
+
+  // Get the directory name (second to last part, before the filename)
+  // If there's only one part (just the filename), it's in root
+  if (parts.length <= 1) {
+    return {
+      id: sanitizeId(ROOT_COMPONENT_MARKER),
+      name: ROOT_COMPONENT_MARKER,
+      description: 'Component inferred from root directory',
+    };
+  }
+
+  // Get the immediate parent directory name
+  const parentDir = parts[parts.length - 2];
+
+  return {
+    id: sanitizeId(parentDir),
+    name: parentDir,
+    description: `Component inferred from directory: ${parentDir}`,
+  };
 }

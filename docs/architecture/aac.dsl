@@ -50,7 +50,7 @@ workspace "Application" "Main application container" {
                     technology "module"
                 }
                 default_container__core = component "core" {
-                    description "Dynamic ESM module loader | Stage module interfaces for the AAC pipeline | Stage module loaders | Tool management for external rendering tools | Architecture-as-Code (AAC) configuration types and schemas | Archlette Intermediate Representation (IR) types and schemas | Core pipeline types"
+                    description "Dynamic ESM module loader | Component inferred from directory: core | Stage module interfaces for the AAC pipeline | Stage module loaders | Tool management for external rendering tools | Architecture-as-Code (AAC) configuration types and schemas | Archlette Intermediate Representation (IR) types and schemas | Core pipeline types"
                     technology "module"
                 }
                 default_container__core_path = component "core/path" {
@@ -243,6 +243,10 @@ workspace "Application" "Main application container" {
                 }
                 default_container__core_path__resolvepluginpath = component "default_container__core_path__resolvepluginpath" {
                     description "Convenience function for resolving plugin paths Uses 'cli-relative' strategy by default"
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__core__getstageentry = component "default_container__core__getstageentry" {
                     technology "function"
                     tags "Code"
                 }
@@ -517,6 +521,11 @@ workspace "Application" "Main application container" {
                 }
                 default_container__basic_node__extractcomponentname = component "default_container__basic_node__extractcomponentname" {
                     description "Extract component name from a JSDoc tag Handles formats like: -"
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__basic_node__infercomponentfrompath = component "default_container__basic_node__infercomponentfrompath" {
+                    description "Infer component name from file path - Files in subdirectories use the immediate parent folder name - Files in root directory use a special marker that will be replaced with container name Examples: - /path/to/project/src/utils/helper.ts -> 'utils' - /path/to/project/src/index.ts -> ROOT_COMPONENT_MARKER - /path/to/project/services/api/client.ts -> 'api'"
                     technology "function"
                     tags "Code"
                 }
@@ -1179,6 +1188,7 @@ branding {
             include default_container__core__resolvemoduleentry
             include default_container__core__tofileurl
             include default_container__core__writefile
+            include default_container__core__getstageentry
             include default_container__core__loadextractormodule
             include default_container__core__loadvalidatormodule
             include default_container__core__loadgeneratormodule
@@ -1228,6 +1238,7 @@ branding {
             include default_container__basic_node__extractrelationshipsfromjsdoc
             include default_container__basic_node__parseusestag
             include default_container__basic_node__extractcomponentname
+            include default_container__basic_node__infercomponentfrompath
             include default_container__basic_node__extractdocumentation
             include default_container__basic_node__extractdeprecation
             include default_container__basic_node__extractparameterdescriptions

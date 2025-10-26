@@ -2,7 +2,7 @@
  * @module basic_node
  * Map extracted data to ArchletteIR format
  */
-
+import { ROOT_COMPONENT_MARKER } from './component-detector.js';
 import type {
   ArchletteIR,
   CodeItem,
@@ -221,7 +221,15 @@ export function mapToIR(
 
         const oldId = component.id;
         component.containerId = containerId;
-        component.id = sanitizeId(`${containerId}__${oldId}`);
+
+        // If component uses ROOT_COMPONENT_MARKER, replace with container name
+        if (component.name === ROOT_COMPONENT_MARKER) {
+          component.name = pkg.name;
+          component.description = `Component inferred from container: ${pkg.name}`;
+          component.id = sanitizeId(containerId);
+        } else {
+          component.id = sanitizeId(`${containerId}__${oldId}`);
+        }
         componentIdMap.set(oldId, component.id);
       }
     }
@@ -242,8 +250,17 @@ export function mapToIR(
       for (const component of orphanComponents) {
         const oldId = component.id;
         component.containerId = DEFAULT_CONTAINER_ID;
-        // Apply same hierarchical ID pattern
-        component.id = sanitizeId(`${DEFAULT_CONTAINER_ID}__${oldId}`);
+
+        // If component uses ROOT_COMPONENT_MARKER, replace with container name
+        if (component.name === ROOT_COMPONENT_MARKER) {
+          const containerName = systemInfo?.name || 'Application';
+          component.name = containerName;
+          component.description = `Component inferred from container: ${containerName}`;
+          component.id = sanitizeId(DEFAULT_CONTAINER_ID);
+        } else {
+          // Apply same hierarchical ID pattern
+          component.id = sanitizeId(`${DEFAULT_CONTAINER_ID}__${oldId}`);
+        }
         componentIdMap.set(oldId, component.id);
       }
     }
@@ -264,7 +281,16 @@ export function mapToIR(
       for (const component of components) {
         const oldId = component.id;
         component.containerId = DEFAULT_CONTAINER_ID;
-        component.id = sanitizeId(`${DEFAULT_CONTAINER_ID}__${oldId}`);
+
+        // If component uses ROOT_COMPONENT_MARKER, replace with container name
+        if (component.name === ROOT_COMPONENT_MARKER) {
+          const containerName = systemInfo?.name || 'Application';
+          component.name = containerName;
+          component.description = `Component inferred from container: ${containerName}`;
+          component.id = sanitizeId(DEFAULT_CONTAINER_ID);
+        } else {
+          component.id = sanitizeId(`${DEFAULT_CONTAINER_ID}__${oldId}`);
+        }
         componentIdMap.set(oldId, component.id);
       }
     }

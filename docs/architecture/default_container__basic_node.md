@@ -38,7 +38,7 @@
 ### Code Elements
 
 <details>
-<summary><strong>42 code element(s)</strong></summary>
+<summary><strong>43 code element(s)</strong></summary>
 
 
 
@@ -68,7 +68,7 @@ Extract architecture information from a Node.js/TypeScript codebase
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node.ts:73</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node.ts:74</code></td>
 </tr>
 </tbody>
 </table>
@@ -314,7 +314,7 @@ Checks the first JSDoc comment in the file for
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts:54</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts:63</code></td>
 </tr>
 </tbody>
 </table>
@@ -345,7 +345,7 @@ Looks for
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts:73</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts:89</code></td>
 </tr>
 </tbody>
 </table>
@@ -376,7 +376,7 @@ Looks for
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts:92</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts:108</code></td>
 </tr>
 </tbody>
 </table>
@@ -406,7 +406,7 @@ Extract component info from a JSDoc node
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts:108</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts:124</code></td>
 </tr>
 </tbody>
 </table>
@@ -437,7 +437,7 @@ Parses
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts:139</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts:155</code></td>
 </tr>
 </tbody>
 </table>
@@ -467,7 +467,7 @@ Parse an
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts:170</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts:186</code></td>
 </tr>
 </tbody>
 </table>
@@ -498,7 +498,7 @@ Parses
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts:207</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts:223</code></td>
 </tr>
 </tbody>
 </table>
@@ -528,7 +528,7 @@ Parse a
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts:234</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts:250</code></td>
 </tr>
 </tbody>
 </table>
@@ -560,7 +560,7 @@ Handles formats like:
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts:265</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts:281</code></td>
 </tr>
 </tbody>
 </table>
@@ -568,6 +568,43 @@ Handles formats like:
 **Parameters:**
 
 - `tag`: <code>JSDocTag</code>
+
+---
+##### `inferComponentFromPath()`
+
+Infer component name from file path
+- Files in subdirectories use the immediate parent folder name
+- Files in root directory use a special marker that will be replaced with container name
+
+Examples:
+- /path/to/project/src/utils/helper.ts -> 'utils'
+- /path/to/project/src/index.ts -> ROOT_COMPONENT_MARKER
+- /path/to/project/services/api/client.ts -> 'api'
+
+<table>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>function</code></td>
+</tr>
+<tr>
+<td><strong>Visibility</strong></td>
+<td><code>private</code></td>
+</tr>
+<tr>
+<td><strong>Returns</strong></td>
+<td><code>import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector").ComponentInfo</code></td>
+</tr>
+<tr>
+<td><strong>Location</strong></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts:307</code></td>
+</tr>
+</tbody>
+</table>
+
+**Parameters:**
+
+- `filePath`: <code>string</code>
 
 ---
 ##### `extractDocumentation()`
@@ -1091,7 +1128,7 @@ This allows multiple relationships between the same elements with different ster
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts:354</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts:381</code></td>
 </tr>
 </tbody>
 </table>
@@ -1121,7 +1158,7 @@ Map a function to a CodeItem
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts:368</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts:395</code></td>
 </tr>
 </tbody>
 </table>
@@ -1151,7 +1188,7 @@ Map a class to a CodeItem
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts:396</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts:423</code></td>
 </tr>
 </tbody>
 </table>
@@ -1181,7 +1218,7 @@ Map a class method to a CodeItem
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts:425</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts:452</code></td>
 </tr>
 </tbody>
 </table>
@@ -1211,7 +1248,7 @@ Map imports to relationships
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts:459</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts:486</code></td>
 </tr>
 </tbody>
 </table>
@@ -1242,7 +1279,7 @@ Format: filePath:symbolName
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts:482</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts:509</code></td>
 </tr>
 </tbody>
 </table>
@@ -1272,7 +1309,7 @@ Get default system info from package.json if available
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts:492</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts:519</code></td>
 </tr>
 </tbody>
 </table>

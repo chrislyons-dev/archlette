@@ -240,6 +240,13 @@ skinparam rectangle<<Application.Application.default_container__basic_node__getf
   roundCorner 20
   shadowing false
 }
+skinparam rectangle<<Application.Application.default_container__basic_node__infercomponentfrompath>> {
+  BackgroundColor #85bbf0
+  FontColor #000000
+  BorderColor #5d82a8
+  roundCorner 20
+  shadowing false
+}
 skinparam rectangle<<Application.Application.default_container__basic_node__mapclass>> {
   BackgroundColor #85bbf0
   FontColor #000000
@@ -317,6 +324,7 @@ skinparam rectangle<<Application.Application>> {
 }
 
 rectangle "Application\n<size:10>[Container: Application]</size>" <<Application.Application>> {
+  rectangle "==default_container__basic_node__extractclass\n<size:10>[Component: function]</size>\n\nExtract information from a single class declaration" <<Application.Application.default_container__basic_node__extractclass>> as Application.Application.default_container__basic_node__extractclass
   rectangle "==default_container__basic_node__extractmethod\n<size:10>[Component: function]</size>\n\nExtract method information from a class" <<Application.Application.default_container__basic_node__extractmethod>> as Application.Application.default_container__basic_node__extractmethod
   rectangle "==default_container__basic_node__extractproperty\n<size:10>[Component: function]</size>\n\nExtract property information from a class" <<Application.Application.default_container__basic_node__extractproperty>> as Application.Application.default_container__basic_node__extractproperty
   rectangle "==default_container__basic_node__extractmethodparameter\n<size:10>[Component: function]</size>\n\nExtract parameter information" <<Application.Application.default_container__basic_node__extractmethodparameter>> as Application.Application.default_container__basic_node__extractmethodparameter
@@ -331,6 +339,7 @@ rectangle "Application\n<size:10>[Container: Application]</size>" <<Application.
   rectangle "==default_container__basic_node__extractrelationshipsfromjsdoc\n<size:10>[Component: function]</size>\n\nExtract relationships from a JSDoc node Parses" <<Application.Application.default_container__basic_node__extractrelationshipsfromjsdoc>> as Application.Application.default_container__basic_node__extractrelationshipsfromjsdoc
   rectangle "==default_container__basic_node__parseusestag\n<size:10>[Component: function]</size>\n\nParse a" <<Application.Application.default_container__basic_node__parseusestag>> as Application.Application.default_container__basic_node__parseusestag
   rectangle "==default_container__basic_node__extractcomponentname\n<size:10>[Component: function]</size>\n\nExtract component name from a JSDoc tag Handles formats like: -" <<Application.Application.default_container__basic_node__extractcomponentname>> as Application.Application.default_container__basic_node__extractcomponentname
+  rectangle "==default_container__basic_node__infercomponentfrompath\n<size:10>[Component: function]</size>\n\nInfer component name from file path - Files in subdirectories use the immediate parent folder name - Files in root directory use a special marker that will be replaced with container name Examples: - /path/to/project/src/utils/helper.ts -> 'utils' - /path/to/project/src/index.ts -> ROOT_COMPONENT_MARKER - /path/to/project/services/api/client.ts -> 'api'" <<Application.Application.default_container__basic_node__infercomponentfrompath>> as Application.Application.default_container__basic_node__infercomponentfrompath
   rectangle "==default_container__basic_node__extractdocumentation\n<size:10>[Component: function]</size>\n\nExtract documentation information from JSDoc" <<Application.Application.default_container__basic_node__extractdocumentation>> as Application.Application.default_container__basic_node__extractdocumentation
   rectangle "==default_container__basic_node__extractdeprecation\n<size:10>[Component: function]</size>\n\nExtract deprecation information from JSDoc" <<Application.Application.default_container__basic_node__extractdeprecation>> as Application.Application.default_container__basic_node__extractdeprecation
   rectangle "==default_container__basic_node__extractparameterdescriptions\n<size:10>[Component: function]</size>\n\nExtract parameter descriptions from JSDoc" <<Application.Application.default_container__basic_node__extractparameterdescriptions>> as Application.Application.default_container__basic_node__extractparameterdescriptions
@@ -358,7 +367,6 @@ rectangle "Application\n<size:10>[Container: Application]</size>" <<Application.
   rectangle "==default_container__basic_node__extractinterfaces\n<size:10>[Component: function]</size>\n\nExtract interfaces from a source file Examples: interface User { id: string; name: string } export interface ApiClient { get<T>(url: string): Promise<T> }" <<Application.Application.default_container__basic_node__extractinterfaces>> as Application.Application.default_container__basic_node__extractinterfaces
   rectangle "==default_container__basic_node__basicnodeextractor\n<size:10>[Component: function]</size>\n\nExtract architecture information from a Node.js/TypeScript codebase" <<Application.Application.default_container__basic_node__basicnodeextractor>> as Application.Application.default_container__basic_node__basicnodeextractor
   rectangle "==default_container__basic_node__extractclasses\n<size:10>[Component: function]</size>\n\nExtract all class declarations from a source file" <<Application.Application.default_container__basic_node__extractclasses>> as Application.Application.default_container__basic_node__extractclasses
-  rectangle "==default_container__basic_node__extractclass\n<size:10>[Component: function]</size>\n\nExtract information from a single class declaration" <<Application.Application.default_container__basic_node__extractclass>> as Application.Application.default_container__basic_node__extractclass
 }
 
 @enduml

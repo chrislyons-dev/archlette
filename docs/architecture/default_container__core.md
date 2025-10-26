@@ -22,7 +22,7 @@
 </tr>
 <tr>
 <td><strong>Description</strong></td>
-<td>Dynamic ESM module loader | Stage module interfaces for the AAC pipeline | Stage module loaders | Tool management for external rendering tools | Architecture-as-Code (AAC) configuration types and schemas | Archlette Intermediate Representation (IR) types and schemas | Core pipeline types</td>
+<td>Dynamic ESM module loader | Component inferred from directory: core | Stage module interfaces for the AAC pipeline | Stage module loaders | Tool management for external rendering tools | Architecture-as-Code (AAC) configuration types and schemas | Archlette Intermediate Representation (IR) types and schemas | Core pipeline types</td>
 </tr>
 </tbody>
 </table>
@@ -40,7 +40,7 @@
 ### Code Elements
 
 <details>
-<summary><strong>32 code element(s)</strong></summary>
+<summary><strong>33 code element(s)</strong></summary>
 
 
 
@@ -483,6 +483,35 @@ Write content to a file, creating parent directories if needed.
 **Parameters:**
 
 - `filename`: <code>string</code> — - Absolute path to the file- `content`: <code>string</code> — - Content to write
+
+---
+##### `getStageEntry()`
+
+
+<table>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>function</code></td>
+</tr>
+<tr>
+<td><strong>Visibility</strong></td>
+<td><code>public</code></td>
+</tr>
+<tr>
+<td><strong>Returns</strong></td>
+<td><code>import("C:/Users/chris/git/archlette/src/core/stage-entry").StageEntry</code></td>
+</tr>
+<tr>
+<td><strong>Location</strong></td>
+<td><code>C:/Users/chris/git/archlette/src/core/stage-entry.js:12</code></td>
+</tr>
+</tbody>
+</table>
+
+**Parameters:**
+
+- `mod`: <code>unknown</code>
 
 ---
 ##### `loadExtractorModule()`

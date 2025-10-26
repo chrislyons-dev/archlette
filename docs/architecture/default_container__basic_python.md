@@ -154,7 +154,7 @@ Map Python class to ExtractedClass
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-parser.ts:227</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-parser.ts:254</code></td>
 </tr>
 </tbody>
 </table>
@@ -184,7 +184,7 @@ Map Python method to ExtractedMethod
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-parser.ts:252</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-parser.ts:279</code></td>
 </tr>
 </tbody>
 </table>
@@ -214,7 +214,7 @@ Map Python property to ExtractedProperty
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-parser.ts:287</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-parser.ts:314</code></td>
 </tr>
 </tbody>
 </table>
@@ -244,7 +244,7 @@ Map Python function to ExtractedFunction
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-parser.ts:317</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-parser.ts:344</code></td>
 </tr>
 </tbody>
 </table>
@@ -274,7 +274,7 @@ Map Python type definition to ExtractedType
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-parser.ts:346</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-parser.ts:373</code></td>
 </tr>
 </tbody>
 </table>
@@ -304,7 +304,7 @@ Map Python parameter to ParameterInfo
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-parser.ts:368</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-parser.ts:395</code></td>
 </tr>
 </tbody>
 </table>
@@ -335,7 +335,7 @@ Enhanced in Phase 2 to use parsed Google/NumPy/Sphinx docstrings
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-parser.ts:385</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-parser.ts:412</code></td>
 </tr>
 </tbody>
 </table>
@@ -365,7 +365,7 @@ Extract deprecation info from docstring
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-parser.ts:421</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-parser.ts:448</code></td>
 </tr>
 </tbody>
 </table>
@@ -395,7 +395,7 @@ Extract return description from docstring
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-parser.ts:437</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-parser.ts:464</code></td>
 </tr>
 </tbody>
 </table>
@@ -428,7 +428,7 @@ Determine visibility from Python name convention
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-parser.ts:450</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-parser.ts:477</code></td>
 </tr>
 </tbody>
 </table>

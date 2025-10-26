@@ -119,7 +119,7 @@
       "type": "module"
     },
     {
-      "description": "Dynamic ESM module loader | Stage module interfaces for the AAC pipeline | Stage module loaders | Tool management for external rendering tools | Architecture-as-Code (AAC) configuration types and schemas | Archlette Intermediate Representation (IR) types and schemas | Core pipeline types",
+      "description": "Dynamic ESM module loader | Component inferred from directory: core | Stage module interfaces for the AAC pipeline | Stage module loaders | Tool management for external rendering tools | Architecture-as-Code (AAC) configuration types and schemas | Archlette Intermediate Representation (IR) types and schemas | Core pipeline types",
       "id": "default_container__core",
       "containerId": "default-container",
       "name": "core",
@@ -1082,7 +1082,8 @@
       "lineNumber": 308
     },
     {
-      "id": "C:/Users/chris/git/archlette/src/core/stage-entry.js:getStageEntry",
+      "id": "default_container__core__getstageentry",
+      "componentId": "default_container__core",
       "name": "getStageEntry",
       "type": "function",
       "returnType": "import(\"C:/Users/chris/git/archlette/src/core/stage-entry\").StageEntry",
@@ -1676,7 +1677,7 @@
       "visibility": "public",
       "isAsync": true,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node.ts",
-      "lineNumber": 73
+      "lineNumber": 74
     },
     {
       "description": "Create empty IR when no files found",
@@ -2255,7 +2256,7 @@
       "visibility": "public",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts",
-      "lineNumber": 54
+      "lineNumber": 63
     },
     {
       "description": "Extract actors from file-level JSDoc\nLooks for",
@@ -2277,7 +2278,7 @@
       "visibility": "public",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts",
-      "lineNumber": 73
+      "lineNumber": 89
     },
     {
       "description": "Extract relationships from file-level JSDoc\nLooks for",
@@ -2299,7 +2300,7 @@
       "visibility": "public",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts",
-      "lineNumber": 92
+      "lineNumber": 108
     },
     {
       "description": "Extract component info from a JSDoc node",
@@ -2321,7 +2322,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts",
-      "lineNumber": 108
+      "lineNumber": 124
     },
     {
       "description": "Extract actors from a JSDoc node\nParses",
@@ -2343,7 +2344,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts",
-      "lineNumber": 139
+      "lineNumber": 155
     },
     {
       "description": "Parse an",
@@ -2365,7 +2366,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts",
-      "lineNumber": 170
+      "lineNumber": 186
     },
     {
       "description": "Extract relationships from a JSDoc node\nParses",
@@ -2387,7 +2388,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts",
-      "lineNumber": 207
+      "lineNumber": 223
     },
     {
       "description": "Parse a",
@@ -2409,7 +2410,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts",
-      "lineNumber": 234
+      "lineNumber": 250
     },
     {
       "description": "Extract component name from a JSDoc tag\nHandles formats like:\n-",
@@ -2431,7 +2432,29 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts",
-      "lineNumber": 265
+      "lineNumber": 281
+    },
+    {
+      "description": "Infer component name from file path\n- Files in subdirectories use the immediate parent folder name\n- Files in root directory use a special marker that will be replaced with container name\n\nExamples:\n- /path/to/project/src/utils/helper.ts -> 'utils'\n- /path/to/project/src/index.ts -> ROOT_COMPONENT_MARKER\n- /path/to/project/services/api/client.ts -> 'api'",
+      "id": "default_container__basic_node__infercomponentfrompath",
+      "componentId": "default_container__basic_node",
+      "name": "inferComponentFromPath",
+      "type": "function",
+      "documentation": {
+        "summary": "Infer component name from file path\n- Files in subdirectories use the immediate parent folder name\n- Files in root directory use a special marker that will be replaced with container name\n\nExamples:\n- /path/to/project/src/utils/helper.ts -> 'utils'\n- /path/to/project/src/index.ts -> ROOT_COMPONENT_MARKER\n- /path/to/project/services/api/client.ts -> 'api'"
+      },
+      "returnType": "import(\"C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector\").ComponentInfo",
+      "parameters": [
+        {
+          "name": "filePath",
+          "type": "string",
+          "optional": false
+        }
+      ],
+      "visibility": "private",
+      "isAsync": false,
+      "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts",
+      "lineNumber": 307
     },
     {
       "description": "Extract documentation information from JSDoc",
@@ -2830,7 +2853,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts",
-      "lineNumber": 354
+      "lineNumber": 381
     },
     {
       "description": "Map a function to a CodeItem",
@@ -2862,7 +2885,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts",
-      "lineNumber": 368
+      "lineNumber": 395
     },
     {
       "description": "Map a class to a CodeItem",
@@ -2894,7 +2917,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts",
-      "lineNumber": 396
+      "lineNumber": 423
     },
     {
       "description": "Map a class method to a CodeItem",
@@ -2931,7 +2954,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts",
-      "lineNumber": 425
+      "lineNumber": 452
     },
     {
       "description": "Map imports to relationships",
@@ -2958,7 +2981,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts",
-      "lineNumber": 459
+      "lineNumber": 486
     },
     {
       "description": "Generate a unique ID for a code element\nFormat: filePath:symbolName",
@@ -2985,7 +3008,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts",
-      "lineNumber": 482
+      "lineNumber": 509
     },
     {
       "description": "Get default system info from package.json if available",
@@ -3001,7 +3024,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts",
-      "lineNumber": 492
+      "lineNumber": 519
     },
     {
       "description": "Extract type aliases from a source file\nExamples:\n  type UserRole = 'admin' | 'user' | 'guest'\n  export type ApiResponse<T> = { data: T; status: number }",
@@ -3269,7 +3292,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-parser.ts",
-      "lineNumber": 227
+      "lineNumber": 254
     },
     {
       "description": "Map Python method to ExtractedMethod",
@@ -3296,7 +3319,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-parser.ts",
-      "lineNumber": 252
+      "lineNumber": 279
     },
     {
       "description": "Map Python property to ExtractedProperty",
@@ -3323,7 +3346,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-parser.ts",
-      "lineNumber": 287
+      "lineNumber": 314
     },
     {
       "description": "Map Python function to ExtractedFunction",
@@ -3350,7 +3373,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-parser.ts",
-      "lineNumber": 317
+      "lineNumber": 344
     },
     {
       "description": "Map Python type definition to ExtractedType",
@@ -3377,7 +3400,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-parser.ts",
-      "lineNumber": 346
+      "lineNumber": 373
     },
     {
       "description": "Map Python parameter to ParameterInfo",
@@ -3404,7 +3427,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-parser.ts",
-      "lineNumber": 368
+      "lineNumber": 395
     },
     {
       "description": "Parse Python docstring into DocInfo\nEnhanced in Phase 2 to use parsed Google/NumPy/Sphinx docstrings",
@@ -3431,7 +3454,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-parser.ts",
-      "lineNumber": 385
+      "lineNumber": 412
     },
     {
       "description": "Extract deprecation info from docstring",
@@ -3453,7 +3476,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-parser.ts",
-      "lineNumber": 421
+      "lineNumber": 448
     },
     {
       "description": "Extract return description from docstring",
@@ -3475,7 +3498,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-parser.ts",
-      "lineNumber": 437
+      "lineNumber": 464
     },
     {
       "description": "Determine visibility from Python name convention\n- __name: private\n- _name: protected\n- name: public",
@@ -3497,7 +3520,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-parser.ts",
-      "lineNumber": 450
+      "lineNumber": 477
     },
     {
       "description": "Map file extractions to ArchletteIR",
@@ -3556,7 +3579,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts",
-      "lineNumber": 263
+      "lineNumber": 275
     },
     {
       "description": "Map relationships to Relationship[]\nCreates bidirectional actor relationships",
@@ -3593,7 +3616,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts",
-      "lineNumber": 277
+      "lineNumber": 289
     },
     {
       "description": "Deduplicate relationships by source+destination",
@@ -3615,7 +3638,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts",
-      "lineNumber": 324
+      "lineNumber": 336
     },
     {
       "description": "Map ExtractedClass to CodeItem",
@@ -3642,7 +3665,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts",
-      "lineNumber": 339
+      "lineNumber": 351
     },
     {
       "description": "Map ExtractedMethod to CodeItem",
@@ -3674,7 +3697,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts",
-      "lineNumber": 364
+      "lineNumber": 376
     },
     {
       "description": "Map ExtractedFunction to CodeItem",
@@ -3701,7 +3724,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts",
-      "lineNumber": 399
+      "lineNumber": 411
     },
     {
       "description": "Map ExtractedType to CodeItem",
@@ -3728,7 +3751,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts",
-      "lineNumber": 430
+      "lineNumber": 442
     },
     {
       "description": "Find wrangler.toml files based on include/exclude patterns",
@@ -5405,6 +5428,12 @@
       "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/import-extractor.ts",
       "destination": "./types.js:ExtractedImport",
       "stereotype": "type-import"
+    },
+    {
+      "description": "imports ROOT_COMPONENT_MARKER",
+      "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts",
+      "destination": "./component-detector.js:ROOT_COMPONENT_MARKER",
+      "stereotype": "import"
     },
     {
       "description": "imports ArchletteIR",
