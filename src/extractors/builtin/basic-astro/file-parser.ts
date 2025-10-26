@@ -47,11 +47,11 @@ export async function parseFiles(filePaths: string[]): Promise<FileExtraction[]>
       // Extract imports from frontmatter
       const imports = extractImports(frontmatter);
 
-      // Find slots in the template
-      const slots = findSlots(content);
+      // Find slots in the template (reserved for future Astro metadata extraction)
+      const _slots = findSlots(content);
 
-      // Extract client directives
-      const clientDirective = findClientDirective(content);
+      // Extract client directives (reserved for future Astro metadata extraction)
+      const _clientDirective = findClientDirective(content);
 
       // Extract component usage from template
       const componentUsage = extractComponentUsage(content, imports, filePath);

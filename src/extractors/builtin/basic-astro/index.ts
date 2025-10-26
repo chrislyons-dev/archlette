@@ -21,18 +21,18 @@ export const basicAstro: ArchletteExtractor = async (
   const log = ctx.log;
   log.info(`Running basic-astro extractor: ${node.name || 'unnamed'}`);
 
-  // Parse inputs
+  // Parse inputs (will be used in Phase 7)
   const inputs = node.inputs as ExtractorInputs;
-  const include = inputs.include || ['**/*.astro'];
-  const exclude = inputs.exclude || [];
+  const _include = inputs.include || ['**/*.astro'];
+  const _exclude = inputs.exclude || [];
 
-  // TODO: Implement extraction pipeline
-  // 1. Find Astro files
-  // 2. Parse files with Astro compiler
-  // 3. Extract components, actors, relationships
-  // 4. Map to IR
+  // TODO: Implement extraction pipeline (Phase 7)
+  // 1. Find Astro files using findAstroFiles(include, exclude)
+  // 2. Parse files with parseFiles(filePaths)
+  // 3. Find packages with findPackages()
+  // 4. Map to IR with mapToIR(extractions, packages)
 
-  log.warn('Astro extractor not yet implemented');
+  log.warn('Astro extractor not yet implemented - Phase 7 pending');
 
   return createEmptyIR(node.name || 'Astro System');
 };
