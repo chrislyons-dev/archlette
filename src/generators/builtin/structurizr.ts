@@ -346,7 +346,15 @@ function sanitizeId(id: string): string {
 
 /**
  * Escape special characters in strings for DSL
+ *
+ * Structurizr DSL doesn't support \n escape sequences in strings,
+ * so we replace newlines with spaces for cleaner output.
  */
 function escapeString(str: string): string {
-  return str.replace(/\\/g, '\\\\').replace(/"/g, '\\"').replace(/\n/g, '\\n');
+  return str
+    .replace(/\r?\n/g, ' ') // Replace newlines (Unix/Windows) with spaces
+    .replace(/\s+/g, ' ') // Collapse multiple spaces into one
+    .replace(/\\/g, '\\\\') // Escape backslashes
+    .replace(/"/g, '\\"') // Escape quotes
+    .trim(); // Remove leading/trailing whitespace
 }
