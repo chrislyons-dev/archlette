@@ -4,7 +4,7 @@
  */
 
 import { describe, it, expect } from 'vitest';
-import basicAstroExtractor from '../../../src/extractors/builtin/basic-astro/index.js';
+import basicAstroExtractor from '../../../src/extractors/builtin/basic-astro.js';
 import { ROOT_COMPONENT_MARKER } from '../../../src/extractors/builtin/basic-astro/component-detector.js';
 import type { ResolvedStageNode } from '../../../src/core/types-aac.js';
 import type { PipelineContext } from '../../../src/core/types.js';

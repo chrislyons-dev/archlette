@@ -11,8 +11,8 @@
 ### 1.1 Project Structure
 
 - [x] Create directory structure:
-  - `src/extractors/builtin/basic-astro/`
-  - `src/extractors/builtin/basic-astro/index.ts`
+  - `src/extractors/builtin/basic-astro.ts` (entry point)
+  - `src/extractors/builtin/basic-astro/` (helper modules)
   - `src/extractors/builtin/basic-astro/types.ts`
   - `src/extractors/builtin/basic-astro/file-finder.ts`
   - `src/extractors/builtin/basic-astro/file-parser.ts`
@@ -142,18 +142,18 @@
 
 ### 4.1 JSDoc Tag Extraction
 
-- [ ] Implement `extractFileComponent()` in `component-detector.ts`:
+- [x] Implement `extractFileComponent()` in `component-detector.ts`:
   - Parse frontmatter for JSDoc comments
   - Support `@component`, `@module`, `@namespace` tags
   - Extract component name and description
   - Use `sanitizeId()` for IDs
 
-- [ ] Implement `extractFileActors()`:
+- [x] Implement `extractFileActors()`:
   - Parse `@actor` tags from frontmatter JSDoc
   - Format: `@actor Name {Person|System} {in|out|both}? description`
   - Use `sanitizeId()` for actor IDs
 
-- [ ] Implement `extractFileRelationships()`:
+- [x] Implement `extractFileRelationships()`:
   - Parse `@uses` tags from frontmatter JSDoc
   - Create component dependencies
 
@@ -161,7 +161,7 @@
 
 ### 4.2 Folder-Based Inference
 
-- [ ] Implement `inferComponentFromPath()`:
+- [x] Implement `inferComponentFromPath()`:
   - Use immediate parent folder name as component
   - Use `ROOT_COMPONENT_MARKER` for root directory files
   - Match basic-node behavior exactly
@@ -170,10 +170,10 @@
 
 ### 4.3 Testing Component Detection
 
-- [ ] Test explicit `@component` tags
-- [ ] Test folder-based inference
-- [ ] Test root directory handling
-- [ ] Test `@actor` and `@uses` tags
+- [x] Test explicit `@component` tags
+- [x] Test folder-based inference
+- [x] Test root directory handling
+- [x] Test `@actor` and `@uses` tags
 
 **Commit:** `test: add tests for Astro component detection`
 
@@ -183,41 +183,38 @@
 
 ### 5.1 TypeScript Code Extraction
 
-- [ ] Extract classes from frontmatter
-- [ ] Extract functions from frontmatter
-- [ ] Extract interfaces/types (component props)
-
-- [ ] Extract constants/variables
-- [ ] Follow basic-node code extraction patterns
+- [x] Extract classes from frontmatter
+- [x] Extract functions from frontmatter
+- [x] Extract interfaces/types (component props)
+- [x] Extract constants/variables
+- [x] Follow basic-node code extraction patterns
 
 **Commit:** `feat: extract TypeScript code items from Astro frontmatter`
 
 ### 5.2 Documentation Extraction
 
-- [ ] Extract JSDoc from classes/functions
-
-- [ ] Support `@example`, `@remarks`, `@deprecated`
-- [ ] Extract parameter descriptions
-- [ ] Extract return types/descriptions
+- [x] Extract JSDoc from classes/functions
+- [x] Support `@example`, `@remarks`, `@deprecated`
+- [x] Extract parameter descriptions
+- [x] Extract return types/descriptions
 
 **Commit:** `feat: extract documentation from Astro component code`
 
 ### 5.3 Component Metadata
 
-- [ ] Extract component props (TypeScript interface)
-- [ ] Extract slots (named and default)
-- [ ] Extract client directives (affects architecture)
-- [ ] Store as code item metadata
+- [x] Extract component props (TypeScript interface)
+- [x] Extract slots (named and default)
+- [x] Extract client directives (affects architecture)
+- [x] Store as code item metadata
 
 **Commit:** `feat: extract Astro-specific component metadata (props, slots, directives)`
 
 ### 5.4 Testing Code Extraction
 
-- [ ] Test class extraction
-- [ ] Test function extraction
-- [ ] Test prop interface extraction
-
-- [ ] Test documentation extraction
+- [x] Test class extraction
+- [x] Test function extraction
+- [x] Test prop interface extraction
+- [x] Test documentation extraction
 
 **Commit:** `test: add tests for code extraction from Astro files`
 
@@ -227,7 +224,7 @@
 
 ### 6.1 Basic IR Structure
 
-- [ ] Implement `mapToIR()` in `to-ir-mapper.ts`:
+- [x] Implement `mapToIR()` in `to-ir-mapper.ts`:
   - Aggregate components, actors, relationships
   - Create code items array
   - Follow basic-node mapping pattern exactly
@@ -236,40 +233,39 @@
 
 ### 6.2 Container Detection
 
-- [ ] Map files to nearest package.json
-- [ ] Create containers from packages
-- [ ] Handle files without packages (default container)
-- [ ] Match basic-node container logic
+- [x] Map files to nearest package.json
+- [x] Create containers from packages
+- [x] Handle files without packages (default container)
+- [x] Match basic-node container logic
 
 **Commit:** `feat: implement container detection and assignment`
 
 ### 6.3 Hierarchical IDs
 
-- [ ] Build `componentIdMap` (old ID → new ID)
-- [ ] Apply container-level IDs: `${containerId}__${componentId}`
-- [ ] Handle `ROOT_COMPONENT_MARKER` replacement
-- [ ] Apply code-level IDs: `${componentId}__${codeName}`
-- [ ] Update all relationship references
+- [x] Build `componentIdMap` (old ID → new ID)
+- [x] Apply container-level IDs: `${containerId}__${componentId}`
+- [x] Handle `ROOT_COMPONENT_MARKER` replacement
+- [x] Apply code-level IDs: `${componentId}__${codeName}`
+- [x] Update all relationship references
 
 **Commit:** `feat: implement hierarchical ID system for Astro IR`
 
 ### 6.4 Relationship Mapping
 
-- [ ] Map component → component relationships
-- [ ] Map component → actor relationships
-- [ ] Handle actor direction (in/out/both)
-- [ ] Deduplicate relationships
+- [x] Map component → component relationships
+- [x] Map component → actor relationships
+- [x] Handle actor direction (in/out/both)
+- [x] Deduplicate relationships
 
 **Commit:** `feat: map Astro component relationships to IR`
 
 ### 6.5 Testing IR Mapping
 
-- [ ] Test component mapping
-- [ ] Test hierarchical ID generation
-
-- [ ] Test ROOT_COMPONENT_MARKER replacement
-- [ ] Test relationship mapping
-- [ ] Test container assignment
+- [x] Test component mapping
+- [x] Test hierarchical ID generation
+- [x] Test ROOT_COMPONENT_MARKER replacement
+- [x] Test relationship mapping
+- [x] Test container assignment
 
 **Commit:** `test: add comprehensive IR mapping tests`
 
@@ -279,7 +275,7 @@
 
 ### 7.1 Orchestration
 
-- [ ] Implement main extractor in `index.ts`:
+- [x] Implement main extractor in `index.ts`:
   - Parse inputs (include, exclude patterns)
   - Call file finder
   - Call parser
@@ -291,9 +287,9 @@
 
 ### 7.2 Export Configuration
 
-- [ ] Export as default for dynamic loading
-- [ ] Implement `ArchletteExtractor` interface
-- [ ] Match basic-node/basic-python patterns
+- [x] Export as default for dynamic loading
+- [x] Implement `ArchletteExtractor` interface
+- [x] Match basic-node/basic-python patterns
 
 **Commit:** `feat: configure Astro extractor for dynamic loading`
 

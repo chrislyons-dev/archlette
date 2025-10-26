@@ -1,0 +1,41 @@
+# Quick Start: Astro Project Configuration
+#
+# Minimal configuration to analyze an Astro project.
+# Place this file as "archlette.config.yaml" in your project root.
+
+project:
+  name: my-astro-app
+  description: Astro application
+
+paths:
+  output: ./architecture
+
+# Extract both TypeScript and Astro files
+extractors:
+  # TypeScript/JavaScript utilities
+  - use: extractors/builtin/basic-node
+    inputs:
+      include: ['src/**/*.ts', 'src/**/*.js']
+      exclude: ['**/*.astro', '**/*.test.ts']
+
+  # Astro components and pages
+  - use: extractors/builtin/basic-astro
+    inputs:
+      include: ['src/**/*.astro']
+
+validators:
+  - use: validators/builtin/base-validator
+
+generators:
+  - use: generators/builtin/structurizr
+
+renderers:
+  - use: renderers/builtin/structurizr-export
+  - use: renderers/builtin/plantuml-render
+
+docs:
+  - use: docs/builtin/markdown-docs
+# Usage:
+# 1. Copy this file to your Astro project root as "archlette.config.yaml"
+# 2. Run: npx archlette all
+# 3. View output in ./architecture/docs/README.md
