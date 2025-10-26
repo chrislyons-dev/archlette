@@ -102,39 +102,37 @@
 
 ### 3.1 Astro Compiler Integration
 
-- [ ] Implement `parseFiles()` in `file-parser.ts`:
+- [x] Implement `parseFiles()` in `file-parser.ts`:
   - Call `@astrojs/compiler.parse()` for each .astro file
-
   - Extract AST structure
   - Handle parse errors gracefully
-  - Return `AstroParserOutput`
+  - Return `FileExtraction[]`
 
 **Commit:** `feat: integrate @astrojs/compiler for AST parsing`
 
 ### 3.2 Frontmatter Extraction
 
-- [ ] Extract TypeScript/JavaScript from frontmatter section
-- [ ] Parse component props (interface/type definitions)
-- [ ] Extract imports from frontmatter
-- [ ] Identify exported functions/constants
+- [x] Extract TypeScript/JavaScript from frontmatter section
+- [x] Parse component props (interface/type definitions)
+- [x] Extract imports from frontmatter
+- [x] Identify exported functions/constants
 
 **Commit:** `feat: extract frontmatter code from Astro components`
 
 ### 3.3 Template Analysis
 
-- [ ] Extract component usage from template (imported components)
-- [ ] Identify slots (default and named)
-- [ ] Extract client directives (`client:load`, `client:idle`, etc.)
+- [x] Extract component usage from template (imported components)
+- [x] Identify slots (default and named)
+- [x] Extract client directives (`client:load`, `client:idle`, etc.)
 
 **Commit:** `feat: analyze Astro template for component usage and slots`
 
 ### 3.4 Testing Parser
 
-- [ ] Create sample .astro files with various patterns
-- [ ] Test frontmatter extraction
-
-- [ ] Test template parsing
-- [ ] Test error handling
+- [x] Create sample .astro files with various patterns
+- [x] Test frontmatter extraction
+- [x] Test template parsing
+- [x] Test error handling
 
 **Commit:** `test: add tests for Astro AST parser`
 
