@@ -61,23 +61,38 @@
 
 ### 2.1 File Finder
 
-- [ ] Implement `findSourceFiles()` in `file-finder.ts`:
-  - Use glob to find `**/*.astro` files
+- [x] Implement `findSourceFiles()` in `file-finder.ts`:
+  - Use globby to find `**/*.astro` files
   - Support include/exclude patterns
   - Follow basic-node pattern
+  - Return absolute paths
 
-- [ ] Implement `findPackageJson()`:
+- [x] Implement `findPackageJsonFiles()`:
   - Find package.json files in the workspace
-  - Extract package metadata (name, version, description)
-  - Assign files to nearest package
+  - Extract base dirs from include patterns
+  - Search multiple levels deep
+
+- [x] Implement `readPackageInfo()`:
+  - Read and parse package.json
+  - Extract name, version, description
+  - Handle errors gracefully
+
+- [x] Implement `findNearestPackage()`:
+  - Find closest parent package.json for a file
+  - Sort packages by depth
+  - Use relative path calculation
 
 **Commit:** `feat: implement Astro file discovery and package detection`
 
 ### 2.2 Testing File Finder
 
-- [ ] Create test fixtures in `test/extractors/builtin/basic-astro/`
-- [ ] Write tests for file discovery
-- [ ] Test package.json detection
+- [x] Create test fixtures with Astro files and package.json files
+- [x] Write tests for `findSourceFiles()` (3 tests)
+- [x] Write tests for `findPackageJsonFiles()` (1 test)
+- [x] Write tests for `readPackageInfo()` (3 tests)
+- [x] Write tests for `findNearestPackage()` (3 tests)
+- [x] All 10 tests passing
+- [x] Total test count: 35 files, 490 tests
 
 **Commit:** `test: add tests for Astro file finder`
 
@@ -89,6 +104,7 @@
 
 - [ ] Implement `parseFiles()` in `file-parser.ts`:
   - Call `@astrojs/compiler.parse()` for each .astro file
+
   - Extract AST structure
   - Handle parse errors gracefully
   - Return `AstroParserOutput`
@@ -116,6 +132,7 @@
 
 - [ ] Create sample .astro files with various patterns
 - [ ] Test frontmatter extraction
+
 - [ ] Test template parsing
 - [ ] Test error handling
 
@@ -171,6 +188,7 @@
 - [ ] Extract classes from frontmatter
 - [ ] Extract functions from frontmatter
 - [ ] Extract interfaces/types (component props)
+
 - [ ] Extract constants/variables
 - [ ] Follow basic-node code extraction patterns
 
@@ -179,6 +197,7 @@
 ### 5.2 Documentation Extraction
 
 - [ ] Extract JSDoc from classes/functions
+
 - [ ] Support `@example`, `@remarks`, `@deprecated`
 - [ ] Extract parameter descriptions
 - [ ] Extract return types/descriptions
@@ -199,6 +218,7 @@
 - [ ] Test class extraction
 - [ ] Test function extraction
 - [ ] Test prop interface extraction
+
 - [ ] Test documentation extraction
 
 **Commit:** `test: add tests for code extraction from Astro files`
@@ -248,6 +268,7 @@
 
 - [ ] Test component mapping
 - [ ] Test hierarchical ID generation
+
 - [ ] Test ROOT_COMPONENT_MARKER replacement
 - [ ] Test relationship mapping
 - [ ] Test container assignment
@@ -297,6 +318,7 @@
 - [ ] Verify IR is compatible with basic-node output
 - [ ] Test aggregation with basic-node results
 - [ ] Test DSL generation works
+
 - [ ] Test diagram rendering works
 
 **Commit:** `test: verify Astro extractor IR compatibility with basic-node`
@@ -305,6 +327,7 @@
 
 - [ ] Empty .astro files
 - [ ] Astro files with syntax errors
+
 - [ ] Mixed TypeScript/JavaScript frontmatter
 - [ ] Files without frontmatter
 - [ ] Deeply nested component structures
