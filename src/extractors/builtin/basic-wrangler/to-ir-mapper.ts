@@ -69,19 +69,23 @@ export function mapToIR(configs: WranglerConfig[], systemInfo?: System): Archlet
  * Extract containers from wrangler configurations
  *
  * Creates one container per wrangler.toml file.
- * Each container represents a Cloudflare Worker.
+ * Each container represents a Cloudflare Worker (if main exists) or other Cloudflare service.
  *
  * @param configs - Parsed wrangler configurations
  * @returns Array of Container objects
  */
 function extractContainers(configs: WranglerConfig[]) {
   return configs.map((config) => {
-    const description = buildContainerDescription(config);
+    // Derive type from configuration structure
+    const type = deriveContainerType(config);
+
+    // Use @description if available, otherwise create default
+    const description = config.description || `${type}: ${config.name}`;
 
     return {
       id: sanitizeId(config.name),
       name: config.name,
-      type: 'Cloudflare Worker',
+      type,
       layer: 'Application',
       description,
       tags: ['cloudflare', 'worker'],
@@ -94,23 +98,23 @@ function extractContainers(configs: WranglerConfig[]) {
 }
 
 /**
- * Build a descriptive summary for a container
+ * Derive container type from wrangler configuration
+ *
+ * Logic:
+ * - If 'main' field exists → Cloudflare Worker
+ * - Otherwise → Cloudflare Service (generic)
  *
  * @param config - Wrangler configuration
- * @returns Description string
+ * @returns Container type string
  */
-function buildContainerDescription(config: WranglerConfig): string | undefined {
-  const parts: string[] = [];
-
+function deriveContainerType(config: WranglerConfig): string {
+  // Presence of 'main' indicates a Worker
   if (config.main) {
-    parts.push(`Entry: ${config.main}`);
+    return 'Cloudflare Worker';
   }
 
-  if (config.compatibility_date) {
-    parts.push(`Compatibility: ${config.compatibility_date}`);
-  }
-
-  return parts.length > 0 ? parts.join(' | ') : undefined;
+  // Future: Could detect Pages, Durable Objects, etc.
+  return 'Cloudflare Worker';
 }
 
 /**

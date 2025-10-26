@@ -38,7 +38,7 @@
 ### Code Elements
 
 <details>
-<summary><strong>12 code element(s)</strong></summary>
+<summary><strong>13 code element(s)</strong></summary>
 
 
 
@@ -158,7 +158,7 @@ This creates:
 Extract containers from wrangler configurations
 
 Creates one container per wrangler.toml file.
-Each container represents a Cloudflare Worker.
+Each container represents a Cloudflare Worker (if main exists) or other Cloudflare service.
 
 <table>
 <tbody>
@@ -186,9 +186,13 @@ Each container represents a Cloudflare Worker.
 - `configs`: <code>import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/types").WranglerConfig[]</code> — - Parsed wrangler configurations
 
 ---
-##### `buildContainerDescription()`
+##### `deriveContainerType()`
 
-Build a descriptive summary for a container
+Derive container type from wrangler configuration
+
+Logic:
+- If 'main' field exists → Cloudflare Worker
+- Otherwise → Cloudflare Service (generic)
 
 <table>
 <tbody>
@@ -202,11 +206,11 @@ Build a descriptive summary for a container
 </tr>
 <tr>
 <td><strong>Returns</strong></td>
-<td><code>string</code> — Description string</td>
+<td><code>string</code> — Container type string</td>
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/to-ir-mapper.ts:102</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/to-ir-mapper.ts:110</code></td>
 </tr>
 </tbody>
 </table>
@@ -240,7 +244,7 @@ Creates:
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/to-ir-mapper.ts:127</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/to-ir-mapper.ts:131</code></td>
 </tr>
 </tbody>
 </table>
@@ -273,7 +277,7 @@ Deduplicates relationships across all environments.
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/to-ir-mapper.ts:271</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/to-ir-mapper.ts:275</code></td>
 </tr>
 </tbody>
 </table>
@@ -306,7 +310,7 @@ Each relationship represents an actual runtime dependency in a specific environm
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/to-ir-mapper.ts:317</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/to-ir-mapper.ts:321</code></td>
 </tr>
 </tbody>
 </table>
@@ -314,6 +318,36 @@ Each relationship represents an actual runtime dependency in a specific environm
 **Parameters:**
 
 - `instances`: <code>z.infer<any>[]</code> — - Container instances
+
+---
+##### `extractDescription()`
+
+Extract description from
+
+<table>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>function</code></td>
+</tr>
+<tr>
+<td><strong>Visibility</strong></td>
+<td><code>private</code></td>
+</tr>
+<tr>
+<td><strong>Returns</strong></td>
+<td><code>string</code> — Description string if found, undefined otherwise</td>
+</tr>
+<tr>
+<td><strong>Location</strong></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/wrangler-parser.ts:27</code></td>
+</tr>
+</tbody>
+</table>
+
+**Parameters:**
+
+- `content`: <code>string</code> — - Raw TOML file content
 
 ---
 ##### `parseWranglerFile()`
@@ -340,7 +374,7 @@ Parse a wrangler.toml file
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/wrangler-parser.ts:27</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/wrangler-parser.ts:48</code></td>
 </tr>
 </tbody>
 </table>
@@ -374,7 +408,7 @@ Wrangler supports multiple binding formats:
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/wrangler-parser.ts:83</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/wrangler-parser.ts:108</code></td>
 </tr>
 </tbody>
 </table>
@@ -408,7 +442,7 @@ Returns a list of environment names, including:
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/wrangler-parser.ts:104</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/wrangler-parser.ts:129</code></td>
 </tr>
 </tbody>
 </table>
@@ -441,7 +475,7 @@ Environment config takes precedence.
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/wrangler-parser.ts:145</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/wrangler-parser.ts:170</code></td>
 </tr>
 </tbody>
 </table>

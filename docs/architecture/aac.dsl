@@ -19,7 +19,7 @@ workspace "Application" "Main application container" {
             default_container = container "Application" {
                 description "Main application container"
                 technology "Application"
-                tags "Auto-generated"
+                tags "Application,Auto-generated"
 
                 # Components
                 default_container__cli = component "CLI" {
@@ -61,7 +61,7 @@ workspace "Application" "Main application container" {
                     technology "module"
                 }
                 default_container__basic = component "basic" {
-                    description "Basic Python Extractor for Archlette\nExtracts architecture information from Python source code"
+                    description "Basic Python Extractor for Archlette Extracts architecture information from Python source code"
                     technology "module"
                 }
                 default_container__basic_wrangler = component "basic_wrangler" {
@@ -140,7 +140,7 @@ workspace "Application" "Main application container" {
                     tags "Code"
                 }
                 default_container__core_config__resolveconfigbasedir = component "default_container__core_config__resolveconfigbasedir" {
-                    description "Determine base directory for resolving config-relative paths\n\nLogic:\n- If using default template: CWD (user's project directory)\n- If user provided config file: config file's directory\n- Fallback: CWD"
+                    description "Determine base directory for resolving config-relative paths Logic: - If using default template: CWD (user's project directory) - If user provided config file: config file's directory - Fallback: CWD"
                     technology "function"
                     tags "Code"
                 }
@@ -155,17 +155,17 @@ workspace "Application" "Main application container" {
                     tags "Code"
                 }
                 default_container__core_config__loadconfig = component "default_container__core_config__loadconfig" {
-                    description "Load configuration from file path (high-level API)\n\nThis is the main entry point for config loading. It handles:\n1. Config file path resolution (default vs user-provided)\n2. Base directory determination\n3. YAML parsing\n4. Config validation and resolution\n5. Fallback to default config"
+                    description "Load configuration from file path (high-level API) This is the main entry point for config loading. It handles: 1. Config file path resolution (default vs user-provided) 2. Base directory determination 3. YAML parsing 4. Config validation and resolution 5. Fallback to default config"
                     technology "function"
                     tags "Code"
                 }
                 default_container__core__nametoid = component "default_container__core__nametoid" {
-                    description "Convert a name to a normalized ID\nUsed for consistent ID generation across extractors and mappers"
+                    description "Convert a name to a normalized ID Used for consistent ID generation across extractors and mappers"
                     technology "function"
                     tags "Code"
                 }
                 default_container__core__sanitizeid = component "default_container__core__sanitizeid" {
-                    description "Sanitize ID for DSL and code identifiers (preserves underscores)\nUsed for Python code identifiers where underscores are significant"
+                    description "Sanitize ID for DSL and code identifiers (preserves underscores) Used for Python code identifiers where underscores are significant"
                     technology "function"
                     tags "Code"
                 }
@@ -190,7 +190,7 @@ workspace "Application" "Main application container" {
                     tags "Code"
                 }
                 default_container__core__getdefaultuserplugindir = component "default_container__core__getdefaultuserplugindir" {
-                    description "Default base directory for user plugins: ~/.archlette/mods\nThis provides a standard location for external plugins and custom modules"
+                    description "Default base directory for user plugins: ~/.archlette/mods This provides a standard location for external plugins and custom modules"
                     technology "function"
                     tags "Code"
                 }
@@ -208,12 +208,12 @@ workspace "Application" "Main application container" {
                     tags "Code"
                 }
                 default_container__core__resolvearchlettepath = component "default_container__core__resolvearchlettepath" {
-                    description "Core path resolver honoring Archlette rules (no file existence checks).\n- \"~\"  -> user home\n- \"/\"  -> absolute\n- else -> relative to CLI dir"
+                    description "Core path resolver honoring Archlette rules (no file existence checks). - \"~\" -> user home - \"/\" -> absolute - else -> relative to CLI dir"
                     technology "function"
                     tags "Code"
                 }
                 default_container__core__resolvemoduleentry = component "default_container__core__resolvemoduleentry" {
-                    description "Resolve a module entry by probing:\n1) Exact path\n2) With extensions: .ts then .js\n3) If directory: index.ts then index.js"
+                    description "Resolve a module entry by probing: 1) Exact path 2) With extensions: .ts then .js 3) If directory: index.ts then index.js"
                     technology "function"
                     tags "Code"
                 }
@@ -237,12 +237,12 @@ workspace "Application" "Main application container" {
                     tags "Code"
                 }
                 default_container__core_path__resolveusercontentpath = component "default_container__core_path__resolveusercontentpath" {
-                    description "Convenience function for resolving user content paths (themes, input files)\nUses 'config-relative' strategy by default"
+                    description "Convenience function for resolving user content paths (themes, input files) Uses 'config-relative' strategy by default"
                     technology "function"
                     tags "Code"
                 }
                 default_container__core_path__resolvepluginpath = component "default_container__core_path__resolvepluginpath" {
-                    description "Convenience function for resolving plugin paths\nUses 'cli-relative' strategy by default"
+                    description "Convenience function for resolving plugin paths Uses 'cli-relative' strategy by default"
                     technology "function"
                     tags "Code"
                 }
@@ -327,7 +327,7 @@ workspace "Application" "Main application container" {
                     tags "Code"
                 }
                 default_container__core__resolveconfig = component "default_container__core__resolveconfig" {
-                    description "For each stage, resolve includes/excludes for each node:\n  - If node omits includes/excludes, inherit from defaults.\n  - Add configBaseDir for resolving config-relative paths"
+                    description "For each stage, resolve includes/excludes for each node: - If node omits includes/excludes, inherit from defaults. - Add configBaseDir for resolving config-relative paths"
                     technology "function"
                     tags "Code"
                 }
@@ -366,7 +366,7 @@ workspace "Application" "Main application container" {
                     tags "Code"
                 }
                 default_container__basic__basicpython = component "default_container__basic__basicpython" {
-                    description "Basic Python extractor\nAnalyzes Python source code and extracts architectural components"
+                    description "Basic Python extractor Analyzes Python source code and extracts architectural components"
                     technology "function"
                     tags "Code"
                 }
@@ -421,7 +421,7 @@ workspace "Application" "Main application container" {
                     tags "Code"
                 }
                 default_container__generators__escapestring = component "default_container__generators__escapestring" {
-                    description "Escape special characters in strings for DSL"
+                    description "Escape special characters in strings for DSL Structurizr DSL doesn't support \\n escape sequences in strings, so we replace newlines with spaces for cleaner output."
                     technology "function"
                     tags "Code"
                 }
@@ -471,22 +471,22 @@ workspace "Application" "Main application container" {
                     tags "Code"
                 }
                 default_container__basic_node__getfilejsdocs = component "default_container__basic_node__getfilejsdocs" {
-                    description "Get JSDoc comments from a source file\nChecks both the first statement and module-level JSDoc"
+                    description "Get JSDoc comments from a source file Checks both the first statement and module-level JSDoc"
                     technology "function"
                     tags "Code"
                 }
                 default_container__basic_node__extractfilecomponent = component "default_container__basic_node__extractfilecomponent" {
-                    description "Extract component information from file-level JSDoc\nChecks the first JSDoc comment in the file for"
+                    description "Extract component information from file-level JSDoc Checks the first JSDoc comment in the file for"
                     technology "function"
                     tags "Code"
                 }
                 default_container__basic_node__extractfileactors = component "default_container__basic_node__extractfileactors" {
-                    description "Extract actors from file-level JSDoc\nLooks for"
+                    description "Extract actors from file-level JSDoc Looks for"
                     technology "function"
                     tags "Code"
                 }
                 default_container__basic_node__extractfilerelationships = component "default_container__basic_node__extractfilerelationships" {
-                    description "Extract relationships from file-level JSDoc\nLooks for"
+                    description "Extract relationships from file-level JSDoc Looks for"
                     technology "function"
                     tags "Code"
                 }
@@ -496,7 +496,7 @@ workspace "Application" "Main application container" {
                     tags "Code"
                 }
                 default_container__basic_node__extractactorsfromjsdoc = component "default_container__basic_node__extractactorsfromjsdoc" {
-                    description "Extract actors from a JSDoc node\nParses"
+                    description "Extract actors from a JSDoc node Parses"
                     technology "function"
                     tags "Code"
                 }
@@ -506,7 +506,7 @@ workspace "Application" "Main application container" {
                     tags "Code"
                 }
                 default_container__basic_node__extractrelationshipsfromjsdoc = component "default_container__basic_node__extractrelationshipsfromjsdoc" {
-                    description "Extract relationships from a JSDoc node\nParses"
+                    description "Extract relationships from a JSDoc node Parses"
                     technology "function"
                     tags "Code"
                 }
@@ -516,7 +516,7 @@ workspace "Application" "Main application container" {
                     tags "Code"
                 }
                 default_container__basic_node__extractcomponentname = component "default_container__basic_node__extractcomponentname" {
-                    description "Extract component name from a JSDoc tag\nHandles formats like:\n-"
+                    description "Extract component name from a JSDoc tag Handles formats like: -"
                     technology "function"
                     tags "Code"
                 }
@@ -586,7 +586,7 @@ workspace "Application" "Main application container" {
                     tags "Code"
                 }
                 default_container__basic_node__extractarrowfunctions = component "default_container__basic_node__extractarrowfunctions" {
-                    description "Extract arrow functions assigned to const/let/var\nExamples:\n  const handleClick = () => {}\n  export const createUser = async (data) => {}"
+                    description "Extract arrow functions assigned to const/let/var Examples: const handleClick = () => {} export const createUser = async (data) => {}"
                     technology "function"
                     tags "Code"
                 }
@@ -601,7 +601,7 @@ workspace "Application" "Main application container" {
                     tags "Code"
                 }
                 default_container__basic_node__deduplicaterelationships = component "default_container__basic_node__deduplicaterelationships" {
-                    description "Deduplicate relationships by source+destination+stereotype combination\nFirst occurrence wins - preserves description from first relationship\nThis allows multiple relationships between the same elements with different stereotypes"
+                    description "Deduplicate relationships by source+destination+stereotype combination First occurrence wins - preserves description from first relationship This allows multiple relationships between the same elements with different stereotypes"
                     technology "function"
                     tags "Code"
                 }
@@ -626,7 +626,7 @@ workspace "Application" "Main application container" {
                     tags "Code"
                 }
                 default_container__basic_node__generateid = component "default_container__basic_node__generateid" {
-                    description "Generate a unique ID for a code element\nFormat: filePath:symbolName"
+                    description "Generate a unique ID for a code element Format: filePath:symbolName"
                     technology "function"
                     tags "Code"
                 }
@@ -636,12 +636,12 @@ workspace "Application" "Main application container" {
                     tags "Code"
                 }
                 default_container__basic_node__extracttypealiases = component "default_container__basic_node__extracttypealiases" {
-                    description "Extract type aliases from a source file\nExamples:\n  type UserRole = 'admin' | 'user' | 'guest'\n  export type ApiResponse<T> = { data: T; status: number }"
+                    description "Extract type aliases from a source file Examples: type UserRole = 'admin' | 'user' | 'guest' export type ApiResponse<T> = { data: T; status: number }"
                     technology "function"
                     tags "Code"
                 }
                 default_container__basic_node__extractinterfaces = component "default_container__basic_node__extractinterfaces" {
-                    description "Extract interfaces from a source file\nExamples:\n  interface User { id: string; name: string }\n  export interface ApiClient { get<T>(url: string): Promise<T> }"
+                    description "Extract interfaces from a source file Examples: interface User { id: string; name: string } export interface ApiClient { get<T>(url: string): Promise<T> }"
                     technology "function"
                     tags "Code"
                 }
@@ -661,7 +661,7 @@ workspace "Application" "Main application container" {
                     tags "Code"
                 }
                 default_container__basic__parsepyprojecttoml = component "default_container__basic__parsepyprojecttoml" {
-                    description "Parse pyproject.toml using smol-toml library\nHandles full TOML spec including multiline strings, arrays, and nested tables"
+                    description "Parse pyproject.toml using smol-toml library Handles full TOML spec including multiline strings, arrays, and nested tables"
                     technology "function"
                     tags "Code"
                 }
@@ -716,7 +716,7 @@ workspace "Application" "Main application container" {
                     tags "Code"
                 }
                 default_container__basic_python__parsedocstring = component "default_container__basic_python__parsedocstring" {
-                    description "Parse Python docstring into DocInfo\nEnhanced in Phase 2 to use parsed Google/NumPy/Sphinx docstrings"
+                    description "Parse Python docstring into DocInfo Enhanced in Phase 2 to use parsed Google/NumPy/Sphinx docstrings"
                     technology "function"
                     tags "Code"
                 }
@@ -731,7 +731,7 @@ workspace "Application" "Main application container" {
                     tags "Code"
                 }
                 default_container__basic_python__getvisibility = component "default_container__basic_python__getvisibility" {
-                    description "Determine visibility from Python name convention\n- __name: private\n- _name: protected\n- name: public"
+                    description "Determine visibility from Python name convention - __name: private - _name: protected - name: public"
                     technology "function"
                     tags "Code"
                 }
@@ -746,7 +746,7 @@ workspace "Application" "Main application container" {
                     tags "Code"
                 }
                 default_container__basic__maprelationshipstoir = component "default_container__basic__maprelationshipstoir" {
-                    description "Map relationships to Relationship[]\nCreates bidirectional actor relationships"
+                    description "Map relationships to Relationship[] Creates bidirectional actor relationships"
                     technology "function"
                     tags "Code"
                 }
@@ -781,32 +781,37 @@ workspace "Application" "Main application container" {
                     tags "Code"
                 }
                 default_container__basic_wrangler__maptoir = component "default_container__basic_wrangler__maptoir" {
-                    description "Map wrangler configurations to ArchletteIR\n\nThis creates:\n- Containers: One per wrangler.toml file\n- Deployments: One per environment (production, dev, preview, etc.)\n- Container Instances: One per container per environment\n- Container Relationships: Logical dependencies from service bindings\n- Deployment Relationships: Physical instance-to-instance connections"
+                    description "Map wrangler configurations to ArchletteIR This creates: - Containers: One per wrangler.toml file - Deployments: One per environment (production, dev, preview, etc.) - Container Instances: One per container per environment - Container Relationships: Logical dependencies from service bindings - Deployment Relationships: Physical instance-to-instance connections"
                     technology "function"
                     tags "Code"
                 }
                 default_container__basic_wrangler__extractcontainers = component "default_container__basic_wrangler__extractcontainers" {
-                    description "Extract containers from wrangler configurations\n\nCreates one container per wrangler.toml file.\nEach container represents a Cloudflare Worker."
+                    description "Extract containers from wrangler configurations Creates one container per wrangler.toml file. Each container represents a Cloudflare Worker (if main exists) or other Cloudflare service."
                     technology "function"
                     tags "Code"
                 }
-                default_container__basic_wrangler__buildcontainerdescription = component "default_container__basic_wrangler__buildcontainerdescription" {
-                    description "Build a descriptive summary for a container"
+                default_container__basic_wrangler__derivecontainertype = component "default_container__basic_wrangler__derivecontainertype" {
+                    description "Derive container type from wrangler configuration Logic: - If 'main' field exists → Cloudflare Worker - Otherwise → Cloudflare Service (generic)"
                     technology "function"
                     tags "Code"
                 }
                 default_container__basic_wrangler__extractdeploymentsandinstances = component "default_container__basic_wrangler__extractdeploymentsandinstances" {
-                    description "Extract deployments and container instances\n\nCreates:\n- One deployment per environment\n- Container instances for each container in each environment"
+                    description "Extract deployments and container instances Creates: - One deployment per environment - Container instances for each container in each environment"
                     technology "function"
                     tags "Code"
                 }
                 default_container__basic_wrangler__extractcontainerrelationships = component "default_container__basic_wrangler__extractcontainerrelationships" {
-                    description "Extract container relationships from service bindings\n\nCreates logical dependencies between containers based on service bindings.\nDeduplicates relationships across all environments."
+                    description "Extract container relationships from service bindings Creates logical dependencies between containers based on service bindings. Deduplicates relationships across all environments."
                     technology "function"
                     tags "Code"
                 }
                 default_container__basic_wrangler__extractdeploymentrelationships = component "default_container__basic_wrangler__extractdeploymentrelationships" {
-                    description "Extract deployment relationships from container instances\n\nCreates physical instance-to-instance relationships based on service bindings.\nEach relationship represents an actual runtime dependency in a specific environment."
+                    description "Extract deployment relationships from container instances Creates physical instance-to-instance relationships based on service bindings. Each relationship represents an actual runtime dependency in a specific environment."
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__basic_wrangler__extractdescription = component "default_container__basic_wrangler__extractdescription" {
+                    description "Extract description from"
                     technology "function"
                     tags "Code"
                 }
@@ -816,17 +821,17 @@ workspace "Application" "Main application container" {
                     tags "Code"
                 }
                 default_container__basic_wrangler__normalizeservicebindings = component "default_container__basic_wrangler__normalizeservicebindings" {
-                    description "Normalize service bindings from various formats\n\nWrangler supports multiple binding formats:\n- [[services]] array (TOML array of tables)\n- services = [{ binding = \"...\", service = \"...\" }]"
+                    description "Normalize service bindings from various formats Wrangler supports multiple binding formats: - [[services]] array (TOML array of tables) - services = [{ binding = \"...\", service = \"...\" }]"
                     technology "function"
                     tags "Code"
                 }
                 default_container__basic_wrangler__getenvironments = component "default_container__basic_wrangler__getenvironments" {
-                    description "Get all environments from a wrangler config\n\nReturns a list of environment names, including:\n- \"production\" (from root-level config if it has deployable content)\n- All keys from env.* sections"
+                    description "Get all environments from a wrangler config Returns a list of environment names, including: - \"production\" (from root-level config if it has deployable content) - All keys from env.* sections"
                     technology "function"
                     tags "Code"
                 }
                 default_container__basic_wrangler__getenvironmentconfig = component "default_container__basic_wrangler__getenvironmentconfig" {
-                    description "Get configuration for a specific environment\n\nMerges root-level config with environment-specific overrides.\nEnvironment config takes precedence."
+                    description "Get configuration for a specific environment Merges root-level config with environment-specific overrides. Environment config takes precedence."
                     technology "function"
                     tags "Code"
                 }
@@ -1277,10 +1282,11 @@ branding {
             include default_container__basic_wrangler__findwranglerfiles
             include default_container__basic_wrangler__maptoir
             include default_container__basic_wrangler__extractcontainers
-            include default_container__basic_wrangler__buildcontainerdescription
+            include default_container__basic_wrangler__derivecontainertype
             include default_container__basic_wrangler__extractdeploymentsandinstances
             include default_container__basic_wrangler__extractcontainerrelationships
             include default_container__basic_wrangler__extractdeploymentrelationships
+            include default_container__basic_wrangler__extractdescription
             include default_container__basic_wrangler__parsewranglerfile
             include default_container__basic_wrangler__normalizeservicebindings
             include default_container__basic_wrangler__getenvironments

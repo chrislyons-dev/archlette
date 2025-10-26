@@ -90,7 +90,7 @@ Securely resolve a user-provided path with validation
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/core/path-security.ts:190</code></td>
+<td><code>C:/Users/chris/git/archlette/src/core/path-security.ts:203</code></td>
 </tr>
 </tbody>
 </table>
@@ -125,14 +125,14 @@ Uses 'config-relative' strategy by default
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/core/path-security.ts:276</code></td>
+<td><code>C:/Users/chris/git/archlette/src/core/path-security.ts:289</code></td>
 </tr>
 </tbody>
 </table>
 
 **Parameters:**
 
-- `userPath`: <code>string</code>- `configBaseDir`: <code>string</code>- `allowedExtensions`: <code>string[]</code>
+- `userPath`: <code>string</code>- `configBaseDir`: <code>string</code>- `allowedExtensions`: <code>string[]</code>- `allowedAbsolutePaths`: <code>string[]</code>
 
 ---
 ##### `resolvePluginPath()`
@@ -156,14 +156,14 @@ Uses 'cli-relative' strategy by default
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/core/path-security.ts:293</code></td>
+<td><code>C:/Users/chris/git/archlette/src/core/path-security.ts:308</code></td>
 </tr>
 </tbody>
 </table>
 
 **Parameters:**
 
-- `userPath`: <code>string</code>- `cliDir`: <code>string</code>- `allowedAbsolutePaths`: <code>string[]</code>
+- `userPath`: <code>string</code>- `cliDir`: <code>string</code>- `allowedExtensions`: <code>string[]</code>- `allowedAbsolutePaths`: <code>string[]</code>
 
 ---
 

@@ -350,6 +350,9 @@ Sanitize ID for DSL (remove special characters, convert to valid identifier)
 
 Escape special characters in strings for DSL
 
+Structurizr DSL doesn't support \n escape sequences in strings,
+so we replace newlines with spaces for cleaner output.
+
 <table>
 <tbody>
 <tr>
@@ -366,7 +369,7 @@ Escape special characters in strings for DSL
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts:350</code></td>
+<td><code>C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts:353</code></td>
 </tr>
 </tbody>
 </table>

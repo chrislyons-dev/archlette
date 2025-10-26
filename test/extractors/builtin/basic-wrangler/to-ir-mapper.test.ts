@@ -47,9 +47,7 @@ describe('to-ir-mapper', () => {
         technology: 'Cloudflare Workers',
         filePath: '/workers/api.toml',
       });
-      expect(ir.containers[0].description).toBe(
-        'Entry: src/index.ts | Compatibility: 2024-01-01',
-      );
+      expect(ir.containers[0].description).toBe('Cloudflare Worker: api-worker');
 
       expect(ir.containers[1]).toMatchObject({
         id: 'auth_worker',
