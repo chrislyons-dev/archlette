@@ -113,7 +113,7 @@ describe('structurizrGenerator', () => {
     expect(dsl).toContain('api = container "API Service"');
     expect(dsl).toContain('technology "Cloudflare Worker"');
     expect(dsl).toContain('description "REST API"');
-    expect(dsl).toContain('tags "Backend,TypeScript"');
+    expect(dsl).toContain('tags "Cloudflare Worker,Backend,TypeScript"');
   });
 
   it('generates components within containers', () => {
