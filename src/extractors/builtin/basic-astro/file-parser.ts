@@ -12,6 +12,7 @@ import {
   extractFileActors,
   extractFileRelationships,
 } from './component-detector.js';
+import { extractCodeFromFrontmatter } from './code-extractor.js';
 import type { FileExtraction, ExtractedComponent } from './types.js';
 
 const log = createLogger({ context: 'AstroFileParser' });
@@ -55,6 +56,9 @@ export async function parseFiles(filePaths: string[]): Promise<FileExtraction[]>
       // Extract component usage from template
       const componentUsage = extractComponentUsage(content, imports, filePath);
 
+      // Extract TypeScript/JavaScript code from frontmatter
+      const codeExtraction = extractCodeFromFrontmatter(frontmatter, filePath);
+
       results.push({
         filePath,
         language: 'astro',
@@ -62,8 +66,10 @@ export async function parseFiles(filePaths: string[]): Promise<FileExtraction[]>
         actors,
         relationships,
         components: componentUsage,
-        functions: [], // Will be populated from frontmatter TS/JS
-        classes: [], // Will be populated from frontmatter TS/JS
+        functions: codeExtraction.functions,
+        classes: codeExtraction.classes,
+        types: codeExtraction.types,
+        interfaces: codeExtraction.interfaces,
         imports,
         parseError:
           parseResult.diagnostics && parseResult.diagnostics.length > 0
@@ -78,6 +84,8 @@ export async function parseFiles(filePaths: string[]): Promise<FileExtraction[]>
         filePath,
         language: 'astro',
         component: undefined,
+        types: [],
+        interfaces: [],
         actors: [],
         relationships: [],
         components: [],

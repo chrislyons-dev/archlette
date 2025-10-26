@@ -4,6 +4,32 @@
  * Intermediate representations before mapping to ArchletteIR
  */
 
+// Import code-related types from basic-node (reused for frontmatter analysis)
+import type {
+  ExtractedClass,
+  ExtractedFunction,
+  ExtractedType,
+  ExtractedInterface,
+  ExtractedMethod,
+  ParameterInfo,
+  DocInfo,
+  DeprecationInfo,
+  SourceLocation,
+} from '../basic-node/types.js';
+
+// Re-export for external use
+export type {
+  ExtractedClass,
+  ExtractedFunction,
+  ExtractedType,
+  ExtractedInterface,
+  ExtractedMethod,
+  ParameterInfo,
+  DocInfo,
+  DeprecationInfo,
+  SourceLocation,
+};
+
 export interface ExtractorInputs {
   include?: string[];
   exclude?: string[];
@@ -46,6 +72,8 @@ export interface FileExtraction {
   components: ExtractedComponent[];
   functions: ExtractedFunction[];
   classes: ExtractedClass[];
+  types: ExtractedType[];
+  interfaces: ExtractedInterface[];
   imports: ExtractedImport[];
   parseError?: string;
   packageInfo?: PackageInfo;
@@ -79,67 +107,11 @@ export interface ExtractedSlot {
   location: SourceLocation;
 }
 
-export interface ExtractedClass {
-  name: string;
-  isExported: boolean;
-  location: SourceLocation;
-  documentation?: DocInfo;
-  methods: ExtractedMethod[];
-}
-
-export interface ExtractedMethod {
-  name: string;
-  visibility: 'public' | 'private' | 'protected';
-  isStatic: boolean;
-  isAsync: boolean;
-  location: SourceLocation;
-  documentation?: DocInfo;
-  parameters: ParameterInfo[];
-  returnType?: string;
-}
-
-export interface ExtractedFunction {
-  name: string;
-  isExported: boolean;
-  isAsync: boolean;
-  location: SourceLocation;
-  documentation?: DocInfo;
-  parameters: ParameterInfo[];
-  returnType?: string;
-}
-
 export interface ExtractedImport {
   source: string;
   importedNames: string[];
   isDefault: boolean;
   isNamespace: boolean;
-}
-
-export interface ParameterInfo {
-  name: string;
-  type?: string;
-  description?: string;
-  optional: boolean;
-  defaultValue?: string;
-}
-
-export interface DocInfo {
-  summary?: string;
-  details?: string;
-  examples?: string[];
-  remarks?: string[];
-  seeAlso?: string[];
-}
-
-export interface DeprecationInfo {
-  reason?: string;
-  alternative?: string;
-}
-
-export interface SourceLocation {
-  filePath: string;
-  line: number;
-  column: number;
 }
 
 /**
