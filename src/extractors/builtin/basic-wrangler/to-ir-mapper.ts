@@ -114,7 +114,7 @@ function deriveContainerType(config: WranglerConfig): string {
   }
 
   // Future: Could detect Pages, Durable Objects, etc.
-  return 'Cloudflare Service';
+  return 'Cloudflare Worker';
 }
 
 /**
