@@ -5,8 +5,17 @@
 {%- if container.type %}
                 technology "{{ container.type | escapeString }}"
 {%- endif %}
+{%- set allTags = [] %}
+{%- if container.type %}
+{%- set _ = allTags.push(container.type) %}
+{%- endif %}
 {%- if container.tags and container.tags.length > 0 %}
-                tags "{{ container.tags.join(',') }}"
+{%- for tag in container.tags %}
+{%- set _ = allTags.push(tag) %}
+{%- endfor %}
+{%- endif %}
+{%- if allTags.length > 0 %}
+                tags "{{ allTags.join(',') | escapeString }}"
 {%- endif %}
 
 {%- if containerComponents.length > 0 or containerCode.length > 0 %}
