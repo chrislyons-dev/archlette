@@ -46,29 +46,24 @@ workspace "Application" "Main application container" {
                     description "Documentation stage of the AAC pipeline | Markdown documentation generator"
                     technology "module"
                 }
-                default_container__core_config = component "core/config" {
-                    technology "module"
-                }
                 default_container__core = component "core" {
                     description "Dynamic ESM module loader | Component inferred from directory: core | Stage module interfaces for the AAC pipeline | Stage module loaders | Tool management for external rendering tools | Architecture-as-Code (AAC) configuration types and schemas | Archlette Intermediate Representation (IR) types and schemas | Core pipeline types"
                     technology "module"
                 }
-                default_container__core_path = component "core/path" {
+                default_container__basic_astro = component "basic-astro" {
+                    description "Astro component extractor"
                     technology "module"
                 }
                 default_container__basic_node = component "basic_node" {
                     description "TypeScript/JavaScript code extractor"
                     technology "module"
                 }
-                default_container__basic = component "basic" {
+                default_container__basic_python = component "basic-python" {
                     description "Basic Python Extractor for Archlette Extracts architecture information from Python source code"
                     technology "module"
                 }
                 default_container__basic_wrangler = component "basic_wrangler" {
                     description "Cloudflare Wrangler deployment extractor"
-                    technology "module"
-                }
-                default_container__basic_python = component "basic_python" {
                     technology "module"
                 }
 
@@ -134,27 +129,27 @@ workspace "Application" "Main application container" {
                     technology "function"
                     tags "Code"
                 }
-                default_container__core_config__resolveconfigfilepath = component "default_container__core_config__resolveconfigfilepath" {
+                default_container__core__resolveconfigfilepath = component "default_container__core__resolveconfigfilepath" {
                     description "Resolve config file path from CLI arguments"
                     technology "function"
                     tags "Code"
                 }
-                default_container__core_config__resolveconfigbasedir = component "default_container__core_config__resolveconfigbasedir" {
+                default_container__core__resolveconfigbasedir = component "default_container__core__resolveconfigbasedir" {
                     description "Determine base directory for resolving config-relative paths Logic: - If using default template: CWD (user's project directory) - If user provided config file: config file's directory - Fallback: CWD"
                     technology "function"
                     tags "Code"
                 }
-                default_container__core_config__loadyamlfile = component "default_container__core_config__loadyamlfile" {
+                default_container__core__loadyamlfile = component "default_container__core__loadyamlfile" {
                     description "Load and parse YAML config file"
                     technology "function"
                     tags "Code"
                 }
-                default_container__core_config__createdefaultconfig = component "default_container__core_config__createdefaultconfig" {
+                default_container__core__createdefaultconfig = component "default_container__core__createdefaultconfig" {
                     description "Create minimal default configuration when no config file is found"
                     technology "function"
                     tags "Code"
                 }
-                default_container__core_config__loadconfig = component "default_container__core_config__loadconfig" {
+                default_container__core__loadconfig = component "default_container__core__loadconfig" {
                     description "Load configuration from file path (high-level API) This is the main entry point for config loading. It handles: 1. Config file path resolution (default vs user-provided) 2. Base directory determination 3. YAML parsing 4. Config validation and resolution 5. Fallback to default config"
                     technology "function"
                     tags "Code"
@@ -226,22 +221,22 @@ workspace "Application" "Main application container" {
                     technology "function"
                     tags "Code"
                 }
-                default_container__core_path__validatepathsecurity = component "default_container__core_path__validatepathsecurity" {
+                default_container__core__validatepathsecurity = component "default_container__core__validatepathsecurity" {
                     description "Validate path for security issues"
                     technology "function"
                     tags "Code"
                 }
-                default_container__core_path__resolvesecurepath = component "default_container__core_path__resolvesecurepath" {
+                default_container__core__resolvesecurepath = component "default_container__core__resolvesecurepath" {
                     description "Securely resolve a user-provided path with validation"
                     technology "function"
                     tags "Code"
                 }
-                default_container__core_path__resolveusercontentpath = component "default_container__core_path__resolveusercontentpath" {
+                default_container__core__resolveusercontentpath = component "default_container__core__resolveusercontentpath" {
                     description "Convenience function for resolving user content paths (themes, input files) Uses 'config-relative' strategy by default"
                     technology "function"
                     tags "Code"
                 }
-                default_container__core_path__resolvepluginpath = component "default_container__core_path__resolvepluginpath" {
+                default_container__core__resolvepluginpath = component "default_container__core__resolvepluginpath" {
                     description "Convenience function for resolving plugin paths Uses 'cli-relative' strategy by default"
                     technology "function"
                     tags "Code"
@@ -359,17 +354,22 @@ workspace "Application" "Main application container" {
                     technology "function"
                     tags "Code"
                 }
+                default_container__basic_astro__basicastroextractor = component "default_container__basic_astro__basicastroextractor" {
+                    description "Extract architecture information from an Astro codebase"
+                    technology "function"
+                    tags "Code"
+                }
                 default_container__basic_node__basicnodeextractor = component "default_container__basic_node__basicnodeextractor" {
                     description "Extract architecture information from a Node.js/TypeScript codebase"
                     technology "function"
                     tags "Code"
                 }
-                default_container__basic__createemptyir = component "default_container__basic__createemptyir" {
+                default_container__basic_python__createemptyir = component "default_container__basic_python__createemptyir" {
                     description "Create empty IR when no files found"
                     technology "function"
                     tags "Code"
                 }
-                default_container__basic__basicpython = component "default_container__basic__basicpython" {
+                default_container__basic_python__basicpython = component "default_container__basic_python__basicpython" {
                     description "Basic Python extractor Analyzes Python source code and extracts architectural components"
                     technology "function"
                     tags "Code"
@@ -441,6 +441,121 @@ workspace "Application" "Main application container" {
                 }
                 default_container__validators__basevalidator = component "default_container__validators__basevalidator" {
                     description "Validates the IR against the Zod schema. Throws if invalid."
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__basic_astro__extractcodefromfrontmatter = component "default_container__basic_astro__extractcodefromfrontmatter" {
+                    description "Extract TypeScript/JavaScript code from Astro frontmatter Parses the frontmatter as TypeScript and uses basic-node extractors"
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__basic_astro__extractjsdocblocks = component "default_container__basic_astro__extractjsdocblocks" {
+                    description "Extract all JSDoc comment blocks from source code Matches /** ... *\\/ style comments and parses their tags"
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__basic_astro__parsejsdocblock = component "default_container__basic_astro__parsejsdocblock" {
+                    description "Parse a single JSDoc comment block into description and tags"
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__basic_astro__extractfilecomponent = component "default_container__basic_astro__extractfilecomponent" {
+                    description "Extract component information from frontmatter JSDoc Checks for"
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__basic_astro__extractcomponentname = component "default_container__basic_astro__extractcomponentname" {
+                    description "Extract component name from a JSDoc tag value Handles formats like: - ComponentName - ComponentName - Description (space-dash-space separator) - path/to/module - My-Component (dashes in names are preserved)"
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__basic_astro__extractfileactors = component "default_container__basic_astro__extractfileactors" {
+                    description "Extract actors from frontmatter JSDoc Looks for"
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__basic_astro__parseactortag = component "default_container__basic_astro__parseactortag" {
+                    description "Parse an"
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__basic_astro__extractfilerelationships = component "default_container__basic_astro__extractfilerelationships" {
+                    description "Extract relationships from frontmatter JSDoc Looks for"
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__basic_astro__parseusestag = component "default_container__basic_astro__parseusestag" {
+                    description "Parse a"
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__basic_astro__infercomponentfrompath = component "default_container__basic_astro__infercomponentfrompath" {
+                    description "Infer component name from file path - Files in subdirectories use the immediate parent folder name - Files in root directory use ROOT_COMPONENT_MARKER Examples: - /path/to/project/src/components/Button.astro -> 'components' - /path/to/project/src/Layout.astro -> ROOT_COMPONENT_MARKER"
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__basic_astro__findsourcefiles = component "default_container__basic_astro__findsourcefiles" {
+                    description "Find Astro source files matching the given patterns"
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__basic_astro__findpackagejsonfiles = component "default_container__basic_astro__findpackagejsonfiles" {
+                    description "Find all package.json files in the workspace"
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__basic_astro__readpackageinfo = component "default_container__basic_astro__readpackageinfo" {
+                    description "Read package.json and extract metadata"
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__basic_astro__findnearestpackage = component "default_container__basic_astro__findnearestpackage" {
+                    description "Find the nearest package.json for a given file"
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__basic_astro__parsefiles = component "default_container__basic_astro__parsefiles" {
+                    description "Parse Astro files using"
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__basic_astro__extractfrontmatter = component "default_container__basic_astro__extractfrontmatter" {
+                    description "Extract frontmatter content from Astro file Frontmatter is the TypeScript/JavaScript code between --- markers at the top of the file"
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__basic_astro__extractimports = component "default_container__basic_astro__extractimports" {
+                    description "Extract import statements from frontmatter"
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__basic_astro__findslots = component "default_container__basic_astro__findslots" {
+                    description "Find slot tags in the template"
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__basic_astro__findclientdirective = component "default_container__basic_astro__findclientdirective" {
+                    description "Find client directive in component usage Examples: client:load, client:idle, client:visible, client:media, client:only"
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__basic_astro__extractcomponentusage = component "default_container__basic_astro__extractcomponentusage" {
+                    description "Extract component usage from template Finds which imported components are used in the template markup"
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__basic_astro__maptoir = component "default_container__basic_astro__maptoir" {
+                    description "Map file extractions to ArchletteIR Transforms Astro component analysis into standardized architecture representation"
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__basic_astro__mapclasstocodeitems = component "default_container__basic_astro__mapclasstocodeitems" {
+                    description "Map a class to code items (class + methods)"
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__basic_astro__mapfunctiontocodeitem = component "default_container__basic_astro__mapfunctiontocodeitem" {
+                    description "Map a function to a code item"
                     technology "function"
                     tags "Code"
                 }
@@ -654,27 +769,27 @@ workspace "Application" "Main application container" {
                     technology "function"
                     tags "Code"
                 }
-                default_container__basic__findsourcefiles = component "default_container__basic__findsourcefiles" {
+                default_container__basic_python__findsourcefiles = component "default_container__basic_python__findsourcefiles" {
                     description "Find source files matching include/exclude patterns"
                     technology "function"
                     tags "Code"
                 }
-                default_container__basic__findpyprojectfiles = component "default_container__basic__findpyprojectfiles" {
+                default_container__basic_python__findpyprojectfiles = component "default_container__basic_python__findpyprojectfiles" {
                     description "Find pyproject.toml files within the search paths"
                     technology "function"
                     tags "Code"
                 }
-                default_container__basic__readpyprojectinfo = component "default_container__basic__readpyprojectinfo" {
+                default_container__basic_python__readpyprojectinfo = component "default_container__basic_python__readpyprojectinfo" {
                     description "Read and parse pyproject.toml file"
                     technology "function"
                     tags "Code"
                 }
-                default_container__basic__parsepyprojecttoml = component "default_container__basic__parsepyprojecttoml" {
+                default_container__basic_python__parsepyprojecttoml = component "default_container__basic_python__parsepyprojecttoml" {
                     description "Parse pyproject.toml using smol-toml library Handles full TOML spec including multiline strings, arrays, and nested tables"
                     technology "function"
                     tags "Code"
                 }
-                default_container__basic__findnearestpyproject = component "default_container__basic__findnearestpyproject" {
+                default_container__basic_python__findnearestpyproject = component "default_container__basic_python__findnearestpyproject" {
                     description "Find the nearest parent pyproject.toml for a given file"
                     technology "function"
                     tags "Code"
@@ -744,42 +859,42 @@ workspace "Application" "Main application container" {
                     technology "function"
                     tags "Code"
                 }
-                default_container__basic__maptoir = component "default_container__basic__maptoir" {
+                default_container__basic_python__maptoir = component "default_container__basic_python__maptoir" {
                     description "Map file extractions to ArchletteIR"
                     technology "function"
                     tags "Code"
                 }
-                default_container__basic__mapactortoir = component "default_container__basic__mapactortoir" {
+                default_container__basic_python__mapactortoir = component "default_container__basic_python__mapactortoir" {
                     description "Map ActorInfo to Actor"
                     technology "function"
                     tags "Code"
                 }
-                default_container__basic__maprelationshipstoir = component "default_container__basic__maprelationshipstoir" {
+                default_container__basic_python__maprelationshipstoir = component "default_container__basic_python__maprelationshipstoir" {
                     description "Map relationships to Relationship[] Creates bidirectional actor relationships"
                     technology "function"
                     tags "Code"
                 }
-                default_container__basic__deduplicaterelationships = component "default_container__basic__deduplicaterelationships" {
+                default_container__basic_python__deduplicaterelationships = component "default_container__basic_python__deduplicaterelationships" {
                     description "Deduplicate relationships by source+destination"
                     technology "function"
                     tags "Code"
                 }
-                default_container__basic__mapclasstocodeitem = component "default_container__basic__mapclasstocodeitem" {
+                default_container__basic_python__mapclasstocodeitem = component "default_container__basic_python__mapclasstocodeitem" {
                     description "Map ExtractedClass to CodeItem"
                     technology "function"
                     tags "Code"
                 }
-                default_container__basic__mapmethodtocodeitem = component "default_container__basic__mapmethodtocodeitem" {
+                default_container__basic_python__mapmethodtocodeitem = component "default_container__basic_python__mapmethodtocodeitem" {
                     description "Map ExtractedMethod to CodeItem"
                     technology "function"
                     tags "Code"
                 }
-                default_container__basic__mapfunctiontocodeitem = component "default_container__basic__mapfunctiontocodeitem" {
+                default_container__basic_python__mapfunctiontocodeitem = component "default_container__basic_python__mapfunctiontocodeitem" {
                     description "Map ExtractedFunction to CodeItem"
                     technology "function"
                     tags "Code"
                 }
-                default_container__basic__maptypetocodeitem = component "default_container__basic__maptypetocodeitem" {
+                default_container__basic_python__maptypetocodeitem = component "default_container__basic_python__maptypetocodeitem" {
                     description "Map ExtractedType to CodeItem"
                     technology "function"
                     tags "Code"
@@ -852,6 +967,7 @@ workspace "Application" "Main application container" {
                 default_container__cli -> default_container__renderers "Converts DSL to visual diagrams"
                 default_container__cli -> default_container__core "Provides shared utilities, types, and module loading"
                 default_container__extractors -> default_container__core "Provides IR types, validation schemas, and module loading"
+                default_container__extractors -> default_container__basic_astro "composed of astro extractor"
                 default_container__extractors -> default_container__basic_node "composed of node extractor"
                 default_container__extractors -> default_container__basic_python "composed of python extractor"
                 default_container__extractors -> default_container__basic_wrangler "composed of cloudflare wrangler extractor"
@@ -1090,13 +1206,11 @@ branding {
             include default_container__generators
             include default_container__renderers
             include default_container__docs
-            include default_container__core_config
             include default_container__core
-            include default_container__core_path
+            include default_container__basic_astro
             include default_container__basic_node
-            include default_container__basic
-            include default_container__basic_wrangler
             include default_container__basic_python
+            include default_container__basic_wrangler
             exclude "element.tag==Code"
             autoLayout
         }
@@ -1163,17 +1277,12 @@ branding {
         }
 
 
-        component default_container "Classes_default_container__core_config" {
-            include default_container__core_config__resolveconfigfilepath
-            include default_container__core_config__resolveconfigbasedir
-            include default_container__core_config__loadyamlfile
-            include default_container__core_config__createdefaultconfig
-            include default_container__core_config__loadconfig
-            autoLayout
-        }
-
-
         component default_container "Classes_default_container__core" {
+            include default_container__core__resolveconfigfilepath
+            include default_container__core__resolveconfigbasedir
+            include default_container__core__loadyamlfile
+            include default_container__core__createdefaultconfig
+            include default_container__core__loadconfig
             include default_container__core__nametoid
             include default_container__core__sanitizeid
             include default_container__core__istty
@@ -1188,6 +1297,10 @@ branding {
             include default_container__core__resolvemoduleentry
             include default_container__core__tofileurl
             include default_container__core__writefile
+            include default_container__core__validatepathsecurity
+            include default_container__core__resolvesecurepath
+            include default_container__core__resolveusercontentpath
+            include default_container__core__resolvepluginpath
             include default_container__core__getstageentry
             include default_container__core__loadextractormodule
             include default_container__core__loadvalidatormodule
@@ -1211,11 +1324,31 @@ branding {
         }
 
 
-        component default_container "Classes_default_container__core_path" {
-            include default_container__core_path__validatepathsecurity
-            include default_container__core_path__resolvesecurepath
-            include default_container__core_path__resolveusercontentpath
-            include default_container__core_path__resolvepluginpath
+        component default_container "Classes_default_container__basic_astro" {
+            include default_container__basic_astro__basicastroextractor
+            include default_container__basic_astro__extractcodefromfrontmatter
+            include default_container__basic_astro__extractjsdocblocks
+            include default_container__basic_astro__parsejsdocblock
+            include default_container__basic_astro__extractfilecomponent
+            include default_container__basic_astro__extractcomponentname
+            include default_container__basic_astro__extractfileactors
+            include default_container__basic_astro__parseactortag
+            include default_container__basic_astro__extractfilerelationships
+            include default_container__basic_astro__parseusestag
+            include default_container__basic_astro__infercomponentfrompath
+            include default_container__basic_astro__findsourcefiles
+            include default_container__basic_astro__findpackagejsonfiles
+            include default_container__basic_astro__readpackageinfo
+            include default_container__basic_astro__findnearestpackage
+            include default_container__basic_astro__parsefiles
+            include default_container__basic_astro__extractfrontmatter
+            include default_container__basic_astro__extractimports
+            include default_container__basic_astro__findslots
+            include default_container__basic_astro__findclientdirective
+            include default_container__basic_astro__extractcomponentusage
+            include default_container__basic_astro__maptoir
+            include default_container__basic_astro__mapclasstocodeitems
+            include default_container__basic_astro__mapfunctiontocodeitem
             autoLayout
         }
 
@@ -1268,22 +1401,35 @@ branding {
         }
 
 
-        component default_container "Classes_default_container__basic" {
-            include default_container__basic__createemptyir
-            include default_container__basic__basicpython
-            include default_container__basic__findsourcefiles
-            include default_container__basic__findpyprojectfiles
-            include default_container__basic__readpyprojectinfo
-            include default_container__basic__parsepyprojecttoml
-            include default_container__basic__findnearestpyproject
-            include default_container__basic__maptoir
-            include default_container__basic__mapactortoir
-            include default_container__basic__maprelationshipstoir
-            include default_container__basic__deduplicaterelationships
-            include default_container__basic__mapclasstocodeitem
-            include default_container__basic__mapmethodtocodeitem
-            include default_container__basic__mapfunctiontocodeitem
-            include default_container__basic__maptypetocodeitem
+        component default_container "Classes_default_container__basic_python" {
+            include default_container__basic_python__createemptyir
+            include default_container__basic_python__basicpython
+            include default_container__basic_python__findsourcefiles
+            include default_container__basic_python__findpyprojectfiles
+            include default_container__basic_python__readpyprojectinfo
+            include default_container__basic_python__parsepyprojecttoml
+            include default_container__basic_python__findnearestpyproject
+            include default_container__basic_python__parsefiles
+            include default_container__basic_python__runpythonparser
+            include default_container__basic_python__maptofileextraction
+            include default_container__basic_python__mapclass
+            include default_container__basic_python__mapmethod
+            include default_container__basic_python__mapproperty
+            include default_container__basic_python__mapfunction
+            include default_container__basic_python__maptype
+            include default_container__basic_python__mapparameter
+            include default_container__basic_python__parsedocstring
+            include default_container__basic_python__extractdeprecation
+            include default_container__basic_python__extractreturndescription
+            include default_container__basic_python__getvisibility
+            include default_container__basic_python__maptoir
+            include default_container__basic_python__mapactortoir
+            include default_container__basic_python__maprelationshipstoir
+            include default_container__basic_python__deduplicaterelationships
+            include default_container__basic_python__mapclasstocodeitem
+            include default_container__basic_python__mapmethodtocodeitem
+            include default_container__basic_python__mapfunctiontocodeitem
+            include default_container__basic_python__maptypetocodeitem
             autoLayout
         }
 
@@ -1302,24 +1448,6 @@ branding {
             include default_container__basic_wrangler__normalizeservicebindings
             include default_container__basic_wrangler__getenvironments
             include default_container__basic_wrangler__getenvironmentconfig
-            autoLayout
-        }
-
-
-        component default_container "Classes_default_container__basic_python" {
-            include default_container__basic_python__parsefiles
-            include default_container__basic_python__runpythonparser
-            include default_container__basic_python__maptofileextraction
-            include default_container__basic_python__mapclass
-            include default_container__basic_python__mapmethod
-            include default_container__basic_python__mapproperty
-            include default_container__basic_python__mapfunction
-            include default_container__basic_python__maptype
-            include default_container__basic_python__mapparameter
-            include default_container__basic_python__parsedocstring
-            include default_container__basic_python__extractdeprecation
-            include default_container__basic_python__extractreturndescription
-            include default_container__basic_python__getvisibility
             autoLayout
         }
 

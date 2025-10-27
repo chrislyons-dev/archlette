@@ -324,6 +324,7 @@ skinparam rectangle<<Application.Application>> {
 }
 
 rectangle "Application\n<size:10>[Container: Application]</size>" <<Application.Application>> {
+  rectangle "==default_container__basic_node__extractclasses\n<size:10>[Component: function]</size>\n\nExtract all class declarations from a source file" <<Application.Application.default_container__basic_node__extractclasses>> as Application.Application.default_container__basic_node__extractclasses
   rectangle "==default_container__basic_node__extractclass\n<size:10>[Component: function]</size>\n\nExtract information from a single class declaration" <<Application.Application.default_container__basic_node__extractclass>> as Application.Application.default_container__basic_node__extractclass
   rectangle "==default_container__basic_node__extractmethod\n<size:10>[Component: function]</size>\n\nExtract method information from a class" <<Application.Application.default_container__basic_node__extractmethod>> as Application.Application.default_container__basic_node__extractmethod
   rectangle "==default_container__basic_node__extractproperty\n<size:10>[Component: function]</size>\n\nExtract property information from a class" <<Application.Application.default_container__basic_node__extractproperty>> as Application.Application.default_container__basic_node__extractproperty
@@ -366,7 +367,6 @@ rectangle "Application\n<size:10>[Container: Application]</size>" <<Application.
   rectangle "==default_container__basic_node__extracttypealiases\n<size:10>[Component: function]</size>\n\nExtract type aliases from a source file Examples: type UserRole = 'admin' | 'user' | 'guest' export type ApiResponse<T> = { data: T; status: number }" <<Application.Application.default_container__basic_node__extracttypealiases>> as Application.Application.default_container__basic_node__extracttypealiases
   rectangle "==default_container__basic_node__extractinterfaces\n<size:10>[Component: function]</size>\n\nExtract interfaces from a source file Examples: interface User { id: string; name: string } export interface ApiClient { get<T>(url: string): Promise<T> }" <<Application.Application.default_container__basic_node__extractinterfaces>> as Application.Application.default_container__basic_node__extractinterfaces
   rectangle "==default_container__basic_node__basicnodeextractor\n<size:10>[Component: function]</size>\n\nExtract architecture information from a Node.js/TypeScript codebase" <<Application.Application.default_container__basic_node__basicnodeextractor>> as Application.Application.default_container__basic_node__basicnodeextractor
-  rectangle "==default_container__basic_node__extractclasses\n<size:10>[Component: function]</size>\n\nExtract all class declarations from a source file" <<Application.Application.default_container__basic_node__extractclasses>> as Application.Application.default_container__basic_node__extractclasses
 }
 
 @enduml

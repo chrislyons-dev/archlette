@@ -146,8 +146,22 @@ function extractComponentName(value: string): string | undefined {
   }
 
   // If no description separator, take everything up to first newline
-  const firstLine = trimmed.split('\n')[0];
-  return firstLine.trim();
+  const firstLine = trimmed.split('\n')[0].trim();
+
+  // For @module tags that follow the pattern "directory/filename",
+  // extract just the last directory component for deduplication
+  // Examples:
+  // - "core/config-resolver" -> "core"
+  // - "components/Button" -> "components"
+  // - "utils" -> "utils" (no change if no slash)
+  if (firstLine.includes('/')) {
+    const parts = firstLine.split('/');
+    // Return the last directory part (before the filename)
+    // For deeply nested paths like "a/b/c/file", return "c"
+    return parts[parts.length - 2] || parts[parts.length - 1];
+  }
+
+  return firstLine;
 }
 
 /**

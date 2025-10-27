@@ -192,7 +192,7 @@ Execute the extraction stage
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/1-extract/index.ts:42</code></td>
+<td><code>C:/Users/chris/git/archlette/src/1-extract/index.ts:43</code></td>
 </tr>
 </tbody>
 </table>

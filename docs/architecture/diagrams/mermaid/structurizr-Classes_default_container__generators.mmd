@@ -7,28 +7,28 @@ graph TB
     subgraph 8 ["Application"]
       style 8 fill:#ffffff,stroke:#2e6295,color:#2e6295
 
-      32("<div style='font-weight: bold'>default_container__generators__run</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Execute the generation stage</div>")
-      style 32 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      86("<div style='font-weight: bold'>default_container__generators__loaddefaulttheme</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Load the default Structurizr<br />theme from templates<br />directory</div>")
+      30("<div style='font-weight: bold'>default_container__generators__run</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Execute the generation stage</div>")
+      style 30 fill:#85bbf0,stroke:#5d82a8,color:#000000
+      85("<div style='font-weight: bold'>default_container__generators__loaddefaulttheme</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Load the default Structurizr<br />theme from templates<br />directory</div>")
+      style 85 fill:#85bbf0,stroke:#5d82a8,color:#000000
+      86("<div style='font-weight: bold'>default_container__generators__structurizrgenerator</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Generate Structurizr DSL from<br />ArchletteIR</div>")
       style 86 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      87("<div style='font-weight: bold'>default_container__generators__structurizrgenerator</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Generate Structurizr DSL from<br />ArchletteIR</div>")
+      87("<div style='font-weight: bold'>default_container__generators__preparecontainerdata</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Prepare container data with<br />components, code, and<br />relationships for template</div>")
       style 87 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      88("<div style='font-weight: bold'>default_container__generators__preparecontainerdata</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Prepare container data with<br />components, code, and<br />relationships for template</div>")
+      88("<div style='font-weight: bold'>default_container__generators__preparecomponentview</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Prepare component view data<br />for template</div>")
       style 88 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      89("<div style='font-weight: bold'>default_container__generators__preparecomponentview</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Prepare component view data<br />for template</div>")
+      89("<div style='font-weight: bold'>default_container__generators__prepareclassview</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Prepare class view data for<br />template</div>")
       style 89 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      90("<div style='font-weight: bold'>default_container__generators__prepareclassview</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Prepare class view data for<br />template</div>")
+      90("<div style='font-weight: bold'>default_container__generators__generateallactorrelationships</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Generate all actor-related<br />relationships</div>")
       style 90 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      91("<div style='font-weight: bold'>default_container__generators__generateallactorrelationships</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Generate all actor-related<br />relationships</div>")
+      91("<div style='font-weight: bold'>default_container__generators__generateuniquecodename</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Generate a unique name for a<br />code item to avoid naming<br />collisions</div>")
       style 91 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      92("<div style='font-weight: bold'>default_container__generators__generateuniquecodename</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Generate a unique name for a<br />code item to avoid naming<br />collisions</div>")
+      92("<div style='font-weight: bold'>default_container__generators__buildtechnologystring</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Build technology string from<br />relationship metadata</div>")
       style 92 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      93("<div style='font-weight: bold'>default_container__generators__buildtechnologystring</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Build technology string from<br />relationship metadata</div>")
+      93("<div style='font-weight: bold'>default_container__generators__sanitizeid</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Sanitize ID for DSL (remove<br />special characters, convert<br />to valid identifier)</div>")
       style 93 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      94("<div style='font-weight: bold'>default_container__generators__sanitizeid</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Sanitize ID for DSL (remove<br />special characters, convert<br />to valid identifier)</div>")
+      94("<div style='font-weight: bold'>default_container__generators__escapestring</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Escape special characters in<br />strings for DSL Structurizr<br />DSL doesn't support \ escape<br />sequences in strings, so we<br />replace newlines with spaces<br />for cleaner output.</div>")
       style 94 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      95("<div style='font-weight: bold'>default_container__generators__escapestring</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Escape special characters in<br />strings for DSL Structurizr<br />DSL doesn't support \ escape<br />sequences in strings, so we<br />replace newlines with spaces<br />for cleaner output.</div>")
-      style 95 fill:#85bbf0,stroke:#5d82a8,color:#000000
     end
 
   end

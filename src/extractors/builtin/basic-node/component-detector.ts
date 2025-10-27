@@ -276,22 +276,40 @@ function parseUsesTag(tag: JSDocTag): RelationshipInfo | undefined {
  * Handles formats like:
  * - @component ComponentName
  * - @component ComponentName - Description
- * - @module path/to/module
+ * - @module path/to/module (extracts just the directory for deduplication)
+ * - @module core/config-resolver -> "core"
+ * - @module extractors/builtin/basic-node -> "basic-node"
  */
 function extractComponentName(tag: JSDocTag): string | undefined {
   const text = tag.getCommentText() || '';
   if (!text) return undefined;
 
-  // Remove leading/trailing whitespace
   const trimmed = text.trim();
 
-  // Take everything up to the first dash or newline (for descriptions)
-  const match = trimmed.match(/^([^\-\n]+)/);
+  // Take everything up to " - " (space-dash-space) or newline (for descriptions)
+  // This preserves dashes in names like "basic-node" or "my-component"
+  const match = trimmed.match(/^([^\n]+?)\s+-\s+/);
   if (match) {
     return match[1].trim();
   }
 
-  return trimmed;
+  // If no description separator, take everything up to first newline
+  const firstLine = trimmed.split('\n')[0].trim();
+
+  // For @module tags that follow the pattern "directory/filename",
+  // extract just the last directory component for deduplication
+  // Examples:
+  // - "core/config-resolver" -> "core"
+  // - "extractors/builtin/basic-node" -> "basic-node"
+  // - "utils" -> "utils" (no change if no slash)
+  if (firstLine.includes('/')) {
+    const parts = firstLine.split('/');
+    // Return the last directory part (before the filename)
+    // For deeply nested paths like "a/b/c/file", return "c"
+    return parts[parts.length - 2] || parts[parts.length - 1];
+  }
+
+  return firstLine;
 }
 
 /**

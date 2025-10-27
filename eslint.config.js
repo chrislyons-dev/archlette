@@ -13,7 +13,6 @@ export default [
       'docs/architecture/**',
       'tools/**',
       'site/**',
-      // `src/extractors/builtin/basic-astro`,
     ],
   },
 

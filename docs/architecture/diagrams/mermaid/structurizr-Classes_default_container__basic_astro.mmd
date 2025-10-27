@@ -1,0 +1,60 @@
+graph TB
+  linkStyle default fill:#ffffff
+
+  subgraph diagram ["Application - Application - Components"]
+    style diagram fill:#ffffff,stroke:#ffffff
+
+    subgraph 8 ["Application"]
+      style 8 fill:#ffffff,stroke:#2e6295,color:#2e6295
+
+      100("<div style='font-weight: bold'>default_container__basic_astro__parsejsdocblock</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Parse a single JSDoc comment<br />block into description and<br />tags</div>")
+      style 100 fill:#85bbf0,stroke:#5d82a8,color:#000000
+      101("<div style='font-weight: bold'>default_container__basic_astro__extractfilecomponent</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Extract component information<br />from frontmatter JSDoc Checks<br />for</div>")
+      style 101 fill:#85bbf0,stroke:#5d82a8,color:#000000
+      102("<div style='font-weight: bold'>default_container__basic_astro__extractcomponentname</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Extract component name from a<br />JSDoc tag value Handles<br />formats like: - ComponentName<br />- ComponentName - Description<br />(space-dash-space separator)<br />- path/to/module -<br />My-Component (dashes in names<br />are preserved)</div>")
+      style 102 fill:#85bbf0,stroke:#5d82a8,color:#000000
+      103("<div style='font-weight: bold'>default_container__basic_astro__extractfileactors</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Extract actors from<br />frontmatter JSDoc Looks for</div>")
+      style 103 fill:#85bbf0,stroke:#5d82a8,color:#000000
+      104("<div style='font-weight: bold'>default_container__basic_astro__parseactortag</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Parse an</div>")
+      style 104 fill:#85bbf0,stroke:#5d82a8,color:#000000
+      105("<div style='font-weight: bold'>default_container__basic_astro__extractfilerelationships</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Extract relationships from<br />frontmatter JSDoc Looks for</div>")
+      style 105 fill:#85bbf0,stroke:#5d82a8,color:#000000
+      106("<div style='font-weight: bold'>default_container__basic_astro__parseusestag</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Parse a</div>")
+      style 106 fill:#85bbf0,stroke:#5d82a8,color:#000000
+      107("<div style='font-weight: bold'>default_container__basic_astro__infercomponentfrompath</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Infer component name from<br />file path - Files in<br />subdirectories use the<br />immediate parent folder name<br />- Files in root directory use<br />ROOT_COMPONENT_MARKER<br />Examples: -<br />/path/to/project/src/components/Button.astro<br />-> 'components' -<br />/path/to/project/src/Layout.astro<br />-> ROOT_COMPONENT_MARKER</div>")
+      style 107 fill:#85bbf0,stroke:#5d82a8,color:#000000
+      108("<div style='font-weight: bold'>default_container__basic_astro__findsourcefiles</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Find Astro source files<br />matching the given patterns</div>")
+      style 108 fill:#85bbf0,stroke:#5d82a8,color:#000000
+      109("<div style='font-weight: bold'>default_container__basic_astro__findpackagejsonfiles</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Find all package.json files<br />in the workspace</div>")
+      style 109 fill:#85bbf0,stroke:#5d82a8,color:#000000
+      110("<div style='font-weight: bold'>default_container__basic_astro__readpackageinfo</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Read package.json and extract<br />metadata</div>")
+      style 110 fill:#85bbf0,stroke:#5d82a8,color:#000000
+      111("<div style='font-weight: bold'>default_container__basic_astro__findnearestpackage</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Find the nearest package.json<br />for a given file</div>")
+      style 111 fill:#85bbf0,stroke:#5d82a8,color:#000000
+      112("<div style='font-weight: bold'>default_container__basic_astro__parsefiles</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Parse Astro files using</div>")
+      style 112 fill:#85bbf0,stroke:#5d82a8,color:#000000
+      113("<div style='font-weight: bold'>default_container__basic_astro__extractfrontmatter</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Extract frontmatter content<br />from Astro file Frontmatter<br />is the TypeScript/JavaScript<br />code between --- markers at<br />the top of the file</div>")
+      style 113 fill:#85bbf0,stroke:#5d82a8,color:#000000
+      114("<div style='font-weight: bold'>default_container__basic_astro__extractimports</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Extract import statements<br />from frontmatter</div>")
+      style 114 fill:#85bbf0,stroke:#5d82a8,color:#000000
+      115("<div style='font-weight: bold'>default_container__basic_astro__findslots</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Find slot tags in the<br />template</div>")
+      style 115 fill:#85bbf0,stroke:#5d82a8,color:#000000
+      116("<div style='font-weight: bold'>default_container__basic_astro__findclientdirective</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Find client directive in<br />component usage Examples:<br />client:load, client:idle,<br />client:visible, client:media,<br />client:only</div>")
+      style 116 fill:#85bbf0,stroke:#5d82a8,color:#000000
+      117("<div style='font-weight: bold'>default_container__basic_astro__extractcomponentusage</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Extract component usage from<br />template Finds which imported<br />components are used in the<br />template markup</div>")
+      style 117 fill:#85bbf0,stroke:#5d82a8,color:#000000
+      118("<div style='font-weight: bold'>default_container__basic_astro__maptoir</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Map file extractions to<br />ArchletteIR Transforms Astro<br />component analysis into<br />standardized architecture<br />representation</div>")
+      style 118 fill:#85bbf0,stroke:#5d82a8,color:#000000
+      119("<div style='font-weight: bold'>default_container__basic_astro__mapclasstocodeitems</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Map a class to code items<br />(class + methods)</div>")
+      style 119 fill:#85bbf0,stroke:#5d82a8,color:#000000
+      120("<div style='font-weight: bold'>default_container__basic_astro__mapfunctiontocodeitem</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Map a function to a code item</div>")
+      style 120 fill:#85bbf0,stroke:#5d82a8,color:#000000
+      80("<div style='font-weight: bold'>default_container__basic_astro__basicastroextractor</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Extract architecture<br />information from an Astro<br />codebase</div>")
+      style 80 fill:#85bbf0,stroke:#5d82a8,color:#000000
+      98("<div style='font-weight: bold'>default_container__basic_astro__extractcodefromfrontmatter</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Extract TypeScript/JavaScript<br />code from Astro frontmatter<br />Parses the frontmatter as<br />TypeScript and uses<br />basic-node extractors</div>")
+      style 98 fill:#85bbf0,stroke:#5d82a8,color:#000000
+      99("<div style='font-weight: bold'>default_container__basic_astro__extractjsdocblocks</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Extract all JSDoc comment<br />blocks from source code<br />Matches /** ... *\\/ style<br />comments and parses their<br />tags</div>")
+      style 99 fill:#85bbf0,stroke:#5d82a8,color:#000000
+    end
+
+  end

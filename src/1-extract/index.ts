@@ -18,6 +18,7 @@
  * use by subsequent pipeline stages.
  *
  * @uses core Provides IR types, validation schemas, and module loading
+ * @uses basic_astro composed of astro extractor
  * @uses basic_node composed of node extractor
  * @uses basic_python composed of python extractor
  * @uses basic_wrangler composed of cloudflare wrangler extractor

@@ -34,18 +34,190 @@
 ### Class Diagram
 
 ![Class Diagram](./diagrams/structurizr-Classes_default_container__core.png)
-![Class Diagram](./diagrams/structurizr-Classes_default_container__core_config.png)
-![Class Diagram](./diagrams/structurizr-Classes_default_container__core_path.png)
 
 ### Code Elements
 
 <details>
-<summary><strong>33 code element(s)</strong></summary>
+<summary><strong>42 code element(s)</strong></summary>
 
 
 
 #### Functions
 
+##### `resolveConfigFilePath()`
+
+Resolve config file path from CLI arguments
+
+<table>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>function</code></td>
+</tr>
+<tr>
+<td><strong>Visibility</strong></td>
+<td><code>public</code></td>
+</tr>
+<tr>
+<td><strong>Returns</strong></td>
+<td><code>import("C:/Users/chris/git/archlette/src/core/config-resolver").ResolvedConfigFile</code> — Resolved config file information</td>
+</tr>
+<tr>
+<td><strong>Location</strong></td>
+<td><code>C:/Users/chris/git/archlette/src/core/config-resolver.ts:70</code></td>
+</tr>
+</tbody>
+</table>
+
+**Parameters:**
+
+- `userProvidedPath`: <code>string</code> — - Path from -f argument (or undefined for default)
+**Examples:**
+```typescript
+
+```
+
+---
+##### `resolveConfigBaseDir()`
+
+Determine base directory for resolving config-relative paths
+
+Logic:
+- If using default template: CWD (user's project directory)
+- If user provided config file: config file's directory
+- Fallback: CWD
+
+<table>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>function</code></td>
+</tr>
+<tr>
+<td><strong>Visibility</strong></td>
+<td><code>public</code></td>
+</tr>
+<tr>
+<td><strong>Returns</strong></td>
+<td><code>string</code> — Base directory for config-relative path resolution</td>
+</tr>
+<tr>
+<td><strong>Location</strong></td>
+<td><code>C:/Users/chris/git/archlette/src/core/config-resolver.ts:117</code></td>
+</tr>
+</tbody>
+</table>
+
+**Parameters:**
+
+- `configPath`: <code>string</code> — - Absolute path to config file (or undefined)- `isDefaultTemplate`: <code>boolean</code> — - Whether using default template
+**Examples:**
+```typescript
+
+```
+
+---
+##### `loadYamlFile()`
+
+Load and parse YAML config file
+
+<table>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>function</code></td>
+</tr>
+<tr>
+<td><strong>Visibility</strong></td>
+<td><code>private</code></td>
+</tr>
+<tr>
+<td><strong>Returns</strong></td>
+<td><code>unknown</code> — Parsed config object or null if file doesn't exist/is invalid</td>
+</tr>
+<tr>
+<td><strong>Location</strong></td>
+<td><code>C:/Users/chris/git/archlette/src/core/config-resolver.ts:141</code></td>
+</tr>
+</tbody>
+</table>
+
+**Parameters:**
+
+- `filePath`: <code>string</code> — - Absolute path to YAML file
+
+---
+##### `createDefaultConfig()`
+
+Create minimal default configuration when no config file is found
+
+<table>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>function</code></td>
+</tr>
+<tr>
+<td><strong>Visibility</strong></td>
+<td><code>private</code></td>
+</tr>
+<tr>
+<td><strong>Returns</strong></td>
+<td><code>import("C:/Users/chris/git/archlette/src/core/types-aac").ResolvedAACConfig</code> — Default configuration</td>
+</tr>
+<tr>
+<td><strong>Location</strong></td>
+<td><code>C:/Users/chris/git/archlette/src/core/config-resolver.ts:164</code></td>
+</tr>
+</tbody>
+</table>
+
+**Parameters:**
+
+- `baseDir`: <code>string</code> — - Base directory for output paths
+
+---
+##### `loadConfig()`
+
+Load configuration from file path (high-level API)
+
+This is the main entry point for config loading. It handles:
+1. Config file path resolution (default vs user-provided)
+2. Base directory determination
+3. YAML parsing
+4. Config validation and resolution
+5. Fallback to default config
+
+<table>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>function</code></td>
+</tr>
+<tr>
+<td><strong>Visibility</strong></td>
+<td><code>public</code></td>
+</tr>
+<tr>
+<td><strong>Returns</strong></td>
+<td><code>import("C:/Users/chris/git/archlette/src/core/config-resolver").LoadedConfig</code> — Loaded configuration with all metadata</td>
+</tr>
+<tr>
+<td><strong>Location</strong></td>
+<td><code>C:/Users/chris/git/archlette/src/core/config-resolver.ts:210</code></td>
+</tr>
+</tbody>
+</table>
+
+**Parameters:**
+
+- `userProvidedPath`: <code>string</code> — - Path from -f argument (or undefined for default)
+**Examples:**
+```typescript
+
+```
+
+---
 ##### `nameToId()`
 
 Convert a name to a normalized ID
@@ -483,6 +655,132 @@ Write content to a file, creating parent directories if needed.
 **Parameters:**
 
 - `filename`: <code>string</code> — - Absolute path to the file- `content`: <code>string</code> — - Content to write
+
+---
+##### `validatePathSecurity()`
+
+Validate path for security issues
+
+<table>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>function</code></td>
+</tr>
+<tr>
+<td><strong>Visibility</strong></td>
+<td><code>private</code></td>
+</tr>
+<tr>
+<td><strong>Returns</strong></td>
+<td><code>{ isSecure: boolean; warnings: string[]; }</code></td>
+</tr>
+<tr>
+<td><strong>Location</strong></td>
+<td><code>C:/Users/chris/git/archlette/src/core/path-security.ts:58</code></td>
+</tr>
+</tbody>
+</table>
+
+**Parameters:**
+
+- `userPath`: <code>string</code>- `resolvedPath`: <code>string</code>- `baseDir`: <code>string</code>- `strategy`: <code>import("C:/Users/chris/git/archlette/src/core/path-security").PathResolutionStrategy</code>- `allowedAbsolutePaths`: <code>string[]</code>
+
+---
+##### `resolveSecurePath()`
+
+Securely resolve a user-provided path with validation
+
+<table>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>function</code></td>
+</tr>
+<tr>
+<td><strong>Visibility</strong></td>
+<td><code>public</code></td>
+</tr>
+<tr>
+<td><strong>Returns</strong></td>
+<td><code>import("C:/Users/chris/git/archlette/src/core/path-security").ResolvedSecurePath</code> — Resolved path with security metadata</td>
+</tr>
+<tr>
+<td><strong>Location</strong></td>
+<td><code>C:/Users/chris/git/archlette/src/core/path-security.ts:203</code></td>
+</tr>
+</tbody>
+</table>
+
+**Parameters:**
+
+- `userPath`: <code>string</code> — - Path provided by user (from config, CLI, etc.)- `options`: <code>import("C:/Users/chris/git/archlette/src/core/path-security").SecurePathOptions</code> — - Resolution and validation options
+**Examples:**
+```typescript
+
+```
+
+---
+##### `resolveUserContentPath()`
+
+Convenience function for resolving user content paths (themes, input files)
+Uses 'config-relative' strategy by default
+
+<table>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>function</code></td>
+</tr>
+<tr>
+<td><strong>Visibility</strong></td>
+<td><code>public</code></td>
+</tr>
+<tr>
+<td><strong>Returns</strong></td>
+<td><code>import("C:/Users/chris/git/archlette/src/core/path-security").ResolvedSecurePath</code></td>
+</tr>
+<tr>
+<td><strong>Location</strong></td>
+<td><code>C:/Users/chris/git/archlette/src/core/path-security.ts:289</code></td>
+</tr>
+</tbody>
+</table>
+
+**Parameters:**
+
+- `userPath`: <code>string</code>- `configBaseDir`: <code>string</code>- `allowedExtensions`: <code>string[]</code>- `allowedAbsolutePaths`: <code>string[]</code>
+
+---
+##### `resolvePluginPath()`
+
+Convenience function for resolving plugin paths
+Uses 'cli-relative' strategy by default
+
+<table>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>function</code></td>
+</tr>
+<tr>
+<td><strong>Visibility</strong></td>
+<td><code>public</code></td>
+</tr>
+<tr>
+<td><strong>Returns</strong></td>
+<td><code>import("C:/Users/chris/git/archlette/src/core/path-security").ResolvedSecurePath</code></td>
+</tr>
+<tr>
+<td><strong>Location</strong></td>
+<td><code>C:/Users/chris/git/archlette/src/core/path-security.ts:308</code></td>
+</tr>
+</tbody>
+</table>
+
+**Parameters:**
+
+- `userPath`: <code>string</code>- `cliDir`: <code>string</code>- `allowedExtensions`: <code>string[]</code>- `allowedAbsolutePaths`: <code>string[]</code>
 
 ---
 ##### `getStageEntry()`

@@ -64,7 +64,14 @@ skinparam person<<User>> {
   BorderColor #052e56
   shadowing false
 }
-skinparam rectangle<<Application.Application.basic>> {
+skinparam rectangle<<Application.Application.basicastro>> {
+  BackgroundColor #85bbf0
+  FontColor #000000
+  BorderColor #5d82a8
+  roundCorner 20
+  shadowing false
+}
+skinparam rectangle<<Application.Application.basicpython>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
@@ -72,13 +79,6 @@ skinparam rectangle<<Application.Application.basic>> {
   shadowing false
 }
 skinparam rectangle<<Application.Application.basic_node>> {
-  BackgroundColor #85bbf0
-  FontColor #000000
-  BorderColor #5d82a8
-  roundCorner 20
-  shadowing false
-}
-skinparam rectangle<<Application.Application.basic_python>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
@@ -93,20 +93,6 @@ skinparam rectangle<<Application.Application.basic_wrangler>> {
   shadowing false
 }
 skinparam rectangle<<Application.Application.core>> {
-  BackgroundColor #85bbf0
-  FontColor #000000
-  BorderColor #5d82a8
-  roundCorner 20
-  shadowing false
-}
-skinparam rectangle<<Application.Application.coreconfig>> {
-  BackgroundColor #85bbf0
-  FontColor #000000
-  BorderColor #5d82a8
-  roundCorner 20
-  shadowing false
-}
-skinparam rectangle<<Application.Application.corepath>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
@@ -167,13 +153,11 @@ rectangle "Application\n<size:10>[Container: Application]</size>" <<Application.
   rectangle "==generators\n<size:10>[Component: module]</size>\n\nGeneration stage of the AAC pipeline | Structurizr DSL Generator (Template-based)" <<Application.Application.generators>> as Application.Application.generators
   rectangle "==renderers\n<size:10>[Component: module]</size>\n\nRender stage of the AAC pipeline | PlantUML image renderer | Structurizr DSL export renderer" <<Application.Application.renderers>> as Application.Application.renderers
   rectangle "==docs\n<size:10>[Component: module]</size>\n\nDocumentation stage of the AAC pipeline | Markdown documentation generator" <<Application.Application.docs>> as Application.Application.docs
-  rectangle "==core/config\n<size:10>[Component: module]</size>" <<Application.Application.coreconfig>> as Application.Application.coreconfig
   rectangle "==core\n<size:10>[Component: module]</size>\n\nDynamic ESM module loader | Component inferred from directory: core | Stage module interfaces for the AAC pipeline | Stage module loaders | Tool management for external rendering tools | Architecture-as-Code (AAC) configuration types and schemas | Archlette Intermediate Representation (IR) types and schemas | Core pipeline types" <<Application.Application.core>> as Application.Application.core
-  rectangle "==core/path\n<size:10>[Component: module]</size>" <<Application.Application.corepath>> as Application.Application.corepath
+  rectangle "==basic-astro\n<size:10>[Component: module]</size>\n\nAstro component extractor" <<Application.Application.basicastro>> as Application.Application.basicastro
   rectangle "==basic_node\n<size:10>[Component: module]</size>\n\nTypeScript/JavaScript code extractor" <<Application.Application.basic_node>> as Application.Application.basic_node
-  rectangle "==basic\n<size:10>[Component: module]</size>\n\nBasic Python Extractor for Archlette Extracts architecture information from Python source code" <<Application.Application.basic>> as Application.Application.basic
+  rectangle "==basic-python\n<size:10>[Component: module]</size>\n\nBasic Python Extractor for Archlette Extracts architecture information from Python source code" <<Application.Application.basicpython>> as Application.Application.basicpython
   rectangle "==basic_wrangler\n<size:10>[Component: module]</size>\n\nCloudflare Wrangler deployment extractor" <<Application.Application.basic_wrangler>> as Application.Application.basic_wrangler
-  rectangle "==basic_python\n<size:10>[Component: module]</size>" <<Application.Application.basic_python>> as Application.Application.basic_python
   rectangle "==CLI\n<size:10>[Component: module]</size>\n\nArchlette CLI - Architecture-as-Code toolkit" <<Application.Application.CLI>> as Application.Application.CLI
 }
 
@@ -183,8 +167,9 @@ Application.Application.CLI -[#707070,thickness=2]-> Application.Application.gen
 Application.Application.CLI -[#707070,thickness=2]-> Application.Application.renderers : "<color:#707070>Converts DSL to visual diagrams"
 Application.Application.CLI -[#707070,thickness=2]-> Application.Application.core : "<color:#707070>Provides shared utilities, types, and module loading"
 Application.Application.extractors -[#707070,thickness=2]-> Application.Application.core : "<color:#707070>Provides IR types, validation schemas, and module loading"
+Application.Application.extractors -[#707070,thickness=2]-> Application.Application.basicastro : "<color:#707070>composed of astro extractor"
 Application.Application.extractors -[#707070,thickness=2]-> Application.Application.basic_node : "<color:#707070>composed of node extractor"
-Application.Application.extractors -[#707070,thickness=2]-> Application.Application.basic_python : "<color:#707070>composed of python extractor"
+Application.Application.extractors -[#707070,thickness=2]-> Application.Application.basicpython : "<color:#707070>composed of python extractor"
 Application.Application.extractors -[#707070,thickness=2]-> Application.Application.basic_wrangler : "<color:#707070>composed of cloudflare wrangler extractor"
 Application.Application.validators -[#707070,thickness=2]-> Application.Application.core : "<color:#707070>Provides IR types, validation schemas, and module loading"
 Application.Application.generators -[#707070,thickness=2]-> Application.Application.core : "<color:#707070>Provides IR types, path resolution, and module loading"

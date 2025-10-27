@@ -43,8 +43,9 @@ import Header from './Header.astro';
       const result = extractFileComponent(frontmatter, '/path/to/auth/utils.astro');
 
       expect(result).toBeDefined();
-      expect(result?.name).toBe('auth/utils');
-      expect(result?.id).toBe('auth_utils'); // sanitizeId converts / to _
+      // Module path "auth/utils" extracts directory part "auth" for deduplication
+      expect(result?.name).toBe('auth');
+      expect(result?.id).toBe('auth');
     });
 
     it('should extract component from @namespace tag', () => {

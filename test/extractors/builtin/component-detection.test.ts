@@ -108,8 +108,9 @@ export function login() {}
     const ir = await basicNodeExtractor(node, mockContext);
 
     expect(ir.components).toHaveLength(1);
-    expect(ir.components[0].id).toBe('default_container__authentication_oauth');
-    expect(ir.components[0].name).toBe('authentication/oauth');
+    // Module path "authentication/oauth" extracts directory part "authentication" for deduplication
+    expect(ir.components[0].id).toBe('default_container__authentication');
+    expect(ir.components[0].name).toBe('authentication');
     // Description extraction needs fixing
     // expect(ir.components[0].description).toBe('OAuth2 authentication module');
   });
@@ -218,5 +219,94 @@ export function funcB() {}
     expect(ir.code).toHaveLength(2);
     expect(ir.code[0].componentId).toBe('default_container__shared_component');
     expect(ir.code[1].componentId).toBe('default_container__shared_component');
+  });
+
+  it('should preserve dashes in component names', async () => {
+    mkdirSync(testDir, { recursive: true });
+
+    const testFile = join(testDir, 'extractor.ts');
+    writeFileSync(
+      testFile,
+      `/**
+ * Basic node extractor
+ * @component basic-node
+ */
+export function findSourceFiles() {}
+`,
+    );
+
+    const node: ResolvedStageNode = {
+      use: 'builtin/basic-node',
+      name: 'test',
+      props: {},
+      inputs: {
+        include: [join(testDir, '*.ts').replace(/\\/g, '/')],
+      },
+      _effective: { includes: [], excludes: [] },
+    };
+
+    const ir = await basicNodeExtractor(node, mockContext);
+
+    // Component name should preserve the dash (converted to underscore in ID)
+    expect(ir.components).toHaveLength(1);
+    expect(ir.components[0].name).toBe('basic-node');
+    expect(ir.components[0].id).toBe('default_container__basic_node');
+
+    // Code should reference the correct component with full name
+    const func = ir.code.find((c) => c.name === 'findSourceFiles');
+    expect(func).toBeDefined();
+    expect(func?.componentId).toBe('default_container__basic_node');
+  });
+
+  it('should deduplicate @module tags with directory/filename pattern', async () => {
+    mkdirSync(testDir, { recursive: true });
+
+    // Create two files with @module tags following directory/filename pattern
+    const file1 = join(testDir, 'config-resolver.ts');
+    const file2 = join(testDir, 'logger.ts');
+
+    writeFileSync(
+      file1,
+      `/**
+ * @module core/config-resolver
+ */
+export function resolveConfig() {}
+`,
+    );
+
+    writeFileSync(
+      file2,
+      `/**
+ * @module core/logger
+ */
+export function createLogger() {}
+`,
+    );
+
+    const node: ResolvedStageNode = {
+      use: 'builtin/basic-node',
+      name: 'test',
+      props: {},
+      inputs: {
+        include: [join(testDir, '*.ts').replace(/\\/g, '/')],
+      },
+      _effective: { includes: [], excludes: [] },
+    };
+
+    const ir = await basicNodeExtractor(node, mockContext);
+
+    // Both files should be deduplicated into a single "core" component
+    expect(ir.components).toHaveLength(1);
+    expect(ir.components[0].name).toBe('core');
+    expect(ir.components[0].id).toBe('default_container__core');
+
+    // Both functions should reference the same component
+    const resolveFunc = ir.code.find((c) => c.name === 'resolveConfig');
+    const loggerFunc = ir.code.find((c) => c.name === 'createLogger');
+
+    expect(resolveFunc).toBeDefined();
+    expect(loggerFunc).toBeDefined();
+    expect(resolveFunc?.componentId).toBe('default_container__core');
+    expect(loggerFunc?.componentId).toBe('default_container__core');
   });
 });

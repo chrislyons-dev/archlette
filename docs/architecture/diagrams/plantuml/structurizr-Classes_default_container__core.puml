@@ -30,6 +30,13 @@ skinparam rectangle<<Application.Application.default_container__core__commandexi
   roundCorner 20
   shadowing false
 }
+skinparam rectangle<<Application.Application.default_container__core__createdefaultconfig>> {
+  BackgroundColor #85bbf0
+  FontColor #000000
+  BorderColor #5d82a8
+  roundCorner 20
+  shadowing false
+}
 skinparam rectangle<<Application.Application.default_container__core__createlogger>> {
   BackgroundColor #85bbf0
   FontColor #000000
@@ -142,6 +149,13 @@ skinparam rectangle<<Application.Application.default_container__core__istty>> {
   roundCorner 20
   shadowing false
 }
+skinparam rectangle<<Application.Application.default_container__core__loadconfig>> {
+  BackgroundColor #85bbf0
+  FontColor #000000
+  BorderColor #5d82a8
+  roundCorner 20
+  shadowing false
+}
 skinparam rectangle<<Application.Application.default_container__core__loaddocmodule>> {
   BackgroundColor #85bbf0
   FontColor #000000
@@ -184,6 +198,13 @@ skinparam rectangle<<Application.Application.default_container__core__loadvalida
   roundCorner 20
   shadowing false
 }
+skinparam rectangle<<Application.Application.default_container__core__loadyamlfile>> {
+  BackgroundColor #85bbf0
+  FontColor #000000
+  BorderColor #5d82a8
+  roundCorner 20
+  shadowing false
+}
 skinparam rectangle<<Application.Application.default_container__core__makeexecutable>> {
   BackgroundColor #85bbf0
   FontColor #000000
@@ -219,7 +240,42 @@ skinparam rectangle<<Application.Application.default_container__core__resolvecon
   roundCorner 20
   shadowing false
 }
+skinparam rectangle<<Application.Application.default_container__core__resolveconfigbasedir>> {
+  BackgroundColor #85bbf0
+  FontColor #000000
+  BorderColor #5d82a8
+  roundCorner 20
+  shadowing false
+}
+skinparam rectangle<<Application.Application.default_container__core__resolveconfigfilepath>> {
+  BackgroundColor #85bbf0
+  FontColor #000000
+  BorderColor #5d82a8
+  roundCorner 20
+  shadowing false
+}
 skinparam rectangle<<Application.Application.default_container__core__resolvemoduleentry>> {
+  BackgroundColor #85bbf0
+  FontColor #000000
+  BorderColor #5d82a8
+  roundCorner 20
+  shadowing false
+}
+skinparam rectangle<<Application.Application.default_container__core__resolvepluginpath>> {
+  BackgroundColor #85bbf0
+  FontColor #000000
+  BorderColor #5d82a8
+  roundCorner 20
+  shadowing false
+}
+skinparam rectangle<<Application.Application.default_container__core__resolvesecurepath>> {
+  BackgroundColor #85bbf0
+  FontColor #000000
+  BorderColor #5d82a8
+  roundCorner 20
+  shadowing false
+}
+skinparam rectangle<<Application.Application.default_container__core__resolveusercontentpath>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
@@ -240,6 +296,13 @@ skinparam rectangle<<Application.Application.default_container__core__tofileurl>
   roundCorner 20
   shadowing false
 }
+skinparam rectangle<<Application.Application.default_container__core__validatepathsecurity>> {
+  BackgroundColor #85bbf0
+  FontColor #000000
+  BorderColor #5d82a8
+  roundCorner 20
+  shadowing false
+}
 skinparam rectangle<<Application.Application.default_container__core__writefile>> {
   BackgroundColor #85bbf0
   FontColor #000000
@@ -254,6 +317,11 @@ skinparam rectangle<<Application.Application>> {
 }
 
 rectangle "Application\n<size:10>[Container: Application]</size>" <<Application.Application>> {
+  rectangle "==default_container__core__resolveconfigfilepath\n<size:10>[Component: function]</size>\n\nResolve config file path from CLI arguments" <<Application.Application.default_container__core__resolveconfigfilepath>> as Application.Application.default_container__core__resolveconfigfilepath
+  rectangle "==default_container__core__resolveconfigbasedir\n<size:10>[Component: function]</size>\n\nDetermine base directory for resolving config-relative paths Logic: - If using default template: CWD (user's project directory) - If user provided config file: config file's directory - Fallback: CWD" <<Application.Application.default_container__core__resolveconfigbasedir>> as Application.Application.default_container__core__resolveconfigbasedir
+  rectangle "==default_container__core__loadyamlfile\n<size:10>[Component: function]</size>\n\nLoad and parse YAML config file" <<Application.Application.default_container__core__loadyamlfile>> as Application.Application.default_container__core__loadyamlfile
+  rectangle "==default_container__core__createdefaultconfig\n<size:10>[Component: function]</size>\n\nCreate minimal default configuration when no config file is found" <<Application.Application.default_container__core__createdefaultconfig>> as Application.Application.default_container__core__createdefaultconfig
+  rectangle "==default_container__core__loadconfig\n<size:10>[Component: function]</size>\n\nLoad configuration from file path (high-level API) This is the main entry point for config loading. It handles: 1. Config file path resolution (default vs user-provided) 2. Base directory determination 3. YAML parsing 4. Config validation and resolution 5. Fallback to default config" <<Application.Application.default_container__core__loadconfig>> as Application.Application.default_container__core__loadconfig
   rectangle "==default_container__core__nametoid\n<size:10>[Component: function]</size>\n\nConvert a name to a normalized ID Used for consistent ID generation across extractors and mappers" <<Application.Application.default_container__core__nametoid>> as Application.Application.default_container__core__nametoid
   rectangle "==default_container__core__sanitizeid\n<size:10>[Component: function]</size>\n\nSanitize ID for DSL and code identifiers (preserves underscores) Used for Python code identifiers where underscores are significant" <<Application.Application.default_container__core__sanitizeid>> as Application.Application.default_container__core__sanitizeid
   rectangle "==default_container__core__istty\n<size:10>[Component: function]</size>\n\nDetermine if we're in a TTY environment (for pretty printing)" <<Application.Application.default_container__core__istty>> as Application.Application.default_container__core__istty
@@ -268,6 +336,10 @@ rectangle "Application\n<size:10>[Container: Application]</size>" <<Application.
   rectangle "==default_container__core__resolvemoduleentry\n<size:10>[Component: function]</size>\n\nResolve a module entry by probing: 1) Exact path 2) With extensions: .ts then .js 3) If directory: index.ts then index.js" <<Application.Application.default_container__core__resolvemoduleentry>> as Application.Application.default_container__core__resolvemoduleentry
   rectangle "==default_container__core__tofileurl\n<size:10>[Component: function]</size>" <<Application.Application.default_container__core__tofileurl>> as Application.Application.default_container__core__tofileurl
   rectangle "==default_container__core__writefile\n<size:10>[Component: function]</size>\n\nWrite content to a file, creating parent directories if needed." <<Application.Application.default_container__core__writefile>> as Application.Application.default_container__core__writefile
+  rectangle "==default_container__core__validatepathsecurity\n<size:10>[Component: function]</size>\n\nValidate path for security issues" <<Application.Application.default_container__core__validatepathsecurity>> as Application.Application.default_container__core__validatepathsecurity
+  rectangle "==default_container__core__resolvesecurepath\n<size:10>[Component: function]</size>\n\nSecurely resolve a user-provided path with validation" <<Application.Application.default_container__core__resolvesecurepath>> as Application.Application.default_container__core__resolvesecurepath
+  rectangle "==default_container__core__resolveusercontentpath\n<size:10>[Component: function]</size>\n\nConvenience function for resolving user content paths (themes, input files) Uses 'config-relative' strategy by default" <<Application.Application.default_container__core__resolveusercontentpath>> as Application.Application.default_container__core__resolveusercontentpath
+  rectangle "==default_container__core__resolvepluginpath\n<size:10>[Component: function]</size>\n\nConvenience function for resolving plugin paths Uses 'cli-relative' strategy by default" <<Application.Application.default_container__core__resolvepluginpath>> as Application.Application.default_container__core__resolvepluginpath
   rectangle "==default_container__core__getstageentry\n<size:10>[Component: function]</size>" <<Application.Application.default_container__core__getstageentry>> as Application.Application.default_container__core__getstageentry
   rectangle "==default_container__core__loadextractormodule\n<size:10>[Component: function]</size>" <<Application.Application.default_container__core__loadextractormodule>> as Application.Application.default_container__core__loadextractormodule
   rectangle "==default_container__core__loadvalidatormodule\n<size:10>[Component: function]</size>" <<Application.Application.default_container__core__loadvalidatormodule>> as Application.Application.default_container__core__loadvalidatormodule

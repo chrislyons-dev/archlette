@@ -560,7 +560,7 @@ Handles formats like:
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts:281</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts:283</code></td>
 </tr>
 </tbody>
 </table>
@@ -597,7 +597,7 @@ Examples:
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts:307</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts:325</code></td>
 </tr>
 </tbody>
 </table>
@@ -1128,7 +1128,7 @@ This allows multiple relationships between the same elements with different ster
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts:381</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts:380</code></td>
 </tr>
 </tbody>
 </table>
@@ -1158,7 +1158,7 @@ Map a function to a CodeItem
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts:395</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts:394</code></td>
 </tr>
 </tbody>
 </table>
@@ -1188,7 +1188,7 @@ Map a class to a CodeItem
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts:423</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts:422</code></td>
 </tr>
 </tbody>
 </table>
@@ -1218,7 +1218,7 @@ Map a class method to a CodeItem
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts:452</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts:451</code></td>
 </tr>
 </tbody>
 </table>
@@ -1248,7 +1248,7 @@ Map imports to relationships
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts:486</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts:485</code></td>
 </tr>
 </tbody>
 </table>
@@ -1279,7 +1279,7 @@ Format: filePath:symbolName
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts:509</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts:508</code></td>
 </tr>
 </tbody>
 </table>
@@ -1309,7 +1309,7 @@ Get default system info from package.json if available
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts:519</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts:518</code></td>
 </tr>
 </tbody>
 </table>
