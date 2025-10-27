@@ -1873,7 +1873,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts",
-      "lineNumber": 196
+      "lineNumber": 198
     },
     {
       "description": "Prepare class view data for template",
@@ -1900,7 +1900,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts",
-      "lineNumber": 233
+      "lineNumber": 235
     },
     {
       "description": "Generate all actor-related relationships",
@@ -1922,7 +1922,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts",
-      "lineNumber": 248
+      "lineNumber": 250
     },
     {
       "description": "Generate a unique name for a code item to avoid naming collisions",
@@ -1944,7 +1944,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts",
-      "lineNumber": 295
+      "lineNumber": 297
     },
     {
       "description": "Build technology string from relationship metadata",
@@ -1966,7 +1966,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts",
-      "lineNumber": 333
+      "lineNumber": 335
     },
     {
       "description": "Sanitize ID for DSL (remove special characters, convert to valid identifier)",
@@ -1988,7 +1988,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts",
-      "lineNumber": 349
+      "lineNumber": 351
     },
     {
       "description": "Escape special characters in strings for DSL\n\nStructurizr DSL doesn't support \\n escape sequences in strings,\nso we replace newlines with spaces for cleaner output.",
@@ -2010,7 +2010,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts",
-      "lineNumber": 359
+      "lineNumber": 361
     },
     {
       "description": "Render PlantUML files to PNG images",
@@ -2640,7 +2640,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/to-ir-mapper.ts",
-      "lineNumber": 346
+      "lineNumber": 391
     },
     {
       "description": "Map a function to a code item",
@@ -2672,7 +2672,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/to-ir-mapper.ts",
-      "lineNumber": 393
+      "lineNumber": 438
     },
     {
       "description": "Extract all class declarations from a source file",

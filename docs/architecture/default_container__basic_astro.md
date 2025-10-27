@@ -803,7 +803,7 @@ Map a class to code items (class + methods)
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/to-ir-mapper.ts:346</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/to-ir-mapper.ts:391</code></td>
 </tr>
 </tbody>
 </table>
@@ -833,7 +833,7 @@ Map a function to a code item
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/to-ir-mapper.ts:393</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/to-ir-mapper.ts:438</code></td>
 </tr>
 </tbody>
 </table>

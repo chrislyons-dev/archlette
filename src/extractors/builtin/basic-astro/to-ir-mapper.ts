@@ -50,6 +50,11 @@ export function mapToIR(
 
     // Register component if found
     if (file.component) {
+      // Filter out generic inferred descriptions when merging
+      const isInferredDescription = file.component.description?.startsWith(
+        'Component inferred from',
+      );
+
       if (!componentsMap.has(file.component.id)) {
         componentsMap.set(file.component.id, {
           id: file.component.id,
@@ -58,13 +63,18 @@ export function mapToIR(
           type: 'module',
           description: file.component.description,
         });
+        // Only add explicit JSDoc descriptions, not inferred ones
         componentDescriptions.set(
           file.component.id,
-          new Set(file.component.description ? [file.component.description] : []),
+          new Set(
+            file.component.description && !isInferredDescription
+              ? [file.component.description]
+              : [],
+          ),
         );
       } else {
-        // Merge descriptions for duplicate components
-        if (file.component.description) {
+        // Merge descriptions for duplicate components (skip inferred descriptions)
+        if (file.component.description && !isInferredDescription) {
           componentDescriptions.get(file.component.id)!.add(file.component.description);
         }
       }
@@ -94,23 +104,33 @@ export function mapToIR(
 
       // Create actor relationships based on direction
       if (componentId && actor.direction) {
-        if (actor.direction === 'in' || actor.direction === 'both') {
-          // Actor → Component (actor calls/uses the component)
-          componentRelationships.push({
-            source: actor.id,
-            destination: componentId,
-            description: actor.description,
-            tags: [],
-          });
+        const actorData = actorsMap.get(actor.id);
+        const direction = actor.direction || 'both';
+
+        // Create actor → component relationship if direction is 'in' or 'both'
+        if ((direction === 'in' || direction === 'both') && actorData) {
+          // Populate targets array on the actor
+          if (!actorData.targets) {
+            actorData.targets = [];
+          }
+          if (!actorData.targets.includes(componentId)) {
+            actorData.targets.push(componentId);
+          }
         }
-        if (actor.direction === 'out' || actor.direction === 'both') {
-          // Component → Actor (component calls/uses the actor)
-          componentRelationships.push({
-            source: componentId,
-            destination: actor.id,
-            description: actor.description,
-            tags: [],
-          });
+
+        // Create component → actor relationship if direction is 'out' or 'both'
+        if (direction === 'out' || direction === 'both') {
+          const relationshipExists = componentRelationships.some(
+            (rel) => rel.source === componentId && rel.destination === actor.id,
+          );
+          if (!relationshipExists) {
+            componentRelationships.push({
+              source: componentId,
+              destination: actor.id,
+              description: actor.description,
+              tags: [],
+            });
+          }
         }
       }
     }
@@ -123,6 +143,21 @@ export function mapToIR(
           destination: sanitizeId(rel.target),
           description: rel.description,
           tags: [],
+        });
+      }
+    }
+
+    // Auto-detect component relationships from actual component usage in template
+    // This captures the truth of the code rather than relying on @uses documentation
+    if (componentId && file.components) {
+      for (const usedComponent of file.components) {
+        // We'll resolve the actual component ID later after all components are registered
+        // For now, store the component name - we'll map it in Step 2
+        componentRelationships.push({
+          source: componentId,
+          destination: sanitizeId(usedComponent.name), // Temporary, will be resolved later
+          description: `Uses ${usedComponent.name} component`,
+          tags: ['AUTO_DETECTED'],
         });
       }
     }
@@ -303,6 +338,19 @@ export function mapToIR(
     }
   }
 
+  // Step 3.5: Update actor targets with hierarchical component IDs
+  for (const actor of actors) {
+    if (actor.targets) {
+      for (let i = 0; i < actor.targets.length; i++) {
+        const targetId = actor.targets[i];
+        const newTargetId = componentIdMap.get(targetId);
+        if (newTargetId) {
+          actor.targets[i] = newTargetId;
+        }
+      }
+    }
+  }
+
   // Step 4: Update relationship sources/destinations using the componentIdMap
   for (const rel of componentRelationships) {
     const newSource = componentIdMap.get(rel.source) || rel.source;
@@ -311,10 +359,69 @@ export function mapToIR(
     rel.destination = newDestination;
   }
 
+  // Step 4.5: Resolve auto-detected component relationships
+  // Build maps for resolution:
+  // 1. Component names to IDs (for component-level relationships)
+  // 2. File base names to component IDs (for file-level imports like "BaseLayout" -> "layouts")
+  const componentNameToId = new Map<string, string>();
+  const fileNameToComponentId = new Map<string, string>();
+
+  for (const component of components) {
+    // Map component names to IDs
+    const sanitizedName = sanitizeId(component.name);
+    componentNameToId.set(sanitizedName, component.id);
+    componentNameToId.set(component.name.toLowerCase(), component.id);
+  }
+
+  // Build file name to component ID map from extractions
+  // This allows us to resolve file imports like "BaseLayout" to their component "layouts"
+  for (const file of extractions) {
+    if (file.component?.id) {
+      // Extract file base name (without extension)
+      const filePathParts = file.filePath.split(/[/\\]/);
+      const fileName = filePathParts[filePathParts.length - 1];
+      const fileBaseName = fileName.replace(/\.astro$/, '');
+
+      // Map file base name (sanitized) to the final component ID
+      const finalComponentId = componentIdMap.get(file.component.id);
+      if (finalComponentId) {
+        const sanitizedFileBaseName = sanitizeId(fileBaseName);
+        fileNameToComponentId.set(sanitizedFileBaseName, finalComponentId);
+        fileNameToComponentId.set(fileBaseName.toLowerCase(), finalComponentId);
+      }
+    }
+  }
+
+  // Resolve auto-detected relationships: map file/component names to actual IDs
+  const resolvedRelationships: Relationship[] = [];
+  for (const rel of componentRelationships) {
+    if (rel.tags?.includes('AUTO_DETECTED')) {
+      // Try to resolve using file name map first (for imports like "BaseLayout")
+      let resolvedId = fileNameToComponentId.get(rel.destination);
+
+      // Fall back to component name map (for @uses tags)
+      if (!resolvedId) {
+        resolvedId = componentNameToId.get(rel.destination);
+      }
+
+      if (resolvedId) {
+        // Successfully resolved to a component we know about
+        resolvedRelationships.push({
+          ...rel,
+          destination: resolvedId,
+        });
+      }
+      // If not resolved, it's an external component - skip it
+    } else {
+      // Keep non-auto-detected relationships as-is (from @uses tags)
+      resolvedRelationships.push(rel);
+    }
+  }
+
   // Step 5: Deduplicate relationships
   const relationshipsSet = new Set<string>();
   const uniqueRelationships: Relationship[] = [];
-  for (const rel of componentRelationships) {
+  for (const rel of resolvedRelationships) {
     const key = `${rel.source}::${rel.destination}`;
     if (!relationshipsSet.has(key)) {
       relationshipsSet.add(key);

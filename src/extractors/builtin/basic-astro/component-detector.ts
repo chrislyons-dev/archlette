@@ -48,9 +48,11 @@ function extractJSDocBlocks(source: string): JSDocBlock[] {
  */
 function parseJSDocBlock(comment: string): JSDocBlock | null {
   // Remove /** and */ and leading * from each line
+  // Handle both Unix (\n) and Windows (\r\n) line endings
   const cleaned = comment
     .replace(/^\/\*\*/, '')
     .replace(/\*\/$/, '')
+    .replace(/\r\n/g, '\n') // Normalize Windows line endings to Unix
     .split('\n')
     .map((line) => line.replace(/^\s*\*\s?/, ''))
     .join('\n')
@@ -91,6 +93,7 @@ function parseJSDocBlock(comment: string): JSDocBlock | null {
  * If no tags found, infers component from directory structure:
  * - Files in subdirectories use the immediate parent folder name
  * - Files in root directory use ROOT_COMPONENT_MARKER
+ * - Uses any JSDoc description found in the frontmatter
  */
 export function extractFileComponent(
   frontmatter: string,
@@ -121,8 +124,21 @@ export function extractFileComponent(
     }
   }
 
-  // If no JSDoc tags found, infer from file path
-  return inferComponentFromPath(filePath);
+  // If no explicit component tag found, infer from file path
+  // But still use any JSDoc description found in the frontmatter
+  const inferredComponent = inferComponentFromPath(filePath);
+
+  // Look for any JSDoc block with a description (even without @component tag)
+  for (const block of jsDocBlocks) {
+    if (block.description && block.description.trim()) {
+      return {
+        ...inferredComponent,
+        description: block.description.trim(),
+      };
+    }
+  }
+
+  return inferredComponent;
 }
 
 /**

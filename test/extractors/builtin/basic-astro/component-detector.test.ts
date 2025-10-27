@@ -367,6 +367,25 @@ const greeting = 'Hello';
       expect(actors[0].name).toBe('User');
     });
 
+    it('should extract actor and uses from same JSDoc block (like index.astro)', () => {
+      const frontmatter = `
+/**
+ * Home Page - Landing page for Bond Math application
+ * @actor User {Person} {in} End user who interacts with the bond math UI
+ * @uses bond-math-gateway Communicates with Gateway API for bond calculations
+ */
+import BaseLayout from '@layouts/BaseLayout.astro';
+      `.trim();
+
+      const actors = extractFileActors(frontmatter);
+      const relationships = extractFileRelationships(frontmatter);
+
+      expect(actors).toHaveLength(1);
+      expect(actors[0].name).toBe('User');
+      expect(relationships).toHaveLength(1);
+      expect(relationships[0].target).toBe('bond-math-gateway');
+    });
+
     it('should handle JSDoc without description', () => {
       const frontmatter = `
 /**

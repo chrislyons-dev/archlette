@@ -115,9 +115,10 @@ export async function parseFiles(filePaths: string[]): Promise<FileExtraction[]>
 /**
  * Extract frontmatter content from Astro file
  * Frontmatter is the TypeScript/JavaScript code between --- markers at the top of the file
+ * Handles both Unix (\n) and Windows (\r\n) line endings
  */
 function extractFrontmatter(content: string): string {
-  const frontmatterMatch = content.match(/^---\s*\n([\s\S]*?)\n---/);
+  const frontmatterMatch = content.match(/^---\s*\r?\n([\s\S]*?)\r?\n---/);
   return frontmatterMatch ? frontmatterMatch[1] : '';
 }
 

@@ -175,7 +175,7 @@ export default async function basicAstroExtractor(
   const ir = mapToIR(extractions, packages, systemInfo);
 
   log.info(
-    `Extracted ${ir.components.length} components, ${ir.code.length} code elements, ${ir.componentRelationships.length} relationships`,
+    `Extracted ${ir.components.length} components, ${ir.actors.length} actors, ${ir.code.length} code elements, ${ir.componentRelationships.length} relationships`,
   );
 
   return ir;
