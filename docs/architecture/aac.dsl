@@ -525,7 +525,7 @@ workspace "Application" "Main application container" {
                     tags "Code"
                 }
                 default_container__basic_astro__extractfrontmatter = component "basic-astro.extractFrontmatter" {
-                    description "Extract frontmatter content from Astro file Frontmatter is the TypeScript/JavaScript code between --- markers at the top of the file"
+                    description "Extract frontmatter content from Astro file Frontmatter is the TypeScript/JavaScript code between --- markers at the top of the file Handles both Unix (\\n) and Windows (\\r\\n) line endings"
                     technology "function"
                     tags "Code"
                 }

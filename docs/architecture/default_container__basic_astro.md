@@ -230,7 +230,7 @@ Checks for
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/component-detector.ts:95</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/component-detector.ts:98</code></td>
 </tr>
 </tbody>
 </table>
@@ -265,7 +265,7 @@ Handles formats like:
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/component-detector.ts:136</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/component-detector.ts:154</code></td>
 </tr>
 </tbody>
 </table>
@@ -296,7 +296,7 @@ Looks for
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/component-detector.ts:176</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/component-detector.ts:194</code></td>
 </tr>
 </tbody>
 </table>
@@ -326,7 +326,7 @@ Parse an
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/component-detector.ts:203</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/component-detector.ts:221</code></td>
 </tr>
 </tbody>
 </table>
@@ -357,7 +357,7 @@ Looks for
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/component-detector.ts:241</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/component-detector.ts:259</code></td>
 </tr>
 </tbody>
 </table>
@@ -387,7 +387,7 @@ Parse a
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/component-detector.ts:265</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/component-detector.ts:283</code></td>
 </tr>
 </tbody>
 </table>
@@ -423,7 +423,7 @@ Examples:
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/component-detector.ts:297</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/component-detector.ts:315</code></td>
 </tr>
 </tbody>
 </table>
@@ -603,6 +603,7 @@ Parse Astro files using
 
 Extract frontmatter content from Astro file
 Frontmatter is the TypeScript/JavaScript code between --- markers at the top of the file
+Handles both Unix (\n) and Windows (\r\n) line endings
 
 <table>
 <tbody>
@@ -620,7 +621,7 @@ Frontmatter is the TypeScript/JavaScript code between --- markers at the top of 
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/file-parser.ts:119</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/file-parser.ts:120</code></td>
 </tr>
 </tbody>
 </table>
@@ -650,7 +651,7 @@ Extract import statements from frontmatter
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/file-parser.ts:127</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/file-parser.ts:128</code></td>
 </tr>
 </tbody>
 </table>
@@ -680,7 +681,7 @@ Find slot tags in the template
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/file-parser.ts:182</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/file-parser.ts:183</code></td>
 </tr>
 </tbody>
 </table>
@@ -711,7 +712,7 @@ Examples: client:load, client:idle, client:visible, client:media, client:only
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/file-parser.ts:202</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/file-parser.ts:203</code></td>
 </tr>
 </tbody>
 </table>
@@ -742,7 +743,7 @@ Finds which imported components are used in the template markup
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/file-parser.ts:211</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/file-parser.ts:212</code></td>
 </tr>
 </tbody>
 </table>
@@ -803,7 +804,7 @@ Map a class to code items (class + methods)
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/to-ir-mapper.ts:391</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/to-ir-mapper.ts:470</code></td>
 </tr>
 </tbody>
 </table>
@@ -833,7 +834,7 @@ Map a function to a code item
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/to-ir-mapper.ts:438</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/to-ir-mapper.ts:517</code></td>
 </tr>
 </tbody>
 </table>

@@ -42,6 +42,7 @@ export function mapToIR(
   const actorsMap = new Map<string, Actor>();
   const actorDescriptions = new Map<string, Set<string>>();
   const componentDescriptions = new Map<string, Set<string>>();
+  const inferredComponents = new Set<string>(); // Track which components were inferred from paths
   const componentRelationships: Relationship[] = [];
 
   // Step 1: Extract code items, components, actors, and relationships from all files
@@ -63,6 +64,10 @@ export function mapToIR(
           type: 'module',
           description: file.component.description,
         });
+        // Track if this component was inferred from path
+        if (file.component._inferred) {
+          inferredComponents.add(file.component.id);
+        }
         // Only add explicit JSDoc descriptions, not inferred ones
         componentDescriptions.set(
           file.component.id,
@@ -206,7 +211,7 @@ export function mapToIR(
   }
 
   // Convert maps to arrays
-  const components = Array.from(componentsMap.values());
+  let components = Array.from(componentsMap.values());
   const actors = Array.from(actorsMap.values());
 
   // Merge component descriptions
@@ -224,6 +229,18 @@ export function mapToIR(
       actor.description = Array.from(descriptions).join('; ');
     }
   }
+
+  // Filter out inferred components that have no code items
+  // This removes directory-based components for parent folders with no actual code
+  // But keeps explicitly tagged components even if empty (user intent)
+  const componentsWithCode = new Set(codeItems.map((item) => item.componentId));
+  components = components.filter(
+    (component) =>
+      // Keep if it has code items
+      componentsWithCode.has(component.id) ||
+      // Or if it was explicitly tagged (not inferred from path)
+      !inferredComponents.has(component.id),
+  );
 
   // Step 2: Container detection and hierarchical ID generation
   const containers: Container[] = [];

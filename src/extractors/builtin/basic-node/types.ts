@@ -37,6 +37,7 @@ export interface ComponentInfo {
   id: string;
   name: string;
   description?: string;
+  _inferred?: boolean; // Internal marker: true if inferred from path, false if explicit tag
 }
 
 export interface ActorInfo {

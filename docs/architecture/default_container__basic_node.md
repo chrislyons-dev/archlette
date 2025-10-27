@@ -283,7 +283,7 @@ Checks both the first statement and module-level JSDoc
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts:37</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts:38</code></td>
 </tr>
 </tbody>
 </table>
@@ -314,7 +314,7 @@ Checks the first JSDoc comment in the file for
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts:63</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts:64</code></td>
 </tr>
 </tbody>
 </table>
@@ -345,7 +345,7 @@ Looks for
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts:89</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts:90</code></td>
 </tr>
 </tbody>
 </table>
@@ -376,7 +376,7 @@ Looks for
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts:108</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts:109</code></td>
 </tr>
 </tbody>
 </table>
@@ -406,7 +406,7 @@ Extract component info from a JSDoc node
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts:124</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts:125</code></td>
 </tr>
 </tbody>
 </table>
@@ -437,7 +437,7 @@ Parses
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts:155</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts:157</code></td>
 </tr>
 </tbody>
 </table>
@@ -467,7 +467,7 @@ Parse an
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts:186</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts:188</code></td>
 </tr>
 </tbody>
 </table>
@@ -498,7 +498,7 @@ Parses
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts:223</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts:225</code></td>
 </tr>
 </tbody>
 </table>
@@ -528,7 +528,7 @@ Parse a
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts:250</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts:252</code></td>
 </tr>
 </tbody>
 </table>
@@ -560,7 +560,7 @@ Handles formats like:
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts:283</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts:285</code></td>
 </tr>
 </tbody>
 </table>
@@ -597,7 +597,7 @@ Examples:
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts:325</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts:327</code></td>
 </tr>
 </tbody>
 </table>
@@ -1128,7 +1128,7 @@ This allows multiple relationships between the same elements with different ster
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts:380</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts:396</code></td>
 </tr>
 </tbody>
 </table>
@@ -1158,7 +1158,7 @@ Map a function to a CodeItem
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts:394</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts:410</code></td>
 </tr>
 </tbody>
 </table>
@@ -1188,7 +1188,7 @@ Map a class to a CodeItem
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts:422</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts:438</code></td>
 </tr>
 </tbody>
 </table>
@@ -1218,7 +1218,7 @@ Map a class method to a CodeItem
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts:451</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts:467</code></td>
 </tr>
 </tbody>
 </table>
@@ -1248,7 +1248,7 @@ Map imports to relationships
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts:485</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts:501</code></td>
 </tr>
 </tbody>
 </table>
@@ -1279,7 +1279,7 @@ Format: filePath:symbolName
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts:508</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts:524</code></td>
 </tr>
 </tbody>
 </table>
@@ -1309,7 +1309,7 @@ Get default system info from package.json if available
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts:518</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts:534</code></td>
 </tr>
 </tbody>
 </table>

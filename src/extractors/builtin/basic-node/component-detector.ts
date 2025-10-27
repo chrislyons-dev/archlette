@@ -11,6 +11,7 @@ export interface ComponentInfo {
   id: string;
   name: string;
   description?: string;
+  _inferred?: boolean; // Internal marker: true if inferred from path, false if explicit tag
 }
 
 export interface ActorInfo {
@@ -140,6 +141,7 @@ function extractComponentFromJsDoc(jsDoc: Node): ComponentInfo | undefined {
           id: sanitizeId(name),
           name,
           description: doc.getDescription ? doc.getDescription().trim() : undefined,
+          _inferred: false, // Explicitly tagged
         };
       }
     }
@@ -336,6 +338,7 @@ function inferComponentFromPath(filePath: string): ComponentInfo {
       id: sanitizeId(ROOT_COMPONENT_MARKER),
       name: ROOT_COMPONENT_MARKER,
       description: 'Component inferred from root directory',
+      _inferred: true, // Inferred from path
     };
   }
 
@@ -346,5 +349,6 @@ function inferComponentFromPath(filePath: string): ComponentInfo {
     id: sanitizeId(parentDir),
     name: parentDir,
     description: `Component inferred from directory: ${parentDir}`,
+    _inferred: true, // Inferred from path
   };
 }

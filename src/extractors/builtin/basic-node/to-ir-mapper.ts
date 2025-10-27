@@ -44,6 +44,7 @@ export function mapToIR(
   const actorDescriptions = new Map<string, Set<string>>();
   const componentDescriptions = new Map<string, Set<string>>();
   const componentRelationships: Relationship[] = [];
+  const inferredComponents = new Set<string>(); // Track which components were inferred from paths
 
   // Extract code items, actors, and relationships from all files
   for (const file of extractions) {
@@ -63,6 +64,10 @@ export function mapToIR(
           file.component.id,
           new Set(file.component.description ? [file.component.description] : []),
         );
+        // Track if this component was inferred from path
+        if (file.component._inferred) {
+          inferredComponents.add(file.component.id);
+        }
       } else {
         // Merge descriptions for duplicate components
         if (file.component.description) {
@@ -171,7 +176,7 @@ export function mapToIR(
     }
   }
 
-  const components = Array.from(componentsMap.values());
+  let components = Array.from(componentsMap.values());
 
   // Merge component descriptions
   for (const component of components) {
@@ -182,6 +187,17 @@ export function mapToIR(
       component.description = uniqueDescriptions.join(' | ');
     }
   }
+
+  // Filter out inferred components (from directory structure) that have no code items
+  // Keep explicitly tagged components even if they're empty
+  const componentsWithCode = new Set(codeItems.map((item) => item.componentId));
+  components = components.filter(
+    (component) =>
+      // Keep if it has code items
+      componentsWithCode.has(component.id) ||
+      // Or if it was explicitly tagged (not inferred from path)
+      !inferredComponents.has(component.id),
+  );
 
   // Merge actor descriptions
   const actors = Array.from(actorsMap.values());

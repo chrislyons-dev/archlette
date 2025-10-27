@@ -2209,7 +2209,7 @@
       "visibility": "public",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/component-detector.ts",
-      "lineNumber": 95
+      "lineNumber": 98
     },
     {
       "description": "Extract component name from a JSDoc tag value\nHandles formats like:\n- ComponentName\n- ComponentName - Description (space-dash-space separator)\n- path/to/module\n- My-Component (dashes in names are preserved)",
@@ -2231,7 +2231,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/component-detector.ts",
-      "lineNumber": 136
+      "lineNumber": 154
     },
     {
       "description": "Extract actors from frontmatter JSDoc\nLooks for",
@@ -2253,7 +2253,7 @@
       "visibility": "public",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/component-detector.ts",
-      "lineNumber": 176
+      "lineNumber": 194
     },
     {
       "description": "Parse an",
@@ -2275,7 +2275,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/component-detector.ts",
-      "lineNumber": 203
+      "lineNumber": 221
     },
     {
       "description": "Extract relationships from frontmatter JSDoc\nLooks for",
@@ -2297,7 +2297,7 @@
       "visibility": "public",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/component-detector.ts",
-      "lineNumber": 241
+      "lineNumber": 259
     },
     {
       "description": "Parse a",
@@ -2319,7 +2319,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/component-detector.ts",
-      "lineNumber": 265
+      "lineNumber": 283
     },
     {
       "description": "Infer component name from file path\n- Files in subdirectories use the immediate parent folder name\n- Files in root directory use ROOT_COMPONENT_MARKER\n\nExamples:\n- /path/to/project/src/components/Button.astro -> 'components'\n- /path/to/project/src/Layout.astro -> ROOT_COMPONENT_MARKER",
@@ -2341,7 +2341,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/component-detector.ts",
-      "lineNumber": 297
+      "lineNumber": 315
     },
     {
       "description": "Find Astro source files matching the given patterns",
@@ -2459,13 +2459,13 @@
       "lineNumber": 26
     },
     {
-      "description": "Extract frontmatter content from Astro file\nFrontmatter is the TypeScript/JavaScript code between --- markers at the top of the file",
+      "description": "Extract frontmatter content from Astro file\nFrontmatter is the TypeScript/JavaScript code between --- markers at the top of the file\nHandles both Unix (\\n) and Windows (\\r\\n) line endings",
       "id": "default_container__basic_astro__extractfrontmatter",
       "componentId": "default_container__basic_astro",
       "name": "extractFrontmatter",
       "type": "function",
       "documentation": {
-        "summary": "Extract frontmatter content from Astro file\nFrontmatter is the TypeScript/JavaScript code between --- markers at the top of the file"
+        "summary": "Extract frontmatter content from Astro file\nFrontmatter is the TypeScript/JavaScript code between --- markers at the top of the file\nHandles both Unix (\\n) and Windows (\\r\\n) line endings"
       },
       "returnType": "string",
       "parameters": [
@@ -2478,7 +2478,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/file-parser.ts",
-      "lineNumber": 119
+      "lineNumber": 120
     },
     {
       "description": "Extract import statements from frontmatter",
@@ -2500,7 +2500,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/file-parser.ts",
-      "lineNumber": 127
+      "lineNumber": 128
     },
     {
       "description": "Find slot tags in the template",
@@ -2522,7 +2522,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/file-parser.ts",
-      "lineNumber": 182
+      "lineNumber": 183
     },
     {
       "description": "Find client directive in component usage\nExamples: client:load, client:idle, client:visible, client:media, client:only",
@@ -2544,7 +2544,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/file-parser.ts",
-      "lineNumber": 202
+      "lineNumber": 203
     },
     {
       "description": "Extract component usage from template\nFinds which imported components are used in the template markup",
@@ -2576,7 +2576,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/file-parser.ts",
-      "lineNumber": 211
+      "lineNumber": 212
     },
     {
       "description": "Map file extractions to ArchletteIR\nTransforms Astro component analysis into standardized architecture representation",
@@ -2640,7 +2640,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/to-ir-mapper.ts",
-      "lineNumber": 391
+      "lineNumber": 470
     },
     {
       "description": "Map a function to a code item",
@@ -2672,7 +2672,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/to-ir-mapper.ts",
-      "lineNumber": 438
+      "lineNumber": 517
     },
     {
       "description": "Extract all class declarations from a source file",
@@ -2846,7 +2846,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts",
-      "lineNumber": 37
+      "lineNumber": 38
     },
     {
       "description": "Extract component information from file-level JSDoc\nChecks the first JSDoc comment in the file for",
@@ -2868,7 +2868,7 @@
       "visibility": "public",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts",
-      "lineNumber": 63
+      "lineNumber": 64
     },
     {
       "description": "Extract actors from file-level JSDoc\nLooks for",
@@ -2890,7 +2890,7 @@
       "visibility": "public",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts",
-      "lineNumber": 89
+      "lineNumber": 90
     },
     {
       "description": "Extract relationships from file-level JSDoc\nLooks for",
@@ -2912,7 +2912,7 @@
       "visibility": "public",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts",
-      "lineNumber": 108
+      "lineNumber": 109
     },
     {
       "description": "Extract component info from a JSDoc node",
@@ -2934,7 +2934,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts",
-      "lineNumber": 124
+      "lineNumber": 125
     },
     {
       "description": "Extract actors from a JSDoc node\nParses",
@@ -2956,7 +2956,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts",
-      "lineNumber": 155
+      "lineNumber": 157
     },
     {
       "description": "Parse an",
@@ -2978,7 +2978,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts",
-      "lineNumber": 186
+      "lineNumber": 188
     },
     {
       "description": "Extract relationships from a JSDoc node\nParses",
@@ -3000,7 +3000,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts",
-      "lineNumber": 223
+      "lineNumber": 225
     },
     {
       "description": "Parse a",
@@ -3022,7 +3022,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts",
-      "lineNumber": 250
+      "lineNumber": 252
     },
     {
       "description": "Extract component name from a JSDoc tag\nHandles formats like:\n-",
@@ -3044,7 +3044,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts",
-      "lineNumber": 283
+      "lineNumber": 285
     },
     {
       "description": "Infer component name from file path\n- Files in subdirectories use the immediate parent folder name\n- Files in root directory use a special marker that will be replaced with container name\n\nExamples:\n- /path/to/project/src/utils/helper.ts -> 'utils'\n- /path/to/project/src/index.ts -> ROOT_COMPONENT_MARKER\n- /path/to/project/services/api/client.ts -> 'api'",
@@ -3066,7 +3066,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts",
-      "lineNumber": 325
+      "lineNumber": 327
     },
     {
       "description": "Extract documentation information from JSDoc",
@@ -3465,7 +3465,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts",
-      "lineNumber": 380
+      "lineNumber": 396
     },
     {
       "description": "Map a function to a CodeItem",
@@ -3497,7 +3497,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts",
-      "lineNumber": 394
+      "lineNumber": 410
     },
     {
       "description": "Map a class to a CodeItem",
@@ -3529,7 +3529,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts",
-      "lineNumber": 422
+      "lineNumber": 438
     },
     {
       "description": "Map a class method to a CodeItem",
@@ -3566,7 +3566,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts",
-      "lineNumber": 451
+      "lineNumber": 467
     },
     {
       "description": "Map imports to relationships",
@@ -3593,7 +3593,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts",
-      "lineNumber": 485
+      "lineNumber": 501
     },
     {
       "description": "Generate a unique ID for a code element\nFormat: filePath:symbolName",
@@ -3620,7 +3620,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts",
-      "lineNumber": 508
+      "lineNumber": 524
     },
     {
       "description": "Get default system info from package.json if available",
@@ -3636,7 +3636,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts",
-      "lineNumber": 518
+      "lineNumber": 534
     },
     {
       "description": "Extract type aliases from a source file\nExamples:\n  type UserRole = 'admin' | 'user' | 'guest'\n  export type ApiResponse<T> = { data: T; status: number }",

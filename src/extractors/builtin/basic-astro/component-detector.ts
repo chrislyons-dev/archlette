@@ -118,6 +118,7 @@ export function extractFileComponent(
             id: sanitizeId(name),
             name,
             description,
+            _inferred: false, // Explicitly tagged
           };
         }
       }
@@ -134,11 +135,12 @@ export function extractFileComponent(
       return {
         ...inferredComponent,
         description: block.description.trim(),
+        _inferred: true, // Inferred from path
       };
     }
   }
 
-  return inferredComponent;
+  return { ...inferredComponent, _inferred: true };
 }
 
 /**
