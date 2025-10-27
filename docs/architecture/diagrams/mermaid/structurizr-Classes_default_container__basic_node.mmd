@@ -73,7 +73,7 @@ graph TB
       style 153 fill:#85bbf0,stroke:#5d82a8,color:#000000
       154("<div style='font-weight: bold'>basic_node.mapToIR</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Map file extractions to<br />ArchletteIR</div>")
       style 154 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      155("<div style='font-weight: bold'>basic_node.deduplicateRelationships</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Deduplicate relationships by<br />source+destination+stereotype<br />combination First occurrence<br />wins - preserves description<br />from first relationship This<br />allows multiple relationships<br />between the same elements<br />with different stereotypes</div>")
+      155("<div style='font-weight: bold'>basic_node.deduplicateRelationships</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Deduplicate relationships by<br />source+destination<br />combination - Excludes<br />self-referential<br />relationships (source ===<br />destination) - Merges<br />descriptions and stereotypes<br />with " | " separator when<br />duplicates are found -<br />Extracts imported names from<br />descriptions (removes<br />"imports " prefix) and keeps<br />only unique names - Returns<br />one relationship per unique<br />source+destination pair</div>")
       style 155 fill:#85bbf0,stroke:#5d82a8,color:#000000
       156("<div style='font-weight: bold'>basic_node.mapFunction</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Map a function to a CodeItem</div>")
       style 156 fill:#85bbf0,stroke:#5d82a8,color:#000000
@@ -81,16 +81,20 @@ graph TB
       style 157 fill:#85bbf0,stroke:#5d82a8,color:#000000
       158("<div style='font-weight: bold'>basic_node.mapMethod</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Map a class method to a<br />CodeItem</div>")
       style 158 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      159("<div style='font-weight: bold'>basic_node.mapImportRelationships</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Map imports to relationships</div>")
+      159("<div style='font-weight: bold'>basic_node.resolveImportPath</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Resolve an import path to an<br />absolute file path Handles<br />relative imports (./file,<br />../file) and resolves to<br />actual file paths Returns<br />undefined for node_modules<br />imports or unresolvable paths</div>")
       style 159 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      160("<div style='font-weight: bold'>basic_node.generateId</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Generate a unique ID for a<br />code element Format:<br />filePath:symbolName</div>")
+      160("<div style='font-weight: bold'>basic_node.mapImportToComponentRelationships</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Map imports to component<br />relationships<br />(component-level<br />dependencies)</div>")
       style 160 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      161("<div style='font-weight: bold'>basic_node.getDefaultSystem</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Get default system info from<br />package.json if available</div>")
+      161("<div style='font-weight: bold'>basic_node.mapImportRelationships</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Map imports to relationships<br />(original code-level format<br />for backward compatibility)</div>")
       style 161 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      162("<div style='font-weight: bold'>basic_node.extractTypeAliases</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Extract type aliases from a<br />source file Examples: type<br />UserRole = 'admin' | 'user' |<br />'guest' export type<br />ApiResponse<T> = { data: T;<br />status: number }</div>")
+      162("<div style='font-weight: bold'>basic_node.generateId</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Generate a unique ID for a<br />code element Format:<br />filePath:symbolName</div>")
       style 162 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      163("<div style='font-weight: bold'>basic_node.extractInterfaces</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Extract interfaces from a<br />source file Examples:<br />interface User { id: string;<br />name: string } export<br />interface ApiClient {<br />get<T>(url: string):<br />Promise<T> }</div>")
+      163("<div style='font-weight: bold'>basic_node.getDefaultSystem</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Get default system info from<br />package.json if available</div>")
       style 163 fill:#85bbf0,stroke:#5d82a8,color:#000000
+      164("<div style='font-weight: bold'>basic_node.extractTypeAliases</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Extract type aliases from a<br />source file Examples: type<br />UserRole = 'admin' | 'user' |<br />'guest' export type<br />ApiResponse<T> = { data: T;<br />status: number }</div>")
+      style 164 fill:#85bbf0,stroke:#5d82a8,color:#000000
+      165("<div style='font-weight: bold'>basic_node.extractInterfaces</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Extract interfaces from a<br />source file Examples:<br />interface User { id: string;<br />name: string } export<br />interface ApiClient {<br />get<T>(url: string):<br />Promise<T> }</div>")
+      style 165 fill:#85bbf0,stroke:#5d82a8,color:#000000
       81("<div style='font-weight: bold'>basic_node.basicNodeExtractor</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Extract architecture<br />information from a<br />Node.js/TypeScript codebase</div>")
       style 81 fill:#85bbf0,stroke:#5d82a8,color:#000000
     end

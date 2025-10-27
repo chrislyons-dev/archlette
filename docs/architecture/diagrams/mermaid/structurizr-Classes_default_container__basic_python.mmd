@@ -7,58 +7,58 @@ graph TB
     subgraph 8 ["Application"]
       style 8 fill:#ffffff,stroke:#2e6295,color:#2e6295
 
-      164("<div style='font-weight: bold'>basic-python.findSourceFiles</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Find source files matching<br />include/exclude patterns</div>")
-      style 164 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      165("<div style='font-weight: bold'>basic-python.findPyProjectFiles</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Find pyproject.toml files<br />within the search paths</div>")
-      style 165 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      166("<div style='font-weight: bold'>basic-python.readPyProjectInfo</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Read and parse pyproject.toml<br />file</div>")
+      166("<div style='font-weight: bold'>basic-python.findSourceFiles</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Find source files matching<br />include/exclude patterns</div>")
       style 166 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      167("<div style='font-weight: bold'>basic-python.parsePyProjectToml</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Parse pyproject.toml using<br />smol-toml library Handles<br />full TOML spec including<br />multiline strings, arrays,<br />and nested tables</div>")
+      167("<div style='font-weight: bold'>basic-python.findPyProjectFiles</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Find pyproject.toml files<br />within the search paths</div>")
       style 167 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      168("<div style='font-weight: bold'>basic-python.findNearestPyProject</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Find the nearest parent<br />pyproject.toml for a given<br />file</div>")
+      168("<div style='font-weight: bold'>basic-python.readPyProjectInfo</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Read and parse pyproject.toml<br />file</div>")
       style 168 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      169("<div style='font-weight: bold'>basic-python.parseFiles</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Parse Python files using<br />Python AST parser script</div>")
+      169("<div style='font-weight: bold'>basic-python.parsePyProjectToml</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Parse pyproject.toml using<br />smol-toml library Handles<br />full TOML spec including<br />multiline strings, arrays,<br />and nested tables</div>")
       style 169 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      170("<div style='font-weight: bold'>basic-python.runPythonParser</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Run Python parser script and<br />return JSON output</div>")
+      170("<div style='font-weight: bold'>basic-python.findNearestPyProject</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Find the nearest parent<br />pyproject.toml for a given<br />file</div>")
       style 170 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      171("<div style='font-weight: bold'>basic-python.mapToFileExtraction</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Map Python parser output to<br />FileExtraction format</div>")
+      171("<div style='font-weight: bold'>basic-python.parseFiles</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Parse Python files using<br />Python AST parser script</div>")
       style 171 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      172("<div style='font-weight: bold'>basic-python.mapClass</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Map Python class to<br />ExtractedClass</div>")
+      172("<div style='font-weight: bold'>basic-python.runPythonParser</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Run Python parser script and<br />return JSON output</div>")
       style 172 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      173("<div style='font-weight: bold'>basic-python.mapMethod</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Map Python method to<br />ExtractedMethod</div>")
+      173("<div style='font-weight: bold'>basic-python.mapToFileExtraction</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Map Python parser output to<br />FileExtraction format</div>")
       style 173 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      174("<div style='font-weight: bold'>basic-python.mapProperty</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Map Python property to<br />ExtractedProperty</div>")
+      174("<div style='font-weight: bold'>basic-python.mapClass</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Map Python class to<br />ExtractedClass</div>")
       style 174 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      175("<div style='font-weight: bold'>basic-python.mapFunction</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Map Python function to<br />ExtractedFunction</div>")
+      175("<div style='font-weight: bold'>basic-python.mapMethod</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Map Python method to<br />ExtractedMethod</div>")
       style 175 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      176("<div style='font-weight: bold'>basic-python.mapType</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Map Python type definition to<br />ExtractedType</div>")
+      176("<div style='font-weight: bold'>basic-python.mapProperty</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Map Python property to<br />ExtractedProperty</div>")
       style 176 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      177("<div style='font-weight: bold'>basic-python.mapParameter</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Map Python parameter to<br />ParameterInfo</div>")
+      177("<div style='font-weight: bold'>basic-python.mapFunction</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Map Python function to<br />ExtractedFunction</div>")
       style 177 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      178("<div style='font-weight: bold'>basic-python.parseDocstring</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Parse Python docstring into<br />DocInfo Enhanced in Phase 2<br />to use parsed<br />Google/NumPy/Sphinx<br />docstrings</div>")
+      178("<div style='font-weight: bold'>basic-python.mapType</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Map Python type definition to<br />ExtractedType</div>")
       style 178 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      179("<div style='font-weight: bold'>basic-python.extractDeprecation</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Extract deprecation info from<br />docstring</div>")
+      179("<div style='font-weight: bold'>basic-python.mapParameter</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Map Python parameter to<br />ParameterInfo</div>")
       style 179 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      180("<div style='font-weight: bold'>basic-python.extractReturnDescription</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Extract return description<br />from docstring</div>")
+      180("<div style='font-weight: bold'>basic-python.parseDocstring</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Parse Python docstring into<br />DocInfo Enhanced in Phase 2<br />to use parsed<br />Google/NumPy/Sphinx<br />docstrings</div>")
       style 180 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      181("<div style='font-weight: bold'>basic-python.getVisibility</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Determine visibility from<br />Python name convention -<br />__name: private - _name:<br />protected - name: public</div>")
+      181("<div style='font-weight: bold'>basic-python.extractDeprecation</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Extract deprecation info from<br />docstring</div>")
       style 181 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      182("<div style='font-weight: bold'>basic-python.mapToIR</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Map file extractions to<br />ArchletteIR</div>")
+      182("<div style='font-weight: bold'>basic-python.extractReturnDescription</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Extract return description<br />from docstring</div>")
       style 182 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      183("<div style='font-weight: bold'>basic-python.mapActorToIR</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Map ActorInfo to Actor</div>")
+      183("<div style='font-weight: bold'>basic-python.getVisibility</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Determine visibility from<br />Python name convention -<br />__name: private - _name:<br />protected - name: public</div>")
       style 183 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      184("<div style='font-weight: bold'>basic-python.mapRelationshipsToIR</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Map relationships to<br />Relationship[] Creates<br />bidirectional actor<br />relationships</div>")
+      184("<div style='font-weight: bold'>basic-python.mapToIR</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Map file extractions to<br />ArchletteIR</div>")
       style 184 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      185("<div style='font-weight: bold'>basic-python.deduplicateRelationships</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Deduplicate relationships by<br />source+destination</div>")
+      185("<div style='font-weight: bold'>basic-python.mapActorToIR</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Map ActorInfo to Actor</div>")
       style 185 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      186("<div style='font-weight: bold'>basic-python.mapClassToCodeItem</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Map ExtractedClass to<br />CodeItem</div>")
+      186("<div style='font-weight: bold'>basic-python.mapRelationshipsToIR</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Map relationships to<br />Relationship[] Creates<br />bidirectional actor<br />relationships</div>")
       style 186 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      187("<div style='font-weight: bold'>basic-python.mapMethodToCodeItem</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Map ExtractedMethod to<br />CodeItem</div>")
+      187("<div style='font-weight: bold'>basic-python.deduplicateRelationships</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Deduplicate relationships by<br />source+destination</div>")
       style 187 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      188("<div style='font-weight: bold'>basic-python.mapFunctionToCodeItem</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Map ExtractedFunction to<br />CodeItem</div>")
+      188("<div style='font-weight: bold'>basic-python.mapClassToCodeItem</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Map ExtractedClass to<br />CodeItem</div>")
       style 188 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      189("<div style='font-weight: bold'>basic-python.mapTypeToCodeItem</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Map ExtractedType to CodeItem</div>")
+      189("<div style='font-weight: bold'>basic-python.mapMethodToCodeItem</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Map ExtractedMethod to<br />CodeItem</div>")
       style 189 fill:#85bbf0,stroke:#5d82a8,color:#000000
+      190("<div style='font-weight: bold'>basic-python.mapFunctionToCodeItem</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Map ExtractedFunction to<br />CodeItem</div>")
+      style 190 fill:#85bbf0,stroke:#5d82a8,color:#000000
+      191("<div style='font-weight: bold'>basic-python.mapTypeToCodeItem</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Map ExtractedType to CodeItem</div>")
+      style 191 fill:#85bbf0,stroke:#5d82a8,color:#000000
       82("<div style='font-weight: bold'>basic-python.createEmptyIR</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Create empty IR when no files<br />found</div>")
       style 82 fill:#85bbf0,stroke:#5d82a8,color:#000000
       83("<div style='font-weight: bold'>basic-python.basicPython</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Basic Python extractor<br />Analyzes Python source code<br />and extracts architectural<br />components</div>")

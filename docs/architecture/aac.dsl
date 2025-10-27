@@ -730,7 +730,7 @@ workspace "Application" "Main application container" {
                     tags "Code"
                 }
                 default_container__basic_node__deduplicaterelationships = component "basic_node.deduplicateRelationships" {
-                    description "Deduplicate relationships by source+destination+stereotype combination First occurrence wins - preserves description from first relationship This allows multiple relationships between the same elements with different stereotypes"
+                    description "Deduplicate relationships by source+destination combination - Excludes self-referential relationships (source === destination) - Merges descriptions and stereotypes with \" | \" separator when duplicates are found - Extracts imported names from descriptions (removes \"imports \" prefix) and keeps only unique names - Returns one relationship per unique source+destination pair"
                     technology "function"
                     tags "Code"
                 }
@@ -749,8 +749,18 @@ workspace "Application" "Main application container" {
                     technology "function"
                     tags "Code"
                 }
+                default_container__basic_node__resolveimportpath = component "basic_node.resolveImportPath" {
+                    description "Resolve an import path to an absolute file path Handles relative imports (./file, ../file) and resolves to actual file paths Returns undefined for node_modules imports or unresolvable paths"
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__basic_node__mapimporttocomponentrelationships = component "basic_node.mapImportToComponentRelationships" {
+                    description "Map imports to component relationships (component-level dependencies)"
+                    technology "function"
+                    tags "Code"
+                }
                 default_container__basic_node__mapimportrelationships = component "basic_node.mapImportRelationships" {
-                    description "Map imports to relationships"
+                    description "Map imports to relationships (original code-level format for backward compatibility)"
                     technology "function"
                     tags "Code"
                 }
@@ -976,10 +986,14 @@ workspace "Application" "Main application container" {
                 default_container__extractors -> default_container__basic_node "composed of node extractor"
                 default_container__extractors -> default_container__basic_python "composed of python extractor"
                 default_container__extractors -> default_container__basic_wrangler "composed of cloudflare wrangler extractor"
-                default_container__validators -> default_container__core "Provides IR types, validation schemas, and module loading"
-                default_container__generators -> default_container__core "Provides IR types, path resolution, and module loading"
-                default_container__renderers -> default_container__core "Provides types, module loading, and tool management"
-                default_container__docs -> default_container__core "Provides types, module loading, and path resolution"
+                default_container__validators -> default_container__core "Provides IR types, validation schemas, and module loading | zArchletteIR | ArchletteValidator"
+                default_container__generators -> default_container__core "Provides IR types, path resolution, and module loading | ArchletteIR | Container | Component | CodeItem | Relationship | ResolvedStageNode | VIEW_NAMES | resolveUserContentPath"
+                default_container__renderers -> default_container__core "Provides types, module loading, and tool management | PipelineContext | findPlantUML | requireJava | resolveArchlettePath | findStructurizrCLI"
+                default_container__docs -> default_container__core "Provides types, module loading, and path resolution | PipelineContext | Logger | RendererOutput | Component | resolveArchlettePath"
+                default_container__basic_astro -> default_container__core "ResolvedStageNode | ArchletteIR | PipelineContext | IR_VERSION | resolveSecurePath | createLogger | sanitizeId | CodeItem | System | Relationship | Component | Actor | Container | TAGS | DEFAULT_CONTAINER_ID | nameToId"
+                default_container__basic_node -> default_container__core "ResolvedStageNode | ArchletteIR | PipelineContext | resolveSecurePath | createLogger | sanitizeId | CodeItem | System | Relationship | Component | Actor | TAGS | DEFAULT_CONTAINER_ID | IR_VERSION | nameToId"
+                default_container__basic_python -> default_container__core "resolveSecurePath | ArchletteExtractor | ArchletteIR | ResolvedStageNode | createLogger | getCliDir | sanitizeId | nameToId | TAGS | DEFAULT_CONTAINER_ID | Actor | Component | Container | CodeItem | Relationship"
+                default_container__basic_wrangler -> default_container__core "ResolvedStageNode | ArchletteIR | PipelineContext | emptyIR | System | ContainerInstance | Relationship | IR_VERSION | sanitizeId | createLogger"
             }
 
         }
@@ -1398,6 +1412,8 @@ branding {
             include default_container__basic_node__mapfunction
             include default_container__basic_node__mapclass
             include default_container__basic_node__mapmethod
+            include default_container__basic_node__resolveimportpath
+            include default_container__basic_node__mapimporttocomponentrelationships
             include default_container__basic_node__mapimportrelationships
             include default_container__basic_node__generateid
             include default_container__basic_node__getdefaultsystem

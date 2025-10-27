@@ -115,6 +115,10 @@ extractors:
         - '**/*.venv/***'
         - '**/test/**'
         - '**/tests/**'
+        - '**/flarelette/**'
+        - '**/dateutil/**'
+        - '**/pythonjsonlogger/**'
+        - '**/six.py'
 
 # ir json in, ir json out (or errors)
 validators:

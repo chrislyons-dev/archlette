@@ -3443,16 +3443,16 @@
       "visibility": "public",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts",
-      "lineNumber": 35
+      "lineNumber": 36
     },
     {
-      "description": "Deduplicate relationships by source+destination+stereotype combination\nFirst occurrence wins - preserves description from first relationship\nThis allows multiple relationships between the same elements with different stereotypes",
+      "description": "Deduplicate relationships by source+destination combination\n- Excludes self-referential relationships (source === destination)\n- Merges descriptions and stereotypes with \" | \" separator when duplicates are found\n- Extracts imported names from descriptions (removes \"imports \" prefix) and keeps only unique names\n- Returns one relationship per unique source+destination pair",
       "id": "default_container__basic_node__deduplicaterelationships",
       "componentId": "default_container__basic_node",
       "name": "deduplicateRelationships",
       "type": "function",
       "documentation": {
-        "summary": "Deduplicate relationships by source+destination+stereotype combination\nFirst occurrence wins - preserves description from first relationship\nThis allows multiple relationships between the same elements with different stereotypes"
+        "summary": "Deduplicate relationships by source+destination combination\n- Excludes self-referential relationships (source === destination)\n- Merges descriptions and stereotypes with \" | \" separator when duplicates are found\n- Extracts imported names from descriptions (removes \"imports \" prefix) and keeps only unique names\n- Returns one relationship per unique source+destination pair"
       },
       "returnType": "z.infer<any>[]",
       "parameters": [
@@ -3465,7 +3465,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts",
-      "lineNumber": 396
+      "lineNumber": 424
     },
     {
       "description": "Map a function to a CodeItem",
@@ -3497,7 +3497,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts",
-      "lineNumber": 410
+      "lineNumber": 480
     },
     {
       "description": "Map a class to a CodeItem",
@@ -3529,7 +3529,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts",
-      "lineNumber": 438
+      "lineNumber": 508
     },
     {
       "description": "Map a class method to a CodeItem",
@@ -3566,16 +3566,80 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts",
-      "lineNumber": 467
+      "lineNumber": 537
     },
     {
-      "description": "Map imports to relationships",
+      "description": "Resolve an import path to an absolute file path\nHandles relative imports (./file, ../file) and resolves to actual file paths\nReturns undefined for node_modules imports or unresolvable paths",
+      "id": "default_container__basic_node__resolveimportpath",
+      "componentId": "default_container__basic_node",
+      "name": "resolveImportPath",
+      "type": "function",
+      "documentation": {
+        "summary": "Resolve an import path to an absolute file path\nHandles relative imports (./file, ../file) and resolves to actual file paths\nReturns undefined for node_modules imports or unresolvable paths"
+      },
+      "returnType": "string",
+      "parameters": [
+        {
+          "name": "importSource",
+          "type": "string",
+          "optional": false
+        },
+        {
+          "name": "fromFilePath",
+          "type": "string",
+          "optional": false
+        }
+      ],
+      "visibility": "private",
+      "isAsync": false,
+      "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts",
+      "lineNumber": 573
+    },
+    {
+      "description": "Map imports to component relationships (component-level dependencies)",
+      "id": "default_container__basic_node__mapimporttocomponentrelationships",
+      "componentId": "default_container__basic_node",
+      "name": "mapImportToComponentRelationships",
+      "type": "function",
+      "documentation": {
+        "summary": "Map imports to component relationships (component-level dependencies)"
+      },
+      "returnType": "z.infer<any>[]",
+      "parameters": [
+        {
+          "name": "imp",
+          "type": "import(\"C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/types\").ExtractedImport",
+          "optional": false
+        },
+        {
+          "name": "filePath",
+          "type": "string",
+          "optional": false
+        },
+        {
+          "name": "componentId",
+          "type": "string",
+          "optional": false
+        },
+        {
+          "name": "fileToComponentMap",
+          "type": "Map<string, string>",
+          "optional": false
+        }
+      ],
+      "visibility": "private",
+      "isAsync": false,
+      "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts",
+      "lineNumber": 624
+    },
+    {
+      "description": "Map imports to relationships (original code-level format for backward compatibility)",
       "id": "default_container__basic_node__mapimportrelationships",
       "componentId": "default_container__basic_node",
       "name": "mapImportRelationships",
       "type": "function",
       "documentation": {
-        "summary": "Map imports to relationships"
+        "summary": "Map imports to relationships (original code-level format for backward compatibility)"
       },
       "returnType": "z.infer<any>[]",
       "parameters": [
@@ -3593,7 +3657,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts",
-      "lineNumber": 501
+      "lineNumber": 661
     },
     {
       "description": "Generate a unique ID for a code element\nFormat: filePath:symbolName",
@@ -3620,7 +3684,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts",
-      "lineNumber": 524
+      "lineNumber": 684
     },
     {
       "description": "Get default system info from package.json if available",
@@ -3636,7 +3700,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts",
-      "lineNumber": 534
+      "lineNumber": 694
     },
     {
       "description": "Extract type aliases from a source file\nExamples:\n  type UserRole = 'admin' | 'user' | 'guest'\n  export type ApiResponse<T> = { data: T; status: number }",
@@ -4702,6 +4766,48 @@
       "destination": "default_container__core"
     },
     {
+      "description": "imports pathToFileURL",
+      "source": "default_container__cli",
+      "destination": "node:url",
+      "stereotype": "import"
+    },
+    {
+      "description": "PipelineContext | StageModule",
+      "source": "default_container__cli",
+      "destination": "./core/types.js",
+      "stereotype": "type-import"
+    },
+    {
+      "description": "imports getStageEntry",
+      "source": "default_container__cli",
+      "destination": "./core/stage-entry.js",
+      "stereotype": "import"
+    },
+    {
+      "description": "imports loadModuleFromPath",
+      "source": "default_container__cli",
+      "destination": "./core/module-loader.js",
+      "stereotype": "import"
+    },
+    {
+      "description": "imports loadConfig",
+      "source": "default_container__cli",
+      "destination": "./core/config-resolver.js",
+      "stereotype": "import"
+    },
+    {
+      "description": "imports createLogger",
+      "source": "default_container__cli",
+      "destination": "./core/logger.js",
+      "stereotype": "import"
+    },
+    {
+      "description": "ArchletteIR | Relationship | emptyIR | zArchletteIR",
+      "source": "default_container__extractors",
+      "destination": "../core/types-ir.js",
+      "stereotype": "type-import | import | import | import"
+    },
+    {
       "description": "Provides IR types, validation schemas, and module loading",
       "tags": [],
       "source": "default_container__extractors",
@@ -4732,34 +4838,212 @@
       "destination": "default_container__basic_wrangler"
     },
     {
-      "description": "Provides IR types, validation schemas, and module loading",
+      "description": "imports PipelineContext",
+      "source": "default_container__extractors",
+      "destination": "../core/types.js",
+      "stereotype": "type-import"
+    },
+    {
+      "description": "imports loadExtractorModule",
+      "source": "default_container__extractors",
+      "destination": "../core/stage-module-loader.js",
+      "stereotype": "import"
+    },
+    {
+      "description": "resolveArchlettePath | writeFile",
+      "source": "default_container__extractors",
+      "destination": "../core/path-resolver.js",
+      "stereotype": "import"
+    },
+    {
+      "description": "ResolvedAACConfig | ResolvedStageNode",
+      "source": "default_container__extractors",
+      "destination": "../core/types-aac.js",
+      "stereotype": "type-import"
+    },
+    {
+      "description": "Provides IR types, validation schemas, and module loading | zArchletteIR | ArchletteValidator",
       "tags": [],
       "source": "default_container__validators",
-      "destination": "default_container__core"
+      "destination": "default_container__core",
+      "stereotype": "import | type-import"
     },
     {
-      "description": "Provides IR types, path resolution, and module loading",
+      "description": "imports PipelineContext",
+      "source": "default_container__validators",
+      "destination": "../core/types.js",
+      "stereotype": "type-import"
+    },
+    {
+      "description": "imports loadValidatorModule",
+      "source": "default_container__validators",
+      "destination": "../core/stage-module-loader.js",
+      "stereotype": "import"
+    },
+    {
+      "description": "ResolvedAACConfig | ResolvedStageNode",
+      "source": "default_container__validators",
+      "destination": "../core/types-aac.js",
+      "stereotype": "type-import"
+    },
+    {
+      "description": "resolveArchlettePath | writeFile",
+      "source": "default_container__validators",
+      "destination": "../core/path-resolver.js",
+      "stereotype": "import"
+    },
+    {
+      "description": "Provides IR types, path resolution, and module loading | ArchletteIR | Container | Component | CodeItem | Relationship | ResolvedStageNode | VIEW_NAMES | resolveUserContentPath",
       "tags": [],
       "source": "default_container__generators",
-      "destination": "default_container__core"
+      "destination": "default_container__core",
+      "stereotype": "type-import | import | import"
     },
     {
-      "description": "Provides types, module loading, and tool management",
+      "description": "PipelineContext | GeneratorOutput",
+      "source": "default_container__generators",
+      "destination": "../core/types.js",
+      "stereotype": "type-import"
+    },
+    {
+      "description": "imports loadGeneratorModule",
+      "source": "default_container__generators",
+      "destination": "../core/stage-module-loader.js",
+      "stereotype": "import"
+    },
+    {
+      "description": "ResolvedAACConfig | ResolvedStageNode",
+      "source": "default_container__generators",
+      "destination": "../core/types-aac.js",
+      "stereotype": "type-import"
+    },
+    {
+      "description": "resolveArchlettePath | writeFile",
+      "source": "default_container__generators",
+      "destination": "../core/path-resolver.js",
+      "stereotype": "import"
+    },
+    {
+      "description": "Provides types, module loading, and tool management | PipelineContext | findPlantUML | requireJava | resolveArchlettePath | findStructurizrCLI",
       "tags": [],
       "source": "default_container__renderers",
-      "destination": "default_container__core"
+      "destination": "default_container__core",
+      "stereotype": "type-import | import | import | import | type-import | import | import | import"
     },
     {
-      "description": "Provides types, module loading, and path resolution",
+      "description": "imports PipelineContext",
+      "source": "default_container__renderers",
+      "destination": "../core/types.js",
+      "stereotype": "type-import"
+    },
+    {
+      "description": "ResolvedAACConfig | ResolvedStageNode",
+      "source": "default_container__renderers",
+      "destination": "../core/types-aac.js",
+      "stereotype": "type-import"
+    },
+    {
+      "description": "imports loadRendererModule",
+      "source": "default_container__renderers",
+      "destination": "../core/stage-module-loader.js",
+      "stereotype": "import"
+    },
+    {
+      "description": "Provides types, module loading, and path resolution | PipelineContext | Logger | RendererOutput | Component | resolveArchlettePath",
       "tags": [],
       "source": "default_container__docs",
-      "destination": "default_container__core"
+      "destination": "default_container__core",
+      "stereotype": "type-import | import"
+    },
+    {
+      "description": "imports PipelineContext",
+      "source": "default_container__docs",
+      "destination": "../core/types.js",
+      "stereotype": "type-import"
+    },
+    {
+      "description": "ResolvedAACConfig | ResolvedStageNode",
+      "source": "default_container__docs",
+      "destination": "../core/types-aac.js",
+      "stereotype": "type-import"
+    },
+    {
+      "description": "imports loadDocModule",
+      "source": "default_container__docs",
+      "destination": "../core/stage-module-loader.js",
+      "stereotype": "import"
+    },
+    {
+      "description": "* as path | relative | resolve | normalize | isAbsolute",
+      "source": "default_container__core",
+      "destination": "node:path",
+      "stereotype": "import"
+    },
+    {
+      "description": "* as fs | existsSync | statSync | createWriteStream",
+      "source": "default_container__core",
+      "destination": "node:fs",
+      "stereotype": "import"
+    },
+    {
+      "description": "imports * as yaml",
+      "source": "default_container__core",
+      "destination": "yaml",
+      "stereotype": "import"
+    },
+    {
+      "description": "resolveArchlettePath | expandTilde | getCliDir | resolveModuleEntry | toFileUrl",
+      "source": "default_container__core",
+      "destination": "./path-resolver.js",
+      "stereotype": "import"
+    },
+    {
+      "description": "resolveConfig | ResolvedAACConfig | ResolvedStageNode",
+      "source": "default_container__core",
+      "destination": "./types-aac.js",
+      "stereotype": "import | type-import"
+    },
+    {
+      "description": "imports createLogger",
+      "source": "default_container__core",
+      "destination": "./logger.js",
+      "stereotype": "import"
+    },
+    {
+      "description": "pino | Logger",
+      "source": "default_container__core",
+      "destination": "pino",
+      "stereotype": "import | type-import"
+    },
+    {
+      "description": "imports resolvePluginPath",
+      "source": "default_container__core",
+      "destination": "./path-security.js",
+      "stereotype": "import"
     },
     {
       "description": "Uses FileSystem for external system integration",
       "tags": [],
       "source": "default_container__core",
       "destination": "filesystem"
+    },
+    {
+      "description": "fileURLToPath | pathToFileURL",
+      "source": "default_container__core",
+      "destination": "node:url",
+      "stereotype": "import"
+    },
+    {
+      "description": "imports ArchletteIR",
+      "source": "default_container__core",
+      "destination": "./types-ir.js",
+      "stereotype": "type-import"
+    },
+    {
+      "description": "PipelineContext | Logger",
+      "source": "default_container__core",
+      "destination": "./types.js",
+      "stereotype": "type-import"
     },
     {
       "description": "Uses Github Structurizr Repo for external system integration",
@@ -4784,6 +5068,402 @@
       "tags": [],
       "source": "default_container__core",
       "destination": "file_system"
+    },
+    {
+      "description": "imports * as os",
+      "source": "default_container__core",
+      "destination": "node:os",
+      "stereotype": "import"
+    },
+    {
+      "description": "imports * as https",
+      "source": "default_container__core",
+      "destination": "node:https",
+      "stereotype": "import"
+    },
+    {
+      "description": "imports execSync",
+      "source": "default_container__core",
+      "destination": "node:child_process",
+      "stereotype": "import"
+    },
+    {
+      "description": "imports z",
+      "source": "default_container__core",
+      "destination": "zod",
+      "stereotype": "import"
+    },
+    {
+      "description": "imports * as fs",
+      "source": "default_container__docs",
+      "destination": "node:fs",
+      "stereotype": "import"
+    },
+    {
+      "description": "imports * as path",
+      "source": "default_container__docs",
+      "destination": "node:path",
+      "stereotype": "import"
+    },
+    {
+      "description": "imports fileURLToPath",
+      "source": "default_container__docs",
+      "destination": "node:url",
+      "stereotype": "import"
+    },
+    {
+      "description": "imports createRequire",
+      "source": "default_container__docs",
+      "destination": "node:module",
+      "stereotype": "import"
+    },
+    {
+      "description": "ResolvedStageNode | ArchletteIR | PipelineContext | IR_VERSION | resolveSecurePath | createLogger | sanitizeId | CodeItem | System | Relationship | Component | Actor | Container | TAGS | DEFAULT_CONTAINER_ID | nameToId",
+      "source": "default_container__basic_astro",
+      "destination": "default_container__core",
+      "stereotype": "type-import | import | import | import | import | import | import | type-import | type-import | type-import | type-import | type-import | type-import | type-import | import | import | import | import | import"
+    },
+    {
+      "description": "imports ExtractorInputs",
+      "source": "default_container__basic_astro",
+      "destination": "./basic-astro/types.js",
+      "stereotype": "type-import"
+    },
+    {
+      "description": "findSourceFiles | findPackageJsonFiles | readPackageInfo | findNearestPackage",
+      "source": "default_container__basic_astro",
+      "destination": "./basic-astro/file-finder.js",
+      "stereotype": "import"
+    },
+    {
+      "description": "imports parseFiles",
+      "source": "default_container__basic_astro",
+      "destination": "./basic-astro/file-parser.js",
+      "stereotype": "import"
+    },
+    {
+      "description": "imports mapToIR",
+      "source": "default_container__basic_astro",
+      "destination": "./basic-astro/to-ir-mapper.js",
+      "stereotype": "import"
+    },
+    {
+      "description": "ResolvedStageNode | ArchletteIR | PipelineContext | resolveSecurePath | createLogger | sanitizeId | CodeItem | System | Relationship | Component | Actor | TAGS | DEFAULT_CONTAINER_ID | IR_VERSION | nameToId",
+      "source": "default_container__basic_node",
+      "destination": "default_container__core",
+      "stereotype": "type-import | import | import | import | import | import | import | import | type-import | type-import | type-import | type-import | type-import | type-import | import | import | import | import | import | import"
+    },
+    {
+      "description": "imports ExtractorInputs",
+      "source": "default_container__basic_node",
+      "destination": "./basic-node/types.js",
+      "stereotype": "type-import"
+    },
+    {
+      "description": "findSourceFiles | findPackageJsonFiles | readPackageInfo | findNearestPackage",
+      "source": "default_container__basic_node",
+      "destination": "./basic-node/file-finder.js",
+      "stereotype": "import"
+    },
+    {
+      "description": "imports parseFiles",
+      "source": "default_container__basic_node",
+      "destination": "./basic-node/file-parser.js",
+      "stereotype": "import"
+    },
+    {
+      "description": "imports mapToIR",
+      "source": "default_container__basic_node",
+      "destination": "./basic-node/to-ir-mapper.js",
+      "stereotype": "import"
+    },
+    {
+      "description": "findSourceFiles | findPyProjectFiles | readPyProjectInfo | findNearestPyProject",
+      "source": "default_container__basic_python",
+      "destination": "./basic-python/file-finder.js",
+      "stereotype": "import"
+    },
+    {
+      "description": "imports parseFiles",
+      "source": "default_container__basic_python",
+      "destination": "./basic-python/file-parser.js",
+      "stereotype": "import"
+    },
+    {
+      "description": "imports mapToIR",
+      "source": "default_container__basic_python",
+      "destination": "./basic-python/to-ir-mapper.js",
+      "stereotype": "import"
+    },
+    {
+      "description": "resolveSecurePath | ArchletteExtractor | ArchletteIR | ResolvedStageNode | createLogger | getCliDir | sanitizeId | nameToId | TAGS | DEFAULT_CONTAINER_ID | Actor | Component | Container | CodeItem | Relationship",
+      "source": "default_container__basic_python",
+      "destination": "default_container__core",
+      "stereotype": "import | type-import | type-import | type-import | import | import | import | import | import | import | import | import | import | type-import | type-import | type-import | type-import | type-import | type-import"
+    },
+    {
+      "description": "imports ExtractorInputs",
+      "source": "default_container__basic_python",
+      "destination": "./basic-python/types.js",
+      "stereotype": "type-import"
+    },
+    {
+      "description": "ResolvedStageNode | ArchletteIR | PipelineContext | emptyIR | System | ContainerInstance | Relationship | IR_VERSION | sanitizeId | createLogger",
+      "source": "default_container__basic_wrangler",
+      "destination": "default_container__core",
+      "stereotype": "type-import | import | type-import | type-import | type-import | type-import | import | import | import"
+    },
+    {
+      "description": "imports ExtractorInputs",
+      "source": "default_container__basic_wrangler",
+      "destination": "./basic-wrangler/types.js",
+      "stereotype": "type-import"
+    },
+    {
+      "description": "imports findWranglerFiles",
+      "source": "default_container__basic_wrangler",
+      "destination": "./basic-wrangler/file-finder.js",
+      "stereotype": "import"
+    },
+    {
+      "description": "imports parseWranglerFile",
+      "source": "default_container__basic_wrangler",
+      "destination": "./basic-wrangler/wrangler-parser.js",
+      "stereotype": "import"
+    },
+    {
+      "description": "imports mapToIR",
+      "source": "default_container__basic_wrangler",
+      "destination": "./basic-wrangler/to-ir-mapper.js",
+      "stereotype": "import"
+    },
+    {
+      "description": "imports * as nunjucks",
+      "source": "default_container__generators",
+      "destination": "nunjucks",
+      "stereotype": "import"
+    },
+    {
+      "description": "imports fileURLToPath",
+      "source": "default_container__generators",
+      "destination": "node:url",
+      "stereotype": "import"
+    },
+    {
+      "description": "join | dirname",
+      "source": "default_container__generators",
+      "destination": "node:path",
+      "stereotype": "import"
+    },
+    {
+      "description": "imports readFileSync",
+      "source": "default_container__generators",
+      "destination": "node:fs",
+      "stereotype": "import"
+    },
+    {
+      "description": "imports * as fs",
+      "source": "default_container__renderers",
+      "destination": "node:fs",
+      "stereotype": "import"
+    },
+    {
+      "description": "imports * as path",
+      "source": "default_container__renderers",
+      "destination": "node:path",
+      "stereotype": "import"
+    },
+    {
+      "description": "imports execSync",
+      "source": "default_container__renderers",
+      "destination": "node:child_process",
+      "stereotype": "import"
+    },
+    {
+      "description": "Project | ts",
+      "source": "default_container__basic_astro",
+      "destination": "ts-morph",
+      "stereotype": "import"
+    },
+    {
+      "description": "imports extractClasses",
+      "source": "default_container__basic_astro",
+      "destination": "../basic-node/class-extractor.js",
+      "stereotype": "import"
+    },
+    {
+      "description": "extractFunctions | extractArrowFunctions",
+      "source": "default_container__basic_astro",
+      "destination": "../basic-node/function-extractor.js",
+      "stereotype": "import"
+    },
+    {
+      "description": "extractTypeAliases | extractInterfaces",
+      "source": "default_container__basic_astro",
+      "destination": "../basic-node/type-extractor.js",
+      "stereotype": "import"
+    },
+    {
+      "description": "ExtractedClass | ExtractedFunction | ExtractedType | ExtractedInterface | ParameterInfo | ExtractedMethod | DocInfo | DeprecationInfo | SourceLocation",
+      "source": "default_container__basic_astro",
+      "destination": "../basic-node/types.js",
+      "stereotype": "type-import"
+    },
+    {
+      "description": "* as path | sep | relative | dirname",
+      "source": "default_container__basic_astro",
+      "destination": "node:path",
+      "stereotype": "import"
+    },
+    {
+      "description": "ComponentInfo | ActorInfo | RelationshipInfo | PackageInfo | FileExtraction | ExtractedComponent | ExtractedClass | ExtractedFunction",
+      "source": "default_container__basic_astro",
+      "destination": "./types.js",
+      "stereotype": "type-import"
+    },
+    {
+      "description": "imports globby",
+      "source": "default_container__basic_astro",
+      "destination": "globby",
+      "stereotype": "import"
+    },
+    {
+      "description": "imports parse",
+      "source": "default_container__basic_astro",
+      "destination": "@astrojs/compiler",
+      "stereotype": "import"
+    },
+    {
+      "description": "imports readFile",
+      "source": "default_container__basic_astro",
+      "destination": "node:fs/promises",
+      "stereotype": "import"
+    },
+    {
+      "description": "ClassDeclaration | SourceFile | MethodDeclaration | PropertyDeclaration | Scope | Node | JSDoc | JSDocTag | SyntaxKind | Project | ts | FunctionDeclaration",
+      "source": "default_container__basic_node",
+      "destination": "ts-morph",
+      "stereotype": "type-import | import | type-import | type-import | type-import | type-import | import | import | import | import | import | import | import | import | type-import | type-import"
+    },
+    {
+      "description": "ExtractedClass | ExtractedMethod | ExtractedProperty | ParameterInfo | DocInfo | DeprecationInfo | ExtractorInputs | PackageInfo | FileExtraction | ExtractedFunction | ExtractedImport | ExtractedType | ExtractedInterface",
+      "source": "default_container__basic_node",
+      "destination": "./types.js",
+      "stereotype": "type-import"
+    },
+    {
+      "description": "extractDocumentation | extractDeprecation | extractParameterDescriptions | extractReturnDescription",
+      "source": "default_container__basic_node",
+      "destination": "./doc-extractor.js",
+      "stereotype": "import"
+    },
+    {
+      "description": "imports globby",
+      "source": "default_container__basic_node",
+      "destination": "globby",
+      "stereotype": "import"
+    },
+    {
+      "description": "sep | relative | resolve | dirname | join | extname",
+      "source": "default_container__basic_node",
+      "destination": "node:path",
+      "stereotype": "import"
+    },
+    {
+      "description": "extractFunctions | extractArrowFunctions",
+      "source": "default_container__basic_node",
+      "destination": "./function-extractor.js",
+      "stereotype": "import"
+    },
+    {
+      "description": "extractTypeAliases | extractInterfaces",
+      "source": "default_container__basic_node",
+      "destination": "./type-extractor.js",
+      "stereotype": "import"
+    },
+    {
+      "description": "imports extractImports",
+      "source": "default_container__basic_node",
+      "destination": "./import-extractor.js",
+      "stereotype": "import"
+    },
+    {
+      "description": "readFileSync | existsSync",
+      "source": "default_container__basic_node",
+      "destination": "node:fs",
+      "stereotype": "import"
+    },
+    {
+      "description": "imports globby",
+      "source": "default_container__basic_python",
+      "destination": "globby",
+      "stereotype": "import"
+    },
+    {
+      "description": "sep | relative | dirname",
+      "source": "default_container__basic_python",
+      "destination": "node:path",
+      "stereotype": "import"
+    },
+    {
+      "description": "imports readFile",
+      "source": "default_container__basic_python",
+      "destination": "node:fs/promises",
+      "stereotype": "import"
+    },
+    {
+      "description": "imports parse",
+      "source": "default_container__basic_python",
+      "destination": "smol-toml",
+      "stereotype": "import"
+    },
+    {
+      "description": "ExtractorInputs | FileExtraction | PythonParserOutput | ExtractedClass | ExtractedMethod | ExtractedProperty | ExtractedFunction | ExtractedType | ParameterInfo | DocInfo | ActorInfo | RelationshipInfo",
+      "source": "default_container__basic_python",
+      "destination": "./types.js",
+      "stereotype": "type-import"
+    },
+    {
+      "description": "imports spawn",
+      "source": "default_container__basic_python",
+      "destination": "child_process",
+      "stereotype": "import"
+    },
+    {
+      "description": "imports * as path",
+      "source": "default_container__basic_python",
+      "destination": "path",
+      "stereotype": "import"
+    },
+    {
+      "description": "imports globby",
+      "source": "default_container__basic_wrangler",
+      "destination": "globby",
+      "stereotype": "import"
+    },
+    {
+      "description": "ExtractorInputs | WranglerConfig",
+      "source": "default_container__basic_wrangler",
+      "destination": "./types.js",
+      "stereotype": "type-import"
+    },
+    {
+      "description": "getEnvironments | getEnvironmentConfig",
+      "source": "default_container__basic_wrangler",
+      "destination": "./wrangler-parser.js",
+      "stereotype": "import"
+    },
+    {
+      "description": "imports readFileSync",
+      "source": "default_container__basic_wrangler",
+      "destination": "node:fs",
+      "stereotype": "import"
+    },
+    {
+      "description": "imports parse",
+      "source": "default_container__basic_wrangler",
+      "destination": "smol-toml",
+      "stereotype": "import"
     }
   ],
   "codeRelationships": [
@@ -6567,6 +7247,30 @@
       "description": "imports resolve",
       "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts",
       "destination": "node:path:resolve",
+      "stereotype": "import"
+    },
+    {
+      "description": "imports dirname",
+      "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts",
+      "destination": "node:path:dirname",
+      "stereotype": "import"
+    },
+    {
+      "description": "imports join",
+      "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts",
+      "destination": "node:path:join",
+      "stereotype": "import"
+    },
+    {
+      "description": "imports extname",
+      "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts",
+      "destination": "node:path:extname",
+      "stereotype": "import"
+    },
+    {
+      "description": "imports existsSync",
+      "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts",
+      "destination": "node:fs:existsSync",
       "stereotype": "import"
     },
     {

@@ -268,6 +268,13 @@ skinparam rectangle<<Application.Application.basic_nodemapImportRelationships>> 
   roundCorner 20
   shadowing false
 }
+skinparam rectangle<<Application.Application.basic_nodemapImportToComponentRelationships>> {
+  BackgroundColor #85bbf0
+  FontColor #000000
+  BorderColor #5d82a8
+  roundCorner 20
+  shadowing false
+}
 skinparam rectangle<<Application.Application.basic_nodemapMethod>> {
   BackgroundColor #85bbf0
   FontColor #000000
@@ -317,6 +324,13 @@ skinparam rectangle<<Application.Application.basic_nodereadPackageInfo>> {
   roundCorner 20
   shadowing false
 }
+skinparam rectangle<<Application.Application.basic_noderesolveImportPath>> {
+  BackgroundColor #85bbf0
+  FontColor #000000
+  BorderColor #5d82a8
+  roundCorner 20
+  shadowing false
+}
 skinparam rectangle<<Application.Application>> {
   BorderColor #2e6295
   FontColor #2e6295
@@ -357,11 +371,13 @@ rectangle "Application\n<size:10>[Container: Application]</size>" <<Application.
   rectangle "==basic_node.extractArrowFunctions\n<size:10>[Component: function]</size>\n\nExtract arrow functions assigned to const/let/var Examples: const handleClick = () => {} export const createUser = async (data) => {}" <<Application.Application.basic_nodeextractArrowFunctions>> as Application.Application.basic_nodeextractArrowFunctions
   rectangle "==basic_node.extractImports\n<size:10>[Component: function]</size>\n\nExtract all import declarations from a source file" <<Application.Application.basic_nodeextractImports>> as Application.Application.basic_nodeextractImports
   rectangle "==basic_node.mapToIR\n<size:10>[Component: function]</size>\n\nMap file extractions to ArchletteIR" <<Application.Application.basic_nodemapToIR>> as Application.Application.basic_nodemapToIR
-  rectangle "==basic_node.deduplicateRelationships\n<size:10>[Component: function]</size>\n\nDeduplicate relationships by source+destination+stereotype combination First occurrence wins - preserves description from first relationship This allows multiple relationships between the same elements with different stereotypes" <<Application.Application.basic_nodededuplicateRelationships>> as Application.Application.basic_nodededuplicateRelationships
+  rectangle "==basic_node.deduplicateRelationships\n<size:10>[Component: function]</size>\n\nDeduplicate relationships by source+destination combination - Excludes self-referential relationships (source === destination) - Merges descriptions and stereotypes with " | " separator when duplicates are found - Extracts imported names from descriptions (removes "imports " prefix) and keeps only unique names - Returns one relationship per unique source+destination pair" <<Application.Application.basic_nodededuplicateRelationships>> as Application.Application.basic_nodededuplicateRelationships
   rectangle "==basic_node.mapFunction\n<size:10>[Component: function]</size>\n\nMap a function to a CodeItem" <<Application.Application.basic_nodemapFunction>> as Application.Application.basic_nodemapFunction
   rectangle "==basic_node.mapClass\n<size:10>[Component: function]</size>\n\nMap a class to a CodeItem" <<Application.Application.basic_nodemapClass>> as Application.Application.basic_nodemapClass
   rectangle "==basic_node.mapMethod\n<size:10>[Component: function]</size>\n\nMap a class method to a CodeItem" <<Application.Application.basic_nodemapMethod>> as Application.Application.basic_nodemapMethod
-  rectangle "==basic_node.mapImportRelationships\n<size:10>[Component: function]</size>\n\nMap imports to relationships" <<Application.Application.basic_nodemapImportRelationships>> as Application.Application.basic_nodemapImportRelationships
+  rectangle "==basic_node.resolveImportPath\n<size:10>[Component: function]</size>\n\nResolve an import path to an absolute file path Handles relative imports (./file, ../file) and resolves to actual file paths Returns undefined for node_modules imports or unresolvable paths" <<Application.Application.basic_noderesolveImportPath>> as Application.Application.basic_noderesolveImportPath
+  rectangle "==basic_node.mapImportToComponentRelationships\n<size:10>[Component: function]</size>\n\nMap imports to component relationships (component-level dependencies)" <<Application.Application.basic_nodemapImportToComponentRelationships>> as Application.Application.basic_nodemapImportToComponentRelationships
+  rectangle "==basic_node.mapImportRelationships\n<size:10>[Component: function]</size>\n\nMap imports to relationships (original code-level format for backward compatibility)" <<Application.Application.basic_nodemapImportRelationships>> as Application.Application.basic_nodemapImportRelationships
   rectangle "==basic_node.generateId\n<size:10>[Component: function]</size>\n\nGenerate a unique ID for a code element Format: filePath:symbolName" <<Application.Application.basic_nodegenerateId>> as Application.Application.basic_nodegenerateId
   rectangle "==basic_node.getDefaultSystem\n<size:10>[Component: function]</size>\n\nGet default system info from package.json if available" <<Application.Application.basic_nodegetDefaultSystem>> as Application.Application.basic_nodegetDefaultSystem
   rectangle "==basic_node.extractTypeAliases\n<size:10>[Component: function]</size>\n\nExtract type aliases from a source file Examples: type UserRole = 'admin' | 'user' | 'guest' export type ApiResponse<T> = { data: T; status: number }" <<Application.Application.basic_nodeextractTypeAliases>> as Application.Application.basic_nodeextractTypeAliases

@@ -38,7 +38,7 @@
 ### Code Elements
 
 <details>
-<summary><strong>43 code element(s)</strong></summary>
+<summary><strong>45 code element(s)</strong></summary>
 
 
 
@@ -1096,7 +1096,7 @@ Map file extractions to ArchletteIR
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts:35</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts:36</code></td>
 </tr>
 </tbody>
 </table>
@@ -1108,9 +1108,11 @@ Map file extractions to ArchletteIR
 ---
 ##### `deduplicateRelationships()`
 
-Deduplicate relationships by source+destination+stereotype combination
-First occurrence wins - preserves description from first relationship
-This allows multiple relationships between the same elements with different stereotypes
+Deduplicate relationships by source+destination combination
+- Excludes self-referential relationships (source === destination)
+- Merges descriptions and stereotypes with " | " separator when duplicates are found
+- Extracts imported names from descriptions (removes "imports " prefix) and keeps only unique names
+- Returns one relationship per unique source+destination pair
 
 <table>
 <tbody>
@@ -1128,7 +1130,7 @@ This allows multiple relationships between the same elements with different ster
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts:396</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts:424</code></td>
 </tr>
 </tbody>
 </table>
@@ -1158,7 +1160,7 @@ Map a function to a CodeItem
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts:410</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts:480</code></td>
 </tr>
 </tbody>
 </table>
@@ -1188,7 +1190,7 @@ Map a class to a CodeItem
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts:438</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts:508</code></td>
 </tr>
 </tbody>
 </table>
@@ -1218,7 +1220,7 @@ Map a class method to a CodeItem
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts:467</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts:537</code></td>
 </tr>
 </tbody>
 </table>
@@ -1228,9 +1230,41 @@ Map a class method to a CodeItem
 - `method`: <code>import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/types").ExtractedMethod</code>- `className`: <code>string</code>- `filePath`: <code>string</code>- `componentId`: <code>string</code>
 
 ---
-##### `mapImportRelationships()`
+##### `resolveImportPath()`
 
-Map imports to relationships
+Resolve an import path to an absolute file path
+Handles relative imports (./file, ../file) and resolves to actual file paths
+Returns undefined for node_modules imports or unresolvable paths
+
+<table>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>function</code></td>
+</tr>
+<tr>
+<td><strong>Visibility</strong></td>
+<td><code>private</code></td>
+</tr>
+<tr>
+<td><strong>Returns</strong></td>
+<td><code>string</code></td>
+</tr>
+<tr>
+<td><strong>Location</strong></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts:573</code></td>
+</tr>
+</tbody>
+</table>
+
+**Parameters:**
+
+- `importSource`: <code>string</code>- `fromFilePath`: <code>string</code>
+
+---
+##### `mapImportToComponentRelationships()`
+
+Map imports to component relationships (component-level dependencies)
 
 <table>
 <tbody>
@@ -1248,7 +1282,37 @@ Map imports to relationships
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts:501</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts:624</code></td>
+</tr>
+</tbody>
+</table>
+
+**Parameters:**
+
+- `imp`: <code>import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/types").ExtractedImport</code>- `filePath`: <code>string</code>- `componentId`: <code>string</code>- `fileToComponentMap`: <code>Map<string, string></code>
+
+---
+##### `mapImportRelationships()`
+
+Map imports to relationships (original code-level format for backward compatibility)
+
+<table>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>function</code></td>
+</tr>
+<tr>
+<td><strong>Visibility</strong></td>
+<td><code>private</code></td>
+</tr>
+<tr>
+<td><strong>Returns</strong></td>
+<td><code>z.infer<any>[]</code></td>
+</tr>
+<tr>
+<td><strong>Location</strong></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts:661</code></td>
 </tr>
 </tbody>
 </table>
@@ -1279,7 +1343,7 @@ Format: filePath:symbolName
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts:524</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts:684</code></td>
 </tr>
 </tbody>
 </table>
@@ -1309,7 +1373,7 @@ Get default system info from package.json if available
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts:534</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts:694</code></td>
 </tr>
 </tbody>
 </table>

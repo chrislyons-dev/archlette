@@ -26,6 +26,7 @@ import type {
   ExtractedMethod,
   ExtractedFunction,
   ExtractedType,
+  ExtractedImport,
 } from './types.js';
 import type { PyProjectInfo } from './file-finder.js';
 
@@ -51,9 +52,18 @@ export function mapToIR(
   const componentsMap = new Map<string, Component>();
   const actorMap = new Map<string, ActorInfo>();
   const relationships: RelationshipInfo[] = [];
+  const componentRelationships: Relationship[] = [];
   const codeItems: CodeItem[] = [];
 
+  // Build a map of file paths to component IDs for import resolution
+  const fileToComponentMap = new Map<string, string>();
+
   for (const extraction of extractions) {
+    // Map file path to component ID
+    if (extraction.component) {
+      fileToComponentMap.set(extraction.filePath, extraction.component.id);
+    }
+
     // Collect components
     if (extraction.component) {
       const existing = componentsMap.get(extraction.component.id);
@@ -84,6 +94,21 @@ export function mapToIR(
           target: rel.target,
           description: rel.description,
         });
+      }
+    }
+
+    // Process imports to create component relationships
+    for (const imp of extraction.imports) {
+      if (extraction.component) {
+        componentRelationships.push(
+          ...mapImportToComponentRelationships(
+            imp,
+            extraction.filePath,
+            extraction.component.id,
+            fileToComponentMap,
+            extractions,
+          ),
+        );
       }
     }
 
@@ -234,11 +259,29 @@ export function mapToIR(
     }
   }
 
+  // Step 5.5: Update component relationships (from imports) with hierarchical IDs
+  for (const rel of componentRelationships) {
+    const newSource = componentIdMap.get(rel.source);
+    if (newSource) {
+      rel.source = newSource;
+    }
+    const newDest = componentIdMap.get(rel.destination);
+    if (newDest) {
+      rel.destination = newDest;
+    }
+  }
+
   // Step 6: Rebuild componentsMap with new hierarchical IDs
   componentsMap.clear();
   for (const component of components) {
     componentsMap.set(component.id, component);
   }
+
+  // Merge @uses relationships and import-based relationships
+  const allComponentRelationships = [
+    ...mapRelationshipsToIR(relationships, componentsMap, actorMap, actorTargets),
+    ...componentRelationships,
+  ];
 
   // Create IR
   const ir: ArchletteIR = {
@@ -254,9 +297,7 @@ export function mapToIR(
     code: codeItems,
     deployments: [],
     containerRelationships: [],
-    componentRelationships: deduplicateRelationships(
-      mapRelationshipsToIR(relationships, componentsMap, actorMap, actorTargets),
-    ),
+    componentRelationships: deduplicateRelationships(allComponentRelationships),
     codeRelationships: [],
     deploymentRelationships: [],
   };
@@ -330,18 +371,148 @@ function mapRelationshipsToIR(
 }
 
 /**
- * Deduplicate relationships by source+destination
+ * Map Python imports to component relationships (component-level dependencies)
+ * Resolves local imports to component IDs when possible
+ */
+function mapImportToComponentRelationships(
+  imp: ExtractedImport,
+  filePath: string,
+  componentId: string,
+  fileToComponentMap: Map<string, string>,
+  extractions: FileExtraction[],
+): Relationship[] {
+  const relationships: Relationship[] = [];
+
+  // Skip standard library and third-party imports - only handle local imports
+  if (imp.category !== 'local') {
+    // For stdlib/third_party, create relationship to external module
+    for (const importedName of imp.importedNames) {
+      relationships.push({
+        source: componentId,
+        destination: imp.source,
+        description: importedName,
+        stereotype: 'import',
+      });
+    }
+    return relationships;
+  }
+
+  // For local imports, try to resolve to a component
+  // Python relative imports: .module (level=1), ..module (level=2), etc.
+  let targetFilePath: string | undefined;
+
+  if (imp.isRelative) {
+    // Resolve relative import path
+    const currentDir = filePath.substring(0, filePath.lastIndexOf('/'));
+    const parts = currentDir.split('/');
+
+    // Go up 'level' directories
+    const level = imp.level || 1;
+    if (parts.length >= level) {
+      const targetDir = parts.slice(0, -level + 1).join('/');
+      const modulePath = imp.source.replace(/\./g, '/');
+      targetFilePath = `${targetDir}/${modulePath}.py`;
+
+      // Also check for __init__.py
+      if (!fileToComponentMap.has(targetFilePath)) {
+        targetFilePath = `${targetDir}/${modulePath}/__init__.py`;
+      }
+    }
+  } else {
+    // Absolute import within the project
+    // Try to find the file by matching the import path
+    const modulePath = imp.source.replace(/\./g, '/');
+
+    // Search through all extractions to find matching file
+    for (const extraction of extractions) {
+      if (extraction.filePath.includes(modulePath)) {
+        targetFilePath = extraction.filePath;
+        break;
+      }
+    }
+  }
+
+  // Normalize path separators
+  if (targetFilePath) {
+    targetFilePath = targetFilePath.replace(/\\/g, '/');
+  }
+
+  // Look up the target component ID
+  const destinationComponentId = targetFilePath
+    ? fileToComponentMap.get(targetFilePath)
+    : undefined;
+
+  // Create relationships for each imported name
+  for (const importedName of imp.importedNames) {
+    relationships.push({
+      source: componentId,
+      destination: destinationComponentId || imp.source,
+      description: importedName,
+      stereotype: 'import',
+    });
+  }
+
+  return relationships;
+}
+
+/**
+ * Deduplicate relationships by source+destination combination
+ * - Excludes self-referential relationships (source === destination)
+ * - Merges descriptions and stereotypes with " | " separator when duplicates are found
+ * - Extracts imported names from descriptions (removes "imports " prefix) and keeps only unique names
+ * - Returns one relationship per unique source+destination pair
  */
 function deduplicateRelationships(relationships: Relationship[]): Relationship[] {
-  const seen = new Set<string>();
-  return relationships.filter((rel) => {
-    const key = `${rel.source}->${rel.destination}`;
-    if (seen.has(key)) {
-      return false;
+  const seen = new Map<string, Relationship>();
+
+  for (const rel of relationships) {
+    // Skip self-referential relationships
+    if (rel.source === rel.destination) {
+      continue;
     }
-    seen.add(key);
-    return true;
-  });
+
+    const key = `${rel.source}:${rel.destination}`;
+
+    if (!seen.has(key)) {
+      // First occurrence - store as-is
+      seen.set(key, { ...rel });
+    } else {
+      // Duplicate found - merge descriptions and stereotypes
+      const existing = seen.get(key)!;
+
+      // Merge descriptions - extract unique imported names
+      if (rel.description && rel.description !== existing.description) {
+        const allDescriptions = [existing.description, rel.description].filter(
+          Boolean,
+        ) as string[];
+        const uniqueNames = new Set<string>();
+
+        for (const desc of allDescriptions) {
+          // Split by " | " to handle already-merged descriptions
+          const parts = desc.split(' | ');
+          for (const part of parts) {
+            // Extract the imported name (remove "imports " prefix if present)
+            const name = part.trim().replace(/^imports\s+/, '');
+            if (name) {
+              uniqueNames.add(name);
+            }
+          }
+        }
+
+        existing.description = Array.from(uniqueNames).join(' | ');
+      }
+
+      // Merge stereotypes
+      if (rel.stereotype && rel.stereotype !== existing.stereotype) {
+        const stereotypes = new Set(
+          [existing.stereotype, rel.stereotype].filter(Boolean),
+        );
+        existing.stereotype = Array.from(stereotypes).join(' | ');
+      }
+    }
+  }
+
+  return Array.from(seen.values());
 }
 
 /**
