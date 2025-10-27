@@ -1873,7 +1873,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts",
-      "lineNumber": 190
+      "lineNumber": 196
     },
     {
       "description": "Prepare class view data for template",
@@ -1900,7 +1900,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts",
-      "lineNumber": 227
+      "lineNumber": 233
     },
     {
       "description": "Generate all actor-related relationships",
@@ -1922,7 +1922,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts",
-      "lineNumber": 242
+      "lineNumber": 248
     },
     {
       "description": "Generate a unique name for a code item to avoid naming collisions",
@@ -1944,7 +1944,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts",
-      "lineNumber": 289
+      "lineNumber": 295
     },
     {
       "description": "Build technology string from relationship metadata",
@@ -1966,7 +1966,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts",
-      "lineNumber": 327
+      "lineNumber": 333
     },
     {
       "description": "Sanitize ID for DSL (remove special characters, convert to valid identifier)",
@@ -1988,7 +1988,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts",
-      "lineNumber": 343
+      "lineNumber": 349
     },
     {
       "description": "Escape special characters in strings for DSL\n\nStructurizr DSL doesn't support \\n escape sequences in strings,\nso we replace newlines with spaces for cleaner output.",
@@ -2010,7 +2010,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts",
-      "lineNumber": 353
+      "lineNumber": 359
     },
     {
       "description": "Render PlantUML files to PNG images",
@@ -2108,7 +2108,37 @@
       "visibility": "public",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/code-extractor.ts",
-      "lineNumber": 39
+      "lineNumber": 41
+    },
+    {
+      "description": "Create a synthetic render function for an Astro component\nEvery Astro component is fundamentally a server-side render function\nthat takes props and returns HTML\n\nFunction is named after the file (e.g., \"index\", \"about\", \"Header\")\nso each Astro file has a unique code-level representation",
+      "id": "default_container__basic_astro__createsyntheticrenderfunction",
+      "componentId": "default_container__basic_astro",
+      "name": "createSyntheticRenderFunction",
+      "type": "function",
+      "documentation": {
+        "summary": "Create a synthetic render function for an Astro component\nEvery Astro component is fundamentally a server-side render function\nthat takes props and returns HTML\n\nFunction is named after the file (e.g., \"index\", \"about\", \"Header\")\nso each Astro file has a unique code-level representation"
+      },
+      "returnType": "import(\"C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/types\").ExtractedFunction",
+      "returnDescription": "Synthetic render function named after the file",
+      "parameters": [
+        {
+          "name": "filePath",
+          "type": "string",
+          "description": "- Original Astro file path",
+          "optional": false
+        },
+        {
+          "name": "interfaces",
+          "type": "import(\"C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/types\").ExtractedInterface[]",
+          "description": "- Extracted interfaces (to find Props interface)",
+          "optional": false
+        }
+      ],
+      "visibility": "public",
+      "isAsync": false,
+      "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/code-extractor.ts",
+      "lineNumber": 117
     },
     {
       "description": "Extract all JSDoc comment blocks from source code\nMatches /** ... *\\/ style comments and parses their tags",
@@ -2426,7 +2456,7 @@
       "visibility": "public",
       "isAsync": true,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/file-parser.ts",
-      "lineNumber": 23
+      "lineNumber": 26
     },
     {
       "description": "Extract frontmatter content from Astro file\nFrontmatter is the TypeScript/JavaScript code between --- markers at the top of the file",
@@ -2448,7 +2478,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/file-parser.ts",
-      "lineNumber": 107
+      "lineNumber": 119
     },
     {
       "description": "Extract import statements from frontmatter",
@@ -2470,7 +2500,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/file-parser.ts",
-      "lineNumber": 115
+      "lineNumber": 127
     },
     {
       "description": "Find slot tags in the template",
@@ -2492,7 +2522,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/file-parser.ts",
-      "lineNumber": 170
+      "lineNumber": 182
     },
     {
       "description": "Find client directive in component usage\nExamples: client:load, client:idle, client:visible, client:media, client:only",
@@ -2514,7 +2544,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/file-parser.ts",
-      "lineNumber": 190
+      "lineNumber": 202
     },
     {
       "description": "Extract component usage from template\nFinds which imported components are used in the template markup",
@@ -2546,7 +2576,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/file-parser.ts",
-      "lineNumber": 199
+      "lineNumber": 211
     },
     {
       "description": "Map file extractions to ArchletteIR\nTransforms Astro component analysis into standardized architecture representation",
@@ -5826,6 +5856,18 @@
       "stereotype": "type-import"
     },
     {
+      "description": "imports ParameterInfo",
+      "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/code-extractor.ts",
+      "destination": "../basic-node/types.js:ParameterInfo",
+      "stereotype": "type-import"
+    },
+    {
+      "description": "imports * as path",
+      "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/code-extractor.ts",
+      "destination": "node:path:* as path",
+      "stereotype": "import"
+    },
+    {
       "description": "imports sanitizeId",
       "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/component-detector.ts",
       "destination": "../../../core/constants.js:sanitizeId",
@@ -5925,6 +5967,12 @@
       "description": "imports extractCodeFromFrontmatter",
       "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/file-parser.ts",
       "destination": "./code-extractor.js:extractCodeFromFrontmatter",
+      "stereotype": "import"
+    },
+    {
+      "description": "imports createSyntheticRenderFunction",
+      "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/file-parser.ts",
+      "destination": "./code-extractor.js:createSyntheticRenderFunction",
       "stereotype": "import"
     },
     {

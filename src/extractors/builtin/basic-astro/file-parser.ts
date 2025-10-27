@@ -12,7 +12,10 @@ import {
   extractFileActors,
   extractFileRelationships,
 } from './component-detector.js';
-import { extractCodeFromFrontmatter } from './code-extractor.js';
+import {
+  extractCodeFromFrontmatter,
+  createSyntheticRenderFunction,
+} from './code-extractor.js';
 import type { FileExtraction, ExtractedComponent } from './types.js';
 
 const log = createLogger({ context: 'AstroFileParser' });
@@ -59,6 +62,12 @@ export async function parseFiles(filePaths: string[]): Promise<FileExtraction[]>
       // Extract TypeScript/JavaScript code from frontmatter
       const codeExtraction = extractCodeFromFrontmatter(frontmatter, filePath);
 
+      // Create synthetic render function (every Astro component is a render function)
+      const syntheticRender = createSyntheticRenderFunction(
+        filePath,
+        codeExtraction.interfaces,
+      );
+
       results.push({
         filePath,
         language: 'astro',
@@ -66,7 +75,7 @@ export async function parseFiles(filePaths: string[]): Promise<FileExtraction[]>
         actors,
         relationships,
         components: componentUsage,
-        functions: codeExtraction.functions,
+        functions: [...codeExtraction.functions, syntheticRender],
         classes: codeExtraction.classes,
         types: codeExtraction.types,
         interfaces: codeExtraction.interfaces,
@@ -80,6 +89,9 @@ export async function parseFiles(filePaths: string[]): Promise<FileExtraction[]>
       const errorMsg = error instanceof Error ? error.message : String(error);
       log.warn(`Failed to parse ${filePath}: ${errorMsg}`);
 
+      // Even on error, create synthetic render function to show component is executable
+      const syntheticRender = createSyntheticRenderFunction(filePath, []);
+
       results.push({
         filePath,
         language: 'astro',
@@ -89,7 +101,7 @@ export async function parseFiles(filePaths: string[]): Promise<FileExtraction[]>
         actors: [],
         relationships: [],
         components: [],
-        functions: [],
+        functions: [syntheticRender],
         classes: [],
         imports: [],
         parseError: errorMsg,

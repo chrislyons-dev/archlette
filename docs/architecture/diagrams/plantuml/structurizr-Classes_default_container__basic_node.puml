@@ -16,301 +16,301 @@ skinparam {
 
 hide stereotype
 
-skinparam rectangle<<Application.Application.default_container__basic_node__basicnodeextractor>> {
+skinparam rectangle<<Application.Application.basic_nodebasicNodeExtractor>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__basic_node__deduplicaterelationships>> {
+skinparam rectangle<<Application.Application.basic_nodededuplicateRelationships>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__basic_node__extractactorsfromjsdoc>> {
+skinparam rectangle<<Application.Application.basic_nodeextractActorsFromJsDoc>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__basic_node__extractarrowfunctions>> {
+skinparam rectangle<<Application.Application.basic_nodeextractArrowFunctions>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__basic_node__extractclass>> {
+skinparam rectangle<<Application.Application.basic_nodeextractClass>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__basic_node__extractclasses>> {
+skinparam rectangle<<Application.Application.basic_nodeextractClasses>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__basic_node__extractcomponentfromjsdoc>> {
+skinparam rectangle<<Application.Application.basic_nodeextractComponentFromJsDoc>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__basic_node__extractcomponentname>> {
+skinparam rectangle<<Application.Application.basic_nodeextractComponentName>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__basic_node__extractdeprecation>> {
+skinparam rectangle<<Application.Application.basic_nodeextractDeprecation>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__basic_node__extractdocumentation>> {
+skinparam rectangle<<Application.Application.basic_nodeextractDocumentation>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__basic_node__extractfileactors>> {
+skinparam rectangle<<Application.Application.basic_nodeextractFileActors>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__basic_node__extractfilecomponent>> {
+skinparam rectangle<<Application.Application.basic_nodeextractFileComponent>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__basic_node__extractfilerelationships>> {
+skinparam rectangle<<Application.Application.basic_nodeextractFileRelationships>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__basic_node__extractfunction>> {
+skinparam rectangle<<Application.Application.basic_nodeextractFunction>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__basic_node__extractfunctionparameter>> {
+skinparam rectangle<<Application.Application.basic_nodeextractFunctionParameter>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__basic_node__extractfunctions>> {
+skinparam rectangle<<Application.Application.basic_nodeextractFunctions>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__basic_node__extractimports>> {
+skinparam rectangle<<Application.Application.basic_nodeextractImports>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__basic_node__extractinterfaces>> {
+skinparam rectangle<<Application.Application.basic_nodeextractInterfaces>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__basic_node__extractmethod>> {
+skinparam rectangle<<Application.Application.basic_nodeextractMethod>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__basic_node__extractmethodparameter>> {
+skinparam rectangle<<Application.Application.basic_nodeextractMethodParameter>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__basic_node__extractparameterdescriptions>> {
+skinparam rectangle<<Application.Application.basic_nodeextractParameterDescriptions>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__basic_node__extractparametername>> {
+skinparam rectangle<<Application.Application.basic_nodeextractParameterName>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__basic_node__extractproperty>> {
+skinparam rectangle<<Application.Application.basic_nodeextractProperty>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__basic_node__extractrelationshipsfromjsdoc>> {
+skinparam rectangle<<Application.Application.basic_nodeextractRelationshipsFromJsDoc>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__basic_node__extractreturndescription>> {
+skinparam rectangle<<Application.Application.basic_nodeextractReturnDescription>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__basic_node__extracttypealiases>> {
+skinparam rectangle<<Application.Application.basic_nodeextractTypeAliases>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__basic_node__findnearestpackage>> {
+skinparam rectangle<<Application.Application.basic_nodefindNearestPackage>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__basic_node__findpackagejsonfiles>> {
+skinparam rectangle<<Application.Application.basic_nodefindPackageJsonFiles>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__basic_node__findsourcefiles>> {
+skinparam rectangle<<Application.Application.basic_nodefindSourceFiles>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__basic_node__generateid>> {
+skinparam rectangle<<Application.Application.basic_nodegenerateId>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__basic_node__getdefaultsystem>> {
+skinparam rectangle<<Application.Application.basic_nodegetDefaultSystem>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__basic_node__getfilejsdocs>> {
+skinparam rectangle<<Application.Application.basic_nodegetFileJsDocs>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__basic_node__infercomponentfrompath>> {
+skinparam rectangle<<Application.Application.basic_nodeinferComponentFromPath>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__basic_node__mapclass>> {
+skinparam rectangle<<Application.Application.basic_nodemapClass>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__basic_node__mapfunction>> {
+skinparam rectangle<<Application.Application.basic_nodemapFunction>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__basic_node__mapimportrelationships>> {
+skinparam rectangle<<Application.Application.basic_nodemapImportRelationships>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__basic_node__mapmethod>> {
+skinparam rectangle<<Application.Application.basic_nodemapMethod>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__basic_node__maptoir>> {
+skinparam rectangle<<Application.Application.basic_nodemapToIR>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__basic_node__mapvisibility>> {
+skinparam rectangle<<Application.Application.basic_nodemapVisibility>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__basic_node__parseactortag>> {
+skinparam rectangle<<Application.Application.basic_nodeparseActorTag>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__basic_node__parsefiles>> {
+skinparam rectangle<<Application.Application.basic_nodeparseFiles>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__basic_node__parseusestag>> {
+skinparam rectangle<<Application.Application.basic_nodeparseUsesTag>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__basic_node__readpackageinfo>> {
+skinparam rectangle<<Application.Application.basic_nodereadPackageInfo>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
@@ -324,49 +324,49 @@ skinparam rectangle<<Application.Application>> {
 }
 
 rectangle "Application\n<size:10>[Container: Application]</size>" <<Application.Application>> {
-  rectangle "==default_container__basic_node__extractclasses\n<size:10>[Component: function]</size>\n\nExtract all class declarations from a source file" <<Application.Application.default_container__basic_node__extractclasses>> as Application.Application.default_container__basic_node__extractclasses
-  rectangle "==default_container__basic_node__extractclass\n<size:10>[Component: function]</size>\n\nExtract information from a single class declaration" <<Application.Application.default_container__basic_node__extractclass>> as Application.Application.default_container__basic_node__extractclass
-  rectangle "==default_container__basic_node__extractmethod\n<size:10>[Component: function]</size>\n\nExtract method information from a class" <<Application.Application.default_container__basic_node__extractmethod>> as Application.Application.default_container__basic_node__extractmethod
-  rectangle "==default_container__basic_node__extractproperty\n<size:10>[Component: function]</size>\n\nExtract property information from a class" <<Application.Application.default_container__basic_node__extractproperty>> as Application.Application.default_container__basic_node__extractproperty
-  rectangle "==default_container__basic_node__extractmethodparameter\n<size:10>[Component: function]</size>\n\nExtract parameter information" <<Application.Application.default_container__basic_node__extractmethodparameter>> as Application.Application.default_container__basic_node__extractmethodparameter
-  rectangle "==default_container__basic_node__mapvisibility\n<size:10>[Component: function]</size>\n\nMap ts-morph Scope to our visibility string" <<Application.Application.default_container__basic_node__mapvisibility>> as Application.Application.default_container__basic_node__mapvisibility
-  rectangle "==default_container__basic_node__getfilejsdocs\n<size:10>[Component: function]</size>\n\nGet JSDoc comments from a source file Checks both the first statement and module-level JSDoc" <<Application.Application.default_container__basic_node__getfilejsdocs>> as Application.Application.default_container__basic_node__getfilejsdocs
-  rectangle "==default_container__basic_node__extractfilecomponent\n<size:10>[Component: function]</size>\n\nExtract component information from file-level JSDoc Checks the first JSDoc comment in the file for" <<Application.Application.default_container__basic_node__extractfilecomponent>> as Application.Application.default_container__basic_node__extractfilecomponent
-  rectangle "==default_container__basic_node__extractfileactors\n<size:10>[Component: function]</size>\n\nExtract actors from file-level JSDoc Looks for" <<Application.Application.default_container__basic_node__extractfileactors>> as Application.Application.default_container__basic_node__extractfileactors
-  rectangle "==default_container__basic_node__extractfilerelationships\n<size:10>[Component: function]</size>\n\nExtract relationships from file-level JSDoc Looks for" <<Application.Application.default_container__basic_node__extractfilerelationships>> as Application.Application.default_container__basic_node__extractfilerelationships
-  rectangle "==default_container__basic_node__extractcomponentfromjsdoc\n<size:10>[Component: function]</size>\n\nExtract component info from a JSDoc node" <<Application.Application.default_container__basic_node__extractcomponentfromjsdoc>> as Application.Application.default_container__basic_node__extractcomponentfromjsdoc
-  rectangle "==default_container__basic_node__extractactorsfromjsdoc\n<size:10>[Component: function]</size>\n\nExtract actors from a JSDoc node Parses" <<Application.Application.default_container__basic_node__extractactorsfromjsdoc>> as Application.Application.default_container__basic_node__extractactorsfromjsdoc
-  rectangle "==default_container__basic_node__parseactortag\n<size:10>[Component: function]</size>\n\nParse an" <<Application.Application.default_container__basic_node__parseactortag>> as Application.Application.default_container__basic_node__parseactortag
-  rectangle "==default_container__basic_node__extractrelationshipsfromjsdoc\n<size:10>[Component: function]</size>\n\nExtract relationships from a JSDoc node Parses" <<Application.Application.default_container__basic_node__extractrelationshipsfromjsdoc>> as Application.Application.default_container__basic_node__extractrelationshipsfromjsdoc
-  rectangle "==default_container__basic_node__parseusestag\n<size:10>[Component: function]</size>\n\nParse a" <<Application.Application.default_container__basic_node__parseusestag>> as Application.Application.default_container__basic_node__parseusestag
-  rectangle "==default_container__basic_node__extractcomponentname\n<size:10>[Component: function]</size>\n\nExtract component name from a JSDoc tag Handles formats like: -" <<Application.Application.default_container__basic_node__extractcomponentname>> as Application.Application.default_container__basic_node__extractcomponentname
-  rectangle "==default_container__basic_node__infercomponentfrompath\n<size:10>[Component: function]</size>\n\nInfer component name from file path - Files in subdirectories use the immediate parent folder name - Files in root directory use a special marker that will be replaced with container name Examples: - /path/to/project/src/utils/helper.ts -> 'utils' - /path/to/project/src/index.ts -> ROOT_COMPONENT_MARKER - /path/to/project/services/api/client.ts -> 'api'" <<Application.Application.default_container__basic_node__infercomponentfrompath>> as Application.Application.default_container__basic_node__infercomponentfrompath
-  rectangle "==default_container__basic_node__extractdocumentation\n<size:10>[Component: function]</size>\n\nExtract documentation information from JSDoc" <<Application.Application.default_container__basic_node__extractdocumentation>> as Application.Application.default_container__basic_node__extractdocumentation
-  rectangle "==default_container__basic_node__extractdeprecation\n<size:10>[Component: function]</size>\n\nExtract deprecation information from JSDoc" <<Application.Application.default_container__basic_node__extractdeprecation>> as Application.Application.default_container__basic_node__extractdeprecation
-  rectangle "==default_container__basic_node__extractparameterdescriptions\n<size:10>[Component: function]</size>\n\nExtract parameter descriptions from JSDoc" <<Application.Application.default_container__basic_node__extractparameterdescriptions>> as Application.Application.default_container__basic_node__extractparameterdescriptions
-  rectangle "==default_container__basic_node__extractreturndescription\n<size:10>[Component: function]</size>\n\nExtract return description from JSDoc" <<Application.Application.default_container__basic_node__extractreturndescription>> as Application.Application.default_container__basic_node__extractreturndescription
-  rectangle "==default_container__basic_node__extractparametername\n<size:10>[Component: function]</size>\n\nExtract parameter name from" <<Application.Application.default_container__basic_node__extractparametername>> as Application.Application.default_container__basic_node__extractparametername
-  rectangle "==default_container__basic_node__findsourcefiles\n<size:10>[Component: function]</size>\n\nFind source files matching include/exclude patterns" <<Application.Application.default_container__basic_node__findsourcefiles>> as Application.Application.default_container__basic_node__findsourcefiles
-  rectangle "==default_container__basic_node__findpackagejsonfiles\n<size:10>[Component: function]</size>\n\nFind package.json files within the search paths" <<Application.Application.default_container__basic_node__findpackagejsonfiles>> as Application.Application.default_container__basic_node__findpackagejsonfiles
-  rectangle "==default_container__basic_node__readpackageinfo\n<size:10>[Component: function]</size>\n\nRead and parse package.json file" <<Application.Application.default_container__basic_node__readpackageinfo>> as Application.Application.default_container__basic_node__readpackageinfo
-  rectangle "==default_container__basic_node__findnearestpackage\n<size:10>[Component: function]</size>\n\nFind the nearest parent package.json for a given file" <<Application.Application.default_container__basic_node__findnearestpackage>> as Application.Application.default_container__basic_node__findnearestpackage
-  rectangle "==default_container__basic_node__parsefiles\n<size:10>[Component: function]</size>\n\nParse and extract information from source files" <<Application.Application.default_container__basic_node__parsefiles>> as Application.Application.default_container__basic_node__parsefiles
-  rectangle "==default_container__basic_node__extractfunctions\n<size:10>[Component: function]</size>\n\nExtract all function declarations from a source file" <<Application.Application.default_container__basic_node__extractfunctions>> as Application.Application.default_container__basic_node__extractfunctions
-  rectangle "==default_container__basic_node__extractfunction\n<size:10>[Component: function]</size>\n\nExtract information from a single function declaration" <<Application.Application.default_container__basic_node__extractfunction>> as Application.Application.default_container__basic_node__extractfunction
-  rectangle "==default_container__basic_node__extractfunctionparameter\n<size:10>[Component: function]</size>\n\nExtract parameter information" <<Application.Application.default_container__basic_node__extractfunctionparameter>> as Application.Application.default_container__basic_node__extractfunctionparameter
-  rectangle "==default_container__basic_node__extractarrowfunctions\n<size:10>[Component: function]</size>\n\nExtract arrow functions assigned to const/let/var Examples: const handleClick = () => {} export const createUser = async (data) => {}" <<Application.Application.default_container__basic_node__extractarrowfunctions>> as Application.Application.default_container__basic_node__extractarrowfunctions
-  rectangle "==default_container__basic_node__extractimports\n<size:10>[Component: function]</size>\n\nExtract all import declarations from a source file" <<Application.Application.default_container__basic_node__extractimports>> as Application.Application.default_container__basic_node__extractimports
-  rectangle "==default_container__basic_node__maptoir\n<size:10>[Component: function]</size>\n\nMap file extractions to ArchletteIR" <<Application.Application.default_container__basic_node__maptoir>> as Application.Application.default_container__basic_node__maptoir
-  rectangle "==default_container__basic_node__deduplicaterelationships\n<size:10>[Component: function]</size>\n\nDeduplicate relationships by source+destination+stereotype combination First occurrence wins - preserves description from first relationship This allows multiple relationships between the same elements with different stereotypes" <<Application.Application.default_container__basic_node__deduplicaterelationships>> as Application.Application.default_container__basic_node__deduplicaterelationships
-  rectangle "==default_container__basic_node__mapfunction\n<size:10>[Component: function]</size>\n\nMap a function to a CodeItem" <<Application.Application.default_container__basic_node__mapfunction>> as Application.Application.default_container__basic_node__mapfunction
-  rectangle "==default_container__basic_node__mapclass\n<size:10>[Component: function]</size>\n\nMap a class to a CodeItem" <<Application.Application.default_container__basic_node__mapclass>> as Application.Application.default_container__basic_node__mapclass
-  rectangle "==default_container__basic_node__mapmethod\n<size:10>[Component: function]</size>\n\nMap a class method to a CodeItem" <<Application.Application.default_container__basic_node__mapmethod>> as Application.Application.default_container__basic_node__mapmethod
-  rectangle "==default_container__basic_node__mapimportrelationships\n<size:10>[Component: function]</size>\n\nMap imports to relationships" <<Application.Application.default_container__basic_node__mapimportrelationships>> as Application.Application.default_container__basic_node__mapimportrelationships
-  rectangle "==default_container__basic_node__generateid\n<size:10>[Component: function]</size>\n\nGenerate a unique ID for a code element Format: filePath:symbolName" <<Application.Application.default_container__basic_node__generateid>> as Application.Application.default_container__basic_node__generateid
-  rectangle "==default_container__basic_node__getdefaultsystem\n<size:10>[Component: function]</size>\n\nGet default system info from package.json if available" <<Application.Application.default_container__basic_node__getdefaultsystem>> as Application.Application.default_container__basic_node__getdefaultsystem
-  rectangle "==default_container__basic_node__extracttypealiases\n<size:10>[Component: function]</size>\n\nExtract type aliases from a source file Examples: type UserRole = 'admin' | 'user' | 'guest' export type ApiResponse<T> = { data: T; status: number }" <<Application.Application.default_container__basic_node__extracttypealiases>> as Application.Application.default_container__basic_node__extracttypealiases
-  rectangle "==default_container__basic_node__extractinterfaces\n<size:10>[Component: function]</size>\n\nExtract interfaces from a source file Examples: interface User { id: string; name: string } export interface ApiClient { get<T>(url: string): Promise<T> }" <<Application.Application.default_container__basic_node__extractinterfaces>> as Application.Application.default_container__basic_node__extractinterfaces
-  rectangle "==default_container__basic_node__basicnodeextractor\n<size:10>[Component: function]</size>\n\nExtract architecture information from a Node.js/TypeScript codebase" <<Application.Application.default_container__basic_node__basicnodeextractor>> as Application.Application.default_container__basic_node__basicnodeextractor
+  rectangle "==basic_node.extractClasses\n<size:10>[Component: function]</size>\n\nExtract all class declarations from a source file" <<Application.Application.basic_nodeextractClasses>> as Application.Application.basic_nodeextractClasses
+  rectangle "==basic_node.extractClass\n<size:10>[Component: function]</size>\n\nExtract information from a single class declaration" <<Application.Application.basic_nodeextractClass>> as Application.Application.basic_nodeextractClass
+  rectangle "==basic_node.extractMethod\n<size:10>[Component: function]</size>\n\nExtract method information from a class" <<Application.Application.basic_nodeextractMethod>> as Application.Application.basic_nodeextractMethod
+  rectangle "==basic_node.extractProperty\n<size:10>[Component: function]</size>\n\nExtract property information from a class" <<Application.Application.basic_nodeextractProperty>> as Application.Application.basic_nodeextractProperty
+  rectangle "==basic_node.extractMethodParameter\n<size:10>[Component: function]</size>\n\nExtract parameter information" <<Application.Application.basic_nodeextractMethodParameter>> as Application.Application.basic_nodeextractMethodParameter
+  rectangle "==basic_node.mapVisibility\n<size:10>[Component: function]</size>\n\nMap ts-morph Scope to our visibility string" <<Application.Application.basic_nodemapVisibility>> as Application.Application.basic_nodemapVisibility
+  rectangle "==basic_node.getFileJsDocs\n<size:10>[Component: function]</size>\n\nGet JSDoc comments from a source file Checks both the first statement and module-level JSDoc" <<Application.Application.basic_nodegetFileJsDocs>> as Application.Application.basic_nodegetFileJsDocs
+  rectangle "==basic_node.extractFileComponent\n<size:10>[Component: function]</size>\n\nExtract component information from file-level JSDoc Checks the first JSDoc comment in the file for" <<Application.Application.basic_nodeextractFileComponent>> as Application.Application.basic_nodeextractFileComponent
+  rectangle "==basic_node.extractFileActors\n<size:10>[Component: function]</size>\n\nExtract actors from file-level JSDoc Looks for" <<Application.Application.basic_nodeextractFileActors>> as Application.Application.basic_nodeextractFileActors
+  rectangle "==basic_node.extractFileRelationships\n<size:10>[Component: function]</size>\n\nExtract relationships from file-level JSDoc Looks for" <<Application.Application.basic_nodeextractFileRelationships>> as Application.Application.basic_nodeextractFileRelationships
+  rectangle "==basic_node.extractComponentFromJsDoc\n<size:10>[Component: function]</size>\n\nExtract component info from a JSDoc node" <<Application.Application.basic_nodeextractComponentFromJsDoc>> as Application.Application.basic_nodeextractComponentFromJsDoc
+  rectangle "==basic_node.extractActorsFromJsDoc\n<size:10>[Component: function]</size>\n\nExtract actors from a JSDoc node Parses" <<Application.Application.basic_nodeextractActorsFromJsDoc>> as Application.Application.basic_nodeextractActorsFromJsDoc
+  rectangle "==basic_node.parseActorTag\n<size:10>[Component: function]</size>\n\nParse an" <<Application.Application.basic_nodeparseActorTag>> as Application.Application.basic_nodeparseActorTag
+  rectangle "==basic_node.extractRelationshipsFromJsDoc\n<size:10>[Component: function]</size>\n\nExtract relationships from a JSDoc node Parses" <<Application.Application.basic_nodeextractRelationshipsFromJsDoc>> as Application.Application.basic_nodeextractRelationshipsFromJsDoc
+  rectangle "==basic_node.parseUsesTag\n<size:10>[Component: function]</size>\n\nParse a" <<Application.Application.basic_nodeparseUsesTag>> as Application.Application.basic_nodeparseUsesTag
+  rectangle "==basic_node.extractComponentName\n<size:10>[Component: function]</size>\n\nExtract component name from a JSDoc tag Handles formats like: -" <<Application.Application.basic_nodeextractComponentName>> as Application.Application.basic_nodeextractComponentName
+  rectangle "==basic_node.inferComponentFromPath\n<size:10>[Component: function]</size>\n\nInfer component name from file path - Files in subdirectories use the immediate parent folder name - Files in root directory use a special marker that will be replaced with container name Examples: - /path/to/project/src/utils/helper.ts -> 'utils' - /path/to/project/src/index.ts -> ROOT_COMPONENT_MARKER - /path/to/project/services/api/client.ts -> 'api'" <<Application.Application.basic_nodeinferComponentFromPath>> as Application.Application.basic_nodeinferComponentFromPath
+  rectangle "==basic_node.extractDocumentation\n<size:10>[Component: function]</size>\n\nExtract documentation information from JSDoc" <<Application.Application.basic_nodeextractDocumentation>> as Application.Application.basic_nodeextractDocumentation
+  rectangle "==basic_node.extractDeprecation\n<size:10>[Component: function]</size>\n\nExtract deprecation information from JSDoc" <<Application.Application.basic_nodeextractDeprecation>> as Application.Application.basic_nodeextractDeprecation
+  rectangle "==basic_node.extractParameterDescriptions\n<size:10>[Component: function]</size>\n\nExtract parameter descriptions from JSDoc" <<Application.Application.basic_nodeextractParameterDescriptions>> as Application.Application.basic_nodeextractParameterDescriptions
+  rectangle "==basic_node.extractReturnDescription\n<size:10>[Component: function]</size>\n\nExtract return description from JSDoc" <<Application.Application.basic_nodeextractReturnDescription>> as Application.Application.basic_nodeextractReturnDescription
+  rectangle "==basic_node.extractParameterName\n<size:10>[Component: function]</size>\n\nExtract parameter name from" <<Application.Application.basic_nodeextractParameterName>> as Application.Application.basic_nodeextractParameterName
+  rectangle "==basic_node.findSourceFiles\n<size:10>[Component: function]</size>\n\nFind source files matching include/exclude patterns" <<Application.Application.basic_nodefindSourceFiles>> as Application.Application.basic_nodefindSourceFiles
+  rectangle "==basic_node.findPackageJsonFiles\n<size:10>[Component: function]</size>\n\nFind package.json files within the search paths" <<Application.Application.basic_nodefindPackageJsonFiles>> as Application.Application.basic_nodefindPackageJsonFiles
+  rectangle "==basic_node.readPackageInfo\n<size:10>[Component: function]</size>\n\nRead and parse package.json file" <<Application.Application.basic_nodereadPackageInfo>> as Application.Application.basic_nodereadPackageInfo
+  rectangle "==basic_node.findNearestPackage\n<size:10>[Component: function]</size>\n\nFind the nearest parent package.json for a given file" <<Application.Application.basic_nodefindNearestPackage>> as Application.Application.basic_nodefindNearestPackage
+  rectangle "==basic_node.parseFiles\n<size:10>[Component: function]</size>\n\nParse and extract information from source files" <<Application.Application.basic_nodeparseFiles>> as Application.Application.basic_nodeparseFiles
+  rectangle "==basic_node.extractFunctions\n<size:10>[Component: function]</size>\n\nExtract all function declarations from a source file" <<Application.Application.basic_nodeextractFunctions>> as Application.Application.basic_nodeextractFunctions
+  rectangle "==basic_node.extractFunction\n<size:10>[Component: function]</size>\n\nExtract information from a single function declaration" <<Application.Application.basic_nodeextractFunction>> as Application.Application.basic_nodeextractFunction
+  rectangle "==basic_node.extractFunctionParameter\n<size:10>[Component: function]</size>\n\nExtract parameter information" <<Application.Application.basic_nodeextractFunctionParameter>> as Application.Application.basic_nodeextractFunctionParameter
+  rectangle "==basic_node.extractArrowFunctions\n<size:10>[Component: function]</size>\n\nExtract arrow functions assigned to const/let/var Examples: const handleClick = () => {} export const createUser = async (data) => {}" <<Application.Application.basic_nodeextractArrowFunctions>> as Application.Application.basic_nodeextractArrowFunctions
+  rectangle "==basic_node.extractImports\n<size:10>[Component: function]</size>\n\nExtract all import declarations from a source file" <<Application.Application.basic_nodeextractImports>> as Application.Application.basic_nodeextractImports
+  rectangle "==basic_node.mapToIR\n<size:10>[Component: function]</size>\n\nMap file extractions to ArchletteIR" <<Application.Application.basic_nodemapToIR>> as Application.Application.basic_nodemapToIR
+  rectangle "==basic_node.deduplicateRelationships\n<size:10>[Component: function]</size>\n\nDeduplicate relationships by source+destination+stereotype combination First occurrence wins - preserves description from first relationship This allows multiple relationships between the same elements with different stereotypes" <<Application.Application.basic_nodededuplicateRelationships>> as Application.Application.basic_nodededuplicateRelationships
+  rectangle "==basic_node.mapFunction\n<size:10>[Component: function]</size>\n\nMap a function to a CodeItem" <<Application.Application.basic_nodemapFunction>> as Application.Application.basic_nodemapFunction
+  rectangle "==basic_node.mapClass\n<size:10>[Component: function]</size>\n\nMap a class to a CodeItem" <<Application.Application.basic_nodemapClass>> as Application.Application.basic_nodemapClass
+  rectangle "==basic_node.mapMethod\n<size:10>[Component: function]</size>\n\nMap a class method to a CodeItem" <<Application.Application.basic_nodemapMethod>> as Application.Application.basic_nodemapMethod
+  rectangle "==basic_node.mapImportRelationships\n<size:10>[Component: function]</size>\n\nMap imports to relationships" <<Application.Application.basic_nodemapImportRelationships>> as Application.Application.basic_nodemapImportRelationships
+  rectangle "==basic_node.generateId\n<size:10>[Component: function]</size>\n\nGenerate a unique ID for a code element Format: filePath:symbolName" <<Application.Application.basic_nodegenerateId>> as Application.Application.basic_nodegenerateId
+  rectangle "==basic_node.getDefaultSystem\n<size:10>[Component: function]</size>\n\nGet default system info from package.json if available" <<Application.Application.basic_nodegetDefaultSystem>> as Application.Application.basic_nodegetDefaultSystem
+  rectangle "==basic_node.extractTypeAliases\n<size:10>[Component: function]</size>\n\nExtract type aliases from a source file Examples: type UserRole = 'admin' | 'user' | 'guest' export type ApiResponse<T> = { data: T; status: number }" <<Application.Application.basic_nodeextractTypeAliases>> as Application.Application.basic_nodeextractTypeAliases
+  rectangle "==basic_node.extractInterfaces\n<size:10>[Component: function]</size>\n\nExtract interfaces from a source file Examples: interface User { id: string; name: string } export interface ApiClient { get<T>(url: string): Promise<T> }" <<Application.Application.basic_nodeextractInterfaces>> as Application.Application.basic_nodeextractInterfaces
+  rectangle "==basic_node.basicNodeExtractor\n<size:10>[Component: function]</size>\n\nExtract architecture information from a Node.js/TypeScript codebase" <<Application.Application.basic_nodebasicNodeExtractor>> as Application.Application.basic_nodebasicNodeExtractor
 }
 
 @enduml

@@ -16,196 +16,196 @@ skinparam {
 
 hide stereotype
 
-skinparam rectangle<<Application.Application.default_container__basic_python__basicpython>> {
+skinparam rectangle<<Application.Application.basicpythonbasicPython>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__basic_python__createemptyir>> {
+skinparam rectangle<<Application.Application.basicpythoncreateEmptyIR>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__basic_python__deduplicaterelationships>> {
+skinparam rectangle<<Application.Application.basicpythondeduplicateRelationships>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__basic_python__extractdeprecation>> {
+skinparam rectangle<<Application.Application.basicpythonextractDeprecation>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__basic_python__extractreturndescription>> {
+skinparam rectangle<<Application.Application.basicpythonextractReturnDescription>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__basic_python__findnearestpyproject>> {
+skinparam rectangle<<Application.Application.basicpythonfindNearestPyProject>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__basic_python__findpyprojectfiles>> {
+skinparam rectangle<<Application.Application.basicpythonfindPyProjectFiles>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__basic_python__findsourcefiles>> {
+skinparam rectangle<<Application.Application.basicpythonfindSourceFiles>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__basic_python__getvisibility>> {
+skinparam rectangle<<Application.Application.basicpythongetVisibility>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__basic_python__mapactortoir>> {
+skinparam rectangle<<Application.Application.basicpythonmapActorToIR>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__basic_python__mapclass>> {
+skinparam rectangle<<Application.Application.basicpythonmapClass>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__basic_python__mapclasstocodeitem>> {
+skinparam rectangle<<Application.Application.basicpythonmapClassToCodeItem>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__basic_python__mapfunction>> {
+skinparam rectangle<<Application.Application.basicpythonmapFunction>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__basic_python__mapfunctiontocodeitem>> {
+skinparam rectangle<<Application.Application.basicpythonmapFunctionToCodeItem>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__basic_python__mapmethod>> {
+skinparam rectangle<<Application.Application.basicpythonmapMethod>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__basic_python__mapmethodtocodeitem>> {
+skinparam rectangle<<Application.Application.basicpythonmapMethodToCodeItem>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__basic_python__mapparameter>> {
+skinparam rectangle<<Application.Application.basicpythonmapParameter>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__basic_python__mapproperty>> {
+skinparam rectangle<<Application.Application.basicpythonmapProperty>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__basic_python__maprelationshipstoir>> {
+skinparam rectangle<<Application.Application.basicpythonmapRelationshipsToIR>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__basic_python__maptofileextraction>> {
+skinparam rectangle<<Application.Application.basicpythonmapToFileExtraction>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__basic_python__maptoir>> {
+skinparam rectangle<<Application.Application.basicpythonmapToIR>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__basic_python__maptype>> {
+skinparam rectangle<<Application.Application.basicpythonmapType>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__basic_python__maptypetocodeitem>> {
+skinparam rectangle<<Application.Application.basicpythonmapTypeToCodeItem>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__basic_python__parsedocstring>> {
+skinparam rectangle<<Application.Application.basicpythonparseDocstring>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__basic_python__parsefiles>> {
+skinparam rectangle<<Application.Application.basicpythonparseFiles>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__basic_python__parsepyprojecttoml>> {
+skinparam rectangle<<Application.Application.basicpythonparsePyProjectToml>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__basic_python__readpyprojectinfo>> {
+skinparam rectangle<<Application.Application.basicpythonreadPyProjectInfo>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__basic_python__runpythonparser>> {
+skinparam rectangle<<Application.Application.basicpythonrunPythonParser>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
@@ -219,34 +219,34 @@ skinparam rectangle<<Application.Application>> {
 }
 
 rectangle "Application\n<size:10>[Container: Application]</size>" <<Application.Application>> {
-  rectangle "==default_container__basic_python__findsourcefiles\n<size:10>[Component: function]</size>\n\nFind source files matching include/exclude patterns" <<Application.Application.default_container__basic_python__findsourcefiles>> as Application.Application.default_container__basic_python__findsourcefiles
-  rectangle "==default_container__basic_python__findpyprojectfiles\n<size:10>[Component: function]</size>\n\nFind pyproject.toml files within the search paths" <<Application.Application.default_container__basic_python__findpyprojectfiles>> as Application.Application.default_container__basic_python__findpyprojectfiles
-  rectangle "==default_container__basic_python__readpyprojectinfo\n<size:10>[Component: function]</size>\n\nRead and parse pyproject.toml file" <<Application.Application.default_container__basic_python__readpyprojectinfo>> as Application.Application.default_container__basic_python__readpyprojectinfo
-  rectangle "==default_container__basic_python__parsepyprojecttoml\n<size:10>[Component: function]</size>\n\nParse pyproject.toml using smol-toml library Handles full TOML spec including multiline strings, arrays, and nested tables" <<Application.Application.default_container__basic_python__parsepyprojecttoml>> as Application.Application.default_container__basic_python__parsepyprojecttoml
-  rectangle "==default_container__basic_python__findnearestpyproject\n<size:10>[Component: function]</size>\n\nFind the nearest parent pyproject.toml for a given file" <<Application.Application.default_container__basic_python__findnearestpyproject>> as Application.Application.default_container__basic_python__findnearestpyproject
-  rectangle "==default_container__basic_python__parsefiles\n<size:10>[Component: function]</size>\n\nParse Python files using Python AST parser script" <<Application.Application.default_container__basic_python__parsefiles>> as Application.Application.default_container__basic_python__parsefiles
-  rectangle "==default_container__basic_python__runpythonparser\n<size:10>[Component: function]</size>\n\nRun Python parser script and return JSON output" <<Application.Application.default_container__basic_python__runpythonparser>> as Application.Application.default_container__basic_python__runpythonparser
-  rectangle "==default_container__basic_python__maptofileextraction\n<size:10>[Component: function]</size>\n\nMap Python parser output to FileExtraction format" <<Application.Application.default_container__basic_python__maptofileextraction>> as Application.Application.default_container__basic_python__maptofileextraction
-  rectangle "==default_container__basic_python__mapclass\n<size:10>[Component: function]</size>\n\nMap Python class to ExtractedClass" <<Application.Application.default_container__basic_python__mapclass>> as Application.Application.default_container__basic_python__mapclass
-  rectangle "==default_container__basic_python__mapmethod\n<size:10>[Component: function]</size>\n\nMap Python method to ExtractedMethod" <<Application.Application.default_container__basic_python__mapmethod>> as Application.Application.default_container__basic_python__mapmethod
-  rectangle "==default_container__basic_python__mapproperty\n<size:10>[Component: function]</size>\n\nMap Python property to ExtractedProperty" <<Application.Application.default_container__basic_python__mapproperty>> as Application.Application.default_container__basic_python__mapproperty
-  rectangle "==default_container__basic_python__mapfunction\n<size:10>[Component: function]</size>\n\nMap Python function to ExtractedFunction" <<Application.Application.default_container__basic_python__mapfunction>> as Application.Application.default_container__basic_python__mapfunction
-  rectangle "==default_container__basic_python__maptype\n<size:10>[Component: function]</size>\n\nMap Python type definition to ExtractedType" <<Application.Application.default_container__basic_python__maptype>> as Application.Application.default_container__basic_python__maptype
-  rectangle "==default_container__basic_python__mapparameter\n<size:10>[Component: function]</size>\n\nMap Python parameter to ParameterInfo" <<Application.Application.default_container__basic_python__mapparameter>> as Application.Application.default_container__basic_python__mapparameter
-  rectangle "==default_container__basic_python__parsedocstring\n<size:10>[Component: function]</size>\n\nParse Python docstring into DocInfo Enhanced in Phase 2 to use parsed Google/NumPy/Sphinx docstrings" <<Application.Application.default_container__basic_python__parsedocstring>> as Application.Application.default_container__basic_python__parsedocstring
-  rectangle "==default_container__basic_python__extractdeprecation\n<size:10>[Component: function]</size>\n\nExtract deprecation info from docstring" <<Application.Application.default_container__basic_python__extractdeprecation>> as Application.Application.default_container__basic_python__extractdeprecation
-  rectangle "==default_container__basic_python__extractreturndescription\n<size:10>[Component: function]</size>\n\nExtract return description from docstring" <<Application.Application.default_container__basic_python__extractreturndescription>> as Application.Application.default_container__basic_python__extractreturndescription
-  rectangle "==default_container__basic_python__getvisibility\n<size:10>[Component: function]</size>\n\nDetermine visibility from Python name convention - __name: private - _name: protected - name: public" <<Application.Application.default_container__basic_python__getvisibility>> as Application.Application.default_container__basic_python__getvisibility
-  rectangle "==default_container__basic_python__maptoir\n<size:10>[Component: function]</size>\n\nMap file extractions to ArchletteIR" <<Application.Application.default_container__basic_python__maptoir>> as Application.Application.default_container__basic_python__maptoir
-  rectangle "==default_container__basic_python__mapactortoir\n<size:10>[Component: function]</size>\n\nMap ActorInfo to Actor" <<Application.Application.default_container__basic_python__mapactortoir>> as Application.Application.default_container__basic_python__mapactortoir
-  rectangle "==default_container__basic_python__maprelationshipstoir\n<size:10>[Component: function]</size>\n\nMap relationships to Relationship[] Creates bidirectional actor relationships" <<Application.Application.default_container__basic_python__maprelationshipstoir>> as Application.Application.default_container__basic_python__maprelationshipstoir
-  rectangle "==default_container__basic_python__deduplicaterelationships\n<size:10>[Component: function]</size>\n\nDeduplicate relationships by source+destination" <<Application.Application.default_container__basic_python__deduplicaterelationships>> as Application.Application.default_container__basic_python__deduplicaterelationships
-  rectangle "==default_container__basic_python__mapclasstocodeitem\n<size:10>[Component: function]</size>\n\nMap ExtractedClass to CodeItem" <<Application.Application.default_container__basic_python__mapclasstocodeitem>> as Application.Application.default_container__basic_python__mapclasstocodeitem
-  rectangle "==default_container__basic_python__mapmethodtocodeitem\n<size:10>[Component: function]</size>\n\nMap ExtractedMethod to CodeItem" <<Application.Application.default_container__basic_python__mapmethodtocodeitem>> as Application.Application.default_container__basic_python__mapmethodtocodeitem
-  rectangle "==default_container__basic_python__mapfunctiontocodeitem\n<size:10>[Component: function]</size>\n\nMap ExtractedFunction to CodeItem" <<Application.Application.default_container__basic_python__mapfunctiontocodeitem>> as Application.Application.default_container__basic_python__mapfunctiontocodeitem
-  rectangle "==default_container__basic_python__maptypetocodeitem\n<size:10>[Component: function]</size>\n\nMap ExtractedType to CodeItem" <<Application.Application.default_container__basic_python__maptypetocodeitem>> as Application.Application.default_container__basic_python__maptypetocodeitem
-  rectangle "==default_container__basic_python__createemptyir\n<size:10>[Component: function]</size>\n\nCreate empty IR when no files found" <<Application.Application.default_container__basic_python__createemptyir>> as Application.Application.default_container__basic_python__createemptyir
-  rectangle "==default_container__basic_python__basicpython\n<size:10>[Component: function]</size>\n\nBasic Python extractor Analyzes Python source code and extracts architectural components" <<Application.Application.default_container__basic_python__basicpython>> as Application.Application.default_container__basic_python__basicpython
+  rectangle "==basic-python.findSourceFiles\n<size:10>[Component: function]</size>\n\nFind source files matching include/exclude patterns" <<Application.Application.basicpythonfindSourceFiles>> as Application.Application.basicpythonfindSourceFiles
+  rectangle "==basic-python.findPyProjectFiles\n<size:10>[Component: function]</size>\n\nFind pyproject.toml files within the search paths" <<Application.Application.basicpythonfindPyProjectFiles>> as Application.Application.basicpythonfindPyProjectFiles
+  rectangle "==basic-python.readPyProjectInfo\n<size:10>[Component: function]</size>\n\nRead and parse pyproject.toml file" <<Application.Application.basicpythonreadPyProjectInfo>> as Application.Application.basicpythonreadPyProjectInfo
+  rectangle "==basic-python.parsePyProjectToml\n<size:10>[Component: function]</size>\n\nParse pyproject.toml using smol-toml library Handles full TOML spec including multiline strings, arrays, and nested tables" <<Application.Application.basicpythonparsePyProjectToml>> as Application.Application.basicpythonparsePyProjectToml
+  rectangle "==basic-python.findNearestPyProject\n<size:10>[Component: function]</size>\n\nFind the nearest parent pyproject.toml for a given file" <<Application.Application.basicpythonfindNearestPyProject>> as Application.Application.basicpythonfindNearestPyProject
+  rectangle "==basic-python.parseFiles\n<size:10>[Component: function]</size>\n\nParse Python files using Python AST parser script" <<Application.Application.basicpythonparseFiles>> as Application.Application.basicpythonparseFiles
+  rectangle "==basic-python.runPythonParser\n<size:10>[Component: function]</size>\n\nRun Python parser script and return JSON output" <<Application.Application.basicpythonrunPythonParser>> as Application.Application.basicpythonrunPythonParser
+  rectangle "==basic-python.mapToFileExtraction\n<size:10>[Component: function]</size>\n\nMap Python parser output to FileExtraction format" <<Application.Application.basicpythonmapToFileExtraction>> as Application.Application.basicpythonmapToFileExtraction
+  rectangle "==basic-python.mapClass\n<size:10>[Component: function]</size>\n\nMap Python class to ExtractedClass" <<Application.Application.basicpythonmapClass>> as Application.Application.basicpythonmapClass
+  rectangle "==basic-python.mapMethod\n<size:10>[Component: function]</size>\n\nMap Python method to ExtractedMethod" <<Application.Application.basicpythonmapMethod>> as Application.Application.basicpythonmapMethod
+  rectangle "==basic-python.mapProperty\n<size:10>[Component: function]</size>\n\nMap Python property to ExtractedProperty" <<Application.Application.basicpythonmapProperty>> as Application.Application.basicpythonmapProperty
+  rectangle "==basic-python.mapFunction\n<size:10>[Component: function]</size>\n\nMap Python function to ExtractedFunction" <<Application.Application.basicpythonmapFunction>> as Application.Application.basicpythonmapFunction
+  rectangle "==basic-python.mapType\n<size:10>[Component: function]</size>\n\nMap Python type definition to ExtractedType" <<Application.Application.basicpythonmapType>> as Application.Application.basicpythonmapType
+  rectangle "==basic-python.mapParameter\n<size:10>[Component: function]</size>\n\nMap Python parameter to ParameterInfo" <<Application.Application.basicpythonmapParameter>> as Application.Application.basicpythonmapParameter
+  rectangle "==basic-python.parseDocstring\n<size:10>[Component: function]</size>\n\nParse Python docstring into DocInfo Enhanced in Phase 2 to use parsed Google/NumPy/Sphinx docstrings" <<Application.Application.basicpythonparseDocstring>> as Application.Application.basicpythonparseDocstring
+  rectangle "==basic-python.extractDeprecation\n<size:10>[Component: function]</size>\n\nExtract deprecation info from docstring" <<Application.Application.basicpythonextractDeprecation>> as Application.Application.basicpythonextractDeprecation
+  rectangle "==basic-python.extractReturnDescription\n<size:10>[Component: function]</size>\n\nExtract return description from docstring" <<Application.Application.basicpythonextractReturnDescription>> as Application.Application.basicpythonextractReturnDescription
+  rectangle "==basic-python.getVisibility\n<size:10>[Component: function]</size>\n\nDetermine visibility from Python name convention - __name: private - _name: protected - name: public" <<Application.Application.basicpythongetVisibility>> as Application.Application.basicpythongetVisibility
+  rectangle "==basic-python.mapToIR\n<size:10>[Component: function]</size>\n\nMap file extractions to ArchletteIR" <<Application.Application.basicpythonmapToIR>> as Application.Application.basicpythonmapToIR
+  rectangle "==basic-python.mapActorToIR\n<size:10>[Component: function]</size>\n\nMap ActorInfo to Actor" <<Application.Application.basicpythonmapActorToIR>> as Application.Application.basicpythonmapActorToIR
+  rectangle "==basic-python.mapRelationshipsToIR\n<size:10>[Component: function]</size>\n\nMap relationships to Relationship[] Creates bidirectional actor relationships" <<Application.Application.basicpythonmapRelationshipsToIR>> as Application.Application.basicpythonmapRelationshipsToIR
+  rectangle "==basic-python.deduplicateRelationships\n<size:10>[Component: function]</size>\n\nDeduplicate relationships by source+destination" <<Application.Application.basicpythondeduplicateRelationships>> as Application.Application.basicpythondeduplicateRelationships
+  rectangle "==basic-python.mapClassToCodeItem\n<size:10>[Component: function]</size>\n\nMap ExtractedClass to CodeItem" <<Application.Application.basicpythonmapClassToCodeItem>> as Application.Application.basicpythonmapClassToCodeItem
+  rectangle "==basic-python.mapMethodToCodeItem\n<size:10>[Component: function]</size>\n\nMap ExtractedMethod to CodeItem" <<Application.Application.basicpythonmapMethodToCodeItem>> as Application.Application.basicpythonmapMethodToCodeItem
+  rectangle "==basic-python.mapFunctionToCodeItem\n<size:10>[Component: function]</size>\n\nMap ExtractedFunction to CodeItem" <<Application.Application.basicpythonmapFunctionToCodeItem>> as Application.Application.basicpythonmapFunctionToCodeItem
+  rectangle "==basic-python.mapTypeToCodeItem\n<size:10>[Component: function]</size>\n\nMap ExtractedType to CodeItem" <<Application.Application.basicpythonmapTypeToCodeItem>> as Application.Application.basicpythonmapTypeToCodeItem
+  rectangle "==basic-python.createEmptyIR\n<size:10>[Component: function]</size>\n\nCreate empty IR when no files found" <<Application.Application.basicpythoncreateEmptyIR>> as Application.Application.basicpythoncreateEmptyIR
+  rectangle "==basic-python.basicPython\n<size:10>[Component: function]</size>\n\nBasic Python extractor Analyzes Python source code and extracts architectural components" <<Application.Application.basicpythonbasicPython>> as Application.Application.basicpythonbasicPython
 }
 
 @enduml

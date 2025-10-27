@@ -16,42 +16,42 @@ skinparam {
 
 hide stereotype
 
-skinparam rectangle<<Application.Application.default_container__docs__findclassdiagramsforcomponent>> {
+skinparam rectangle<<Application.Application.docsfindClassDiagramsForComponent>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__docs__finddiagramsforcontainer>> {
+skinparam rectangle<<Application.Application.docsfindDiagramsForContainer>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__docs__finddiagramsforview>> {
+skinparam rectangle<<Application.Application.docsfindDiagramsForView>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__docs__markdowndocs>> {
+skinparam rectangle<<Application.Application.docsmarkdownDocs>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__docs__run>> {
+skinparam rectangle<<Application.Application.docsrun>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__docs__sanitizefilename>> {
+skinparam rectangle<<Application.Application.docssanitizeFileName>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
@@ -65,12 +65,12 @@ skinparam rectangle<<Application.Application>> {
 }
 
 rectangle "Application\n<size:10>[Container: Application]</size>" <<Application.Application>> {
-  rectangle "==default_container__docs__run\n<size:10>[Component: function]</size>\n\nExecute the documentation stage" <<Application.Application.default_container__docs__run>> as Application.Application.default_container__docs__run
-  rectangle "==default_container__docs__markdowndocs\n<size:10>[Component: function]</size>\n\nGenerate markdown documentation" <<Application.Application.default_container__docs__markdowndocs>> as Application.Application.default_container__docs__markdowndocs
-  rectangle "==default_container__docs__finddiagramsforview\n<size:10>[Component: function]</size>\n\nFind diagram files for a specific view type" <<Application.Application.default_container__docs__finddiagramsforview>> as Application.Application.default_container__docs__finddiagramsforview
-  rectangle "==default_container__docs__finddiagramsforcontainer\n<size:10>[Component: function]</size>\n\nFind component diagrams for a specific container" <<Application.Application.default_container__docs__finddiagramsforcontainer>> as Application.Application.default_container__docs__finddiagramsforcontainer
-  rectangle "==default_container__docs__findclassdiagramsforcomponent\n<size:10>[Component: function]</size>\n\nFind class diagrams for a specific component" <<Application.Application.default_container__docs__findclassdiagramsforcomponent>> as Application.Application.default_container__docs__findclassdiagramsforcomponent
-  rectangle "==default_container__docs__sanitizefilename\n<size:10>[Component: function]</size>" <<Application.Application.default_container__docs__sanitizefilename>> as Application.Application.default_container__docs__sanitizefilename
+  rectangle "==docs.run\n<size:10>[Component: function]</size>\n\nExecute the documentation stage" <<Application.Application.docsrun>> as Application.Application.docsrun
+  rectangle "==docs.markdownDocs\n<size:10>[Component: function]</size>\n\nGenerate markdown documentation" <<Application.Application.docsmarkdownDocs>> as Application.Application.docsmarkdownDocs
+  rectangle "==docs.findDiagramsForView\n<size:10>[Component: function]</size>\n\nFind diagram files for a specific view type" <<Application.Application.docsfindDiagramsForView>> as Application.Application.docsfindDiagramsForView
+  rectangle "==docs.findDiagramsForContainer\n<size:10>[Component: function]</size>\n\nFind component diagrams for a specific container" <<Application.Application.docsfindDiagramsForContainer>> as Application.Application.docsfindDiagramsForContainer
+  rectangle "==docs.findClassDiagramsForComponent\n<size:10>[Component: function]</size>\n\nFind class diagrams for a specific component" <<Application.Application.docsfindClassDiagramsForComponent>> as Application.Application.docsfindClassDiagramsForComponent
+  rectangle "==docs.sanitizeFileName\n<size:10>[Component: function]</size>" <<Application.Application.docssanitizeFileName>> as Application.Application.docssanitizeFileName
 }
 
 @enduml

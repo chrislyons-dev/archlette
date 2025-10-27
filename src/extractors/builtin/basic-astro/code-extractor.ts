@@ -17,7 +17,9 @@ import type {
   ExtractedFunction,
   ExtractedType,
   ExtractedInterface,
+  ParameterInfo,
 } from '../basic-node/types.js';
+import * as path from 'node:path';
 
 const log = createLogger({ context: 'AstroCodeExtractor' });
 
@@ -98,4 +100,59 @@ export function extractCodeFromFrontmatter(
       interfaces: [],
     };
   }
+}
+
+/**
+ * Create a synthetic render function for an Astro component
+ * Every Astro component is fundamentally a server-side render function
+ * that takes props and returns HTML
+ *
+ * Function is named after the file (e.g., "index", "about", "Header")
+ * so each Astro file has a unique code-level representation
+ *
+ * @param filePath - Original Astro file path
+ * @param interfaces - Extracted interfaces (to find Props interface)
+ * @returns Synthetic render function named after the file
+ */
+export function createSyntheticRenderFunction(
+  filePath: string,
+  interfaces: ExtractedInterface[],
+): ExtractedFunction {
+  // Use file name (without .astro extension) as the function name
+  // Examples: "index.astro" -> "index", "Header.astro" -> "Header"
+  const fileName = path.basename(filePath, '.astro');
+
+  // Check if a Props interface exists in the frontmatter
+  const propsInterface = interfaces.find((iface) => iface.name === 'Props');
+
+  // Build parameter list
+  const parameters: ParameterInfo[] = [];
+  if (propsInterface) {
+    parameters.push({
+      name: 'props',
+      type: 'Props',
+      optional: false,
+      description: 'Component properties',
+    });
+  }
+
+  return {
+    name: fileName,
+    isExported: true,
+    isAsync: true,
+    parameters,
+    returnType: 'Promise<string>',
+    returnDescription: 'HTML string output from the component template',
+    documentation: {
+      summary: `Server-side render function for ${fileName}. Generates HTML output from Astro component template and props.`,
+      remarks: [
+        'Auto-generated synthetic function representing Astro component render behavior',
+      ],
+    },
+    location: {
+      filePath,
+      line: 1,
+      column: 0,
+    },
+  };
 }

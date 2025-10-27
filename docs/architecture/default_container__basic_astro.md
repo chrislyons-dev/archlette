@@ -38,7 +38,7 @@
 ### Code Elements
 
 <details>
-<summary><strong>24 code element(s)</strong></summary>
+<summary><strong>25 code element(s)</strong></summary>
 
 
 
@@ -103,7 +103,7 @@ Parses the frontmatter as TypeScript and uses basic-node extractors
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/code-extractor.ts:39</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/code-extractor.ts:41</code></td>
 </tr>
 </tbody>
 </table>
@@ -111,6 +111,41 @@ Parses the frontmatter as TypeScript and uses basic-node extractors
 **Parameters:**
 
 - `frontmatter`: <code>string</code> — - The frontmatter content (code between --- markers)- `filePath`: <code>string</code> — - Original Astro file path (for error reporting)
+
+---
+##### `createSyntheticRenderFunction()`
+
+Create a synthetic render function for an Astro component
+Every Astro component is fundamentally a server-side render function
+that takes props and returns HTML
+
+Function is named after the file (e.g., "index", "about", "Header")
+so each Astro file has a unique code-level representation
+
+<table>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>function</code></td>
+</tr>
+<tr>
+<td><strong>Visibility</strong></td>
+<td><code>public</code></td>
+</tr>
+<tr>
+<td><strong>Returns</strong></td>
+<td><code>import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/types").ExtractedFunction</code> — Synthetic render function named after the file</td>
+</tr>
+<tr>
+<td><strong>Location</strong></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/code-extractor.ts:117</code></td>
+</tr>
+</tbody>
+</table>
+
+**Parameters:**
+
+- `filePath`: <code>string</code> — - Original Astro file path- `interfaces`: <code>import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/types").ExtractedInterface[]</code> — - Extracted interfaces (to find Props interface)
 
 ---
 ##### `extractJSDocBlocks()`
@@ -554,7 +589,7 @@ Parse Astro files using
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/file-parser.ts:23</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/file-parser.ts:26</code></td>
 </tr>
 </tbody>
 </table>
@@ -585,7 +620,7 @@ Frontmatter is the TypeScript/JavaScript code between --- markers at the top of 
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/file-parser.ts:107</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/file-parser.ts:119</code></td>
 </tr>
 </tbody>
 </table>
@@ -615,7 +650,7 @@ Extract import statements from frontmatter
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/file-parser.ts:115</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/file-parser.ts:127</code></td>
 </tr>
 </tbody>
 </table>
@@ -645,7 +680,7 @@ Find slot tags in the template
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/file-parser.ts:170</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/file-parser.ts:182</code></td>
 </tr>
 </tbody>
 </table>
@@ -676,7 +711,7 @@ Examples: client:load, client:idle, client:visible, client:media, client:only
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/file-parser.ts:190</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/file-parser.ts:202</code></td>
 </tr>
 </tbody>
 </table>
@@ -707,7 +742,7 @@ Finds which imported components are used in the template markup
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/file-parser.ts:199</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/file-parser.ts:211</code></td>
 </tr>
 </tbody>
 </table>

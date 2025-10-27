@@ -16,294 +16,294 @@ skinparam {
 
 hide stereotype
 
-skinparam rectangle<<Application.Application.default_container__core__checkjava>> {
+skinparam rectangle<<Application.Application.corecheckJava>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__core__commandexistsinpath>> {
+skinparam rectangle<<Application.Application.corecommandExistsInPath>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__core__createdefaultconfig>> {
+skinparam rectangle<<Application.Application.corecreateDefaultConfig>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__core__createlogger>> {
+skinparam rectangle<<Application.Application.corecreateLogger>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__core__createpinologger>> {
+skinparam rectangle<<Application.Application.corecreatePinoLogger>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__core__downloadfile>> {
+skinparam rectangle<<Application.Application.coredownloadFile>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__core__downloadplantuml>> {
+skinparam rectangle<<Application.Application.coredownloadPlantUML>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__core__downloadstructurizr>> {
+skinparam rectangle<<Application.Application.coredownloadStructurizr>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__core__ensurecachedir>> {
+skinparam rectangle<<Application.Application.coreensureCacheDir>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__core__expandtilde>> {
+skinparam rectangle<<Application.Application.coreexpandTilde>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__core__extractzip>> {
+skinparam rectangle<<Application.Application.coreextractZip>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__core__findplantuml>> {
+skinparam rectangle<<Application.Application.corefindPlantUML>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__core__findstructurizrcli>> {
+skinparam rectangle<<Application.Application.corefindStructurizrCLI>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__core__getcachedir>> {
+skinparam rectangle<<Application.Application.coregetCacheDir>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__core__getclidir>> {
+skinparam rectangle<<Application.Application.coregetCliDir>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__core__getdefaultloglevel>> {
+skinparam rectangle<<Application.Application.coregetDefaultLogLevel>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__core__getdefaultuserplugindir>> {
+skinparam rectangle<<Application.Application.coregetDefaultUserPluginDir>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__core__getstageentry>> {
+skinparam rectangle<<Application.Application.coregetStageEntry>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__core__istty>> {
+skinparam rectangle<<Application.Application.coreisTTY>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__core__loadconfig>> {
+skinparam rectangle<<Application.Application.coreloadConfig>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__core__loaddocmodule>> {
+skinparam rectangle<<Application.Application.coreloadDocModule>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__core__loadextractormodule>> {
+skinparam rectangle<<Application.Application.coreloadExtractorModule>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__core__loadgeneratormodule>> {
+skinparam rectangle<<Application.Application.coreloadGeneratorModule>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__core__loadmodulefrompath>> {
+skinparam rectangle<<Application.Application.coreloadModuleFromPath>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__core__loadrenderermodule>> {
+skinparam rectangle<<Application.Application.coreloadRendererModule>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__core__loadvalidatormodule>> {
+skinparam rectangle<<Application.Application.coreloadValidatorModule>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__core__loadyamlfile>> {
+skinparam rectangle<<Application.Application.coreloadYamlFile>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__core__makeexecutable>> {
+skinparam rectangle<<Application.Application.coremakeExecutable>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__core__nametoid>> {
+skinparam rectangle<<Application.Application.corenameToId>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__core__requirejava>> {
+skinparam rectangle<<Application.Application.corerequireJava>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__core__resolvearchlettepath>> {
+skinparam rectangle<<Application.Application.coreresolveArchlettePath>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__core__resolveconfig>> {
+skinparam rectangle<<Application.Application.coreresolveConfig>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__core__resolveconfigbasedir>> {
+skinparam rectangle<<Application.Application.coreresolveConfigBaseDir>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__core__resolveconfigfilepath>> {
+skinparam rectangle<<Application.Application.coreresolveConfigFilePath>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__core__resolvemoduleentry>> {
+skinparam rectangle<<Application.Application.coreresolveModuleEntry>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__core__resolvepluginpath>> {
+skinparam rectangle<<Application.Application.coreresolvePluginPath>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__core__resolvesecurepath>> {
+skinparam rectangle<<Application.Application.coreresolveSecurePath>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__core__resolveusercontentpath>> {
+skinparam rectangle<<Application.Application.coreresolveUserContentPath>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__core__sanitizeid>> {
+skinparam rectangle<<Application.Application.coresanitizeId>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__core__tofileurl>> {
+skinparam rectangle<<Application.Application.coretoFileUrl>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__core__validatepathsecurity>> {
+skinparam rectangle<<Application.Application.corevalidatePathSecurity>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__core__writefile>> {
+skinparam rectangle<<Application.Application.corewriteFile>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
@@ -317,48 +317,48 @@ skinparam rectangle<<Application.Application>> {
 }
 
 rectangle "Application\n<size:10>[Container: Application]</size>" <<Application.Application>> {
-  rectangle "==default_container__core__resolveconfigfilepath\n<size:10>[Component: function]</size>\n\nResolve config file path from CLI arguments" <<Application.Application.default_container__core__resolveconfigfilepath>> as Application.Application.default_container__core__resolveconfigfilepath
-  rectangle "==default_container__core__resolveconfigbasedir\n<size:10>[Component: function]</size>\n\nDetermine base directory for resolving config-relative paths Logic: - If using default template: CWD (user's project directory) - If user provided config file: config file's directory - Fallback: CWD" <<Application.Application.default_container__core__resolveconfigbasedir>> as Application.Application.default_container__core__resolveconfigbasedir
-  rectangle "==default_container__core__loadyamlfile\n<size:10>[Component: function]</size>\n\nLoad and parse YAML config file" <<Application.Application.default_container__core__loadyamlfile>> as Application.Application.default_container__core__loadyamlfile
-  rectangle "==default_container__core__createdefaultconfig\n<size:10>[Component: function]</size>\n\nCreate minimal default configuration when no config file is found" <<Application.Application.default_container__core__createdefaultconfig>> as Application.Application.default_container__core__createdefaultconfig
-  rectangle "==default_container__core__loadconfig\n<size:10>[Component: function]</size>\n\nLoad configuration from file path (high-level API) This is the main entry point for config loading. It handles: 1. Config file path resolution (default vs user-provided) 2. Base directory determination 3. YAML parsing 4. Config validation and resolution 5. Fallback to default config" <<Application.Application.default_container__core__loadconfig>> as Application.Application.default_container__core__loadconfig
-  rectangle "==default_container__core__nametoid\n<size:10>[Component: function]</size>\n\nConvert a name to a normalized ID Used for consistent ID generation across extractors and mappers" <<Application.Application.default_container__core__nametoid>> as Application.Application.default_container__core__nametoid
-  rectangle "==default_container__core__sanitizeid\n<size:10>[Component: function]</size>\n\nSanitize ID for DSL and code identifiers (preserves underscores) Used for Python code identifiers where underscores are significant" <<Application.Application.default_container__core__sanitizeid>> as Application.Application.default_container__core__sanitizeid
-  rectangle "==default_container__core__istty\n<size:10>[Component: function]</size>\n\nDetermine if we're in a TTY environment (for pretty printing)" <<Application.Application.default_container__core__istty>> as Application.Application.default_container__core__istty
-  rectangle "==default_container__core__getdefaultloglevel\n<size:10>[Component: function]</size>\n\nGet default log level from environment or fallback to 'info'" <<Application.Application.default_container__core__getdefaultloglevel>> as Application.Application.default_container__core__getdefaultloglevel
-  rectangle "==default_container__core__createpinologger\n<size:10>[Component: function]</size>\n\nCreate a Pino logger instance with optional pretty printing" <<Application.Application.default_container__core__createpinologger>> as Application.Application.default_container__core__createpinologger
-  rectangle "==default_container__core__createlogger\n<size:10>[Component: function]</size>\n\nCreate a logger instance" <<Application.Application.default_container__core__createlogger>> as Application.Application.default_container__core__createlogger
-  rectangle "==default_container__core__getdefaultuserplugindir\n<size:10>[Component: function]</size>\n\nDefault base directory for user plugins: ~/.archlette/mods This provides a standard location for external plugins and custom modules" <<Application.Application.default_container__core__getdefaultuserplugindir>> as Application.Application.default_container__core__getdefaultuserplugindir
-  rectangle "==default_container__core__loadmodulefrompath\n<size:10>[Component: function]</size>\n\nDynamically load an ESM module from a path or module specifier with security validation" <<Application.Application.default_container__core__loadmodulefrompath>> as Application.Application.default_container__core__loadmodulefrompath
-  rectangle "==default_container__core__getclidir\n<size:10>[Component: function]</size>" <<Application.Application.default_container__core__getclidir>> as Application.Application.default_container__core__getclidir
-  rectangle "==default_container__core__expandtilde\n<size:10>[Component: function]</size>" <<Application.Application.default_container__core__expandtilde>> as Application.Application.default_container__core__expandtilde
-  rectangle "==default_container__core__resolvearchlettepath\n<size:10>[Component: function]</size>\n\nCore path resolver honoring Archlette rules (no file existence checks). - "~" -> user home - "/" -> absolute - else -> relative to CLI dir" <<Application.Application.default_container__core__resolvearchlettepath>> as Application.Application.default_container__core__resolvearchlettepath
-  rectangle "==default_container__core__resolvemoduleentry\n<size:10>[Component: function]</size>\n\nResolve a module entry by probing: 1) Exact path 2) With extensions: .ts then .js 3) If directory: index.ts then index.js" <<Application.Application.default_container__core__resolvemoduleentry>> as Application.Application.default_container__core__resolvemoduleentry
-  rectangle "==default_container__core__tofileurl\n<size:10>[Component: function]</size>" <<Application.Application.default_container__core__tofileurl>> as Application.Application.default_container__core__tofileurl
-  rectangle "==default_container__core__writefile\n<size:10>[Component: function]</size>\n\nWrite content to a file, creating parent directories if needed." <<Application.Application.default_container__core__writefile>> as Application.Application.default_container__core__writefile
-  rectangle "==default_container__core__validatepathsecurity\n<size:10>[Component: function]</size>\n\nValidate path for security issues" <<Application.Application.default_container__core__validatepathsecurity>> as Application.Application.default_container__core__validatepathsecurity
-  rectangle "==default_container__core__resolvesecurepath\n<size:10>[Component: function]</size>\n\nSecurely resolve a user-provided path with validation" <<Application.Application.default_container__core__resolvesecurepath>> as Application.Application.default_container__core__resolvesecurepath
-  rectangle "==default_container__core__resolveusercontentpath\n<size:10>[Component: function]</size>\n\nConvenience function for resolving user content paths (themes, input files) Uses 'config-relative' strategy by default" <<Application.Application.default_container__core__resolveusercontentpath>> as Application.Application.default_container__core__resolveusercontentpath
-  rectangle "==default_container__core__resolvepluginpath\n<size:10>[Component: function]</size>\n\nConvenience function for resolving plugin paths Uses 'cli-relative' strategy by default" <<Application.Application.default_container__core__resolvepluginpath>> as Application.Application.default_container__core__resolvepluginpath
-  rectangle "==default_container__core__getstageentry\n<size:10>[Component: function]</size>" <<Application.Application.default_container__core__getstageentry>> as Application.Application.default_container__core__getstageentry
-  rectangle "==default_container__core__loadextractormodule\n<size:10>[Component: function]</size>" <<Application.Application.default_container__core__loadextractormodule>> as Application.Application.default_container__core__loadextractormodule
-  rectangle "==default_container__core__loadvalidatormodule\n<size:10>[Component: function]</size>" <<Application.Application.default_container__core__loadvalidatormodule>> as Application.Application.default_container__core__loadvalidatormodule
-  rectangle "==default_container__core__loadgeneratormodule\n<size:10>[Component: function]</size>" <<Application.Application.default_container__core__loadgeneratormodule>> as Application.Application.default_container__core__loadgeneratormodule
-  rectangle "==default_container__core__loadrenderermodule\n<size:10>[Component: function]</size>" <<Application.Application.default_container__core__loadrenderermodule>> as Application.Application.default_container__core__loadrenderermodule
-  rectangle "==default_container__core__loaddocmodule\n<size:10>[Component: function]</size>" <<Application.Application.default_container__core__loaddocmodule>> as Application.Application.default_container__core__loaddocmodule
-  rectangle "==default_container__core__getcachedir\n<size:10>[Component: function]</size>\n\nGet the Archlette cache directory" <<Application.Application.default_container__core__getcachedir>> as Application.Application.default_container__core__getcachedir
-  rectangle "==default_container__core__ensurecachedir\n<size:10>[Component: function]</size>\n\nEnsure cache directory exists" <<Application.Application.default_container__core__ensurecachedir>> as Application.Application.default_container__core__ensurecachedir
-  rectangle "==default_container__core__commandexistsinpath\n<size:10>[Component: function]</size>\n\nCheck if a command exists in PATH" <<Application.Application.default_container__core__commandexistsinpath>> as Application.Application.default_container__core__commandexistsinpath
-  rectangle "==default_container__core__downloadfile\n<size:10>[Component: function]</size>\n\nDownload a file from URL to destination" <<Application.Application.default_container__core__downloadfile>> as Application.Application.default_container__core__downloadfile
-  rectangle "==default_container__core__extractzip\n<size:10>[Component: function]</size>\n\nExtract a ZIP file (simple extraction for Structurizr CLI)" <<Application.Application.default_container__core__extractzip>> as Application.Application.default_container__core__extractzip
-  rectangle "==default_container__core__makeexecutable\n<size:10>[Component: function]</size>\n\nMake file executable (Unix only)" <<Application.Application.default_container__core__makeexecutable>> as Application.Application.default_container__core__makeexecutable
-  rectangle "==default_container__core__downloadstructurizr\n<size:10>[Component: function]</size>\n\nDownload and install Structurizr CLI to cache" <<Application.Application.default_container__core__downloadstructurizr>> as Application.Application.default_container__core__downloadstructurizr
-  rectangle "==default_container__core__downloadplantuml\n<size:10>[Component: function]</size>\n\nDownload and install PlantUML to cache" <<Application.Application.default_container__core__downloadplantuml>> as Application.Application.default_container__core__downloadplantuml
-  rectangle "==default_container__core__findstructurizrcli\n<size:10>[Component: function]</size>\n\nFind or download Structurizr CLI" <<Application.Application.default_container__core__findstructurizrcli>> as Application.Application.default_container__core__findstructurizrcli
-  rectangle "==default_container__core__findplantuml\n<size:10>[Component: function]</size>\n\nFind or download PlantUML JAR" <<Application.Application.default_container__core__findplantuml>> as Application.Application.default_container__core__findplantuml
-  rectangle "==default_container__core__checkjava\n<size:10>[Component: function]</size>\n\nVerify Java is available" <<Application.Application.default_container__core__checkjava>> as Application.Application.default_container__core__checkjava
-  rectangle "==default_container__core__requirejava\n<size:10>[Component: function]</size>\n\nValidate Java is installed (throw if not)" <<Application.Application.default_container__core__requirejava>> as Application.Application.default_container__core__requirejava
-  rectangle "==default_container__core__resolveconfig\n<size:10>[Component: function]</size>\n\nFor each stage, resolve includes/excludes for each node: - If node omits includes/excludes, inherit from defaults. - Add configBaseDir for resolving config-relative paths" <<Application.Application.default_container__core__resolveconfig>> as Application.Application.default_container__core__resolveconfig
+  rectangle "==core.resolveConfigFilePath\n<size:10>[Component: function]</size>\n\nResolve config file path from CLI arguments" <<Application.Application.coreresolveConfigFilePath>> as Application.Application.coreresolveConfigFilePath
+  rectangle "==core.resolveConfigBaseDir\n<size:10>[Component: function]</size>\n\nDetermine base directory for resolving config-relative paths Logic: - If using default template: CWD (user's project directory) - If user provided config file: config file's directory - Fallback: CWD" <<Application.Application.coreresolveConfigBaseDir>> as Application.Application.coreresolveConfigBaseDir
+  rectangle "==core.loadYamlFile\n<size:10>[Component: function]</size>\n\nLoad and parse YAML config file" <<Application.Application.coreloadYamlFile>> as Application.Application.coreloadYamlFile
+  rectangle "==core.createDefaultConfig\n<size:10>[Component: function]</size>\n\nCreate minimal default configuration when no config file is found" <<Application.Application.corecreateDefaultConfig>> as Application.Application.corecreateDefaultConfig
+  rectangle "==core.loadConfig\n<size:10>[Component: function]</size>\n\nLoad configuration from file path (high-level API) This is the main entry point for config loading. It handles: 1. Config file path resolution (default vs user-provided) 2. Base directory determination 3. YAML parsing 4. Config validation and resolution 5. Fallback to default config" <<Application.Application.coreloadConfig>> as Application.Application.coreloadConfig
+  rectangle "==core.nameToId\n<size:10>[Component: function]</size>\n\nConvert a name to a normalized ID Used for consistent ID generation across extractors and mappers" <<Application.Application.corenameToId>> as Application.Application.corenameToId
+  rectangle "==core.sanitizeId\n<size:10>[Component: function]</size>\n\nSanitize ID for DSL and code identifiers (preserves underscores) Used for Python code identifiers where underscores are significant" <<Application.Application.coresanitizeId>> as Application.Application.coresanitizeId
+  rectangle "==core.isTTY\n<size:10>[Component: function]</size>\n\nDetermine if we're in a TTY environment (for pretty printing)" <<Application.Application.coreisTTY>> as Application.Application.coreisTTY
+  rectangle "==core.getDefaultLogLevel\n<size:10>[Component: function]</size>\n\nGet default log level from environment or fallback to 'info'" <<Application.Application.coregetDefaultLogLevel>> as Application.Application.coregetDefaultLogLevel
+  rectangle "==core.createPinoLogger\n<size:10>[Component: function]</size>\n\nCreate a Pino logger instance with optional pretty printing" <<Application.Application.corecreatePinoLogger>> as Application.Application.corecreatePinoLogger
+  rectangle "==core.createLogger\n<size:10>[Component: function]</size>\n\nCreate a logger instance" <<Application.Application.corecreateLogger>> as Application.Application.corecreateLogger
+  rectangle "==core.getDefaultUserPluginDir\n<size:10>[Component: function]</size>\n\nDefault base directory for user plugins: ~/.archlette/mods This provides a standard location for external plugins and custom modules" <<Application.Application.coregetDefaultUserPluginDir>> as Application.Application.coregetDefaultUserPluginDir
+  rectangle "==core.loadModuleFromPath\n<size:10>[Component: function]</size>\n\nDynamically load an ESM module from a path or module specifier with security validation" <<Application.Application.coreloadModuleFromPath>> as Application.Application.coreloadModuleFromPath
+  rectangle "==core.getCliDir\n<size:10>[Component: function]</size>" <<Application.Application.coregetCliDir>> as Application.Application.coregetCliDir
+  rectangle "==core.expandTilde\n<size:10>[Component: function]</size>" <<Application.Application.coreexpandTilde>> as Application.Application.coreexpandTilde
+  rectangle "==core.resolveArchlettePath\n<size:10>[Component: function]</size>\n\nCore path resolver honoring Archlette rules (no file existence checks). - "~" -> user home - "/" -> absolute - else -> relative to CLI dir" <<Application.Application.coreresolveArchlettePath>> as Application.Application.coreresolveArchlettePath
+  rectangle "==core.resolveModuleEntry\n<size:10>[Component: function]</size>\n\nResolve a module entry by probing: 1) Exact path 2) With extensions: .ts then .js 3) If directory: index.ts then index.js" <<Application.Application.coreresolveModuleEntry>> as Application.Application.coreresolveModuleEntry
+  rectangle "==core.toFileUrl\n<size:10>[Component: function]</size>" <<Application.Application.coretoFileUrl>> as Application.Application.coretoFileUrl
+  rectangle "==core.writeFile\n<size:10>[Component: function]</size>\n\nWrite content to a file, creating parent directories if needed." <<Application.Application.corewriteFile>> as Application.Application.corewriteFile
+  rectangle "==core.validatePathSecurity\n<size:10>[Component: function]</size>\n\nValidate path for security issues" <<Application.Application.corevalidatePathSecurity>> as Application.Application.corevalidatePathSecurity
+  rectangle "==core.resolveSecurePath\n<size:10>[Component: function]</size>\n\nSecurely resolve a user-provided path with validation" <<Application.Application.coreresolveSecurePath>> as Application.Application.coreresolveSecurePath
+  rectangle "==core.resolveUserContentPath\n<size:10>[Component: function]</size>\n\nConvenience function for resolving user content paths (themes, input files) Uses 'config-relative' strategy by default" <<Application.Application.coreresolveUserContentPath>> as Application.Application.coreresolveUserContentPath
+  rectangle "==core.resolvePluginPath\n<size:10>[Component: function]</size>\n\nConvenience function for resolving plugin paths Uses 'cli-relative' strategy by default" <<Application.Application.coreresolvePluginPath>> as Application.Application.coreresolvePluginPath
+  rectangle "==core.getStageEntry\n<size:10>[Component: function]</size>" <<Application.Application.coregetStageEntry>> as Application.Application.coregetStageEntry
+  rectangle "==core.loadExtractorModule\n<size:10>[Component: function]</size>" <<Application.Application.coreloadExtractorModule>> as Application.Application.coreloadExtractorModule
+  rectangle "==core.loadValidatorModule\n<size:10>[Component: function]</size>" <<Application.Application.coreloadValidatorModule>> as Application.Application.coreloadValidatorModule
+  rectangle "==core.loadGeneratorModule\n<size:10>[Component: function]</size>" <<Application.Application.coreloadGeneratorModule>> as Application.Application.coreloadGeneratorModule
+  rectangle "==core.loadRendererModule\n<size:10>[Component: function]</size>" <<Application.Application.coreloadRendererModule>> as Application.Application.coreloadRendererModule
+  rectangle "==core.loadDocModule\n<size:10>[Component: function]</size>" <<Application.Application.coreloadDocModule>> as Application.Application.coreloadDocModule
+  rectangle "==core.getCacheDir\n<size:10>[Component: function]</size>\n\nGet the Archlette cache directory" <<Application.Application.coregetCacheDir>> as Application.Application.coregetCacheDir
+  rectangle "==core.ensureCacheDir\n<size:10>[Component: function]</size>\n\nEnsure cache directory exists" <<Application.Application.coreensureCacheDir>> as Application.Application.coreensureCacheDir
+  rectangle "==core.commandExistsInPath\n<size:10>[Component: function]</size>\n\nCheck if a command exists in PATH" <<Application.Application.corecommandExistsInPath>> as Application.Application.corecommandExistsInPath
+  rectangle "==core.downloadFile\n<size:10>[Component: function]</size>\n\nDownload a file from URL to destination" <<Application.Application.coredownloadFile>> as Application.Application.coredownloadFile
+  rectangle "==core.extractZip\n<size:10>[Component: function]</size>\n\nExtract a ZIP file (simple extraction for Structurizr CLI)" <<Application.Application.coreextractZip>> as Application.Application.coreextractZip
+  rectangle "==core.makeExecutable\n<size:10>[Component: function]</size>\n\nMake file executable (Unix only)" <<Application.Application.coremakeExecutable>> as Application.Application.coremakeExecutable
+  rectangle "==core.downloadStructurizr\n<size:10>[Component: function]</size>\n\nDownload and install Structurizr CLI to cache" <<Application.Application.coredownloadStructurizr>> as Application.Application.coredownloadStructurizr
+  rectangle "==core.downloadPlantUML\n<size:10>[Component: function]</size>\n\nDownload and install PlantUML to cache" <<Application.Application.coredownloadPlantUML>> as Application.Application.coredownloadPlantUML
+  rectangle "==core.findStructurizrCLI\n<size:10>[Component: function]</size>\n\nFind or download Structurizr CLI" <<Application.Application.corefindStructurizrCLI>> as Application.Application.corefindStructurizrCLI
+  rectangle "==core.findPlantUML\n<size:10>[Component: function]</size>\n\nFind or download PlantUML JAR" <<Application.Application.corefindPlantUML>> as Application.Application.corefindPlantUML
+  rectangle "==core.checkJava\n<size:10>[Component: function]</size>\n\nVerify Java is available" <<Application.Application.corecheckJava>> as Application.Application.corecheckJava
+  rectangle "==core.requireJava\n<size:10>[Component: function]</size>\n\nValidate Java is installed (throw if not)" <<Application.Application.corerequireJava>> as Application.Application.corerequireJava
+  rectangle "==core.resolveConfig\n<size:10>[Component: function]</size>\n\nFor each stage, resolve includes/excludes for each node: - If node omits includes/excludes, inherit from defaults. - Add configBaseDir for resolving config-relative paths" <<Application.Application.coreresolveConfig>> as Application.Application.coreresolveConfig
 }
 
 @enduml

@@ -16,168 +16,175 @@ skinparam {
 
 hide stereotype
 
-skinparam rectangle<<Application.Application.default_container__basic_astro__basicastroextractor>> {
+skinparam rectangle<<Application.Application.basicastrobasicAstroExtractor>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__basic_astro__extractcodefromfrontmatter>> {
+skinparam rectangle<<Application.Application.basicastrocreateSyntheticRenderFunction>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__basic_astro__extractcomponentname>> {
+skinparam rectangle<<Application.Application.basicastroextractCodeFromFrontmatter>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__basic_astro__extractcomponentusage>> {
+skinparam rectangle<<Application.Application.basicastroextractComponentName>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__basic_astro__extractfileactors>> {
+skinparam rectangle<<Application.Application.basicastroextractComponentUsage>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__basic_astro__extractfilecomponent>> {
+skinparam rectangle<<Application.Application.basicastroextractFileActors>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__basic_astro__extractfilerelationships>> {
+skinparam rectangle<<Application.Application.basicastroextractFileComponent>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__basic_astro__extractfrontmatter>> {
+skinparam rectangle<<Application.Application.basicastroextractFileRelationships>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__basic_astro__extractimports>> {
+skinparam rectangle<<Application.Application.basicastroextractFrontmatter>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__basic_astro__extractjsdocblocks>> {
+skinparam rectangle<<Application.Application.basicastroextractImports>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__basic_astro__findclientdirective>> {
+skinparam rectangle<<Application.Application.basicastroextractJSDocBlocks>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__basic_astro__findnearestpackage>> {
+skinparam rectangle<<Application.Application.basicastrofindClientDirective>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__basic_astro__findpackagejsonfiles>> {
+skinparam rectangle<<Application.Application.basicastrofindNearestPackage>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__basic_astro__findslots>> {
+skinparam rectangle<<Application.Application.basicastrofindPackageJsonFiles>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__basic_astro__findsourcefiles>> {
+skinparam rectangle<<Application.Application.basicastrofindSlots>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__basic_astro__infercomponentfrompath>> {
+skinparam rectangle<<Application.Application.basicastrofindSourceFiles>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__basic_astro__mapclasstocodeitems>> {
+skinparam rectangle<<Application.Application.basicastroinferComponentFromPath>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__basic_astro__mapfunctiontocodeitem>> {
+skinparam rectangle<<Application.Application.basicastromapClassToCodeItems>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__basic_astro__maptoir>> {
+skinparam rectangle<<Application.Application.basicastromapFunctionToCodeItem>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__basic_astro__parseactortag>> {
+skinparam rectangle<<Application.Application.basicastromapToIR>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__basic_astro__parsefiles>> {
+skinparam rectangle<<Application.Application.basicastroparseActorTag>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__basic_astro__parsejsdocblock>> {
+skinparam rectangle<<Application.Application.basicastroparseFiles>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__basic_astro__parseusestag>> {
+skinparam rectangle<<Application.Application.basicastroparseJSDocBlock>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__basic_astro__readpackageinfo>> {
+skinparam rectangle<<Application.Application.basicastroparseUsesTag>> {
+  BackgroundColor #85bbf0
+  FontColor #000000
+  BorderColor #5d82a8
+  roundCorner 20
+  shadowing false
+}
+skinparam rectangle<<Application.Application.basicastroreadPackageInfo>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
@@ -191,30 +198,31 @@ skinparam rectangle<<Application.Application>> {
 }
 
 rectangle "Application\n<size:10>[Container: Application]</size>" <<Application.Application>> {
-  rectangle "==default_container__basic_astro__parsejsdocblock\n<size:10>[Component: function]</size>\n\nParse a single JSDoc comment block into description and tags" <<Application.Application.default_container__basic_astro__parsejsdocblock>> as Application.Application.default_container__basic_astro__parsejsdocblock
-  rectangle "==default_container__basic_astro__extractfilecomponent\n<size:10>[Component: function]</size>\n\nExtract component information from frontmatter JSDoc Checks for" <<Application.Application.default_container__basic_astro__extractfilecomponent>> as Application.Application.default_container__basic_astro__extractfilecomponent
-  rectangle "==default_container__basic_astro__extractcomponentname\n<size:10>[Component: function]</size>\n\nExtract component name from a JSDoc tag value Handles formats like: - ComponentName - ComponentName - Description (space-dash-space separator) - path/to/module - My-Component (dashes in names are preserved)" <<Application.Application.default_container__basic_astro__extractcomponentname>> as Application.Application.default_container__basic_astro__extractcomponentname
-  rectangle "==default_container__basic_astro__extractfileactors\n<size:10>[Component: function]</size>\n\nExtract actors from frontmatter JSDoc Looks for" <<Application.Application.default_container__basic_astro__extractfileactors>> as Application.Application.default_container__basic_astro__extractfileactors
-  rectangle "==default_container__basic_astro__parseactortag\n<size:10>[Component: function]</size>\n\nParse an" <<Application.Application.default_container__basic_astro__parseactortag>> as Application.Application.default_container__basic_astro__parseactortag
-  rectangle "==default_container__basic_astro__extractfilerelationships\n<size:10>[Component: function]</size>\n\nExtract relationships from frontmatter JSDoc Looks for" <<Application.Application.default_container__basic_astro__extractfilerelationships>> as Application.Application.default_container__basic_astro__extractfilerelationships
-  rectangle "==default_container__basic_astro__parseusestag\n<size:10>[Component: function]</size>\n\nParse a" <<Application.Application.default_container__basic_astro__parseusestag>> as Application.Application.default_container__basic_astro__parseusestag
-  rectangle "==default_container__basic_astro__infercomponentfrompath\n<size:10>[Component: function]</size>\n\nInfer component name from file path - Files in subdirectories use the immediate parent folder name - Files in root directory use ROOT_COMPONENT_MARKER Examples: - /path/to/project/src/components/Button.astro -> 'components' - /path/to/project/src/Layout.astro -> ROOT_COMPONENT_MARKER" <<Application.Application.default_container__basic_astro__infercomponentfrompath>> as Application.Application.default_container__basic_astro__infercomponentfrompath
-  rectangle "==default_container__basic_astro__findsourcefiles\n<size:10>[Component: function]</size>\n\nFind Astro source files matching the given patterns" <<Application.Application.default_container__basic_astro__findsourcefiles>> as Application.Application.default_container__basic_astro__findsourcefiles
-  rectangle "==default_container__basic_astro__findpackagejsonfiles\n<size:10>[Component: function]</size>\n\nFind all package.json files in the workspace" <<Application.Application.default_container__basic_astro__findpackagejsonfiles>> as Application.Application.default_container__basic_astro__findpackagejsonfiles
-  rectangle "==default_container__basic_astro__readpackageinfo\n<size:10>[Component: function]</size>\n\nRead package.json and extract metadata" <<Application.Application.default_container__basic_astro__readpackageinfo>> as Application.Application.default_container__basic_astro__readpackageinfo
-  rectangle "==default_container__basic_astro__findnearestpackage\n<size:10>[Component: function]</size>\n\nFind the nearest package.json for a given file" <<Application.Application.default_container__basic_astro__findnearestpackage>> as Application.Application.default_container__basic_astro__findnearestpackage
-  rectangle "==default_container__basic_astro__parsefiles\n<size:10>[Component: function]</size>\n\nParse Astro files using" <<Application.Application.default_container__basic_astro__parsefiles>> as Application.Application.default_container__basic_astro__parsefiles
-  rectangle "==default_container__basic_astro__extractfrontmatter\n<size:10>[Component: function]</size>\n\nExtract frontmatter content from Astro file Frontmatter is the TypeScript/JavaScript code between --- markers at the top of the file" <<Application.Application.default_container__basic_astro__extractfrontmatter>> as Application.Application.default_container__basic_astro__extractfrontmatter
-  rectangle "==default_container__basic_astro__extractimports\n<size:10>[Component: function]</size>\n\nExtract import statements from frontmatter" <<Application.Application.default_container__basic_astro__extractimports>> as Application.Application.default_container__basic_astro__extractimports
-  rectangle "==default_container__basic_astro__findslots\n<size:10>[Component: function]</size>\n\nFind slot tags in the template" <<Application.Application.default_container__basic_astro__findslots>> as Application.Application.default_container__basic_astro__findslots
-  rectangle "==default_container__basic_astro__findclientdirective\n<size:10>[Component: function]</size>\n\nFind client directive in component usage Examples: client:load, client:idle, client:visible, client:media, client:only" <<Application.Application.default_container__basic_astro__findclientdirective>> as Application.Application.default_container__basic_astro__findclientdirective
-  rectangle "==default_container__basic_astro__extractcomponentusage\n<size:10>[Component: function]</size>\n\nExtract component usage from template Finds which imported components are used in the template markup" <<Application.Application.default_container__basic_astro__extractcomponentusage>> as Application.Application.default_container__basic_astro__extractcomponentusage
-  rectangle "==default_container__basic_astro__maptoir\n<size:10>[Component: function]</size>\n\nMap file extractions to ArchletteIR Transforms Astro component analysis into standardized architecture representation" <<Application.Application.default_container__basic_astro__maptoir>> as Application.Application.default_container__basic_astro__maptoir
-  rectangle "==default_container__basic_astro__mapclasstocodeitems\n<size:10>[Component: function]</size>\n\nMap a class to code items (class + methods)" <<Application.Application.default_container__basic_astro__mapclasstocodeitems>> as Application.Application.default_container__basic_astro__mapclasstocodeitems
-  rectangle "==default_container__basic_astro__mapfunctiontocodeitem\n<size:10>[Component: function]</size>\n\nMap a function to a code item" <<Application.Application.default_container__basic_astro__mapfunctiontocodeitem>> as Application.Application.default_container__basic_astro__mapfunctiontocodeitem
-  rectangle "==default_container__basic_astro__basicastroextractor\n<size:10>[Component: function]</size>\n\nExtract architecture information from an Astro codebase" <<Application.Application.default_container__basic_astro__basicastroextractor>> as Application.Application.default_container__basic_astro__basicastroextractor
-  rectangle "==default_container__basic_astro__extractcodefromfrontmatter\n<size:10>[Component: function]</size>\n\nExtract TypeScript/JavaScript code from Astro frontmatter Parses the frontmatter as TypeScript and uses basic-node extractors" <<Application.Application.default_container__basic_astro__extractcodefromfrontmatter>> as Application.Application.default_container__basic_astro__extractcodefromfrontmatter
-  rectangle "==default_container__basic_astro__extractjsdocblocks\n<size:10>[Component: function]</size>\n\nExtract all JSDoc comment blocks from source code Matches /** ... *\\/ style comments and parses their tags" <<Application.Application.default_container__basic_astro__extractjsdocblocks>> as Application.Application.default_container__basic_astro__extractjsdocblocks
+  rectangle "==basic-astro.extractJSDocBlocks\n<size:10>[Component: function]</size>\n\nExtract all JSDoc comment blocks from source code Matches /** ... *\\/ style comments and parses their tags" <<Application.Application.basicastroextractJSDocBlocks>> as Application.Application.basicastroextractJSDocBlocks
+  rectangle "==basic-astro.parseJSDocBlock\n<size:10>[Component: function]</size>\n\nParse a single JSDoc comment block into description and tags" <<Application.Application.basicastroparseJSDocBlock>> as Application.Application.basicastroparseJSDocBlock
+  rectangle "==basic-astro.extractFileComponent\n<size:10>[Component: function]</size>\n\nExtract component information from frontmatter JSDoc Checks for" <<Application.Application.basicastroextractFileComponent>> as Application.Application.basicastroextractFileComponent
+  rectangle "==basic-astro.extractComponentName\n<size:10>[Component: function]</size>\n\nExtract component name from a JSDoc tag value Handles formats like: - ComponentName - ComponentName - Description (space-dash-space separator) - path/to/module - My-Component (dashes in names are preserved)" <<Application.Application.basicastroextractComponentName>> as Application.Application.basicastroextractComponentName
+  rectangle "==basic-astro.extractFileActors\n<size:10>[Component: function]</size>\n\nExtract actors from frontmatter JSDoc Looks for" <<Application.Application.basicastroextractFileActors>> as Application.Application.basicastroextractFileActors
+  rectangle "==basic-astro.parseActorTag\n<size:10>[Component: function]</size>\n\nParse an" <<Application.Application.basicastroparseActorTag>> as Application.Application.basicastroparseActorTag
+  rectangle "==basic-astro.extractFileRelationships\n<size:10>[Component: function]</size>\n\nExtract relationships from frontmatter JSDoc Looks for" <<Application.Application.basicastroextractFileRelationships>> as Application.Application.basicastroextractFileRelationships
+  rectangle "==basic-astro.parseUsesTag\n<size:10>[Component: function]</size>\n\nParse a" <<Application.Application.basicastroparseUsesTag>> as Application.Application.basicastroparseUsesTag
+  rectangle "==basic-astro.inferComponentFromPath\n<size:10>[Component: function]</size>\n\nInfer component name from file path - Files in subdirectories use the immediate parent folder name - Files in root directory use ROOT_COMPONENT_MARKER Examples: - /path/to/project/src/components/Button.astro -> 'components' - /path/to/project/src/Layout.astro -> ROOT_COMPONENT_MARKER" <<Application.Application.basicastroinferComponentFromPath>> as Application.Application.basicastroinferComponentFromPath
+  rectangle "==basic-astro.findSourceFiles\n<size:10>[Component: function]</size>\n\nFind Astro source files matching the given patterns" <<Application.Application.basicastrofindSourceFiles>> as Application.Application.basicastrofindSourceFiles
+  rectangle "==basic-astro.findPackageJsonFiles\n<size:10>[Component: function]</size>\n\nFind all package.json files in the workspace" <<Application.Application.basicastrofindPackageJsonFiles>> as Application.Application.basicastrofindPackageJsonFiles
+  rectangle "==basic-astro.readPackageInfo\n<size:10>[Component: function]</size>\n\nRead package.json and extract metadata" <<Application.Application.basicastroreadPackageInfo>> as Application.Application.basicastroreadPackageInfo
+  rectangle "==basic-astro.findNearestPackage\n<size:10>[Component: function]</size>\n\nFind the nearest package.json for a given file" <<Application.Application.basicastrofindNearestPackage>> as Application.Application.basicastrofindNearestPackage
+  rectangle "==basic-astro.parseFiles\n<size:10>[Component: function]</size>\n\nParse Astro files using" <<Application.Application.basicastroparseFiles>> as Application.Application.basicastroparseFiles
+  rectangle "==basic-astro.extractFrontmatter\n<size:10>[Component: function]</size>\n\nExtract frontmatter content from Astro file Frontmatter is the TypeScript/JavaScript code between --- markers at the top of the file" <<Application.Application.basicastroextractFrontmatter>> as Application.Application.basicastroextractFrontmatter
+  rectangle "==basic-astro.extractImports\n<size:10>[Component: function]</size>\n\nExtract import statements from frontmatter" <<Application.Application.basicastroextractImports>> as Application.Application.basicastroextractImports
+  rectangle "==basic-astro.findSlots\n<size:10>[Component: function]</size>\n\nFind slot tags in the template" <<Application.Application.basicastrofindSlots>> as Application.Application.basicastrofindSlots
+  rectangle "==basic-astro.findClientDirective\n<size:10>[Component: function]</size>\n\nFind client directive in component usage Examples: client:load, client:idle, client:visible, client:media, client:only" <<Application.Application.basicastrofindClientDirective>> as Application.Application.basicastrofindClientDirective
+  rectangle "==basic-astro.extractComponentUsage\n<size:10>[Component: function]</size>\n\nExtract component usage from template Finds which imported components are used in the template markup" <<Application.Application.basicastroextractComponentUsage>> as Application.Application.basicastroextractComponentUsage
+  rectangle "==basic-astro.mapToIR\n<size:10>[Component: function]</size>\n\nMap file extractions to ArchletteIR Transforms Astro component analysis into standardized architecture representation" <<Application.Application.basicastromapToIR>> as Application.Application.basicastromapToIR
+  rectangle "==basic-astro.mapClassToCodeItems\n<size:10>[Component: function]</size>\n\nMap a class to code items (class + methods)" <<Application.Application.basicastromapClassToCodeItems>> as Application.Application.basicastromapClassToCodeItems
+  rectangle "==basic-astro.mapFunctionToCodeItem\n<size:10>[Component: function]</size>\n\nMap a function to a code item" <<Application.Application.basicastromapFunctionToCodeItem>> as Application.Application.basicastromapFunctionToCodeItem
+  rectangle "==basic-astro.basicAstroExtractor\n<size:10>[Component: function]</size>\n\nExtract architecture information from an Astro codebase" <<Application.Application.basicastrobasicAstroExtractor>> as Application.Application.basicastrobasicAstroExtractor
+  rectangle "==basic-astro.extractCodeFromFrontmatter\n<size:10>[Component: function]</size>\n\nExtract TypeScript/JavaScript code from Astro frontmatter Parses the frontmatter as TypeScript and uses basic-node extractors" <<Application.Application.basicastroextractCodeFromFrontmatter>> as Application.Application.basicastroextractCodeFromFrontmatter
+  rectangle "==basic-astro.createSyntheticRenderFunction\n<size:10>[Component: function]</size>\n\nCreate a synthetic render function for an Astro component Every Astro component is fundamentally a server-side render function that takes props and returns HTML Function is named after the file (e.g., "index", "about", "Header") so each Astro file has a unique code-level representation" <<Application.Application.basicastrocreateSyntheticRenderFunction>> as Application.Application.basicastrocreateSyntheticRenderFunction
 }
 
 @enduml

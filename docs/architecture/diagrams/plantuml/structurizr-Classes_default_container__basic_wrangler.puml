@@ -16,91 +16,91 @@ skinparam {
 
 hide stereotype
 
-skinparam rectangle<<Application.Application.default_container__basic_wrangler__basicwranglerextractor>> {
+skinparam rectangle<<Application.Application.basic_wranglerbasicWranglerExtractor>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__basic_wrangler__derivecontainertype>> {
+skinparam rectangle<<Application.Application.basic_wranglerderiveContainerType>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__basic_wrangler__extractcontainerrelationships>> {
+skinparam rectangle<<Application.Application.basic_wranglerextractContainerRelationships>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__basic_wrangler__extractcontainers>> {
+skinparam rectangle<<Application.Application.basic_wranglerextractContainers>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__basic_wrangler__extractdeploymentrelationships>> {
+skinparam rectangle<<Application.Application.basic_wranglerextractDeploymentRelationships>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__basic_wrangler__extractdeploymentsandinstances>> {
+skinparam rectangle<<Application.Application.basic_wranglerextractDeploymentsAndInstances>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__basic_wrangler__extractdescription>> {
+skinparam rectangle<<Application.Application.basic_wranglerextractDescription>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__basic_wrangler__findwranglerfiles>> {
+skinparam rectangle<<Application.Application.basic_wranglerfindWranglerFiles>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__basic_wrangler__getenvironmentconfig>> {
+skinparam rectangle<<Application.Application.basic_wranglergetEnvironmentConfig>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__basic_wrangler__getenvironments>> {
+skinparam rectangle<<Application.Application.basic_wranglergetEnvironments>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__basic_wrangler__maptoir>> {
+skinparam rectangle<<Application.Application.basic_wranglermapToIR>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__basic_wrangler__normalizeservicebindings>> {
+skinparam rectangle<<Application.Application.basic_wranglernormalizeServiceBindings>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__basic_wrangler__parsewranglerfile>> {
+skinparam rectangle<<Application.Application.basic_wranglerparseWranglerFile>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
@@ -114,19 +114,19 @@ skinparam rectangle<<Application.Application>> {
 }
 
 rectangle "Application\n<size:10>[Container: Application]</size>" <<Application.Application>> {
-  rectangle "==default_container__basic_wrangler__findwranglerfiles\n<size:10>[Component: function]</size>\n\nFind wrangler.toml files based on include/exclude patterns" <<Application.Application.default_container__basic_wrangler__findwranglerfiles>> as Application.Application.default_container__basic_wrangler__findwranglerfiles
-  rectangle "==default_container__basic_wrangler__maptoir\n<size:10>[Component: function]</size>\n\nMap wrangler configurations to ArchletteIR This creates: - Containers: One per wrangler.toml file - Deployments: One per environment (production, dev, preview, etc.) - Container Instances: One per container per environment - Container Relationships: Logical dependencies from service bindings - Deployment Relationships: Physical instance-to-instance connections" <<Application.Application.default_container__basic_wrangler__maptoir>> as Application.Application.default_container__basic_wrangler__maptoir
-  rectangle "==default_container__basic_wrangler__extractcontainers\n<size:10>[Component: function]</size>\n\nExtract containers from wrangler configurations Creates one container per wrangler.toml file. Each container represents a Cloudflare Worker (if main exists) or other Cloudflare service." <<Application.Application.default_container__basic_wrangler__extractcontainers>> as Application.Application.default_container__basic_wrangler__extractcontainers
-  rectangle "==default_container__basic_wrangler__derivecontainertype\n<size:10>[Component: function]</size>\n\nDerive container type from wrangler configuration Logic: - If 'main' field exists → Cloudflare Worker - Otherwise → Cloudflare Service (generic)" <<Application.Application.default_container__basic_wrangler__derivecontainertype>> as Application.Application.default_container__basic_wrangler__derivecontainertype
-  rectangle "==default_container__basic_wrangler__extractdeploymentsandinstances\n<size:10>[Component: function]</size>\n\nExtract deployments and container instances Creates: - One deployment per environment - Container instances for each container in each environment" <<Application.Application.default_container__basic_wrangler__extractdeploymentsandinstances>> as Application.Application.default_container__basic_wrangler__extractdeploymentsandinstances
-  rectangle "==default_container__basic_wrangler__extractcontainerrelationships\n<size:10>[Component: function]</size>\n\nExtract container relationships from service bindings Creates logical dependencies between containers based on service bindings. Deduplicates relationships across all environments." <<Application.Application.default_container__basic_wrangler__extractcontainerrelationships>> as Application.Application.default_container__basic_wrangler__extractcontainerrelationships
-  rectangle "==default_container__basic_wrangler__extractdeploymentrelationships\n<size:10>[Component: function]</size>\n\nExtract deployment relationships from container instances Creates physical instance-to-instance relationships based on service bindings. Each relationship represents an actual runtime dependency in a specific environment." <<Application.Application.default_container__basic_wrangler__extractdeploymentrelationships>> as Application.Application.default_container__basic_wrangler__extractdeploymentrelationships
-  rectangle "==default_container__basic_wrangler__extractdescription\n<size:10>[Component: function]</size>\n\nExtract description from" <<Application.Application.default_container__basic_wrangler__extractdescription>> as Application.Application.default_container__basic_wrangler__extractdescription
-  rectangle "==default_container__basic_wrangler__parsewranglerfile\n<size:10>[Component: function]</size>\n\nParse a wrangler.toml file" <<Application.Application.default_container__basic_wrangler__parsewranglerfile>> as Application.Application.default_container__basic_wrangler__parsewranglerfile
-  rectangle "==default_container__basic_wrangler__normalizeservicebindings\n<size:10>[Component: function]</size>\n\nNormalize service bindings from various formats Wrangler supports multiple binding formats: - [[services]] array (TOML array of tables) - services = [{ binding = "...", service = "..." }]" <<Application.Application.default_container__basic_wrangler__normalizeservicebindings>> as Application.Application.default_container__basic_wrangler__normalizeservicebindings
-  rectangle "==default_container__basic_wrangler__getenvironments\n<size:10>[Component: function]</size>\n\nGet all environments from a wrangler config Returns a list of environment names, including: - "production" (from root-level config if it has deployable content) - All keys from env.* sections" <<Application.Application.default_container__basic_wrangler__getenvironments>> as Application.Application.default_container__basic_wrangler__getenvironments
-  rectangle "==default_container__basic_wrangler__getenvironmentconfig\n<size:10>[Component: function]</size>\n\nGet configuration for a specific environment Merges root-level config with environment-specific overrides. Environment config takes precedence." <<Application.Application.default_container__basic_wrangler__getenvironmentconfig>> as Application.Application.default_container__basic_wrangler__getenvironmentconfig
-  rectangle "==default_container__basic_wrangler__basicwranglerextractor\n<size:10>[Component: function]</size>\n\nExtract deployment topology from Cloudflare Wrangler configuration files" <<Application.Application.default_container__basic_wrangler__basicwranglerextractor>> as Application.Application.default_container__basic_wrangler__basicwranglerextractor
+  rectangle "==basic_wrangler.findWranglerFiles\n<size:10>[Component: function]</size>\n\nFind wrangler.toml files based on include/exclude patterns" <<Application.Application.basic_wranglerfindWranglerFiles>> as Application.Application.basic_wranglerfindWranglerFiles
+  rectangle "==basic_wrangler.mapToIR\n<size:10>[Component: function]</size>\n\nMap wrangler configurations to ArchletteIR This creates: - Containers: One per wrangler.toml file - Deployments: One per environment (production, dev, preview, etc.) - Container Instances: One per container per environment - Container Relationships: Logical dependencies from service bindings - Deployment Relationships: Physical instance-to-instance connections" <<Application.Application.basic_wranglermapToIR>> as Application.Application.basic_wranglermapToIR
+  rectangle "==basic_wrangler.extractContainers\n<size:10>[Component: function]</size>\n\nExtract containers from wrangler configurations Creates one container per wrangler.toml file. Each container represents a Cloudflare Worker (if main exists) or other Cloudflare service." <<Application.Application.basic_wranglerextractContainers>> as Application.Application.basic_wranglerextractContainers
+  rectangle "==basic_wrangler.deriveContainerType\n<size:10>[Component: function]</size>\n\nDerive container type from wrangler configuration Logic: - If 'main' field exists → Cloudflare Worker - Otherwise → Cloudflare Service (generic)" <<Application.Application.basic_wranglerderiveContainerType>> as Application.Application.basic_wranglerderiveContainerType
+  rectangle "==basic_wrangler.extractDeploymentsAndInstances\n<size:10>[Component: function]</size>\n\nExtract deployments and container instances Creates: - One deployment per environment - Container instances for each container in each environment" <<Application.Application.basic_wranglerextractDeploymentsAndInstances>> as Application.Application.basic_wranglerextractDeploymentsAndInstances
+  rectangle "==basic_wrangler.extractContainerRelationships\n<size:10>[Component: function]</size>\n\nExtract container relationships from service bindings Creates logical dependencies between containers based on service bindings. Deduplicates relationships across all environments." <<Application.Application.basic_wranglerextractContainerRelationships>> as Application.Application.basic_wranglerextractContainerRelationships
+  rectangle "==basic_wrangler.extractDeploymentRelationships\n<size:10>[Component: function]</size>\n\nExtract deployment relationships from container instances Creates physical instance-to-instance relationships based on service bindings. Each relationship represents an actual runtime dependency in a specific environment." <<Application.Application.basic_wranglerextractDeploymentRelationships>> as Application.Application.basic_wranglerextractDeploymentRelationships
+  rectangle "==basic_wrangler.extractDescription\n<size:10>[Component: function]</size>\n\nExtract description from" <<Application.Application.basic_wranglerextractDescription>> as Application.Application.basic_wranglerextractDescription
+  rectangle "==basic_wrangler.parseWranglerFile\n<size:10>[Component: function]</size>\n\nParse a wrangler.toml file" <<Application.Application.basic_wranglerparseWranglerFile>> as Application.Application.basic_wranglerparseWranglerFile
+  rectangle "==basic_wrangler.normalizeServiceBindings\n<size:10>[Component: function]</size>\n\nNormalize service bindings from various formats Wrangler supports multiple binding formats: - [[services]] array (TOML array of tables) - services = [{ binding = "...", service = "..." }]" <<Application.Application.basic_wranglernormalizeServiceBindings>> as Application.Application.basic_wranglernormalizeServiceBindings
+  rectangle "==basic_wrangler.getEnvironments\n<size:10>[Component: function]</size>\n\nGet all environments from a wrangler config Returns a list of environment names, including: - "production" (from root-level config if it has deployable content) - All keys from env.* sections" <<Application.Application.basic_wranglergetEnvironments>> as Application.Application.basic_wranglergetEnvironments
+  rectangle "==basic_wrangler.getEnvironmentConfig\n<size:10>[Component: function]</size>\n\nGet configuration for a specific environment Merges root-level config with environment-specific overrides. Environment config takes precedence." <<Application.Application.basic_wranglergetEnvironmentConfig>> as Application.Application.basic_wranglergetEnvironmentConfig
+  rectangle "==basic_wrangler.basicWranglerExtractor\n<size:10>[Component: function]</size>\n\nExtract deployment topology from Cloudflare Wrangler configuration files" <<Application.Application.basic_wranglerbasicWranglerExtractor>> as Application.Application.basic_wranglerbasicWranglerExtractor
 }
 
 @enduml
