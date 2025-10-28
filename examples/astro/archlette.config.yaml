@@ -1,0 +1,32 @@
+project:
+  name: Astro Example App
+  description: Example Astro application demonstrating Archlette Astro extractor capabilities
+
+paths:
+  output: ./archlette-output
+  ir_out: ./archlette-output/ir.json
+  dsl_out: ./archlette-output/dsl
+  render_out: ./archlette-output/diagrams
+  docs_out: ./archlette-output/docs
+
+extractors:
+  - use: extractors/builtin/basic-astro
+    inputs:
+      include:
+        - 'src/**/*.astro'
+      exclude:
+        - '**/*.test.astro'
+        - '**/*.spec.astro'
+
+validators:
+  - use: validators/builtin/base-validator
+
+generators:
+  - use: generators/builtin/structurizr
+
+renderers:
+  - use: renderers/builtin/structurizr-export
+  - use: renderers/builtin/plantuml-render
+
+docs:
+  - use: docs/builtin/markdown-docs

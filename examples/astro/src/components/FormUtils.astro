@@ -1,0 +1,76 @@
+---
+/**
+ * @module ui/components/form
+ * Form utilities and helper functions for validation and submission
+ * 
+ * @uses ValidationService Validates form inputs
+ * @uses Database Stores form submissions
+ * @actor User {Person} {in} Fills out and submits forms
+ */
+
+export interface FormData {
+  [key: string]: FormFieldValue;
+}
+
+export type FormFieldValue = string | number | boolean | null;
+
+export interface FormError {
+  field: string;
+  message: string;
+}
+
+/**
+ * Validates form data against a simple set of rules
+ * Returns empty array if all validations pass
+ */
+export function validateFormData(
+  data: FormData,
+  rules: Record<string, string[]>
+): FormError[] {
+  const errors: FormError[] = [];
+
+  for (const [field, fieldRules] of Object.entries(rules)) {
+    const value = data[field];
+
+    for (const rule of fieldRules) {
+      if (rule === 'required' && !value) {
+        errors.push({ field, message: `${field} is required` });
+      }
+
+      if (rule.startsWith('minLength:')) {
+        const minLength = parseInt(rule.split(':')[1]);
+        if (value && String(value).length < minLength) {
+          errors.push({
+            field,
+            message: `${field} must be at least ${minLength} characters`,
+          });
+        }
+      }
+
+      if (rule === 'email' && value) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(String(value))) {
+          errors.push({ field, message: `${field} must be a valid email` });
+        }
+      }
+    }
+  }
+
+  return errors;
+}
+
+/**
+ * Serializes form data into URL search parameters
+ */
+export function serializeFormData(data: FormData): URLSearchParams {
+  const params = new URLSearchParams();
+  for (const [key, value] of Object.entries(data)) {
+    if (value !== null && value !== undefined) {
+      params.append(key, String(value));
+    }
+  }
+  return params;
+}
+---
+
+<slot />

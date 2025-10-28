@@ -43,6 +43,10 @@ See [Installation Guide](https://chrislyons-dev.github.io/archlette/getting-star
 
 ### Annotate
 
+Works with **TypeScript, JavaScript, and Astro** components:
+
+**TypeScript/JavaScript:**
+
 ```typescript
 /**
  * @module UserService
@@ -58,6 +62,31 @@ export class UserService {
 }
 ```
 
+**Astro Components:**
+
+```astro
+---
+/**
+ * @component Button
+ * Reusable button component with multiple variants
+ *
+ * @uses Icon Displays button icon
+ * @actor User {Person} {in} Clicks button to trigger action
+ */
+
+interface Props {
+  variant?: 'primary' | 'secondary';
+  disabled?: boolean;
+}
+
+const { variant = 'primary', disabled = false } = Astro.props;
+---
+
+<button class={`btn btn-${variant}`} disabled={disabled}>
+  <slot />
+</button>
+```
+
 ### Configure
 
 Create `.aac.yaml`:
@@ -69,8 +98,13 @@ project:
 extractors:
   - use: extractors/builtin/basic-node
     inputs:
-      include: ['src/**/*.ts']
+      include: ['src/**/*.ts', 'src/**/*.js']
+  - use: extractors/builtin/basic-astro
+    inputs:
+      include: ['src/**/*.astro']
 ```
+
+**Note:** Use `basic-node` for TypeScript/JavaScript files and `basic-astro` for Astro components. Both produce compatible IR for aggregation.
 
 ### Generate
 
@@ -115,6 +149,48 @@ npx archlette
 - [How to Contribute](CONTRIBUTING.md) — Development setup
 - [Security Guide](docs/guide/security.md) — Security architecture and best practices
 - [Changelog](CHANGELOG.md) — Release history
+
+---
+
+## Extractors
+
+Archlette includes built-in extractors for multiple languages:
+
+### basic-node
+
+Extracts architecture from **TypeScript and JavaScript** codebases using AST analysis with ts-morph.
+
+- Detects components from directory structure or explicit `@component` tags
+- Extracts classes, functions, types, and interfaces
+- Parses JSDoc annotations for actors and relationships
+- Identifies dependencies from import statements
+
+**When to use:** TypeScript/JavaScript projects, Node.js backends, frontend libraries
+
+### basic-astro
+
+Extracts architecture from **Astro components** using the Astro compiler.
+
+- Identifies components from Astro file names or `@component` tags
+- Extracts component props, slots, and client directives
+- Parses frontmatter code for additional type information
+- Detects component composition from template markup
+- Works seamlessly with basic-node for full-stack analysis
+
+**When to use:** Astro-based projects, island architecture, mixed TypeScript + Astro applications
+
+### basic-python
+
+Extracts architecture from **Python** codebases using AST parsing (no runtime required).
+
+- Supports Python 3.8+ syntax
+- Detects classes, functions, and dependencies
+
+**When to use:** Python projects, data science applications, mixed-language monorepos
+
+### custom-extractors
+
+Write your own extractor to support additional languages or frameworks. See [Plugin Development](https://chrislyons-dev.github.io/archlette/plugins/extractors/).
 
 ---
 

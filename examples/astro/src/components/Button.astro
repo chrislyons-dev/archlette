@@ -1,0 +1,108 @@
+---
+/**
+ * @component Button
+ * Reusable button component with multiple variants and states
+ * 
+ * @uses Icon Displays icon inside button
+ * @actor User {Person} {in} Clicks button to trigger action
+ * @actor Analytics {System} {out} Sends click events for tracking
+ */
+
+export type ButtonVariant = 'primary' | 'secondary' | 'danger' | 'ghost';
+export type ButtonSize = 'sm' | 'md' | 'lg';
+
+interface Props {
+  variant?: ButtonVariant;
+  size?: ButtonSize;
+  disabled?: boolean;
+  type?: 'button' | 'submit' | 'reset';
+  ariaLabel?: string;
+}
+
+const {
+  variant = 'primary',
+  size = 'md',
+  disabled = false,
+  type = 'button',
+  ariaLabel,
+} = Astro.props;
+
+// Generate CSS classes for the button
+const buttonClasses = `btn btn-${variant} btn-${size}${disabled ? ' btn-disabled' : ''}`;
+---
+
+<button
+  class={buttonClasses}
+  type={type}
+  disabled={disabled}
+  aria-label={ariaLabel}
+>
+  <slot />
+</button>
+
+<style>
+  .btn {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s ease;
+  }
+
+  .btn-primary {
+    background-color: #007bff;
+    color: white;
+  }
+
+  .btn-primary:hover:not(:disabled) {
+    background-color: #0056b3;
+  }
+
+  .btn-secondary {
+    background-color: #6c757d;
+    color: white;
+  }
+
+  .btn-secondary:hover:not(:disabled) {
+    background-color: #545b62;
+  }
+
+  .btn-danger {
+    background-color: #dc3545;
+    color: white;
+  }
+
+  .btn-danger:hover:not(:disabled) {
+    background-color: #c82333;
+  }
+
+  .btn-ghost {
+    background-color: transparent;
+    border: 1px solid currentColor;
+  }
+
+  .btn-ghost:hover:not(:disabled) {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+
+  .btn-sm {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+  }
+
+  .btn-md {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+  }
+
+  .btn-lg {
+    padding: 0.75rem 1.5rem;
+    font-size: 1.125rem;
+  }
+
+  .btn-disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+</style>

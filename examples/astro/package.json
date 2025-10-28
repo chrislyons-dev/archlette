@@ -1,0 +1,17 @@
+{
+  "name": "@example/astro-app",
+  "version": "1.0.0",
+  "description": "Example Astro application for demonstrating Archlette Astro extractor",
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "aac:extract": "archlette extract",
+    "aac:docs": "archlette"
+  },
+  "devDependencies": {
+    "astro": "^4.0.0",
+    "@chrislyons-dev/archlette": "^1.0.0"
+  }
+}
