@@ -89,11 +89,31 @@ function parseJSDocBlock(comment: string): JSDocBlock | null {
 
 /**
  * Extract component information from frontmatter JSDoc
- * Checks for @component, @module, or @namespace tags
- * If no tags found, infers component from directory structure:
- * - Files in subdirectories use the immediate parent folder name
- * - Files in root directory use ROOT_COMPONENT_MARKER
- * - Uses any JSDoc description found in the frontmatter
+ *
+ * Attempts to identify the component in this file using JSDoc tags:
+ * 1. Checks for @component tag (explicit component declaration)
+ * 2. Falls back to @module or @namespace tags
+ * 3. If no tags found, infers from directory structure
+ *
+ * Inference rules:
+ * - Files in subdirectories: parent folder name becomes component
+ * - Files in root directory: uses ROOT_COMPONENT_MARKER (replaced during IR mapping)
+ *
+ * Preserves any JSDoc description for the component's documentation.
+ *
+ * @param frontmatter - TypeScript/JavaScript code from frontmatter section
+ * @param filePath - Absolute path to the Astro file (used for inference)
+ * @returns ComponentInfo with id, name, and optional description, or undefined
+ *
+ * @example
+ * // With explicit @component tag
+ * const fm = '/** @component Button *\/ import ...';
+ * const comp = extractFileComponent(fm, '/path/Button.astro');
+ * // Returns: { id: 'button', name: 'Button', _inferred: false }
+ *
+ * // With inference from directory
+ * const comp = extractFileComponent('', '/path/components/Header.astro');
+ * // Returns: { id: 'components', name: 'components', _inferred: true }
  */
 export function extractFileComponent(
   frontmatter: string,
@@ -145,11 +165,28 @@ export function extractFileComponent(
 
 /**
  * Extract component name from a JSDoc tag value
- * Handles formats like:
- * - ComponentName
- * - ComponentName - Description (space-dash-space separator)
- * - path/to/module
- * - My-Component (dashes in names are preserved)
+ *
+ * Parses the tag value to extract the component name, handling various formats:
+ * - Simple name: ComponentName
+ * - With description: ComponentName - Description
+ * - Module path: path/to/module (extracts last directory component)
+ * - Dashes preserved: My-Component-Name
+ *
+ * For module paths like "utils/helpers", extracts "utils" (the last directory
+ * before the filename) to enable component grouping.
+ *
+ * @param value - The JSDoc tag value (text after @component, @module, or @namespace)
+ * @returns Extracted component name, or undefined if value is empty
+ *
+ * @example
+ * extractComponentName('Button');
+ * // Returns: 'Button'
+ *
+ * extractComponentName('Button - A reusable button component');
+ * // Returns: 'Button'
+ *
+ * extractComponentName('components/forms/Button');
+ * // Returns: 'forms'
  */
 function extractComponentName(value: string): string | undefined {
   if (!value) return undefined;
@@ -184,12 +221,31 @@ function extractComponentName(value: string): string | undefined {
 
 /**
  * Extract actors from frontmatter JSDoc
- * Looks for @actor tags in the format: @actor Name {Type} {Direction?} description
- * Examples:
- * - @actor User {Person} {in} End user who runs archlette commands
- * - @actor FileSystem {System} {out} File system for reading and writing files
- * - @actor Logger {System} {both} Shared logging service
- * - @actor Cache {System} Redis cache (defaults to {both} if direction omitted)
+ *
+ * Identifies external actors (users, systems) that interact with the component.
+ * Actors are specified using @actor tags in JSDoc comments.
+ *
+ * Format: @actor Name {Type} {Direction?} description
+ * - Name: Human-readable actor name
+ * - Type: Person (user role) or System (external service)
+ * - Direction: in (inputs to component), out (receives outputs), both
+ * - Description: What role the actor plays
+ *
+ * @param frontmatter - TypeScript/JavaScript code from frontmatter
+ * @returns Array of identified actors, or empty array if none found
+ *
+ * @example
+ * const fm = '/** @actor User {Person} {in} End user *\/ ...';
+ * const actors = extractFileActors(fm);
+ * // Returns: [
+ * //   {
+ * //     id: 'user',
+ * //     name: 'User',
+ * //     type: 'Person',
+ * //     direction: 'in',
+ * //     description: 'End user'
+ * //   }
+ * // ]
  */
 export function extractFileActors(frontmatter: string): ActorInfo[] {
   const actors: ActorInfo[] = [];
@@ -252,9 +308,27 @@ function parseActorTag(value: string): ActorInfo | undefined {
 
 /**
  * Extract relationships from frontmatter JSDoc
- * Looks for @uses tags to identify component dependencies
- * Example:
- * - @uses Extractor Analyzes source code to extract architecture components
+ *
+ * Identifies component dependencies using @uses tags.
+ * Relationships represent that this component uses/depends on another component.
+ *
+ * Format: @uses TargetName description
+ * - TargetName: Name of the component being used
+ * - Description: Why or how it's used (optional)
+ *
+ * @param frontmatter - TypeScript/JavaScript code from frontmatter
+ * @returns Array of identified relationships, or empty array if none found
+ *
+ * @example
+ * const fm = '/** @uses Logger For debug output *\/ ...';
+ * const rels = extractFileRelationships(fm);
+ * // Returns: [
+ * //   {
+ * //     source: '', // Filled during IR mapping
+ * //     target: 'Logger',
+ * //     description: 'For debug output'
+ * //   }
+ * // ]
  */
 export function extractFileRelationships(frontmatter: string): RelationshipInfo[] {
   const relationships: RelationshipInfo[] = [];
@@ -305,12 +379,23 @@ function parseUsesTag(value: string): RelationshipInfo | undefined {
 
 /**
  * Infer component name from file path
- * - Files in subdirectories use the immediate parent folder name
- * - Files in root directory use ROOT_COMPONENT_MARKER
  *
- * Examples:
- * - /path/to/project/src/components/Button.astro -> 'components'
- * - /path/to/project/src/Layout.astro -> ROOT_COMPONENT_MARKER
+ * When no explicit @component tag is found, derives component from directory structure:
+ * - Subdirectory files: Uses the immediate parent folder name
+ * - Root directory files: Uses ROOT_COMPONENT_MARKER (replaced during IR mapping)
+ *
+ * This enables automatic component organization without explicit annotations.
+ * Used as fallback in extractFileComponent().
+ *
+ * @param filePath - Absolute path to the Astro file
+ * @returns ComponentInfo with inferred component name
+ *
+ * @example
+ * inferComponentFromPath('/project/src/components/Button.astro');
+ * // Returns: { id: 'components', name: 'components', description: '...' }
+ *
+ * inferComponentFromPath('/project/Layout.astro');
+ * // Returns: { id: '__use_container_name__', name: '__USE_CONTAINER_NAME__' }
  */
 function inferComponentFromPath(filePath: string): ComponentInfo {
   // Normalize path separators to forward slashes

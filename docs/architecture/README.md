@@ -46,5 +46,5 @@ The container diagram shows the high-level technology choices and how containers
 ---
 
 <div align="center">
-<sub>Generated with <a href="https://github.com/architectlabs/archlette">Archlette</a> Architecture-as-Code toolkit</sub>
+<sub>Generated with <a href="https://github.com/chrislyons-dev/archlette">Archlette</a> Architecture-as-Code toolkit</sub>
 </div>

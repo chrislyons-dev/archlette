@@ -30,7 +30,45 @@ import {
 
 /**
  * Map file extractions to ArchletteIR
- * Transforms Astro component analysis into standardized architecture representation
+ *
+ * Transforms extracted Astro component data into standardized ArchletteIR format.
+ * This is the final step before DSL generation and diagram rendering.
+ *
+ * Algorithm (4 main steps):
+ *
+ * 1. **Aggregation** - Combine all file extractions:
+ *    - Register components, actors, code items from all files
+ *    - Detect and merge duplicates (same component in multiple files)
+ *    - Build relationship graph from @uses tags and component usage
+ *    - Merge descriptions (especially for inferred components)
+ *
+ * 2. **Container Assignment** - Map files to packages:
+ *    - Find nearest package.json for each file
+ *    - Create containers from packages (or default container)
+ *    - Assign components to containers
+ *    - Apply container-level IDs: containerId__componentId
+ *
+ * 3. **ID Resolution** - Build hierarchical identifiers:
+ *    - Replace ROOT_COMPONENT_MARKER with actual container names
+ *    - Apply code-level IDs: componentId__codeName
+ *    - Update all relationship references to use final IDs
+ *
+ * 4. **IR Assembly** - Finalize output structure:
+ *    - Convert maps to arrays (components, actors, code items)
+ *    - Filter parse errors (exclude files with errors)
+ *    - Build system metadata
+ *    - Return complete ArchletteIR
+ *
+ * @param extractions - Array of FileExtraction (from parseFiles)
+ * @param packages - Optional array of PackageInfo for container detection
+ * @param systemInfo - Optional system metadata (name, description, repository)
+ * @returns ArchletteIR ready for DSL generation
+ *
+ * @example
+ * const ir = mapToIR(extractions, packages, {
+ *   name: 'My App',
+ *   description: 'Application architecture'
+ * });
  */
 export function mapToIR(
   extractions: FileExtraction[],

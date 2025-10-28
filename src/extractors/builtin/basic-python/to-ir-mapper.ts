@@ -29,6 +29,7 @@ import type {
   ExtractedImport,
 } from './types.js';
 import type { PyProjectInfo } from './file-finder.js';
+import { deduplicateRelationships } from '../shared/relationship-utils.js';
 
 const log = createLogger({ context: 'PythonIRMapper' });
 
@@ -58,11 +59,27 @@ export function mapToIR(
   // Build a map of file paths to component IDs for import resolution
   const fileToComponentMap = new Map<string, string>();
 
+  // Build an index of module paths for O(1) import resolution
+  const modulePathIndex = new Map<string, string>(); // module path -> file path
+
   for (const extraction of extractions) {
     // Map file path to component ID
     if (extraction.component) {
       fileToComponentMap.set(extraction.filePath, extraction.component.id);
     }
+
+    // Index module paths for fast lookup (Issue #3)
+    // Extract module path from file path for absolute import matching
+    // e.g., "src/services/auth.py" -> "services.auth", "services/auth"
+    const modulePath = extraction.filePath
+      .replace(/\\/g, '/')
+      .replace(/\.py$/, '')
+      .replace(/\/__init__$/, '');
+
+    // Store both dotted and slashed versions
+    const dottedPath = modulePath.split('/').join('.');
+    modulePathIndex.set(modulePath, extraction.filePath);
+    modulePathIndex.set(dottedPath, extraction.filePath);
 
     // Collect components
     if (extraction.component) {
@@ -106,7 +123,7 @@ export function mapToIR(
             extraction.filePath,
             extraction.component.id,
             fileToComponentMap,
-            extractions,
+            modulePathIndex,
           ),
         );
       }
@@ -379,13 +396,16 @@ function mapImportToComponentRelationships(
   filePath: string,
   componentId: string,
   fileToComponentMap: Map<string, string>,
-  extractions: FileExtraction[],
+  modulePathIndex: Map<string, string>,
 ): Relationship[] {
   const relationships: Relationship[] = [];
 
   // Skip standard library and third-party imports - only handle local imports
   if (imp.category !== 'local') {
-    // For stdlib/third_party, create relationship to external module
+    // For stdlib/third_party, create relationship to external module (Issue #4: debug logging)
+    log.debug(
+      `External import detected: ${imp.source} (${imp.category}) in ${filePath}`,
+    );
     for (const importedName of imp.importedNames) {
       relationships.push({
         source: componentId,
@@ -408,6 +428,15 @@ function mapImportToComponentRelationships(
 
     // Go up 'level' directories
     const level = imp.level || 1;
+
+    // Validate level doesn't exceed directory depth (path traversal protection)
+    if (level > parts.length - 1) {
+      log.warn(
+        `Invalid relative import level ${level} exceeds directory depth in ${filePath}`,
+      );
+      return relationships;
+    }
+
     if (parts.length >= level) {
       const targetDir = parts.slice(0, -level + 1).join('/');
       const modulePath = imp.source.replace(/\./g, '/');
@@ -420,15 +449,16 @@ function mapImportToComponentRelationships(
     }
   } else {
     // Absolute import within the project
-    // Try to find the file by matching the import path
+    // Use index for O(1) lookup instead of O(n) search (Issue #3)
     const modulePath = imp.source.replace(/\./g, '/');
 
-    // Search through all extractions to find matching file
-    for (const extraction of extractions) {
-      if (extraction.filePath.includes(modulePath)) {
-        targetFilePath = extraction.filePath;
-        break;
-      }
+    // Try direct lookup in index
+    targetFilePath = modulePathIndex.get(imp.source) || modulePathIndex.get(modulePath);
+
+    // If not found, try with __init__.py
+    if (!targetFilePath) {
+      const initPath = `${modulePath}/__init__`;
+      targetFilePath = modulePathIndex.get(initPath);
     }
   }
 
@@ -442,6 +472,13 @@ function mapImportToComponentRelationships(
     ? fileToComponentMap.get(targetFilePath)
     : undefined;
 
+  // Debug logging for failed import resolutions (Issue #4)
+  if (imp.category === 'local' && !destinationComponentId) {
+    log.debug(
+      `Failed to resolve local import: ${imp.source} from ${filePath} (target: ${targetFilePath || 'not found'})`,
+    );
+  }
+
   // Create relationships for each imported name
   for (const importedName of imp.importedNames) {
     relationships.push({
@@ -453,66 +490,6 @@ function mapImportToComponentRelationships(
   }
 
   return relationships;
-}
-
-/**
- * Deduplicate relationships by source+destination combination
- * - Excludes self-referential relationships (source === destination)
- * - Merges descriptions and stereotypes with " | " separator when duplicates are found
- * - Extracts imported names from descriptions (removes "imports " prefix) and keeps only unique names
- * - Returns one relationship per unique source+destination pair
- */
-function deduplicateRelationships(relationships: Relationship[]): Relationship[] {
-  const seen = new Map<string, Relationship>();
-
-  for (const rel of relationships) {
-    // Skip self-referential relationships
-    if (rel.source === rel.destination) {
-      continue;
-    }
-
-    const key = `${rel.source}:${rel.destination}`;
-
-    if (!seen.has(key)) {
-      // First occurrence - store as-is
-      seen.set(key, { ...rel });
-    } else {
-      // Duplicate found - merge descriptions and stereotypes
-      const existing = seen.get(key)!;
-
-      // Merge descriptions - extract unique imported names
-      if (rel.description && rel.description !== existing.description) {
-        const allDescriptions = [existing.description, rel.description].filter(
-          Boolean,
-        ) as string[];
-        const uniqueNames = new Set<string>();
-
-        for (const desc of allDescriptions) {
-          // Split by " | " to handle already-merged descriptions
-          const parts = desc.split(' | ');
-          for (const part of parts) {
-            // Extract the imported name (remove "imports " prefix if present)
-            const name = part.trim().replace(/^imports\s+/, '');
-            if (name) {
-              uniqueNames.add(name);
-            }
-          }
-        }
-
-        existing.description = Array.from(uniqueNames).join(' | ');
-      }
-
-      // Merge stereotypes
-      if (rel.stereotype && rel.stereotype !== existing.stereotype) {
-        const stereotypes = new Set(
-          [existing.stereotype, rel.stereotype].filter(Boolean),
-        );
-        existing.stereotype = Array.from(stereotypes).join(' | ');
-      }
-    }
-  }
-
-  return Array.from(seen.values());
 }
 
 /**

@@ -21,6 +21,20 @@ const DEFAULT_EXCLUDE = [
 
 /**
  * Find Astro source files matching the given patterns
+ *
+ * Locates all .astro files in the workspace using glob patterns.
+ * Returns absolute paths to enable downstream processing.
+ *
+ * Default patterns include src directory and exclude node_modules, dist, build, and .astro.
+ *
+ * @param options - Configuration object
+ * @param options.include - Glob patterns to include (defaults to src and root)
+ * @param options.exclude - Glob patterns to exclude (node_modules, build artifacts, etc.)
+ * @returns Promise resolving to array of absolute file paths
+ *
+ * @example
+ * const files = await findSourceFiles({});
+ * // Returns array of absolute paths to all found .astro files
  */
 export async function findSourceFiles(options: {
   include?: string[];
@@ -40,6 +54,21 @@ export async function findSourceFiles(options: {
 
 /**
  * Find all package.json files in the workspace
+ *
+ * Extracts base directories from include patterns and searches multiple directory levels
+ * to locate all package.json files. Useful for identifying container boundaries and
+ * package metadata (name, version, description).
+ *
+ * @param options - Configuration object
+ * @param options.include - Glob patterns to use as search base directories
+ * @param options.exclude - Exclude patterns (currently unused for package search)
+ * @returns Promise resolving to array of absolute paths to package.json files
+ *
+ * @example
+ * const packages = await findPackageJsonFiles({
+ *   include: ['src/**\/*.astro']
+ * });
+ * // Returns paths to package.json files found in the workspace
  */
 export async function findPackageJsonFiles(options: {
   include?: string[];
@@ -91,6 +120,16 @@ export async function findPackageJsonFiles(options: {
 
 /**
  * Read package.json and extract metadata
+ *
+ * Parses a package.json file and extracts key metadata fields: name, version, and description.
+ * Returns null on read or parse errors (logged as warnings).
+ *
+ * @param filePath - Absolute path to package.json file
+ * @returns Promise resolving to PackageInfo object or null on error
+ *
+ * @example
+ * const pkg = await readPackageInfo('/abs/path/package.json');
+ * // { path: '/abs/path/package.json', dir: '/abs/path', name: 'my-pkg', version: '1.0.0' }
  */
 export async function readPackageInfo(filePath: string): Promise<PackageInfo | null> {
   try {
@@ -114,6 +153,21 @@ export async function readPackageInfo(filePath: string): Promise<PackageInfo | n
 
 /**
  * Find the nearest package.json for a given file
+ *
+ * Searches through all known packages and finds the one whose directory is the closest
+ * parent of the given file. Packages are sorted by depth (deepest first) to prioritize
+ * monorepo sub-packages over workspace root packages.
+ *
+ * @param filePath - Absolute path to the file
+ * @param packages - Array of discovered package.json metadata objects
+ * @returns The closest parent package, or null if file is not within any package
+ *
+ * @example
+ * const pkg = findNearestPackage(
+ *   '/workspace/packages/ui/src/Button.astro',
+ *   packages
+ * );
+ * // Returns the packages/ui/package.json metadata if it exists
  */
 export function findNearestPackage(
   filePath: string,
