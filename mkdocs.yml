@@ -45,6 +45,7 @@ nav:
   - User Guide:
       - Component Detection: extractors/component-detection.md
       - Extractors Overview: extractors/README.md
+      - Basic Astro Extractor: extractors/basic-astro.md
       - Basic Node Extractor: extractors/basic-node.md
       - Basic Wrangler Extractor: extractors/basic-wrangler.md
       - Annotations Reference: guide/annotations.md

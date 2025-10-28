@@ -472,5 +472,4 @@ All three will be merged into one "Button" component in the extracted architectu
 ## See Also
 
 - [Archlette Annotations Guide](https://chrislyons-dev.github.io/archlette/guide/annotations/)
-- [Astro Example Project](../../examples/astro/)
 - [Basic-Node JSDoc Tags](../extractors/basic-node-annotations.md)
