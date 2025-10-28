@@ -497,4 +497,3 @@ Add `@uses` tags to document dependencies:
 
 - [Astro Annotations Reference](astro-annotations.md) - JSDoc tag documentation
 - [Examples Directory](../../examples/) - Working configuration examples
-- [CLAUDE.md](../../CLAUDE.md) - Architecture documentation
