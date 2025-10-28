@@ -355,12 +355,32 @@ All 550 tests passing ✅
 
 ### 9.2 User Documentation
 
-- [ ] Update main README.md with Astro extractor info
-- [ ] Create examples in `examples/astro/`
-- [ ] Document supported JSDoc tags
-- [ ] Add usage examples in CLAUDE.md
+- [x] Update main README.md with Astro extractor info
+- [x] Create examples in `examples/astro/`
+- [x] Document supported JSDoc tags
+- [x] Add usage examples in CLAUDE.md
 
 **Commit:** `docs: add user documentation for Astro extractor`
+
+Added comprehensive user-facing documentation:
+
+- **README.md**: Added Astro annotation example, multi-extractor config, and Extractors section describing all built-in extractors
+- **examples/astro/**: Created complete example project with:
+  - 4 example Astro components (Header, Button, Card, FormUtils)
+  - package.json for container detection
+  - archlette.config.yaml for full pipeline
+  - Comprehensive README explaining features and JSDoc tags
+- **docs/guide/astro-annotations.md**: Complete reference guide for Astro JSDoc tags:
+  - Component declaration tags (@component, @module, @namespace)
+  - Actor definitions (@actor) with direction indicators
+  - Relationships (@uses)
+  - Examples for each use case
+  - Best practices and common mistakes
+- **CLAUDE.md**: Updated with:
+  - Astro extractor in directory structure
+  - Plugin system documentation for basic-astro
+  - Configuration examples with both basic-node and basic-astro
+  - Important notes about Astro extractor
 
 ### 9.3 Configuration Examples
 
