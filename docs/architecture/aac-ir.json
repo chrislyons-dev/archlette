@@ -2548,7 +2548,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/file-parser.ts",
-      "lineNumber": 155
+      "lineNumber": 157
     },
     {
       "description": "Extract import statements from frontmatter\n\nParses all import declarations using regex and categorizes them:\n- Default imports: import Foo from 'bar'\n- Named imports: import { Foo, Bar } from 'baz'\n- Namespace imports: import * as Foo from 'bar'\n\nAlso handles aliased imports like: import { Foo as F } from 'bar'",
@@ -2575,7 +2575,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/file-parser.ts",
-      "lineNumber": 181
+      "lineNumber": 183
     },
     {
       "description": "Find slot tags in the template\n\nAstro components can define slots to allow content projection:\n- Default slot: <slot /> (unnamed)\n- Named slot: <slot name=\"header\" />\n\nReturns location information (line number) for each slot found.",
@@ -2602,7 +2602,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/file-parser.ts",
-      "lineNumber": 253
+      "lineNumber": 255
     },
     {
       "description": "Find client directive in component usage\n\nAstro allows hydration directives to run components on the client:\n- client:load - Eager hydration\n- client:idle - Hydrate when browser is idle\n- client:visible - Hydrate when component enters viewport\n- client:media - Hydrate when media query matches\n- client:only - Hydrate only on client (no SSR)\n\nReturns the first directive found. Used to indicate interactive components.",
@@ -2629,7 +2629,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/file-parser.ts",
-      "lineNumber": 289
+      "lineNumber": 291
     },
     {
       "description": "Extract component usage from template\n\nIdentifies which imported components are actually used in the template markup.\nOnly includes components that:\n1. Start with an uppercase letter (C4 naming convention)\n2. Are found in the import statements\n3. Appear in the template markup\n\nComponent names in Astro are PascalCase by convention (e.g., Header, Footer).\nThis function uses the import list to avoid false positives from HTML elements.",
@@ -2668,7 +2668,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/file-parser.ts",
-      "lineNumber": 315
+      "lineNumber": 317
     },
     {
       "description": "Map file extractions to ArchletteIR\n\nTransforms extracted Astro component data into standardized ArchletteIR format.\nThis is the final step before DSL generation and diagram rendering.\n\nAlgorithm (4 main steps):\n\n1. **Aggregation** - Combine all file extractions:\n   - Register components, actors, code items from all files\n   - Detect and merge duplicates (same component in multiple files)\n   - Build relationship graph from",

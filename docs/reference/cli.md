@@ -17,10 +17,10 @@ Stage defaults to `all`. Full pipeline.
 ## Options
 
 **`-f, --file <path>`**
-Path to configuration file. Defaults to `templates/default.yaml` from archlette installation.
+Path to configuration file. Defaults to `archlette.config.yaml` in current directory.
 
 ```bash
-npx archlette -f .aac.yaml
+npx archlette -f archlette.config.yaml
 npx archlette -f configs/production.yaml
 ```
 
@@ -35,43 +35,43 @@ Run full pipeline: Extract → Validate → Generate → Render → Docs
 
 ```bash
 npx archlette
-npx archlette -f .aac.yaml
-npx archlette -f .aac.yaml all
+npx archlette -f archlette.config.yaml
+npx archlette -f archlette.config.yaml all
 ```
 
 **`extract`**
 Extract architecture from source code. Produces IR JSON.
 
 ```bash
-npx archlette -f .aac.yaml extract
+npx archlette -f archlette.config.yaml extract
 ```
 
 **`validate`**
 Extract + validate IR against schema.
 
 ```bash
-npx archlette -f .aac.yaml validate
+npx archlette -f archlette.config.yaml validate
 ```
 
 **`generate`**
 Extract + validate + generate DSL files.
 
 ```bash
-npx archlette -f .aac.yaml generate
+npx archlette -f archlette.config.yaml generate
 ```
 
 **`render`**
 Extract + validate + generate + render diagrams to images.
 
 ```bash
-npx archlette -f .aac.yaml render
+npx archlette -f archlette.config.yaml render
 ```
 
 **`docs`**
 Alias for `all`. Full pipeline.
 
 ```bash
-npx archlette -f .aac.yaml docs
+npx archlette -f archlette.config.yaml docs
 ```
 
 ---
@@ -82,27 +82,27 @@ npx archlette -f .aac.yaml docs
 
 ```bash
 # Test extraction
-npx archlette -f .aac.yaml extract
+npx archlette -f archlette.config.yaml extract
 
 # Check validation
-npx archlette -f .aac.yaml validate
+npx archlette -f archlette.config.yaml validate
 
 # Test DSL generation
-npx archlette -f .aac.yaml generate
+npx archlette -f archlette.config.yaml generate
 ```
 
 **Production:**
 
 ```bash
 # Full pipeline
-npx archlette -f .aac.yaml
+npx archlette -f archlette.config.yaml
 ```
 
 **CI/CD:**
 
 ```bash
 # With specific config
-npx archlette -f .aac.yaml all
+npx archlette -f archlette.config.yaml all
 ```
 
 ---

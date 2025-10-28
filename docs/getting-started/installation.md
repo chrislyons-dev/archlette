@@ -6,7 +6,8 @@ Two requirements. Node and Java.
 
 ## Node.js
 
-**Minimum version:** 18.0.0
+**Minimum version:** 18.0.0  
+**Recommended version:** 20+
 
 Check your version:
 

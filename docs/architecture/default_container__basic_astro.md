@@ -713,7 +713,7 @@ Handles both Unix and Windows line endings for cross-platform compatibility.
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/file-parser.ts:155</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/file-parser.ts:157</code></td>
 </tr>
 </tbody>
 </table>
@@ -754,7 +754,7 @@ Also handles aliased imports like: import { Foo as F } from 'bar'
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/file-parser.ts:181</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/file-parser.ts:183</code></td>
 </tr>
 </tbody>
 </table>
@@ -794,7 +794,7 @@ Returns location information (line number) for each slot found.
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/file-parser.ts:253</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/file-parser.ts:255</code></td>
 </tr>
 </tbody>
 </table>
@@ -837,7 +837,7 @@ Returns the first directive found. Used to indicate interactive components.
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/file-parser.ts:289</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/file-parser.ts:291</code></td>
 </tr>
 </tbody>
 </table>
@@ -880,7 +880,7 @@ This function uses the import list to avoid false positives from HTML elements.
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/file-parser.ts:315</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/file-parser.ts:317</code></td>
 </tr>
 </tbody>
 </table>

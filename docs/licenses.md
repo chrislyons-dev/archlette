@@ -37,7 +37,7 @@ Check if current:
 npm run licenses:check
 ```
 
-CI runs the check automatically. Failed? Run generate. Commit. Done.
+CI runs the check automatically. Check fails. Run generate. Commit. Done.
 
 ---
 
@@ -92,10 +92,10 @@ Non-standard licenses are flagged for manual review. The script exits with error
 ## Troubleshooting
 
 **CI check fails**
-Run `npm run licenses:generate`. Commit the updated file.
+Run `npm run licenses:generate`. Commit updated file.
 
 **Non-standard license detected**
-Find an alternative dependency. If none exists, document why it's needed in this file.
+Find alternative dependency. If none exists, document why it's needed in this file.
 
 **Version extraction fails**
 Update regex patterns in `scripts/generate-licenses.mjs`. Test with `npm run licenses:generate`.

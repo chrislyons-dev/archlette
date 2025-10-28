@@ -3,6 +3,7 @@
 > **Code speaks. Archlette listens. Architecture evolves.**
 
 [![npm version](https://img.shields.io/npm/v/@chrislyons-dev/archlette?color=blue&logo=npm)](https://www.npmjs.com/package/@chrislyons-dev/archlette)
+[![npm downloads](https://img.shields.io/npm/dm/@chrislyons-dev/archlette?color=blue)](https://www.npmjs.com/package/@chrislyons-dev/archlette)
 [![CI](https://github.com/chrislyons-dev/archlette/actions/workflows/ci.yml/badge.svg)](https://github.com/chrislyons-dev/archlette/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/chrislyons-dev/archlette/blob/main/LICENSE)
 
@@ -35,7 +36,7 @@ See Archlette documenting itself: [architecture docs](architecture/README.md).
 npm install -D @chrislyons-dev/archlette
 ```
 
-**Requirements:** Node.js ≥ 18, Java ≥ 11
+**Requirements:** Node.js ≥ 18 (Node 20+ recommended), Java ≥ 11
 
 **Free and open-source** — MIT licensed. No accounts, no telemetry, no lock-in.
 

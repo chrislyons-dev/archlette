@@ -72,6 +72,24 @@ Open `docs/architecture/README.md`. Your architecture is documented.
 
 ---
 
+## Configuration
+
+Create `archlette.config.yaml` to customize behavior:
+
+```yaml
+project:
+  name: MyProject
+
+extractors:
+  - use: extractors/builtin/basic-node
+    inputs:
+      include: ['src/**/*.ts']
+```
+
+See [Configuration Reference](../guide/configuration.md) for all options.
+
+---
+
 ## Next: Choose Your Extractor
 
 Archlette needs to know what to analyze:
@@ -125,6 +143,12 @@ Run specific pipeline stages:
 npx archlette extract   # Extraction only
 npx archlette generate  # Through DSL generation
 npx archlette render    # Through diagram rendering
+```
+
+**With custom config:**
+
+```bash
+npx archlette -f archlette.config.yaml
 ```
 
 See [CLI Reference](../reference/cli.md) for all options.
