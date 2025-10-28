@@ -1,0 +1,104 @@
+# Advanced Astro Configuration
+#
+# This configuration demonstrates:
+# - Multiple extractors with specific configurations
+# - Custom output paths
+# - Comprehensive filtering
+# - Full pipeline configuration
+#
+# Use this as a template for complex projects with specific requirements.
+
+project:
+  name: Advanced Astro Project
+  description: Complex Astro application with multiple extractors and custom paths
+
+paths:
+  # Base output directory (all others are relative to this unless absolute)
+  output: ./build/architecture
+
+  # Intermediate representation JSON (the pipeline's internal format)
+  ir_out: ./build/architecture/ir.json
+
+  # Generated DSL files (Structurizr format)
+  dsl_out: ./build/architecture/dsl
+
+  # Rendered diagrams (PNG images)
+  render_out: ./build/architecture/diagrams
+
+  # Generated markdown documentation
+  docs_out: ./build/architecture/docs
+
+# Extraction stage
+# Multiple extractors can run in parallel. Results are automatically aggregated.
+extractors:
+  # TypeScript/JavaScript services
+  - use: extractors/builtin/basic-node
+    name: Backend Services
+    inputs:
+      include:
+        - 'src/api/**/*.ts'
+        - 'src/services/**/*.ts'
+        - 'src/lib/**/*.ts'
+      exclude:
+        - '**/node_modules/**'
+        - '**/*.test.ts'
+        - '**/*.spec.ts'
+        - '**/dist/**'
+
+  # Astro UI components
+  - use: extractors/builtin/basic-astro
+    name: Frontend Components
+    inputs:
+      include:
+        - 'src/components/**/*.astro'
+        - 'src/pages/**/*.astro'
+        - 'src/layouts/**/*.astro'
+      exclude:
+        - '**/node_modules/**'
+        - '**/*.test.astro'
+        - '**/*.spec.astro'
+        - '**/.astro/**'
+
+  # Optional: Infrastructure as Code extraction
+  # Uncomment to analyze Cloudflare Workers or other IaC
+  # - use: extractors/builtin/basic-wrangler
+  #   name: Cloudflare Workers
+  #   inputs:
+  #     include:
+  #       - 'wrangler.toml'
+
+# Validation stage
+# Ensures extracted data conforms to the ArchletteIR schema
+validators:
+  - use: validators/builtin/base-validator
+
+# Generation stage
+# Converts the internal representation to Structurizr DSL
+generators:
+  - use: generators/builtin/structurizr
+    props:
+      # Optional: customize DSL generation here
+      # See generators/builtin/structurizr for available options
+
+# Rendering stage
+# Converts DSL to visual diagrams
+# Renderers execute in order - output of one feeds into the next
+renderers:
+  # Step 1: Export Structurizr DSL to PlantUML and Mermaid formats
+  - use: renderers/builtin/structurizr-export
+    props:
+      formats: ['plantuml', 'mermaid']
+
+  # Step 2: Render PlantUML to PNG images
+  - use: renderers/builtin/plantuml-render
+    props:
+      format: 'png'
+
+# Documentation stage
+# Generates markdown documentation with embedded diagrams
+docs:
+  - use: docs/builtin/markdown-docs
+    props:
+      # Optional: customize documentation generation
+      includeCode: true
+      includeDiagrams: true

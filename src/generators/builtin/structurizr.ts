@@ -149,9 +149,17 @@ function prepareContainerData(container: Container, ir: ArchletteIR) {
   const containerComponents = ir.components.filter(
     (c) => c.containerId === container.id,
   );
-  const containerCode = ir.code.filter((code) =>
-    containerComponents.some((comp) => comp.id === code.componentId),
-  );
+  const containerCode = ir.code
+    .filter((code) => containerComponents.some((comp) => comp.id === code.componentId))
+    .map((code) => {
+      // Find the component this code belongs to
+      const component = containerComponents.find(
+        (comp) => comp.id === code.componentId,
+      );
+      // Create a qualified display name to avoid collisions: "componentName.codeName"
+      const displayName = component ? `${component.name}.${code.name}` : code.name;
+      return { ...code, displayName };
+    });
 
   const actorIds = new Set(ir.actors.map((a) => a.id));
   const containerCompIds = new Set([

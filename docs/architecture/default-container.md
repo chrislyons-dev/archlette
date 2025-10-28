@@ -91,22 +91,16 @@
 <td><a href="./default_container__docs.md">View →</a></td>
 </tr>
 <tr>
-<td><strong>core/config</strong></td>
-<td><code>module</code></td>
-<td>—</td>
-<td><a href="./default_container__core_config.md">View →</a></td>
-</tr>
-<tr>
 <td><strong>core</strong></td>
 <td><code>module</code></td>
-<td>Dynamic ESM module loader | Stage module interfaces for the AAC pipeline | Stage module loaders | Tool management for external rendering tools | Architecture-as-Code (AAC) configuration types and schemas | Archlette Intermediate Representation (IR) types and schemas | Core pipeline types</td>
+<td>Dynamic ESM module loader | Component inferred from directory: core | Stage module interfaces for the AAC pipeline | Stage module loaders | Tool management for external rendering tools | Architecture-as-Code (AAC) configuration types and schemas | Archlette Intermediate Representation (IR) types and schemas | Core pipeline types</td>
 <td><a href="./default_container__core.md">View →</a></td>
 </tr>
 <tr>
-<td><strong>core/path</strong></td>
+<td><strong>basic-astro</strong></td>
 <td><code>module</code></td>
-<td>—</td>
-<td><a href="./default_container__core_path.md">View →</a></td>
+<td>Astro component extractor</td>
+<td><a href="./default_container__basic_astro.md">View →</a></td>
 </tr>
 <tr>
 <td><strong>basic_node</strong></td>
@@ -115,11 +109,11 @@
 <td><a href="./default_container__basic_node.md">View →</a></td>
 </tr>
 <tr>
-<td><strong>basic</strong></td>
+<td><strong>basic-python</strong></td>
 <td><code>module</code></td>
 <td>Basic Python Extractor for Archlette
 Extracts architecture information from Python source code</td>
-<td><a href="./default_container__basic.md">View →</a></td>
+<td><a href="./default_container__basic_python.md">View →</a></td>
 </tr>
 <tr>
 <td><strong>basic_wrangler</strong></td>
@@ -128,10 +122,10 @@ Extracts architecture information from Python source code</td>
 <td><a href="./default_container__basic_wrangler.md">View →</a></td>
 </tr>
 <tr>
-<td><strong>basic_python</strong></td>
+<td><strong>shared</strong></td>
 <td><code>module</code></td>
 <td>—</td>
-<td><a href="./default_container__basic_python.md">View →</a></td>
+<td><a href="./default_container__shared.md">View →</a></td>
 </tr>
 </tbody>
 </table>
@@ -140,5 +134,5 @@ Extracts architecture information from Python source code</td>
 ---
 
 <div align="center">
-<sub><a href="./README.md">← Back to System Overview</a> | Generated with <a href="https://github.com/architectlabs/archlette">Archlette</a></sub>
+<sub><a href="./README.md">← Back to System Overview</a> | Generated with <a href="https://github.com/chrislyons-dev/archlette">Archlette</a></sub>
 </div>

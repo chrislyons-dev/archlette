@@ -34,6 +34,22 @@ extractors:
         - '/users/chris/git/bond-math/iac/workers/pricing.toml'
         - '/users/chris/git/bond-math/iac/workers/valuation.toml'
 
+  - use: extractors/builtin/basic-astro
+    inputs:
+      include:
+        - '/users/chris/git/bond-math/ui/**/*.astro'
+      exclude:
+        - '**/*.test.astro'
+        - '**/.astro/**'
+        - '**/dist/**'
+        - '**/build/**'
+        - '**/node_modules/**'
+        - '**/*.test.*'
+        - '**/*.spec.*'
+        - '**/test/**'
+        - '**/tests/**'
+        - '**/vitest.config.ts'
+
   - use: extractors/builtin/basic-node
     inputs:
       include:
@@ -45,6 +61,8 @@ extractors:
         - '/users/chris/git/bond-math/ui/**/*.tsx'
       exclude:
         - '**/node_modules/**'
+        - '**/dist/**'
+        - '**/build/**'
         - '**/*.test.*'
         - '**/*.spec.*'
         - '**/test/**'
@@ -60,6 +78,8 @@ extractors:
         - '/users/chris/git/bond-math/services/gateway/**/*.tsx'
       exclude:
         - '**/node_modules/**'
+        - '**/dist/**'
+        - '**/build/**'
         - '**/*.test.*'
         - '**/*.spec.*'
         - '**/test/**'
@@ -75,6 +95,8 @@ extractors:
         - '/users/chris/git/bond-math/services/daycount/**/*.tsx'
       exclude:
         - '**/node_modules/**'
+        - '**/dist/**'
+        - '**/build/**'
         - '**/*.test.*'
         - '**/*.spec.*'
         - '**/test/**'
@@ -93,6 +115,10 @@ extractors:
         - '**/*.venv/***'
         - '**/test/**'
         - '**/tests/**'
+        - '**/flarelette/**'
+        - '**/dateutil/**'
+        - '**/pythonjsonlogger/**'
+        - '**/six.py'
 
 # ir json in, ir json out (or errors)
 validators:

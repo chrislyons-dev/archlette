@@ -185,16 +185,43 @@ function runPythonParser(
  * Map Python parser output to FileExtraction format
  */
 function mapToFileExtraction(file: PythonParserOutput['files'][0]): FileExtraction {
+  // If component exists from @module tag, use it; otherwise derive from path
+  let component: { id: string; name: string; description?: string } | undefined;
+
+  if (file.component) {
+    component = {
+      id: sanitizeId(file.component.name),
+      name: file.component.name,
+      description: file.component.description,
+    };
+  } else {
+    // Derive component from file path
+    const normalized = path.normalize(file.filePath).replace(/\\/g, '/');
+    const dirName = path.dirname(normalized);
+    const baseName = path.basename(normalized, path.extname(normalized));
+    const folderName = path.basename(dirName);
+
+    // If file is in root directory, use special marker for container-based naming
+    if (dirName === '.' || dirName === '' || folderName === '.') {
+      component = {
+        id: sanitizeId('__CONTAINER__'),
+        name: '__CONTAINER__',
+        description: `Component derived from root file: ${baseName}`,
+      };
+    } else {
+      // Use folder name as component name
+      component = {
+        id: sanitizeId(folderName),
+        name: folderName,
+        description: `Component derived from directory: ${folderName}`,
+      };
+    }
+  }
+
   return {
     filePath: file.filePath,
     language: 'python',
-    component: file.component
-      ? {
-          id: sanitizeId(file.component.name),
-          name: file.component.name,
-          description: file.component.description,
-        }
-      : undefined,
+    component,
     actors: file.actors.map((actor) => ({
       id: sanitizeId(actor.name),
       name: actor.name,

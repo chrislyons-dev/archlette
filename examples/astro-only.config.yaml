@@ -1,0 +1,49 @@
+# Astro-Only Project Configuration
+#
+# This configuration demonstrates extracting architecture from a pure Astro project.
+# All components are Astro files, with no TypeScript/JavaScript extraction needed.
+
+project:
+  name: Astro Example App
+  description: Example Astro application using Archlette for architecture documentation
+
+paths:
+  output: ./archlette-output # Base output directory
+  ir_out: ./archlette-output/ir.json # ArchletteIR JSON output
+  dsl_out: ./archlette-output/dsl # Generated DSL files
+  render_out: ./archlette-output/diagrams # Rendered diagram images
+  docs_out: ./archlette-output/docs # Generated documentation
+
+# Extraction stage - analyze Astro components
+extractors:
+  - use: extractors/builtin/basic-astro
+    inputs:
+      # Include all Astro component files
+      include:
+        - 'src/**/*.astro'
+      # Exclude test files and build artifacts
+      exclude:
+        - '**/*.test.astro'
+        - '**/*.spec.astro'
+        - '**/node_modules/**'
+        - '**/dist/**'
+
+# Validation stage - ensure IR schema is valid
+validators:
+  - use: validators/builtin/base-validator
+
+# Generation stage - convert IR to Structurizr DSL
+generators:
+  - use: generators/builtin/structurizr
+
+# Rendering stage - convert DSL to diagrams
+# Note: Order matters! Renderers execute sequentially.
+# 1. Export Structurizr DSL to PlantUML/Mermaid formats
+# 2. Render PlantUML to PNG images
+renderers:
+  - use: renderers/builtin/structurizr-export
+  - use: renderers/builtin/plantuml-render
+
+# Documentation stage - generate markdown documentation with embedded diagrams
+docs:
+  - use: docs/builtin/markdown-docs

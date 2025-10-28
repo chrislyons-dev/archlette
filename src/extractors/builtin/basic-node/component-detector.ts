@@ -11,6 +11,7 @@ export interface ComponentInfo {
   id: string;
   name: string;
   description?: string;
+  _inferred?: boolean; // Internal marker: true if inferred from path, false if explicit tag
 }
 
 export interface ActorInfo {
@@ -48,17 +49,33 @@ function getFileJsDocs(sourceFile: SourceFile): Node[] {
 }
 
 /**
+ * Special marker used when file is in root directory
+ * Will be replaced with container name during IR mapping
+ */
+export const ROOT_COMPONENT_MARKER = '__USE_CONTAINER_NAME__';
+
+/**
  * Extract component information from file-level JSDoc
  * Checks the first JSDoc comment in the file for @component, @module, or @namespace tags
+ * If no tags found, infers component from directory structure:
+ * - Files in subdirectories use the immediate parent folder name
+ * - Files in root directory use a special marker that will be replaced with container name
  */
 export function extractFileComponent(
   sourceFile: SourceFile,
 ): ComponentInfo | undefined {
   const jsDocs = getFileJsDocs(sourceFile);
-  if (jsDocs.length === 0) return undefined;
 
-  // Check the first JSDoc for component/module/namespace tags
-  return extractComponentFromJsDoc(jsDocs[0]);
+  // First, try to extract from JSDoc tags
+  if (jsDocs.length > 0) {
+    const componentFromJsDoc = extractComponentFromJsDoc(jsDocs[0]);
+    if (componentFromJsDoc) {
+      return componentFromJsDoc;
+    }
+  }
+
+  // If no JSDoc tags found, infer from file path
+  return inferComponentFromPath(sourceFile.getFilePath());
 }
 
 /**
@@ -124,6 +141,7 @@ function extractComponentFromJsDoc(jsDoc: Node): ComponentInfo | undefined {
           id: sanitizeId(name),
           name,
           description: doc.getDescription ? doc.getDescription().trim() : undefined,
+          _inferred: false, // Explicitly tagged
         };
       }
     }
@@ -260,20 +278,77 @@ function parseUsesTag(tag: JSDocTag): RelationshipInfo | undefined {
  * Handles formats like:
  * - @component ComponentName
  * - @component ComponentName - Description
- * - @module path/to/module
+ * - @module path/to/module (extracts just the directory for deduplication)
+ * - @module core/config-resolver -> "core"
+ * - @module extractors/builtin/basic-node -> "basic-node"
  */
 function extractComponentName(tag: JSDocTag): string | undefined {
   const text = tag.getCommentText() || '';
   if (!text) return undefined;
 
-  // Remove leading/trailing whitespace
   const trimmed = text.trim();
 
-  // Take everything up to the first dash or newline (for descriptions)
-  const match = trimmed.match(/^([^\-\n]+)/);
+  // Take everything up to " - " (space-dash-space) or newline (for descriptions)
+  // This preserves dashes in names like "basic-node" or "my-component"
+  const match = trimmed.match(/^([^\n]+?)\s+-\s+/);
   if (match) {
     return match[1].trim();
   }
 
-  return trimmed;
+  // If no description separator, take everything up to first newline
+  const firstLine = trimmed.split('\n')[0].trim();
+
+  // For @module tags that follow the pattern "directory/filename",
+  // extract just the last directory component for deduplication
+  // Examples:
+  // - "core/config-resolver" -> "core"
+  // - "extractors/builtin/basic-node" -> "basic-node"
+  // - "utils" -> "utils" (no change if no slash)
+  if (firstLine.includes('/')) {
+    const parts = firstLine.split('/');
+    // Return the last directory part (before the filename)
+    // For deeply nested paths like "a/b/c/file", return "c"
+    return parts[parts.length - 2] || parts[parts.length - 1];
+  }
+
+  return firstLine;
+}
+
+/**
+ * Infer component name from file path
+ * - Files in subdirectories use the immediate parent folder name
+ * - Files in root directory use a special marker that will be replaced with container name
+ *
+ * Examples:
+ * - /path/to/project/src/utils/helper.ts -> 'utils'
+ * - /path/to/project/src/index.ts -> ROOT_COMPONENT_MARKER
+ * - /path/to/project/services/api/client.ts -> 'api'
+ */
+function inferComponentFromPath(filePath: string): ComponentInfo {
+  // Normalize path separators to forward slashes
+  const normalizedPath = filePath.replace(/\\/g, '/');
+
+  // Split the path into parts
+  const parts = normalizedPath.split('/').filter((p) => p.length > 0);
+
+  // Get the directory name (second to last part, before the filename)
+  // If there's only one part (just the filename), it's in root
+  if (parts.length <= 1) {
+    return {
+      id: sanitizeId(ROOT_COMPONENT_MARKER),
+      name: ROOT_COMPONENT_MARKER,
+      description: 'Component inferred from root directory',
+      _inferred: true, // Inferred from path
+    };
+  }
+
+  // Get the immediate parent directory name
+  const parentDir = parts[parts.length - 2];
+
+  return {
+    id: sanitizeId(parentDir),
+    name: parentDir,
+    description: `Component inferred from directory: ${parentDir}`,
+    _inferred: true, // Inferred from path
+  };
 }

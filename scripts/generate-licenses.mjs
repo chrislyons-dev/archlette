@@ -52,7 +52,8 @@ const RUNTIME_TOOLS = [
     licenseUrl: 'https://github.com/plantuml/plantuml/blob/master/LICENSE',
     description: 'Diagram rendering tool for converting PlantUML text to images',
     downloadedAt: 'Runtime (on first use)',
-    notes: 'Automatically downloaded to ~/.archlette/tools/ when rendering diagrams. PlantUML includes various components under different licenses (Apache 2.0, MIT, LGPL).',
+    notes:
+      'Automatically downloaded to ~/.archlette/tools/ when rendering diagrams. PlantUML includes various components under different licenses (Apache 2.0, MIT, LGPL).',
   },
 ];
 
@@ -62,8 +63,8 @@ let npmLicenses = '';
 try {
   // Get production dependencies only
   const licenseData = execSync(
-    'npx license-checker --production --json --exclude "MIT,ISC,Apache-2.0,BSD-3-Clause,BSD-2-Clause,CC0-1.0,Unlicense"',
-    { encoding: 'utf8', cwd: rootDir }
+    'npx license-checker-rseidelsohn --production --json --excludeLicenses "MIT,ISC,Apache-2.0,BSD-3-Clause,BSD-2-Clause,CC0-1.0,Unlicense"',
+    { encoding: 'utf8', cwd: rootDir },
   );
 
   const licenses = JSON.parse(licenseData);
@@ -72,7 +73,8 @@ try {
   if (packageCount > 0) {
     console.warn(`⚠️  Found ${packageCount} packages with non-standard licenses:`);
     npmLicenses += '\n### ⚠️ Non-Standard Licenses\n\n';
-    npmLicenses += 'The following dependencies use licenses that require additional review:\n\n';
+    npmLicenses +=
+      'The following dependencies use licenses that require additional review:\n\n';
     npmLicenses += '| Package | Version | License | Repository |\n';
     npmLicenses += '|---------|---------|---------|------------|\n';
 
@@ -84,10 +86,10 @@ try {
   }
 
   // Get summary of all production dependencies
-  const summary = execSync(
-    'npx license-checker --production --summary',
-    { encoding: 'utf8', cwd: rootDir }
-  );
+  const summary = execSync('npx license-checker-rseidelsohn --production --summary', {
+    encoding: 'utf8',
+    cwd: rootDir,
+  });
 
   npmLicenses += '### NPM Dependencies Summary\n\n';
   npmLicenses += '```\n' + summary.trim() + '\n```\n';
@@ -111,7 +113,8 @@ This document lists all third-party software used by Archlette, including:
 
 Archlette automatically downloads the following tools to \`~/.archlette/tools/\` when needed for diagram rendering:
 
-${RUNTIME_TOOLS.map(tool => `
+${RUNTIME_TOOLS.map(
+  (tool) => `
 ### ${tool.name} v${tool.version}
 
 - **Project**: [${tool.url}](${tool.url})
@@ -119,7 +122,8 @@ ${RUNTIME_TOOLS.map(tool => `
 - **Description**: ${tool.description}
 - **Downloaded**: ${tool.downloadedAt}
 ${tool.notes ? `- **Notes**: ${tool.notes}` : ''}
-`).join('\n')}
+`,
+).join('\n')}
 
 ---
 
@@ -155,6 +159,8 @@ console.log(`✅ License file generated: ${outputFile}\n`);
 
 // Check for concerning licenses
 if (npmLicenses.includes('⚠️')) {
-  console.warn('⚠️  Some dependencies use non-standard licenses. Please review manually.\n');
+  console.warn(
+    '⚠️  Some dependencies use non-standard licenses. Please review manually.\n',
+  );
   process.exit(1);
 }

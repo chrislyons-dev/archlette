@@ -14,10 +14,11 @@
  *
  * ## Component Detection
  *
- * Components are identified via file-level JSDoc tags:
- * - `@component ComponentName` - Custom explicit component declaration
+ * Components are identified via file-level JSDoc tags or inferred from directory structure:
+ * - `@component ComponentName` - Explicit component declaration
  * - `@module path/to/module` - Standard JSDoc module tag
  * - `@namespace NamespaceName` - Standard JSDoc namespace tag
+ * - If no tag present: Uses parent directory name (or container name for root files)
  *
  * All code in a file with a component tag is associated with that component.
  *

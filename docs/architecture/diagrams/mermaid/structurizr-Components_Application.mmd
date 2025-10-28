@@ -30,20 +30,18 @@ graph TB
       style 13 fill:#85bbf0,stroke:#5d82a8,color:#000000
       14("<div style='font-weight: bold'>docs</div><div style='font-size: 70%; margin-top: 0px'>[Component: module]</div><div style='font-size: 80%; margin-top:10px'>Documentation stage of the<br />AAC pipeline | Markdown<br />documentation generator</div>")
       style 14 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      15("<div style='font-weight: bold'>core/config</div><div style='font-size: 70%; margin-top: 0px'>[Component: module]</div>")
+      15("<div style='font-weight: bold'>core</div><div style='font-size: 70%; margin-top: 0px'>[Component: module]</div><div style='font-size: 80%; margin-top:10px'>Dynamic ESM module loader |<br />Component inferred from<br />directory: core | Stage<br />module interfaces for the AAC<br />pipeline | Stage module<br />loaders | Tool management for<br />external rendering tools |<br />Architecture-as-Code (AAC)<br />configuration types and<br />schemas | Archlette<br />Intermediate Representation<br />(IR) types and schemas | Core<br />pipeline types</div>")
       style 15 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      16("<div style='font-weight: bold'>core</div><div style='font-size: 70%; margin-top: 0px'>[Component: module]</div><div style='font-size: 80%; margin-top:10px'>Dynamic ESM module loader |<br />Stage module interfaces for<br />the AAC pipeline | Stage<br />module loaders | Tool<br />management for external<br />rendering tools |<br />Architecture-as-Code (AAC)<br />configuration types and<br />schemas | Archlette<br />Intermediate Representation<br />(IR) types and schemas | Core<br />pipeline types</div>")
+      16("<div style='font-weight: bold'>basic-astro</div><div style='font-size: 70%; margin-top: 0px'>[Component: module]</div><div style='font-size: 80%; margin-top:10px'>Astro component extractor</div>")
       style 16 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      17("<div style='font-weight: bold'>core/path</div><div style='font-size: 70%; margin-top: 0px'>[Component: module]</div>")
+      17("<div style='font-weight: bold'>basic_node</div><div style='font-size: 70%; margin-top: 0px'>[Component: module]</div><div style='font-size: 80%; margin-top:10px'>TypeScript/JavaScript code<br />extractor</div>")
       style 17 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      18("<div style='font-weight: bold'>basic_node</div><div style='font-size: 70%; margin-top: 0px'>[Component: module]</div><div style='font-size: 80%; margin-top:10px'>TypeScript/JavaScript code<br />extractor</div>")
+      18("<div style='font-weight: bold'>basic-python</div><div style='font-size: 70%; margin-top: 0px'>[Component: module]</div><div style='font-size: 80%; margin-top:10px'>Basic Python Extractor for<br />Archlette Extracts<br />architecture information from<br />Python source code</div>")
       style 18 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      19("<div style='font-weight: bold'>basic</div><div style='font-size: 70%; margin-top: 0px'>[Component: module]</div><div style='font-size: 80%; margin-top:10px'>Basic Python Extractor for<br />Archlette Extracts<br />architecture information from<br />Python source code</div>")
+      19("<div style='font-weight: bold'>basic_wrangler</div><div style='font-size: 70%; margin-top: 0px'>[Component: module]</div><div style='font-size: 80%; margin-top:10px'>Cloudflare Wrangler<br />deployment extractor</div>")
       style 19 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      20("<div style='font-weight: bold'>basic_wrangler</div><div style='font-size: 70%; margin-top: 0px'>[Component: module]</div><div style='font-size: 80%; margin-top:10px'>Cloudflare Wrangler<br />deployment extractor</div>")
+      20("<div style='font-weight: bold'>shared</div><div style='font-size: 70%; margin-top: 0px'>[Component: module]</div>")
       style 20 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      21("<div style='font-weight: bold'>basic_python</div><div style='font-size: 70%; margin-top: 0px'>[Component: module]</div>")
-      style 21 fill:#85bbf0,stroke:#5d82a8,color:#000000
       9("<div style='font-weight: bold'>CLI</div><div style='font-size: 70%; margin-top: 0px'>[Component: module]</div><div style='font-size: 80%; margin-top:10px'>Archlette CLI -<br />Architecture-as-Code toolkit</div>")
       style 9 fill:#85bbf0,stroke:#5d82a8,color:#000000
     end
@@ -52,19 +50,25 @@ graph TB
     9-- "<div>Validates and enriches<br />intermediate representation</div><div style='font-size: 70%'></div>" -->11
     9-- "<div>Transforms IR into DSL<br />formats</div><div style='font-size: 70%'></div>" -->12
     9-- "<div>Converts DSL to visual<br />diagrams</div><div style='font-size: 70%'></div>" -->13
-    9-- "<div>Provides shared utilities,<br />types, and module loading</div><div style='font-size: 70%'></div>" -->16
-    10-- "<div>Provides IR types, validation<br />schemas, and module loading</div><div style='font-size: 70%'></div>" -->16
-    10-- "<div>composed of node extractor</div><div style='font-size: 70%'></div>" -->18
-    10-- "<div>composed of python extractor</div><div style='font-size: 70%'></div>" -->21
-    10-- "<div>composed of cloudflare<br />wrangler extractor</div><div style='font-size: 70%'></div>" -->20
-    11-- "<div>Provides IR types, validation<br />schemas, and module loading</div><div style='font-size: 70%'></div>" -->16
-    12-- "<div>Provides IR types, path<br />resolution, and module<br />loading</div><div style='font-size: 70%'></div>" -->16
-    13-- "<div>Provides types, module<br />loading, and tool management</div><div style='font-size: 70%'></div>" -->16
-    14-- "<div>Provides types, module<br />loading, and path resolution</div><div style='font-size: 70%'></div>" -->16
+    9-- "<div>Provides shared utilities,<br />types, and module loading</div><div style='font-size: 70%'></div>" -->15
+    10-- "<div>Provides IR types, validation<br />schemas, and module loading</div><div style='font-size: 70%'></div>" -->15
+    10-- "<div>composed of astro extractor</div><div style='font-size: 70%'></div>" -->16
+    10-- "<div>composed of node extractor</div><div style='font-size: 70%'></div>" -->17
+    10-- "<div>composed of python extractor</div><div style='font-size: 70%'></div>" -->18
+    10-- "<div>composed of cloudflare<br />wrangler extractor</div><div style='font-size: 70%'></div>" -->19
+    11-- "<div>Provides IR types, validation<br />schemas, and module loading |<br />zArchletteIR |<br />ArchletteValidator</div><div style='font-size: 70%'></div>" -->15
+    12-- "<div>Provides IR types, path<br />resolution, and module<br />loading | ArchletteIR |<br />Container | Component |<br />CodeItem | Relationship |<br />ResolvedStageNode |<br />VIEW_NAMES |<br />resolveUserContentPath</div><div style='font-size: 70%'></div>" -->15
+    13-- "<div>Provides types, module<br />loading, and tool management<br />| PipelineContext |<br />findPlantUML | requireJava |<br />resolveArchlettePath |<br />findStructurizrCLI</div><div style='font-size: 70%'></div>" -->15
+    14-- "<div>Provides types, module<br />loading, and path resolution<br />| PipelineContext | Logger |<br />RendererOutput | Component |<br />resolveArchlettePath</div><div style='font-size: 70%'></div>" -->15
+    16-- "<div>ResolvedStageNode |<br />ArchletteIR | PipelineContext<br />| IR_VERSION |<br />resolveSecurePath |<br />createLogger | sanitizeId |<br />CodeItem | System |<br />Relationship | Component |<br />Actor | Container | TAGS |<br />DEFAULT_CONTAINER_ID |<br />nameToId</div><div style='font-size: 70%'></div>" -->15
+    17-- "<div>ResolvedStageNode |<br />ArchletteIR | PipelineContext<br />| resolveSecurePath |<br />createLogger | sanitizeId |<br />CodeItem | System |<br />Relationship | Component |<br />Actor | TAGS |<br />DEFAULT_CONTAINER_ID |<br />IR_VERSION | nameToId</div><div style='font-size: 70%'></div>" -->15
+    18-- "<div>resolveSecurePath |<br />ArchletteExtractor |<br />ArchletteIR |<br />ResolvedStageNode |<br />createLogger | getCliDir |<br />sanitizeId | nameToId | TAGS<br />| DEFAULT_CONTAINER_ID |<br />Actor | Component | Container<br />| CodeItem | Relationship</div><div style='font-size: 70%'></div>" -->15
+    19-- "<div>ResolvedStageNode |<br />ArchletteIR | PipelineContext<br />| emptyIR | System |<br />ContainerInstance |<br />Relationship | IR_VERSION |<br />sanitizeId | createLogger</div><div style='font-size: 70%'></div>" -->15
+    20-- "<div>imports Relationship</div><div style='font-size: 70%'></div>" -->15
     1-- "<div>Interacts with CLI</div><div style='font-size: 70%'></div>" -->9
-    16-- "<div>Uses FileSystem for external<br />system integration</div><div style='font-size: 70%'></div>" -->2
-    16-- "<div>Uses Github Structurizr Repo<br />for external system<br />integration</div><div style='font-size: 70%'></div>" -->3
-    16-- "<div>Uses Github PlantUML Repo for<br />external system integration</div><div style='font-size: 70%'></div>" -->4
-    16-- "<div>Uses Local System's unzip<br />utility for external system<br />integration</div><div style='font-size: 70%'></div>" -->5
-    16-- "<div>Uses File System for external<br />system integration</div><div style='font-size: 70%'></div>" -->6
+    15-- "<div>Uses FileSystem for external<br />system integration</div><div style='font-size: 70%'></div>" -->2
+    15-- "<div>Uses Github Structurizr Repo<br />for external system<br />integration</div><div style='font-size: 70%'></div>" -->3
+    15-- "<div>Uses Github PlantUML Repo for<br />external system integration</div><div style='font-size: 70%'></div>" -->4
+    15-- "<div>Uses Local System's unzip<br />utility for external system<br />integration</div><div style='font-size: 70%'></div>" -->5
+    15-- "<div>Uses File System for external<br />system integration</div><div style='font-size: 70%'></div>" -->6
   end

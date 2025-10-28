@@ -4,7 +4,7 @@ export default {
     environment: 'node',
     setupFiles: [],
     // Increased timeout for ts-morph integration tests (parser initialization is slow)
-    testTimeout: 10000,
+    testTimeout: 20000,
     coverage: {
       enabled: true,
       provider: 'v8',

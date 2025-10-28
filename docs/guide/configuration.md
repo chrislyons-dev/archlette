@@ -22,18 +22,23 @@ That's it. Sensible defaults for everything else.
 
 ## Config File Location
 
-**Default:** Archlette looks for `templates/default.yaml` in its installation directory.
+**Default:** `archlette.config.yaml` in your project root.
 
 **Custom config:**
 
 ```bash
-archlette -f .aac.yaml           # Current directory
-archlette -f configs/dev.yaml    # Relative to current directory
-archlette -f ~/configs/prod.yaml # Home directory
-archlette -f /etc/archlette.yaml # Absolute path
+archlette -f archlette.config.yaml      # Current directory (default)
+archlette -f configs/dev.yaml           # Relative to current directory
+archlette -f ~/configs/prod.yaml        # Home directory
+archlette -f /etc/archlette.yaml        # Absolute path
 ```
 
 **Config file path resolution:** The `-f` flag resolves paths from your current working directory (where you run the command).
+
+**Search order when no `-f` flag:**
+
+1. `archlette.config.yaml` in current directory
+2. Built-in default configuration
 
 ---
 

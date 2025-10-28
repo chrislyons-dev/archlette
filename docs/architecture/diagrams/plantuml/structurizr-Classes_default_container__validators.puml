@@ -16,14 +16,14 @@ skinparam {
 
 hide stereotype
 
-skinparam rectangle<<Application.Application.default_container__validators__basevalidator>> {
+skinparam rectangle<<Application.Application.validatorsbaseValidator>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__validators__run>> {
+skinparam rectangle<<Application.Application.validatorsrun>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
@@ -37,8 +37,8 @@ skinparam rectangle<<Application.Application>> {
 }
 
 rectangle "Application\n<size:10>[Container: Application]</size>" <<Application.Application>> {
-  rectangle "==default_container__validators__run\n<size:10>[Component: function]</size>\n\nExecute the validation stage" <<Application.Application.default_container__validators__run>> as Application.Application.default_container__validators__run
-  rectangle "==default_container__validators__basevalidator\n<size:10>[Component: function]</size>\n\nValidates the IR against the Zod schema. Throws if invalid." <<Application.Application.default_container__validators__basevalidator>> as Application.Application.default_container__validators__basevalidator
+  rectangle "==validators.run\n<size:10>[Component: function]</size>\n\nExecute the validation stage" <<Application.Application.validatorsrun>> as Application.Application.validatorsrun
+  rectangle "==validators.baseValidator\n<size:10>[Component: function]</size>\n\nValidates the IR against the Zod schema. Throws if invalid." <<Application.Application.validatorsbaseValidator>> as Application.Application.validatorsbaseValidator
 }
 
 @enduml

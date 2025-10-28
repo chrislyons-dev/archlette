@@ -28,7 +28,7 @@ jobs:
       - run: npm ci
 
       - name: Generate architecture docs
-        run: npx archlette -f .aac.yaml
+        run: npx archlette -f archlette.config.yaml
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
@@ -42,13 +42,13 @@ jobs:
 Archlette requires Java for diagram rendering:
 
 ```yaml
-- uses: actions/setup-java@v4
+- uses: actions/setup-java@v5
   with:
     distribution: 'temurin'
     java-version: '17'
 
 - name: Generate architecture docs
-  run: npx archlette -f .aac.yaml
+  run: npx archlette -f archlette.config.yaml
 ```
 
 ### Tool Caching
@@ -60,10 +60,10 @@ Cache downloaded tools (Structurizr CLI, PlantUML):
   uses: actions/cache@v4
   with:
     path: ~/.archlette/tools
-    key: archlette-tools-${{ hashFiles('.aac.yaml') }}
+    key: archlette-tools-${{ hashFiles('archlette.config.yaml') }}
 
 - name: Generate architecture docs
-  run: npx archlette -f .aac.yaml
+  run: npx archlette -f archlette.config.yaml
 ```
 
 First run downloads tools. 3-5 minutes.
@@ -80,7 +80,7 @@ architecture-docs:
     - apt-get update && apt-get install -y openjdk-17-jre
     - npm ci
   script:
-    - npx archlette -f .aac.yaml
+    - npx archlette -f archlette.config.yaml
   artifacts:
     paths:
       - docs/architecture
@@ -101,7 +101,7 @@ architecture-docs:
     - apt-get update && apt-get install -y openjdk-17-jre
     - npm ci
   script:
-    - npx archlette -f .aac.yaml
+    - npx archlette -f archlette.config.yaml
   artifacts:
     paths:
       - docs/architecture

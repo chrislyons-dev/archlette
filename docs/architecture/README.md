@@ -1,7 +1,7 @@
 # 🏗️ Application
 
 **Architecture Documentation**
-Generated 2025-10-26 08:29:00
+Generated 2025-10-27 22:07:22
 
 ## Overview
 
@@ -46,5 +46,5 @@ The container diagram shows the high-level technology choices and how containers
 ---
 
 <div align="center">
-<sub>Generated with <a href="https://github.com/architectlabs/archlette">Archlette</a> Architecture-as-Code toolkit</sub>
+<sub>Generated with <a href="https://github.com/chrislyons-dev/archlette">Archlette</a> Architecture-as-Code toolkit</sub>
 </div>

@@ -186,7 +186,7 @@ Prepare component view data for template
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts:190</code></td>
+<td><code>C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts:198</code></td>
 </tr>
 </tbody>
 </table>
@@ -216,7 +216,7 @@ Prepare class view data for template
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts:227</code></td>
+<td><code>C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts:235</code></td>
 </tr>
 </tbody>
 </table>
@@ -246,7 +246,7 @@ Generate all actor-related relationships
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts:242</code></td>
+<td><code>C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts:250</code></td>
 </tr>
 </tbody>
 </table>
@@ -276,7 +276,7 @@ Generate a unique name for a code item to avoid naming collisions
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts:289</code></td>
+<td><code>C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts:297</code></td>
 </tr>
 </tbody>
 </table>
@@ -306,7 +306,7 @@ Build technology string from relationship metadata
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts:327</code></td>
+<td><code>C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts:335</code></td>
 </tr>
 </tbody>
 </table>
@@ -336,7 +336,7 @@ Sanitize ID for DSL (remove special characters, convert to valid identifier)
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts:343</code></td>
+<td><code>C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts:351</code></td>
 </tr>
 </tbody>
 </table>
@@ -369,7 +369,7 @@ so we replace newlines with spaces for cleaner output.
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts:353</code></td>
+<td><code>C:/Users/chris/git/archlette/src/generators/builtin/structurizr.ts:361</code></td>
 </tr>
 </tbody>
 </table>
@@ -385,5 +385,5 @@ so we replace newlines with spaces for cleaner output.
 ---
 
 <div align="center">
-<sub><a href="./default-container.md">← Back to Container</a> | <a href="./README.md">← Back to System</a> | Generated with <a href="https://github.com/architectlabs/archlette">Archlette</a></sub>
+<sub><a href="./default-container.md">← Back to Container</a> | <a href="./README.md">← Back to System</a> | Generated with <a href="https://github.com/chrislyons-dev/archlette">Archlette</a></sub>
 </div>

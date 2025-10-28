@@ -1,4 +1,4 @@
-# basic_python — Code View
+# basic-python — Code View
 
 [← Back to Container](./default-container.md) | [← Back to System](./README.md)
 
@@ -10,7 +10,7 @@
 <tbody>
 <tr>
 <td><strong>Component</strong></td>
-<td>basic_python</td>
+<td>basic-python</td>
 </tr>
 <tr>
 <td><strong>Container</strong></td>
@@ -19,6 +19,11 @@
 <tr>
 <td><strong>Type</strong></td>
 <td><code>module</code></td>
+</tr>
+<tr>
+<td><strong>Description</strong></td>
+<td>Basic Python Extractor for Archlette
+Extracts architecture information from Python source code</td>
 </tr>
 </tbody>
 </table>
@@ -34,12 +39,240 @@
 ### Code Elements
 
 <details>
-<summary><strong>13 code element(s)</strong></summary>
+<summary><strong>28 code element(s)</strong></summary>
 
 
 
 #### Functions
 
+##### `createEmptyIR()`
+
+Create empty IR when no files found
+
+<table>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>function</code></td>
+</tr>
+<tr>
+<td><strong>Visibility</strong></td>
+<td><code>private</code></td>
+</tr>
+<tr>
+<td><strong>Returns</strong></td>
+<td><code>z.infer<any></code></td>
+</tr>
+<tr>
+<td><strong>Location</strong></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python.ts:150</code></td>
+</tr>
+</tbody>
+</table>
+
+**Parameters:**
+
+- `systemName`: <code>string</code>
+
+---
+##### `basicPython()`
+
+Basic Python extractor
+Analyzes Python source code and extracts architectural components
+
+<table>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>function</code></td>
+</tr>
+<tr>
+<td><strong>Visibility</strong></td>
+<td><code>public</code></td>
+</tr>
+<tr>
+<td><strong>Async</strong></td>
+<td>Yes</td>
+</tr>
+<tr>
+<td><strong>Returns</strong></td>
+<td><code>Promise<z.infer<any>></code></td>
+</tr>
+<tr>
+<td><strong>Location</strong></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python.ts:26</code></td>
+</tr>
+</tbody>
+</table>
+
+**Parameters:**
+
+- `node`: <code>any</code>- `ctx`: <code>import("C:/Users/chris/git/archlette/src/core/types").PipelineContext</code>
+
+---
+##### `findSourceFiles()`
+
+Find source files matching include/exclude patterns
+
+<table>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>function</code></td>
+</tr>
+<tr>
+<td><strong>Visibility</strong></td>
+<td><code>public</code></td>
+</tr>
+<tr>
+<td><strong>Async</strong></td>
+<td>Yes</td>
+</tr>
+<tr>
+<td><strong>Returns</strong></td>
+<td><code>Promise<string[]></code></td>
+</tr>
+<tr>
+<td><strong>Location</strong></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-finder.ts:26</code></td>
+</tr>
+</tbody>
+</table>
+
+**Parameters:**
+
+- `inputs`: <code>import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/types").ExtractorInputs</code>
+
+---
+##### `findPyProjectFiles()`
+
+Find pyproject.toml files within the search paths
+
+<table>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>function</code></td>
+</tr>
+<tr>
+<td><strong>Visibility</strong></td>
+<td><code>public</code></td>
+</tr>
+<tr>
+<td><strong>Async</strong></td>
+<td>Yes</td>
+</tr>
+<tr>
+<td><strong>Returns</strong></td>
+<td><code>Promise<string[]></code></td>
+</tr>
+<tr>
+<td><strong>Location</strong></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-finder.ts:42</code></td>
+</tr>
+</tbody>
+</table>
+
+**Parameters:**
+
+- `inputs`: <code>import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/types").ExtractorInputs</code>
+
+---
+##### `readPyProjectInfo()`
+
+Read and parse pyproject.toml file
+
+<table>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>function</code></td>
+</tr>
+<tr>
+<td><strong>Visibility</strong></td>
+<td><code>public</code></td>
+</tr>
+<tr>
+<td><strong>Async</strong></td>
+<td>Yes</td>
+</tr>
+<tr>
+<td><strong>Returns</strong></td>
+<td><code>Promise<import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-finder").PyProjectInfo></code></td>
+</tr>
+<tr>
+<td><strong>Location</strong></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-finder.ts:91</code></td>
+</tr>
+</tbody>
+</table>
+
+**Parameters:**
+
+- `filePath`: <code>string</code>
+
+---
+##### `parsePyProjectToml()`
+
+Parse pyproject.toml using smol-toml library
+Handles full TOML spec including multiline strings, arrays, and nested tables
+
+<table>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>function</code></td>
+</tr>
+<tr>
+<td><strong>Visibility</strong></td>
+<td><code>private</code></td>
+</tr>
+<tr>
+<td><strong>Returns</strong></td>
+<td><code>PyProjectToml</code></td>
+</tr>
+<tr>
+<td><strong>Location</strong></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-finder.ts:142</code></td>
+</tr>
+</tbody>
+</table>
+
+**Parameters:**
+
+- `content`: <code>string</code>
+
+---
+##### `findNearestPyProject()`
+
+Find the nearest parent pyproject.toml for a given file
+
+<table>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>function</code></td>
+</tr>
+<tr>
+<td><strong>Visibility</strong></td>
+<td><code>public</code></td>
+</tr>
+<tr>
+<td><strong>Returns</strong></td>
+<td><code>import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-finder").PyProjectInfo</code></td>
+</tr>
+<tr>
+<td><strong>Location</strong></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-finder.ts:156</code></td>
+</tr>
+</tbody>
+</table>
+
+**Parameters:**
+
+- `filePath`: <code>string</code>- `pyprojects`: <code>import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-finder").PyProjectInfo[]</code>
+
+---
 ##### `parseFiles()`
 
 Parse Python files using Python AST parser script
@@ -154,7 +387,7 @@ Map Python class to ExtractedClass
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-parser.ts:227</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-parser.ts:254</code></td>
 </tr>
 </tbody>
 </table>
@@ -184,7 +417,7 @@ Map Python method to ExtractedMethod
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-parser.ts:252</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-parser.ts:279</code></td>
 </tr>
 </tbody>
 </table>
@@ -214,7 +447,7 @@ Map Python property to ExtractedProperty
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-parser.ts:287</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-parser.ts:314</code></td>
 </tr>
 </tbody>
 </table>
@@ -244,7 +477,7 @@ Map Python function to ExtractedFunction
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-parser.ts:317</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-parser.ts:344</code></td>
 </tr>
 </tbody>
 </table>
@@ -274,7 +507,7 @@ Map Python type definition to ExtractedType
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-parser.ts:346</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-parser.ts:373</code></td>
 </tr>
 </tbody>
 </table>
@@ -304,7 +537,7 @@ Map Python parameter to ParameterInfo
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-parser.ts:368</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-parser.ts:395</code></td>
 </tr>
 </tbody>
 </table>
@@ -335,7 +568,7 @@ Enhanced in Phase 2 to use parsed Google/NumPy/Sphinx docstrings
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-parser.ts:385</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-parser.ts:412</code></td>
 </tr>
 </tbody>
 </table>
@@ -365,7 +598,7 @@ Extract deprecation info from docstring
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-parser.ts:421</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-parser.ts:448</code></td>
 </tr>
 </tbody>
 </table>
@@ -395,7 +628,7 @@ Extract return description from docstring
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-parser.ts:437</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-parser.ts:464</code></td>
 </tr>
 </tbody>
 </table>
@@ -428,7 +661,7 @@ Determine visibility from Python name convention
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-parser.ts:450</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-parser.ts:477</code></td>
 </tr>
 </tbody>
 </table>
@@ -438,11 +671,253 @@ Determine visibility from Python name convention
 - `name`: <code>string</code>
 
 ---
+##### `mapToIR()`
+
+Map file extractions to ArchletteIR
+
+<table>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>function</code></td>
+</tr>
+<tr>
+<td><strong>Visibility</strong></td>
+<td><code>public</code></td>
+</tr>
+<tr>
+<td><strong>Returns</strong></td>
+<td><code>z.infer<any></code></td>
+</tr>
+<tr>
+<td><strong>Location</strong></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts:45</code></td>
+</tr>
+</tbody>
+</table>
+
+**Parameters:**
+
+- `extractions`: <code>import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/types").FileExtraction[]</code>- `pyprojects`: <code>import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/file-finder").PyProjectInfo[]</code>- `systemInfo`: <code>SystemInfo</code>
+
+---
+##### `mapActorToIR()`
+
+Map ActorInfo to Actor
+
+<table>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>function</code></td>
+</tr>
+<tr>
+<td><strong>Visibility</strong></td>
+<td><code>private</code></td>
+</tr>
+<tr>
+<td><strong>Returns</strong></td>
+<td><code>z.infer<any></code></td>
+</tr>
+<tr>
+<td><strong>Location</strong></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts:332</code></td>
+</tr>
+</tbody>
+</table>
+
+**Parameters:**
+
+- `actor`: <code>import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/types").ActorInfo</code>- `actorTargets`: <code>Map<string, string[]></code>
+
+---
+##### `mapRelationshipsToIR()`
+
+Map relationships to Relationship[]
+Creates bidirectional actor relationships
+
+<table>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>function</code></td>
+</tr>
+<tr>
+<td><strong>Visibility</strong></td>
+<td><code>private</code></td>
+</tr>
+<tr>
+<td><strong>Returns</strong></td>
+<td><code>z.infer<any>[]</code></td>
+</tr>
+<tr>
+<td><strong>Location</strong></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts:346</code></td>
+</tr>
+</tbody>
+</table>
+
+**Parameters:**
+
+- `relationships`: <code>import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/types").RelationshipInfo[]</code>- `componentMap`: <code>Map<string, z.infer<any>></code>- `actorMap`: <code>Map<string, import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/types").ActorInfo></code>- `actorTargets`: <code>Map<string, string[]></code>
+
+---
+##### `mapImportToComponentRelationships()`
+
+Map Python imports to component relationships (component-level dependencies)
+Resolves local imports to component IDs when possible
+
+<table>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>function</code></td>
+</tr>
+<tr>
+<td><strong>Visibility</strong></td>
+<td><code>private</code></td>
+</tr>
+<tr>
+<td><strong>Returns</strong></td>
+<td><code>z.infer<any>[]</code></td>
+</tr>
+<tr>
+<td><strong>Location</strong></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts:394</code></td>
+</tr>
+</tbody>
+</table>
+
+**Parameters:**
+
+- `imp`: <code>import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/types").ExtractedImport</code>- `filePath`: <code>string</code>- `componentId`: <code>string</code>- `fileToComponentMap`: <code>Map<string, string></code>- `modulePathIndex`: <code>Map<string, string></code>
+
+---
+##### `mapClassToCodeItem()`
+
+Map ExtractedClass to CodeItem
+
+<table>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>function</code></td>
+</tr>
+<tr>
+<td><strong>Visibility</strong></td>
+<td><code>private</code></td>
+</tr>
+<tr>
+<td><strong>Returns</strong></td>
+<td><code>z.infer<any></code></td>
+</tr>
+<tr>
+<td><strong>Location</strong></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts:498</code></td>
+</tr>
+</tbody>
+</table>
+
+**Parameters:**
+
+- `cls`: <code>import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/types").ExtractedClass</code>- `componentId`: <code>string</code>
+
+---
+##### `mapMethodToCodeItem()`
+
+Map ExtractedMethod to CodeItem
+
+<table>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>function</code></td>
+</tr>
+<tr>
+<td><strong>Visibility</strong></td>
+<td><code>private</code></td>
+</tr>
+<tr>
+<td><strong>Returns</strong></td>
+<td><code>z.infer<any></code></td>
+</tr>
+<tr>
+<td><strong>Location</strong></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts:523</code></td>
+</tr>
+</tbody>
+</table>
+
+**Parameters:**
+
+- `method`: <code>import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/types").ExtractedMethod</code>- `className`: <code>string</code>- `componentId`: <code>string</code>
+
+---
+##### `mapFunctionToCodeItem()`
+
+Map ExtractedFunction to CodeItem
+
+<table>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>function</code></td>
+</tr>
+<tr>
+<td><strong>Visibility</strong></td>
+<td><code>private</code></td>
+</tr>
+<tr>
+<td><strong>Returns</strong></td>
+<td><code>z.infer<any></code></td>
+</tr>
+<tr>
+<td><strong>Location</strong></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts:558</code></td>
+</tr>
+</tbody>
+</table>
+
+**Parameters:**
+
+- `func`: <code>import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/types").ExtractedFunction</code>- `componentId`: <code>string</code>
+
+---
+##### `mapTypeToCodeItem()`
+
+Map ExtractedType to CodeItem
+
+<table>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>function</code></td>
+</tr>
+<tr>
+<td><strong>Visibility</strong></td>
+<td><code>private</code></td>
+</tr>
+<tr>
+<td><strong>Returns</strong></td>
+<td><code>z.infer<any></code></td>
+</tr>
+<tr>
+<td><strong>Location</strong></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts:589</code></td>
+</tr>
+</tbody>
+</table>
+
+**Parameters:**
+
+- `type`: <code>import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/types").ExtractedType</code>- `componentId`: <code>string</code>
+
+---
 
 </details>
 
 ---
 
 <div align="center">
-<sub><a href="./default-container.md">← Back to Container</a> | <a href="./README.md">← Back to System</a> | Generated with <a href="https://github.com/architectlabs/archlette">Archlette</a></sub>
+<sub><a href="./default-container.md">← Back to Container</a> | <a href="./README.md">← Back to System</a> | Generated with <a href="https://github.com/chrislyons-dev/archlette">Archlette</a></sub>
 </div>

@@ -2,7 +2,7 @@
  * @module basic_node
  * Map extracted data to ArchletteIR format
  */
-
+import { ROOT_COMPONENT_MARKER } from './component-detector.js';
 import type {
   ArchletteIR,
   CodeItem,
@@ -20,7 +20,8 @@ import type {
   ExtractedImport,
 } from './types.js';
 import { readFileSync } from 'node:fs';
-import { resolve } from 'node:path';
+import { resolve, dirname, join, extname } from 'node:path';
+import { existsSync } from 'node:fs';
 import {
   TAGS,
   DEFAULT_CONTAINER_ID,
@@ -28,6 +29,7 @@ import {
   nameToId,
   sanitizeId,
 } from '../../../core/constants.js';
+import { deduplicateRelationships } from '../shared/relationship-utils.js';
 
 /**
  * Map file extractions to ArchletteIR
@@ -44,10 +46,19 @@ export function mapToIR(
   const actorDescriptions = new Map<string, Set<string>>();
   const componentDescriptions = new Map<string, Set<string>>();
   const componentRelationships: Relationship[] = [];
+  const inferredComponents = new Set<string>(); // Track which components were inferred from paths
+
+  // Build a map of file paths to component IDs for resolving import destinations
+  const fileToComponentMap = new Map<string, string>();
 
   // Extract code items, actors, and relationships from all files
   for (const file of extractions) {
     const componentId = file.component?.id;
+
+    // Map file path to component ID for import resolution
+    if (componentId) {
+      fileToComponentMap.set(file.filePath, componentId);
+    }
 
     // Register component if found
     if (file.component) {
@@ -63,6 +74,10 @@ export function mapToIR(
           file.component.id,
           new Set(file.component.description ? [file.component.description] : []),
         );
+        // Track if this component was inferred from path
+        if (file.component._inferred) {
+          inferredComponents.add(file.component.id);
+        }
       } else {
         // Merge descriptions for duplicate components
         if (file.component.description) {
@@ -165,13 +180,25 @@ export function mapToIR(
       }
     }
 
-    // Add import relationships
+    // Add import relationships to component relationships (component-level dependencies)
+    for (const imp of file.imports) {
+      componentRelationships.push(
+        ...mapImportToComponentRelationships(
+          imp,
+          file.filePath,
+          componentId,
+          fileToComponentMap,
+        ),
+      );
+    }
+
+    // Add import relationships to code relationships (for backward compatibility and future use)
     for (const imp of file.imports) {
       relationships.push(...mapImportRelationships(imp, file.filePath));
     }
   }
 
-  const components = Array.from(componentsMap.values());
+  let components = Array.from(componentsMap.values());
 
   // Merge component descriptions
   for (const component of components) {
@@ -182,6 +209,17 @@ export function mapToIR(
       component.description = uniqueDescriptions.join(' | ');
     }
   }
+
+  // Filter out inferred components (from directory structure) that have no code items
+  // Keep explicitly tagged components even if they're empty
+  const componentsWithCode = new Set(codeItems.map((item) => item.componentId));
+  components = components.filter(
+    (component) =>
+      // Keep if it has code items
+      componentsWithCode.has(component.id) ||
+      // Or if it was explicitly tagged (not inferred from path)
+      !inferredComponents.has(component.id),
+  );
 
   // Merge actor descriptions
   const actors = Array.from(actorsMap.values());
@@ -221,7 +259,15 @@ export function mapToIR(
 
         const oldId = component.id;
         component.containerId = containerId;
-        component.id = sanitizeId(`${containerId}__${oldId}`);
+
+        // If component uses ROOT_COMPONENT_MARKER, replace with container name
+        if (component.name === ROOT_COMPONENT_MARKER) {
+          component.name = pkg.name;
+          component.description = `Component inferred from container: ${pkg.name}`;
+          component.id = sanitizeId(containerId);
+        } else {
+          component.id = sanitizeId(`${containerId}__${oldId}`);
+        }
         componentIdMap.set(oldId, component.id);
       }
     }
@@ -242,8 +288,17 @@ export function mapToIR(
       for (const component of orphanComponents) {
         const oldId = component.id;
         component.containerId = DEFAULT_CONTAINER_ID;
-        // Apply same hierarchical ID pattern
-        component.id = sanitizeId(`${DEFAULT_CONTAINER_ID}__${oldId}`);
+
+        // If component uses ROOT_COMPONENT_MARKER, replace with container name
+        if (component.name === ROOT_COMPONENT_MARKER) {
+          const containerName = systemInfo?.name || 'Application';
+          component.name = containerName;
+          component.description = `Component inferred from container: ${containerName}`;
+          component.id = sanitizeId(DEFAULT_CONTAINER_ID);
+        } else {
+          // Apply same hierarchical ID pattern
+          component.id = sanitizeId(`${DEFAULT_CONTAINER_ID}__${oldId}`);
+        }
         componentIdMap.set(oldId, component.id);
       }
     }
@@ -264,7 +319,16 @@ export function mapToIR(
       for (const component of components) {
         const oldId = component.id;
         component.containerId = DEFAULT_CONTAINER_ID;
-        component.id = sanitizeId(`${DEFAULT_CONTAINER_ID}__${oldId}`);
+
+        // If component uses ROOT_COMPONENT_MARKER, replace with container name
+        if (component.name === ROOT_COMPONENT_MARKER) {
+          const containerName = systemInfo?.name || 'Application';
+          component.name = containerName;
+          component.description = `Component inferred from container: ${containerName}`;
+          component.id = sanitizeId(DEFAULT_CONTAINER_ID);
+        } else {
+          component.id = sanitizeId(`${DEFAULT_CONTAINER_ID}__${oldId}`);
+        }
         componentIdMap.set(oldId, component.id);
       }
     }
@@ -313,6 +377,9 @@ export function mapToIR(
     }
   }
 
+  // Note: Code relationships are kept in their original format (filePath:symbolName)
+  // for backward compatibility and potential future use
+
   // Step 6: Determine system info
   // Priority: 1) provided systemInfo, 2) first container, 3) default
   let system: System;
@@ -331,6 +398,8 @@ export function mapToIR(
   // Deduplicate component relationships (same source+destination)
   const uniqueComponentRelationships = deduplicateRelationships(componentRelationships);
 
+  // Code relationships are kept as-is (no deduplication for backward compatibility)
+
   return {
     version: IR_VERSION,
     system,
@@ -347,20 +416,8 @@ export function mapToIR(
 }
 
 /**
- * Deduplicate relationships by source+destination+stereotype combination
- * First occurrence wins - preserves description from first relationship
- * This allows multiple relationships between the same elements with different stereotypes
+ * Map a function to a CodeItem
  */
-function deduplicateRelationships(relationships: Relationship[]): Relationship[] {
-  const seen = new Map<string, Relationship>();
-  for (const rel of relationships) {
-    const key = `${rel.source}:${rel.destination}:${rel.stereotype ?? ''}`;
-    if (!seen.has(key)) {
-      seen.set(key, rel);
-    }
-  }
-  return Array.from(seen.values());
-}
 
 /**
  * Map a function to a CodeItem
@@ -454,7 +511,102 @@ function mapMethod(
 }
 
 /**
- * Map imports to relationships
+ * Resolve an import path to an absolute file path
+ * Handles relative imports (./file, ../file) and resolves to actual file paths
+ * Returns undefined for node_modules imports or unresolvable paths
+ */
+function resolveImportPath(
+  importSource: string,
+  fromFilePath: string,
+): string | undefined {
+  // Skip node_modules and external packages (don't start with . or /)
+  if (!importSource.startsWith('.') && !importSource.startsWith('/')) {
+    return undefined;
+  }
+
+  // Validate fromFilePath
+  if (!fromFilePath || fromFilePath.length === 0) {
+    return undefined;
+  }
+
+  const fromDir = dirname(fromFilePath);
+
+  // Remove .js extension if present and try with .ts extensions
+  let importWithoutExt = importSource;
+  if (importSource.endsWith('.js') || importSource.endsWith('.jsx')) {
+    importWithoutExt = importSource.replace(/\.jsx?$/, '');
+  } else if (importSource.endsWith('.mjs')) {
+    importWithoutExt = importSource.replace(/\.mjs$/, '');
+  }
+
+  const targetPath = join(fromDir, importWithoutExt);
+
+  // Try common extensions if the path doesn't have one
+  const extensions = ['.ts', '.tsx', '.js', '.jsx', '.mts', '.mjs', '.cts', '.cjs'];
+
+  if (!extname(targetPath)) {
+    // Try with each extension
+    for (const ext of extensions) {
+      const pathWithExt = targetPath + ext;
+      if (existsSync(pathWithExt)) {
+        return pathWithExt;
+      }
+    }
+
+    // Try as index file in directory
+    for (const ext of extensions) {
+      const indexPath = join(targetPath, `index${ext}`);
+      if (existsSync(indexPath)) {
+        return indexPath;
+      }
+    }
+  } else if (existsSync(targetPath)) {
+    return targetPath;
+  }
+
+  // Could not resolve
+  return undefined;
+}
+
+/**
+ * Map imports to component relationships (component-level dependencies)
+ */
+function mapImportToComponentRelationships(
+  imp: ExtractedImport,
+  filePath: string,
+  componentId: string | undefined,
+  fileToComponentMap: Map<string, string>,
+): Relationship[] {
+  const relationships: Relationship[] = [];
+
+  // Resolve the import source to an absolute file path
+  let targetFilePath = resolveImportPath(imp.source, filePath);
+
+  // Normalize path separators to forward slashes for consistent lookup
+  if (targetFilePath) {
+    targetFilePath = targetFilePath.replace(/\\/g, '/');
+  }
+
+  // Look up the target component ID
+  const destinationComponentId = targetFilePath
+    ? fileToComponentMap.get(targetFilePath)
+    : undefined;
+
+  // Create a relationship for each imported name
+  for (const importedName of imp.importedNames) {
+    relationships.push({
+      source: componentId || filePath, // Use componentId if available, fallback to filePath
+      destination: destinationComponentId || imp.source, // Use target componentId if found, fallback to module path
+      description: `imports ${importedName}`,
+      stereotype: imp.isTypeOnly ? 'type-import' : 'import',
+    });
+  }
+
+  return relationships;
+}
+
+/**
+ * Map imports to relationships (original code-level format for backward compatibility)
  */
 function mapImportRelationships(
   imp: ExtractedImport,
@@ -462,7 +614,7 @@ function mapImportRelationships(
 ): Relationship[] {
   const relationships: Relationship[] = [];
 
-  // Create a relationship for each imported name
+  // Create a relationship for each imported name (original format)
   for (const importedName of imp.importedNames) {
     relationships.push({
       source: filePath,

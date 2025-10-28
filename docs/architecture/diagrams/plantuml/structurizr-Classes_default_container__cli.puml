@@ -16,28 +16,28 @@ skinparam {
 
 hide stereotype
 
-skinparam rectangle<<Application.Application.default_container__cli__parseargs>> {
+skinparam rectangle<<Application.Application.CLIparseArgs>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__cli__run>> {
+skinparam rectangle<<Application.Application.CLIrun>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__cli__stagelistfromarg>> {
+skinparam rectangle<<Application.Application.CLIstageListFromArg>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.default_container__cli__usageandexit>> {
+skinparam rectangle<<Application.Application.CLIusageAndExit>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
@@ -51,10 +51,10 @@ skinparam rectangle<<Application.Application>> {
 }
 
 rectangle "Application\n<size:10>[Container: Application]</size>" <<Application.Application>> {
-  rectangle "==default_container__cli__usageandexit\n<size:10>[Component: function]</size>" <<Application.Application.default_container__cli__usageandexit>> as Application.Application.default_container__cli__usageandexit
-  rectangle "==default_container__cli__parseargs\n<size:10>[Component: function]</size>" <<Application.Application.default_container__cli__parseargs>> as Application.Application.default_container__cli__parseargs
-  rectangle "==default_container__cli__stagelistfromarg\n<size:10>[Component: function]</size>" <<Application.Application.default_container__cli__stagelistfromarg>> as Application.Application.default_container__cli__stagelistfromarg
-  rectangle "==default_container__cli__run\n<size:10>[Component: function]</size>" <<Application.Application.default_container__cli__run>> as Application.Application.default_container__cli__run
+  rectangle "==CLI.usageAndExit\n<size:10>[Component: function]</size>" <<Application.Application.CLIusageAndExit>> as Application.Application.CLIusageAndExit
+  rectangle "==CLI.parseArgs\n<size:10>[Component: function]</size>" <<Application.Application.CLIparseArgs>> as Application.Application.CLIparseArgs
+  rectangle "==CLI.stageListFromArg\n<size:10>[Component: function]</size>" <<Application.Application.CLIstageListFromArg>> as Application.Application.CLIstageListFromArg
+  rectangle "==CLI.run\n<size:10>[Component: function]</size>" <<Application.Application.CLIrun>> as Application.Application.CLIrun
 }
 
 @enduml

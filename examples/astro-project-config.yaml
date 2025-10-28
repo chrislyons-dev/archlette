@@ -1,0 +1,195 @@
+# Example Archlette Configuration for Astro Projects
+#
+# This configuration demonstrates how to analyze an Astro project that contains
+# both Astro components (.astro) and TypeScript/JavaScript files (.ts, .js).
+#
+# Architecture extraction strategy:
+# 1. basic-node extracts TypeScript/JavaScript utilities, libraries, and helpers
+# 2. basic-astro extracts Astro components and their frontmatter code
+# 3. Results are automatically aggregated into a unified architecture model
+#
+# Project structure example:
+#   src/
+#     components/          # Astro UI components
+#       Button.astro
+#       Layout.astro
+#     pages/              # Astro pages (routes)
+#       index.astro
+#       blog/[slug].astro
+#     lib/                # TypeScript utilities
+#       api.ts
+#       helpers.ts
+#     utils/              # Shared utilities
+#       formatting.ts
+
+project:
+  name: my-astro-app
+  description: Astro web application with TypeScript utilities
+
+paths:
+  output: ./output
+  ir_out: ./output/astro-ir.json
+  dsl_out: ./output/dsl
+  render_out: ./output/diagrams
+  docs_out: ./output/docs
+
+# Multiple extractors run sequentially and results are aggregated
+extractors:
+  # Extract TypeScript/JavaScript utilities and libraries
+  # Analyzes .ts, .tsx, .js, .jsx files for code structure
+  - use: extractors/builtin/basic-node
+    name: typescript-extractor
+    inputs:
+      include:
+        - 'src/**/*.ts'
+        - 'src/**/*.tsx'
+        - 'src/**/*.js'
+        - 'src/**/*.jsx'
+        - 'src/**/*.mts'
+        - 'src/**/*.mjs'
+      exclude:
+        # Exclude Astro files (handled by basic-astro extractor)
+        - '**/*.astro'
+        # Exclude test files
+        - '**/*.test.ts'
+        - '**/*.test.tsx'
+        - '**/*.test.js'
+        - '**/*.spec.ts'
+        - '**/*.spec.js'
+        # Exclude build artifacts
+        - '**/dist/**'
+        - '**/build/**'
+        - '**/.astro/**'
+        # Exclude dependencies
+        - '**/node_modules/**'
+
+  # Extract Astro components and pages
+  # Analyzes .astro files for:
+  # - Component structure (@component, @module JSDoc tags)
+  # - Frontmatter TypeScript/JavaScript code (classes, functions, types)
+  # - Actors (@actor tags for external systems)
+  # - Relationships (@uses tags for dependencies)
+  # - Component usage in templates
+  - use: extractors/builtin/basic-astro
+    name: astro-extractor
+    inputs:
+      include:
+        - 'src/**/*.astro'
+        # Include pages directory
+        - 'src/pages/**/*.astro'
+        # Include components directory
+        - 'src/components/**/*.astro'
+        # Include layouts directory
+        - 'src/layouts/**/*.astro'
+      exclude:
+        # Exclude test files
+        - '**/*.test.astro'
+        # Exclude build artifacts
+        - '**/dist/**'
+        - '**/build/**'
+        - '**/.astro/**'
+        # Exclude dependencies
+        - '**/node_modules/**'
+
+# Validate and enrich the aggregated IR
+validators:
+  - use: validators/builtin/base-validator
+
+# Generate Structurizr DSL from the unified architecture
+generators:
+  - use: generators/builtin/structurizr
+
+# Render architecture diagrams
+renderers:
+  # Export to PlantUML format
+  - use: renderers/builtin/structurizr-export
+  # Render PlantUML diagrams to PNG
+  - use: renderers/builtin/plantuml-render
+
+# Generate markdown documentation
+docs:
+  - use: docs/builtin/markdown-docs
+# Advanced: Component Detection Examples
+#
+# The extractors automatically detect components using JSDoc tags in files.
+# Here are examples of how to annotate your code:
+#
+# TypeScript file (src/lib/api.ts):
+# ```typescript
+# /**
+#  * API client for backend services
+#  * @component API
+#  * @actor Backend {System} {out} REST API backend service
+#  * @uses Database Stores application data
+#  */
+# export class ApiClient {
+#   async fetch(url: string) { /* ... */ }
+# }
+# ```
+#
+# Astro component (src/components/Button.astro):
+# ```astro
+# ---
+# /**
+#  * Reusable button component
+#  * @component Button
+#  * @uses Theme Applies theme colors
+#  */
+# interface Props {
+#   label: string;
+#   variant?: 'primary' | 'secondary';
+# }
+#
+# const { label, variant = 'primary' } = Astro.props;
+# ---
+# <button class={`btn-${variant}`}>{label}</button>
+# ```
+#
+# Astro page with actor relationship (src/pages/index.astro):
+# ```astro
+# ---
+# /**
+#  * Homepage
+#  * @component Home
+#  * @actor User {Person} {in} Website visitor
+#  * @actor CMS {System} {out} Content management system
+#  * @uses ApiClient Fetches content from CMS
+#  */
+# import { ApiClient } from '../lib/api';
+# const content = await new ApiClient().fetch('/content');
+# ---
+# <Layout>
+#   <h1>{content.title}</h1>
+# </Layout>
+# ```
+
+# Component Inference Rules:
+#
+# If no @component/@module/@namespace tag is found:
+# - Files in subdirectories: Use parent directory name
+#   Example: src/components/Button.astro → component = "components"
+#
+# - Files in root: Use container name
+#   Example: src/Layout.astro → component = package name or "Application"
+#
+# Cross-Extractor Relationships:
+#
+# When an Astro component imports a TypeScript utility:
+# - Astro component detected by basic-astro
+# - TypeScript utility detected by basic-node
+# - Import relationship captured by basic-astro
+# - Results aggregated into unified architecture model
+
+# Output Structure:
+#
+# output/
+#   astro-ir.json              # Complete unified IR (JSON)
+#   dsl/
+#     workspace.dsl            # Structurizr workspace DSL
+#   diagrams/
+#     system-context.png       # System context diagram
+#     container.png            # Container diagram
+#     component-*.png          # Component diagrams per container
+#   docs/
+#     README.md               # Architecture documentation
+#     components/             # Per-component documentation

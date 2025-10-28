@@ -26,8 +26,10 @@ import type {
   ExtractedMethod,
   ExtractedFunction,
   ExtractedType,
+  ExtractedImport,
 } from './types.js';
 import type { PyProjectInfo } from './file-finder.js';
+import { deduplicateRelationships } from '../shared/relationship-utils.js';
 
 const log = createLogger({ context: 'PythonIRMapper' });
 
@@ -51,9 +53,34 @@ export function mapToIR(
   const componentsMap = new Map<string, Component>();
   const actorMap = new Map<string, ActorInfo>();
   const relationships: RelationshipInfo[] = [];
+  const componentRelationships: Relationship[] = [];
   const codeItems: CodeItem[] = [];
 
+  // Build a map of file paths to component IDs for import resolution
+  const fileToComponentMap = new Map<string, string>();
+
+  // Build an index of module paths for O(1) import resolution
+  const modulePathIndex = new Map<string, string>(); // module path -> file path
+
   for (const extraction of extractions) {
+    // Map file path to component ID
+    if (extraction.component) {
+      fileToComponentMap.set(extraction.filePath, extraction.component.id);
+    }
+
+    // Index module paths for fast lookup (Issue #3)
+    // Extract module path from file path for absolute import matching
+    // e.g., "src/services/auth.py" -> "services.auth", "services/auth"
+    const modulePath = extraction.filePath
+      .replace(/\\/g, '/')
+      .replace(/\.py$/, '')
+      .replace(/\/__init__$/, '');
+
+    // Store both dotted and slashed versions
+    const dottedPath = modulePath.split('/').join('.');
+    modulePathIndex.set(modulePath, extraction.filePath);
+    modulePathIndex.set(dottedPath, extraction.filePath);
+
     // Collect components
     if (extraction.component) {
       const existing = componentsMap.get(extraction.component.id);
@@ -84,6 +111,21 @@ export function mapToIR(
           target: rel.target,
           description: rel.description,
         });
+      }
+    }
+
+    // Process imports to create component relationships
+    for (const imp of extraction.imports) {
+      if (extraction.component) {
+        componentRelationships.push(
+          ...mapImportToComponentRelationships(
+            imp,
+            extraction.filePath,
+            extraction.component.id,
+            fileToComponentMap,
+            modulePathIndex,
+          ),
+        );
       }
     }
 
@@ -194,6 +236,17 @@ export function mapToIR(
     }
   }
 
+  // Step 3.5: Replace __CONTAINER__ component names with actual container names
+  for (const component of components) {
+    if (component.name === '__CONTAINER__' && component.containerId) {
+      const container = containers.find((c) => c.id === component.containerId);
+      if (container) {
+        component.name = container.name;
+        component.description = `Component derived from root file in ${container.name}`;
+      }
+    }
+  }
+
   // Step 4: Update code items with new hierarchical component IDs
   for (const codeItem of codeItems) {
     if (codeItem.componentId) {
@@ -223,11 +276,29 @@ export function mapToIR(
     }
   }
 
+  // Step 5.5: Update component relationships (from imports) with hierarchical IDs
+  for (const rel of componentRelationships) {
+    const newSource = componentIdMap.get(rel.source);
+    if (newSource) {
+      rel.source = newSource;
+    }
+    const newDest = componentIdMap.get(rel.destination);
+    if (newDest) {
+      rel.destination = newDest;
+    }
+  }
+
   // Step 6: Rebuild componentsMap with new hierarchical IDs
   componentsMap.clear();
   for (const component of components) {
     componentsMap.set(component.id, component);
   }
+
+  // Merge @uses relationships and import-based relationships
+  const allComponentRelationships = [
+    ...mapRelationshipsToIR(relationships, componentsMap, actorMap, actorTargets),
+    ...componentRelationships,
+  ];
 
   // Create IR
   const ir: ArchletteIR = {
@@ -243,9 +314,7 @@ export function mapToIR(
     code: codeItems,
     deployments: [],
     containerRelationships: [],
-    componentRelationships: deduplicateRelationships(
-      mapRelationshipsToIR(relationships, componentsMap, actorMap, actorTargets),
-    ),
+    componentRelationships: deduplicateRelationships(allComponentRelationships),
     codeRelationships: [],
     deploymentRelationships: [],
   };
@@ -319,18 +388,108 @@ function mapRelationshipsToIR(
 }
 
 /**
- * Deduplicate relationships by source+destination
+ * Map Python imports to component relationships (component-level dependencies)
+ * Resolves local imports to component IDs when possible
  */
-function deduplicateRelationships(relationships: Relationship[]): Relationship[] {
-  const seen = new Set<string>();
-  return relationships.filter((rel) => {
-    const key = `${rel.source}->${rel.destination}`;
-    if (seen.has(key)) {
-      return false;
+function mapImportToComponentRelationships(
+  imp: ExtractedImport,
+  filePath: string,
+  componentId: string,
+  fileToComponentMap: Map<string, string>,
+  modulePathIndex: Map<string, string>,
+): Relationship[] {
+  const relationships: Relationship[] = [];
+
+  // Skip standard library and third-party imports - only handle local imports
+  if (imp.category !== 'local') {
+    // For stdlib/third_party, create relationship to external module (Issue #4: debug logging)
+    log.debug(
+      `External import detected: ${imp.source} (${imp.category}) in ${filePath}`,
+    );
+    for (const importedName of imp.importedNames) {
+      relationships.push({
+        source: componentId,
+        destination: imp.source,
+        description: importedName,
+        stereotype: 'import',
+      });
     }
-    seen.add(key);
-    return true;
-  });
+    return relationships;
+  }
+
+  // For local imports, try to resolve to a component
+  // Python relative imports: .module (level=1), ..module (level=2), etc.
+  let targetFilePath: string | undefined;
+
+  if (imp.isRelative) {
+    // Resolve relative import path
+    const currentDir = filePath.substring(0, filePath.lastIndexOf('/'));
+    const parts = currentDir.split('/');
+
+    // Go up 'level' directories
+    const level = imp.level || 1;
+
+    // Validate level doesn't exceed directory depth (path traversal protection)
+    if (level > parts.length - 1) {
+      log.warn(
+        `Invalid relative import level ${level} exceeds directory depth in ${filePath}`,
+      );
+      return relationships;
+    }
+
+    if (parts.length >= level) {
+      const targetDir = parts.slice(0, -level + 1).join('/');
+      const modulePath = imp.source.replace(/\./g, '/');
+      targetFilePath = `${targetDir}/${modulePath}.py`;
+
+      // Also check for __init__.py
+      if (!fileToComponentMap.has(targetFilePath)) {
+        targetFilePath = `${targetDir}/${modulePath}/__init__.py`;
+      }
+    }
+  } else {
+    // Absolute import within the project
+    // Use index for O(1) lookup instead of O(n) search (Issue #3)
+    const modulePath = imp.source.replace(/\./g, '/');
+
+    // Try direct lookup in index
+    targetFilePath = modulePathIndex.get(imp.source) || modulePathIndex.get(modulePath);
+
+    // If not found, try with __init__.py
+    if (!targetFilePath) {
+      const initPath = `${modulePath}/__init__`;
+      targetFilePath = modulePathIndex.get(initPath);
+    }
+  }
+
+  // Normalize path separators
+  if (targetFilePath) {
+    targetFilePath = targetFilePath.replace(/\\/g, '/');
+  }
+
+  // Look up the target component ID
+  const destinationComponentId = targetFilePath
+    ? fileToComponentMap.get(targetFilePath)
+    : undefined;
+
+  // Debug logging for failed import resolutions (Issue #4)
+  if (imp.category === 'local' && !destinationComponentId) {
+    log.debug(
+      `Failed to resolve local import: ${imp.source} from ${filePath} (target: ${targetFilePath || 'not found'})`,
+    );
+  }
+
+  // Create relationships for each imported name
+  for (const importedName of imp.importedNames) {
+    relationships.push({
+      source: componentId,
+      destination: destinationComponentId || imp.source,
+      description: importedName,
+      stereotype: 'import',
+    });
+  }
+
+  return relationships;
 }
 
 /**
