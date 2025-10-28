@@ -46,7 +46,9 @@ const log = createLogger({ context: 'AstroFileParser' });
  * // Returns [FileExtraction, FileExtraction]
  */
 export async function parseFiles(filePaths: string[]): Promise<FileExtraction[]> {
+  console.log(`[PARSE FILES] Called with ${filePaths.length} files`);
   if (filePaths.length === 0) {
+    console.log('[PARSE FILES] Early return - empty array');
     return [];
   }
 

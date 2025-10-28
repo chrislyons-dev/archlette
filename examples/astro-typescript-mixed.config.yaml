@@ -1,0 +1,68 @@
+# Mixed TypeScript + Astro Project Configuration
+#
+# This configuration extracts architecture from both TypeScript/JavaScript
+# and Astro components, combining results into a unified architecture diagram.
+#
+# Perfect for:
+# - Frontend frameworks using Astro with TypeScript utilities
+# - Full-stack apps with TypeScript APIs and Astro components
+# - Monorepos mixing multiple technologies
+
+project:
+  name: Full-Stack Astro Application
+  description: Combined architecture from TypeScript backend and Astro frontend
+
+paths:
+  output: ./output
+  ir_out: ./output/ir.json
+  dsl_out: ./output/dsl
+  render_out: ./output/diagrams
+  docs_out: ./output/docs
+
+# Extraction stage - analyze both TypeScript and Astro sources
+extractors:
+  # Extract TypeScript/JavaScript backend services and utilities
+  - use: extractors/builtin/basic-node
+    inputs:
+      include:
+        - 'src/**/*.ts'
+        - 'src/**/*.js'
+        - 'lib/**/*.ts'
+        - 'services/**/*.ts'
+      exclude:
+        - '**/node_modules/**'
+        - '**/*.test.ts'
+        - '**/*.spec.ts'
+        - '**/test/**'
+        - '**/tests/**'
+        - '**/.astro/**'
+
+  # Extract Astro components for the frontend
+  - use: extractors/builtin/basic-astro
+    inputs:
+      include:
+        - 'src/**/*.astro'
+        - 'pages/**/*.astro'
+      exclude:
+        - '**/*.test.astro'
+        - '**/*.spec.astro'
+        - '**/node_modules/**'
+        - '**/dist/**'
+
+# Validation stage - ensures combined IR is valid
+validators:
+  - use: validators/builtin/base-validator
+
+# Generation stage - converts combined IR to Structurizr DSL
+# The DSL will show both backend and frontend components with relationships
+generators:
+  - use: generators/builtin/structurizr
+
+# Rendering stage - generate diagrams from DSL
+renderers:
+  - use: renderers/builtin/structurizr-export
+  - use: renderers/builtin/plantuml-render
+
+# Documentation stage - create markdown docs with all diagrams
+docs:
+  - use: docs/builtin/markdown-docs

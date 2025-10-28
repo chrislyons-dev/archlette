@@ -691,7 +691,7 @@ Map file extractions to ArchletteIR
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts:43</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts:45</code></td>
 </tr>
 </tbody>
 </table>
@@ -721,7 +721,7 @@ Map ActorInfo to Actor
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts:274</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts:332</code></td>
 </tr>
 </tbody>
 </table>
@@ -752,7 +752,7 @@ Creates bidirectional actor relationships
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts:288</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts:346</code></td>
 </tr>
 </tbody>
 </table>
@@ -762,9 +762,10 @@ Creates bidirectional actor relationships
 - `relationships`: <code>import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/types").RelationshipInfo[]</code>- `componentMap`: <code>Map<string, z.infer<any>></code>- `actorMap`: <code>Map<string, import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/types").ActorInfo></code>- `actorTargets`: <code>Map<string, string[]></code>
 
 ---
-##### `deduplicateRelationships()`
+##### `mapImportToComponentRelationships()`
 
-Deduplicate relationships by source+destination
+Map Python imports to component relationships (component-level dependencies)
+Resolves local imports to component IDs when possible
 
 <table>
 <tbody>
@@ -782,14 +783,14 @@ Deduplicate relationships by source+destination
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts:335</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts:394</code></td>
 </tr>
 </tbody>
 </table>
 
 **Parameters:**
 
-- `relationships`: <code>z.infer<any>[]</code>
+- `imp`: <code>import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/types").ExtractedImport</code>- `filePath`: <code>string</code>- `componentId`: <code>string</code>- `fileToComponentMap`: <code>Map<string, string></code>- `modulePathIndex`: <code>Map<string, string></code>
 
 ---
 ##### `mapClassToCodeItem()`
@@ -812,7 +813,7 @@ Map ExtractedClass to CodeItem
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts:350</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts:498</code></td>
 </tr>
 </tbody>
 </table>
@@ -842,7 +843,7 @@ Map ExtractedMethod to CodeItem
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts:375</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts:523</code></td>
 </tr>
 </tbody>
 </table>
@@ -872,7 +873,7 @@ Map ExtractedFunction to CodeItem
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts:410</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts:558</code></td>
 </tr>
 </tbody>
 </table>
@@ -902,7 +903,7 @@ Map ExtractedType to CodeItem
 </tr>
 <tr>
 <td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts:441</code></td>
+<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts:589</code></td>
 </tr>
 </tbody>
 </table>

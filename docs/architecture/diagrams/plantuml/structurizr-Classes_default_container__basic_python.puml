@@ -30,13 +30,6 @@ skinparam rectangle<<Application.Application.basicpythoncreateEmptyIR>> {
   roundCorner 20
   shadowing false
 }
-skinparam rectangle<<Application.Application.basicpythondeduplicateRelationships>> {
-  BackgroundColor #85bbf0
-  FontColor #000000
-  BorderColor #5d82a8
-  roundCorner 20
-  shadowing false
-}
 skinparam rectangle<<Application.Application.basicpythonextractDeprecation>> {
   BackgroundColor #85bbf0
   FontColor #000000
@@ -108,6 +101,13 @@ skinparam rectangle<<Application.Application.basicpythonmapFunction>> {
   shadowing false
 }
 skinparam rectangle<<Application.Application.basicpythonmapFunctionToCodeItem>> {
+  BackgroundColor #85bbf0
+  FontColor #000000
+  BorderColor #5d82a8
+  roundCorner 20
+  shadowing false
+}
+skinparam rectangle<<Application.Application.basicpythonmapImportToComponentRelationships>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
@@ -240,7 +240,7 @@ rectangle "Application\n<size:10>[Container: Application]</size>" <<Application.
   rectangle "==basic-python.mapToIR\n<size:10>[Component: function]</size>\n\nMap file extractions to ArchletteIR" <<Application.Application.basicpythonmapToIR>> as Application.Application.basicpythonmapToIR
   rectangle "==basic-python.mapActorToIR\n<size:10>[Component: function]</size>\n\nMap ActorInfo to Actor" <<Application.Application.basicpythonmapActorToIR>> as Application.Application.basicpythonmapActorToIR
   rectangle "==basic-python.mapRelationshipsToIR\n<size:10>[Component: function]</size>\n\nMap relationships to Relationship[] Creates bidirectional actor relationships" <<Application.Application.basicpythonmapRelationshipsToIR>> as Application.Application.basicpythonmapRelationshipsToIR
-  rectangle "==basic-python.deduplicateRelationships\n<size:10>[Component: function]</size>\n\nDeduplicate relationships by source+destination" <<Application.Application.basicpythondeduplicateRelationships>> as Application.Application.basicpythondeduplicateRelationships
+  rectangle "==basic-python.mapImportToComponentRelationships\n<size:10>[Component: function]</size>\n\nMap Python imports to component relationships (component-level dependencies) Resolves local imports to component IDs when possible" <<Application.Application.basicpythonmapImportToComponentRelationships>> as Application.Application.basicpythonmapImportToComponentRelationships
   rectangle "==basic-python.mapClassToCodeItem\n<size:10>[Component: function]</size>\n\nMap ExtractedClass to CodeItem" <<Application.Application.basicpythonmapClassToCodeItem>> as Application.Application.basicpythonmapClassToCodeItem
   rectangle "==basic-python.mapMethodToCodeItem\n<size:10>[Component: function]</size>\n\nMap ExtractedMethod to CodeItem" <<Application.Application.basicpythonmapMethodToCodeItem>> as Application.Application.basicpythonmapMethodToCodeItem
   rectangle "==basic-python.mapFunctionToCodeItem\n<size:10>[Component: function]</size>\n\nMap ExtractedFunction to CodeItem" <<Application.Application.basicpythonmapFunctionToCodeItem>> as Application.Application.basicpythonmapFunctionToCodeItem

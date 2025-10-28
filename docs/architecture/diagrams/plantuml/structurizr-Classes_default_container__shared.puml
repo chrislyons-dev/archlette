@@ -1,0 +1,36 @@
+@startuml
+set separator none
+title Application - Application - Components
+
+top to bottom direction
+skinparam ranksep 60
+skinparam nodesep 30
+
+skinparam {
+  arrowFontSize 10
+  defaultTextAlignment center
+  wrapWidth 200
+  maxMessageSize 100
+  defaultFontName "Arial"
+}
+
+hide stereotype
+
+skinparam rectangle<<Application.Application.shareddeduplicateRelationships>> {
+  BackgroundColor #85bbf0
+  FontColor #000000
+  BorderColor #5d82a8
+  roundCorner 20
+  shadowing false
+}
+skinparam rectangle<<Application.Application>> {
+  BorderColor #2e6295
+  FontColor #2e6295
+  shadowing false
+}
+
+rectangle "Application\n<size:10>[Container: Application]</size>" <<Application.Application>> {
+  rectangle "==shared.deduplicateRelationships\n<size:10>[Component: function]</size>\n\nDeduplicate relationships by source+destination combination - Excludes self-referential relationships (source === destination) - Merges descriptions and stereotypes with " | " separator when duplicates are found - Extracts imported names from descriptions (removes "imports " prefix) and keeps only unique names - Returns one relationship per unique source+destination pair" <<Application.Application.shareddeduplicateRelationships>> as Application.Application.shareddeduplicateRelationships
+}
+
+@enduml

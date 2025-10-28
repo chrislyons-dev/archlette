@@ -66,6 +66,9 @@ workspace "Application" "Main application container" {
                     description "Cloudflare Wrangler deployment extractor"
                     technology "module"
                 }
+                default_container__shared = component "shared" {
+                    technology "module"
+                }
 
                 # Code elements (classes, functions)
                 default_container__cli__usageandexit = component "CLI.usageAndExit" {
@@ -445,12 +448,12 @@ workspace "Application" "Main application container" {
                     tags "Code"
                 }
                 default_container__basic_astro__extractcodefromfrontmatter = component "basic-astro.extractCodeFromFrontmatter" {
-                    description "Extract TypeScript/JavaScript code from Astro frontmatter Parses the frontmatter as TypeScript and uses basic-node extractors"
+                    description "Extract TypeScript/JavaScript code from Astro frontmatter Parses the frontmatter section (code between --- markers) as TypeScript and extracts code elements using the basic-node AST extractors: - Classes and their methods - Functions (both regular and arrow functions) - Type aliases (type X = ...) - TypeScript interfaces Returns empty result if frontmatter is empty or parsing fails (errors are logged). Graceful error handling ensures one malformed Astro file doesn't break the extraction pipeline."
                     technology "function"
                     tags "Code"
                 }
                 default_container__basic_astro__createsyntheticrenderfunction = component "basic-astro.createSyntheticRenderFunction" {
-                    description "Create a synthetic render function for an Astro component Every Astro component is fundamentally a server-side render function that takes props and returns HTML Function is named after the file (e.g., \"index\", \"about\", \"Header\") so each Astro file has a unique code-level representation"
+                    description "Create a synthetic render function for an Astro component Every Astro component is fundamentally a server-side render function that: 1. Receives props (if Props interface is defined) 2. Processes the component logic (frontmatter code) 3. Renders the template to HTML 4. Returns an HTML string Since Astro's compiler doesn't explicitly define this, we create a synthetic function to represent the component's executable behavior in the IR. The function is named after the file (without .astro extension): - Button.astro → function Button() - index.astro → function index() - settings/Profile.astro → function Profile()"
                     technology "function"
                     tags "Code"
                 }
@@ -465,17 +468,17 @@ workspace "Application" "Main application container" {
                     tags "Code"
                 }
                 default_container__basic_astro__extractfilecomponent = component "basic-astro.extractFileComponent" {
-                    description "Extract component information from frontmatter JSDoc Checks for"
+                    description "Extract component information from frontmatter JSDoc Attempts to identify the component in this file using JSDoc tags: 1. Checks for"
                     technology "function"
                     tags "Code"
                 }
                 default_container__basic_astro__extractcomponentname = component "basic-astro.extractComponentName" {
-                    description "Extract component name from a JSDoc tag value Handles formats like: - ComponentName - ComponentName - Description (space-dash-space separator) - path/to/module - My-Component (dashes in names are preserved)"
+                    description "Extract component name from a JSDoc tag value Parses the tag value to extract the component name, handling various formats: - Simple name: ComponentName - With description: ComponentName - Description - Module path: path/to/module (extracts last directory component) - Dashes preserved: My-Component-Name For module paths like \"utils/helpers\", extracts \"utils\" (the last directory before the filename) to enable component grouping."
                     technology "function"
                     tags "Code"
                 }
                 default_container__basic_astro__extractfileactors = component "basic-astro.extractFileActors" {
-                    description "Extract actors from frontmatter JSDoc Looks for"
+                    description "Extract actors from frontmatter JSDoc Identifies external actors (users, systems) that interact with the component. Actors are specified using"
                     technology "function"
                     tags "Code"
                 }
@@ -485,7 +488,7 @@ workspace "Application" "Main application container" {
                     tags "Code"
                 }
                 default_container__basic_astro__extractfilerelationships = component "basic-astro.extractFileRelationships" {
-                    description "Extract relationships from frontmatter JSDoc Looks for"
+                    description "Extract relationships from frontmatter JSDoc Identifies component dependencies using"
                     technology "function"
                     tags "Code"
                 }
@@ -495,27 +498,27 @@ workspace "Application" "Main application container" {
                     tags "Code"
                 }
                 default_container__basic_astro__infercomponentfrompath = component "basic-astro.inferComponentFromPath" {
-                    description "Infer component name from file path - Files in subdirectories use the immediate parent folder name - Files in root directory use ROOT_COMPONENT_MARKER Examples: - /path/to/project/src/components/Button.astro -> 'components' - /path/to/project/src/Layout.astro -> ROOT_COMPONENT_MARKER"
+                    description "Infer component name from file path When no explicit"
                     technology "function"
                     tags "Code"
                 }
                 default_container__basic_astro__findsourcefiles = component "basic-astro.findSourceFiles" {
-                    description "Find Astro source files matching the given patterns"
+                    description "Find Astro source files matching the given patterns Locates all .astro files in the workspace using glob patterns. Returns absolute paths to enable downstream processing. Default patterns include src directory and exclude node_modules, dist, build, and .astro."
                     technology "function"
                     tags "Code"
                 }
                 default_container__basic_astro__findpackagejsonfiles = component "basic-astro.findPackageJsonFiles" {
-                    description "Find all package.json files in the workspace"
+                    description "Find all package.json files in the workspace Extracts base directories from include patterns and searches multiple directory levels to locate all package.json files. Useful for identifying container boundaries and package metadata (name, version, description)."
                     technology "function"
                     tags "Code"
                 }
                 default_container__basic_astro__readpackageinfo = component "basic-astro.readPackageInfo" {
-                    description "Read package.json and extract metadata"
+                    description "Read package.json and extract metadata Parses a package.json file and extracts key metadata fields: name, version, and description. Returns null on read or parse errors (logged as warnings)."
                     technology "function"
                     tags "Code"
                 }
                 default_container__basic_astro__findnearestpackage = component "basic-astro.findNearestPackage" {
-                    description "Find the nearest package.json for a given file"
+                    description "Find the nearest package.json for a given file Searches through all known packages and finds the one whose directory is the closest parent of the given file. Packages are sorted by depth (deepest first) to prioritize monorepo sub-packages over workspace root packages."
                     technology "function"
                     tags "Code"
                 }
@@ -525,32 +528,32 @@ workspace "Application" "Main application container" {
                     tags "Code"
                 }
                 default_container__basic_astro__extractfrontmatter = component "basic-astro.extractFrontmatter" {
-                    description "Extract frontmatter content from Astro file Frontmatter is the TypeScript/JavaScript code between --- markers at the top of the file Handles both Unix (\\n) and Windows (\\r\\n) line endings"
+                    description "Extract frontmatter content from Astro file Astro files have two sections separated by --- markers: - Frontmatter: TypeScript/JavaScript code at the top (server-side) - Template: HTML markup and component usage (client-side) This function extracts only the frontmatter section. Returns empty string if no frontmatter. Handles both Unix and Windows line endings for cross-platform compatibility."
                     technology "function"
                     tags "Code"
                 }
                 default_container__basic_astro__extractimports = component "basic-astro.extractImports" {
-                    description "Extract import statements from frontmatter"
+                    description "Extract import statements from frontmatter Parses all import declarations using regex and categorizes them: - Default imports: import Foo from 'bar' - Named imports: import { Foo, Bar } from 'baz' - Namespace imports: import * as Foo from 'bar' Also handles aliased imports like: import { Foo as F } from 'bar'"
                     technology "function"
                     tags "Code"
                 }
                 default_container__basic_astro__findslots = component "basic-astro.findSlots" {
-                    description "Find slot tags in the template"
+                    description "Find slot tags in the template Astro components can define slots to allow content projection: - Default slot: <slot /> (unnamed) - Named slot: <slot name=\"header\" /> Returns location information (line number) for each slot found."
                     technology "function"
                     tags "Code"
                 }
                 default_container__basic_astro__findclientdirective = component "basic-astro.findClientDirective" {
-                    description "Find client directive in component usage Examples: client:load, client:idle, client:visible, client:media, client:only"
+                    description "Find client directive in component usage Astro allows hydration directives to run components on the client: - client:load - Eager hydration - client:idle - Hydrate when browser is idle - client:visible - Hydrate when component enters viewport - client:media - Hydrate when media query matches - client:only - Hydrate only on client (no SSR) Returns the first directive found. Used to indicate interactive components."
                     technology "function"
                     tags "Code"
                 }
                 default_container__basic_astro__extractcomponentusage = component "basic-astro.extractComponentUsage" {
-                    description "Extract component usage from template Finds which imported components are used in the template markup"
+                    description "Extract component usage from template Identifies which imported components are actually used in the template markup. Only includes components that: 1. Start with an uppercase letter (C4 naming convention) 2. Are found in the import statements 3. Appear in the template markup Component names in Astro are PascalCase by convention (e.g., Header, Footer). This function uses the import list to avoid false positives from HTML elements."
                     technology "function"
                     tags "Code"
                 }
                 default_container__basic_astro__maptoir = component "basic-astro.mapToIR" {
-                    description "Map file extractions to ArchletteIR Transforms Astro component analysis into standardized architecture representation"
+                    description "Map file extractions to ArchletteIR Transforms extracted Astro component data into standardized ArchletteIR format. This is the final step before DSL generation and diagram rendering. Algorithm (4 main steps): 1. **Aggregation** - Combine all file extractions: - Register components, actors, code items from all files - Detect and merge duplicates (same component in multiple files) - Build relationship graph from"
                     technology "function"
                     tags "Code"
                 }
@@ -729,11 +732,6 @@ workspace "Application" "Main application container" {
                     technology "function"
                     tags "Code"
                 }
-                default_container__basic_node__deduplicaterelationships = component "basic_node.deduplicateRelationships" {
-                    description "Deduplicate relationships by source+destination combination - Excludes self-referential relationships (source === destination) - Merges descriptions and stereotypes with \" | \" separator when duplicates are found - Extracts imported names from descriptions (removes \"imports \" prefix) and keeps only unique names - Returns one relationship per unique source+destination pair"
-                    technology "function"
-                    tags "Code"
-                }
                 default_container__basic_node__mapfunction = component "basic_node.mapFunction" {
                     description "Map a function to a CodeItem"
                     technology "function"
@@ -889,8 +887,8 @@ workspace "Application" "Main application container" {
                     technology "function"
                     tags "Code"
                 }
-                default_container__basic_python__deduplicaterelationships = component "basic-python.deduplicateRelationships" {
-                    description "Deduplicate relationships by source+destination"
+                default_container__basic_python__mapimporttocomponentrelationships = component "basic-python.mapImportToComponentRelationships" {
+                    description "Map Python imports to component relationships (component-level dependencies) Resolves local imports to component IDs when possible"
                     technology "function"
                     tags "Code"
                 }
@@ -974,6 +972,11 @@ workspace "Application" "Main application container" {
                     technology "function"
                     tags "Code"
                 }
+                default_container__shared__deduplicaterelationships = component "shared.deduplicateRelationships" {
+                    description "Deduplicate relationships by source+destination combination - Excludes self-referential relationships (source === destination) - Merges descriptions and stereotypes with \" | \" separator when duplicates are found - Extracts imported names from descriptions (removes \"imports \" prefix) and keeps only unique names - Returns one relationship per unique source+destination pair"
+                    technology "function"
+                    tags "Code"
+                }
 
                 # Component relationships
                 default_container__cli -> default_container__extractors "Analyzes source code to extract architecture components"
@@ -994,6 +997,7 @@ workspace "Application" "Main application container" {
                 default_container__basic_node -> default_container__core "ResolvedStageNode | ArchletteIR | PipelineContext | resolveSecurePath | createLogger | sanitizeId | CodeItem | System | Relationship | Component | Actor | TAGS | DEFAULT_CONTAINER_ID | IR_VERSION | nameToId"
                 default_container__basic_python -> default_container__core "resolveSecurePath | ArchletteExtractor | ArchletteIR | ResolvedStageNode | createLogger | getCliDir | sanitizeId | nameToId | TAGS | DEFAULT_CONTAINER_ID | Actor | Component | Container | CodeItem | Relationship"
                 default_container__basic_wrangler -> default_container__core "ResolvedStageNode | ArchletteIR | PipelineContext | emptyIR | System | ContainerInstance | Relationship | IR_VERSION | sanitizeId | createLogger"
+                default_container__shared -> default_container__core "imports Relationship"
             }
 
         }
@@ -1230,6 +1234,7 @@ branding {
             include default_container__basic_node
             include default_container__basic_python
             include default_container__basic_wrangler
+            include default_container__shared
             exclude "element.tag==Code"
             autoLayout
         }
@@ -1408,7 +1413,6 @@ branding {
             include default_container__basic_node__extractarrowfunctions
             include default_container__basic_node__extractimports
             include default_container__basic_node__maptoir
-            include default_container__basic_node__deduplicaterelationships
             include default_container__basic_node__mapfunction
             include default_container__basic_node__mapclass
             include default_container__basic_node__mapmethod
@@ -1447,7 +1451,7 @@ branding {
             include default_container__basic_python__maptoir
             include default_container__basic_python__mapactortoir
             include default_container__basic_python__maprelationshipstoir
-            include default_container__basic_python__deduplicaterelationships
+            include default_container__basic_python__mapimporttocomponentrelationships
             include default_container__basic_python__mapclasstocodeitem
             include default_container__basic_python__mapmethodtocodeitem
             include default_container__basic_python__mapfunctiontocodeitem
@@ -1470,6 +1474,12 @@ branding {
             include default_container__basic_wrangler__normalizeservicebindings
             include default_container__basic_wrangler__getenvironments
             include default_container__basic_wrangler__getenvironmentconfig
+            autoLayout
+        }
+
+
+        component default_container "Classes_default_container__shared" {
+            include default_container__shared__deduplicaterelationships
             autoLayout
         }
 

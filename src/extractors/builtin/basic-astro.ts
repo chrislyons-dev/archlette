@@ -72,13 +72,19 @@ export default async function basicAstroExtractor(
   node: ResolvedStageNode,
   ctx: PipelineContext,
 ): Promise<ArchletteIR> {
+  console.time(`ext-${node.name}`);
   const inputs = node.inputs as ExtractorInputs | undefined;
   const log = ctx.log;
 
   log.info(`Running basic-astro extractor: ${node.name || 'Astro System'}`);
 
   // 1. Find Astro files
+  console.time('find-source-files');
   const files = await findSourceFiles(inputs || {});
+  console.timeEnd('find-source-files');
+  console.log(
+    `[DEBUG] Found files: ${files.length}, content: ${JSON.stringify(files.slice(0, 3))}`,
+  );
   log.info(`Found ${files.length} Astro files to analyze`);
 
   // 1.1. Validate file paths for security before parsing
@@ -86,6 +92,7 @@ export default async function basicAstroExtractor(
   const validatedFiles: string[] = [];
   const invalidFiles: string[] = [];
 
+  console.time('validate-files');
   for (const filePath of files) {
     try {
       const resolved = resolveSecurePath(filePath, {
@@ -112,6 +119,10 @@ export default async function basicAstroExtractor(
       invalidFiles.push(filePath);
     }
   }
+  console.timeEnd('validate-files');
+  console.log(
+    `[DEBUG] Validated ${validatedFiles.length} files, invalid: ${invalidFiles.length}`,
+  );
 
   if (invalidFiles.length > 0) {
     log.warn(`Skipped ${invalidFiles.length} files due to path validation failures`);
@@ -120,6 +131,7 @@ export default async function basicAstroExtractor(
   if (validatedFiles.length === 0) {
     log.warn('No valid Astro files after security validation');
     // Return empty IR instead of throwing
+    console.log('[EARLY RETURN] No valid files');
     return {
       version: IR_VERSION,
       system: {
@@ -141,28 +153,37 @@ export default async function basicAstroExtractor(
   log.info(`Validated ${validatedFiles.length} Astro files for parsing`);
 
   // 1.5. Find package.json files to create containers
+  console.time('find-package-files');
   const packagePaths = await findPackageJsonFiles(inputs || {});
+  console.timeEnd('find-package-files');
+  console.time('read-package-info');
   const packages = (
     await Promise.all(packagePaths.map((path) => readPackageInfo(path)))
   ).filter((pkg): pkg is NonNullable<typeof pkg> => pkg !== null);
+  console.timeEnd('read-package-info');
 
   log.info(
     `Found ${packages.length} package(s): ${packages.map((p) => p.name).join(', ') || 'none'}`,
   );
 
   // 2. Parse Astro files using @astrojs/compiler
+  console.time('parse-files');
   const extractions = await parseFiles(validatedFiles);
+  console.timeEnd('parse-files');
   const successCount = extractions.filter((e) => !e.parseError).length;
   const errorCount = extractions.filter((e) => e.parseError).length;
   log.info(`Successfully parsed ${successCount} files, ${errorCount} errors`);
 
   // 2.5. Assign each file to its nearest package
+  console.time('assign-packages');
   for (const extraction of extractions) {
     const pkg = findNearestPackage(extraction.filePath, packages);
     extraction.packageInfo = pkg ?? undefined;
   }
+  console.timeEnd('assign-packages');
 
   // 3. Map to ArchletteIR format
+  console.time('map-to-ir');
   // Pass project info from config if available
   const systemInfo = node._system
     ? {
@@ -173,10 +194,12 @@ export default async function basicAstroExtractor(
     : undefined;
 
   const ir = mapToIR(extractions, packages, systemInfo);
+  console.timeEnd('map-to-ir');
 
   log.info(
     `Extracted ${ir.components.length} components, ${ir.actors.length} actors, ${ir.code.length} code elements, ${ir.componentRelationships.length} relationships`,
   );
 
+  console.timeEnd(`ext-${node.name}`);
   return ir;
 }

@@ -145,6 +145,13 @@
       "containerId": "default-container",
       "name": "basic_wrangler",
       "type": "module"
+    },
+    {
+      "description": "",
+      "id": "default_container__shared",
+      "containerId": "default-container",
+      "name": "shared",
+      "type": "module"
     }
   ],
   "code": [
@@ -2081,64 +2088,70 @@
       "lineNumber": 26
     },
     {
-      "description": "Extract TypeScript/JavaScript code from Astro frontmatter\nParses the frontmatter as TypeScript and uses basic-node extractors",
+      "description": "Extract TypeScript/JavaScript code from Astro frontmatter\n\nParses the frontmatter section (code between --- markers) as TypeScript\nand extracts code elements using the basic-node AST extractors:\n- Classes and their methods\n- Functions (both regular and arrow functions)\n- Type aliases (type X = ...)\n- TypeScript interfaces\n\nReturns empty result if frontmatter is empty or parsing fails (errors are logged).\nGraceful error handling ensures one malformed Astro file doesn't break the extraction pipeline.",
       "id": "default_container__basic_astro__extractcodefromfrontmatter",
       "componentId": "default_container__basic_astro",
       "name": "extractCodeFromFrontmatter",
       "type": "function",
       "documentation": {
-        "summary": "Extract TypeScript/JavaScript code from Astro frontmatter\nParses the frontmatter as TypeScript and uses basic-node extractors"
+        "summary": "Extract TypeScript/JavaScript code from Astro frontmatter\n\nParses the frontmatter section (code between --- markers) as TypeScript\nand extracts code elements using the basic-node AST extractors:\n- Classes and their methods\n- Functions (both regular and arrow functions)\n- Type aliases (type X = ...)\n- TypeScript interfaces\n\nReturns empty result if frontmatter is empty or parsing fails (errors are logged).\nGraceful error handling ensures one malformed Astro file doesn't break the extraction pipeline.",
+        "examples": [
+          "const fm = 'export interface Props { title: string; }\\\\nexport function helper() {}';\nconst result = extractCodeFromFrontmatter(fm, '/path/Component.astro');\n// Returns:\n// {\n//   interfaces: [{ name: 'Props', ... }],\n//   functions: [{ name: 'helper', ... }],\n//   classes: [],\n//   types: []\n// }"
+        ]
       },
       "returnType": "import(\"C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/code-extractor\").CodeExtractionResult",
-      "returnDescription": "Extracted code items (classes, functions, types, interfaces)",
+      "returnDescription": "CodeExtractionResult with extracted classes, functions, types, and interfaces",
       "parameters": [
         {
           "name": "frontmatter",
           "type": "string",
-          "description": "- The frontmatter content (code between --- markers)",
+          "description": "- The frontmatter code (TypeScript/JavaScript between --- markers)",
           "optional": false
         },
         {
           "name": "filePath",
           "type": "string",
-          "description": "- Original Astro file path (for error reporting)",
+          "description": "- Original Astro file path (used for error reporting and virtual TS path)",
           "optional": false
         }
       ],
       "visibility": "public",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/code-extractor.ts",
-      "lineNumber": 41
+      "lineNumber": 61
     },
     {
-      "description": "Create a synthetic render function for an Astro component\nEvery Astro component is fundamentally a server-side render function\nthat takes props and returns HTML\n\nFunction is named after the file (e.g., \"index\", \"about\", \"Header\")\nso each Astro file has a unique code-level representation",
+      "description": "Create a synthetic render function for an Astro component\n\nEvery Astro component is fundamentally a server-side render function that:\n1. Receives props (if Props interface is defined)\n2. Processes the component logic (frontmatter code)\n3. Renders the template to HTML\n4. Returns an HTML string\n\nSince Astro's compiler doesn't explicitly define this, we create a synthetic function\nto represent the component's executable behavior in the IR.\n\nThe function is named after the file (without .astro extension):\n- Button.astro → function Button()\n- index.astro → function index()\n- settings/Profile.astro → function Profile()",
       "id": "default_container__basic_astro__createsyntheticrenderfunction",
       "componentId": "default_container__basic_astro",
       "name": "createSyntheticRenderFunction",
       "type": "function",
       "documentation": {
-        "summary": "Create a synthetic render function for an Astro component\nEvery Astro component is fundamentally a server-side render function\nthat takes props and returns HTML\n\nFunction is named after the file (e.g., \"index\", \"about\", \"Header\")\nso each Astro file has a unique code-level representation"
+        "summary": "Create a synthetic render function for an Astro component\n\nEvery Astro component is fundamentally a server-side render function that:\n1. Receives props (if Props interface is defined)\n2. Processes the component logic (frontmatter code)\n3. Renders the template to HTML\n4. Returns an HTML string\n\nSince Astro's compiler doesn't explicitly define this, we create a synthetic function\nto represent the component's executable behavior in the IR.\n\nThe function is named after the file (without .astro extension):\n- Button.astro → function Button()\n- index.astro → function index()\n- settings/Profile.astro → function Profile()",
+        "examples": [
+          "const synthFunc = createSyntheticRenderFunction(\n  '/project/src/components/Button.astro',\n  [{ name: 'Props', ... }]\n);\n// Returns: { name: 'Button', isAsync: true, parameters: [{name: 'props', type: 'Props'}], ... }"
+        ]
       },
       "returnType": "import(\"C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/types\").ExtractedFunction",
-      "returnDescription": "Synthetic render function named after the file",
+      "returnDescription": "Synthetic ExtractedFunction representing the component's render behavior",
       "parameters": [
         {
           "name": "filePath",
           "type": "string",
-          "description": "- Original Astro file path",
+          "description": "- Absolute path to the Astro file",
           "optional": false
         },
         {
           "name": "interfaces",
           "type": "import(\"C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/types\").ExtractedInterface[]",
-          "description": "- Extracted interfaces (to find Props interface)",
+          "description": "- Extracted interfaces from frontmatter (used to detect Props interface)",
           "optional": false
         }
       ],
       "visibility": "public",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/code-extractor.ts",
-      "lineNumber": 117
+      "lineNumber": 153
     },
     {
       "description": "Extract all JSDoc comment blocks from source code\nMatches /** ... *\\/ style comments and parses their tags",
@@ -2185,75 +2198,91 @@
       "lineNumber": 49
     },
     {
-      "description": "Extract component information from frontmatter JSDoc\nChecks for",
+      "description": "Extract component information from frontmatter JSDoc\n\nAttempts to identify the component in this file using JSDoc tags:\n1. Checks for",
       "id": "default_container__basic_astro__extractfilecomponent",
       "componentId": "default_container__basic_astro",
       "name": "extractFileComponent",
       "type": "function",
       "documentation": {
-        "summary": "Extract component information from frontmatter JSDoc\nChecks for"
+        "summary": "Extract component information from frontmatter JSDoc\n\nAttempts to identify the component in this file using JSDoc tags:\n1. Checks for",
+        "examples": [
+          "// With explicit"
+        ]
       },
       "returnType": "import(\"C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/types\").ComponentInfo",
+      "returnDescription": "ComponentInfo with id, name, and optional description, or undefined",
       "parameters": [
         {
           "name": "frontmatter",
           "type": "string",
+          "description": "- TypeScript/JavaScript code from frontmatter section",
           "optional": false
         },
         {
           "name": "filePath",
           "type": "string",
+          "description": "- Absolute path to the Astro file (used for inference)",
           "optional": false
         }
       ],
       "visibility": "public",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/component-detector.ts",
-      "lineNumber": 98
+      "lineNumber": 118
     },
     {
-      "description": "Extract component name from a JSDoc tag value\nHandles formats like:\n- ComponentName\n- ComponentName - Description (space-dash-space separator)\n- path/to/module\n- My-Component (dashes in names are preserved)",
+      "description": "Extract component name from a JSDoc tag value\n\nParses the tag value to extract the component name, handling various formats:\n- Simple name: ComponentName\n- With description: ComponentName - Description\n- Module path: path/to/module (extracts last directory component)\n- Dashes preserved: My-Component-Name\n\nFor module paths like \"utils/helpers\", extracts \"utils\" (the last directory\nbefore the filename) to enable component grouping.",
       "id": "default_container__basic_astro__extractcomponentname",
       "componentId": "default_container__basic_astro",
       "name": "extractComponentName",
       "type": "function",
       "documentation": {
-        "summary": "Extract component name from a JSDoc tag value\nHandles formats like:\n- ComponentName\n- ComponentName - Description (space-dash-space separator)\n- path/to/module\n- My-Component (dashes in names are preserved)"
+        "summary": "Extract component name from a JSDoc tag value\n\nParses the tag value to extract the component name, handling various formats:\n- Simple name: ComponentName\n- With description: ComponentName - Description\n- Module path: path/to/module (extracts last directory component)\n- Dashes preserved: My-Component-Name\n\nFor module paths like \"utils/helpers\", extracts \"utils\" (the last directory\nbefore the filename) to enable component grouping.",
+        "examples": [
+          "extractComponentName('Button');\n// Returns: 'Button'\n\nextractComponentName('Button - A reusable button component');\n// Returns: 'Button'\n\nextractComponentName('components/forms/Button');\n// Returns: 'forms'"
+        ]
       },
       "returnType": "string",
+      "returnDescription": "Extracted component name, or undefined if value is empty",
       "parameters": [
         {
           "name": "value",
           "type": "string",
+          "description": "- The JSDoc tag value (text after",
           "optional": false
         }
       ],
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/component-detector.ts",
-      "lineNumber": 154
+      "lineNumber": 191
     },
     {
-      "description": "Extract actors from frontmatter JSDoc\nLooks for",
+      "description": "Extract actors from frontmatter JSDoc\n\nIdentifies external actors (users, systems) that interact with the component.\nActors are specified using",
       "id": "default_container__basic_astro__extractfileactors",
       "componentId": "default_container__basic_astro",
       "name": "extractFileActors",
       "type": "function",
       "documentation": {
-        "summary": "Extract actors from frontmatter JSDoc\nLooks for"
+        "summary": "Extract actors from frontmatter JSDoc\n\nIdentifies external actors (users, systems) that interact with the component.\nActors are specified using",
+        "examples": [
+          "const fm = '/**"
+        ]
       },
       "returnType": "import(\"C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/types\").ActorInfo[]",
+      "returnDescription": "Array of identified actors, or empty array if none found",
       "parameters": [
         {
           "name": "frontmatter",
           "type": "string",
+          "description": "- TypeScript/JavaScript code from frontmatter",
           "optional": false
         }
       ],
       "visibility": "public",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/component-detector.ts",
-      "lineNumber": 194
+      "lineNumber": 250
     },
     {
       "description": "Parse an",
@@ -2275,29 +2304,34 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/component-detector.ts",
-      "lineNumber": 221
+      "lineNumber": 277
     },
     {
-      "description": "Extract relationships from frontmatter JSDoc\nLooks for",
+      "description": "Extract relationships from frontmatter JSDoc\n\nIdentifies component dependencies using",
       "id": "default_container__basic_astro__extractfilerelationships",
       "componentId": "default_container__basic_astro",
       "name": "extractFileRelationships",
       "type": "function",
       "documentation": {
-        "summary": "Extract relationships from frontmatter JSDoc\nLooks for"
+        "summary": "Extract relationships from frontmatter JSDoc\n\nIdentifies component dependencies using",
+        "examples": [
+          "const fm = '/**"
+        ]
       },
       "returnType": "import(\"C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/types\").RelationshipInfo[]",
+      "returnDescription": "Array of identified relationships, or empty array if none found",
       "parameters": [
         {
           "name": "frontmatter",
           "type": "string",
+          "description": "- TypeScript/JavaScript code from frontmatter",
           "optional": false
         }
       ],
       "visibility": "public",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/component-detector.ts",
-      "lineNumber": 259
+      "lineNumber": 333
     },
     {
       "description": "Parse a",
@@ -2319,122 +2353,148 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/component-detector.ts",
-      "lineNumber": 283
+      "lineNumber": 357
     },
     {
-      "description": "Infer component name from file path\n- Files in subdirectories use the immediate parent folder name\n- Files in root directory use ROOT_COMPONENT_MARKER\n\nExamples:\n- /path/to/project/src/components/Button.astro -> 'components'\n- /path/to/project/src/Layout.astro -> ROOT_COMPONENT_MARKER",
+      "description": "Infer component name from file path\n\nWhen no explicit",
       "id": "default_container__basic_astro__infercomponentfrompath",
       "componentId": "default_container__basic_astro",
       "name": "inferComponentFromPath",
       "type": "function",
       "documentation": {
-        "summary": "Infer component name from file path\n- Files in subdirectories use the immediate parent folder name\n- Files in root directory use ROOT_COMPONENT_MARKER\n\nExamples:\n- /path/to/project/src/components/Button.astro -> 'components'\n- /path/to/project/src/Layout.astro -> ROOT_COMPONENT_MARKER"
+        "summary": "Infer component name from file path\n\nWhen no explicit",
+        "examples": [
+          "inferComponentFromPath('/project/src/components/Button.astro');\n// Returns: { id: 'components', name: 'components', description: '...' }\n\ninferComponentFromPath('/project/Layout.astro');\n// Returns: { id: '__use_container_name__', name: '__USE_CONTAINER_NAME__' }"
+        ]
       },
       "returnType": "import(\"C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/types\").ComponentInfo",
+      "returnDescription": "ComponentInfo with inferred component name",
       "parameters": [
         {
           "name": "filePath",
           "type": "string",
+          "description": "- Absolute path to the Astro file",
           "optional": false
         }
       ],
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/component-detector.ts",
-      "lineNumber": 315
+      "lineNumber": 400
     },
     {
-      "description": "Find Astro source files matching the given patterns",
+      "description": "Find Astro source files matching the given patterns\n\nLocates all .astro files in the workspace using glob patterns.\nReturns absolute paths to enable downstream processing.\n\nDefault patterns include src directory and exclude node_modules, dist, build, and .astro.",
       "id": "default_container__basic_astro__findsourcefiles",
       "componentId": "default_container__basic_astro",
       "name": "findSourceFiles",
       "type": "function",
       "documentation": {
-        "summary": "Find Astro source files matching the given patterns"
+        "summary": "Find Astro source files matching the given patterns\n\nLocates all .astro files in the workspace using glob patterns.\nReturns absolute paths to enable downstream processing.\n\nDefault patterns include src directory and exclude node_modules, dist, build, and .astro.",
+        "examples": [
+          "const files = await findSourceFiles({});\n// Returns array of absolute paths to all found .astro files"
+        ]
       },
       "returnType": "Promise<string[]>",
+      "returnDescription": "Promise resolving to array of absolute file paths",
       "parameters": [
         {
           "name": "options",
           "type": "{ include?: string[]; exclude?: string[]; }",
+          "description": "- Configuration object",
           "optional": false
         }
       ],
       "visibility": "public",
       "isAsync": true,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/file-finder.ts",
-      "lineNumber": 25
+      "lineNumber": 39
     },
     {
-      "description": "Find all package.json files in the workspace",
+      "description": "Find all package.json files in the workspace\n\nExtracts base directories from include patterns and searches multiple directory levels\nto locate all package.json files. Useful for identifying container boundaries and\npackage metadata (name, version, description).",
       "id": "default_container__basic_astro__findpackagejsonfiles",
       "componentId": "default_container__basic_astro",
       "name": "findPackageJsonFiles",
       "type": "function",
       "documentation": {
-        "summary": "Find all package.json files in the workspace"
+        "summary": "Find all package.json files in the workspace\n\nExtracts base directories from include patterns and searches multiple directory levels\nto locate all package.json files. Useful for identifying container boundaries and\npackage metadata (name, version, description).",
+        "examples": [
+          "const packages = await findPackageJsonFiles({\n  include: ['src/**\\/*.astro']\n});\n// Returns paths to package.json files found in the workspace"
+        ]
       },
       "returnType": "Promise<string[]>",
+      "returnDescription": "Promise resolving to array of absolute paths to package.json files",
       "parameters": [
         {
           "name": "options",
           "type": "{ include?: string[]; exclude?: string[]; }",
+          "description": "- Configuration object",
           "optional": false
         }
       ],
       "visibility": "public",
       "isAsync": true,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/file-finder.ts",
-      "lineNumber": 44
+      "lineNumber": 73
     },
     {
-      "description": "Read package.json and extract metadata",
+      "description": "Read package.json and extract metadata\n\nParses a package.json file and extracts key metadata fields: name, version, and description.\nReturns null on read or parse errors (logged as warnings).",
       "id": "default_container__basic_astro__readpackageinfo",
       "componentId": "default_container__basic_astro",
       "name": "readPackageInfo",
       "type": "function",
       "documentation": {
-        "summary": "Read package.json and extract metadata"
+        "summary": "Read package.json and extract metadata\n\nParses a package.json file and extracts key metadata fields: name, version, and description.\nReturns null on read or parse errors (logged as warnings).",
+        "examples": [
+          "const pkg = await readPackageInfo('/abs/path/package.json');\n// { path: '/abs/path/package.json', dir: '/abs/path', name: 'my-pkg', version: '1.0.0' }"
+        ]
       },
       "returnType": "Promise<import(\"C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/types\").PackageInfo>",
+      "returnDescription": "Promise resolving to PackageInfo object or null on error",
       "parameters": [
         {
           "name": "filePath",
           "type": "string",
+          "description": "- Absolute path to package.json file",
           "optional": false
         }
       ],
       "visibility": "public",
       "isAsync": true,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/file-finder.ts",
-      "lineNumber": 95
+      "lineNumber": 134
     },
     {
-      "description": "Find the nearest package.json for a given file",
+      "description": "Find the nearest package.json for a given file\n\nSearches through all known packages and finds the one whose directory is the closest\nparent of the given file. Packages are sorted by depth (deepest first) to prioritize\nmonorepo sub-packages over workspace root packages.",
       "id": "default_container__basic_astro__findnearestpackage",
       "componentId": "default_container__basic_astro",
       "name": "findNearestPackage",
       "type": "function",
       "documentation": {
-        "summary": "Find the nearest package.json for a given file"
+        "summary": "Find the nearest package.json for a given file\n\nSearches through all known packages and finds the one whose directory is the closest\nparent of the given file. Packages are sorted by depth (deepest first) to prioritize\nmonorepo sub-packages over workspace root packages.",
+        "examples": [
+          "const pkg = findNearestPackage(\n  '/workspace/packages/ui/src/Button.astro',\n  packages\n);\n// Returns the packages/ui/package.json metadata if it exists"
+        ]
       },
       "returnType": "import(\"C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/types\").PackageInfo",
+      "returnDescription": "The closest parent package, or null if file is not within any package",
       "parameters": [
         {
           "name": "filePath",
           "type": "string",
+          "description": "- Absolute path to the file",
           "optional": false
         },
         {
           "name": "packages",
           "type": "import(\"C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/types\").PackageInfo[]",
+          "description": "- Array of discovered package.json metadata objects",
           "optional": false
         }
       ],
       "visibility": "public",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/file-finder.ts",
-      "lineNumber": 118
+      "lineNumber": 172
     },
     {
       "description": "Parse Astro files using",
@@ -2443,172 +2503,211 @@
       "name": "parseFiles",
       "type": "function",
       "documentation": {
-        "summary": "Parse Astro files using"
+        "summary": "Parse Astro files using",
+        "examples": [
+          "const extractions = await parseFiles([\n'/project/src/components/Header.astro',\n'/project/src/components/Footer.astro'\n]);\n// Returns [FileExtraction, FileExtraction]"
+        ]
       },
       "returnType": "Promise<import(\"C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/types\").FileExtraction[]>",
+      "returnDescription": "Promise resolving to FileExtraction array (one per file)",
       "parameters": [
         {
           "name": "filePaths",
           "type": "string[]",
+          "description": "- Array of absolute paths to Astro files",
           "optional": false
         }
       ],
       "visibility": "public",
       "isAsync": true,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/file-parser.ts",
-      "lineNumber": 26
+      "lineNumber": 48
     },
     {
-      "description": "Extract frontmatter content from Astro file\nFrontmatter is the TypeScript/JavaScript code between --- markers at the top of the file\nHandles both Unix (\\n) and Windows (\\r\\n) line endings",
+      "description": "Extract frontmatter content from Astro file\n\nAstro files have two sections separated by --- markers:\n- Frontmatter: TypeScript/JavaScript code at the top (server-side)\n- Template: HTML markup and component usage (client-side)\n\nThis function extracts only the frontmatter section. Returns empty string if no frontmatter.\nHandles both Unix and Windows line endings for cross-platform compatibility.",
       "id": "default_container__basic_astro__extractfrontmatter",
       "componentId": "default_container__basic_astro",
       "name": "extractFrontmatter",
       "type": "function",
       "documentation": {
-        "summary": "Extract frontmatter content from Astro file\nFrontmatter is the TypeScript/JavaScript code between --- markers at the top of the file\nHandles both Unix (\\n) and Windows (\\r\\n) line endings"
+        "summary": "Extract frontmatter content from Astro file\n\nAstro files have two sections separated by --- markers:\n- Frontmatter: TypeScript/JavaScript code at the top (server-side)\n- Template: HTML markup and component usage (client-side)\n\nThis function extracts only the frontmatter section. Returns empty string if no frontmatter.\nHandles both Unix and Windows line endings for cross-platform compatibility.",
+        "examples": [
+          "const content = '--- import X from \"y\"\\\\n---\\\\n<div>...';\nconst frontmatter = extractFrontmatter(content);\n// Returns: ' import X from \"y\"'"
+        ]
       },
       "returnType": "string",
+      "returnDescription": "Frontmatter code between the --- markers, or empty string",
       "parameters": [
         {
           "name": "content",
           "type": "string",
+          "description": "- Full Astro file content",
           "optional": false
         }
       ],
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/file-parser.ts",
-      "lineNumber": 120
+      "lineNumber": 155
     },
     {
-      "description": "Extract import statements from frontmatter",
+      "description": "Extract import statements from frontmatter\n\nParses all import declarations using regex and categorizes them:\n- Default imports: import Foo from 'bar'\n- Named imports: import { Foo, Bar } from 'baz'\n- Namespace imports: import * as Foo from 'bar'\n\nAlso handles aliased imports like: import { Foo as F } from 'bar'",
       "id": "default_container__basic_astro__extractimports",
       "componentId": "default_container__basic_astro",
       "name": "extractImports",
       "type": "function",
       "documentation": {
-        "summary": "Extract import statements from frontmatter"
+        "summary": "Extract import statements from frontmatter\n\nParses all import declarations using regex and categorizes them:\n- Default imports: import Foo from 'bar'\n- Named imports: import { Foo, Bar } from 'baz'\n- Namespace imports: import * as Foo from 'bar'\n\nAlso handles aliased imports like: import { Foo as F } from 'bar'",
+        "examples": [
+          "const code = 'import Foo from \"a\"; import { Bar } from \"b\";';\nconst imports = extractImports(code);\n// Returns: [\n//   { source: 'a', importedNames: ['Foo'], isDefault: true, isNamespace: false },\n//   { source: 'b', importedNames: ['Bar'], isDefault: false, isNamespace: false }\n// ]"
+        ]
       },
       "returnType": "{ source: string; importedNames: string[]; isDefault: boolean; isNamespace: boolean; }[]",
+      "returnDescription": "Array of import declarations with categorization",
       "parameters": [
         {
           "name": "frontmatter",
           "type": "string",
+          "description": "- TypeScript/JavaScript code from frontmatter",
           "optional": false
         }
       ],
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/file-parser.ts",
-      "lineNumber": 128
+      "lineNumber": 181
     },
     {
-      "description": "Find slot tags in the template",
+      "description": "Find slot tags in the template\n\nAstro components can define slots to allow content projection:\n- Default slot: <slot /> (unnamed)\n- Named slot: <slot name=\"header\" />\n\nReturns location information (line number) for each slot found.",
       "id": "default_container__basic_astro__findslots",
       "componentId": "default_container__basic_astro",
       "name": "findSlots",
       "type": "function",
       "documentation": {
-        "summary": "Find slot tags in the template"
+        "summary": "Find slot tags in the template\n\nAstro components can define slots to allow content projection:\n- Default slot: <slot /> (unnamed)\n- Named slot: <slot name=\"header\" />\n\nReturns location information (line number) for each slot found.",
+        "examples": [
+          "const content = '---...---\\\\n<slot />\\\\n<slot name=\"footer\" />';\nconst slots = findSlots(content);\n// Returns: [\n//   { name: 'default', line: 2 },\n//   { name: 'footer', line: 3 }\n// ]"
+        ]
       },
       "returnType": "{ name: string; line: number; }[]",
+      "returnDescription": "Array of slots with names and line numbers",
       "parameters": [
         {
           "name": "content",
           "type": "string",
+          "description": "- Full Astro file content (used to calculate line numbers)",
           "optional": false
         }
       ],
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/file-parser.ts",
-      "lineNumber": 183
+      "lineNumber": 253
     },
     {
-      "description": "Find client directive in component usage\nExamples: client:load, client:idle, client:visible, client:media, client:only",
+      "description": "Find client directive in component usage\n\nAstro allows hydration directives to run components on the client:\n- client:load - Eager hydration\n- client:idle - Hydrate when browser is idle\n- client:visible - Hydrate when component enters viewport\n- client:media - Hydrate when media query matches\n- client:only - Hydrate only on client (no SSR)\n\nReturns the first directive found. Used to indicate interactive components.",
       "id": "default_container__basic_astro__findclientdirective",
       "componentId": "default_container__basic_astro",
       "name": "findClientDirective",
       "type": "function",
       "documentation": {
-        "summary": "Find client directive in component usage\nExamples: client:load, client:idle, client:visible, client:media, client:only"
+        "summary": "Find client directive in component usage\n\nAstro allows hydration directives to run components on the client:\n- client:load - Eager hydration\n- client:idle - Hydrate when browser is idle\n- client:visible - Hydrate when component enters viewport\n- client:media - Hydrate when media query matches\n- client:only - Hydrate only on client (no SSR)\n\nReturns the first directive found. Used to indicate interactive components.",
+        "examples": [
+          "const content = '<Component client:load />';\nconst directive = findClientDirective(content);\n// Returns: 'client:load'"
+        ]
       },
       "returnType": "string",
+      "returnDescription": "The directive found (e.g., 'client:load'), or undefined",
       "parameters": [
         {
           "name": "content",
           "type": "string",
+          "description": "- Full Astro file content",
           "optional": false
         }
       ],
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/file-parser.ts",
-      "lineNumber": 203
+      "lineNumber": 289
     },
     {
-      "description": "Extract component usage from template\nFinds which imported components are used in the template markup",
+      "description": "Extract component usage from template\n\nIdentifies which imported components are actually used in the template markup.\nOnly includes components that:\n1. Start with an uppercase letter (C4 naming convention)\n2. Are found in the import statements\n3. Appear in the template markup\n\nComponent names in Astro are PascalCase by convention (e.g., Header, Footer).\nThis function uses the import list to avoid false positives from HTML elements.",
       "id": "default_container__basic_astro__extractcomponentusage",
       "componentId": "default_container__basic_astro",
       "name": "extractComponentUsage",
       "type": "function",
       "documentation": {
-        "summary": "Extract component usage from template\nFinds which imported components are used in the template markup"
+        "summary": "Extract component usage from template\n\nIdentifies which imported components are actually used in the template markup.\nOnly includes components that:\n1. Start with an uppercase letter (C4 naming convention)\n2. Are found in the import statements\n3. Appear in the template markup\n\nComponent names in Astro are PascalCase by convention (e.g., Header, Footer).\nThis function uses the import list to avoid false positives from HTML elements.",
+        "examples": [
+          "const components = extractComponentUsage(content, imports, '/path/file.astro');\n// Returns components that match imported names and appear in template"
+        ]
       },
       "returnType": "import(\"C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/types\").ExtractedComponent[]",
+      "returnDescription": "Array of ExtractedComponent objects for used components",
       "parameters": [
         {
           "name": "content",
           "type": "string",
+          "description": "- Full Astro file content",
           "optional": false
         },
         {
           "name": "imports",
           "type": "{ source: string; importedNames: string[]; }[]",
+          "description": "- List of imports from extractImports()",
           "optional": false
         },
         {
           "name": "filePath",
           "type": "string",
+          "description": "- File path (used for location tracking)",
           "optional": false
         }
       ],
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/file-parser.ts",
-      "lineNumber": 212
+      "lineNumber": 315
     },
     {
-      "description": "Map file extractions to ArchletteIR\nTransforms Astro component analysis into standardized architecture representation",
+      "description": "Map file extractions to ArchletteIR\n\nTransforms extracted Astro component data into standardized ArchletteIR format.\nThis is the final step before DSL generation and diagram rendering.\n\nAlgorithm (4 main steps):\n\n1. **Aggregation** - Combine all file extractions:\n   - Register components, actors, code items from all files\n   - Detect and merge duplicates (same component in multiple files)\n   - Build relationship graph from",
       "id": "default_container__basic_astro__maptoir",
       "componentId": "default_container__basic_astro",
       "name": "mapToIR",
       "type": "function",
       "documentation": {
-        "summary": "Map file extractions to ArchletteIR\nTransforms Astro component analysis into standardized architecture representation"
+        "summary": "Map file extractions to ArchletteIR\n\nTransforms extracted Astro component data into standardized ArchletteIR format.\nThis is the final step before DSL generation and diagram rendering.\n\nAlgorithm (4 main steps):\n\n1. **Aggregation** - Combine all file extractions:\n   - Register components, actors, code items from all files\n   - Detect and merge duplicates (same component in multiple files)\n   - Build relationship graph from",
+        "examples": [
+          "const ir = mapToIR(extractions, packages, {\nname: 'My App',\ndescription: 'Application architecture'\n});"
+        ]
       },
       "returnType": "z.infer<any>",
+      "returnDescription": "ArchletteIR ready for DSL generation",
       "parameters": [
         {
           "name": "extractions",
           "type": "import(\"C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/types\").FileExtraction[]",
+          "description": "- Array of FileExtraction (from parseFiles)",
           "optional": false
         },
         {
           "name": "packages",
           "type": "import(\"C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/types\").PackageInfo[]",
+          "description": "- Optional array of PackageInfo for container detection",
           "optional": true
         },
         {
           "name": "systemInfo",
           "type": "z.infer<any>",
+          "description": "- Optional system metadata (name, description, repository)",
           "optional": true
         }
       ],
       "visibility": "public",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/to-ir-mapper.ts",
-      "lineNumber": 35
+      "lineNumber": 73
     },
     {
       "description": "Map a class to code items (class + methods)",
@@ -2640,7 +2739,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/to-ir-mapper.ts",
-      "lineNumber": 470
+      "lineNumber": 508
     },
     {
       "description": "Map a function to a code item",
@@ -2672,7 +2771,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/to-ir-mapper.ts",
-      "lineNumber": 517
+      "lineNumber": 555
     },
     {
       "description": "Extract all class declarations from a source file",
@@ -3443,29 +3542,7 @@
       "visibility": "public",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts",
-      "lineNumber": 36
-    },
-    {
-      "description": "Deduplicate relationships by source+destination combination\n- Excludes self-referential relationships (source === destination)\n- Merges descriptions and stereotypes with \" | \" separator when duplicates are found\n- Extracts imported names from descriptions (removes \"imports \" prefix) and keeps only unique names\n- Returns one relationship per unique source+destination pair",
-      "id": "default_container__basic_node__deduplicaterelationships",
-      "componentId": "default_container__basic_node",
-      "name": "deduplicateRelationships",
-      "type": "function",
-      "documentation": {
-        "summary": "Deduplicate relationships by source+destination combination\n- Excludes self-referential relationships (source === destination)\n- Merges descriptions and stereotypes with \" | \" separator when duplicates are found\n- Extracts imported names from descriptions (removes \"imports \" prefix) and keeps only unique names\n- Returns one relationship per unique source+destination pair"
-      },
-      "returnType": "z.infer<any>[]",
-      "parameters": [
-        {
-          "name": "relationships",
-          "type": "z.infer<any>[]",
-          "optional": false
-        }
-      ],
-      "visibility": "private",
-      "isAsync": false,
-      "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts",
-      "lineNumber": 424
+      "lineNumber": 37
     },
     {
       "description": "Map a function to a CodeItem",
@@ -3497,7 +3574,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts",
-      "lineNumber": 480
+      "lineNumber": 425
     },
     {
       "description": "Map a class to a CodeItem",
@@ -3529,7 +3606,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts",
-      "lineNumber": 508
+      "lineNumber": 453
     },
     {
       "description": "Map a class method to a CodeItem",
@@ -3566,7 +3643,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts",
-      "lineNumber": 537
+      "lineNumber": 482
     },
     {
       "description": "Resolve an import path to an absolute file path\nHandles relative imports (./file, ../file) and resolves to actual file paths\nReturns undefined for node_modules imports or unresolvable paths",
@@ -3593,7 +3670,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts",
-      "lineNumber": 573
+      "lineNumber": 518
     },
     {
       "description": "Map imports to component relationships (component-level dependencies)",
@@ -3630,7 +3707,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts",
-      "lineNumber": 624
+      "lineNumber": 574
     },
     {
       "description": "Map imports to relationships (original code-level format for backward compatibility)",
@@ -3657,7 +3734,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts",
-      "lineNumber": 661
+      "lineNumber": 611
     },
     {
       "description": "Generate a unique ID for a code element\nFormat: filePath:symbolName",
@@ -3684,7 +3761,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts",
-      "lineNumber": 684
+      "lineNumber": 634
     },
     {
       "description": "Get default system info from package.json if available",
@@ -3700,7 +3777,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts",
-      "lineNumber": 694
+      "lineNumber": 644
     },
     {
       "description": "Extract type aliases from a source file\nExamples:\n  type UserRole = 'admin' | 'user' | 'guest'\n  export type ApiResponse<T> = { data: T; status: number }",
@@ -4228,7 +4305,7 @@
       "visibility": "public",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts",
-      "lineNumber": 43
+      "lineNumber": 45
     },
     {
       "description": "Map ActorInfo to Actor",
@@ -4255,7 +4332,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts",
-      "lineNumber": 274
+      "lineNumber": 332
     },
     {
       "description": "Map relationships to Relationship[]\nCreates bidirectional actor relationships",
@@ -4292,29 +4369,49 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts",
-      "lineNumber": 288
+      "lineNumber": 346
     },
     {
-      "description": "Deduplicate relationships by source+destination",
-      "id": "default_container__basic_python__deduplicaterelationships",
+      "description": "Map Python imports to component relationships (component-level dependencies)\nResolves local imports to component IDs when possible",
+      "id": "default_container__basic_python__mapimporttocomponentrelationships",
       "componentId": "default_container__basic_python",
-      "name": "deduplicateRelationships",
+      "name": "mapImportToComponentRelationships",
       "type": "function",
       "documentation": {
-        "summary": "Deduplicate relationships by source+destination"
+        "summary": "Map Python imports to component relationships (component-level dependencies)\nResolves local imports to component IDs when possible"
       },
       "returnType": "z.infer<any>[]",
       "parameters": [
         {
-          "name": "relationships",
-          "type": "z.infer<any>[]",
+          "name": "imp",
+          "type": "import(\"C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/types\").ExtractedImport",
+          "optional": false
+        },
+        {
+          "name": "filePath",
+          "type": "string",
+          "optional": false
+        },
+        {
+          "name": "componentId",
+          "type": "string",
+          "optional": false
+        },
+        {
+          "name": "fileToComponentMap",
+          "type": "Map<string, string>",
+          "optional": false
+        },
+        {
+          "name": "modulePathIndex",
+          "type": "Map<string, string>",
           "optional": false
         }
       ],
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts",
-      "lineNumber": 335
+      "lineNumber": 394
     },
     {
       "description": "Map ExtractedClass to CodeItem",
@@ -4341,7 +4438,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts",
-      "lineNumber": 350
+      "lineNumber": 498
     },
     {
       "description": "Map ExtractedMethod to CodeItem",
@@ -4373,7 +4470,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts",
-      "lineNumber": 375
+      "lineNumber": 523
     },
     {
       "description": "Map ExtractedFunction to CodeItem",
@@ -4400,7 +4497,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts",
-      "lineNumber": 410
+      "lineNumber": 558
     },
     {
       "description": "Map ExtractedType to CodeItem",
@@ -4427,7 +4524,7 @@
       "visibility": "private",
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts",
-      "lineNumber": 441
+      "lineNumber": 589
     },
     {
       "description": "Find wrangler.toml files based on include/exclude patterns",
@@ -4730,6 +4827,28 @@
       "isAsync": false,
       "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/wrangler-parser.ts",
       "lineNumber": 170
+    },
+    {
+      "description": "Deduplicate relationships by source+destination combination\n- Excludes self-referential relationships (source === destination)\n- Merges descriptions and stereotypes with \" | \" separator when duplicates are found\n- Extracts imported names from descriptions (removes \"imports \" prefix) and keeps only unique names\n- Returns one relationship per unique source+destination pair",
+      "id": "default_container__shared__deduplicaterelationships",
+      "componentId": "default_container__shared",
+      "name": "deduplicateRelationships",
+      "type": "function",
+      "documentation": {
+        "summary": "Deduplicate relationships by source+destination combination\n- Excludes self-referential relationships (source === destination)\n- Merges descriptions and stereotypes with \" | \" separator when duplicates are found\n- Extracts imported names from descriptions (removes \"imports \" prefix) and keeps only unique names\n- Returns one relationship per unique source+destination pair"
+      },
+      "returnType": "z.infer<any>[]",
+      "parameters": [
+        {
+          "name": "relationships",
+          "type": "z.infer<any>[]",
+          "optional": false
+        }
+      ],
+      "visibility": "public",
+      "isAsync": false,
+      "filePath": "C:/Users/chris/git/archlette/src/extractors/builtin/shared/relationship-utils.ts",
+      "lineNumber": 15
     }
   ],
   "deployments": [],
@@ -5394,6 +5513,12 @@
       "stereotype": "import"
     },
     {
+      "description": "imports deduplicateRelationships",
+      "source": "default_container__basic_node",
+      "destination": "../shared/relationship-utils.js",
+      "stereotype": "import"
+    },
+    {
       "description": "imports globby",
       "source": "default_container__basic_python",
       "destination": "globby",
@@ -5418,7 +5543,7 @@
       "stereotype": "import"
     },
     {
-      "description": "ExtractorInputs | FileExtraction | PythonParserOutput | ExtractedClass | ExtractedMethod | ExtractedProperty | ExtractedFunction | ExtractedType | ParameterInfo | DocInfo | ActorInfo | RelationshipInfo",
+      "description": "ExtractorInputs | FileExtraction | PythonParserOutput | ExtractedClass | ExtractedMethod | ExtractedProperty | ExtractedFunction | ExtractedType | ParameterInfo | DocInfo | ActorInfo | RelationshipInfo | ExtractedImport",
       "source": "default_container__basic_python",
       "destination": "./types.js",
       "stereotype": "type-import"
@@ -5433,6 +5558,12 @@
       "description": "imports * as path",
       "source": "default_container__basic_python",
       "destination": "path",
+      "stereotype": "import"
+    },
+    {
+      "description": "imports deduplicateRelationships",
+      "source": "default_container__basic_python",
+      "destination": "../shared/relationship-utils.js",
       "stereotype": "import"
     },
     {
@@ -5464,6 +5595,12 @@
       "source": "default_container__basic_wrangler",
       "destination": "smol-toml",
       "stereotype": "import"
+    },
+    {
+      "description": "imports Relationship",
+      "source": "default_container__shared",
+      "destination": "default_container__core",
+      "stereotype": "type-import"
     }
   ],
   "codeRelationships": [
@@ -7304,6 +7441,12 @@
       "stereotype": "import"
     },
     {
+      "description": "imports deduplicateRelationships",
+      "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts",
+      "destination": "../shared/relationship-utils.js:deduplicateRelationships",
+      "stereotype": "import"
+    },
+    {
       "description": "imports SourceFile",
       "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/type-extractor.ts",
       "destination": "ts-morph:SourceFile",
@@ -7580,10 +7723,22 @@
       "stereotype": "type-import"
     },
     {
+      "description": "imports ExtractedImport",
+      "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts",
+      "destination": "./types.js:ExtractedImport",
+      "stereotype": "type-import"
+    },
+    {
       "description": "imports PyProjectInfo",
       "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts",
       "destination": "./file-finder.js:PyProjectInfo",
       "stereotype": "type-import"
+    },
+    {
+      "description": "imports deduplicateRelationships",
+      "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-python/to-ir-mapper.ts",
+      "destination": "../shared/relationship-utils.js:deduplicateRelationships",
+      "stereotype": "import"
     },
     {
       "description": "imports globby",
@@ -7709,6 +7864,12 @@
       "description": "imports QueueBinding",
       "source": "C:/Users/chris/git/archlette/src/extractors/builtin/basic-wrangler/wrangler-parser.ts",
       "destination": "./types.js:QueueBinding",
+      "stereotype": "type-import"
+    },
+    {
+      "description": "imports Relationship",
+      "source": "C:/Users/chris/git/archlette/src/extractors/builtin/shared/relationship-utils.ts",
+      "destination": "../../../core/types-ir.js:Relationship",
       "stereotype": "type-import"
     }
   ],

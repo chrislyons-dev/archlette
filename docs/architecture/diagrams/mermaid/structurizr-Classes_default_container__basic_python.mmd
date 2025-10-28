@@ -49,7 +49,7 @@ graph TB
       style 185 fill:#85bbf0,stroke:#5d82a8,color:#000000
       186("<div style='font-weight: bold'>basic-python.mapRelationshipsToIR</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Map relationships to<br />Relationship[] Creates<br />bidirectional actor<br />relationships</div>")
       style 186 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      187("<div style='font-weight: bold'>basic-python.deduplicateRelationships</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Deduplicate relationships by<br />source+destination</div>")
+      187("<div style='font-weight: bold'>basic-python.mapImportToComponentRelationships</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Map Python imports to<br />component relationships<br />(component-level<br />dependencies) Resolves local<br />imports to component IDs when<br />possible</div>")
       style 187 fill:#85bbf0,stroke:#5d82a8,color:#000000
       188("<div style='font-weight: bold'>basic-python.mapClassToCodeItem</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Map ExtractedClass to<br />CodeItem</div>")
       style 188 fill:#85bbf0,stroke:#5d82a8,color:#000000
@@ -59,10 +59,10 @@ graph TB
       style 190 fill:#85bbf0,stroke:#5d82a8,color:#000000
       191("<div style='font-weight: bold'>basic-python.mapTypeToCodeItem</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Map ExtractedType to CodeItem</div>")
       style 191 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      82("<div style='font-weight: bold'>basic-python.createEmptyIR</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Create empty IR when no files<br />found</div>")
-      style 82 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      83("<div style='font-weight: bold'>basic-python.basicPython</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Basic Python extractor<br />Analyzes Python source code<br />and extracts architectural<br />components</div>")
+      83("<div style='font-weight: bold'>basic-python.createEmptyIR</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Create empty IR when no files<br />found</div>")
       style 83 fill:#85bbf0,stroke:#5d82a8,color:#000000
+      84("<div style='font-weight: bold'>basic-python.basicPython</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Basic Python extractor<br />Analyzes Python source code<br />and extracts architectural<br />components</div>")
+      style 84 fill:#85bbf0,stroke:#5d82a8,color:#000000
     end
 
   end

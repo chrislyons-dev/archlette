@@ -40,6 +40,8 @@ graph TB
       style 18 fill:#85bbf0,stroke:#5d82a8,color:#000000
       19("<div style='font-weight: bold'>basic_wrangler</div><div style='font-size: 70%; margin-top: 0px'>[Component: module]</div><div style='font-size: 80%; margin-top:10px'>Cloudflare Wrangler<br />deployment extractor</div>")
       style 19 fill:#85bbf0,stroke:#5d82a8,color:#000000
+      20("<div style='font-weight: bold'>shared</div><div style='font-size: 70%; margin-top: 0px'>[Component: module]</div>")
+      style 20 fill:#85bbf0,stroke:#5d82a8,color:#000000
       9("<div style='font-weight: bold'>CLI</div><div style='font-size: 70%; margin-top: 0px'>[Component: module]</div><div style='font-size: 80%; margin-top:10px'>Archlette CLI -<br />Architecture-as-Code toolkit</div>")
       style 9 fill:#85bbf0,stroke:#5d82a8,color:#000000
     end
@@ -62,6 +64,7 @@ graph TB
     17-- "<div>ResolvedStageNode |<br />ArchletteIR | PipelineContext<br />| resolveSecurePath |<br />createLogger | sanitizeId |<br />CodeItem | System |<br />Relationship | Component |<br />Actor | TAGS |<br />DEFAULT_CONTAINER_ID |<br />IR_VERSION | nameToId</div><div style='font-size: 70%'></div>" -->15
     18-- "<div>resolveSecurePath |<br />ArchletteExtractor |<br />ArchletteIR |<br />ResolvedStageNode |<br />createLogger | getCliDir |<br />sanitizeId | nameToId | TAGS<br />| DEFAULT_CONTAINER_ID |<br />Actor | Component | Container<br />| CodeItem | Relationship</div><div style='font-size: 70%'></div>" -->15
     19-- "<div>ResolvedStageNode |<br />ArchletteIR | PipelineContext<br />| emptyIR | System |<br />ContainerInstance |<br />Relationship | IR_VERSION |<br />sanitizeId | createLogger</div><div style='font-size: 70%'></div>" -->15
+    20-- "<div>imports Relationship</div><div style='font-size: 70%'></div>" -->15
     1-- "<div>Interacts with CLI</div><div style='font-size: 70%'></div>" -->9
     15-- "<div>Uses FileSystem for external<br />system integration</div><div style='font-size: 70%'></div>" -->2
     15-- "<div>Uses Github Structurizr Repo<br />for external system<br />integration</div><div style='font-size: 70%'></div>" -->3

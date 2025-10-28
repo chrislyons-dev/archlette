@@ -127,6 +127,13 @@ skinparam rectangle<<Application.Application.renderers>> {
   roundCorner 20
   shadowing false
 }
+skinparam rectangle<<Application.Application.shared>> {
+  BackgroundColor #85bbf0
+  FontColor #000000
+  BorderColor #5d82a8
+  roundCorner 20
+  shadowing false
+}
 skinparam rectangle<<Application.Application.validators>> {
   BackgroundColor #85bbf0
   FontColor #000000
@@ -158,6 +165,7 @@ rectangle "Application\n<size:10>[Container: Application]</size>" <<Application.
   rectangle "==basic_node\n<size:10>[Component: module]</size>\n\nTypeScript/JavaScript code extractor" <<Application.Application.basic_node>> as Application.Application.basic_node
   rectangle "==basic-python\n<size:10>[Component: module]</size>\n\nBasic Python Extractor for Archlette Extracts architecture information from Python source code" <<Application.Application.basicpython>> as Application.Application.basicpython
   rectangle "==basic_wrangler\n<size:10>[Component: module]</size>\n\nCloudflare Wrangler deployment extractor" <<Application.Application.basic_wrangler>> as Application.Application.basic_wrangler
+  rectangle "==shared\n<size:10>[Component: module]</size>" <<Application.Application.shared>> as Application.Application.shared
   rectangle "==CLI\n<size:10>[Component: module]</size>\n\nArchlette CLI - Architecture-as-Code toolkit" <<Application.Application.CLI>> as Application.Application.CLI
 }
 
@@ -179,6 +187,7 @@ Application.Application.basicastro -[#707070,thickness=2]-> Application.Applicat
 Application.Application.basic_node -[#707070,thickness=2]-> Application.Application.core : "<color:#707070>ResolvedStageNode | ArchletteIR | PipelineContext | resolveSecurePath | createLogger | sanitizeId | CodeItem | System | Relationship | Component | Actor | TAGS | DEFAULT_CONTAINER_ID | IR_VERSION | nameToId"
 Application.Application.basicpython -[#707070,thickness=2]-> Application.Application.core : "<color:#707070>resolveSecurePath | ArchletteExtractor | ArchletteIR | ResolvedStageNode | createLogger | getCliDir | sanitizeId | nameToId | TAGS | DEFAULT_CONTAINER_ID | Actor | Component | Container | CodeItem | Relationship"
 Application.Application.basic_wrangler -[#707070,thickness=2]-> Application.Application.core : "<color:#707070>ResolvedStageNode | ArchletteIR | PipelineContext | emptyIR | System | ContainerInstance | Relationship | IR_VERSION | sanitizeId | createLogger"
+Application.Application.shared -[#707070,thickness=2]-> Application.Application.core : "<color:#707070>imports Relationship"
 User -[#707070,thickness=2]-> Application.Application.CLI : "<color:#707070>Interacts with CLI"
 Application.Application.core -[#707070,thickness=2]-> FileSystem : "<color:#707070>Uses FileSystem for external system integration"
 Application.Application.core -[#707070,thickness=2]-> GithubStructurizrRepo : "<color:#707070>Uses Github Structurizr Repo for external system integration"

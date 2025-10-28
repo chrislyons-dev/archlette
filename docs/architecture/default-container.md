@@ -121,6 +121,12 @@ Extracts architecture information from Python source code</td>
 <td>Cloudflare Wrangler deployment extractor</td>
 <td><a href="./default_container__basic_wrangler.md">View →</a></td>
 </tr>
+<tr>
+<td><strong>shared</strong></td>
+<td><code>module</code></td>
+<td>—</td>
+<td><a href="./default_container__shared.md">View →</a></td>
+</tr>
 </tbody>
 </table>
 

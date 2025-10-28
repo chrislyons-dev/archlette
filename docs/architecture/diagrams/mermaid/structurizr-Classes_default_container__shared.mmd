@@ -1,0 +1,14 @@
+graph TB
+  linkStyle default fill:#ffffff
+
+  subgraph diagram ["Application - Application - Components"]
+    style diagram fill:#ffffff,stroke:#ffffff
+
+    subgraph 8 ["Application"]
+      style 8 fill:#ffffff,stroke:#2e6295,color:#2e6295
+
+      204("<div style='font-weight: bold'>shared.deduplicateRelationships</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Deduplicate relationships by<br />source+destination<br />combination - Excludes<br />self-referential<br />relationships (source ===<br />destination) - Merges<br />descriptions and stereotypes<br />with " | " separator when<br />duplicates are found -<br />Extracts imported names from<br />descriptions (removes<br />"imports " prefix) and keeps<br />only unique names - Returns<br />one relationship per unique<br />source+destination pair</div>")
+      style 204 fill:#85bbf0,stroke:#5d82a8,color:#000000
+    end
+
+  end
