@@ -42,7 +42,7 @@ jobs:
 Archlette requires Java for diagram rendering:
 
 ```yaml
-- uses: actions/setup-java@v4
+- uses: actions/setup-java@v5
   with:
     distribution: 'temurin'
     java-version: '17'
