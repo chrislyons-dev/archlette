@@ -334,12 +334,24 @@
 
 ### 9.1 Code Documentation
 
-- [ ] Add JSDoc to all public functions
-- [ ] Add module-level documentation
-- [ ] Document complex algorithms
-- [ ] Add inline comments for non-obvious code
+- [x] Add JSDoc to all public functions
+- [x] Add module-level documentation
+- [x] Document complex algorithms
+- [x] Add inline comments for non-obvious code
 
 **Commit:** `docs: add comprehensive code documentation to Astro extractor`
+
+Added comprehensive JSDoc documentation to all files in basic-astro extractor:
+
+- **file-finder.ts**: 4 functions documented with parameter descriptions and examples
+- **types.ts**: 11 interfaces documented with field descriptions and usage patterns
+- **file-parser.ts**: 6 functions documented with algorithm explanations
+- **component-detector.ts**: 5 functions documented with parsing logic and examples
+- **code-extractor.ts**: 2 functions documented with synthetic function generation details
+- **to-ir-mapper.ts**: mapToIR() function documented with 4-step algorithm breakdown
+- **basic-astro.ts**: Main entry point already documented with JSDoc
+
+All 550 tests passing ✅
 
 ### 9.2 User Documentation
 
