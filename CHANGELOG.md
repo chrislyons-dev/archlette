@@ -5,6 +5,13 @@ All notable changes to **Archlette** will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and this project adheres to [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
 
+## [1.2.0](https://github.com/chrislyons-dev/archlette/compare/v1.1.0...v1.2.0) (2025-10-28)
+
+
+### Features
+
+* add basic-astro extractor ([#30](https://github.com/chrislyons-dev/archlette/issues/30)) ([7e6c258](https://github.com/chrislyons-dev/archlette/commit/7e6c258a403191eff2ea08df6934ca3b439e57bb))
+
 ## [1.1.0](https://github.com/chrislyons-dev/archlette/compare/v1.0.1...v1.1.0) (2025-10-26)
 
 
