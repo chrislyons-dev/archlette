@@ -61,7 +61,8 @@
     "typecheck": "tsc --noEmit --skipLibCheck",
     "prepare": "husky",
     "lint:commit": "commitlint --edit",
-    "pack:test": "npm run build && npm pack --pack-destination ./dist && node scripts/inspect-pack.js"
+    "pack:test": "npm run build && npm pack --pack-destination ./dist && node scripts/inspect-pack.js",
+    "updates": "npx npm-check-updates --deep --errorLevel 2"
   },
   "dependencies": {
     "@astrojs/compiler": "^2.10.3",
