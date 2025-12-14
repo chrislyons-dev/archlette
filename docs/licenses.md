@@ -5,7 +5,7 @@ Archlette tracks every dependency. Automatically.
 **NPM packages** — From `package.json`
 **Runtime tools** — Downloaded on first use
 
-All captured in `THIRD_PARTY_LICENSES.md`.
+All captured in `THIRD-PARTY-NOTICES.md`.
 
 ---
 
@@ -75,7 +75,7 @@ const RUNTIME_TOOLS = [
 
 ```bash
 npm run licenses:generate
-git add THIRD_PARTY_LICENSES.md
+git add THIRD-PARTY-NOTICES.md
 git commit -m "docs: add new runtime tool license"
 ```
 

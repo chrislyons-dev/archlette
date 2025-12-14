@@ -66,7 +66,7 @@ and this project adheres to [Conventional Commits](https://www.conventionalcommi
   - Cloudflare Wrangler toml files
 - Structurizr CLI, PlantUML, and Mermaid wiring (opt-in via `aac.yaml`)
 - Reusable GitHub Action + pre-commit example
-- MIT `LICENSE`, `NOTICE`, and `THIRD_PARTY_LICENSES.md` scaffolding
+- MIT `LICENSE`, `NOTICE`, and `THIRD-PARTY-NOTICES.md` scaffolding
 
 [Unreleased]: https://github.com/chrislyons-dev/archlette/compare/v0.1.0...HEAD
 [0.1.0]: https://github.com/chrislyons-dev/archlette/releases/tag/v0.1.0

@@ -35,7 +35,7 @@ jobs:
           npm run readme:sync
           cp CONTRIBUTING.md docs/
           cp CHANGELOG.md docs/
-          cp THIRD_PARTY_LICENSES.md docs/
+          cp THIRD-PARTY-NOTICES.md docs/
 
       - name: Install MkDocs and dependencies
         run: |

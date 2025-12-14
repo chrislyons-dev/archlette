@@ -69,7 +69,7 @@ nav:
       - How to Contribute: CONTRIBUTING.md
       - License Management: licenses.md
       - Changelog: CHANGELOG.md
-      - Third-Party Licenses: THIRD_PARTY_LICENSES.md
+      - Third-Party Licenses: THIRD-PARTY-NOTICES.md
 
 markdown_extensions:
   # Code highlighting
