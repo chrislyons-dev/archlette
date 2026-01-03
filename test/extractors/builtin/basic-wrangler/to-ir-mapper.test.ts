@@ -334,6 +334,14 @@ describe('to-ir-mapper', () => {
           name: 'auth',
           services: [{ binding: 'SVC_USER', service: 'user-service' }],
         },
+        {
+          filePath: '/workers/data.toml',
+          name: 'data',
+        },
+        {
+          filePath: '/workers/user-service.toml',
+          name: 'user-service',
+        },
       ];
 
       const ir = mapToIR(configs);
@@ -371,6 +379,10 @@ describe('to-ir-mapper', () => {
               services: [{ binding: 'SVC_AUTH', service: 'auth' }],
             },
           },
+        },
+        {
+          filePath: '/workers/auth.toml',
+          name: 'auth',
         },
       ];
 
@@ -484,13 +496,18 @@ describe('to-ir-mapper', () => {
           name: 'pricing',
           r2_buckets: [{ binding: 'DATA', bucket_name: 'pricing-data' }],
         },
+        {
+          filePath: '/workers/email-service.toml',
+          name: 'email-service',
+          vars: { SMTP_HOST: 'smtp.example.com' },
+        },
       ];
 
       const ir = mapToIR(configs);
 
-      expect(ir.containers).toHaveLength(3);
+      expect(ir.containers).toHaveLength(4);
       expect(ir.deployments).toHaveLength(1);
-      expect(ir.deployments[0].instances).toHaveLength(3);
+      expect(ir.deployments[0].instances).toHaveLength(4);
       expect(ir.containerRelationships).toHaveLength(3);
 
       // Gateway should have 3 bindings: 2 services + 1 KV

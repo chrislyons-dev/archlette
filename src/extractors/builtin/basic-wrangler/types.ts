@@ -69,6 +69,12 @@ export type AnyBinding =
   | QueueBinding;
 
 /**
+ * Cloudflare route configuration
+ * Can be either a simple pattern string or an object with pattern and zone
+ */
+export type Route = string | { pattern: string; zone_name?: string };
+
+/**
  * Parsed environment configuration from wrangler.toml
  */
 export interface WranglerEnvironment {
@@ -80,7 +86,7 @@ export interface WranglerEnvironment {
   d1_databases?: D1Binding[]; // D1 database bindings
   durable_objects?: { bindings: DurableObjectBinding[] }; // Durable Object bindings
   queues?: { producers?: QueueBinding[]; consumers?: QueueBinding[] }; // Queue bindings
-  routes?: string[]; // HTTP routes
+  routes?: Route[]; // HTTP routes (can be strings or route objects)
   triggers?: { crons?: string[] }; // Cron triggers
   observability?: Record<string, unknown>; // Observability config
 }
@@ -103,7 +109,7 @@ export interface WranglerConfig {
   d1_databases?: D1Binding[];
   durable_objects?: { bindings: DurableObjectBinding[] };
   queues?: { producers?: QueueBinding[]; consumers?: QueueBinding[] };
-  routes?: string[];
+  routes?: Route[];
   triggers?: { crons?: string[] };
   observability?: Record<string, unknown>;
 

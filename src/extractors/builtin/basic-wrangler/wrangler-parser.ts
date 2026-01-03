@@ -14,6 +14,7 @@ import type {
   D1Binding,
   DurableObjectBinding,
   QueueBinding,
+  Route,
 } from './types.js';
 
 const log = createLogger({ context: 'WranglerParser' });
@@ -179,7 +180,7 @@ export function getEnvironmentConfig(
   d1_databases?: D1Binding[];
   durable_objects?: { bindings: DurableObjectBinding[] };
   queues?: { producers?: QueueBinding[]; consumers?: QueueBinding[] };
-  routes?: string[];
+  routes?: Route[];
   triggers?: { crons?: string[] };
   observability?: Record<string, unknown>;
 } {
@@ -193,7 +194,7 @@ export function getEnvironmentConfig(
     d1_databases?: D1Binding[];
     durable_objects?: { bindings: DurableObjectBinding[] };
     queues?: { producers?: QueueBinding[]; consumers?: QueueBinding[] };
-    routes?: string[];
+    routes?: Route[];
     triggers?: { crons?: string[] };
     observability?: Record<string, unknown>;
   } = {
