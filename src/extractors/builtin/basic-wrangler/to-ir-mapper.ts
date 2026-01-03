@@ -45,7 +45,8 @@ export function mapToIR(configs: WranglerConfig[], systemInfo?: System): Archlet
   );
 
   // Step 5: Extract service bindings and create container relationships (deduplicated)
-  const containerRelationships = extractContainerRelationships(configs);
+  // Pass containers for smart lookup
+  const containerRelationships = extractContainerRelationships(configs, containers);
 
   // Step 6: Extract deployment relationships from container instances
   const deploymentRelationships = extractDeploymentRelationships(instances);
@@ -242,7 +243,7 @@ function extractDeploymentsAndInstances(
         type: 'Cloudflare Worker',
         bindings: bindings.length > 0 ? bindings : undefined,
         vars: envConfig.vars,
-        routes: envConfig.routes,
+        routes: envConfig.routes?.map((r) => (typeof r === 'string' ? r : r.pattern)),
         triggers: envConfig.triggers?.crons
           ? envConfig.triggers.crons.map((cron) => ({ type: 'cron', schedule: cron }))
           : undefined,
@@ -264,15 +265,67 @@ function extractDeploymentsAndInstances(
 }
 
 /**
+ * Smart lookup to find matching container for a service name
+ *
+ * Tries exact match first, then fuzzy matching with common environment suffix removal.
+ *
+ * @param serviceName - Service name from binding (e.g., "content-service-preview")
+ * @param containers - Available containers
+ * @returns Matching container ID or null
+ */
+function findMatchingContainer(
+  serviceName: string,
+  containers: Array<{ id: string; name: string }>,
+): string | null {
+  const serviceId = sanitizeId(serviceName);
+
+  // 1. Try exact match first
+  const exactMatch = containers.find((c) => c.id === serviceId);
+  if (exactMatch) {
+    return exactMatch.id;
+  }
+
+  // 2. Try fuzzy matching - strip common environment suffixes
+  const suffixes = [
+    '-preview',
+    '-production',
+    '-prod',
+    '-staging',
+    '-stage',
+    '-dev',
+    '-development',
+  ];
+
+  for (const suffix of suffixes) {
+    if (serviceName.endsWith(suffix)) {
+      const baseName = serviceName.slice(0, -suffix.length);
+      const baseId = sanitizeId(baseName);
+      const fuzzyMatch = containers.find((c) => c.id === baseId);
+      if (fuzzyMatch) {
+        return fuzzyMatch.id;
+      }
+    }
+  }
+
+  // 3. No match found
+  return null;
+}
+
+/**
  * Extract container relationships from service bindings
  *
  * Creates logical dependencies between containers based on service bindings.
+ * Uses smart lookup to match service names to actual containers.
  * Deduplicates relationships across all environments.
  *
  * @param configs - Parsed wrangler configurations
+ * @param containers - Available containers for matching
  * @returns Array of container relationships
  */
-function extractContainerRelationships(configs: WranglerConfig[]): Relationship[] {
+function extractContainerRelationships(
+  configs: WranglerConfig[],
+  containers: Array<{ id: string; name: string }>,
+): Relationship[] {
   const relationships = new Map<string, Relationship>();
 
   configs.forEach((config) => {
@@ -292,7 +345,14 @@ function extractContainerRelationships(configs: WranglerConfig[]): Relationship[
 
     // Create relationships for each unique service binding
     serviceBindings.forEach((binding) => {
-      const targetContainer = sanitizeId(binding.service);
+      // Use smart lookup to find matching container
+      const targetContainer = findMatchingContainer(binding.service, containers);
+
+      // Skip if no matching container found
+      if (!targetContainer) {
+        return;
+      }
+
       const relationshipKey = `${sourceContainer}__${targetContainer}`;
 
       if (!relationships.has(relationshipKey)) {
