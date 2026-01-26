@@ -6,5 +6,5 @@
             include {{ component.id | sanitizeId }}
 {%- endfor %}
             exclude "element.tag==Code"
-            autoLayout
+            autoLayout lr 100 100
         }

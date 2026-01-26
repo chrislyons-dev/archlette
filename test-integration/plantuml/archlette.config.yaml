@@ -1,0 +1,38 @@
+# Integration Test: PlantUML Rendering Path
+#
+# This test validates the classic rendering path using PlantUML.
+# Flow: DSL → PlantUML (.puml) → PNG images
+# Runs against the archlette codebase itself for realistic output.
+
+project:
+  name: Archlette
+  description: Architecture-as-Code toolkit for generating C4 diagrams
+
+paths:
+  output: ./output
+  ir_out: ./output/ir.json
+  dsl_out: ./output/workspace.dsl
+  render_out: ./output/diagrams
+  docs_out: ./output/docs
+
+extractors:
+  - use: extractors/builtin/basic-node
+    inputs:
+      include: ['../../src/**/*.ts']
+      exclude: ['**/*.test.ts', '**/*.d.ts']
+
+validators:
+  - use: validators/builtin/base-validator
+
+generators:
+  - use: generators/builtin/structurizr
+
+# CLASSIC PATH: Export to PlantUML, then render
+renderers:
+  - use: renderers/builtin/structurizr-export
+    inputs:
+      formats: ['plantuml'] # Only export PlantUML
+  - use: renderers/builtin/plantuml-render
+
+docs:
+  - use: docs/builtin/markdown-docs

@@ -1,0 +1,22 @@
+digraph {
+  compound=true
+  graph [splines=polyline,rankdir=LR,ranksep=0.3333333333333333,nodesep=0.3333333333333333,fontsize=5]
+  node [shape=box,fontsize=5]
+  edge []
+
+  subgraph cluster_8 {
+    margin=25
+    31 [width=1.500000,height=1.000000,fixedsize=true,id=31,label="31: generators.run"]
+    88 [width=1.500000,height=1.000000,fixedsize=true,id=88,label="88: generators.loadDefaultTheme"]
+    89 [width=1.500000,height=1.000000,fixedsize=true,id=89,label="89: generators.structurizrGenerator"]
+    90 [width=1.500000,height=1.000000,fixedsize=true,id=90,label="90: generators.prepareContainerData"]
+    91 [width=1.500000,height=1.000000,fixedsize=true,id=91,label="91: generators.prepareComponentView"]
+    92 [width=1.500000,height=1.000000,fixedsize=true,id=92,label="92: generators.prepareClassView"]
+    93 [width=1.500000,height=1.000000,fixedsize=true,id=93,label="93: generators.generateAllActorRelationships"]
+    94 [width=1.500000,height=1.000000,fixedsize=true,id=94,label="94: generators.generateUniqueCodeName"]
+    95 [width=1.500000,height=1.000000,fixedsize=true,id=95,label="95: generators.buildTechnologyString"]
+    96 [width=1.500000,height=1.000000,fixedsize=true,id=96,label="96: generators.sanitizeId"]
+    97 [width=1.500000,height=1.000000,fixedsize=true,id=97,label="97: generators.escapeString"]
+  }
+
+}

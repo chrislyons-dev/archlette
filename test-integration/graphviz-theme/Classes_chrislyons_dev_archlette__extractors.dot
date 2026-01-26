@@ -1,0 +1,16 @@
+digraph {
+  compound=true
+  graph [splines=polyline,rankdir=LR,ranksep=0.3333333333333333,nodesep=0.3333333333333333,fontsize=5]
+  node [shape=box,fontsize=5]
+  edge []
+
+  subgraph cluster_8 {
+    margin=25
+    25 [width=1.500000,height=1.000000,fixedsize=true,id=25,label="25: extractors.aggregateIRs"]
+    26 [width=1.500000,height=1.000000,fixedsize=true,id=26,label="26: extractors.deduplicateById"]
+    27 [width=1.500000,height=1.000000,fixedsize=true,id=27,label="27: extractors.deduplicateByName"]
+    28 [width=1.500000,height=1.000000,fixedsize=true,id=28,label="28: extractors.deduplicateRelationships"]
+    29 [width=1.500000,height=1.000000,fixedsize=true,id=29,label="29: extractors.run"]
+  }
+
+}

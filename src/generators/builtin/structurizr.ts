@@ -15,6 +15,8 @@
  *     inputs:
  *       # Optional: Override default theme
  *       theme: path/to/custom-theme.dsl
+ *       # Optional: Enable Graphviz auto-layout (requires Graphviz + structurizr-graphviz extension)
+ *       graphvizLayout: true
  * ```
  */
 
@@ -96,8 +98,11 @@ export default function structurizrGenerator(
   let themeContent = '';
 
   // Check if user provided a custom theme path via inputs
-  const inputs = node.inputs as { theme?: string } | undefined;
+  const inputs = node.inputs as
+    | { theme?: string; graphvizLayout?: boolean }
+    | undefined;
   const customThemePath = inputs?.theme;
+  const useGraphvizLayout = inputs?.graphvizLayout ?? false;
 
   if (customThemePath) {
     // Resolve and validate theme path using centralized security utilities
@@ -139,6 +144,7 @@ export default function structurizrGenerator(
     classViews,
     VIEW_NAMES,
     themeContent,
+    useGraphvizLayout,
   });
 }
 

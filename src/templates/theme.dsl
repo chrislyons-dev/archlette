@@ -14,7 +14,9 @@ styles {
         background #08427b
         color #ffffff
         shape Person
-        fontSize 22
+        width 200
+        height 120
+        fontSize 14
     }
 
     // External System styles
@@ -22,14 +24,18 @@ styles {
         background #999999
         color #ffffff
         shape RoundedBox
-        fontSize 22
+        width 240
+        height 140
+        fontSize 14
     }
 
     element "External" {
         background #999999
         color #ffffff
         shape RoundedBox
-        fontSize 22
+        width 240
+        height 140
+        fontSize 14
     }
 
     // System styles
@@ -37,7 +43,9 @@ styles {
         background #1168bd
         color #ffffff
         shape RoundedBox
-        fontSize 24
+        width 280
+        height 160
+        fontSize 16
     }
 
     // Container styles
@@ -45,28 +53,36 @@ styles {
         background #438dd5
         color #ffffff
         shape RoundedBox
-        fontSize 20
+        width 260
+        height 150
+        fontSize 14
     }
 
     element "Database" {
         background #438dd5
         color #ffffff
         shape Cylinder
-        fontSize 20
+        width 200
+        height 140
+        fontSize 14
     }
 
     element "Web Browser" {
         background #438dd5
         color #ffffff
         shape WebBrowser
-        fontSize 20
+        width 240
+        height 150
+        fontSize 14
     }
 
     element "Mobile App" {
         background #438dd5
         color #ffffff
         shape MobileDevicePortrait
-        fontSize 20
+        width 180
+        height 200
+        fontSize 14
     }
 
     // Component styles
@@ -74,7 +90,19 @@ styles {
         background #85bbf0
         color #000000
         shape RoundedBox
-        fontSize 18
+        width 220
+        height 130
+        fontSize 12
+    }
+
+    // Code element styles (classes, functions, etc.)
+    element "Code" {
+        background #d4e8fc
+        color #000000
+        shape RoundedBox
+        width 200
+        height 100
+        fontSize 11
     }
 
     // Technology-specific styles
@@ -82,28 +110,36 @@ styles {
         background #f6821f
         color #ffffff
         shape RoundedBox
-        fontSize 18
+        width 220
+        height 130
+        fontSize 12
     }
 
     element "Service" {
         background #438dd5
         color #ffffff
         shape RoundedBox
-        fontSize 18
+        width 220
+        height 130
+        fontSize 12
     }
 
     element "API" {
         background #85bbf0
         color #000000
         shape Hexagon
-        fontSize 18
+        width 180
+        height 120
+        fontSize 12
     }
 
     element "Queue" {
         background #85bbf0
         color #000000
         shape Pipe
-        fontSize 18
+        width 200
+        height 100
+        fontSize 12
     }
 
     // Tag-based styles
@@ -136,12 +172,18 @@ styles {
         background #92278f
         color #ffffff
         shape RoundedBox
+        width 220
+        height 130
+        fontSize 12
     }
 
     element "Message Bus" {
         background #85bbf0
         color #000000
         shape Pipe
+        width 200
+        height 100
+        fontSize 12
     }
 
     // Relationship styles

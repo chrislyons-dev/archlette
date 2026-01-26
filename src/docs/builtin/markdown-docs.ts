@@ -124,6 +124,13 @@ export default async function markdownDocs(ctx: PipelineContext): Promise<void> 
     return arr && arr.length > 0 ? arr[0] : undefined;
   });
 
+  env.addFilter('mdTableCell', (value: unknown) => {
+    if (value === null || value === undefined || value === '') {
+      return '-';
+    }
+    return String(value).replace(/\|/g, '\\|').replace(/\r?\n/g, '<br>');
+  });
+
   // Find diagram files for system views
   const systemDiagrams = findDiagramsForView(
     rendererOutputs,
@@ -253,9 +260,10 @@ function findDiagramsForView(
     `Searching for diagrams using diagramsDir: ${diagramsDir}, docsDir: ${docsDir}, view type: ${viewType}`,
   );
   for (const output of rendererOutputs) {
-    if (output.format === 'png') {
+    if (output.format === 'png' || output.format === 'svg') {
       for (const file of output.files) {
-        const filename = path.basename(file, '.png');
+        const ext = path.extname(file);
+        const filename = path.basename(file, ext);
         if (filename.includes(viewType) && !filename.includes('-key')) {
           const fullPath = path.join(diagramsDir, file);
           log?.debug('Checking for diagram file:', fullPath);
@@ -285,9 +293,10 @@ function findDiagramsForContainer(
   const sanitizedContainerName = container.name.replace(/[^a-zA-Z0-9_]/g, '_');
 
   for (const output of rendererOutputs) {
-    if (output.format === 'png') {
+    if (output.format === 'png' || output.format === 'svg') {
       for (const file of output.files) {
-        const filename = path.basename(file, '.png');
+        const ext = path.extname(file);
+        const filename = path.basename(file, ext);
         // Look for component view diagrams for this specific container
         // Format: structurizr-Components_{sanitized-container-name}
         if (
@@ -323,9 +332,10 @@ function findClassDiagramsForComponent(
   const sanitizedComponentId = component.id.replace(/[^a-zA-Z0-9_]/g, '_');
 
   for (const output of rendererOutputs) {
-    if (output.format === 'png') {
+    if (output.format === 'png' || output.format === 'svg') {
       for (const file of output.files) {
-        const filename = path.basename(file, '.png');
+        const ext = path.extname(file);
+        const filename = path.basename(file, ext);
         // Look for class diagrams for this specific component
         // Format: structurizr-Classes_{sanitized-component-id}
         if (

@@ -3,13 +3,13 @@
  *
  * @module renderers
  * @description
- * Exports Structurizr DSL to PlantUML and Mermaid formats using Structurizr CLI.
+ * Exports Structurizr DSL to PlantUML and/or Mermaid formats using Structurizr CLI.
  *
  * This renderer:
  * 1. Finds or downloads Structurizr CLI
  * 2. Reads the generated DSL file
- * 3. Exports to PlantUML (.puml) and Mermaid (.mmd) formats
- * 4. Saves outputs to diagrams/plantuml/ and diagrams/mermaid/
+ * 3. Exports to selected formats (PlantUML and/or Mermaid)
+ * 4. Saves outputs to diagrams/plantuml/ and/or diagrams/mermaid/
  * 5. Updates pipeline state with generated file metadata
  *
  * @see {@link module:core/tool-manager} for tool management
@@ -19,14 +19,34 @@ import * as fs from 'node:fs';
 import * as path from 'node:path';
 import { execSync } from 'node:child_process';
 import type { PipelineContext } from '../../core/types.js';
+import type { ResolvedStageNode } from '../../core/types-aac.js';
 import { findStructurizrCLI, requireJava } from '../../core/tool-manager.js';
 import { resolveArchlettePath } from '../../core/path-resolver.js';
 
 /**
- * Export Structurizr DSL to PlantUML and Mermaid formats
+ * Props interface for structurizr-export
  */
-export default async function structurizrExport(ctx: PipelineContext): Promise<void> {
-  ctx.log.info('Structurizr Export: converting DSL to PlantUML and Mermaid...');
+interface StructurizrExportProps {
+  formats?: ('plantuml' | 'mermaid')[]; // Default: ['plantuml', 'mermaid']
+}
+
+/**
+ * Export Structurizr DSL to PlantUML and/or Mermaid formats
+ */
+export default async function structurizrExport(
+  ctx: PipelineContext,
+  node: ResolvedStageNode,
+): Promise<void> {
+  const props = (node.inputs || {}) as StructurizrExportProps;
+  const formats = props.formats || ['plantuml', 'mermaid'];
+
+  if (formats.length === 0) {
+    ctx.log.info('Structurizr Export: no formats selected, skipping.');
+    return;
+  }
+
+  const formatList = formats.join(', ').toUpperCase();
+  ctx.log.info(`Structurizr Export: converting DSL to ${formatList}...`);
 
   // Verify Java is available
   try {
@@ -52,87 +72,77 @@ export default async function structurizrExport(ctx: PipelineContext): Promise<v
   const outputBase = resolveArchlettePath(ctx.config.paths.render_out, {
     cliDir: ctx.configBaseDir,
   });
-  const plantumlDir = path.join(outputBase, 'plantuml');
-  const mermaidDir = path.join(outputBase, 'mermaid');
-
-  // Ensure output directories exist
-  fs.mkdirSync(plantumlDir, { recursive: true });
-  fs.mkdirSync(mermaidDir, { recursive: true });
 
   // Find Structurizr CLI
   ctx.log.debug('Looking for Structurizr CLI...');
   const structurizrPath = await findStructurizrCLI(ctx.log);
   ctx.log.debug(`Using Structurizr CLI: ${structurizrPath}`);
 
-  // Export to PlantUML
-  ctx.log.info('Exporting to PlantUML...');
-  try {
-    const isWindows = process.platform === 'win32';
-    const cmd = isWindows
-      ? `"${structurizrPath}" export -workspace "${dslPath}" -format plantuml -output "${plantumlDir}"`
-      : `"${structurizrPath}" export -workspace "${dslPath}" -format plantuml -output "${plantumlDir}"`;
-
-    ctx.log.debug(`Executing: ${cmd}`);
-    execSync(cmd, {
-      encoding: 'utf8',
-      stdio: 'pipe',
-    });
-
-    const plantumlFiles = fs
-      .readdirSync(plantumlDir)
-      .filter((f) => f.endsWith('.puml'));
-    ctx.log.info(`Generated ${plantumlFiles.length} PlantUML file(s)`);
-
-    // Add to renderer outputs
-    if (!ctx.state.rendererOutputs) {
-      ctx.state.rendererOutputs = [];
-    }
-
-    ctx.state.rendererOutputs.push({
-      renderer: 'structurizr-export',
-      format: 'plantuml',
-      files: plantumlFiles.map((f) => path.join('plantuml', f)),
-      timestamp: Date.now(),
-    });
-
-    plantumlFiles.forEach((f) => {
-      ctx.log.debug(`  • ${f}`);
-    });
-  } catch (err) {
-    ctx.log.error('PlantUML export failed:', err);
-    throw new Error(`PlantUML export failed: ${err}`);
+  // Initialize renderer outputs in state if needed
+  if (!ctx.state.rendererOutputs) {
+    ctx.state.rendererOutputs = [];
   }
 
-  // Export to Mermaid
-  ctx.log.info('Exporting to Mermaid...');
-  try {
-    const isWindows = process.platform === 'win32';
-    const cmd = isWindows
-      ? `"${structurizrPath}" export -workspace "${dslPath}" -format mermaid -output "${mermaidDir}"`
-      : `"${structurizrPath}" export -workspace "${dslPath}" -format mermaid -output "${mermaidDir}"`;
+  const isWindows = process.platform === 'win32';
 
-    ctx.log.debug(`Executing: ${cmd}`);
-    execSync(cmd, {
-      encoding: 'utf8',
-      stdio: 'pipe',
-    });
+  // Export to each selected format
+  for (const format of formats) {
+    const formatName = format.charAt(0).toUpperCase() + format.slice(1);
+    const formatDir = path.join(outputBase, format);
+    const fileExt = format === 'plantuml' ? '.puml' : '.mmd';
 
-    const mermaidFiles = fs.readdirSync(mermaidDir).filter((f) => f.endsWith('.mmd'));
-    ctx.log.info(`Generated ${mermaidFiles.length} Mermaid file(s)`);
+    ctx.log.info(`Exporting to ${formatName}...`);
 
-    ctx.state.rendererOutputs.push({
-      renderer: 'structurizr-export',
-      format: 'mermaid',
-      files: mermaidFiles.map((f) => path.join('mermaid', f)),
-      timestamp: Date.now(),
-    });
+    // Ensure output directory exists
+    fs.mkdirSync(formatDir, { recursive: true });
 
-    mermaidFiles.forEach((f) => {
-      ctx.log.debug(`  • ${f}`);
-    });
-  } catch (err) {
-    ctx.log.error('Mermaid export failed:', err);
-    throw new Error(`Mermaid export failed: ${err}`);
+    try {
+      const cmd = isWindows
+        ? `"${structurizrPath}" export -workspace "${dslPath}" -format ${format} -output "${formatDir}"`
+        : `"${structurizrPath}" export -workspace "${dslPath}" -format ${format} -output "${formatDir}"`;
+
+      ctx.log.debug(`Executing: ${cmd}`);
+      execSync(cmd, {
+        encoding: 'utf8',
+        stdio: 'pipe',
+      });
+
+      const exportedFiles = fs
+        .readdirSync(formatDir)
+        .filter((f) => f.endsWith(fileExt));
+      ctx.log.info(`Generated ${exportedFiles.length} ${formatName} file(s)`);
+
+      // Post-process Mermaid files to remove subgraph labels (fixes text overlay)
+      if (format === 'mermaid') {
+        ctx.log.debug('Post-processing Mermaid files to remove subgraph labels...');
+        for (const file of exportedFiles) {
+          const filePath = path.join(formatDir, file);
+          let content = fs.readFileSync(filePath, 'utf8');
+          // Replace subgraph labels with empty string to prevent text overlay
+          // Pattern: subgraph identifier ["Label Text"]
+          content = content.replace(
+            /subgraph\s+(\w+)\s+\["[^"]*"\]/g,
+            'subgraph $1 [" "]',
+          );
+          fs.writeFileSync(filePath, content, 'utf8');
+        }
+        ctx.log.debug(`Post-processed ${exportedFiles.length} Mermaid file(s)`);
+      }
+
+      ctx.state.rendererOutputs.push({
+        renderer: 'structurizr-export',
+        format,
+        files: exportedFiles.map((f) => path.join(format, f)),
+        timestamp: Date.now(),
+      });
+
+      exportedFiles.forEach((f) => {
+        ctx.log.debug(`  • ${f}`);
+      });
+    } catch (err) {
+      ctx.log.error(`${formatName} export failed:`, err);
+      throw new Error(`${formatName} export failed: ${err}`);
+    }
   }
 
   ctx.log.info('Structurizr Export: completed');

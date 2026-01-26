@@ -50,14 +50,12 @@ workspace "{{ system.name }}" "{{ system.description or 'Architecture as Code ge
     }
 
     views {
-{{ themeContent }}
-
         systemContext {{ system.name | sanitizeId }} "{{ VIEW_NAMES.SYSTEM_CONTEXT }}" {
 {%- for actor in actors %}
             include {{ actor.id | sanitizeId }}
 {%- endfor %}
             include {{ system.name | sanitizeId }}
-            autoLayout
+            autoLayout lr 100 100
         }
 
         container {{ system.name | sanitizeId }} "{{ VIEW_NAMES.CONTAINERS }}" {
@@ -67,7 +65,7 @@ workspace "{{ system.name }}" "{{ system.description or 'Architecture as Code ge
 {%- for container in containers %}
             include {{ container.id | sanitizeId }}
 {%- endfor %}
-            autoLayout
+            autoLayout lr 100 100
         }
 {% for containerView in componentViews %}
 
@@ -77,6 +75,12 @@ workspace "{{ system.name }}" "{{ system.description or 'Architecture as Code ge
 
 {% include 'view-class.dsl.njk' %}
 {%- endfor %}
-    }
 
+{{ themeContent }}
+    }
+{% if useGraphvizLayout %}
+    !script groovy {
+        new com.structurizr.graphviz.GraphvizAutomaticLayout().apply(workspace);
+    }
+{% endif %}
 }
