@@ -5,15 +5,26 @@ on:
     branches:
       - main
 
-permissions:
-  contents: write
-  pull-requests: write
-
 jobs:
   release-please:
     runs-on: ubuntu-latest
+    if: github.repository == 'chrislyons-dev/archlette'
+    permissions:
+      contents: write
+      pull-requests: write
+    outputs:
+      release_created: ${{ steps.release.outputs.release_created }}
     steps:
       - uses: googleapis/release-please-action@v4
+        id: release
         with:
           release-type: node
           token: ${{ secrets.GITHUB_TOKEN }}
+
+  publish-npm:
+    needs: release-please
+    if: needs.release-please.outputs.release_created == 'true'
+    uses: ./.github/workflows/cd.yml
+    permissions:
+      id-token: write
+      contents: read
