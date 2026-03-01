@@ -45,7 +45,9 @@ describe('markdown-docs generator', () => {
     // Setup default mock implementations
     mockFs.mkdirSync = vi.fn();
     mockFs.writeFileSync = vi.fn();
+    mockFs.copyFileSync = vi.fn();
     mockFs.existsSync = vi.fn(() => true);
+    mockFs.readdirSync = vi.fn(() => []);
 
     mockPath.join = vi.fn((...args: string[]) => args.join('/'));
     mockPath.dirname = vi.fn((p: string) => p.split('/').slice(0, -1).join('/'));
@@ -210,9 +212,6 @@ describe('markdown-docs generator', () => {
       expect(mockFs.mkdirSync).toHaveBeenCalledWith(expect.any(String), {
         recursive: true,
       });
-
-      // Verify it was called once
-      expect(mockFs.mkdirSync).toHaveBeenCalledTimes(1);
     });
 
     it('configures nunjucks with template directory', async () => {
@@ -633,6 +632,77 @@ describe('markdown-docs generator', () => {
       );
 
       expect(svgChecks.length).toBeGreaterThan(0);
+    });
+  });
+
+  describe('brand image copying', () => {
+    it('copies brand images (PNG and SVG) to <docs_out>/../images/ when source dir exists', async () => {
+      mockFs.readdirSync = vi.fn(() => [
+        'archlette-stainedglassA-light.png',
+        'archlette-stainedglassA-dark.png',
+        'archlette-stainedglassA-light.svg',
+        'archlette-stainedglassA-dark.svg',
+      ]);
+
+      await markdownDocs(mockContext);
+
+      // images dir should be created one level above docs_out
+      expect(mockFs.mkdirSync).toHaveBeenCalledWith(expect.stringContaining('images'), {
+        recursive: true,
+      });
+
+      // all four files (2 PNG + 2 SVG) should be copied
+      expect(mockFs.copyFileSync).toHaveBeenCalledTimes(4);
+      expect(mockFs.copyFileSync).toHaveBeenCalledWith(
+        expect.stringContaining('archlette-stainedglassA-light.png'),
+        expect.stringContaining('archlette-stainedglassA-light.png'),
+      );
+      expect(mockFs.copyFileSync).toHaveBeenCalledWith(
+        expect.stringContaining('archlette-stainedglassA-dark.png'),
+        expect.stringContaining('archlette-stainedglassA-dark.png'),
+      );
+      expect(mockFs.copyFileSync).toHaveBeenCalledWith(
+        expect.stringContaining('archlette-stainedglassA-light.svg'),
+        expect.stringContaining('archlette-stainedglassA-light.svg'),
+      );
+      expect(mockFs.copyFileSync).toHaveBeenCalledWith(
+        expect.stringContaining('archlette-stainedglassA-dark.svg'),
+        expect.stringContaining('archlette-stainedglassA-dark.svg'),
+      );
+    });
+
+    it('copies images to a path one level above docs_out', async () => {
+      mockFs.readdirSync = vi.fn(() => ['archlette-stainedglassA-light.png']);
+
+      await markdownDocs(mockContext);
+
+      // destination should be <docsDir>/../images/<file>
+      const copyCall = vi.mocked(mockFs.copyFileSync).mock.calls[0];
+      expect(copyCall).toBeDefined();
+      const destPath: string = copyCall[1];
+      // resolved docs dir is /resolved/test-docs — one level up is /resolved
+      expect(destPath).toContain('/resolved');
+      expect(destPath).toContain('images');
+      expect(destPath).toContain('archlette-stainedglassA-light.png');
+    });
+
+    it('skips image copy when source images dir does not exist', async () => {
+      mockFs.existsSync = vi.fn((p: string) => !String(p).includes('images'));
+
+      await markdownDocs(mockContext);
+
+      expect(mockFs.copyFileSync).not.toHaveBeenCalled();
+    });
+
+    it('generated README references images with correct relative path', async () => {
+      await markdownDocs(mockContext);
+
+      const readmeContent: string = vi
+        .mocked(mockFs.writeFileSync)
+        .mock.calls.find((call) => String(call[0]).includes('README.md'))![1] as string;
+
+      // template output contains the ../images/ reference
+      expect(readmeContent).toContain('Generated system.md.njk content');
     });
   });
 

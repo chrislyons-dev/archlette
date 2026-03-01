@@ -63,6 +63,17 @@ export default async function markdownDocs(ctx: PipelineContext): Promise<void> 
   // Configure Nunjucks
   const __filename = fileURLToPath(import.meta.url);
   const __dirname = path.dirname(__filename);
+
+  // Copy brand images to output directory (one level up from docs_out)
+  const imagesSourceDir = path.join(__dirname, 'images');
+  const imagesDestDir = path.join(docsDir, '..', 'images');
+  if (fs.existsSync(imagesSourceDir)) {
+    fs.mkdirSync(imagesDestDir, { recursive: true });
+    for (const file of fs.readdirSync(imagesSourceDir)) {
+      fs.copyFileSync(path.join(imagesSourceDir, file), path.join(imagesDestDir, file));
+    }
+    ctx.log.debug(`Copied brand images to ${imagesDestDir}`);
+  }
   const templateDir = path.join(__dirname, 'templates');
   const env = nunjucks.configure(templateDir, {
     autoescape: false,

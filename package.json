@@ -49,7 +49,7 @@
     "aac:render": "npx tsx src/cli.ts render",
     "aac:docs": "npx tsx src/cli.ts docs",
     "aac:all": "npx tsx src/cli.ts all",
-    "build": "rimraf dist && tsc --outDir dist && cp -r src/templates dist/ && cp -r src/scripts dist/ && cp -r src/generators/builtin/templates dist/generators/builtin/ && cp -r src/docs/builtin/templates dist/docs/builtin",
+    "build": "rimraf dist && tsc --outDir dist && cp -r src/templates dist/ && cp -r src/scripts dist/ && cp -r src/generators/builtin/templates dist/generators/builtin/ && cp -r src/docs/builtin/templates dist/docs/builtin && cp -r src/docs/builtin/images dist/docs/builtin/",
     "test": "vitest run --reporter=verbose",
     "test:integration": "node scripts/run-integration-tests.mjs",
     "licenses:generate": "node scripts/generate-licenses.mjs",
