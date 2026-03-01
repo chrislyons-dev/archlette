@@ -2,9 +2,9 @@
 set separator none
 title Application - Application - Components
 
-top to bottom direction
-skinparam ranksep 60
-skinparam nodesep 30
+left to right direction
+skinparam ranksep 20
+skinparam nodesep 10
 
 skinparam {
   arrowFontSize 10
@@ -17,177 +17,177 @@ skinparam {
 hide stereotype
 
 skinparam rectangle<<Application.Application.basicastrobasicAstroExtractor>> {
-  BackgroundColor #85bbf0
+  BackgroundColor #d4e8fc
   FontColor #000000
-  BorderColor #5d82a8
+  BorderColor #94a2b0
   roundCorner 20
   shadowing false
 }
 skinparam rectangle<<Application.Application.basicastrocreateSyntheticRenderFunction>> {
-  BackgroundColor #85bbf0
+  BackgroundColor #d4e8fc
   FontColor #000000
-  BorderColor #5d82a8
+  BorderColor #94a2b0
   roundCorner 20
   shadowing false
 }
 skinparam rectangle<<Application.Application.basicastroextractCodeFromFrontmatter>> {
-  BackgroundColor #85bbf0
+  BackgroundColor #d4e8fc
   FontColor #000000
-  BorderColor #5d82a8
+  BorderColor #94a2b0
   roundCorner 20
   shadowing false
 }
 skinparam rectangle<<Application.Application.basicastroextractComponentName>> {
-  BackgroundColor #85bbf0
+  BackgroundColor #d4e8fc
   FontColor #000000
-  BorderColor #5d82a8
+  BorderColor #94a2b0
   roundCorner 20
   shadowing false
 }
 skinparam rectangle<<Application.Application.basicastroextractComponentUsage>> {
-  BackgroundColor #85bbf0
+  BackgroundColor #d4e8fc
   FontColor #000000
-  BorderColor #5d82a8
+  BorderColor #94a2b0
   roundCorner 20
   shadowing false
 }
 skinparam rectangle<<Application.Application.basicastroextractFileActors>> {
-  BackgroundColor #85bbf0
+  BackgroundColor #d4e8fc
   FontColor #000000
-  BorderColor #5d82a8
+  BorderColor #94a2b0
   roundCorner 20
   shadowing false
 }
 skinparam rectangle<<Application.Application.basicastroextractFileComponent>> {
-  BackgroundColor #85bbf0
+  BackgroundColor #d4e8fc
   FontColor #000000
-  BorderColor #5d82a8
+  BorderColor #94a2b0
   roundCorner 20
   shadowing false
 }
 skinparam rectangle<<Application.Application.basicastroextractFileRelationships>> {
-  BackgroundColor #85bbf0
+  BackgroundColor #d4e8fc
   FontColor #000000
-  BorderColor #5d82a8
+  BorderColor #94a2b0
   roundCorner 20
   shadowing false
 }
 skinparam rectangle<<Application.Application.basicastroextractFrontmatter>> {
-  BackgroundColor #85bbf0
+  BackgroundColor #d4e8fc
   FontColor #000000
-  BorderColor #5d82a8
+  BorderColor #94a2b0
   roundCorner 20
   shadowing false
 }
 skinparam rectangle<<Application.Application.basicastroextractImports>> {
-  BackgroundColor #85bbf0
+  BackgroundColor #d4e8fc
   FontColor #000000
-  BorderColor #5d82a8
+  BorderColor #94a2b0
   roundCorner 20
   shadowing false
 }
 skinparam rectangle<<Application.Application.basicastroextractJSDocBlocks>> {
-  BackgroundColor #85bbf0
+  BackgroundColor #d4e8fc
   FontColor #000000
-  BorderColor #5d82a8
+  BorderColor #94a2b0
   roundCorner 20
   shadowing false
 }
 skinparam rectangle<<Application.Application.basicastrofindClientDirective>> {
-  BackgroundColor #85bbf0
+  BackgroundColor #d4e8fc
   FontColor #000000
-  BorderColor #5d82a8
+  BorderColor #94a2b0
   roundCorner 20
   shadowing false
 }
 skinparam rectangle<<Application.Application.basicastrofindNearestPackage>> {
-  BackgroundColor #85bbf0
+  BackgroundColor #d4e8fc
   FontColor #000000
-  BorderColor #5d82a8
+  BorderColor #94a2b0
   roundCorner 20
   shadowing false
 }
 skinparam rectangle<<Application.Application.basicastrofindPackageJsonFiles>> {
-  BackgroundColor #85bbf0
+  BackgroundColor #d4e8fc
   FontColor #000000
-  BorderColor #5d82a8
+  BorderColor #94a2b0
   roundCorner 20
   shadowing false
 }
 skinparam rectangle<<Application.Application.basicastrofindSlots>> {
-  BackgroundColor #85bbf0
+  BackgroundColor #d4e8fc
   FontColor #000000
-  BorderColor #5d82a8
+  BorderColor #94a2b0
   roundCorner 20
   shadowing false
 }
 skinparam rectangle<<Application.Application.basicastrofindSourceFiles>> {
-  BackgroundColor #85bbf0
+  BackgroundColor #d4e8fc
   FontColor #000000
-  BorderColor #5d82a8
+  BorderColor #94a2b0
   roundCorner 20
   shadowing false
 }
 skinparam rectangle<<Application.Application.basicastroinferComponentFromPath>> {
-  BackgroundColor #85bbf0
+  BackgroundColor #d4e8fc
   FontColor #000000
-  BorderColor #5d82a8
+  BorderColor #94a2b0
   roundCorner 20
   shadowing false
 }
 skinparam rectangle<<Application.Application.basicastromapClassToCodeItems>> {
-  BackgroundColor #85bbf0
+  BackgroundColor #d4e8fc
   FontColor #000000
-  BorderColor #5d82a8
+  BorderColor #94a2b0
   roundCorner 20
   shadowing false
 }
 skinparam rectangle<<Application.Application.basicastromapFunctionToCodeItem>> {
-  BackgroundColor #85bbf0
+  BackgroundColor #d4e8fc
   FontColor #000000
-  BorderColor #5d82a8
+  BorderColor #94a2b0
   roundCorner 20
   shadowing false
 }
 skinparam rectangle<<Application.Application.basicastromapToIR>> {
-  BackgroundColor #85bbf0
+  BackgroundColor #d4e8fc
   FontColor #000000
-  BorderColor #5d82a8
+  BorderColor #94a2b0
   roundCorner 20
   shadowing false
 }
 skinparam rectangle<<Application.Application.basicastroparseActorTag>> {
-  BackgroundColor #85bbf0
+  BackgroundColor #d4e8fc
   FontColor #000000
-  BorderColor #5d82a8
+  BorderColor #94a2b0
   roundCorner 20
   shadowing false
 }
 skinparam rectangle<<Application.Application.basicastroparseFiles>> {
-  BackgroundColor #85bbf0
+  BackgroundColor #d4e8fc
   FontColor #000000
-  BorderColor #5d82a8
+  BorderColor #94a2b0
   roundCorner 20
   shadowing false
 }
 skinparam rectangle<<Application.Application.basicastroparseJSDocBlock>> {
-  BackgroundColor #85bbf0
+  BackgroundColor #d4e8fc
   FontColor #000000
-  BorderColor #5d82a8
+  BorderColor #94a2b0
   roundCorner 20
   shadowing false
 }
 skinparam rectangle<<Application.Application.basicastroparseUsesTag>> {
-  BackgroundColor #85bbf0
+  BackgroundColor #d4e8fc
   FontColor #000000
-  BorderColor #5d82a8
+  BorderColor #94a2b0
   roundCorner 20
   shadowing false
 }
 skinparam rectangle<<Application.Application.basicastroreadPackageInfo>> {
-  BackgroundColor #85bbf0
+  BackgroundColor #d4e8fc
   FontColor #000000
-  BorderColor #5d82a8
+  BorderColor #94a2b0
   roundCorner 20
   shadowing false
 }
@@ -198,6 +198,7 @@ skinparam rectangle<<Application.Application>> {
 }
 
 rectangle "Application\n<size:10>[Container: Application]</size>" <<Application.Application>> {
+  rectangle "==basic-astro.extractCodeFromFrontmatter\n<size:10>[Component: function]</size>\n\nExtract TypeScript/JavaScript code from Astro frontmatter Parses the frontmatter section (code between --- markers) as TypeScript and extracts code elements using the basic-node AST extractors: - Classes and their methods - Functions (both regular and arrow functions) - Type aliases (type X = ...) - TypeScript interfaces Returns empty result if frontmatter is empty or parsing fails (errors are logged). Graceful error handling ensures one malformed Astro file doesn't break the extraction pipeline." <<Application.Application.basicastroextractCodeFromFrontmatter>> as Application.Application.basicastroextractCodeFromFrontmatter
   rectangle "==basic-astro.createSyntheticRenderFunction\n<size:10>[Component: function]</size>\n\nCreate a synthetic render function for an Astro component Every Astro component is fundamentally a server-side render function that: 1. Receives props (if Props interface is defined) 2. Processes the component logic (frontmatter code) 3. Renders the template to HTML 4. Returns an HTML string Since Astro's compiler doesn't explicitly define this, we create a synthetic function to represent the component's executable behavior in the IR. The function is named after the file (without .astro extension): - Button.astro → function Button() - index.astro → function index() - settings/Profile.astro → function Profile()" <<Application.Application.basicastrocreateSyntheticRenderFunction>> as Application.Application.basicastrocreateSyntheticRenderFunction
   rectangle "==basic-astro.extractJSDocBlocks\n<size:10>[Component: function]</size>\n\nExtract all JSDoc comment blocks from source code Matches /** ... *\\/ style comments and parses their tags" <<Application.Application.basicastroextractJSDocBlocks>> as Application.Application.basicastroextractJSDocBlocks
   rectangle "==basic-astro.parseJSDocBlock\n<size:10>[Component: function]</size>\n\nParse a single JSDoc comment block into description and tags" <<Application.Application.basicastroparseJSDocBlock>> as Application.Application.basicastroparseJSDocBlock
@@ -222,7 +223,6 @@ rectangle "Application\n<size:10>[Container: Application]</size>" <<Application.
   rectangle "==basic-astro.mapClassToCodeItems\n<size:10>[Component: function]</size>\n\nMap a class to code items (class + methods)" <<Application.Application.basicastromapClassToCodeItems>> as Application.Application.basicastromapClassToCodeItems
   rectangle "==basic-astro.mapFunctionToCodeItem\n<size:10>[Component: function]</size>\n\nMap a function to a code item" <<Application.Application.basicastromapFunctionToCodeItem>> as Application.Application.basicastromapFunctionToCodeItem
   rectangle "==basic-astro.basicAstroExtractor\n<size:10>[Component: function]</size>\n\nExtract architecture information from an Astro codebase" <<Application.Application.basicastrobasicAstroExtractor>> as Application.Application.basicastrobasicAstroExtractor
-  rectangle "==basic-astro.extractCodeFromFrontmatter\n<size:10>[Component: function]</size>\n\nExtract TypeScript/JavaScript code from Astro frontmatter Parses the frontmatter section (code between --- markers) as TypeScript and extracts code elements using the basic-node AST extractors: - Classes and their methods - Functions (both regular and arrow functions) - Type aliases (type X = ...) - TypeScript interfaces Returns empty result if frontmatter is empty or parsing fails (errors are logged). Graceful error handling ensures one malformed Astro file doesn't break the extraction pipeline." <<Application.Application.basicastroextractCodeFromFrontmatter>> as Application.Application.basicastroextractCodeFromFrontmatter
 }
 
 @enduml

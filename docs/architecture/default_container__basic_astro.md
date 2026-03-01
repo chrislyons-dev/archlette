@@ -6,27 +6,12 @@
 
 ## Component Information
 
-<table>
-<tbody>
-<tr>
-<td><strong>Component</strong></td>
-<td>basic-astro</td>
-</tr>
-<tr>
-<td><strong>Container</strong></td>
-<td>Application</td>
-</tr>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>module</code></td>
-</tr>
-<tr>
-<td><strong>Description</strong></td>
-<td>Astro component extractor</td>
-</tr>
-</tbody>
-</table>
-
+| Field | Value |
+| --- | --- |
+| **Component** | basic-astro |
+| **Container** | Application |
+| **Type** | `module` |
+| **Description** | Astro component extractor |
 ---
 
 ## Code Structure
@@ -48,30 +33,11 @@
 
 Extract architecture information from an Astro codebase
 
-<table>
-<tbody>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>function</code></td>
-</tr>
-<tr>
-<td><strong>Visibility</strong></td>
-<td><code>public</code></td>
-</tr>
-<tr>
-<td><strong>Async</strong></td>
-<td>Yes</td>
-</tr>
-<tr>
-<td><strong>Returns</strong></td>
-<td><code>Promise<z.infer<any>></code> — Promise resolving to ArchletteIR with components, code, and relationships</td>
-</tr>
-<tr>
-<td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro.ts:71</code></td>
-</tr>
-</tbody>
-</table>
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `public` |
+| **Async** | Yes || **Returns** | `Promise<z.infer<any>>` - Promise resolving to ArchletteIR with components, code, and relationships || **Location** | `C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro.ts:71` |
 
 **Parameters:**
 
@@ -96,26 +62,11 @@ and extracts code elements using the basic-node AST extractors:
 Returns empty result if frontmatter is empty or parsing fails (errors are logged).
 Graceful error handling ensures one malformed Astro file doesn't break the extraction pipeline.
 
-<table>
-<tbody>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>function</code></td>
-</tr>
-<tr>
-<td><strong>Visibility</strong></td>
-<td><code>public</code></td>
-</tr>
-<tr>
-<td><strong>Returns</strong></td>
-<td><code>import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/code-extractor").CodeExtractionResult</code> — CodeExtractionResult with extracted classes, functions, types, and interfaces</td>
-</tr>
-<tr>
-<td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/code-extractor.ts:61</code></td>
-</tr>
-</tbody>
-</table>
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `public` |
+| **Returns** | `import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/code-extractor").CodeExtractionResult` - CodeExtractionResult with extracted classes, functions, types, and interfaces || **Location** | `C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/code-extractor.ts:61` |
 
 **Parameters:**
 
@@ -144,26 +95,11 @@ The function is named after the file (without .astro extension):
 - index.astro → function index()
 - settings/Profile.astro → function Profile()
 
-<table>
-<tbody>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>function</code></td>
-</tr>
-<tr>
-<td><strong>Visibility</strong></td>
-<td><code>public</code></td>
-</tr>
-<tr>
-<td><strong>Returns</strong></td>
-<td><code>import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/types").ExtractedFunction</code> — Synthetic ExtractedFunction representing the component's render behavior</td>
-</tr>
-<tr>
-<td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/code-extractor.ts:153</code></td>
-</tr>
-</tbody>
-</table>
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `public` |
+| **Returns** | `import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/types").ExtractedFunction` - Synthetic ExtractedFunction representing the component's render behavior || **Location** | `C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/code-extractor.ts:153` |
 
 **Parameters:**
 
@@ -179,26 +115,11 @@ The function is named after the file (without .astro extension):
 Extract all JSDoc comment blocks from source code
 Matches /** ... *\/ style comments and parses their tags
 
-<table>
-<tbody>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>function</code></td>
-</tr>
-<tr>
-<td><strong>Visibility</strong></td>
-<td><code>private</code></td>
-</tr>
-<tr>
-<td><strong>Returns</strong></td>
-<td><code>JSDocBlock[]</code></td>
-</tr>
-<tr>
-<td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/component-detector.ts:27</code></td>
-</tr>
-</tbody>
-</table>
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `private` |
+| **Returns** | `JSDocBlock[]` || **Location** | `C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/component-detector.ts:27` |
 
 **Parameters:**
 
@@ -209,26 +130,11 @@ Matches /** ... *\/ style comments and parses their tags
 
 Parse a single JSDoc comment block into description and tags
 
-<table>
-<tbody>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>function</code></td>
-</tr>
-<tr>
-<td><strong>Visibility</strong></td>
-<td><code>private</code></td>
-</tr>
-<tr>
-<td><strong>Returns</strong></td>
-<td><code>JSDocBlock</code></td>
-</tr>
-<tr>
-<td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/component-detector.ts:49</code></td>
-</tr>
-</tbody>
-</table>
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `private` |
+| **Returns** | `JSDocBlock` || **Location** | `C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/component-detector.ts:49` |
 
 **Parameters:**
 
@@ -242,26 +148,11 @@ Extract component information from frontmatter JSDoc
 Attempts to identify the component in this file using JSDoc tags:
 1. Checks for
 
-<table>
-<tbody>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>function</code></td>
-</tr>
-<tr>
-<td><strong>Visibility</strong></td>
-<td><code>public</code></td>
-</tr>
-<tr>
-<td><strong>Returns</strong></td>
-<td><code>import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/types").ComponentInfo</code> — ComponentInfo with id, name, and optional description, or undefined</td>
-</tr>
-<tr>
-<td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/component-detector.ts:118</code></td>
-</tr>
-</tbody>
-</table>
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `public` |
+| **Returns** | `import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/types").ComponentInfo` - ComponentInfo with id, name, and optional description, or undefined || **Location** | `C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/component-detector.ts:118` |
 
 **Parameters:**
 
@@ -285,26 +176,11 @@ Parses the tag value to extract the component name, handling various formats:
 For module paths like "utils/helpers", extracts "utils" (the last directory
 before the filename) to enable component grouping.
 
-<table>
-<tbody>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>function</code></td>
-</tr>
-<tr>
-<td><strong>Visibility</strong></td>
-<td><code>private</code></td>
-</tr>
-<tr>
-<td><strong>Returns</strong></td>
-<td><code>string</code> — Extracted component name, or undefined if value is empty</td>
-</tr>
-<tr>
-<td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/component-detector.ts:191</code></td>
-</tr>
-</tbody>
-</table>
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `private` |
+| **Returns** | `string` - Extracted component name, or undefined if value is empty || **Location** | `C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/component-detector.ts:191` |
 
 **Parameters:**
 
@@ -322,26 +198,11 @@ Extract actors from frontmatter JSDoc
 Identifies external actors (users, systems) that interact with the component.
 Actors are specified using
 
-<table>
-<tbody>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>function</code></td>
-</tr>
-<tr>
-<td><strong>Visibility</strong></td>
-<td><code>public</code></td>
-</tr>
-<tr>
-<td><strong>Returns</strong></td>
-<td><code>import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/types").ActorInfo[]</code> — Array of identified actors, or empty array if none found</td>
-</tr>
-<tr>
-<td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/component-detector.ts:250</code></td>
-</tr>
-</tbody>
-</table>
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `public` |
+| **Returns** | `import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/types").ActorInfo[]` - Array of identified actors, or empty array if none found || **Location** | `C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/component-detector.ts:250` |
 
 **Parameters:**
 
@@ -356,26 +217,11 @@ Actors are specified using
 
 Parse an
 
-<table>
-<tbody>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>function</code></td>
-</tr>
-<tr>
-<td><strong>Visibility</strong></td>
-<td><code>private</code></td>
-</tr>
-<tr>
-<td><strong>Returns</strong></td>
-<td><code>import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/types").ActorInfo</code></td>
-</tr>
-<tr>
-<td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/component-detector.ts:277</code></td>
-</tr>
-</tbody>
-</table>
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `private` |
+| **Returns** | `import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/types").ActorInfo` || **Location** | `C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/component-detector.ts:277` |
 
 **Parameters:**
 
@@ -388,26 +234,11 @@ Extract relationships from frontmatter JSDoc
 
 Identifies component dependencies using
 
-<table>
-<tbody>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>function</code></td>
-</tr>
-<tr>
-<td><strong>Visibility</strong></td>
-<td><code>public</code></td>
-</tr>
-<tr>
-<td><strong>Returns</strong></td>
-<td><code>import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/types").RelationshipInfo[]</code> — Array of identified relationships, or empty array if none found</td>
-</tr>
-<tr>
-<td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/component-detector.ts:333</code></td>
-</tr>
-</tbody>
-</table>
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `public` |
+| **Returns** | `import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/types").RelationshipInfo[]` - Array of identified relationships, or empty array if none found || **Location** | `C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/component-detector.ts:333` |
 
 **Parameters:**
 
@@ -422,26 +253,11 @@ Identifies component dependencies using
 
 Parse a
 
-<table>
-<tbody>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>function</code></td>
-</tr>
-<tr>
-<td><strong>Visibility</strong></td>
-<td><code>private</code></td>
-</tr>
-<tr>
-<td><strong>Returns</strong></td>
-<td><code>import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/types").RelationshipInfo</code></td>
-</tr>
-<tr>
-<td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/component-detector.ts:357</code></td>
-</tr>
-</tbody>
-</table>
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `private` |
+| **Returns** | `import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/types").RelationshipInfo` || **Location** | `C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/component-detector.ts:357` |
 
 **Parameters:**
 
@@ -454,26 +270,11 @@ Infer component name from file path
 
 When no explicit
 
-<table>
-<tbody>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>function</code></td>
-</tr>
-<tr>
-<td><strong>Visibility</strong></td>
-<td><code>private</code></td>
-</tr>
-<tr>
-<td><strong>Returns</strong></td>
-<td><code>import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/types").ComponentInfo</code> — ComponentInfo with inferred component name</td>
-</tr>
-<tr>
-<td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/component-detector.ts:400</code></td>
-</tr>
-</tbody>
-</table>
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `private` |
+| **Returns** | `import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/types").ComponentInfo` - ComponentInfo with inferred component name || **Location** | `C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/component-detector.ts:400` |
 
 **Parameters:**
 
@@ -493,30 +294,11 @@ Returns absolute paths to enable downstream processing.
 
 Default patterns include src directory and exclude node_modules, dist, build, and .astro.
 
-<table>
-<tbody>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>function</code></td>
-</tr>
-<tr>
-<td><strong>Visibility</strong></td>
-<td><code>public</code></td>
-</tr>
-<tr>
-<td><strong>Async</strong></td>
-<td>Yes</td>
-</tr>
-<tr>
-<td><strong>Returns</strong></td>
-<td><code>Promise<string[]></code> — Promise resolving to array of absolute file paths</td>
-</tr>
-<tr>
-<td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/file-finder.ts:39</code></td>
-</tr>
-</tbody>
-</table>
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `public` |
+| **Async** | Yes || **Returns** | `Promise<string[]>` - Promise resolving to array of absolute file paths || **Location** | `C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/file-finder.ts:39` |
 
 **Parameters:**
 
@@ -535,30 +317,11 @@ Extracts base directories from include patterns and searches multiple directory 
 to locate all package.json files. Useful for identifying container boundaries and
 package metadata (name, version, description).
 
-<table>
-<tbody>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>function</code></td>
-</tr>
-<tr>
-<td><strong>Visibility</strong></td>
-<td><code>public</code></td>
-</tr>
-<tr>
-<td><strong>Async</strong></td>
-<td>Yes</td>
-</tr>
-<tr>
-<td><strong>Returns</strong></td>
-<td><code>Promise<string[]></code> — Promise resolving to array of absolute paths to package.json files</td>
-</tr>
-<tr>
-<td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/file-finder.ts:73</code></td>
-</tr>
-</tbody>
-</table>
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `public` |
+| **Async** | Yes || **Returns** | `Promise<string[]>` - Promise resolving to array of absolute paths to package.json files || **Location** | `C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/file-finder.ts:73` |
 
 **Parameters:**
 
@@ -576,30 +339,11 @@ Read package.json and extract metadata
 Parses a package.json file and extracts key metadata fields: name, version, and description.
 Returns null on read or parse errors (logged as warnings).
 
-<table>
-<tbody>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>function</code></td>
-</tr>
-<tr>
-<td><strong>Visibility</strong></td>
-<td><code>public</code></td>
-</tr>
-<tr>
-<td><strong>Async</strong></td>
-<td>Yes</td>
-</tr>
-<tr>
-<td><strong>Returns</strong></td>
-<td><code>Promise<import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/types").PackageInfo></code> — Promise resolving to PackageInfo object or null on error</td>
-</tr>
-<tr>
-<td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/file-finder.ts:134</code></td>
-</tr>
-</tbody>
-</table>
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `public` |
+| **Async** | Yes || **Returns** | `Promise<import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/types").PackageInfo>` - Promise resolving to PackageInfo object or null on error || **Location** | `C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/file-finder.ts:134` |
 
 **Parameters:**
 
@@ -618,26 +362,11 @@ Searches through all known packages and finds the one whose directory is the clo
 parent of the given file. Packages are sorted by depth (deepest first) to prioritize
 monorepo sub-packages over workspace root packages.
 
-<table>
-<tbody>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>function</code></td>
-</tr>
-<tr>
-<td><strong>Visibility</strong></td>
-<td><code>public</code></td>
-</tr>
-<tr>
-<td><strong>Returns</strong></td>
-<td><code>import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/types").PackageInfo</code> — The closest parent package, or null if file is not within any package</td>
-</tr>
-<tr>
-<td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/file-finder.ts:172</code></td>
-</tr>
-</tbody>
-</table>
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `public` |
+| **Returns** | `import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/types").PackageInfo` - The closest parent package, or null if file is not within any package || **Location** | `C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/file-finder.ts:172` |
 
 **Parameters:**
 
@@ -652,30 +381,11 @@ monorepo sub-packages over workspace root packages.
 
 Parse Astro files using
 
-<table>
-<tbody>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>function</code></td>
-</tr>
-<tr>
-<td><strong>Visibility</strong></td>
-<td><code>public</code></td>
-</tr>
-<tr>
-<td><strong>Async</strong></td>
-<td>Yes</td>
-</tr>
-<tr>
-<td><strong>Returns</strong></td>
-<td><code>Promise<import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/types").FileExtraction[]></code> — Promise resolving to FileExtraction array (one per file)</td>
-</tr>
-<tr>
-<td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/file-parser.ts:48</code></td>
-</tr>
-</tbody>
-</table>
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `public` |
+| **Async** | Yes || **Returns** | `Promise<import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/types").FileExtraction[]>` - Promise resolving to FileExtraction array (one per file) || **Location** | `C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/file-parser.ts:48` |
 
 **Parameters:**
 
@@ -697,26 +407,11 @@ Astro files have two sections separated by --- markers:
 This function extracts only the frontmatter section. Returns empty string if no frontmatter.
 Handles both Unix and Windows line endings for cross-platform compatibility.
 
-<table>
-<tbody>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>function</code></td>
-</tr>
-<tr>
-<td><strong>Visibility</strong></td>
-<td><code>private</code></td>
-</tr>
-<tr>
-<td><strong>Returns</strong></td>
-<td><code>string</code> — Frontmatter code between the --- markers, or empty string</td>
-</tr>
-<tr>
-<td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/file-parser.ts:157</code></td>
-</tr>
-</tbody>
-</table>
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `private` |
+| **Returns** | `string` - Frontmatter code between the --- markers, or empty string || **Location** | `C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/file-parser.ts:157` |
 
 **Parameters:**
 
@@ -738,26 +433,11 @@ Parses all import declarations using regex and categorizes them:
 
 Also handles aliased imports like: import { Foo as F } from 'bar'
 
-<table>
-<tbody>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>function</code></td>
-</tr>
-<tr>
-<td><strong>Visibility</strong></td>
-<td><code>private</code></td>
-</tr>
-<tr>
-<td><strong>Returns</strong></td>
-<td><code>{ source: string; importedNames: string[]; isDefault: boolean; isNamespace: boolean; }[]</code> — Array of import declarations with categorization</td>
-</tr>
-<tr>
-<td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/file-parser.ts:183</code></td>
-</tr>
-</tbody>
-</table>
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `private` |
+| **Returns** | `{ source: string; importedNames: string[]; isDefault: boolean; isNamespace: boolean; }[]` - Array of import declarations with categorization || **Location** | `C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/file-parser.ts:183` |
 
 **Parameters:**
 
@@ -778,26 +458,11 @@ Astro components can define slots to allow content projection:
 
 Returns location information (line number) for each slot found.
 
-<table>
-<tbody>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>function</code></td>
-</tr>
-<tr>
-<td><strong>Visibility</strong></td>
-<td><code>private</code></td>
-</tr>
-<tr>
-<td><strong>Returns</strong></td>
-<td><code>{ name: string; line: number; }[]</code> — Array of slots with names and line numbers</td>
-</tr>
-<tr>
-<td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/file-parser.ts:255</code></td>
-</tr>
-</tbody>
-</table>
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `private` |
+| **Returns** | `{ name: string; line: number; }[]` - Array of slots with names and line numbers || **Location** | `C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/file-parser.ts:255` |
 
 **Parameters:**
 
@@ -821,26 +486,11 @@ Astro allows hydration directives to run components on the client:
 
 Returns the first directive found. Used to indicate interactive components.
 
-<table>
-<tbody>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>function</code></td>
-</tr>
-<tr>
-<td><strong>Visibility</strong></td>
-<td><code>private</code></td>
-</tr>
-<tr>
-<td><strong>Returns</strong></td>
-<td><code>string</code> — The directive found (e.g., 'client:load'), or undefined</td>
-</tr>
-<tr>
-<td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/file-parser.ts:291</code></td>
-</tr>
-</tbody>
-</table>
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `private` |
+| **Returns** | `string` - The directive found (e.g., 'client:load'), or undefined || **Location** | `C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/file-parser.ts:291` |
 
 **Parameters:**
 
@@ -864,26 +514,11 @@ Only includes components that:
 Component names in Astro are PascalCase by convention (e.g., Header, Footer).
 This function uses the import list to avoid false positives from HTML elements.
 
-<table>
-<tbody>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>function</code></td>
-</tr>
-<tr>
-<td><strong>Visibility</strong></td>
-<td><code>private</code></td>
-</tr>
-<tr>
-<td><strong>Returns</strong></td>
-<td><code>import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/types").ExtractedComponent[]</code> — Array of ExtractedComponent objects for used components</td>
-</tr>
-<tr>
-<td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/file-parser.ts:317</code></td>
-</tr>
-</tbody>
-</table>
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `private` |
+| **Returns** | `import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/types").ExtractedComponent[]` - Array of ExtractedComponent objects for used components || **Location** | `C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/file-parser.ts:317` |
 
 **Parameters:**
 
@@ -908,26 +543,11 @@ Algorithm (4 main steps):
    - Detect and merge duplicates (same component in multiple files)
    - Build relationship graph from
 
-<table>
-<tbody>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>function</code></td>
-</tr>
-<tr>
-<td><strong>Visibility</strong></td>
-<td><code>public</code></td>
-</tr>
-<tr>
-<td><strong>Returns</strong></td>
-<td><code>z.infer<any></code> — ArchletteIR ready for DSL generation</td>
-</tr>
-<tr>
-<td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/to-ir-mapper.ts:73</code></td>
-</tr>
-</tbody>
-</table>
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `public` |
+| **Returns** | `z.infer<any>` - ArchletteIR ready for DSL generation || **Location** | `C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/to-ir-mapper.ts:73` |
 
 **Parameters:**
 
@@ -942,26 +562,11 @@ Algorithm (4 main steps):
 
 Map a class to code items (class + methods)
 
-<table>
-<tbody>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>function</code></td>
-</tr>
-<tr>
-<td><strong>Visibility</strong></td>
-<td><code>private</code></td>
-</tr>
-<tr>
-<td><strong>Returns</strong></td>
-<td><code>z.infer<any>[]</code></td>
-</tr>
-<tr>
-<td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/to-ir-mapper.ts:508</code></td>
-</tr>
-</tbody>
-</table>
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `private` |
+| **Returns** | `z.infer<any>[]` || **Location** | `C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/to-ir-mapper.ts:508` |
 
 **Parameters:**
 
@@ -972,26 +577,11 @@ Map a class to code items (class + methods)
 
 Map a function to a code item
 
-<table>
-<tbody>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>function</code></td>
-</tr>
-<tr>
-<td><strong>Visibility</strong></td>
-<td><code>private</code></td>
-</tr>
-<tr>
-<td><strong>Returns</strong></td>
-<td><code>z.infer<any></code></td>
-</tr>
-<tr>
-<td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/to-ir-mapper.ts:555</code></td>
-</tr>
-</tbody>
-</table>
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `private` |
+| **Returns** | `z.infer<any>` || **Location** | `C:/Users/chris/git/archlette/src/extractors/builtin/basic-astro/to-ir-mapper.ts:555` |
 
 **Parameters:**
 
@@ -1006,3 +596,4 @@ Map a function to a code item
 <div align="center">
 <sub><a href="./default-container.md">← Back to Container</a> | <a href="./README.md">← Back to System</a> | Generated with <a href="https://github.com/chrislyons-dev/archlette">Archlette</a></sub>
 </div>
+

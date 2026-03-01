@@ -6,27 +6,12 @@
 
 ## Component Information
 
-<table>
-<tbody>
-<tr>
-<td><strong>Component</strong></td>
-<td>core</td>
-</tr>
-<tr>
-<td><strong>Container</strong></td>
-<td>Application</td>
-</tr>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>module</code></td>
-</tr>
-<tr>
-<td><strong>Description</strong></td>
-<td>Dynamic ESM module loader | Component inferred from directory: core | Stage module interfaces for the AAC pipeline | Stage module loaders | Tool management for external rendering tools | Architecture-as-Code (AAC) configuration types and schemas | Archlette Intermediate Representation (IR) types and schemas | Core pipeline types</td>
-</tr>
-</tbody>
-</table>
-
+| Field | Value |
+| --- | --- |
+| **Component** | core |
+| **Container** | Application |
+| **Type** | `module` |
+| **Description** | Dynamic ESM module loader \| Component inferred from directory: core \| Stage module interfaces for the AAC pipeline \| Stage module loaders \| Tool management for external rendering tools \| Architecture-as-Code (AAC) configuration types and schemas \| Archlette Intermediate Representation (IR) types and schemas \| Core pipeline types |
 ---
 
 ## Code Structure
@@ -38,7 +23,7 @@
 ### Code Elements
 
 <details>
-<summary><strong>42 code element(s)</strong></summary>
+<summary><strong>45 code element(s)</strong></summary>
 
 
 
@@ -48,26 +33,11 @@
 
 Resolve config file path from CLI arguments
 
-<table>
-<tbody>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>function</code></td>
-</tr>
-<tr>
-<td><strong>Visibility</strong></td>
-<td><code>public</code></td>
-</tr>
-<tr>
-<td><strong>Returns</strong></td>
-<td><code>import("C:/Users/chris/git/archlette/src/core/config-resolver").ResolvedConfigFile</code> — Resolved config file information</td>
-</tr>
-<tr>
-<td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/core/config-resolver.ts:70</code></td>
-</tr>
-</tbody>
-</table>
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `public` |
+| **Returns** | `import("C:/Users/chris/git/archlette/src/core/config-resolver").ResolvedConfigFile` - Resolved config file information || **Location** | `C:/Users/chris/git/archlette/src/core/config-resolver.ts:70` |
 
 **Parameters:**
 
@@ -87,26 +57,11 @@ Logic:
 - If user provided config file: config file's directory
 - Fallback: CWD
 
-<table>
-<tbody>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>function</code></td>
-</tr>
-<tr>
-<td><strong>Visibility</strong></td>
-<td><code>public</code></td>
-</tr>
-<tr>
-<td><strong>Returns</strong></td>
-<td><code>string</code> — Base directory for config-relative path resolution</td>
-</tr>
-<tr>
-<td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/core/config-resolver.ts:117</code></td>
-</tr>
-</tbody>
-</table>
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `public` |
+| **Returns** | `string` - Base directory for config-relative path resolution || **Location** | `C:/Users/chris/git/archlette/src/core/config-resolver.ts:117` |
 
 **Parameters:**
 
@@ -121,26 +76,11 @@ Logic:
 
 Load and parse YAML config file
 
-<table>
-<tbody>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>function</code></td>
-</tr>
-<tr>
-<td><strong>Visibility</strong></td>
-<td><code>private</code></td>
-</tr>
-<tr>
-<td><strong>Returns</strong></td>
-<td><code>unknown</code> — Parsed config object or null if file doesn't exist/is invalid</td>
-</tr>
-<tr>
-<td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/core/config-resolver.ts:141</code></td>
-</tr>
-</tbody>
-</table>
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `private` |
+| **Returns** | `unknown` - Parsed config object or null if file doesn't exist/is invalid || **Location** | `C:/Users/chris/git/archlette/src/core/config-resolver.ts:141` |
 
 **Parameters:**
 
@@ -151,26 +91,11 @@ Load and parse YAML config file
 
 Create minimal default configuration when no config file is found
 
-<table>
-<tbody>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>function</code></td>
-</tr>
-<tr>
-<td><strong>Visibility</strong></td>
-<td><code>private</code></td>
-</tr>
-<tr>
-<td><strong>Returns</strong></td>
-<td><code>import("C:/Users/chris/git/archlette/src/core/types-aac").ResolvedAACConfig</code> — Default configuration</td>
-</tr>
-<tr>
-<td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/core/config-resolver.ts:164</code></td>
-</tr>
-</tbody>
-</table>
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `private` |
+| **Returns** | `import("C:/Users/chris/git/archlette/src/core/types-aac").ResolvedAACConfig` - Default configuration || **Location** | `C:/Users/chris/git/archlette/src/core/config-resolver.ts:164` |
 
 **Parameters:**
 
@@ -188,26 +113,11 @@ This is the main entry point for config loading. It handles:
 4. Config validation and resolution
 5. Fallback to default config
 
-<table>
-<tbody>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>function</code></td>
-</tr>
-<tr>
-<td><strong>Visibility</strong></td>
-<td><code>public</code></td>
-</tr>
-<tr>
-<td><strong>Returns</strong></td>
-<td><code>import("C:/Users/chris/git/archlette/src/core/config-resolver").LoadedConfig</code> — Loaded configuration with all metadata</td>
-</tr>
-<tr>
-<td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/core/config-resolver.ts:210</code></td>
-</tr>
-</tbody>
-</table>
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `public` |
+| **Returns** | `import("C:/Users/chris/git/archlette/src/core/config-resolver").LoadedConfig` - Loaded configuration with all metadata || **Location** | `C:/Users/chris/git/archlette/src/core/config-resolver.ts:210` |
 
 **Parameters:**
 
@@ -223,26 +133,11 @@ This is the main entry point for config loading. It handles:
 Convert a name to a normalized ID
 Used for consistent ID generation across extractors and mappers
 
-<table>
-<tbody>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>function</code></td>
-</tr>
-<tr>
-<td><strong>Visibility</strong></td>
-<td><code>public</code></td>
-</tr>
-<tr>
-<td><strong>Returns</strong></td>
-<td><code>string</code> — Normalized ID (lowercase, hyphenated, alphanumeric)</td>
-</tr>
-<tr>
-<td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/core/constants.ts:56</code></td>
-</tr>
-</tbody>
-</table>
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `public` |
+| **Returns** | `string` - Normalized ID (lowercase, hyphenated, alphanumeric) || **Location** | `C:/Users/chris/git/archlette/src/core/constants.ts:56` |
 
 **Parameters:**
 
@@ -258,26 +153,11 @@ Used for consistent ID generation across extractors and mappers
 Sanitize ID for DSL and code identifiers (preserves underscores)
 Used for Python code identifiers where underscores are significant
 
-<table>
-<tbody>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>function</code></td>
-</tr>
-<tr>
-<td><strong>Visibility</strong></td>
-<td><code>public</code></td>
-</tr>
-<tr>
-<td><strong>Returns</strong></td>
-<td><code>string</code> — Sanitized ID (lowercase alphanumeric and underscores only)</td>
-</tr>
-<tr>
-<td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/core/constants.ts:78</code></td>
-</tr>
-</tbody>
-</table>
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `public` |
+| **Returns** | `string` - Sanitized ID (lowercase alphanumeric and underscores only) || **Location** | `C:/Users/chris/git/archlette/src/core/constants.ts:78` |
 
 **Parameters:**
 
@@ -292,26 +172,11 @@ Used for Python code identifiers where underscores are significant
 
 Determine if we're in a TTY environment (for pretty printing)
 
-<table>
-<tbody>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>function</code></td>
-</tr>
-<tr>
-<td><strong>Visibility</strong></td>
-<td><code>private</code></td>
-</tr>
-<tr>
-<td><strong>Returns</strong></td>
-<td><code>boolean</code></td>
-</tr>
-<tr>
-<td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/core/logger.ts:43</code></td>
-</tr>
-</tbody>
-</table>
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `private` |
+| **Returns** | `boolean` || **Location** | `C:/Users/chris/git/archlette/src/core/logger.ts:43` |
 
 
 
@@ -320,26 +185,11 @@ Determine if we're in a TTY environment (for pretty printing)
 
 Get default log level from environment or fallback to 'info'
 
-<table>
-<tbody>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>function</code></td>
-</tr>
-<tr>
-<td><strong>Visibility</strong></td>
-<td><code>private</code></td>
-</tr>
-<tr>
-<td><strong>Returns</strong></td>
-<td><code>import("C:/Users/chris/git/archlette/src/core/logger").LogLevel</code></td>
-</tr>
-<tr>
-<td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/core/logger.ts:50</code></td>
-</tr>
-</tbody>
-</table>
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `private` |
+| **Returns** | `import("C:/Users/chris/git/archlette/src/core/logger").LogLevel` || **Location** | `C:/Users/chris/git/archlette/src/core/logger.ts:50` |
 
 
 
@@ -348,26 +198,11 @@ Get default log level from environment or fallback to 'info'
 
 Create a Pino logger instance with optional pretty printing
 
-<table>
-<tbody>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>function</code></td>
-</tr>
-<tr>
-<td><strong>Visibility</strong></td>
-<td><code>private</code></td>
-</tr>
-<tr>
-<td><strong>Returns</strong></td>
-<td><code>PinoLogger</code></td>
-</tr>
-<tr>
-<td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/core/logger.ts:66</code></td>
-</tr>
-</tbody>
-</table>
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `private` |
+| **Returns** | `PinoLogger` || **Location** | `C:/Users/chris/git/archlette/src/core/logger.ts:66` |
 
 **Parameters:**
 
@@ -378,26 +213,11 @@ Create a Pino logger instance with optional pretty printing
 
 Create a logger instance
 
-<table>
-<tbody>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>function</code></td>
-</tr>
-<tr>
-<td><strong>Visibility</strong></td>
-<td><code>public</code></td>
-</tr>
-<tr>
-<td><strong>Returns</strong></td>
-<td><code>import("C:/Users/chris/git/archlette/src/core/logger").Logger</code> — Logger instance</td>
-</tr>
-<tr>
-<td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/core/logger.ts:131</code></td>
-</tr>
-</tbody>
-</table>
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `public` |
+| **Returns** | `import("C:/Users/chris/git/archlette/src/core/logger").Logger` - Logger instance || **Location** | `C:/Users/chris/git/archlette/src/core/logger.ts:131` |
 
 **Parameters:**
 
@@ -413,26 +233,11 @@ Create a logger instance
 Default base directory for user plugins: ~/.archlette/mods
 This provides a standard location for external plugins and custom modules
 
-<table>
-<tbody>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>function</code></td>
-</tr>
-<tr>
-<td><strong>Visibility</strong></td>
-<td><code>private</code></td>
-</tr>
-<tr>
-<td><strong>Returns</strong></td>
-<td><code>string</code></td>
-</tr>
-<tr>
-<td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/core/module-loader.ts:59</code></td>
-</tr>
-</tbody>
-</table>
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `private` |
+| **Returns** | `string` || **Location** | `C:/Users/chris/git/archlette/src/core/module-loader.ts:59` |
 
 
 
@@ -441,30 +246,11 @@ This provides a standard location for external plugins and custom modules
 
 Dynamically load an ESM module from a path or module specifier with security validation
 
-<table>
-<tbody>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>function</code></td>
-</tr>
-<tr>
-<td><strong>Visibility</strong></td>
-<td><code>public</code></td>
-</tr>
-<tr>
-<td><strong>Async</strong></td>
-<td>Yes</td>
-</tr>
-<tr>
-<td><strong>Returns</strong></td>
-<td><code>Promise<import("C:/Users/chris/git/archlette/src/core/module-loader").LoadedModule<T>></code> — Promise resolving to loaded module with metadata</td>
-</tr>
-<tr>
-<td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/core/module-loader.ts:111</code></td>
-</tr>
-</tbody>
-</table>
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `public` |
+| **Async** | Yes || **Returns** | `Promise<import("C:/Users/chris/git/archlette/src/core/module-loader").LoadedModule<T>>` - Promise resolving to loaded module with metadata || **Location** | `C:/Users/chris/git/archlette/src/core/module-loader.ts:111` |
 
 **Parameters:**
 
@@ -479,26 +265,11 @@ Dynamically load an ESM module from a path or module specifier with security val
 ##### `getCliDir()`
 
 
-<table>
-<tbody>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>function</code></td>
-</tr>
-<tr>
-<td><strong>Visibility</strong></td>
-<td><code>public</code></td>
-</tr>
-<tr>
-<td><strong>Returns</strong></td>
-<td><code>string</code></td>
-</tr>
-<tr>
-<td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/core/path-resolver.ts:17</code></td>
-</tr>
-</tbody>
-</table>
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `public` |
+| **Returns** | `string` || **Location** | `C:/Users/chris/git/archlette/src/core/path-resolver.ts:17` |
 
 
 
@@ -506,26 +277,11 @@ Dynamically load an ESM module from a path or module specifier with security val
 ##### `expandTilde()`
 
 
-<table>
-<tbody>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>function</code></td>
-</tr>
-<tr>
-<td><strong>Visibility</strong></td>
-<td><code>public</code></td>
-</tr>
-<tr>
-<td><strong>Returns</strong></td>
-<td><code>string</code></td>
-</tr>
-<tr>
-<td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/core/path-resolver.ts:24</code></td>
-</tr>
-</tbody>
-</table>
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `public` |
+| **Returns** | `string` || **Location** | `C:/Users/chris/git/archlette/src/core/path-resolver.ts:24` |
 
 **Parameters:**
 
@@ -539,26 +295,11 @@ Core path resolver honoring Archlette rules (no file existence checks).
 - "/"  -> absolute
 - else -> relative to CLI dir
 
-<table>
-<tbody>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>function</code></td>
-</tr>
-<tr>
-<td><strong>Visibility</strong></td>
-<td><code>public</code></td>
-</tr>
-<tr>
-<td><strong>Returns</strong></td>
-<td><code>string</code></td>
-</tr>
-<tr>
-<td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/core/path-resolver.ts:42</code></td>
-</tr>
-</tbody>
-</table>
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `public` |
+| **Returns** | `string` || **Location** | `C:/Users/chris/git/archlette/src/core/path-resolver.ts:42` |
 
 **Parameters:**
 
@@ -572,26 +313,11 @@ Resolve a module entry by probing:
 2) With extensions: .ts then .js
 3) If directory: index.ts then index.js
 
-<table>
-<tbody>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>function</code></td>
-</tr>
-<tr>
-<td><strong>Visibility</strong></td>
-<td><code>public</code></td>
-</tr>
-<tr>
-<td><strong>Returns</strong></td>
-<td><code>string</code></td>
-</tr>
-<tr>
-<td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/core/path-resolver.ts:64</code></td>
-</tr>
-</tbody>
-</table>
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `public` |
+| **Returns** | `string` || **Location** | `C:/Users/chris/git/archlette/src/core/path-resolver.ts:64` |
 
 **Parameters:**
 
@@ -601,26 +327,11 @@ Resolve a module entry by probing:
 ##### `toFileUrl()`
 
 
-<table>
-<tbody>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>function</code></td>
-</tr>
-<tr>
-<td><strong>Visibility</strong></td>
-<td><code>public</code></td>
-</tr>
-<tr>
-<td><strong>Returns</strong></td>
-<td><code>string</code></td>
-</tr>
-<tr>
-<td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/core/path-resolver.ts:100</code></td>
-</tr>
-</tbody>
-</table>
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `public` |
+| **Returns** | `string` || **Location** | `C:/Users/chris/git/archlette/src/core/path-resolver.ts:100` |
 
 **Parameters:**
 
@@ -631,26 +342,11 @@ Resolve a module entry by probing:
 
 Write content to a file, creating parent directories if needed.
 
-<table>
-<tbody>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>function</code></td>
-</tr>
-<tr>
-<td><strong>Visibility</strong></td>
-<td><code>public</code></td>
-</tr>
-<tr>
-<td><strong>Returns</strong></td>
-<td><code>void</code></td>
-</tr>
-<tr>
-<td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/core/path-resolver.ts:110</code></td>
-</tr>
-</tbody>
-</table>
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `public` |
+| **Returns** | `void` || **Location** | `C:/Users/chris/git/archlette/src/core/path-resolver.ts:110` |
 
 **Parameters:**
 
@@ -661,26 +357,11 @@ Write content to a file, creating parent directories if needed.
 
 Validate path for security issues
 
-<table>
-<tbody>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>function</code></td>
-</tr>
-<tr>
-<td><strong>Visibility</strong></td>
-<td><code>private</code></td>
-</tr>
-<tr>
-<td><strong>Returns</strong></td>
-<td><code>{ isSecure: boolean; warnings: string[]; }</code></td>
-</tr>
-<tr>
-<td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/core/path-security.ts:58</code></td>
-</tr>
-</tbody>
-</table>
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `private` |
+| **Returns** | `{ isSecure: boolean; warnings: string[]; }` || **Location** | `C:/Users/chris/git/archlette/src/core/path-security.ts:58` |
 
 **Parameters:**
 
@@ -691,26 +372,11 @@ Validate path for security issues
 
 Securely resolve a user-provided path with validation
 
-<table>
-<tbody>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>function</code></td>
-</tr>
-<tr>
-<td><strong>Visibility</strong></td>
-<td><code>public</code></td>
-</tr>
-<tr>
-<td><strong>Returns</strong></td>
-<td><code>import("C:/Users/chris/git/archlette/src/core/path-security").ResolvedSecurePath</code> — Resolved path with security metadata</td>
-</tr>
-<tr>
-<td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/core/path-security.ts:203</code></td>
-</tr>
-</tbody>
-</table>
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `public` |
+| **Returns** | `import("C:/Users/chris/git/archlette/src/core/path-security").ResolvedSecurePath` - Resolved path with security metadata || **Location** | `C:/Users/chris/git/archlette/src/core/path-security.ts:203` |
 
 **Parameters:**
 
@@ -726,26 +392,11 @@ Securely resolve a user-provided path with validation
 Convenience function for resolving user content paths (themes, input files)
 Uses 'config-relative' strategy by default
 
-<table>
-<tbody>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>function</code></td>
-</tr>
-<tr>
-<td><strong>Visibility</strong></td>
-<td><code>public</code></td>
-</tr>
-<tr>
-<td><strong>Returns</strong></td>
-<td><code>import("C:/Users/chris/git/archlette/src/core/path-security").ResolvedSecurePath</code></td>
-</tr>
-<tr>
-<td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/core/path-security.ts:289</code></td>
-</tr>
-</tbody>
-</table>
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `public` |
+| **Returns** | `import("C:/Users/chris/git/archlette/src/core/path-security").ResolvedSecurePath` || **Location** | `C:/Users/chris/git/archlette/src/core/path-security.ts:289` |
 
 **Parameters:**
 
@@ -757,26 +408,11 @@ Uses 'config-relative' strategy by default
 Convenience function for resolving plugin paths
 Uses 'cli-relative' strategy by default
 
-<table>
-<tbody>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>function</code></td>
-</tr>
-<tr>
-<td><strong>Visibility</strong></td>
-<td><code>public</code></td>
-</tr>
-<tr>
-<td><strong>Returns</strong></td>
-<td><code>import("C:/Users/chris/git/archlette/src/core/path-security").ResolvedSecurePath</code></td>
-</tr>
-<tr>
-<td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/core/path-security.ts:308</code></td>
-</tr>
-</tbody>
-</table>
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `public` |
+| **Returns** | `import("C:/Users/chris/git/archlette/src/core/path-security").ResolvedSecurePath` || **Location** | `C:/Users/chris/git/archlette/src/core/path-security.ts:308` |
 
 **Parameters:**
 
@@ -786,26 +422,11 @@ Uses 'cli-relative' strategy by default
 ##### `getStageEntry()`
 
 
-<table>
-<tbody>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>function</code></td>
-</tr>
-<tr>
-<td><strong>Visibility</strong></td>
-<td><code>public</code></td>
-</tr>
-<tr>
-<td><strong>Returns</strong></td>
-<td><code>import("C:/Users/chris/git/archlette/src/core/stage-entry").StageEntry</code></td>
-</tr>
-<tr>
-<td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/core/stage-entry.js:12</code></td>
-</tr>
-</tbody>
-</table>
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `public` |
+| **Returns** | `import("C:/Users/chris/git/archlette/src/core/stage-entry").StageEntry` || **Location** | `C:/Users/chris/git/archlette/src/core/stage-entry.js:12` |
 
 **Parameters:**
 
@@ -815,30 +436,11 @@ Uses 'cli-relative' strategy by default
 ##### `loadExtractorModule()`
 
 
-<table>
-<tbody>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>function</code></td>
-</tr>
-<tr>
-<td><strong>Visibility</strong></td>
-<td><code>public</code></td>
-</tr>
-<tr>
-<td><strong>Async</strong></td>
-<td>Yes</td>
-</tr>
-<tr>
-<td><strong>Returns</strong></td>
-<td><code>Promise<{ entry: Function; resolved: string; }></code></td>
-</tr>
-<tr>
-<td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/core/stage-module-loader.ts:13</code></td>
-</tr>
-</tbody>
-</table>
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `public` |
+| **Async** | Yes || **Returns** | `Promise<{ entry: Function; resolved: string; }>` || **Location** | `C:/Users/chris/git/archlette/src/core/stage-module-loader.ts:13` |
 
 **Parameters:**
 
@@ -848,30 +450,11 @@ Uses 'cli-relative' strategy by default
 ##### `loadValidatorModule()`
 
 
-<table>
-<tbody>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>function</code></td>
-</tr>
-<tr>
-<td><strong>Visibility</strong></td>
-<td><code>public</code></td>
-</tr>
-<tr>
-<td><strong>Async</strong></td>
-<td>Yes</td>
-</tr>
-<tr>
-<td><strong>Returns</strong></td>
-<td><code>Promise<{ entry: Function; resolved: string; }></code></td>
-</tr>
-<tr>
-<td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/core/stage-module-loader.ts:26</code></td>
-</tr>
-</tbody>
-</table>
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `public` |
+| **Async** | Yes || **Returns** | `Promise<{ entry: Function; resolved: string; }>` || **Location** | `C:/Users/chris/git/archlette/src/core/stage-module-loader.ts:26` |
 
 **Parameters:**
 
@@ -881,30 +464,11 @@ Uses 'cli-relative' strategy by default
 ##### `loadGeneratorModule()`
 
 
-<table>
-<tbody>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>function</code></td>
-</tr>
-<tr>
-<td><strong>Visibility</strong></td>
-<td><code>public</code></td>
-</tr>
-<tr>
-<td><strong>Async</strong></td>
-<td>Yes</td>
-</tr>
-<tr>
-<td><strong>Returns</strong></td>
-<td><code>Promise<{ entry: Function; resolved: string; }></code></td>
-</tr>
-<tr>
-<td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/core/stage-module-loader.ts:39</code></td>
-</tr>
-</tbody>
-</table>
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `public` |
+| **Async** | Yes || **Returns** | `Promise<{ entry: Function; resolved: string; }>` || **Location** | `C:/Users/chris/git/archlette/src/core/stage-module-loader.ts:39` |
 
 **Parameters:**
 
@@ -914,30 +478,11 @@ Uses 'cli-relative' strategy by default
 ##### `loadRendererModule()`
 
 
-<table>
-<tbody>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>function</code></td>
-</tr>
-<tr>
-<td><strong>Visibility</strong></td>
-<td><code>public</code></td>
-</tr>
-<tr>
-<td><strong>Async</strong></td>
-<td>Yes</td>
-</tr>
-<tr>
-<td><strong>Returns</strong></td>
-<td><code>Promise<{ entry: Function; resolved: string; }></code></td>
-</tr>
-<tr>
-<td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/core/stage-module-loader.ts:52</code></td>
-</tr>
-</tbody>
-</table>
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `public` |
+| **Async** | Yes || **Returns** | `Promise<{ entry: Function; resolved: string; }>` || **Location** | `C:/Users/chris/git/archlette/src/core/stage-module-loader.ts:52` |
 
 **Parameters:**
 
@@ -947,30 +492,11 @@ Uses 'cli-relative' strategy by default
 ##### `loadDocModule()`
 
 
-<table>
-<tbody>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>function</code></td>
-</tr>
-<tr>
-<td><strong>Visibility</strong></td>
-<td><code>public</code></td>
-</tr>
-<tr>
-<td><strong>Async</strong></td>
-<td>Yes</td>
-</tr>
-<tr>
-<td><strong>Returns</strong></td>
-<td><code>Promise<{ entry: Function; resolved: string; }></code></td>
-</tr>
-<tr>
-<td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/core/stage-module-loader.ts:65</code></td>
-</tr>
-</tbody>
-</table>
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `public` |
+| **Async** | Yes || **Returns** | `Promise<{ entry: Function; resolved: string; }>` || **Location** | `C:/Users/chris/git/archlette/src/core/stage-module-loader.ts:65` |
 
 **Parameters:**
 
@@ -981,26 +507,11 @@ Uses 'cli-relative' strategy by default
 
 Get the Archlette cache directory
 
-<table>
-<tbody>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>function</code></td>
-</tr>
-<tr>
-<td><strong>Visibility</strong></td>
-<td><code>public</code></td>
-</tr>
-<tr>
-<td><strong>Returns</strong></td>
-<td><code>string</code></td>
-</tr>
-<tr>
-<td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/core/tool-manager.ts:64</code></td>
-</tr>
-</tbody>
-</table>
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `public` |
+| **Returns** | `string` || **Location** | `C:/Users/chris/git/archlette/src/core/tool-manager.ts:66` |
 
 
 
@@ -1009,26 +520,11 @@ Get the Archlette cache directory
 
 Ensure cache directory exists
 
-<table>
-<tbody>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>function</code></td>
-</tr>
-<tr>
-<td><strong>Visibility</strong></td>
-<td><code>private</code></td>
-</tr>
-<tr>
-<td><strong>Returns</strong></td>
-<td><code>string</code></td>
-</tr>
-<tr>
-<td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/core/tool-manager.ts:72</code></td>
-</tr>
-</tbody>
-</table>
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `private` |
+| **Returns** | `string` || **Location** | `C:/Users/chris/git/archlette/src/core/tool-manager.ts:74` |
 
 
 
@@ -1036,27 +532,13 @@ Ensure cache directory exists
 ##### `commandExistsInPath()`
 
 Check if a command exists in PATH
+Returns the full path if found, null otherwise
 
-<table>
-<tbody>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>function</code></td>
-</tr>
-<tr>
-<td><strong>Visibility</strong></td>
-<td><code>private</code></td>
-</tr>
-<tr>
-<td><strong>Returns</strong></td>
-<td><code>string</code></td>
-</tr>
-<tr>
-<td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/core/tool-manager.ts:83</code></td>
-</tr>
-</tbody>
-</table>
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `public` |
+| **Returns** | `string` || **Location** | `C:/Users/chris/git/archlette/src/core/tool-manager.ts:86` |
 
 **Parameters:**
 
@@ -1067,30 +549,11 @@ Check if a command exists in PATH
 
 Download a file from URL to destination
 
-<table>
-<tbody>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>function</code></td>
-</tr>
-<tr>
-<td><strong>Visibility</strong></td>
-<td><code>private</code></td>
-</tr>
-<tr>
-<td><strong>Async</strong></td>
-<td>Yes</td>
-</tr>
-<tr>
-<td><strong>Returns</strong></td>
-<td><code>Promise<void></code></td>
-</tr>
-<tr>
-<td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/core/tool-manager.ts:102</code></td>
-</tr>
-</tbody>
-</table>
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `private` |
+| **Async** | Yes || **Returns** | `Promise<void>` || **Location** | `C:/Users/chris/git/archlette/src/core/tool-manager.ts:105` |
 
 **Parameters:**
 
@@ -1101,30 +564,11 @@ Download a file from URL to destination
 
 Extract a ZIP file (simple extraction for Structurizr CLI)
 
-<table>
-<tbody>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>function</code></td>
-</tr>
-<tr>
-<td><strong>Visibility</strong></td>
-<td><code>private</code></td>
-</tr>
-<tr>
-<td><strong>Async</strong></td>
-<td>Yes</td>
-</tr>
-<tr>
-<td><strong>Returns</strong></td>
-<td><code>Promise<void></code></td>
-</tr>
-<tr>
-<td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/core/tool-manager.ts:144</code></td>
-</tr>
-</tbody>
-</table>
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `private` |
+| **Async** | Yes || **Returns** | `Promise<void>` || **Location** | `C:/Users/chris/git/archlette/src/core/tool-manager.ts:147` |
 
 **Parameters:**
 
@@ -1135,26 +579,11 @@ Extract a ZIP file (simple extraction for Structurizr CLI)
 
 Make file executable (Unix only)
 
-<table>
-<tbody>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>function</code></td>
-</tr>
-<tr>
-<td><strong>Visibility</strong></td>
-<td><code>private</code></td>
-</tr>
-<tr>
-<td><strong>Returns</strong></td>
-<td><code>void</code></td>
-</tr>
-<tr>
-<td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/core/tool-manager.ts:171</code></td>
-</tr>
-</tbody>
-</table>
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `private` |
+| **Returns** | `void` || **Location** | `C:/Users/chris/git/archlette/src/core/tool-manager.ts:174` |
 
 **Parameters:**
 
@@ -1165,30 +594,11 @@ Make file executable (Unix only)
 
 Download and install Structurizr CLI to cache
 
-<table>
-<tbody>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>function</code></td>
-</tr>
-<tr>
-<td><strong>Visibility</strong></td>
-<td><code>private</code></td>
-</tr>
-<tr>
-<td><strong>Async</strong></td>
-<td>Yes</td>
-</tr>
-<tr>
-<td><strong>Returns</strong></td>
-<td><code>Promise<string></code></td>
-</tr>
-<tr>
-<td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/core/tool-manager.ts:180</code></td>
-</tr>
-</tbody>
-</table>
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `private` |
+| **Async** | Yes || **Returns** | `Promise<string>` || **Location** | `C:/Users/chris/git/archlette/src/core/tool-manager.ts:183` |
 
 **Parameters:**
 
@@ -1199,30 +609,11 @@ Download and install Structurizr CLI to cache
 
 Download and install PlantUML to cache
 
-<table>
-<tbody>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>function</code></td>
-</tr>
-<tr>
-<td><strong>Visibility</strong></td>
-<td><code>private</code></td>
-</tr>
-<tr>
-<td><strong>Async</strong></td>
-<td>Yes</td>
-</tr>
-<tr>
-<td><strong>Returns</strong></td>
-<td><code>Promise<string></code></td>
-</tr>
-<tr>
-<td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/core/tool-manager.ts:218</code></td>
-</tr>
-</tbody>
-</table>
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `private` |
+| **Async** | Yes || **Returns** | `Promise<string>` || **Location** | `C:/Users/chris/git/archlette/src/core/tool-manager.ts:221` |
 
 **Parameters:**
 
@@ -1233,30 +624,41 @@ Download and install PlantUML to cache
 
 Find or download Structurizr CLI
 
-<table>
-<tbody>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>function</code></td>
-</tr>
-<tr>
-<td><strong>Visibility</strong></td>
-<td><code>public</code></td>
-</tr>
-<tr>
-<td><strong>Async</strong></td>
-<td>Yes</td>
-</tr>
-<tr>
-<td><strong>Returns</strong></td>
-<td><code>Promise<string></code> — Path to structurizr executable/script</td>
-</tr>
-<tr>
-<td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/core/tool-manager.ts:244</code></td>
-</tr>
-</tbody>
-</table>
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `public` |
+| **Async** | Yes || **Returns** | `Promise<string>` - Path to structurizr executable/script || **Location** | `C:/Users/chris/git/archlette/src/core/tool-manager.ts:247` |
+
+**Parameters:**
+
+- `log`: <code>import("C:/Users/chris/git/archlette/src/core/logger").Logger</code> — - Optional logger
+
+---
+##### `downloadStructurizrLite()`
+
+Download and install Structurizr Lite to cache
+
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `private` |
+| **Async** | Yes || **Returns** | `Promise<string>` || **Location** | `C:/Users/chris/git/archlette/src/core/tool-manager.ts:284` |
+
+**Parameters:**
+
+- `cacheDir`: <code>string</code>- `log`: <code>import("C:/Users/chris/git/archlette/src/core/logger").Logger</code>
+
+---
+##### `findStructurizrLite()`
+
+Find or download Structurizr Lite WAR file
+
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `public` |
+| **Async** | Yes || **Returns** | `Promise<string>` - Path to structurizr-lite.war file || **Location** | `C:/Users/chris/git/archlette/src/core/tool-manager.ts:316` |
 
 **Parameters:**
 
@@ -1267,30 +669,11 @@ Find or download Structurizr CLI
 
 Find or download PlantUML JAR
 
-<table>
-<tbody>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>function</code></td>
-</tr>
-<tr>
-<td><strong>Visibility</strong></td>
-<td><code>public</code></td>
-</tr>
-<tr>
-<td><strong>Async</strong></td>
-<td>Yes</td>
-</tr>
-<tr>
-<td><strong>Returns</strong></td>
-<td><code>Promise<string></code> — Path to plantuml.jar</td>
-</tr>
-<tr>
-<td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/core/tool-manager.ts:284</code></td>
-</tr>
-</tbody>
-</table>
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `public` |
+| **Async** | Yes || **Returns** | `Promise<string>` - Path to plantuml.jar || **Location** | `C:/Users/chris/git/archlette/src/core/tool-manager.ts:342` |
 
 **Parameters:**
 
@@ -1301,26 +684,11 @@ Find or download PlantUML JAR
 
 Verify Java is available
 
-<table>
-<tbody>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>function</code></td>
-</tr>
-<tr>
-<td><strong>Visibility</strong></td>
-<td><code>public</code></td>
-</tr>
-<tr>
-<td><strong>Returns</strong></td>
-<td><code>string</code> — Java version string if available, null otherwise</td>
-</tr>
-<tr>
-<td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/core/tool-manager.ts:313</code></td>
-</tr>
-</tbody>
-</table>
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `public` |
+| **Returns** | `string` - Java version string if available, null otherwise || **Location** | `C:/Users/chris/git/archlette/src/core/tool-manager.ts:371` |
 
 
 
@@ -1329,28 +697,31 @@ Verify Java is available
 
 Validate Java is installed (throw if not)
 
-<table>
-<tbody>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>function</code></td>
-</tr>
-<tr>
-<td><strong>Visibility</strong></td>
-<td><code>public</code></td>
-</tr>
-<tr>
-<td><strong>Returns</strong></td>
-<td><code>void</code></td>
-</tr>
-<tr>
-<td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/core/tool-manager.ts:334</code></td>
-</tr>
-</tbody>
-</table>
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `public` |
+| **Returns** | `void` || **Location** | `C:/Users/chris/git/archlette/src/core/tool-manager.ts:392` |
 
 
+
+---
+##### `findMermaidCLI()`
+
+Find Mermaid CLI in system PATH
+
+Note: Mermaid CLI is not auto-downloaded. Users should install it via npm:
+- Global: npm install -g
+
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `public` |
+| **Returns** | `string` - Path to mmdc executable || **Location** | `C:/Users/chris/git/archlette/src/core/tool-manager.ts:421` |
+
+**Parameters:**
+
+- `log`: <code>import("C:/Users/chris/git/archlette/src/core/logger").Logger</code> — - Optional logger
 
 ---
 ##### `resolveConfig()`
@@ -1359,26 +730,11 @@ For each stage, resolve includes/excludes for each node:
   - If node omits includes/excludes, inherit from defaults.
   - Add configBaseDir for resolving config-relative paths
 
-<table>
-<tbody>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>function</code></td>
-</tr>
-<tr>
-<td><strong>Visibility</strong></td>
-<td><code>public</code></td>
-</tr>
-<tr>
-<td><strong>Returns</strong></td>
-<td><code>import("C:/Users/chris/git/archlette/src/core/types-aac").ResolvedAACConfig</code></td>
-</tr>
-<tr>
-<td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/core/types-aac.ts:145</code></td>
-</tr>
-</tbody>
-</table>
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `public` |
+| **Returns** | `import("C:/Users/chris/git/archlette/src/core/types-aac").ResolvedAACConfig` || **Location** | `C:/Users/chris/git/archlette/src/core/types-aac.ts:145` |
 
 **Parameters:**
 
@@ -1393,3 +749,4 @@ For each stage, resolve includes/excludes for each node:
 <div align="center">
 <sub><a href="./default-container.md">← Back to Container</a> | <a href="./README.md">← Back to System</a> | Generated with <a href="https://github.com/chrislyons-dev/archlette">Archlette</a></sub>
 </div>
+

@@ -6,22 +6,11 @@
 
 ## Component Information
 
-<table>
-<tbody>
-<tr>
-<td><strong>Component</strong></td>
-<td>shared</td>
-</tr>
-<tr>
-<td><strong>Container</strong></td>
-<td>Application</td>
-</tr>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>module</code></td>
-</tr>
-</tbody>
-</table>
+| Field | Value |
+| --- | --- |
+| **Component** | shared |
+| **Container** | Application |
+| **Type** | `module` |
 
 ---
 
@@ -48,26 +37,11 @@ Deduplicate relationships by source+destination combination
 - Extracts imported names from descriptions (removes "imports " prefix) and keeps only unique names
 - Returns one relationship per unique source+destination pair
 
-<table>
-<tbody>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>function</code></td>
-</tr>
-<tr>
-<td><strong>Visibility</strong></td>
-<td><code>public</code></td>
-</tr>
-<tr>
-<td><strong>Returns</strong></td>
-<td><code>z.infer<any>[]</code></td>
-</tr>
-<tr>
-<td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/shared/relationship-utils.ts:15</code></td>
-</tr>
-</tbody>
-</table>
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `public` |
+| **Returns** | `z.infer<any>[]` || **Location** | `C:/Users/chris/git/archlette/src/extractors/builtin/shared/relationship-utils.ts:15` |
 
 **Parameters:**
 
@@ -82,3 +56,4 @@ Deduplicate relationships by source+destination combination
 <div align="center">
 <sub><a href="./default-container.md">← Back to Container</a> | <a href="./README.md">← Back to System</a> | Generated with <a href="https://github.com/chrislyons-dev/archlette">Archlette</a></sub>
 </div>
+

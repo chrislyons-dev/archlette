@@ -2,9 +2,9 @@
 set separator none
 title Application - Application - Components
 
-top to bottom direction
-skinparam ranksep 60
-skinparam nodesep 30
+left to right direction
+skinparam ranksep 20
+skinparam nodesep 10
 
 skinparam {
   arrowFontSize 10
@@ -17,93 +17,100 @@ skinparam {
 hide stereotype
 
 skinparam rectangle<<Application.Application.basic_wranglerbasicWranglerExtractor>> {
-  BackgroundColor #85bbf0
+  BackgroundColor #d4e8fc
   FontColor #000000
-  BorderColor #5d82a8
+  BorderColor #94a2b0
   roundCorner 20
   shadowing false
 }
 skinparam rectangle<<Application.Application.basic_wranglerderiveContainerType>> {
-  BackgroundColor #85bbf0
+  BackgroundColor #d4e8fc
   FontColor #000000
-  BorderColor #5d82a8
+  BorderColor #94a2b0
   roundCorner 20
   shadowing false
 }
 skinparam rectangle<<Application.Application.basic_wranglerextractContainerRelationships>> {
-  BackgroundColor #85bbf0
+  BackgroundColor #d4e8fc
   FontColor #000000
-  BorderColor #5d82a8
+  BorderColor #94a2b0
   roundCorner 20
   shadowing false
 }
 skinparam rectangle<<Application.Application.basic_wranglerextractContainers>> {
-  BackgroundColor #85bbf0
+  BackgroundColor #d4e8fc
   FontColor #000000
-  BorderColor #5d82a8
+  BorderColor #94a2b0
   roundCorner 20
   shadowing false
 }
 skinparam rectangle<<Application.Application.basic_wranglerextractDeploymentRelationships>> {
-  BackgroundColor #85bbf0
+  BackgroundColor #d4e8fc
   FontColor #000000
-  BorderColor #5d82a8
+  BorderColor #94a2b0
   roundCorner 20
   shadowing false
 }
 skinparam rectangle<<Application.Application.basic_wranglerextractDeploymentsAndInstances>> {
-  BackgroundColor #85bbf0
+  BackgroundColor #d4e8fc
   FontColor #000000
-  BorderColor #5d82a8
+  BorderColor #94a2b0
   roundCorner 20
   shadowing false
 }
 skinparam rectangle<<Application.Application.basic_wranglerextractDescription>> {
-  BackgroundColor #85bbf0
+  BackgroundColor #d4e8fc
   FontColor #000000
-  BorderColor #5d82a8
+  BorderColor #94a2b0
+  roundCorner 20
+  shadowing false
+}
+skinparam rectangle<<Application.Application.basic_wranglerfindMatchingContainer>> {
+  BackgroundColor #d4e8fc
+  FontColor #000000
+  BorderColor #94a2b0
   roundCorner 20
   shadowing false
 }
 skinparam rectangle<<Application.Application.basic_wranglerfindWranglerFiles>> {
-  BackgroundColor #85bbf0
+  BackgroundColor #d4e8fc
   FontColor #000000
-  BorderColor #5d82a8
+  BorderColor #94a2b0
   roundCorner 20
   shadowing false
 }
 skinparam rectangle<<Application.Application.basic_wranglergetEnvironmentConfig>> {
-  BackgroundColor #85bbf0
+  BackgroundColor #d4e8fc
   FontColor #000000
-  BorderColor #5d82a8
+  BorderColor #94a2b0
   roundCorner 20
   shadowing false
 }
 skinparam rectangle<<Application.Application.basic_wranglergetEnvironments>> {
-  BackgroundColor #85bbf0
+  BackgroundColor #d4e8fc
   FontColor #000000
-  BorderColor #5d82a8
+  BorderColor #94a2b0
   roundCorner 20
   shadowing false
 }
 skinparam rectangle<<Application.Application.basic_wranglermapToIR>> {
-  BackgroundColor #85bbf0
+  BackgroundColor #d4e8fc
   FontColor #000000
-  BorderColor #5d82a8
+  BorderColor #94a2b0
   roundCorner 20
   shadowing false
 }
 skinparam rectangle<<Application.Application.basic_wranglernormalizeServiceBindings>> {
-  BackgroundColor #85bbf0
+  BackgroundColor #d4e8fc
   FontColor #000000
-  BorderColor #5d82a8
+  BorderColor #94a2b0
   roundCorner 20
   shadowing false
 }
 skinparam rectangle<<Application.Application.basic_wranglerparseWranglerFile>> {
-  BackgroundColor #85bbf0
+  BackgroundColor #d4e8fc
   FontColor #000000
-  BorderColor #5d82a8
+  BorderColor #94a2b0
   roundCorner 20
   shadowing false
 }
@@ -119,7 +126,8 @@ rectangle "Application\n<size:10>[Container: Application]</size>" <<Application.
   rectangle "==basic_wrangler.extractContainers\n<size:10>[Component: function]</size>\n\nExtract containers from wrangler configurations Creates one container per wrangler.toml file. Each container represents a Cloudflare Worker (if main exists) or other Cloudflare service." <<Application.Application.basic_wranglerextractContainers>> as Application.Application.basic_wranglerextractContainers
   rectangle "==basic_wrangler.deriveContainerType\n<size:10>[Component: function]</size>\n\nDerive container type from wrangler configuration Logic: - If 'main' field exists → Cloudflare Worker - Otherwise → Cloudflare Service (generic)" <<Application.Application.basic_wranglerderiveContainerType>> as Application.Application.basic_wranglerderiveContainerType
   rectangle "==basic_wrangler.extractDeploymentsAndInstances\n<size:10>[Component: function]</size>\n\nExtract deployments and container instances Creates: - One deployment per environment - Container instances for each container in each environment" <<Application.Application.basic_wranglerextractDeploymentsAndInstances>> as Application.Application.basic_wranglerextractDeploymentsAndInstances
-  rectangle "==basic_wrangler.extractContainerRelationships\n<size:10>[Component: function]</size>\n\nExtract container relationships from service bindings Creates logical dependencies between containers based on service bindings. Deduplicates relationships across all environments." <<Application.Application.basic_wranglerextractContainerRelationships>> as Application.Application.basic_wranglerextractContainerRelationships
+  rectangle "==basic_wrangler.findMatchingContainer\n<size:10>[Component: function]</size>\n\nSmart lookup to find matching container for a service name Tries exact match first, then fuzzy matching with common environment suffix removal." <<Application.Application.basic_wranglerfindMatchingContainer>> as Application.Application.basic_wranglerfindMatchingContainer
+  rectangle "==basic_wrangler.extractContainerRelationships\n<size:10>[Component: function]</size>\n\nExtract container relationships from service bindings Creates logical dependencies between containers based on service bindings. Uses smart lookup to match service names to actual containers. Deduplicates relationships across all environments." <<Application.Application.basic_wranglerextractContainerRelationships>> as Application.Application.basic_wranglerextractContainerRelationships
   rectangle "==basic_wrangler.extractDeploymentRelationships\n<size:10>[Component: function]</size>\n\nExtract deployment relationships from container instances Creates physical instance-to-instance relationships based on service bindings. Each relationship represents an actual runtime dependency in a specific environment." <<Application.Application.basic_wranglerextractDeploymentRelationships>> as Application.Application.basic_wranglerextractDeploymentRelationships
   rectangle "==basic_wrangler.extractDescription\n<size:10>[Component: function]</size>\n\nExtract description from" <<Application.Application.basic_wranglerextractDescription>> as Application.Application.basic_wranglerextractDescription
   rectangle "==basic_wrangler.parseWranglerFile\n<size:10>[Component: function]</size>\n\nParse a wrangler.toml file" <<Application.Application.basic_wranglerparseWranglerFile>> as Application.Application.basic_wranglerparseWranglerFile

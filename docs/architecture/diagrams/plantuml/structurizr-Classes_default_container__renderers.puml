@@ -2,9 +2,9 @@
 set separator none
 title Application - Application - Components
 
-top to bottom direction
-skinparam ranksep 60
-skinparam nodesep 30
+left to right direction
+skinparam ranksep 20
+skinparam nodesep 10
 
 skinparam {
   arrowFontSize 10
@@ -16,24 +16,94 @@ skinparam {
 
 hide stereotype
 
-skinparam rectangle<<Application.Application.renderersplantumlRender>> {
-  BackgroundColor #85bbf0
+skinparam rectangle<<Application.Application.renderersescapeInvalidHtmlTags>> {
+  BackgroundColor #d4e8fc
   FontColor #000000
-  BorderColor #5d82a8
+  BorderColor #94a2b0
+  roundCorner 20
+  shadowing false
+}
+skinparam rectangle<<Application.Application.renderersextractStylesBlock>> {
+  BackgroundColor #d4e8fc
+  FontColor #000000
+  BorderColor #94a2b0
+  roundCorner 20
+  shadowing false
+}
+skinparam rectangle<<Application.Application.renderersfindGraphviz>> {
+  BackgroundColor #d4e8fc
+  FontColor #000000
+  BorderColor #94a2b0
+  roundCorner 20
+  shadowing false
+}
+skinparam rectangle<<Application.Application.renderersmermaidRender>> {
+  BackgroundColor #d4e8fc
+  FontColor #000000
+  BorderColor #94a2b0
+  roundCorner 20
+  shadowing false
+}
+skinparam rectangle<<Application.Application.renderersplantumlRender>> {
+  BackgroundColor #d4e8fc
+  FontColor #000000
+  BorderColor #94a2b0
+  roundCorner 20
+  shadowing false
+}
+skinparam rectangle<<Application.Application.renderersremoveBlock>> {
+  BackgroundColor #d4e8fc
+  FontColor #000000
+  BorderColor #94a2b0
+  roundCorner 20
+  shadowing false
+}
+skinparam rectangle<<Application.Application.renderersremoveBrandingBlock>> {
+  BackgroundColor #d4e8fc
+  FontColor #000000
+  BorderColor #94a2b0
+  roundCorner 20
+  shadowing false
+}
+skinparam rectangle<<Application.Application.renderersremoveStylesBlock>> {
+  BackgroundColor #d4e8fc
+  FontColor #000000
+  BorderColor #94a2b0
   roundCorner 20
   shadowing false
 }
 skinparam rectangle<<Application.Application.renderersrun>> {
-  BackgroundColor #85bbf0
+  BackgroundColor #d4e8fc
   FontColor #000000
-  BorderColor #5d82a8
+  BorderColor #94a2b0
+  roundCorner 20
+  shadowing false
+}
+skinparam rectangle<<Application.Application.rendererssanitizeDotContent>> {
+  BackgroundColor #d4e8fc
+  FontColor #000000
+  BorderColor #94a2b0
+  roundCorner 20
+  shadowing false
+}
+skinparam rectangle<<Application.Application.rendererssanitizeDotFiles>> {
+  BackgroundColor #d4e8fc
+  FontColor #000000
+  BorderColor #94a2b0
   roundCorner 20
   shadowing false
 }
 skinparam rectangle<<Application.Application.renderersstructurizrExport>> {
-  BackgroundColor #85bbf0
+  BackgroundColor #d4e8fc
   FontColor #000000
-  BorderColor #5d82a8
+  BorderColor #94a2b0
+  roundCorner 20
+  shadowing false
+}
+skinparam rectangle<<Application.Application.renderersstructurizrRender>> {
+  BackgroundColor #d4e8fc
+  FontColor #000000
+  BorderColor #94a2b0
   roundCorner 20
   shadowing false
 }
@@ -44,9 +114,19 @@ skinparam rectangle<<Application.Application>> {
 }
 
 rectangle "Application\n<size:10>[Container: Application]</size>" <<Application.Application>> {
-  rectangle "==renderers.run\n<size:10>[Component: function]</size>\n\nExecute the rendering stage" <<Application.Application.renderersrun>> as Application.Application.renderersrun
   rectangle "==renderers.plantumlRender\n<size:10>[Component: function]</size>\n\nRender PlantUML files to PNG images" <<Application.Application.renderersplantumlRender>> as Application.Application.renderersplantumlRender
-  rectangle "==renderers.structurizrExport\n<size:10>[Component: function]</size>\n\nExport Structurizr DSL to PlantUML and Mermaid formats" <<Application.Application.renderersstructurizrExport>> as Application.Application.renderersstructurizrExport
+  rectangle "==renderers.structurizrExport\n<size:10>[Component: function]</size>\n\nExport Structurizr DSL to PlantUML and/or Mermaid formats" <<Application.Application.renderersstructurizrExport>> as Application.Application.renderersstructurizrExport
+  rectangle "==renderers.findGraphviz\n<size:10>[Component: function]</size>\n\nFind Graphviz dot command in PATH" <<Application.Application.renderersfindGraphviz>> as Application.Application.renderersfindGraphviz
+  rectangle "==renderers.structurizrRender\n<size:10>[Component: function]</size>\n\nRender Structurizr DSL to images using CLI DOT export + Graphviz" <<Application.Application.renderersstructurizrRender>> as Application.Application.renderersstructurizrRender
+  rectangle "==renderers.extractStylesBlock\n<size:10>[Component: function]</size>\n\nExtract styles block from theme content using brace counting" <<Application.Application.renderersextractStylesBlock>> as Application.Application.renderersextractStylesBlock
+  rectangle "==renderers.removeBlock\n<size:10>[Component: function]</size>\n\nRemove a block from DSL content using brace counting" <<Application.Application.renderersremoveBlock>> as Application.Application.renderersremoveBlock
+  rectangle "==renderers.removeStylesBlock\n<size:10>[Component: function]</size>" <<Application.Application.renderersremoveStylesBlock>> as Application.Application.renderersremoveStylesBlock
+  rectangle "==renderers.removeBrandingBlock\n<size:10>[Component: function]</size>" <<Application.Application.renderersremoveBrandingBlock>> as Application.Application.renderersremoveBrandingBlock
+  rectangle "==renderers.escapeInvalidHtmlTags\n<size:10>[Component: function]</size>\n\nEscape all angle brackets that aren't part of valid DOT HTML tags. Handles cases where Structurizr inserts <br /> for word-wrapping inside other tag-like content (e.g., <slot name="header<br />/>"). Strategy: 1. Find all valid HTML tags using regex 2. Escape all < and > that are NOT part of those tags" <<Application.Application.renderersescapeInvalidHtmlTags>> as Application.Application.renderersescapeInvalidHtmlTags
+  rectangle "==renderers.sanitizeDotContent\n<size:10>[Component: function]</size>\n\nSanitize DOT file content for Graphviz compatibility Applies string replacements only within label=<<...>> content, preserving the DOT structural syntax." <<Application.Application.rendererssanitizeDotContent>> as Application.Application.rendererssanitizeDotContent
+  rectangle "==renderers.sanitizeDotFiles\n<size:10>[Component: function]</size>\n\nSanitize all DOT files in a directory" <<Application.Application.rendererssanitizeDotFiles>> as Application.Application.rendererssanitizeDotFiles
+  rectangle "==renderers.run\n<size:10>[Component: function]</size>\n\nExecute the rendering stage" <<Application.Application.renderersrun>> as Application.Application.renderersrun
+  rectangle "==renderers.mermaidRender\n<size:10>[Component: function]</size>\n\nRender Mermaid files to images" <<Application.Application.renderersmermaidRender>> as Application.Application.renderersmermaidRender
 }
 
 @enduml

@@ -6,27 +6,12 @@
 
 ## Component Information
 
-<table>
-<tbody>
-<tr>
-<td><strong>Component</strong></td>
-<td>basic_node</td>
-</tr>
-<tr>
-<td><strong>Container</strong></td>
-<td>Application</td>
-</tr>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>module</code></td>
-</tr>
-<tr>
-<td><strong>Description</strong></td>
-<td>TypeScript/JavaScript code extractor</td>
-</tr>
-</tbody>
-</table>
-
+| Field | Value |
+| --- | --- |
+| **Component** | basic_node |
+| **Container** | Application |
+| **Type** | `module` |
+| **Description** | TypeScript/JavaScript code extractor |
 ---
 
 ## Code Structure
@@ -48,30 +33,11 @@
 
 Extract architecture information from a Node.js/TypeScript codebase
 
-<table>
-<tbody>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>function</code></td>
-</tr>
-<tr>
-<td><strong>Visibility</strong></td>
-<td><code>public</code></td>
-</tr>
-<tr>
-<td><strong>Async</strong></td>
-<td>Yes</td>
-</tr>
-<tr>
-<td><strong>Returns</strong></td>
-<td><code>Promise<z.infer<any>></code> — Promise resolving to ArchletteIR with code, components, and relationships</td>
-</tr>
-<tr>
-<td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node.ts:74</code></td>
-</tr>
-</tbody>
-</table>
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `public` |
+| **Async** | Yes || **Returns** | `Promise<z.infer<any>>` - Promise resolving to ArchletteIR with code, components, and relationships || **Location** | `C:/Users/chris/git/archlette/src/extractors/builtin/basic-node.ts:74` |
 
 **Parameters:**
 
@@ -86,26 +52,11 @@ Extract architecture information from a Node.js/TypeScript codebase
 
 Extract all class declarations from a source file
 
-<table>
-<tbody>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>function</code></td>
-</tr>
-<tr>
-<td><strong>Visibility</strong></td>
-<td><code>public</code></td>
-</tr>
-<tr>
-<td><strong>Returns</strong></td>
-<td><code>import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/types").ExtractedClass[]</code></td>
-</tr>
-<tr>
-<td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/class-extractor.ts:32</code></td>
-</tr>
-</tbody>
-</table>
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `public` |
+| **Returns** | `import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/types").ExtractedClass[]` || **Location** | `C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/class-extractor.ts:32` |
 
 **Parameters:**
 
@@ -116,26 +67,11 @@ Extract all class declarations from a source file
 
 Extract information from a single class declaration
 
-<table>
-<tbody>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>function</code></td>
-</tr>
-<tr>
-<td><strong>Visibility</strong></td>
-<td><code>private</code></td>
-</tr>
-<tr>
-<td><strong>Returns</strong></td>
-<td><code>import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/types").ExtractedClass</code></td>
-</tr>
-<tr>
-<td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/class-extractor.ts:53</code></td>
-</tr>
-</tbody>
-</table>
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `private` |
+| **Returns** | `import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/types").ExtractedClass` || **Location** | `C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/class-extractor.ts:53` |
 
 **Parameters:**
 
@@ -146,26 +82,11 @@ Extract information from a single class declaration
 
 Extract method information from a class
 
-<table>
-<tbody>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>function</code></td>
-</tr>
-<tr>
-<td><strong>Visibility</strong></td>
-<td><code>private</code></td>
-</tr>
-<tr>
-<td><strong>Returns</strong></td>
-<td><code>import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/types").ExtractedMethod</code></td>
-</tr>
-<tr>
-<td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/class-extractor.ts:92</code></td>
-</tr>
-</tbody>
-</table>
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `private` |
+| **Returns** | `import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/types").ExtractedMethod` || **Location** | `C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/class-extractor.ts:92` |
 
 **Parameters:**
 
@@ -176,26 +97,11 @@ Extract method information from a class
 
 Extract property information from a class
 
-<table>
-<tbody>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>function</code></td>
-</tr>
-<tr>
-<td><strong>Visibility</strong></td>
-<td><code>private</code></td>
-</tr>
-<tr>
-<td><strong>Returns</strong></td>
-<td><code>import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/types").ExtractedProperty</code></td>
-</tr>
-<tr>
-<td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/class-extractor.ts:121</code></td>
-</tr>
-</tbody>
-</table>
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `private` |
+| **Returns** | `import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/types").ExtractedProperty` || **Location** | `C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/class-extractor.ts:121` |
 
 **Parameters:**
 
@@ -206,26 +112,11 @@ Extract property information from a class
 
 Extract parameter information
 
-<table>
-<tbody>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>function</code></td>
-</tr>
-<tr>
-<td><strong>Visibility</strong></td>
-<td><code>private</code></td>
-</tr>
-<tr>
-<td><strong>Returns</strong></td>
-<td><code>import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/types").ParameterInfo</code></td>
-</tr>
-<tr>
-<td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/class-extractor.ts:147</code></td>
-</tr>
-</tbody>
-</table>
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `private` |
+| **Returns** | `import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/types").ParameterInfo` || **Location** | `C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/class-extractor.ts:147` |
 
 **Parameters:**
 
@@ -236,26 +127,11 @@ Extract parameter information
 
 Map ts-morph Scope to our visibility string
 
-<table>
-<tbody>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>function</code></td>
-</tr>
-<tr>
-<td><strong>Visibility</strong></td>
-<td><code>private</code></td>
-</tr>
-<tr>
-<td><strong>Returns</strong></td>
-<td><code>"public" | "private" | "protected"</code></td>
-</tr>
-<tr>
-<td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/class-extractor.ts:168</code></td>
-</tr>
-</tbody>
-</table>
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `private` |
+| **Returns** | `"public" \| "private" \| "protected"` || **Location** | `C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/class-extractor.ts:168` |
 
 **Parameters:**
 
@@ -267,26 +143,11 @@ Map ts-morph Scope to our visibility string
 Get JSDoc comments from a source file
 Checks both the first statement and module-level JSDoc
 
-<table>
-<tbody>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>function</code></td>
-</tr>
-<tr>
-<td><strong>Visibility</strong></td>
-<td><code>private</code></td>
-</tr>
-<tr>
-<td><strong>Returns</strong></td>
-<td><code>Node[]</code> — Array of JSDoc nodes (empty if none found)</td>
-</tr>
-<tr>
-<td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts:38</code></td>
-</tr>
-</tbody>
-</table>
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `private` |
+| **Returns** | `Node[]` - Array of JSDoc nodes (empty if none found) || **Location** | `C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts:38` |
 
 **Parameters:**
 
@@ -298,26 +159,11 @@ Checks both the first statement and module-level JSDoc
 Extract component information from file-level JSDoc
 Checks the first JSDoc comment in the file for
 
-<table>
-<tbody>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>function</code></td>
-</tr>
-<tr>
-<td><strong>Visibility</strong></td>
-<td><code>public</code></td>
-</tr>
-<tr>
-<td><strong>Returns</strong></td>
-<td><code>import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector").ComponentInfo</code></td>
-</tr>
-<tr>
-<td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts:64</code></td>
-</tr>
-</tbody>
-</table>
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `public` |
+| **Returns** | `import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector").ComponentInfo` || **Location** | `C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts:64` |
 
 **Parameters:**
 
@@ -329,26 +175,11 @@ Checks the first JSDoc comment in the file for
 Extract actors from file-level JSDoc
 Looks for
 
-<table>
-<tbody>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>function</code></td>
-</tr>
-<tr>
-<td><strong>Visibility</strong></td>
-<td><code>public</code></td>
-</tr>
-<tr>
-<td><strong>Returns</strong></td>
-<td><code>import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector").ActorInfo[]</code></td>
-</tr>
-<tr>
-<td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts:90</code></td>
-</tr>
-</tbody>
-</table>
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `public` |
+| **Returns** | `import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector").ActorInfo[]` || **Location** | `C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts:90` |
 
 **Parameters:**
 
@@ -360,26 +191,11 @@ Looks for
 Extract relationships from file-level JSDoc
 Looks for
 
-<table>
-<tbody>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>function</code></td>
-</tr>
-<tr>
-<td><strong>Visibility</strong></td>
-<td><code>public</code></td>
-</tr>
-<tr>
-<td><strong>Returns</strong></td>
-<td><code>import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector").RelationshipInfo[]</code></td>
-</tr>
-<tr>
-<td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts:109</code></td>
-</tr>
-</tbody>
-</table>
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `public` |
+| **Returns** | `import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector").RelationshipInfo[]` || **Location** | `C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts:109` |
 
 **Parameters:**
 
@@ -390,26 +206,11 @@ Looks for
 
 Extract component info from a JSDoc node
 
-<table>
-<tbody>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>function</code></td>
-</tr>
-<tr>
-<td><strong>Visibility</strong></td>
-<td><code>private</code></td>
-</tr>
-<tr>
-<td><strong>Returns</strong></td>
-<td><code>import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector").ComponentInfo</code></td>
-</tr>
-<tr>
-<td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts:125</code></td>
-</tr>
-</tbody>
-</table>
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `private` |
+| **Returns** | `import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector").ComponentInfo` || **Location** | `C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts:125` |
 
 **Parameters:**
 
@@ -421,26 +222,11 @@ Extract component info from a JSDoc node
 Extract actors from a JSDoc node
 Parses
 
-<table>
-<tbody>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>function</code></td>
-</tr>
-<tr>
-<td><strong>Visibility</strong></td>
-<td><code>private</code></td>
-</tr>
-<tr>
-<td><strong>Returns</strong></td>
-<td><code>import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector").ActorInfo[]</code></td>
-</tr>
-<tr>
-<td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts:157</code></td>
-</tr>
-</tbody>
-</table>
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `private` |
+| **Returns** | `import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector").ActorInfo[]` || **Location** | `C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts:157` |
 
 **Parameters:**
 
@@ -451,26 +237,11 @@ Parses
 
 Parse an
 
-<table>
-<tbody>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>function</code></td>
-</tr>
-<tr>
-<td><strong>Visibility</strong></td>
-<td><code>private</code></td>
-</tr>
-<tr>
-<td><strong>Returns</strong></td>
-<td><code>import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector").ActorInfo</code></td>
-</tr>
-<tr>
-<td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts:188</code></td>
-</tr>
-</tbody>
-</table>
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `private` |
+| **Returns** | `import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector").ActorInfo` || **Location** | `C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts:188` |
 
 **Parameters:**
 
@@ -482,26 +253,11 @@ Parse an
 Extract relationships from a JSDoc node
 Parses
 
-<table>
-<tbody>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>function</code></td>
-</tr>
-<tr>
-<td><strong>Visibility</strong></td>
-<td><code>private</code></td>
-</tr>
-<tr>
-<td><strong>Returns</strong></td>
-<td><code>import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector").RelationshipInfo[]</code></td>
-</tr>
-<tr>
-<td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts:225</code></td>
-</tr>
-</tbody>
-</table>
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `private` |
+| **Returns** | `import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector").RelationshipInfo[]` || **Location** | `C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts:225` |
 
 **Parameters:**
 
@@ -512,26 +268,11 @@ Parses
 
 Parse a
 
-<table>
-<tbody>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>function</code></td>
-</tr>
-<tr>
-<td><strong>Visibility</strong></td>
-<td><code>private</code></td>
-</tr>
-<tr>
-<td><strong>Returns</strong></td>
-<td><code>import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector").RelationshipInfo</code></td>
-</tr>
-<tr>
-<td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts:252</code></td>
-</tr>
-</tbody>
-</table>
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `private` |
+| **Returns** | `import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector").RelationshipInfo` || **Location** | `C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts:252` |
 
 **Parameters:**
 
@@ -544,26 +285,11 @@ Extract component name from a JSDoc tag
 Handles formats like:
 -
 
-<table>
-<tbody>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>function</code></td>
-</tr>
-<tr>
-<td><strong>Visibility</strong></td>
-<td><code>private</code></td>
-</tr>
-<tr>
-<td><strong>Returns</strong></td>
-<td><code>string</code></td>
-</tr>
-<tr>
-<td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts:285</code></td>
-</tr>
-</tbody>
-</table>
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `private` |
+| **Returns** | `string` || **Location** | `C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts:285` |
 
 **Parameters:**
 
@@ -581,26 +307,11 @@ Examples:
 - /path/to/project/src/index.ts -> ROOT_COMPONENT_MARKER
 - /path/to/project/services/api/client.ts -> 'api'
 
-<table>
-<tbody>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>function</code></td>
-</tr>
-<tr>
-<td><strong>Visibility</strong></td>
-<td><code>private</code></td>
-</tr>
-<tr>
-<td><strong>Returns</strong></td>
-<td><code>import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector").ComponentInfo</code></td>
-</tr>
-<tr>
-<td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts:327</code></td>
-</tr>
-</tbody>
-</table>
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `private` |
+| **Returns** | `import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector").ComponentInfo` || **Location** | `C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/component-detector.ts:327` |
 
 **Parameters:**
 
@@ -611,26 +322,11 @@ Examples:
 
 Extract documentation information from JSDoc
 
-<table>
-<tbody>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>function</code></td>
-</tr>
-<tr>
-<td><strong>Visibility</strong></td>
-<td><code>public</code></td>
-</tr>
-<tr>
-<td><strong>Returns</strong></td>
-<td><code>import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/types").DocInfo</code></td>
-</tr>
-<tr>
-<td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/doc-extractor.ts:13</code></td>
-</tr>
-</tbody>
-</table>
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `public` |
+| **Returns** | `import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/types").DocInfo` || **Location** | `C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/doc-extractor.ts:13` |
 
 **Parameters:**
 
@@ -641,26 +337,11 @@ Extract documentation information from JSDoc
 
 Extract deprecation information from JSDoc
 
-<table>
-<tbody>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>function</code></td>
-</tr>
-<tr>
-<td><strong>Visibility</strong></td>
-<td><code>public</code></td>
-</tr>
-<tr>
-<td><strong>Returns</strong></td>
-<td><code>import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/types").DeprecationInfo</code></td>
-</tr>
-<tr>
-<td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/doc-extractor.ts:64</code></td>
-</tr>
-</tbody>
-</table>
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `public` |
+| **Returns** | `import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/types").DeprecationInfo` || **Location** | `C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/doc-extractor.ts:64` |
 
 **Parameters:**
 
@@ -671,26 +352,11 @@ Extract deprecation information from JSDoc
 
 Extract parameter descriptions from JSDoc
 
-<table>
-<tbody>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>function</code></td>
-</tr>
-<tr>
-<td><strong>Visibility</strong></td>
-<td><code>public</code></td>
-</tr>
-<tr>
-<td><strong>Returns</strong></td>
-<td><code>Map<string, string></code></td>
-</tr>
-<tr>
-<td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/doc-extractor.ts:93</code></td>
-</tr>
-</tbody>
-</table>
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `public` |
+| **Returns** | `Map<string, string>` || **Location** | `C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/doc-extractor.ts:93` |
 
 **Parameters:**
 
@@ -701,26 +367,11 @@ Extract parameter descriptions from JSDoc
 
 Extract return description from JSDoc
 
-<table>
-<tbody>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>function</code></td>
-</tr>
-<tr>
-<td><strong>Visibility</strong></td>
-<td><code>public</code></td>
-</tr>
-<tr>
-<td><strong>Returns</strong></td>
-<td><code>string</code></td>
-</tr>
-<tr>
-<td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/doc-extractor.ts:116</code></td>
-</tr>
-</tbody>
-</table>
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `public` |
+| **Returns** | `string` || **Location** | `C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/doc-extractor.ts:116` |
 
 **Parameters:**
 
@@ -731,26 +382,11 @@ Extract return description from JSDoc
 
 Extract parameter name from
 
-<table>
-<tbody>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>function</code></td>
-</tr>
-<tr>
-<td><strong>Visibility</strong></td>
-<td><code>private</code></td>
-</tr>
-<tr>
-<td><strong>Returns</strong></td>
-<td><code>string</code></td>
-</tr>
-<tr>
-<td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/doc-extractor.ts:131</code></td>
-</tr>
-</tbody>
-</table>
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `private` |
+| **Returns** | `string` || **Location** | `C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/doc-extractor.ts:131` |
 
 **Parameters:**
 
@@ -761,30 +397,11 @@ Extract parameter name from
 
 Find source files matching include/exclude patterns
 
-<table>
-<tbody>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>function</code></td>
-</tr>
-<tr>
-<td><strong>Visibility</strong></td>
-<td><code>public</code></td>
-</tr>
-<tr>
-<td><strong>Async</strong></td>
-<td>Yes</td>
-</tr>
-<tr>
-<td><strong>Returns</strong></td>
-<td><code>Promise<string[]></code></td>
-</tr>
-<tr>
-<td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/file-finder.ts:32</code></td>
-</tr>
-</tbody>
-</table>
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `public` |
+| **Async** | Yes || **Returns** | `Promise<string[]>` || **Location** | `C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/file-finder.ts:32` |
 
 **Parameters:**
 
@@ -795,30 +412,11 @@ Find source files matching include/exclude patterns
 
 Find package.json files within the search paths
 
-<table>
-<tbody>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>function</code></td>
-</tr>
-<tr>
-<td><strong>Visibility</strong></td>
-<td><code>public</code></td>
-</tr>
-<tr>
-<td><strong>Async</strong></td>
-<td>Yes</td>
-</tr>
-<tr>
-<td><strong>Returns</strong></td>
-<td><code>Promise<string[]></code></td>
-</tr>
-<tr>
-<td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/file-finder.ts:48</code></td>
-</tr>
-</tbody>
-</table>
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `public` |
+| **Async** | Yes || **Returns** | `Promise<string[]>` || **Location** | `C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/file-finder.ts:48` |
 
 **Parameters:**
 
@@ -829,30 +427,11 @@ Find package.json files within the search paths
 
 Read and parse package.json file
 
-<table>
-<tbody>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>function</code></td>
-</tr>
-<tr>
-<td><strong>Visibility</strong></td>
-<td><code>public</code></td>
-</tr>
-<tr>
-<td><strong>Async</strong></td>
-<td>Yes</td>
-</tr>
-<tr>
-<td><strong>Returns</strong></td>
-<td><code>Promise<import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/types").PackageInfo></code></td>
-</tr>
-<tr>
-<td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/file-finder.ts:98</code></td>
-</tr>
-</tbody>
-</table>
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `public` |
+| **Async** | Yes || **Returns** | `Promise<import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/types").PackageInfo>` || **Location** | `C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/file-finder.ts:98` |
 
 **Parameters:**
 
@@ -863,26 +442,11 @@ Read and parse package.json file
 
 Find the nearest parent package.json for a given file
 
-<table>
-<tbody>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>function</code></td>
-</tr>
-<tr>
-<td><strong>Visibility</strong></td>
-<td><code>public</code></td>
-</tr>
-<tr>
-<td><strong>Returns</strong></td>
-<td><code>import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/types").PackageInfo</code></td>
-</tr>
-<tr>
-<td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/file-finder.ts:122</code></td>
-</tr>
-</tbody>
-</table>
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `public` |
+| **Returns** | `import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/types").PackageInfo` || **Location** | `C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/file-finder.ts:122` |
 
 **Parameters:**
 
@@ -893,30 +457,11 @@ Find the nearest parent package.json for a given file
 
 Parse and extract information from source files
 
-<table>
-<tbody>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>function</code></td>
-</tr>
-<tr>
-<td><strong>Visibility</strong></td>
-<td><code>public</code></td>
-</tr>
-<tr>
-<td><strong>Async</strong></td>
-<td>Yes</td>
-</tr>
-<tr>
-<td><strong>Returns</strong></td>
-<td><code>Promise<import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/types").FileExtraction[]></code></td>
-</tr>
-<tr>
-<td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/file-parser.ts:24</code></td>
-</tr>
-</tbody>
-</table>
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `public` |
+| **Async** | Yes || **Returns** | `Promise<import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/types").FileExtraction[]>` || **Location** | `C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/file-parser.ts:24` |
 
 **Parameters:**
 
@@ -927,26 +472,11 @@ Parse and extract information from source files
 
 Extract all function declarations from a source file
 
-<table>
-<tbody>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>function</code></td>
-</tr>
-<tr>
-<td><strong>Visibility</strong></td>
-<td><code>public</code></td>
-</tr>
-<tr>
-<td><strong>Returns</strong></td>
-<td><code>import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/types").ExtractedFunction[]</code></td>
-</tr>
-<tr>
-<td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/function-extractor.ts:21</code></td>
-</tr>
-</tbody>
-</table>
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `public` |
+| **Returns** | `import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/types").ExtractedFunction[]` || **Location** | `C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/function-extractor.ts:21` |
 
 **Parameters:**
 
@@ -957,26 +487,11 @@ Extract all function declarations from a source file
 
 Extract information from a single function declaration
 
-<table>
-<tbody>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>function</code></td>
-</tr>
-<tr>
-<td><strong>Visibility</strong></td>
-<td><code>private</code></td>
-</tr>
-<tr>
-<td><strong>Returns</strong></td>
-<td><code>import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/types").ExtractedFunction</code></td>
-</tr>
-<tr>
-<td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/function-extractor.ts:44</code></td>
-</tr>
-</tbody>
-</table>
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `private` |
+| **Returns** | `import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/types").ExtractedFunction` || **Location** | `C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/function-extractor.ts:44` |
 
 **Parameters:**
 
@@ -987,26 +502,11 @@ Extract information from a single function declaration
 
 Extract parameter information
 
-<table>
-<tbody>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>function</code></td>
-</tr>
-<tr>
-<td><strong>Visibility</strong></td>
-<td><code>private</code></td>
-</tr>
-<tr>
-<td><strong>Returns</strong></td>
-<td><code>import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/types").ParameterInfo</code></td>
-</tr>
-<tr>
-<td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/function-extractor.ts:80</code></td>
-</tr>
-</tbody>
-</table>
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `private` |
+| **Returns** | `import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/types").ParameterInfo` || **Location** | `C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/function-extractor.ts:80` |
 
 **Parameters:**
 
@@ -1020,26 +520,11 @@ Examples:
   const handleClick = () => {}
   export const createUser = async (data) => {}
 
-<table>
-<tbody>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>function</code></td>
-</tr>
-<tr>
-<td><strong>Visibility</strong></td>
-<td><code>public</code></td>
-</tr>
-<tr>
-<td><strong>Returns</strong></td>
-<td><code>import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/types").ExtractedFunction[]</code></td>
-</tr>
-<tr>
-<td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/function-extractor.ts:104</code></td>
-</tr>
-</tbody>
-</table>
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `public` |
+| **Returns** | `import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/types").ExtractedFunction[]` || **Location** | `C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/function-extractor.ts:104` |
 
 **Parameters:**
 
@@ -1050,26 +535,11 @@ Examples:
 
 Extract all import declarations from a source file
 
-<table>
-<tbody>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>function</code></td>
-</tr>
-<tr>
-<td><strong>Visibility</strong></td>
-<td><code>public</code></td>
-</tr>
-<tr>
-<td><strong>Returns</strong></td>
-<td><code>import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/types").ExtractedImport[]</code></td>
-</tr>
-<tr>
-<td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/import-extractor.ts:15</code></td>
-</tr>
-</tbody>
-</table>
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `public` |
+| **Returns** | `import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/types").ExtractedImport[]` || **Location** | `C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/import-extractor.ts:15` |
 
 **Parameters:**
 
@@ -1080,26 +550,11 @@ Extract all import declarations from a source file
 
 Map file extractions to ArchletteIR
 
-<table>
-<tbody>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>function</code></td>
-</tr>
-<tr>
-<td><strong>Visibility</strong></td>
-<td><code>public</code></td>
-</tr>
-<tr>
-<td><strong>Returns</strong></td>
-<td><code>z.infer<any></code></td>
-</tr>
-<tr>
-<td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts:37</code></td>
-</tr>
-</tbody>
-</table>
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `public` |
+| **Returns** | `z.infer<any>` || **Location** | `C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts:37` |
 
 **Parameters:**
 
@@ -1110,26 +565,11 @@ Map file extractions to ArchletteIR
 
 Map a function to a CodeItem
 
-<table>
-<tbody>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>function</code></td>
-</tr>
-<tr>
-<td><strong>Visibility</strong></td>
-<td><code>private</code></td>
-</tr>
-<tr>
-<td><strong>Returns</strong></td>
-<td><code>z.infer<any></code></td>
-</tr>
-<tr>
-<td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts:425</code></td>
-</tr>
-</tbody>
-</table>
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `private` |
+| **Returns** | `z.infer<any>` || **Location** | `C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts:425` |
 
 **Parameters:**
 
@@ -1140,26 +580,11 @@ Map a function to a CodeItem
 
 Map a class to a CodeItem
 
-<table>
-<tbody>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>function</code></td>
-</tr>
-<tr>
-<td><strong>Visibility</strong></td>
-<td><code>private</code></td>
-</tr>
-<tr>
-<td><strong>Returns</strong></td>
-<td><code>z.infer<any></code></td>
-</tr>
-<tr>
-<td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts:453</code></td>
-</tr>
-</tbody>
-</table>
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `private` |
+| **Returns** | `z.infer<any>` || **Location** | `C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts:453` |
 
 **Parameters:**
 
@@ -1170,26 +595,11 @@ Map a class to a CodeItem
 
 Map a class method to a CodeItem
 
-<table>
-<tbody>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>function</code></td>
-</tr>
-<tr>
-<td><strong>Visibility</strong></td>
-<td><code>private</code></td>
-</tr>
-<tr>
-<td><strong>Returns</strong></td>
-<td><code>z.infer<any></code></td>
-</tr>
-<tr>
-<td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts:482</code></td>
-</tr>
-</tbody>
-</table>
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `private` |
+| **Returns** | `z.infer<any>` || **Location** | `C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts:482` |
 
 **Parameters:**
 
@@ -1202,26 +612,11 @@ Resolve an import path to an absolute file path
 Handles relative imports (./file, ../file) and resolves to actual file paths
 Returns undefined for node_modules imports or unresolvable paths
 
-<table>
-<tbody>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>function</code></td>
-</tr>
-<tr>
-<td><strong>Visibility</strong></td>
-<td><code>private</code></td>
-</tr>
-<tr>
-<td><strong>Returns</strong></td>
-<td><code>string</code></td>
-</tr>
-<tr>
-<td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts:518</code></td>
-</tr>
-</tbody>
-</table>
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `private` |
+| **Returns** | `string` || **Location** | `C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts:518` |
 
 **Parameters:**
 
@@ -1232,26 +627,11 @@ Returns undefined for node_modules imports or unresolvable paths
 
 Map imports to component relationships (component-level dependencies)
 
-<table>
-<tbody>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>function</code></td>
-</tr>
-<tr>
-<td><strong>Visibility</strong></td>
-<td><code>private</code></td>
-</tr>
-<tr>
-<td><strong>Returns</strong></td>
-<td><code>z.infer<any>[]</code></td>
-</tr>
-<tr>
-<td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts:574</code></td>
-</tr>
-</tbody>
-</table>
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `private` |
+| **Returns** | `z.infer<any>[]` || **Location** | `C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts:574` |
 
 **Parameters:**
 
@@ -1262,26 +642,11 @@ Map imports to component relationships (component-level dependencies)
 
 Map imports to relationships (original code-level format for backward compatibility)
 
-<table>
-<tbody>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>function</code></td>
-</tr>
-<tr>
-<td><strong>Visibility</strong></td>
-<td><code>private</code></td>
-</tr>
-<tr>
-<td><strong>Returns</strong></td>
-<td><code>z.infer<any>[]</code></td>
-</tr>
-<tr>
-<td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts:611</code></td>
-</tr>
-</tbody>
-</table>
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `private` |
+| **Returns** | `z.infer<any>[]` || **Location** | `C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts:611` |
 
 **Parameters:**
 
@@ -1293,26 +658,11 @@ Map imports to relationships (original code-level format for backward compatibil
 Generate a unique ID for a code element
 Format: filePath:symbolName
 
-<table>
-<tbody>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>function</code></td>
-</tr>
-<tr>
-<td><strong>Visibility</strong></td>
-<td><code>private</code></td>
-</tr>
-<tr>
-<td><strong>Returns</strong></td>
-<td><code>string</code></td>
-</tr>
-<tr>
-<td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts:634</code></td>
-</tr>
-</tbody>
-</table>
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `private` |
+| **Returns** | `string` || **Location** | `C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts:634` |
 
 **Parameters:**
 
@@ -1323,26 +673,11 @@ Format: filePath:symbolName
 
 Get default system info from package.json if available
 
-<table>
-<tbody>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>function</code></td>
-</tr>
-<tr>
-<td><strong>Visibility</strong></td>
-<td><code>private</code></td>
-</tr>
-<tr>
-<td><strong>Returns</strong></td>
-<td><code>z.infer<any></code></td>
-</tr>
-<tr>
-<td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts:644</code></td>
-</tr>
-</tbody>
-</table>
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `private` |
+| **Returns** | `z.infer<any>` || **Location** | `C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/to-ir-mapper.ts:644` |
 
 
 
@@ -1354,26 +689,11 @@ Examples:
   type UserRole = 'admin' | 'user' | 'guest'
   export type ApiResponse<T> = { data: T; status: number }
 
-<table>
-<tbody>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>function</code></td>
-</tr>
-<tr>
-<td><strong>Visibility</strong></td>
-<td><code>public</code></td>
-</tr>
-<tr>
-<td><strong>Returns</strong></td>
-<td><code>import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/types").ExtractedType[]</code></td>
-</tr>
-<tr>
-<td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/type-extractor.ts:19</code></td>
-</tr>
-</tbody>
-</table>
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `public` |
+| **Returns** | `import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/types").ExtractedType[]` || **Location** | `C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/type-extractor.ts:19` |
 
 **Parameters:**
 
@@ -1387,26 +707,11 @@ Examples:
   interface User { id: string; name: string }
   export interface ApiClient { get<T>(url: string): Promise<T> }
 
-<table>
-<tbody>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>function</code></td>
-</tr>
-<tr>
-<td><strong>Visibility</strong></td>
-<td><code>public</code></td>
-</tr>
-<tr>
-<td><strong>Returns</strong></td>
-<td><code>import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/types").ExtractedInterface[]</code></td>
-</tr>
-<tr>
-<td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/type-extractor.ts:59</code></td>
-</tr>
-</tbody>
-</table>
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `public` |
+| **Returns** | `import("C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/types").ExtractedInterface[]` || **Location** | `C:/Users/chris/git/archlette/src/extractors/builtin/basic-node/type-extractor.ts:59` |
 
 **Parameters:**
 
@@ -1421,3 +726,4 @@ Examples:
 <div align="center">
 <sub><a href="./default-container.md">← Back to Container</a> | <a href="./README.md">← Back to System</a> | Generated with <a href="https://github.com/chrislyons-dev/archlette">Archlette</a></sub>
 </div>
+

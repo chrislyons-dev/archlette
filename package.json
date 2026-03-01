@@ -65,7 +65,7 @@
     "pack:test": "npm run build && npm pack --pack-destination ./dist && node scripts/inspect-pack.js",
     "updates": "npx npm-check-updates --deep --errorLevel 2",
     "updates:all": "npx npm-check-updates -u",
-    "check": "npm run format && npm run lint && npm run typecheck && npm run test && npm run readme:check && npm run licenses:generate"
+    "check": "npm run aac:all && npm run format && npm run lint && npm run typecheck && npm run test && npm run readme:check && npm run licenses:generate"
   },
   "dependencies": {
     "@astrojs/compiler": "^2.13.0",
