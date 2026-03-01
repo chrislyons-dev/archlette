@@ -1,8 +1,8 @@
 name: CD
 
 on:
-  release:
-    types: [created]
+  workflow_call: # invoked by release-please.yml on release_created
+  workflow_dispatch: # manual backup via Actions UI
 
 jobs:
   publish-npm:
@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     if: github.repository == 'chrislyons-dev/archlette'
     permissions:
-      id-token: write # for provenance
+      id-token: write # for npm trusted publishing (OIDC)
       contents: read
     steps:
       - uses: actions/checkout@v5
