@@ -2,9 +2,9 @@
 set separator none
 title Application - Application - Components
 
-top to bottom direction
-skinparam ranksep 60
-skinparam nodesep 30
+left to right direction
+skinparam ranksep 20
+skinparam nodesep 10
 
 skinparam {
   arrowFontSize 10
@@ -158,7 +158,7 @@ rectangle "Application\n<size:10>[Container: Application]</size>" <<Application.
   rectangle "==extractors\n<size:10>[Component: module]</size>\n\nArchletteIR aggregation utilities | Extraction stage of the AAC pipeline" <<Application.Application.extractors>> as Application.Application.extractors
   rectangle "==validators\n<size:10>[Component: module]</size>\n\nValidation stage of the AAC pipeline | Base IR validator for Archlette pipeline" <<Application.Application.validators>> as Application.Application.validators
   rectangle "==generators\n<size:10>[Component: module]</size>\n\nGeneration stage of the AAC pipeline | Structurizr DSL Generator (Template-based)" <<Application.Application.generators>> as Application.Application.generators
-  rectangle "==renderers\n<size:10>[Component: module]</size>\n\nRender stage of the AAC pipeline | PlantUML image renderer | Structurizr DSL export renderer" <<Application.Application.renderers>> as Application.Application.renderers
+  rectangle "==renderers\n<size:10>[Component: module]</size>\n\nRender stage of the AAC pipeline | Mermaid image renderer | PlantUML image renderer | Structurizr DSL export renderer | Structurizr direct image renderer" <<Application.Application.renderers>> as Application.Application.renderers
   rectangle "==docs\n<size:10>[Component: module]</size>\n\nDocumentation stage of the AAC pipeline | Markdown documentation generator" <<Application.Application.docs>> as Application.Application.docs
   rectangle "==core\n<size:10>[Component: module]</size>\n\nDynamic ESM module loader | Component inferred from directory: core | Stage module interfaces for the AAC pipeline | Stage module loaders | Tool management for external rendering tools | Architecture-as-Code (AAC) configuration types and schemas | Archlette Intermediate Representation (IR) types and schemas | Core pipeline types" <<Application.Application.core>> as Application.Application.core
   rectangle "==basic-astro\n<size:10>[Component: module]</size>\n\nAstro component extractor" <<Application.Application.basicastro>> as Application.Application.basicastro
@@ -181,7 +181,7 @@ Application.Application.extractors -[#707070,thickness=2]-> Application.Applicat
 Application.Application.extractors -[#707070,thickness=2]-> Application.Application.basic_wrangler : "<color:#707070>composed of cloudflare wrangler extractor"
 Application.Application.validators -[#707070,thickness=2]-> Application.Application.core : "<color:#707070>Provides IR types, validation schemas, and module loading | zArchletteIR | ArchletteValidator"
 Application.Application.generators -[#707070,thickness=2]-> Application.Application.core : "<color:#707070>Provides IR types, path resolution, and module loading | ArchletteIR | Container | Component | CodeItem | Relationship | ResolvedStageNode | VIEW_NAMES | resolveUserContentPath"
-Application.Application.renderers -[#707070,thickness=2]-> Application.Application.core : "<color:#707070>Provides types, module loading, and tool management | PipelineContext | findPlantUML | requireJava | resolveArchlettePath | findStructurizrCLI"
+Application.Application.renderers -[#707070,thickness=2]-> Application.Application.core : "<color:#707070>Provides types, module loading, and tool management | PipelineContext | ResolvedStageNode | findMermaidCLI | resolveArchlettePath | findPlantUML | requireJava | findStructurizrCLI | commandExistsInPath"
 Application.Application.docs -[#707070,thickness=2]-> Application.Application.core : "<color:#707070>Provides types, module loading, and path resolution | PipelineContext | Logger | RendererOutput | Component | resolveArchlettePath"
 Application.Application.basicastro -[#707070,thickness=2]-> Application.Application.core : "<color:#707070>ResolvedStageNode | ArchletteIR | PipelineContext | IR_VERSION | resolveSecurePath | createLogger | sanitizeId | CodeItem | System | Relationship | Component | Actor | Container | TAGS | DEFAULT_CONTAINER_ID | nameToId"
 Application.Application.basic_node -[#707070,thickness=2]-> Application.Application.core : "<color:#707070>ResolvedStageNode | ArchletteIR | PipelineContext | resolveSecurePath | createLogger | sanitizeId | CodeItem | System | Relationship | Component | Actor | TAGS | DEFAULT_CONTAINER_ID | IR_VERSION | nameToId"

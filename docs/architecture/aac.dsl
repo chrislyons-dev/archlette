@@ -39,7 +39,7 @@ workspace "Application" "Main application container" {
                     technology "module"
                 }
                 default_container__renderers = component "renderers" {
-                    description "Render stage of the AAC pipeline | PlantUML image renderer | Structurizr DSL export renderer"
+                    description "Render stage of the AAC pipeline | Mermaid image renderer | PlantUML image renderer | Structurizr DSL export renderer | Structurizr direct image renderer"
                     technology "module"
                 }
                 default_container__docs = component "docs" {
@@ -279,7 +279,7 @@ workspace "Application" "Main application container" {
                     tags "Code"
                 }
                 default_container__core__commandexistsinpath = component "core.commandExistsInPath" {
-                    description "Check if a command exists in PATH"
+                    description "Check if a command exists in PATH Returns the full path if found, null otherwise"
                     technology "function"
                     tags "Code"
                 }
@@ -313,6 +313,16 @@ workspace "Application" "Main application container" {
                     technology "function"
                     tags "Code"
                 }
+                default_container__core__downloadstructurizrlite = component "core.downloadStructurizrLite" {
+                    description "Download and install Structurizr Lite to cache"
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__core__findstructurizrlite = component "core.findStructurizrLite" {
+                    description "Find or download Structurizr Lite WAR file"
+                    technology "function"
+                    tags "Code"
+                }
                 default_container__core__findplantuml = component "core.findPlantUML" {
                     description "Find or download PlantUML JAR"
                     technology "function"
@@ -325,6 +335,11 @@ workspace "Application" "Main application container" {
                 }
                 default_container__core__requirejava = component "core.requireJava" {
                     description "Validate Java is installed (throw if not)"
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__core__findmermaidcli = component "core.findMermaidCLI" {
+                    description "Find Mermaid CLI in system PATH Note: Mermaid CLI is not auto-downloaded. Users should install it via npm: - Global: npm install -g"
                     technology "function"
                     tags "Code"
                 }
@@ -432,13 +447,61 @@ workspace "Application" "Main application container" {
                     technology "function"
                     tags "Code"
                 }
+                default_container__renderers__mermaidrender = component "renderers.mermaidRender" {
+                    description "Render Mermaid files to images"
+                    technology "function"
+                    tags "Code"
+                }
                 default_container__renderers__plantumlrender = component "renderers.plantumlRender" {
                     description "Render PlantUML files to PNG images"
                     technology "function"
                     tags "Code"
                 }
                 default_container__renderers__structurizrexport = component "renderers.structurizrExport" {
-                    description "Export Structurizr DSL to PlantUML and Mermaid formats"
+                    description "Export Structurizr DSL to PlantUML and/or Mermaid formats"
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__renderers__findgraphviz = component "renderers.findGraphviz" {
+                    description "Find Graphviz dot command in PATH"
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__renderers__structurizrrender = component "renderers.structurizrRender" {
+                    description "Render Structurizr DSL to images using CLI DOT export + Graphviz"
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__renderers__extractstylesblock = component "renderers.extractStylesBlock" {
+                    description "Extract styles block from theme content using brace counting"
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__renderers__removeblock = component "renderers.removeBlock" {
+                    description "Remove a block from DSL content using brace counting"
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__renderers__removestylesblock = component "renderers.removeStylesBlock" {
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__renderers__removebrandingblock = component "renderers.removeBrandingBlock" {
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__renderers__escapeinvalidhtmltags = component "renderers.escapeInvalidHtmlTags" {
+                    description "Escape all angle brackets that aren't part of valid DOT HTML tags. Handles cases where Structurizr inserts <br /> for word-wrapping inside other tag-like content (e.g., <slot name=\"header<br />/>\"). Strategy: 1. Find all valid HTML tags using regex 2. Escape all < and > that are NOT part of those tags"
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__renderers__sanitizedotcontent = component "renderers.sanitizeDotContent" {
+                    description "Sanitize DOT file content for Graphviz compatibility Applies string replacements only within label=<<...>> content, preserving the DOT structural syntax."
+                    technology "function"
+                    tags "Code"
+                }
+                default_container__renderers__sanitizedotfiles = component "renderers.sanitizeDotFiles" {
+                    description "Sanitize all DOT files in a directory"
                     technology "function"
                     tags "Code"
                 }
@@ -937,8 +1000,13 @@ workspace "Application" "Main application container" {
                     technology "function"
                     tags "Code"
                 }
+                default_container__basic_wrangler__findmatchingcontainer = component "basic_wrangler.findMatchingContainer" {
+                    description "Smart lookup to find matching container for a service name Tries exact match first, then fuzzy matching with common environment suffix removal."
+                    technology "function"
+                    tags "Code"
+                }
                 default_container__basic_wrangler__extractcontainerrelationships = component "basic_wrangler.extractContainerRelationships" {
-                    description "Extract container relationships from service bindings Creates logical dependencies between containers based on service bindings. Deduplicates relationships across all environments."
+                    description "Extract container relationships from service bindings Creates logical dependencies between containers based on service bindings. Uses smart lookup to match service names to actual containers. Deduplicates relationships across all environments."
                     technology "function"
                     tags "Code"
                 }
@@ -991,7 +1059,7 @@ workspace "Application" "Main application container" {
                 default_container__extractors -> default_container__basic_wrangler "composed of cloudflare wrangler extractor"
                 default_container__validators -> default_container__core "Provides IR types, validation schemas, and module loading | zArchletteIR | ArchletteValidator"
                 default_container__generators -> default_container__core "Provides IR types, path resolution, and module loading | ArchletteIR | Container | Component | CodeItem | Relationship | ResolvedStageNode | VIEW_NAMES | resolveUserContentPath"
-                default_container__renderers -> default_container__core "Provides types, module loading, and tool management | PipelineContext | findPlantUML | requireJava | resolveArchlettePath | findStructurizrCLI"
+                default_container__renderers -> default_container__core "Provides types, module loading, and tool management | PipelineContext | ResolvedStageNode | findMermaidCLI | resolveArchlettePath | findPlantUML | requireJava | findStructurizrCLI | commandExistsInPath"
                 default_container__docs -> default_container__core "Provides types, module loading, and path resolution | PipelineContext | Logger | RendererOutput | Component | resolveArchlettePath"
                 default_container__basic_astro -> default_container__core "ResolvedStageNode | ArchletteIR | PipelineContext | IR_VERSION | resolveSecurePath | createLogger | sanitizeId | CodeItem | System | Relationship | Component | Actor | Container | TAGS | DEFAULT_CONTAINER_ID | nameToId"
                 default_container__basic_node -> default_container__core "ResolvedStageNode | ArchletteIR | PipelineContext | resolveSecurePath | createLogger | sanitizeId | CodeItem | System | Relationship | Component | Actor | TAGS | DEFAULT_CONTAINER_ID | IR_VERSION | nameToId"
@@ -1011,188 +1079,6 @@ workspace "Application" "Main application container" {
     }
 
     views {
-/**
- * Default Structurizr theme for Archlette
- * 
- * This theme provides a modern, professional color scheme for architecture diagrams
- * with clear visual hierarchy and accessibility considerations.
- */
-
-theme default
-
-// Element styles
-styles {
-    // Person/Actor styles
-    element "Person" {
-        background #08427b
-        color #ffffff
-        shape Person
-        fontSize 22
-    }
-
-    // External System styles
-    element "External System" {
-        background #999999
-        color #ffffff
-        shape RoundedBox
-        fontSize 22
-    }
-
-    element "External" {
-        background #999999
-        color #ffffff
-        shape RoundedBox
-        fontSize 22
-    }
-
-    // System styles
-    element "Software System" {
-        background #1168bd
-        color #ffffff
-        shape RoundedBox
-        fontSize 24
-    }
-
-    // Container styles
-    element "Container" {
-        background #438dd5
-        color #ffffff
-        shape RoundedBox
-        fontSize 20
-    }
-
-    element "Database" {
-        background #438dd5
-        color #ffffff
-        shape Cylinder
-        fontSize 20
-    }
-
-    element "Web Browser" {
-        background #438dd5
-        color #ffffff
-        shape WebBrowser
-        fontSize 20
-    }
-
-    element "Mobile App" {
-        background #438dd5
-        color #ffffff
-        shape MobileDevicePortrait
-        fontSize 20
-    }
-
-    // Component styles
-    element "Component" {
-        background #85bbf0
-        color #000000
-        shape RoundedBox
-        fontSize 18
-    }
-
-    // Technology-specific styles
-    element "Cloudflare Worker" {
-        background #f6821f
-        color #ffffff
-        shape RoundedBox
-        fontSize 18
-    }
-
-    element "Service" {
-        background #438dd5
-        color #ffffff
-        shape RoundedBox
-        fontSize 18
-    }
-
-    element "API" {
-        background #85bbf0
-        color #000000
-        shape Hexagon
-        fontSize 18
-    }
-
-    element "Queue" {
-        background #85bbf0
-        color #000000
-        shape Pipe
-        fontSize 18
-    }
-
-    // Tag-based styles
-    element "Internal System" {
-        background #1168bd
-        color #ffffff
-    }
-
-    element "Deprecated" {
-        background #cc0000
-        color #ffffff
-        opacity 60
-    }
-
-    element "Future" {
-        background #dddddd
-        color #000000
-        opacity 50
-        stroke #999999
-        strokeWidth 2
-    }
-
-    element "Auto Generated" {
-        stroke #999999
-        strokeWidth 1
-    }
-
-    // Infrastructure styles
-    element "Infrastructure" {
-        background #92278f
-        color #ffffff
-        shape RoundedBox
-    }
-
-    element "Message Bus" {
-        background #85bbf0
-        color #000000
-        shape Pipe
-    }
-
-    // Relationship styles
-    relationship "Relationship" {
-        color #707070
-        dashed false
-        routing Curved
-        fontSize 12
-        thickness 2
-    }
-
-    relationship "Async" {
-        dashed true
-        color #707070
-    }
-
-    relationship "Sync" {
-        dashed false
-        color #707070
-    }
-
-    relationship "Uses" {
-        color #707070
-        dashed false
-    }
-
-    relationship "Depends On" {
-        color #707070
-        dashed true
-    }
-}
-
-// Diagram customization
-branding {
-    font "Arial"
-}
-
-
         systemContext Application "SystemContext" {
             include user
             include filesystem
@@ -1201,7 +1087,7 @@ branding {
             include local_system_s_unzip_utility
             include file_system
             include Application
-            autoLayout
+            autoLayout lr 100 100
         }
 
         container Application "Containers" {
@@ -1212,7 +1098,7 @@ branding {
             include local_system_s_unzip_utility
             include file_system
             include default_container
-            autoLayout
+            autoLayout lr 100 100
         }
 
 
@@ -1236,7 +1122,7 @@ branding {
             include default_container__basic_wrangler
             include default_container__shared
             exclude "element.tag==Code"
-            autoLayout
+            autoLayout lr 100 100
         }
 
 
@@ -1245,7 +1131,7 @@ branding {
             include default_container__cli__parseargs
             include default_container__cli__stagelistfromarg
             include default_container__cli__run
-            autoLayout
+            autoLayout lr 100 100
         }
 
 
@@ -1255,14 +1141,14 @@ branding {
             include default_container__extractors__deduplicatebyname
             include default_container__extractors__deduplicaterelationships
             include default_container__extractors__run
-            autoLayout
+            autoLayout lr 100 100
         }
 
 
         component default_container "Classes_default_container__validators" {
             include default_container__validators__run
             include default_container__validators__basevalidator
-            autoLayout
+            autoLayout lr 100 100
         }
 
 
@@ -1278,15 +1164,25 @@ branding {
             include default_container__generators__buildtechnologystring
             include default_container__generators__sanitizeid
             include default_container__generators__escapestring
-            autoLayout
+            autoLayout lr 100 100
         }
 
 
         component default_container "Classes_default_container__renderers" {
             include default_container__renderers__run
+            include default_container__renderers__mermaidrender
             include default_container__renderers__plantumlrender
             include default_container__renderers__structurizrexport
-            autoLayout
+            include default_container__renderers__findgraphviz
+            include default_container__renderers__structurizrrender
+            include default_container__renderers__extractstylesblock
+            include default_container__renderers__removeblock
+            include default_container__renderers__removestylesblock
+            include default_container__renderers__removebrandingblock
+            include default_container__renderers__escapeinvalidhtmltags
+            include default_container__renderers__sanitizedotcontent
+            include default_container__renderers__sanitizedotfiles
+            autoLayout lr 100 100
         }
 
 
@@ -1297,7 +1193,7 @@ branding {
             include default_container__docs__finddiagramsforcontainer
             include default_container__docs__findclassdiagramsforcomponent
             include default_container__docs__sanitizefilename
-            autoLayout
+            autoLayout lr 100 100
         }
 
 
@@ -1340,11 +1236,14 @@ branding {
             include default_container__core__downloadstructurizr
             include default_container__core__downloadplantuml
             include default_container__core__findstructurizrcli
+            include default_container__core__downloadstructurizrlite
+            include default_container__core__findstructurizrlite
             include default_container__core__findplantuml
             include default_container__core__checkjava
             include default_container__core__requirejava
+            include default_container__core__findmermaidcli
             include default_container__core__resolveconfig
-            autoLayout
+            autoLayout lr 100 100
         }
 
 
@@ -1374,7 +1273,7 @@ branding {
             include default_container__basic_astro__maptoir
             include default_container__basic_astro__mapclasstocodeitems
             include default_container__basic_astro__mapfunctiontocodeitem
-            autoLayout
+            autoLayout lr 100 100
         }
 
 
@@ -1423,7 +1322,7 @@ branding {
             include default_container__basic_node__getdefaultsystem
             include default_container__basic_node__extracttypealiases
             include default_container__basic_node__extractinterfaces
-            autoLayout
+            autoLayout lr 100 100
         }
 
 
@@ -1456,7 +1355,7 @@ branding {
             include default_container__basic_python__mapmethodtocodeitem
             include default_container__basic_python__mapfunctiontocodeitem
             include default_container__basic_python__maptypetocodeitem
-            autoLayout
+            autoLayout lr 100 100
         }
 
 
@@ -1467,6 +1366,7 @@ branding {
             include default_container__basic_wrangler__extractcontainers
             include default_container__basic_wrangler__derivecontainertype
             include default_container__basic_wrangler__extractdeploymentsandinstances
+            include default_container__basic_wrangler__findmatchingcontainer
             include default_container__basic_wrangler__extractcontainerrelationships
             include default_container__basic_wrangler__extractdeploymentrelationships
             include default_container__basic_wrangler__extractdescription
@@ -1474,14 +1374,238 @@ branding {
             include default_container__basic_wrangler__normalizeservicebindings
             include default_container__basic_wrangler__getenvironments
             include default_container__basic_wrangler__getenvironmentconfig
-            autoLayout
+            autoLayout lr 100 100
         }
 
 
         component default_container "Classes_default_container__shared" {
             include default_container__shared__deduplicaterelationships
-            autoLayout
+            autoLayout lr 100 100
         }
+
+
+/**
+ * Default Structurizr theme for Archlette
+ * 
+ * This theme provides a modern, professional color scheme for architecture diagrams
+ * with clear visual hierarchy and accessibility considerations.
+ */
+
+theme default
+
+// Element styles
+styles {
+    // Person/Actor styles
+    element "Person" {
+        background #08427b
+        color #ffffff
+        shape Person
+        width 200
+        height 120
+        fontSize 14
+    }
+
+    // External System styles
+    element "External System" {
+        background #999999
+        color #ffffff
+        shape RoundedBox
+        width 240
+        height 140
+        fontSize 14
+    }
+
+    element "External" {
+        background #999999
+        color #ffffff
+        shape RoundedBox
+        width 240
+        height 140
+        fontSize 14
+    }
+
+    // System styles
+    element "Software System" {
+        background #1168bd
+        color #ffffff
+        shape RoundedBox
+        width 280
+        height 160
+        fontSize 16
+    }
+
+    // Container styles
+    element "Container" {
+        background #438dd5
+        color #ffffff
+        shape RoundedBox
+        width 260
+        height 150
+        fontSize 14
+    }
+
+    element "Database" {
+        background #438dd5
+        color #ffffff
+        shape Cylinder
+        width 200
+        height 140
+        fontSize 14
+    }
+
+    element "Web Browser" {
+        background #438dd5
+        color #ffffff
+        shape WebBrowser
+        width 240
+        height 150
+        fontSize 14
+    }
+
+    element "Mobile App" {
+        background #438dd5
+        color #ffffff
+        shape MobileDevicePortrait
+        width 180
+        height 200
+        fontSize 14
+    }
+
+    // Component styles
+    element "Component" {
+        background #85bbf0
+        color #000000
+        shape RoundedBox
+        width 220
+        height 130
+        fontSize 12
+    }
+
+    // Code element styles (classes, functions, etc.)
+    element "Code" {
+        background #d4e8fc
+        color #000000
+        shape RoundedBox
+        width 200
+        height 100
+        fontSize 11
+    }
+
+    // Technology-specific styles
+    element "Cloudflare Worker" {
+        background #f6821f
+        color #ffffff
+        shape RoundedBox
+        width 220
+        height 130
+        fontSize 12
+    }
+
+    element "Service" {
+        background #438dd5
+        color #ffffff
+        shape RoundedBox
+        width 220
+        height 130
+        fontSize 12
+    }
+
+    element "API" {
+        background #85bbf0
+        color #000000
+        shape Hexagon
+        width 180
+        height 120
+        fontSize 12
+    }
+
+    element "Queue" {
+        background #85bbf0
+        color #000000
+        shape Pipe
+        width 200
+        height 100
+        fontSize 12
+    }
+
+    // Tag-based styles
+    element "Internal System" {
+        background #1168bd
+        color #ffffff
+    }
+
+    element "Deprecated" {
+        background #cc0000
+        color #ffffff
+        opacity 60
+    }
+
+    element "Future" {
+        background #dddddd
+        color #000000
+        opacity 50
+        stroke #999999
+        strokeWidth 2
+    }
+
+    element "Auto Generated" {
+        stroke #999999
+        strokeWidth 1
+    }
+
+    // Infrastructure styles
+    element "Infrastructure" {
+        background #92278f
+        color #ffffff
+        shape RoundedBox
+        width 220
+        height 130
+        fontSize 12
+    }
+
+    element "Message Bus" {
+        background #85bbf0
+        color #000000
+        shape Pipe
+        width 200
+        height 100
+        fontSize 12
+    }
+
+    // Relationship styles
+    relationship "Relationship" {
+        color #707070
+        dashed false
+        routing Curved
+        fontSize 12
+        thickness 2
+    }
+
+    relationship "Async" {
+        dashed true
+        color #707070
+    }
+
+    relationship "Sync" {
+        dashed false
+        color #707070
+    }
+
+    relationship "Uses" {
+        color #707070
+        dashed false
+    }
+
+    relationship "Depends On" {
+        color #707070
+        dashed true
+    }
+}
+
+// Diagram customization
+branding {
+    font "Arial"
+}
 
     }
 

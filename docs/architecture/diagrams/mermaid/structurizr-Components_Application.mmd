@@ -1,7 +1,7 @@
-graph TB
+graph LR
   linkStyle default fill:#ffffff
 
-  subgraph diagram ["Application - Application - Components"]
+  subgraph diagram [" "]
     style diagram fill:#ffffff,stroke:#ffffff
 
     1["<div style='font-weight: bold'>User</div><div style='font-size: 70%; margin-top: 0px'>[Person]</div><div style='font-size: 80%; margin-top:10px'>End user who runs archlette<br />commands</div>"]
@@ -17,7 +17,7 @@ graph TB
     6("<div style='font-weight: bold'>File System</div><div style='font-size: 70%; margin-top: 0px'>[Software System]</div><div style='font-size: 80%; margin-top:10px'>The local file system for<br />caching downloaded tools.</div>")
     style 6 fill:#999999,stroke:#6b6b6b,color:#ffffff
 
-    subgraph 8 ["Application"]
+    subgraph 8 [" "]
       style 8 fill:#ffffff,stroke:#2e6295,color:#2e6295
 
       10("<div style='font-weight: bold'>extractors</div><div style='font-size: 70%; margin-top: 0px'>[Component: module]</div><div style='font-size: 80%; margin-top:10px'>ArchletteIR aggregation<br />utilities | Extraction stage<br />of the AAC pipeline</div>")
@@ -26,7 +26,7 @@ graph TB
       style 11 fill:#85bbf0,stroke:#5d82a8,color:#000000
       12("<div style='font-weight: bold'>generators</div><div style='font-size: 70%; margin-top: 0px'>[Component: module]</div><div style='font-size: 80%; margin-top:10px'>Generation stage of the AAC<br />pipeline | Structurizr DSL<br />Generator (Template-based)</div>")
       style 12 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      13("<div style='font-weight: bold'>renderers</div><div style='font-size: 70%; margin-top: 0px'>[Component: module]</div><div style='font-size: 80%; margin-top:10px'>Render stage of the AAC<br />pipeline | PlantUML image<br />renderer | Structurizr DSL<br />export renderer</div>")
+      13("<div style='font-weight: bold'>renderers</div><div style='font-size: 70%; margin-top: 0px'>[Component: module]</div><div style='font-size: 80%; margin-top:10px'>Render stage of the AAC<br />pipeline | Mermaid image<br />renderer | PlantUML image<br />renderer | Structurizr DSL<br />export renderer | Structurizr<br />direct image renderer</div>")
       style 13 fill:#85bbf0,stroke:#5d82a8,color:#000000
       14("<div style='font-weight: bold'>docs</div><div style='font-size: 70%; margin-top: 0px'>[Component: module]</div><div style='font-size: 80%; margin-top:10px'>Documentation stage of the<br />AAC pipeline | Markdown<br />documentation generator</div>")
       style 14 fill:#85bbf0,stroke:#5d82a8,color:#000000
@@ -58,7 +58,7 @@ graph TB
     10-- "<div>composed of cloudflare<br />wrangler extractor</div><div style='font-size: 70%'></div>" -->19
     11-- "<div>Provides IR types, validation<br />schemas, and module loading |<br />zArchletteIR |<br />ArchletteValidator</div><div style='font-size: 70%'></div>" -->15
     12-- "<div>Provides IR types, path<br />resolution, and module<br />loading | ArchletteIR |<br />Container | Component |<br />CodeItem | Relationship |<br />ResolvedStageNode |<br />VIEW_NAMES |<br />resolveUserContentPath</div><div style='font-size: 70%'></div>" -->15
-    13-- "<div>Provides types, module<br />loading, and tool management<br />| PipelineContext |<br />findPlantUML | requireJava |<br />resolveArchlettePath |<br />findStructurizrCLI</div><div style='font-size: 70%'></div>" -->15
+    13-- "<div>Provides types, module<br />loading, and tool management<br />| PipelineContext |<br />ResolvedStageNode |<br />findMermaidCLI |<br />resolveArchlettePath |<br />findPlantUML | requireJava |<br />findStructurizrCLI |<br />commandExistsInPath</div><div style='font-size: 70%'></div>" -->15
     14-- "<div>Provides types, module<br />loading, and path resolution<br />| PipelineContext | Logger |<br />RendererOutput | Component |<br />resolveArchlettePath</div><div style='font-size: 70%'></div>" -->15
     16-- "<div>ResolvedStageNode |<br />ArchletteIR | PipelineContext<br />| IR_VERSION |<br />resolveSecurePath |<br />createLogger | sanitizeId |<br />CodeItem | System |<br />Relationship | Component |<br />Actor | Container | TAGS |<br />DEFAULT_CONTAINER_ID |<br />nameToId</div><div style='font-size: 70%'></div>" -->15
     17-- "<div>ResolvedStageNode |<br />ArchletteIR | PipelineContext<br />| resolveSecurePath |<br />createLogger | sanitizeId |<br />CodeItem | System |<br />Relationship | Component |<br />Actor | TAGS |<br />DEFAULT_CONTAINER_ID |<br />IR_VERSION | nameToId</div><div style='font-size: 70%'></div>" -->15

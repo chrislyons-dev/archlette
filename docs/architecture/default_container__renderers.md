@@ -6,27 +6,12 @@
 
 ## Component Information
 
-<table>
-<tbody>
-<tr>
-<td><strong>Component</strong></td>
-<td>renderers</td>
-</tr>
-<tr>
-<td><strong>Container</strong></td>
-<td>Application</td>
-</tr>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>module</code></td>
-</tr>
-<tr>
-<td><strong>Description</strong></td>
-<td>Render stage of the AAC pipeline | PlantUML image renderer | Structurizr DSL export renderer</td>
-</tr>
-</tbody>
-</table>
-
+| Field | Value |
+| --- | --- |
+| **Component** | renderers |
+| **Container** | Application |
+| **Type** | `module` |
+| **Description** | Render stage of the AAC pipeline \| Mermaid image renderer \| PlantUML image renderer \| Structurizr DSL export renderer \| Structurizr direct image renderer |
 ---
 
 ## Code Structure
@@ -38,7 +23,7 @@
 ### Code Elements
 
 <details>
-<summary><strong>3 code element(s)</strong></summary>
+<summary><strong>13 code element(s)</strong></summary>
 
 
 
@@ -48,64 +33,41 @@
 
 Execute the rendering stage
 
-<table>
-<tbody>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>function</code></td>
-</tr>
-<tr>
-<td><strong>Visibility</strong></td>
-<td><code>public</code></td>
-</tr>
-<tr>
-<td><strong>Async</strong></td>
-<td>Yes</td>
-</tr>
-<tr>
-<td><strong>Returns</strong></td>
-<td><code>Promise<void></code></td>
-</tr>
-<tr>
-<td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/4-render/index.ts:36</code></td>
-</tr>
-</tbody>
-</table>
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `public` |
+| **Async** | Yes || **Returns** | `Promise<void>` || **Location** | `C:/Users/chris/git/archlette/src/4-render/index.ts:36` |
 
 **Parameters:**
 
 - `ctx`: <code>import("C:/Users/chris/git/archlette/src/core/types").PipelineContext</code> — - Pipeline context with configuration, logging, and DSL file location
 
 ---
+##### `mermaidRender()`
+
+Render Mermaid files to images
+
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `public` |
+| **Async** | Yes || **Returns** | `Promise<void>` || **Location** | `C:/Users/chris/git/archlette/src/renderers/builtin/mermaid-render.ts:41` |
+
+**Parameters:**
+
+- `ctx`: <code>import("C:/Users/chris/git/archlette/src/core/types").PipelineContext</code>- `node`: <code>any</code>
+
+---
 ##### `plantumlRender()`
 
 Render PlantUML files to PNG images
 
-<table>
-<tbody>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>function</code></td>
-</tr>
-<tr>
-<td><strong>Visibility</strong></td>
-<td><code>public</code></td>
-</tr>
-<tr>
-<td><strong>Async</strong></td>
-<td>Yes</td>
-</tr>
-<tr>
-<td><strong>Returns</strong></td>
-<td><code>Promise<void></code></td>
-</tr>
-<tr>
-<td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/renderers/builtin/plantuml-render.ts:28</code></td>
-</tr>
-</tbody>
-</table>
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `public` |
+| **Async** | Yes || **Returns** | `Promise<void>` || **Location** | `C:/Users/chris/git/archlette/src/renderers/builtin/plantuml-render.ts:28` |
 
 **Parameters:**
 
@@ -114,36 +76,160 @@ Render PlantUML files to PNG images
 ---
 ##### `structurizrExport()`
 
-Export Structurizr DSL to PlantUML and Mermaid formats
+Export Structurizr DSL to PlantUML and/or Mermaid formats
 
-<table>
-<tbody>
-<tr>
-<td><strong>Type</strong></td>
-<td><code>function</code></td>
-</tr>
-<tr>
-<td><strong>Visibility</strong></td>
-<td><code>public</code></td>
-</tr>
-<tr>
-<td><strong>Async</strong></td>
-<td>Yes</td>
-</tr>
-<tr>
-<td><strong>Returns</strong></td>
-<td><code>Promise<void></code></td>
-</tr>
-<tr>
-<td><strong>Location</strong></td>
-<td><code>C:/Users/chris/git/archlette/src/renderers/builtin/structurizr-export.ts:28</code></td>
-</tr>
-</tbody>
-</table>
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `public` |
+| **Async** | Yes || **Returns** | `Promise<void>` || **Location** | `C:/Users/chris/git/archlette/src/renderers/builtin/structurizr-export.ts:36` |
 
 **Parameters:**
 
-- `ctx`: <code>import("C:/Users/chris/git/archlette/src/core/types").PipelineContext</code>
+- `ctx`: <code>import("C:/Users/chris/git/archlette/src/core/types").PipelineContext</code>- `node`: <code>any</code>
+
+---
+##### `findGraphviz()`
+
+Find Graphviz dot command in PATH
+
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `private` |
+| **Returns** | `string` || **Location** | `C:/Users/chris/git/archlette/src/renderers/builtin/structurizr-render.ts:41` |
+
+**Parameters:**
+
+- `log`: <code>{ debug?: (msg: string) => void; warn?: (msg: string) => void; }</code>
+
+---
+##### `structurizrRender()`
+
+Render Structurizr DSL to images using CLI DOT export + Graphviz
+
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `public` |
+| **Async** | Yes || **Returns** | `Promise<void>` || **Location** | `C:/Users/chris/git/archlette/src/renderers/builtin/structurizr-render.ts:74` |
+
+**Parameters:**
+
+- `ctx`: <code>import("C:/Users/chris/git/archlette/src/core/types").PipelineContext</code>- `node`: <code>any</code>
+
+---
+##### `extractStylesBlock()`
+
+Extract styles block from theme content using brace counting
+
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `private` |
+| **Returns** | `string` || **Location** | `C:/Users/chris/git/archlette/src/renderers/builtin/structurizr-render.ts:267` |
+
+**Parameters:**
+
+- `content`: <code>string</code>
+
+---
+##### `removeBlock()`
+
+Remove a block from DSL content using brace counting
+
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `private` |
+| **Returns** | `string` || **Location** | `C:/Users/chris/git/archlette/src/renderers/builtin/structurizr-render.ts:293` |
+
+**Parameters:**
+
+- `content`: <code>string</code>- `blockName`: <code>string</code>
+
+---
+##### `removeStylesBlock()`
+
+
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `private` |
+| **Returns** | `string` || **Location** | `C:/Users/chris/git/archlette/src/renderers/builtin/structurizr-render.ts:319` |
+
+**Parameters:**
+
+- `content`: <code>string</code>
+
+---
+##### `removeBrandingBlock()`
+
+
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `private` |
+| **Returns** | `string` || **Location** | `C:/Users/chris/git/archlette/src/renderers/builtin/structurizr-render.ts:323` |
+
+**Parameters:**
+
+- `content`: <code>string</code>
+
+---
+##### `escapeInvalidHtmlTags()`
+
+Escape all angle brackets that aren't part of valid DOT HTML tags.
+
+Handles cases where Structurizr inserts <br /> for word-wrapping inside
+other tag-like content (e.g., <slot name="header<br />/>").
+
+Strategy:
+1. Find all valid HTML tags using regex
+2. Escape all < and > that are NOT part of those tags
+
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `private` |
+| **Returns** | `string` || **Location** | `C:/Users/chris/git/archlette/src/renderers/builtin/structurizr-render.ts:359` |
+
+**Parameters:**
+
+- `content`: <code>string</code>- `debug`: <code>boolean</code>
+
+---
+##### `sanitizeDotContent()`
+
+Sanitize DOT file content for Graphviz compatibility
+
+Applies string replacements only within label=<<...>> content,
+preserving the DOT structural syntax.
+
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `private` |
+| **Returns** | `string` || **Location** | `C:/Users/chris/git/archlette/src/renderers/builtin/structurizr-render.ts:410` |
+
+**Parameters:**
+
+- `content`: <code>string</code>- `debug`: <code>boolean</code>
+
+---
+##### `sanitizeDotFiles()`
+
+Sanitize all DOT files in a directory
+
+| Field | Value |
+| --- | --- |
+| **Type** | `function` |
+| **Visibility** | `private` |
+| **Returns** | `void` || **Location** | `C:/Users/chris/git/archlette/src/renderers/builtin/structurizr-render.ts:501` |
+
+**Parameters:**
+
+- `dotDir`: <code>string</code>- `debug`: <code>boolean</code>
 
 ---
 
@@ -154,3 +240,4 @@ Export Structurizr DSL to PlantUML and Mermaid formats
 <div align="center">
 <sub><a href="./default-container.md">← Back to Container</a> | <a href="./README.md">← Back to System</a> | Generated with <a href="https://github.com/chrislyons-dev/archlette">Archlette</a></sub>
 </div>
+

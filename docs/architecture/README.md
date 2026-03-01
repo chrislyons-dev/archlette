@@ -1,7 +1,7 @@
-# <picture><source srcset="../images/archlette-stainedglassA-light.png"><img src="../images/archlette-stainedglassA-light.png" alt="" height="28" width="28 style="vertical-align:middle"></picture> Application
+# <img src="../images/archlette-stainedglassA-light.png" alt="" height="28" width="28" style="vertical-align:middle"> Application
 
 **Architecture Documentation**
-Generated 2025-10-27 22:07:22
+Generated 2026-03-01 15:37:40
 
 ## Overview
 
@@ -13,7 +13,7 @@ Main application container
 
 The system context diagram shows how Application fits into its environment, including external systems and users.
 
-![System Context Diagram](./diagrams/structurizr-SystemContext.png)
+<img src="./diagrams/structurizr-SystemContext.png" alt="System Context Diagram" style="max-width: 100%; height: auto;">
 
 ---
 
@@ -21,26 +21,11 @@ The system context diagram shows how Application fits into its environment, incl
 
 The container diagram shows the high-level technology choices and how containers communicate.
 
-![Container Diagram](./diagrams/structurizr-Containers.png)
+<img src="./diagrams/structurizr-Containers.png" alt="Container Diagram" style="max-width: 100%; height: auto;">
 
-<table>
-<thead>
-<tr>
-<th>Container</th>
-<th>Type</th>
-<th>Description</th>
-<th>Details</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Application</strong></td>
-<td><code>Application</code></td>
-<td>Main application container</td>
-<td><a href="./default-container.md">View →</a></td>
-</tr>
-</tbody>
-</table>
+| Container | Type | Description | Details |
+| --- | --- | --- | --- |
+| **Application** | `Application` | Main application container | [View](./default-container.md) |
 
 
 ---
@@ -48,3 +33,4 @@ The container diagram shows the high-level technology choices and how containers
 <div align="center">
 <sub>Generated with <a href="https://github.com/chrislyons-dev/archlette">Archlette</a> Architecture-as-Code toolkit</sub>
 </div>
+

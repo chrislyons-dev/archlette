@@ -2,9 +2,9 @@
 set separator none
 title Application - Application - Components
 
-top to bottom direction
-skinparam ranksep 60
-skinparam nodesep 30
+left to right direction
+skinparam ranksep 20
+skinparam nodesep 10
 
 skinparam {
   arrowFontSize 10
@@ -17,16 +17,16 @@ skinparam {
 hide stereotype
 
 skinparam rectangle<<Application.Application.validatorsbaseValidator>> {
-  BackgroundColor #85bbf0
+  BackgroundColor #d4e8fc
   FontColor #000000
-  BorderColor #5d82a8
+  BorderColor #94a2b0
   roundCorner 20
   shadowing false
 }
 skinparam rectangle<<Application.Application.validatorsrun>> {
-  BackgroundColor #85bbf0
+  BackgroundColor #d4e8fc
   FontColor #000000
-  BorderColor #5d82a8
+  BorderColor #94a2b0
   roundCorner 20
   shadowing false
 }
@@ -37,8 +37,8 @@ skinparam rectangle<<Application.Application>> {
 }
 
 rectangle "Application\n<size:10>[Container: Application]</size>" <<Application.Application>> {
-  rectangle "==validators.run\n<size:10>[Component: function]</size>\n\nExecute the validation stage" <<Application.Application.validatorsrun>> as Application.Application.validatorsrun
   rectangle "==validators.baseValidator\n<size:10>[Component: function]</size>\n\nValidates the IR against the Zod schema. Throws if invalid." <<Application.Application.validatorsbaseValidator>> as Application.Application.validatorsbaseValidator
+  rectangle "==validators.run\n<size:10>[Component: function]</size>\n\nExecute the validation stage" <<Application.Application.validatorsrun>> as Application.Application.validatorsrun
 }
 
 @enduml

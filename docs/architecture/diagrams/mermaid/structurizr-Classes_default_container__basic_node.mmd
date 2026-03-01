@@ -1,100 +1,100 @@
-graph TB
+graph LR
   linkStyle default fill:#ffffff
 
-  subgraph diagram ["Application - Application - Components"]
+  subgraph diagram [" "]
     style diagram fill:#ffffff,stroke:#ffffff
 
-    subgraph 8 ["Application"]
+    subgraph 8 [" "]
       style 8 fill:#ffffff,stroke:#2e6295,color:#2e6295
 
-      123("<div style='font-weight: bold'>basic_node.extractClasses</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Extract all class<br />declarations from a source<br />file</div>")
-      style 123 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      124("<div style='font-weight: bold'>basic_node.extractClass</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Extract information from a<br />single class declaration</div>")
-      style 124 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      125("<div style='font-weight: bold'>basic_node.extractMethod</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Extract method information<br />from a class</div>")
-      style 125 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      126("<div style='font-weight: bold'>basic_node.extractProperty</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Extract property information<br />from a class</div>")
-      style 126 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      127("<div style='font-weight: bold'>basic_node.extractMethodParameter</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Extract parameter information</div>")
-      style 127 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      128("<div style='font-weight: bold'>basic_node.mapVisibility</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Map ts-morph Scope to our<br />visibility string</div>")
-      style 128 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      129("<div style='font-weight: bold'>basic_node.getFileJsDocs</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Get JSDoc comments from a<br />source file Checks both the<br />first statement and<br />module-level JSDoc</div>")
-      style 129 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      130("<div style='font-weight: bold'>basic_node.extractFileComponent</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Extract component information<br />from file-level JSDoc Checks<br />the first JSDoc comment in<br />the file for</div>")
-      style 130 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      131("<div style='font-weight: bold'>basic_node.extractFileActors</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Extract actors from<br />file-level JSDoc Looks for</div>")
-      style 131 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      132("<div style='font-weight: bold'>basic_node.extractFileRelationships</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Extract relationships from<br />file-level JSDoc Looks for</div>")
-      style 132 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      133("<div style='font-weight: bold'>basic_node.extractComponentFromJsDoc</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Extract component info from a<br />JSDoc node</div>")
-      style 133 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      134("<div style='font-weight: bold'>basic_node.extractActorsFromJsDoc</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Extract actors from a JSDoc<br />node Parses</div>")
-      style 134 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      135("<div style='font-weight: bold'>basic_node.parseActorTag</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Parse an</div>")
-      style 135 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      136("<div style='font-weight: bold'>basic_node.extractRelationshipsFromJsDoc</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Extract relationships from a<br />JSDoc node Parses</div>")
-      style 136 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      137("<div style='font-weight: bold'>basic_node.parseUsesTag</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Parse a</div>")
-      style 137 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      138("<div style='font-weight: bold'>basic_node.extractComponentName</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Extract component name from a<br />JSDoc tag Handles formats<br />like: -</div>")
-      style 138 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      139("<div style='font-weight: bold'>basic_node.inferComponentFromPath</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Infer component name from<br />file path - Files in<br />subdirectories use the<br />immediate parent folder name<br />- Files in root directory use<br />a special marker that will be<br />replaced with container name<br />Examples: -<br />/path/to/project/src/utils/helper.ts<br />-> 'utils' -<br />/path/to/project/src/index.ts<br />-> ROOT_COMPONENT_MARKER -<br />/path/to/project/services/api/client.ts<br />-> 'api'</div>")
-      style 139 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      140("<div style='font-weight: bold'>basic_node.extractDocumentation</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Extract documentation<br />information from JSDoc</div>")
-      style 140 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      141("<div style='font-weight: bold'>basic_node.extractDeprecation</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Extract deprecation<br />information from JSDoc</div>")
-      style 141 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      142("<div style='font-weight: bold'>basic_node.extractParameterDescriptions</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Extract parameter<br />descriptions from JSDoc</div>")
-      style 142 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      143("<div style='font-weight: bold'>basic_node.extractReturnDescription</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Extract return description<br />from JSDoc</div>")
-      style 143 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      144("<div style='font-weight: bold'>basic_node.extractParameterName</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Extract parameter name from</div>")
-      style 144 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      145("<div style='font-weight: bold'>basic_node.findSourceFiles</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Find source files matching<br />include/exclude patterns</div>")
-      style 145 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      146("<div style='font-weight: bold'>basic_node.findPackageJsonFiles</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Find package.json files<br />within the search paths</div>")
-      style 146 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      147("<div style='font-weight: bold'>basic_node.readPackageInfo</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Read and parse package.json<br />file</div>")
-      style 147 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      148("<div style='font-weight: bold'>basic_node.findNearestPackage</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Find the nearest parent<br />package.json for a given file</div>")
-      style 148 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      149("<div style='font-weight: bold'>basic_node.parseFiles</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Parse and extract information<br />from source files</div>")
-      style 149 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      150("<div style='font-weight: bold'>basic_node.extractFunctions</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Extract all function<br />declarations from a source<br />file</div>")
-      style 150 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      151("<div style='font-weight: bold'>basic_node.extractFunction</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Extract information from a<br />single function declaration</div>")
-      style 151 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      152("<div style='font-weight: bold'>basic_node.extractFunctionParameter</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Extract parameter information</div>")
-      style 152 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      153("<div style='font-weight: bold'>basic_node.extractArrowFunctions</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Extract arrow functions<br />assigned to const/let/var<br />Examples: const handleClick =<br />() => {} export const<br />createUser = async (data) =><br />{}</div>")
-      style 153 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      154("<div style='font-weight: bold'>basic_node.extractImports</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Extract all import<br />declarations from a source<br />file</div>")
-      style 154 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      155("<div style='font-weight: bold'>basic_node.mapToIR</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Map file extractions to<br />ArchletteIR</div>")
-      style 155 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      156("<div style='font-weight: bold'>basic_node.mapFunction</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Map a function to a CodeItem</div>")
-      style 156 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      157("<div style='font-weight: bold'>basic_node.mapClass</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Map a class to a CodeItem</div>")
-      style 157 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      158("<div style='font-weight: bold'>basic_node.mapMethod</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Map a class method to a<br />CodeItem</div>")
-      style 158 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      159("<div style='font-weight: bold'>basic_node.resolveImportPath</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Resolve an import path to an<br />absolute file path Handles<br />relative imports (./file,<br />../file) and resolves to<br />actual file paths Returns<br />undefined for node_modules<br />imports or unresolvable paths</div>")
-      style 159 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      160("<div style='font-weight: bold'>basic_node.mapImportToComponentRelationships</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Map imports to component<br />relationships<br />(component-level<br />dependencies)</div>")
-      style 160 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      161("<div style='font-weight: bold'>basic_node.mapImportRelationships</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Map imports to relationships<br />(original code-level format<br />for backward compatibility)</div>")
-      style 161 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      162("<div style='font-weight: bold'>basic_node.generateId</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Generate a unique ID for a<br />code element Format:<br />filePath:symbolName</div>")
-      style 162 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      163("<div style='font-weight: bold'>basic_node.getDefaultSystem</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Get default system info from<br />package.json if available</div>")
-      style 163 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      164("<div style='font-weight: bold'>basic_node.extractTypeAliases</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Extract type aliases from a<br />source file Examples: type<br />UserRole = 'admin' | 'user' |<br />'guest' export type<br />ApiResponse<T> = { data: T;<br />status: number }</div>")
-      style 164 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      165("<div style='font-weight: bold'>basic_node.extractInterfaces</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Extract interfaces from a<br />source file Examples:<br />interface User { id: string;<br />name: string } export<br />interface ApiClient {<br />get<T>(url: string):<br />Promise<T> }</div>")
-      style 165 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      82("<div style='font-weight: bold'>basic_node.basicNodeExtractor</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Extract architecture<br />information from a<br />Node.js/TypeScript codebase</div>")
-      style 82 fill:#85bbf0,stroke:#5d82a8,color:#000000
+      136("<div style='font-weight: bold'>basic_node.extractClasses</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Extract all class<br />declarations from a source<br />file</div>")
+      style 136 fill:#d4e8fc,stroke:#94a2b0,color:#000000
+      137("<div style='font-weight: bold'>basic_node.extractClass</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Extract information from a<br />single class declaration</div>")
+      style 137 fill:#d4e8fc,stroke:#94a2b0,color:#000000
+      138("<div style='font-weight: bold'>basic_node.extractMethod</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Extract method information<br />from a class</div>")
+      style 138 fill:#d4e8fc,stroke:#94a2b0,color:#000000
+      139("<div style='font-weight: bold'>basic_node.extractProperty</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Extract property information<br />from a class</div>")
+      style 139 fill:#d4e8fc,stroke:#94a2b0,color:#000000
+      140("<div style='font-weight: bold'>basic_node.extractMethodParameter</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Extract parameter information</div>")
+      style 140 fill:#d4e8fc,stroke:#94a2b0,color:#000000
+      141("<div style='font-weight: bold'>basic_node.mapVisibility</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Map ts-morph Scope to our<br />visibility string</div>")
+      style 141 fill:#d4e8fc,stroke:#94a2b0,color:#000000
+      142("<div style='font-weight: bold'>basic_node.getFileJsDocs</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Get JSDoc comments from a<br />source file Checks both the<br />first statement and<br />module-level JSDoc</div>")
+      style 142 fill:#d4e8fc,stroke:#94a2b0,color:#000000
+      143("<div style='font-weight: bold'>basic_node.extractFileComponent</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Extract component information<br />from file-level JSDoc Checks<br />the first JSDoc comment in<br />the file for</div>")
+      style 143 fill:#d4e8fc,stroke:#94a2b0,color:#000000
+      144("<div style='font-weight: bold'>basic_node.extractFileActors</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Extract actors from<br />file-level JSDoc Looks for</div>")
+      style 144 fill:#d4e8fc,stroke:#94a2b0,color:#000000
+      145("<div style='font-weight: bold'>basic_node.extractFileRelationships</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Extract relationships from<br />file-level JSDoc Looks for</div>")
+      style 145 fill:#d4e8fc,stroke:#94a2b0,color:#000000
+      146("<div style='font-weight: bold'>basic_node.extractComponentFromJsDoc</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Extract component info from a<br />JSDoc node</div>")
+      style 146 fill:#d4e8fc,stroke:#94a2b0,color:#000000
+      147("<div style='font-weight: bold'>basic_node.extractActorsFromJsDoc</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Extract actors from a JSDoc<br />node Parses</div>")
+      style 147 fill:#d4e8fc,stroke:#94a2b0,color:#000000
+      148("<div style='font-weight: bold'>basic_node.parseActorTag</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Parse an</div>")
+      style 148 fill:#d4e8fc,stroke:#94a2b0,color:#000000
+      149("<div style='font-weight: bold'>basic_node.extractRelationshipsFromJsDoc</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Extract relationships from a<br />JSDoc node Parses</div>")
+      style 149 fill:#d4e8fc,stroke:#94a2b0,color:#000000
+      150("<div style='font-weight: bold'>basic_node.parseUsesTag</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Parse a</div>")
+      style 150 fill:#d4e8fc,stroke:#94a2b0,color:#000000
+      151("<div style='font-weight: bold'>basic_node.extractComponentName</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Extract component name from a<br />JSDoc tag Handles formats<br />like: -</div>")
+      style 151 fill:#d4e8fc,stroke:#94a2b0,color:#000000
+      152("<div style='font-weight: bold'>basic_node.inferComponentFromPath</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Infer component name from<br />file path - Files in<br />subdirectories use the<br />immediate parent folder name<br />- Files in root directory use<br />a special marker that will be<br />replaced with container name<br />Examples: -<br />/path/to/project/src/utils/helper.ts<br />-> 'utils' -<br />/path/to/project/src/index.ts<br />-> ROOT_COMPONENT_MARKER -<br />/path/to/project/services/api/client.ts<br />-> 'api'</div>")
+      style 152 fill:#d4e8fc,stroke:#94a2b0,color:#000000
+      153("<div style='font-weight: bold'>basic_node.extractDocumentation</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Extract documentation<br />information from JSDoc</div>")
+      style 153 fill:#d4e8fc,stroke:#94a2b0,color:#000000
+      154("<div style='font-weight: bold'>basic_node.extractDeprecation</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Extract deprecation<br />information from JSDoc</div>")
+      style 154 fill:#d4e8fc,stroke:#94a2b0,color:#000000
+      155("<div style='font-weight: bold'>basic_node.extractParameterDescriptions</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Extract parameter<br />descriptions from JSDoc</div>")
+      style 155 fill:#d4e8fc,stroke:#94a2b0,color:#000000
+      156("<div style='font-weight: bold'>basic_node.extractReturnDescription</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Extract return description<br />from JSDoc</div>")
+      style 156 fill:#d4e8fc,stroke:#94a2b0,color:#000000
+      157("<div style='font-weight: bold'>basic_node.extractParameterName</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Extract parameter name from</div>")
+      style 157 fill:#d4e8fc,stroke:#94a2b0,color:#000000
+      158("<div style='font-weight: bold'>basic_node.findSourceFiles</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Find source files matching<br />include/exclude patterns</div>")
+      style 158 fill:#d4e8fc,stroke:#94a2b0,color:#000000
+      159("<div style='font-weight: bold'>basic_node.findPackageJsonFiles</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Find package.json files<br />within the search paths</div>")
+      style 159 fill:#d4e8fc,stroke:#94a2b0,color:#000000
+      160("<div style='font-weight: bold'>basic_node.readPackageInfo</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Read and parse package.json<br />file</div>")
+      style 160 fill:#d4e8fc,stroke:#94a2b0,color:#000000
+      161("<div style='font-weight: bold'>basic_node.findNearestPackage</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Find the nearest parent<br />package.json for a given file</div>")
+      style 161 fill:#d4e8fc,stroke:#94a2b0,color:#000000
+      162("<div style='font-weight: bold'>basic_node.parseFiles</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Parse and extract information<br />from source files</div>")
+      style 162 fill:#d4e8fc,stroke:#94a2b0,color:#000000
+      163("<div style='font-weight: bold'>basic_node.extractFunctions</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Extract all function<br />declarations from a source<br />file</div>")
+      style 163 fill:#d4e8fc,stroke:#94a2b0,color:#000000
+      164("<div style='font-weight: bold'>basic_node.extractFunction</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Extract information from a<br />single function declaration</div>")
+      style 164 fill:#d4e8fc,stroke:#94a2b0,color:#000000
+      165("<div style='font-weight: bold'>basic_node.extractFunctionParameter</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Extract parameter information</div>")
+      style 165 fill:#d4e8fc,stroke:#94a2b0,color:#000000
+      166("<div style='font-weight: bold'>basic_node.extractArrowFunctions</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Extract arrow functions<br />assigned to const/let/var<br />Examples: const handleClick =<br />() => {} export const<br />createUser = async (data) =><br />{}</div>")
+      style 166 fill:#d4e8fc,stroke:#94a2b0,color:#000000
+      167("<div style='font-weight: bold'>basic_node.extractImports</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Extract all import<br />declarations from a source<br />file</div>")
+      style 167 fill:#d4e8fc,stroke:#94a2b0,color:#000000
+      168("<div style='font-weight: bold'>basic_node.mapToIR</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Map file extractions to<br />ArchletteIR</div>")
+      style 168 fill:#d4e8fc,stroke:#94a2b0,color:#000000
+      169("<div style='font-weight: bold'>basic_node.mapFunction</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Map a function to a CodeItem</div>")
+      style 169 fill:#d4e8fc,stroke:#94a2b0,color:#000000
+      170("<div style='font-weight: bold'>basic_node.mapClass</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Map a class to a CodeItem</div>")
+      style 170 fill:#d4e8fc,stroke:#94a2b0,color:#000000
+      171("<div style='font-weight: bold'>basic_node.mapMethod</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Map a class method to a<br />CodeItem</div>")
+      style 171 fill:#d4e8fc,stroke:#94a2b0,color:#000000
+      172("<div style='font-weight: bold'>basic_node.resolveImportPath</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Resolve an import path to an<br />absolute file path Handles<br />relative imports (./file,<br />../file) and resolves to<br />actual file paths Returns<br />undefined for node_modules<br />imports or unresolvable paths</div>")
+      style 172 fill:#d4e8fc,stroke:#94a2b0,color:#000000
+      173("<div style='font-weight: bold'>basic_node.mapImportToComponentRelationships</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Map imports to component<br />relationships<br />(component-level<br />dependencies)</div>")
+      style 173 fill:#d4e8fc,stroke:#94a2b0,color:#000000
+      174("<div style='font-weight: bold'>basic_node.mapImportRelationships</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Map imports to relationships<br />(original code-level format<br />for backward compatibility)</div>")
+      style 174 fill:#d4e8fc,stroke:#94a2b0,color:#000000
+      175("<div style='font-weight: bold'>basic_node.generateId</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Generate a unique ID for a<br />code element Format:<br />filePath:symbolName</div>")
+      style 175 fill:#d4e8fc,stroke:#94a2b0,color:#000000
+      176("<div style='font-weight: bold'>basic_node.getDefaultSystem</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Get default system info from<br />package.json if available</div>")
+      style 176 fill:#d4e8fc,stroke:#94a2b0,color:#000000
+      177("<div style='font-weight: bold'>basic_node.extractTypeAliases</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Extract type aliases from a<br />source file Examples: type<br />UserRole = 'admin' | 'user' |<br />'guest' export type<br />ApiResponse<T> = { data: T;<br />status: number }</div>")
+      style 177 fill:#d4e8fc,stroke:#94a2b0,color:#000000
+      178("<div style='font-weight: bold'>basic_node.extractInterfaces</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Extract interfaces from a<br />source file Examples:<br />interface User { id: string;<br />name: string } export<br />interface ApiClient {<br />get<T>(url: string):<br />Promise<T> }</div>")
+      style 178 fill:#d4e8fc,stroke:#94a2b0,color:#000000
+      85("<div style='font-weight: bold'>basic_node.basicNodeExtractor</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Extract architecture<br />information from a<br />Node.js/TypeScript codebase</div>")
+      style 85 fill:#d4e8fc,stroke:#94a2b0,color:#000000
     end
 
   end

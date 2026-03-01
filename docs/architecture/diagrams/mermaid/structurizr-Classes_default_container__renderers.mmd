@@ -1,18 +1,38 @@
-graph TB
+graph LR
   linkStyle default fill:#ffffff
 
-  subgraph diagram ["Application - Application - Components"]
+  subgraph diagram [" "]
     style diagram fill:#ffffff,stroke:#ffffff
 
-    subgraph 8 ["Application"]
+    subgraph 8 [" "]
       style 8 fill:#ffffff,stroke:#2e6295,color:#2e6295
 
+      100("<div style='font-weight: bold'>renderers.plantumlRender</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Render PlantUML files to PNG<br />images</div>")
+      style 100 fill:#d4e8fc,stroke:#94a2b0,color:#000000
+      101("<div style='font-weight: bold'>renderers.structurizrExport</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Export Structurizr DSL to<br />PlantUML and/or Mermaid<br />formats</div>")
+      style 101 fill:#d4e8fc,stroke:#94a2b0,color:#000000
+      102("<div style='font-weight: bold'>renderers.findGraphviz</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Find Graphviz dot command in<br />PATH</div>")
+      style 102 fill:#d4e8fc,stroke:#94a2b0,color:#000000
+      103("<div style='font-weight: bold'>renderers.structurizrRender</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Render Structurizr DSL to<br />images using CLI DOT export +<br />Graphviz</div>")
+      style 103 fill:#d4e8fc,stroke:#94a2b0,color:#000000
+      104("<div style='font-weight: bold'>renderers.extractStylesBlock</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Extract styles block from<br />theme content using brace<br />counting</div>")
+      style 104 fill:#d4e8fc,stroke:#94a2b0,color:#000000
+      105("<div style='font-weight: bold'>renderers.removeBlock</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Remove a block from DSL<br />content using brace counting</div>")
+      style 105 fill:#d4e8fc,stroke:#94a2b0,color:#000000
+      106("<div style='font-weight: bold'>renderers.removeStylesBlock</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div>")
+      style 106 fill:#d4e8fc,stroke:#94a2b0,color:#000000
+      107("<div style='font-weight: bold'>renderers.removeBrandingBlock</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div>")
+      style 107 fill:#d4e8fc,stroke:#94a2b0,color:#000000
+      108("<div style='font-weight: bold'>renderers.escapeInvalidHtmlTags</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Escape all angle brackets<br />that aren't part of valid DOT<br />HTML tags. Handles cases<br />where Structurizr inserts <br<br />/> for word-wrapping inside<br />other tag-like content (e.g.,<br /><slot name="header<br />/>").<br />Strategy: 1. Find all valid<br />HTML tags using regex 2.<br />Escape all < and > that are<br />NOT part of those tags</div>")
+      style 108 fill:#d4e8fc,stroke:#94a2b0,color:#000000
+      109("<div style='font-weight: bold'>renderers.sanitizeDotContent</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Sanitize DOT file content for<br />Graphviz compatibility<br />Applies string replacements<br />only within label=<<...>><br />content, preserving the DOT<br />structural syntax.</div>")
+      style 109 fill:#d4e8fc,stroke:#94a2b0,color:#000000
+      110("<div style='font-weight: bold'>renderers.sanitizeDotFiles</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Sanitize all DOT files in a<br />directory</div>")
+      style 110 fill:#d4e8fc,stroke:#94a2b0,color:#000000
       32("<div style='font-weight: bold'>renderers.run</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Execute the rendering stage</div>")
-      style 32 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      96("<div style='font-weight: bold'>renderers.plantumlRender</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Render PlantUML files to PNG<br />images</div>")
-      style 96 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      97("<div style='font-weight: bold'>renderers.structurizrExport</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Export Structurizr DSL to<br />PlantUML and Mermaid formats</div>")
-      style 97 fill:#85bbf0,stroke:#5d82a8,color:#000000
+      style 32 fill:#d4e8fc,stroke:#94a2b0,color:#000000
+      99("<div style='font-weight: bold'>renderers.mermaidRender</div><div style='font-size: 70%; margin-top: 0px'>[Component: function]</div><div style='font-size: 80%; margin-top:10px'>Render Mermaid files to<br />images</div>")
+      style 99 fill:#d4e8fc,stroke:#94a2b0,color:#000000
     end
 
   end
