@@ -5,6 +5,18 @@ All notable changes to **Archlette** will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and this project adheres to [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
 
+## [1.3.0](https://github.com/chrislyons-dev/archlette/compare/v1.2.0...v1.3.0) (2026-03-01)
+
+
+### Features
+
+* astro extractor, structurizr/mermaid rendering, and brand refresh ([#53](https://github.com/chrislyons-dev/archlette/issues/53)) ([c8dba77](https://github.com/chrislyons-dev/archlette/commit/c8dba7724febe45479ebd61eddea82acbb570295))
+
+
+### Bug Fixes
+
+* convert gha scripts to trusted publishers ([#54](https://github.com/chrislyons-dev/archlette/issues/54)) ([523e08c](https://github.com/chrislyons-dev/archlette/commit/523e08ca438b1ab681a9ae84c4dbf33cfdc826ff))
+
 ## [1.2.0](https://github.com/chrislyons-dev/archlette/compare/v1.1.0...v1.2.0) (2025-10-28)
 
 
