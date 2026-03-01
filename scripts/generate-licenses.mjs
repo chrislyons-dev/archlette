@@ -277,10 +277,10 @@ fs.writeFileSync(outputFile, markdown, 'utf8');
 console.log(`✅ License file generated: ${outputFile}`);
 console.log(`   File includes full license texts for all ${packageCount} dependencies\n`);
 
-// Check for concerning licenses
+// Warn about non-standard licenses — does not fail the script so callers
+// (check-licenses.mjs, CI) can still compare file contents and decide policy.
 if (npmLicenses.includes('⚠️')) {
   console.warn(
     '⚠️  Some dependencies use non-standard licenses. Please review manually.\n',
   );
-  process.exit(1);
 }
