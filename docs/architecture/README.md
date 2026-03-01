@@ -1,4 +1,4 @@
-# 🏗️ Application
+# <picture><source srcset="../images/archlette-stainedglassA-light.png"><img src="../images/archlette-stainedglassA-light.png" alt="" height="28" width="28 style="vertical-align:middle"></picture> Application
 
 **Architecture Documentation**
 Generated 2025-10-27 22:07:22

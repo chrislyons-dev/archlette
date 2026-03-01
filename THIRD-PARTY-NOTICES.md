@@ -15222,7 +15222,7 @@ terms above.
 
 ---
 
-### lodash-es@4.17.22
+### lodash-es@4.17.23
 
 - **License**: MIT
 - **Repository**: https://github.com/lodash/lodash
@@ -15284,7 +15284,7 @@ terms above.
 
 ---
 
-### lodash@4.17.21
+### lodash@4.17.23
 
 - **License**: MIT
 - **Repository**: https://github.com/lodash/lodash
@@ -21712,4 +21712,4 @@ This script:
 
 ---
 
-**Last generated**: 2026-01-26
+**Last generated**: 2026-03-01

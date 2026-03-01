@@ -38,7 +38,12 @@ const transformations = [
   {
     pattern: /\]\(docs\//g,
     replacement: '](',
-    description: 'Remove docs/ prefix from other links',
+    description: 'Remove docs/ prefix from markdown links',
+  },
+  {
+    pattern: /(src(?:set)?=")docs\//g,
+    replacement: '$1',
+    description: 'Remove docs/ prefix from HTML src/srcset attributes',
   },
   {
     pattern: /\]\(LICENSE\)/g,

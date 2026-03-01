@@ -1,4 +1,4 @@
-# 🏗️ Archlette
+# <picture><source srcset="images/archlette-stainedglassA-light.png"><img src="images/archlette-stainedglassA-light.png" alt="" height="28" width="28" align="absmiddle"></picture> Archlette
 
 > **Code speaks. Archlette listens. Architecture evolves.**
 

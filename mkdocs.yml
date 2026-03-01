@@ -7,20 +7,25 @@ edit_uri: edit/main/docs/
 
 theme:
   name: material
+  logo: images/archlette-stainedglassA-light.png
+  favicon: images/archlette-stainedglassA-light.svg
+  font:
+    text: Inter
+    code: JetBrains Mono
   palette:
     # Light mode
     - media: '(prefers-color-scheme: light)'
       scheme: default
-      primary: indigo
-      accent: indigo
+      primary: custom
+      accent: custom
       toggle:
         icon: material/brightness-7
         name: Switch to dark mode
     # Dark mode
     - media: '(prefers-color-scheme: dark)'
       scheme: slate
-      primary: indigo
-      accent: indigo
+      primary: custom
+      accent: custom
       toggle:
         icon: material/brightness-4
         name: Switch to light mode
@@ -109,6 +114,12 @@ markdown_extensions:
   - pymdownx.keys
   - pymdownx.mark
   - pymdownx.smartsymbols
+
+extra_css:
+  - stylesheets/archlette.css
+
+hooks:
+  - scripts/mkdocs_hooks.py
 
 plugins:
   - search:
