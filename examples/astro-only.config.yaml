@@ -37,9 +37,6 @@ generators:
   - use: generators/builtin/structurizr
 
 # Rendering stage - convert DSL to diagrams
-# Note: Order matters! Renderers execute sequentially.
-# 1. Export Structurizr DSL to PlantUML/Mermaid formats
-# 2. Render PlantUML to PNG images
 renderers:
   - use: renderers/builtin/structurizr-export
   - use: renderers/builtin/plantuml-render

@@ -1,0 +1,21 @@
+digraph {
+  compound=true
+  graph [splines=polyline,rankdir=LR,ranksep=0.3333333333333333,nodesep=0.3333333333333333,fontsize=5]
+  node [shape=box,fontsize=5]
+  edge []
+
+  subgraph cluster_2 {
+    margin=25
+    10 [width=1.500000,height=1.000000,fixedsize=true,id=10,label="10: src.AuthService.generateToken"]
+    11 [width=1.500000,height=1.000000,fixedsize=true,id=11,label="11: src.DatabaseService"]
+    12 [width=1.500000,height=1.000000,fixedsize=true,id=12,label="12: src.DatabaseService.insert"]
+    13 [width=1.500000,height=1.000000,fixedsize=true,id=13,label="13: src.DatabaseService.findByEmail"]
+    4 [width=1.500000,height=1.000000,fixedsize=true,id=4,label="4: src.UserService"]
+    5 [width=1.500000,height=1.000000,fixedsize=true,id=5,label="5: src.UserService.createUser"]
+    6 [width=1.500000,height=1.000000,fixedsize=true,id=6,label="6: src.UserService.login"]
+    7 [width=1.500000,height=1.000000,fixedsize=true,id=7,label="7: src.AuthService"]
+    8 [width=1.500000,height=1.000000,fixedsize=true,id=8,label="8: src.AuthService.hashPassword"]
+    9 [width=1.500000,height=1.000000,fixedsize=true,id=9,label="9: src.AuthService.verifyPassword"]
+  }
+
+}

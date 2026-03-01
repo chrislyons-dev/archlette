@@ -1,0 +1,36 @@
+digraph {
+  compound=true
+  graph [splines=polyline,rankdir=LR,ranksep=0.3333333333333333,nodesep=0.3333333333333333,fontsize=5]
+  node [shape=box,fontsize=5]
+  edge []
+
+  subgraph cluster_8 {
+    margin=25
+    111 [width=0.666667,height=0.333333,fixedsize=true,id=111,label="111: basic-astro.extractCodeFromFrontmatter"]
+    112 [width=0.666667,height=0.333333,fixedsize=true,id=112,label="112: basic-astro.createSyntheticRenderFunction"]
+    113 [width=0.666667,height=0.333333,fixedsize=true,id=113,label="113: basic-astro.extractJSDocBlocks"]
+    114 [width=0.666667,height=0.333333,fixedsize=true,id=114,label="114: basic-astro.parseJSDocBlock"]
+    115 [width=0.666667,height=0.333333,fixedsize=true,id=115,label="115: basic-astro.extractFileComponent"]
+    116 [width=0.666667,height=0.333333,fixedsize=true,id=116,label="116: basic-astro.extractComponentName"]
+    117 [width=0.666667,height=0.333333,fixedsize=true,id=117,label="117: basic-astro.extractFileActors"]
+    118 [width=0.666667,height=0.333333,fixedsize=true,id=118,label="118: basic-astro.parseActorTag"]
+    119 [width=0.666667,height=0.333333,fixedsize=true,id=119,label="119: basic-astro.extractFileRelationships"]
+    120 [width=0.666667,height=0.333333,fixedsize=true,id=120,label="120: basic-astro.parseUsesTag"]
+    121 [width=0.666667,height=0.333333,fixedsize=true,id=121,label="121: basic-astro.inferComponentFromPath"]
+    122 [width=0.666667,height=0.333333,fixedsize=true,id=122,label="122: basic-astro.findSourceFiles"]
+    123 [width=0.666667,height=0.333333,fixedsize=true,id=123,label="123: basic-astro.findPackageJsonFiles"]
+    124 [width=0.666667,height=0.333333,fixedsize=true,id=124,label="124: basic-astro.readPackageInfo"]
+    125 [width=0.666667,height=0.333333,fixedsize=true,id=125,label="125: basic-astro.findNearestPackage"]
+    126 [width=0.666667,height=0.333333,fixedsize=true,id=126,label="126: basic-astro.parseFiles"]
+    127 [width=0.666667,height=0.333333,fixedsize=true,id=127,label="127: basic-astro.extractFrontmatter"]
+    128 [width=0.666667,height=0.333333,fixedsize=true,id=128,label="128: basic-astro.extractImports"]
+    129 [width=0.666667,height=0.333333,fixedsize=true,id=129,label="129: basic-astro.findSlots"]
+    130 [width=0.666667,height=0.333333,fixedsize=true,id=130,label="130: basic-astro.findClientDirective"]
+    131 [width=0.666667,height=0.333333,fixedsize=true,id=131,label="131: basic-astro.extractComponentUsage"]
+    132 [width=0.666667,height=0.333333,fixedsize=true,id=132,label="132: basic-astro.mapToIR"]
+    133 [width=0.666667,height=0.333333,fixedsize=true,id=133,label="133: basic-astro.mapClassToCodeItems"]
+    134 [width=0.666667,height=0.333333,fixedsize=true,id=134,label="134: basic-astro.mapFunctionToCodeItem"]
+    83 [width=0.666667,height=0.333333,fixedsize=true,id=83,label="83: basic-astro.basicAstroExtractor"]
+  }
+
+}

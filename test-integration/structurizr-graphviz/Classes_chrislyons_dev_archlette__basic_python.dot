@@ -1,0 +1,39 @@
+digraph {
+  compound=true
+  graph [splines=polyline,rankdir=LR,ranksep=0.3333333333333333,nodesep=0.3333333333333333,fontsize=5]
+  node [shape=box,fontsize=5]
+  edge []
+
+  subgraph cluster_8 {
+    margin=25
+    178 [width=0.666667,height=0.333333,fixedsize=true,id=178,label="178: basic-python.findSourceFiles"]
+    179 [width=0.666667,height=0.333333,fixedsize=true,id=179,label="179: basic-python.findPyProjectFiles"]
+    180 [width=0.666667,height=0.333333,fixedsize=true,id=180,label="180: basic-python.readPyProjectInfo"]
+    181 [width=0.666667,height=0.333333,fixedsize=true,id=181,label="181: basic-python.parsePyProjectToml"]
+    182 [width=0.666667,height=0.333333,fixedsize=true,id=182,label="182: basic-python.findNearestPyProject"]
+    183 [width=0.666667,height=0.333333,fixedsize=true,id=183,label="183: basic-python.parseFiles"]
+    184 [width=0.666667,height=0.333333,fixedsize=true,id=184,label="184: basic-python.runPythonParser"]
+    185 [width=0.666667,height=0.333333,fixedsize=true,id=185,label="185: basic-python.mapToFileExtraction"]
+    186 [width=0.666667,height=0.333333,fixedsize=true,id=186,label="186: basic-python.mapClass"]
+    187 [width=0.666667,height=0.333333,fixedsize=true,id=187,label="187: basic-python.mapMethod"]
+    188 [width=0.666667,height=0.333333,fixedsize=true,id=188,label="188: basic-python.mapProperty"]
+    189 [width=0.666667,height=0.333333,fixedsize=true,id=189,label="189: basic-python.mapFunction"]
+    190 [width=0.666667,height=0.333333,fixedsize=true,id=190,label="190: basic-python.mapType"]
+    191 [width=0.666667,height=0.333333,fixedsize=true,id=191,label="191: basic-python.mapParameter"]
+    192 [width=0.666667,height=0.333333,fixedsize=true,id=192,label="192: basic-python.parseDocstring"]
+    193 [width=0.666667,height=0.333333,fixedsize=true,id=193,label="193: basic-python.extractDeprecation"]
+    194 [width=0.666667,height=0.333333,fixedsize=true,id=194,label="194: basic-python.extractReturnDescription"]
+    195 [width=0.666667,height=0.333333,fixedsize=true,id=195,label="195: basic-python.getVisibility"]
+    196 [width=0.666667,height=0.333333,fixedsize=true,id=196,label="196: basic-python.mapToIR"]
+    197 [width=0.666667,height=0.333333,fixedsize=true,id=197,label="197: basic-python.mapActorToIR"]
+    198 [width=0.666667,height=0.333333,fixedsize=true,id=198,label="198: basic-python.mapRelationshipsToIR"]
+    199 [width=0.666667,height=0.333333,fixedsize=true,id=199,label="199: basic-python.mapImportToComponentRelationships"]
+    200 [width=0.666667,height=0.333333,fixedsize=true,id=200,label="200: basic-python.mapClassToCodeItem"]
+    201 [width=0.666667,height=0.333333,fixedsize=true,id=201,label="201: basic-python.mapMethodToCodeItem"]
+    202 [width=0.666667,height=0.333333,fixedsize=true,id=202,label="202: basic-python.mapFunctionToCodeItem"]
+    203 [width=0.666667,height=0.333333,fixedsize=true,id=203,label="203: basic-python.mapTypeToCodeItem"]
+    85 [width=0.666667,height=0.333333,fixedsize=true,id=85,label="85: basic-python.createEmptyIR"]
+    86 [width=0.666667,height=0.333333,fixedsize=true,id=86,label="86: basic-python.basicPython"]
+  }
+
+}

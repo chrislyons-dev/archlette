@@ -23,9 +23,6 @@ generators:
   - use: generators/builtin/structurizr
 
 # dsl in, images out
-# Renderers run sequentially - order matters!
-# 1. Export DSL to PlantUML/Mermaid
-# 2. Render PlantUML to PNG images
 renderers:
   - use: renderers/builtin/structurizr-export
   - use: renderers/builtin/plantuml-render

@@ -1,0 +1,70 @@
+/* =============================================================
+   Archlette Brand Theme
+   Graphite #1E1E1E · Electric Green #00FF88 · Light Gray #E0E0E0
+   ============================================================= */
+
+/* Primary: graphite header and nav */
+[data-md-color-primary=custom] {
+  --md-primary-fg-color:             #ffffff;
+  --md-primary-fg-color--light:      rgba(255, 255, 255, .7);
+  --md-primary-fg-color--dark:       rgba(255, 255, 255, .9);
+  --md-primary-bg-color:             #1e1e1e;
+  --md-primary-bg-color--light:      rgba(255, 255, 255, .07);
+}
+
+/* Accent: electric green for links, hover states, highlights */
+[data-md-color-accent=custom] {
+  --md-accent-fg-color:              #00ff88;
+  --md-accent-fg-color--transparent: rgba(0, 255, 136, .1);
+  --md-accent-bg-color:              #ffffff;
+  --md-accent-bg-color--light:       rgba(255, 255, 255, .7);
+}
+
+/* Light mode: pin sidebar nav link text to default fg, not primary (white) */
+[data-md-color-scheme=default] .md-nav__link {
+  color: var(--md-default-fg-color);
+}
+
+[data-md-color-scheme=default] .md-nav__link:focus,
+[data-md-color-scheme=default] .md-nav__link:hover,
+[data-md-color-scheme=default] .md-nav__link--active {
+  color: var(--md-accent-fg-color);
+}
+
+/* Dark mode: active and hovered nav links in electric green */
+[data-md-color-scheme=slate] .md-nav__link:focus,
+[data-md-color-scheme=slate] .md-nav__link:hover,
+[data-md-color-scheme=slate] .md-nav__link--active {
+  color: var(--md-accent-fg-color);
+}
+
+/* Electric green highlights: text selection, search results, mark — both modes */
+::selection {
+  background-color: rgba(0, 255, 136, .25);
+  color: inherit;
+}
+
+mark,
+.md-search-result mark {
+  background-color: rgba(0, 255, 136, .3);
+  color: inherit;
+}
+
+[data-md-color-scheme=slate] mark,
+[data-md-color-scheme=slate] .md-search-result mark {
+  background-color: rgba(0, 255, 136, .2);
+}
+
+/* Dark scheme: deep graphite canvas */
+[data-md-color-scheme=slate] {
+  --md-default-bg-color:             #181818;
+  --md-default-bg-color--light:      rgba(24, 24, 24, .54);
+  --md-default-bg-color--lighter:    rgba(24, 24, 24, .26);
+  --md-default-bg-color--lightest:   rgba(24, 24, 24, .07);
+  --md-default-fg-color:             #e0e0e0;
+  --md-default-fg-color--light:      rgba(224, 224, 224, .75);
+  --md-default-fg-color--lighter:    rgba(224, 224, 224, .5);
+  --md-default-fg-color--lightest:   rgba(224, 224, 224, .12);
+  --md-code-bg-color:                #222222;
+  --md-code-fg-color:                #e0e0e0;
+}

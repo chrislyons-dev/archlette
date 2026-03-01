@@ -626,4 +626,51 @@ describe('tool-manager', () => {
       expect(mockFs.chmodSync).not.toHaveBeenCalled();
     });
   });
+
+  describe('findMermaidCLI', () => {
+    it('returns mermaid CLI path when found in system PATH', () => {
+      mockChildProcess.execSync = vi.fn(() => '/usr/bin/mmdc');
+
+      const result = toolManager.findMermaidCLI(mockLogger);
+
+      expect(result).toBe('/usr/bin/mmdc');
+      expect(mockLogger.debug).toHaveBeenCalledWith('Looking for Mermaid CLI...');
+      expect(mockLogger.debug).toHaveBeenCalledWith(
+        'Found Mermaid CLI in PATH: /usr/bin/mmdc',
+      );
+    });
+
+    it('throws error with installation instructions when not found', () => {
+      mockChildProcess.execSync = vi.fn(() => {
+        throw new Error('Command not found');
+      });
+
+      expect(() => toolManager.findMermaidCLI(mockLogger)).toThrow(
+        'Mermaid CLI (mmdc) not found in PATH',
+      );
+      expect(() => toolManager.findMermaidCLI(mockLogger)).toThrow(
+        'npm install -g @mermaid-js/mermaid-cli',
+      );
+      expect(mockLogger.debug).toHaveBeenCalledWith('Looking for Mermaid CLI...');
+    });
+
+    it('works without logger', () => {
+      mockChildProcess.execSync = vi.fn(() => '/usr/local/bin/mmdc');
+
+      const result = toolManager.findMermaidCLI();
+
+      expect(result).toBe('/usr/local/bin/mmdc');
+    });
+
+    it('checks for mmdc command in PATH', () => {
+      mockChildProcess.execSync = vi.fn(() => '/opt/homebrew/bin/mmdc');
+
+      toolManager.findMermaidCLI(mockLogger);
+
+      expect(mockChildProcess.execSync).toHaveBeenCalledWith(
+        expect.stringContaining('mmdc'),
+        expect.any(Object),
+      );
+    });
+  });
 });

@@ -1,0 +1,38 @@
+# Integration Test: Mixed Formats
+#
+# This test exports to both PlantUML and Mermaid formats,
+# but only renders one (to avoid needing both renderers installed).
+# Runs against the archlette codebase itself for realistic output.
+
+project:
+  name: Archlette
+  description: Architecture-as-Code toolkit for generating C4 diagrams
+
+paths:
+  output: ./output
+  ir_out: ./output/ir.json
+  dsl_out: ./output/workspace.dsl
+  render_out: ./output/diagrams
+  docs_out: ./output/docs
+
+extractors:
+  - use: extractors/builtin/basic-node
+    inputs:
+      include: ['../../src/**/*.ts']
+      exclude: ['**/*.test.ts', '**/*.d.ts']
+
+validators:
+  - use: validators/builtin/base-validator
+
+generators:
+  - use: generators/builtin/structurizr
+
+# Export both formats, render with PlantUML
+renderers:
+  - use: renderers/builtin/structurizr-export
+    inputs:
+      formats: ['plantuml', 'mermaid'] # Export both
+  - use: renderers/builtin/plantuml-render # Render PlantUML only
+
+docs:
+  - use: docs/builtin/markdown-docs

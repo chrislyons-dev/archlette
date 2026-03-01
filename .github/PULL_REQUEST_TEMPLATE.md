@@ -21,7 +21,7 @@ assignees: ''
 - [ ] `npm run lint` passes
 - [ ] `npm run typecheck` passes
 - [ ] `npm test` passes
-- [ ] CHANGELOG.md updated (under “Unreleased”)
+- [ ] CHANGELOG.md updated (under "Unreleased")
 - [ ] Docs / README updated (if relevant)
 - [ ] License notices unchanged or updated as needed
 - [ ] CI checks pass
@@ -34,4 +34,4 @@ assignees: ''
 
 🧱 **Archlette Motto**
 
-> “Code speaks. Archlette listens. Architecture evolves.”
+> "Code speaks. Archlette listens. Architecture evolves."

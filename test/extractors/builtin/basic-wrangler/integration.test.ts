@@ -49,6 +49,20 @@ service = "auth-service"
 `,
     );
 
+    // Add auth-service wrangler.toml so the relationship can be created
+    const authFilePath = join(TEST_DIR, 'auth.toml');
+    writeFileSync(
+      authFilePath,
+      `
+name = "auth-service"
+main = "src/index.ts"
+compatibility_date = "2024-01-01"
+
+[vars]
+AUTH_ENABLED = "true"
+`,
+    );
+
     const node: ResolvedStageNode = {
       use: 'builtin/basic-wrangler',
       name: 'test-extractor',
@@ -65,8 +79,9 @@ service = "auth-service"
     const ir = await basicWranglerExtractor(node, mockContext);
 
     expect(ir.version).toBe('1.0');
-    expect(ir.containers).toHaveLength(1);
-    expect(ir.containers[0]).toMatchObject({
+    expect(ir.containers).toHaveLength(2);
+    const apiWorker = ir.containers.find((c) => c.id === 'api_worker');
+    expect(apiWorker).toMatchObject({
       id: 'api_worker',
       name: 'api-worker',
       type: 'Cloudflare Worker',
@@ -75,8 +90,11 @@ service = "auth-service"
 
     expect(ir.deployments).toHaveLength(1);
     expect(ir.deployments[0].name).toBe('production');
-    expect(ir.deployments[0].instances).toHaveLength(1);
-    expect(ir.deployments[0].instances![0].vars).toEqual({
+    expect(ir.deployments[0].instances).toHaveLength(2);
+    const apiWorkerInstance = ir.deployments[0].instances!.find(
+      (i) => i.containerRef === 'api_worker',
+    );
+    expect(apiWorkerInstance?.vars).toEqual({
       API_URL: 'https://api.example.com',
     });
 

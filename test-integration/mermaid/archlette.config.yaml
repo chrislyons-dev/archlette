@@ -1,0 +1,46 @@
+# Integration Test: Mermaid Rendering Path
+#
+# This test validates the new Mermaid rendering path.
+# Flow: DSL → Mermaid (.mmd) → SVG images
+# Runs against the archlette codebase itself for realistic output.
+#
+# PREREQUISITE: Mermaid CLI must be installed
+# Install: npm install -g @mermaid-js/mermaid-cli
+
+project:
+  name: Archlette
+  description: Architecture-as-Code toolkit for generating C4 diagrams
+
+paths:
+  output: ./output
+  ir_out: ./output/ir.json
+  dsl_out: ./output/workspace.dsl
+  render_out: ./output/diagrams
+  docs_out: ./output/docs
+
+extractors:
+  - use: extractors/builtin/basic-node
+    inputs:
+      include: ['../../src/**/*.ts']
+      exclude: ['**/*.test.ts', '**/*.d.ts']
+
+validators:
+  - use: validators/builtin/base-validator
+
+generators:
+  - use: generators/builtin/structurizr
+
+# MERMAID PATH: Export to Mermaid, then render
+renderers:
+  - use: renderers/builtin/structurizr-export
+    inputs:
+      formats: ['mermaid'] # Only export Mermaid
+  - use: renderers/builtin/mermaid-render
+    inputs:
+      format: svg
+      theme: forest
+      width: 1200
+      height: 800
+
+docs:
+  - use: docs/builtin/markdown-docs

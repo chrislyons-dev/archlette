@@ -1,0 +1,25 @@
+digraph {
+  compound=true
+  graph [splines=polyline,rankdir=LR,ranksep=0.3333333333333333,nodesep=0.3333333333333333,fontsize=5]
+  node [shape=box,fontsize=5]
+  edge []
+
+  subgraph cluster_8 {
+    margin=25
+    204 [width=0.666667,height=0.333333,fixedsize=true,id=204,label="204: basic_wrangler.findWranglerFiles"]
+    205 [width=0.666667,height=0.333333,fixedsize=true,id=205,label="205: basic_wrangler.mapToIR"]
+    206 [width=0.666667,height=0.333333,fixedsize=true,id=206,label="206: basic_wrangler.extractContainers"]
+    207 [width=0.666667,height=0.333333,fixedsize=true,id=207,label="207: basic_wrangler.deriveContainerType"]
+    208 [width=0.666667,height=0.333333,fixedsize=true,id=208,label="208: basic_wrangler.extractDeploymentsAndInstances"]
+    209 [width=0.666667,height=0.333333,fixedsize=true,id=209,label="209: basic_wrangler.findMatchingContainer"]
+    210 [width=0.666667,height=0.333333,fixedsize=true,id=210,label="210: basic_wrangler.extractContainerRelationships"]
+    211 [width=0.666667,height=0.333333,fixedsize=true,id=211,label="211: basic_wrangler.extractDeploymentRelationships"]
+    212 [width=0.666667,height=0.333333,fixedsize=true,id=212,label="212: basic_wrangler.extractDescription"]
+    213 [width=0.666667,height=0.333333,fixedsize=true,id=213,label="213: basic_wrangler.parseWranglerFile"]
+    214 [width=0.666667,height=0.333333,fixedsize=true,id=214,label="214: basic_wrangler.normalizeServiceBindings"]
+    215 [width=0.666667,height=0.333333,fixedsize=true,id=215,label="215: basic_wrangler.getEnvironments"]
+    216 [width=0.666667,height=0.333333,fixedsize=true,id=216,label="216: basic_wrangler.getEnvironmentConfig"]
+    87 [width=0.666667,height=0.333333,fixedsize=true,id=87,label="87: basic_wrangler.basicWranglerExtractor"]
+  }
+
+}

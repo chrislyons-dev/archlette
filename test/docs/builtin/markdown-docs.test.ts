@@ -587,7 +587,7 @@ describe('markdown-docs generator', () => {
       );
     });
 
-    it('filters out non-PNG renderer outputs', async () => {
+    it('filters out non-image renderer outputs', async () => {
       mockContext.state.rendererOutputs = [
         {
           renderer: 'structurizr',
@@ -605,13 +605,34 @@ describe('markdown-docs generator', () => {
 
       await markdownDocs(mockContext);
 
-      // Only PNG files should be checked
+      // Only PNG/SVG files should be checked, not DSL
       const existsCalls = vi.mocked(mockFs.existsSync).mock.calls;
       const dslCheck = existsCalls.some((call: any[]) =>
         String(call[0]).includes('structurizr.dsl'),
       );
 
       expect(dslCheck).toBe(false);
+    });
+
+    it('supports SVG diagram files', async () => {
+      mockContext.state.rendererOutputs = [
+        {
+          renderer: 'mermaid',
+          format: 'svg',
+          files: ['structurizr-SystemContext.svg', 'structurizr-Containers.svg'],
+          timestamp: Date.now(),
+        },
+      ];
+
+      await markdownDocs(mockContext);
+
+      // SVG files should be checked
+      const existsCalls = vi.mocked(mockFs.existsSync).mock.calls;
+      const svgChecks = existsCalls.filter((call: any[]) =>
+        String(call[0]).includes('.svg'),
+      );
+
+      expect(svgChecks.length).toBeGreaterThan(0);
     });
   });
 

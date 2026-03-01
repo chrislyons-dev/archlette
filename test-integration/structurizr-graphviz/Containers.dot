@@ -1,0 +1,26 @@
+digraph {
+  compound=true
+  graph [splines=polyline,rankdir=LR,ranksep=0.3333333333333333,nodesep=0.3333333333333333,fontsize=5]
+  node [shape=box,fontsize=5]
+  edge []
+
+  1 [width=0.666667,height=0.400000,fixedsize=true,id=1,label="1: User"]
+  2 [width=0.800000,height=0.466667,fixedsize=true,id=2,label="2: FileSystem"]
+  3 [width=0.800000,height=0.466667,fixedsize=true,id=3,label="3: Github Structurizr Repo"]
+  4 [width=0.800000,height=0.466667,fixedsize=true,id=4,label="4: Github PlantUML Repo"]
+  5 [width=0.800000,height=0.466667,fixedsize=true,id=5,label="5: Local System's unzip utility"]
+  6 [width=0.800000,height=0.466667,fixedsize=true,id=6,label="6: File System"]
+
+  subgraph cluster_7 {
+    margin=25
+    237 [width=0.733333,height=0.433333,fixedsize=true,id=237,label="237: @example/astro-app"]
+    8 [width=0.733333,height=0.433333,fixedsize=true,id=8,label="8: @chrislyons-dev/archlette"]
+  }
+
+  1 -> 8 [id=239]
+  8 -> 2 [id=242]
+  8 -> 3 [id=245]
+  8 -> 4 [id=248]
+  8 -> 5 [id=251]
+  8 -> 6 [id=254]
+}

@@ -16,7 +16,7 @@ assignees: ''
 - [ ] Update `CHANGELOG.md` (move items from **Unreleased** to the new version)
 - [ ] Ensure README & examples reflect any changes
 - [ ] Run: `npm ci && npm test` (if applicable)
-- [ ] Run: `npm run licenses:report` (update THIRD_PARTY_LICENSES.md)
+- [ ] Run: `npm run licenses:report` (update THIRD-PARTY-NOTICES.md)
 
 ## Tag & Publish
 

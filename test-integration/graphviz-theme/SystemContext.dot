@@ -1,0 +1,21 @@
+digraph {
+  compound=true
+  graph [splines=polyline,rankdir=LR,ranksep=0.3333333333333333,nodesep=0.3333333333333333,fontsize=5]
+  node [shape=box,fontsize=5]
+  edge []
+
+  1 [width=1.333333,height=1.333333,fixedsize=true,id=1,label="1: User"]
+  2 [width=1.500000,height=1.000000,fixedsize=true,id=2,label="2: FileSystem"]
+  3 [width=1.500000,height=1.000000,fixedsize=true,id=3,label="3: Github Structurizr Repo"]
+  4 [width=1.500000,height=1.000000,fixedsize=true,id=4,label="4: Github PlantUML Repo"]
+  5 [width=1.500000,height=1.000000,fixedsize=true,id=5,label="5: Local System's unzip utility"]
+  6 [width=1.500000,height=1.000000,fixedsize=true,id=6,label="6: File System"]
+  7 [width=1.500000,height=1.000000,fixedsize=true,id=7,label="7: @chrislyons-dev/archlette"]
+
+  1 -> 7 [id=240]
+  7 -> 2 [id=243]
+  7 -> 3 [id=246]
+  7 -> 4 [id=249]
+  7 -> 5 [id=252]
+  7 -> 6 [id=255]
+}

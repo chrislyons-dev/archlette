@@ -29,7 +29,7 @@ npx @chrislyons-dev/archlette generate --verbose
 ## 🔐 Security & License
 
 - License: MIT
-- Third-party notices: see `NOTICE` and `THIRD_PARTY_LICENSES.md`
+- Third-party notices: see `NOTICE` and `THIRD-PARTY-NOTICES.md`
 
 ---
 

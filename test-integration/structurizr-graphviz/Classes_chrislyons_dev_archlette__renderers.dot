@@ -1,0 +1,24 @@
+digraph {
+  compound=true
+  graph [splines=polyline,rankdir=LR,ranksep=0.3333333333333333,nodesep=0.3333333333333333,fontsize=5]
+  node [shape=box,fontsize=5]
+  edge []
+
+  subgraph cluster_8 {
+    margin=25
+    100 [width=0.666667,height=0.333333,fixedsize=true,id=100,label="100: renderers.structurizrExport"]
+    101 [width=0.666667,height=0.333333,fixedsize=true,id=101,label="101: renderers.findGraphviz"]
+    102 [width=0.666667,height=0.333333,fixedsize=true,id=102,label="102: renderers.structurizrRender"]
+    103 [width=0.666667,height=0.333333,fixedsize=true,id=103,label="103: renderers.extractStylesBlock"]
+    104 [width=0.666667,height=0.333333,fixedsize=true,id=104,label="104: renderers.removeBlock"]
+    105 [width=0.666667,height=0.333333,fixedsize=true,id=105,label="105: renderers.removeStylesBlock"]
+    106 [width=0.666667,height=0.333333,fixedsize=true,id=106,label="106: renderers.removeBrandingBlock"]
+    107 [width=0.666667,height=0.333333,fixedsize=true,id=107,label="107: renderers.escapeInvalidHtmlTags"]
+    108 [width=0.666667,height=0.333333,fixedsize=true,id=108,label="108: renderers.sanitizeDotContent"]
+    109 [width=0.666667,height=0.333333,fixedsize=true,id=109,label="109: renderers.sanitizeDotFiles"]
+    32 [width=0.666667,height=0.333333,fixedsize=true,id=32,label="32: renderers.run"]
+    98 [width=0.666667,height=0.333333,fixedsize=true,id=98,label="98: renderers.mermaidRender"]
+    99 [width=0.666667,height=0.333333,fixedsize=true,id=99,label="99: renderers.plantumlRender"]
+  }
+
+}

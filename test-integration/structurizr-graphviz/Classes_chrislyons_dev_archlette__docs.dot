@@ -1,0 +1,17 @@
+digraph {
+  compound=true
+  graph [splines=polyline,rankdir=LR,ranksep=0.3333333333333333,nodesep=0.3333333333333333,fontsize=5]
+  node [shape=box,fontsize=5]
+  edge []
+
+  subgraph cluster_8 {
+    margin=25
+    33 [width=0.666667,height=0.333333,fixedsize=true,id=33,label="33: docs.run"]
+    78 [width=0.666667,height=0.333333,fixedsize=true,id=78,label="78: docs.markdownDocs"]
+    79 [width=0.666667,height=0.333333,fixedsize=true,id=79,label="79: docs.findDiagramsForView"]
+    80 [width=0.666667,height=0.333333,fixedsize=true,id=80,label="80: docs.findDiagramsForContainer"]
+    81 [width=0.666667,height=0.333333,fixedsize=true,id=81,label="81: docs.findClassDiagramsForComponent"]
+    82 [width=0.666667,height=0.333333,fixedsize=true,id=82,label="82: docs.sanitizeFileName"]
+  }
+
+}

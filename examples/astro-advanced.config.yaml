@@ -82,17 +82,9 @@ generators:
 
 # Rendering stage
 # Converts DSL to visual diagrams
-# Renderers execute in order - output of one feeds into the next
 renderers:
-  # Step 1: Export Structurizr DSL to PlantUML and Mermaid formats
   - use: renderers/builtin/structurizr-export
-    props:
-      formats: ['plantuml', 'mermaid']
-
-  # Step 2: Render PlantUML to PNG images
   - use: renderers/builtin/plantuml-render
-    props:
-      format: 'png'
 
 # Documentation stage
 # Generates markdown documentation with embedded diagrams

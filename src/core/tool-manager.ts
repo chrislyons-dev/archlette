@@ -29,6 +29,7 @@ import type { Logger } from './types.js';
  */
 const TOOL_VERSIONS = {
   structurizr: '2025.05.28',
+  structurizrLite: '2025.05.28',
   plantuml: '1.2025.8',
 } as const;
 
@@ -37,6 +38,7 @@ const TOOL_VERSIONS = {
  */
 const TOOL_URLS = {
   structurizr: `https://github.com/structurizr/cli/releases/download/v${TOOL_VERSIONS.structurizr}/structurizr-cli.zip`,
+  structurizrLite: `https://github.com/structurizr/lite/releases/download/v${TOOL_VERSIONS.structurizrLite}/structurizr-lite.war`,
   plantuml: `https://github.com/plantuml/plantuml/releases/download/v${TOOL_VERSIONS.plantuml}/plantuml-${TOOL_VERSIONS.plantuml}.jar`,
 } as const;
 
@@ -79,8 +81,9 @@ function ensureCacheDir(): string {
 
 /**
  * Check if a command exists in PATH
+ * Returns the full path if found, null otherwise
  */
-function commandExistsInPath(command: string): string | null {
+export function commandExistsInPath(command: string): string | null {
   const isWindows = process.platform === 'win32';
   const whichCommand = isWindows ? 'where' : 'which';
 
@@ -276,6 +279,61 @@ export async function findStructurizrCLI(log?: Logger): Promise<string> {
 }
 
 /**
+ * Download and install Structurizr Lite to cache
+ */
+async function downloadStructurizrLite(
+  cacheDir: string,
+  log?: Logger,
+): Promise<string> {
+  const warPath = path.join(
+    cacheDir,
+    `structurizr-lite-${TOOL_VERSIONS.structurizrLite}.war`,
+  );
+
+  if (fs.existsSync(warPath)) {
+    log?.debug(`Structurizr Lite already exists at ${warPath}`);
+    return warPath;
+  }
+
+  log?.info(`Downloading Structurizr Lite ${TOOL_VERSIONS.structurizrLite}...`);
+
+  try {
+    await downloadFile(TOOL_URLS.structurizrLite, warPath, log);
+    log?.info(`Structurizr Lite installed to ${warPath}`);
+    return warPath;
+  } catch (err) {
+    log?.error('Failed to download Structurizr Lite:', err);
+    throw new Error(`Structurizr Lite download failed: ${err}`);
+  }
+}
+
+/**
+ * Find or download Structurizr Lite WAR file
+ *
+ * @param log - Optional logger
+ * @returns Path to structurizr-lite.war file
+ */
+export async function findStructurizrLite(log?: Logger): Promise<string> {
+  log?.debug('Looking for Structurizr Lite...');
+
+  // Check cache
+  const cacheDir = ensureCacheDir();
+  const cachedWar = path.join(
+    cacheDir,
+    `structurizr-lite-${TOOL_VERSIONS.structurizrLite}.war`,
+  );
+
+  if (fs.existsSync(cachedWar)) {
+    log?.debug(`Found Structurizr Lite in cache: ${cachedWar}`);
+    return cachedWar;
+  }
+
+  // Download to cache
+  log?.debug('Structurizr Lite not found, downloading...');
+  return await downloadStructurizrLite(cacheDir, log);
+}
+
+/**
  * Find or download PlantUML JAR
  *
  * @param log - Optional logger
@@ -347,4 +405,42 @@ export function requireJava(): void {
       ].join('\n'),
     );
   }
+}
+
+/**
+ * Find Mermaid CLI in system PATH
+ *
+ * Note: Mermaid CLI is not auto-downloaded. Users should install it via npm:
+ * - Global: npm install -g @mermaid-js/mermaid-cli
+ * - Project: npm install --save-dev @mermaid-js/mermaid-cli
+ *
+ * @param log - Optional logger
+ * @returns Path to mmdc executable
+ * @throws If Mermaid CLI is not found in PATH
+ */
+export function findMermaidCLI(log?: Logger): string {
+  log?.debug('Looking for Mermaid CLI...');
+
+  // Check system PATH
+  const mmdcPath = commandExistsInPath('mmdc');
+
+  if (mmdcPath) {
+    log?.debug(`Found Mermaid CLI in PATH: ${mmdcPath}`);
+    return mmdcPath;
+  }
+
+  // Not found - throw with installation instructions
+  throw new Error(
+    [
+      'Mermaid CLI (mmdc) not found in PATH.',
+      '',
+      'Installation instructions:',
+      '• Global install: npm install -g @mermaid-js/mermaid-cli',
+      '• Project install: npm install --save-dev @mermaid-js/mermaid-cli',
+      '',
+      'After installation, verify with: mmdc --version',
+      '',
+      'For more information, see: https://github.com/mermaid-js/mermaid-cli',
+    ].join('\n'),
+  );
 }

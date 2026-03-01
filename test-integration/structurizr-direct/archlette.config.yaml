@@ -1,0 +1,37 @@
+# Integration Test: Structurizr Direct Rendering
+#
+# This test validates the new default rendering path that directly
+# renders Structurizr DSL to images, preserving themes and styling.
+# Runs against the archlette codebase itself for realistic output.
+
+project:
+  name: Archlette
+  description: Architecture-as-Code toolkit for generating C4 diagrams
+
+paths:
+  output: ./output
+  ir_out: ./output/ir.json
+  dsl_out: ./output/workspace.dsl
+  render_out: ./output/diagrams
+  docs_out: ./output/docs
+
+extractors:
+  - use: extractors/builtin/basic-node
+    inputs:
+      include: ['../../src/**/*.ts']
+      exclude: ['**/*.test.ts', '**/*.d.ts']
+
+validators:
+  - use: validators/builtin/base-validator
+
+generators:
+  - use: generators/builtin/structurizr
+
+# NEW DEFAULT: Direct rendering via Structurizr CLI
+renderers:
+  - use: renderers/builtin/structurizr-render
+    inputs:
+      format: png
+
+docs:
+  - use: docs/builtin/markdown-docs

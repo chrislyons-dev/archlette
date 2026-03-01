@@ -1,4 +1,4 @@
-# 🏗️ {{ system.name }}
+# <picture><source srcset="../images/archlette-stainedglassA-light.png"><img src="../images/archlette-stainedglassA-light.png" alt="" height="28" width="28" style="vertical-align:middle"></picture> {{ system.name }}
 
 **Architecture Documentation**
 Generated {{ "now" | date("YYYY-MM-DD HH:mm:ss") }}
@@ -17,7 +17,7 @@ The system context diagram shows how {{ system.name }} fits into its environment
 
 {% if systemDiagrams.length > 0 %}
 {% for diagram in systemDiagrams %}
-![System Context Diagram](./{{ diagram | forwardSlashes }})
+<img src="./{{ diagram | forwardSlashes }}" alt="System Context Diagram" style="max-width: 100%; height: auto;">
 {% endfor %}
 {% else %}
 > No system context diagrams generated. Run the render stage to generate diagrams.
@@ -32,30 +32,15 @@ The container diagram shows the high-level technology choices and how containers
 
 {% if containerDiagrams.length > 0 %}
 {% for diagram in containerDiagrams %}
-![Container Diagram](./{{ diagram | forwardSlashes }})
+<img src="./{{ diagram | forwardSlashes }}" alt="Container Diagram" style="max-width: 100%; height: auto;">
 {% endfor %}
 {% endif %}
 
-<table>
-<thead>
-<tr>
-<th>Container</th>
-<th>Type</th>
-<th>Description</th>
-<th>Details</th>
-</tr>
-</thead>
-<tbody>
+| Container | Type | Description | Details |
+| --- | --- | --- | --- |
 {% for container in containers %}
-<tr>
-<td><strong>{{ container.name }}</strong></td>
-<td><code>{{ container.type }}</code></td>
-<td>{{ container.description or "—" }}</td>
-<td><a href="./{{ container.id | sanitizeFileName }}.md">View →</a></td>
-</tr>
+| **{{ container.name | mdTableCell }}** | `{{ container.type | mdTableCell }}` | {{ container.description | mdTableCell }} | [View](./{{ container.id | sanitizeFileName }}.md) |
 {% endfor %}
-</tbody>
-</table>
 
 {% else %}
 > No containers defined.
@@ -66,3 +51,4 @@ The container diagram shows the high-level technology choices and how containers
 <div align="center">
 <sub>Generated with <a href="https://github.com/chrislyons-dev/archlette">Archlette</a> Architecture-as-Code toolkit</sub>
 </div>
+

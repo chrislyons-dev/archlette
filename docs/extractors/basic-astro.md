@@ -2,7 +2,7 @@
 
 **Extract architecture from Astro component files.**
 
-The `basic-astro` extractor analyzes `.astro` files to discover UI components, islands, and their relationships. Island architecture mapped automatically.
+The `basic-astro` extractor analyzes `.astro` files to discover components, actors, and relationships. Astro's component model maps naturally to C4 architecture.
 
 ---
 
@@ -10,16 +10,16 @@ The `basic-astro` extractor analyzes `.astro` files to discover UI components, i
 
 **From Astro components:**
 
-- 🔹 **Components** — Astro components as architectural units
-- 🔹 **Actors** — Users and external systems (via JSDoc `@actor`)
-- 🔹 **Relationships** — Component dependencies from imports
-- 🔹 **Props** — Component interfaces and contracts
+- 🔹 **Components** — Each .astro file becomes a component in the architecture
+- 🔹 **Actors** — Users and external systems (via JSDoc `@actor` tags)
+- 🔹 **Relationships** — Component dependencies detected from imports and `@uses` tags
+- 🔹 **Code Elements** — Classes, functions, and types from frontmatter
 
 **From frontmatter JSDoc:**
 
-- 🔹 **Component metadata** — Name, description, purpose
-- 🔹 **Actor declarations** — External system interactions
-- 🔹 **Relationship tags** — Explicit dependencies
+- 🔹 **Component metadata** — Name, description, purpose from `@component` or `@module` tags
+- 🔹 **Actor declarations** — External system interactions via `@actor` tags
+- 🔹 **Relationship tags** — Explicit dependencies via `@uses` tags
 
 ---
 
