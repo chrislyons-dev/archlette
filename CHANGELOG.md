@@ -5,6 +5,14 @@ All notable changes to **Archlette** will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and this project adheres to [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
 
+## [1.3.2](https://github.com/chrislyons-dev/archlette/compare/v1.3.1...v1.3.2) (2026-03-01)
+
+
+### Bug Fixes
+
+* broken image links ([#58](https://github.com/chrislyons-dev/archlette/issues/58)) ([bc15d0c](https://github.com/chrislyons-dev/archlette/commit/bc15d0c0fa84880ec51943e70a57e3270ce4743d))
+* broken links ([#60](https://github.com/chrislyons-dev/archlette/issues/60)) ([6c6d809](https://github.com/chrislyons-dev/archlette/commit/6c6d8090c207cb033905cdf45f6824433e5c628e))
+
 ## [1.3.1](https://github.com/chrislyons-dev/archlette/compare/v1.3.0...v1.3.1) (2026-03-01)
 
 
