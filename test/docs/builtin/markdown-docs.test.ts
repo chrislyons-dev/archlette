@@ -636,10 +636,12 @@ describe('markdown-docs generator', () => {
   });
 
   describe('brand image copying', () => {
-    it('copies brand images to <docs_out>/../images/ when source dir exists', async () => {
+    it('copies brand images (PNG and SVG) to <docs_out>/../images/ when source dir exists', async () => {
       mockFs.readdirSync = vi.fn(() => [
         'archlette-stainedglassA-light.png',
         'archlette-stainedglassA-dark.png',
+        'archlette-stainedglassA-light.svg',
+        'archlette-stainedglassA-dark.svg',
       ]);
 
       await markdownDocs(mockContext);
@@ -649,8 +651,8 @@ describe('markdown-docs generator', () => {
         recursive: true,
       });
 
-      // each image should be copied
-      expect(mockFs.copyFileSync).toHaveBeenCalledTimes(2);
+      // all four files (2 PNG + 2 SVG) should be copied
+      expect(mockFs.copyFileSync).toHaveBeenCalledTimes(4);
       expect(mockFs.copyFileSync).toHaveBeenCalledWith(
         expect.stringContaining('archlette-stainedglassA-light.png'),
         expect.stringContaining('archlette-stainedglassA-light.png'),
@@ -658,6 +660,14 @@ describe('markdown-docs generator', () => {
       expect(mockFs.copyFileSync).toHaveBeenCalledWith(
         expect.stringContaining('archlette-stainedglassA-dark.png'),
         expect.stringContaining('archlette-stainedglassA-dark.png'),
+      );
+      expect(mockFs.copyFileSync).toHaveBeenCalledWith(
+        expect.stringContaining('archlette-stainedglassA-light.svg'),
+        expect.stringContaining('archlette-stainedglassA-light.svg'),
+      );
+      expect(mockFs.copyFileSync).toHaveBeenCalledWith(
+        expect.stringContaining('archlette-stainedglassA-dark.svg'),
+        expect.stringContaining('archlette-stainedglassA-dark.svg'),
       );
     });
 
