@@ -75,7 +75,7 @@ The following dependencies use licenses that require additional review:
 ### NPM Dependencies Summary
 
 ```
-├─ MIT: 324
+├─ MIT: 323
 ├─ ISC: 51
 ├─ Apache-2.0: 34
 ├─ BSD-3-Clause: 14
@@ -329,7 +329,7 @@ SOFTWARE.
 
 ---
 
-### chevrotain/cst-dts-gen@11.0.3
+### chevrotain/cst-dts-gen@11.1.2
 
 - **License**: Apache-2.0
 - **Repository**: https://github.com/Chevrotain/chevrotain
@@ -544,7 +544,7 @@ SOFTWARE.
 
 ---
 
-### chevrotain/gast@11.0.3
+### chevrotain/gast@11.1.2
 
 - **License**: Apache-2.0
 - **Repository**: https://github.com/Chevrotain/chevrotain
@@ -759,7 +759,7 @@ SOFTWARE.
 
 ---
 
-### chevrotain/regexp-to-ast@11.0.3
+### chevrotain/regexp-to-ast@11.1.2
 
 - **License**: Apache-2.0
 - **Repository**: https://github.com/Chevrotain/chevrotain
@@ -974,7 +974,7 @@ SOFTWARE.
 
 ---
 
-### chevrotain/types@11.0.3
+### chevrotain/types@11.1.2
 
 - **License**: Apache-2.0
 - **Repository**: https://github.com/Chevrotain/chevrotain
@@ -1190,7 +1190,7 @@ SOFTWARE.
 
 ---
 
-### chevrotain/utils@11.0.3
+### chevrotain/utils@11.1.2
 
 - **License**: Apache-2.0
 - **Repository**: https://github.com/Chevrotain/chevrotain
@@ -2060,78 +2060,6 @@ third-party archives.
 
 ---
 
-### isaacs/balanced-match@4.0.1
-
-- **License**: MIT
-- **Repository**: https://github.com/isaacs/balanced-match
-
-**License Text:**
-
-```
-(MIT)
-
-Original code Copyright Julian Gruber <julian@juliangruber.com>
-
-Port to TypeScript Copyright Isaac Z. Schlueter <i@izs.me>
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of
-this software and associated documentation files (the "Software"), to deal in
-the Software without restriction, including without limitation the rights to
-use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies
-of the Software, and to permit persons to whom the Software is furnished to do
-so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-
-```
-
----
-
-### isaacs/brace-expansion@5.0.0
-
-- **License**: MIT
-- **Repository**: N/A
-
-**License Text:**
-
-```
-MIT License
-
-Copyright Julian Gruber <julian@juliangruber.com>
-
-TypeScript port Copyright Isaac Z. Schlueter <i@izs.me>
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-
-```
-
----
-
 ### jridgewell/gen-mapping@0.3.13
 
 - **License**: MIT
@@ -2332,7 +2260,7 @@ SOFTWARE.
 
 ---
 
-### mermaid-js/parser@0.6.3
+### mermaid-js/parser@1.0.0
 
 - **License**: MIT
 - **Repository**: https://github.com/mermaid-js/mermaid
@@ -6678,6 +6606,43 @@ limitations under the License.
 
 ---
 
+### balanced-match@4.0.4
+
+- **License**: MIT
+- **Repository**: https://github.com/juliangruber/balanced-match
+
+**License Text:**
+
+```
+
+(MIT)
+
+Original code Copyright Julian Gruber <julian@juliangruber.com>
+
+Port to TypeScript Copyright Isaac Z. Schlueter <i@izs.me>
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of
+this software and associated documentation files (the "Software"), to deal in
+the Software without restriction, including without limitation the rights to
+use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies
+of the Software, and to permit persons to whom the Software is furnished to do
+so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+```
+
+---
+
 ### bare-events@2.8.2
 
 - **License**: Apache-2.0
@@ -8045,7 +8010,7 @@ THE SOFTWARE.
 
 ---
 
-### basic-ftp@5.1.0
+### basic-ftp@5.2.0
 
 - **License**: MIT
 - **Repository**: https://github.com/patrickjuchli/basic-ftp
@@ -8099,6 +8064,43 @@ Permission is hereby granted, free of charge, to any person obtaining a copy of 
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+```
+
+---
+
+### brace-expansion@5.0.4
+
+- **License**: MIT
+- **Repository**: https://github.com/juliangruber/brace-expansion
+
+**License Text:**
+
+```
+
+MIT License
+
+Copyright Julian Gruber <julian@juliangruber.com>
+
+TypeScript port Copyright Isaac Z. Schlueter <i@izs.me>
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
 
 ```
 
@@ -8360,7 +8362,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SO
 
 ---
 
-### chevrotain@11.0.3
+### chevrotain@11.1.2
 
 - **License**: Apache-2.0
 - **Repository**: https://github.com/Chevrotain/chevrotain
@@ -14987,7 +14989,7 @@ DEALINGS IN THE SOFTWARE.
 
 ---
 
-### langium@3.3.1
+### langium@4.2.1
 
 - **License**: MIT
 - **Repository**: https://github.com/eclipse-langium/langium
@@ -15155,68 +15157,6 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
-
-```
-
----
-
-### lodash-es@4.17.21
-
-- **License**: MIT
-- **Repository**: https://github.com/lodash/lodash
-- **Publisher**: John-David Dalton
-
-**License Text:**
-
-```
-
-Copyright OpenJS Foundation and other contributors <https://openjsf.org/>
-
-Based on Underscore.js, copyright Jeremy Ashkenas,
-DocumentCloud and Investigative Reporters & Editors <http://underscorejs.org/>
-
-This software consists of voluntary contributions made by many
-individuals. For exact contribution history, see the revision history
-available at https://github.com/lodash/lodash
-
-The following license applies to all parts of this software except as
-documented below:
-
-====
-
-Permission is hereby granted, free of charge, to any person obtaining
-a copy of this software and associated documentation files (the
-"Software"), to deal in the Software without restriction, including
-without limitation the rights to use, copy, modify, merge, publish,
-distribute, sublicense, and/or sell copies of the Software, and to
-permit persons to whom the Software is furnished to do so, subject to
-the following conditions:
-
-The above copyright notice and this permission notice shall be
-included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
-LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
-OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
-WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-====
-
-Copyright and related rights for sample code are waived via CC0. Sample
-code is defined as all source code displayed within the prose of the
-documentation.
-
-CC0: http://creativecommons.org/publicdomain/zero/1.0/
-
-====
-
-Files located in the node_modules and vendor directories are externally
-maintained libraries used by this software which have their own
-licenses; we recommend you read them, as their terms may differ from the
-terms above.
 
 ```
 
@@ -15529,7 +15469,7 @@ SOFTWARE.
 
 ---
 
-### mermaid@11.12.2
+### mermaid@11.12.3
 
 - **License**: MIT
 - **Repository**: https://github.com/mermaid-js/mermaid
@@ -15601,7 +15541,7 @@ THE SOFTWARE.
 
 ---
 
-### minimatch@10.1.1
+### minimatch@10.2.4
 
 - **License**: BlueOak-1.0.0
 - **Repository**: https://github.com/isaacs/minimatch
@@ -21294,7 +21234,7 @@ THE SOFTWARE IS PROVIDED _AS IS_, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 ---
 
-### vscode-uri@3.0.8
+### vscode-uri@3.1.0
 
 - **License**: MIT
 - **Repository**: https://github.com/microsoft/vscode-uri
